@@ -1,0 +1,853 @@
+Total pages: 148
+
+--- Page 138 ---
+Samsung SDS
+Sustainability Report 2024
+138
+INTRODUCTION
+SUSTAINABILITY MANAGEMENT
+ ESG PERFORMANCE 
+APPENDIX
+GRI Standards Index
+Classification Disclosure Indicators
+Page Note
+General Disclosures 
+GRI 2: 
+General 
+Disclosures 
+2021
+2-1
+Organization details
+2, 7-15
+2-2
+Entities included in the organization's sustainability reporting 
+2
+2-3
+Reporting period, frequency, and contact point
+2
+2-4
+Restatements of information 
+123-135
+Data changes are indicated 
+in the annotations
+2-5
+External assurance
+146-147
+2-6
+activities, value chain and other business relations  
+7-11
+Business report 14-15
+2-7
+Employees
+127
+2-8
+Workers who are not employees
+-
+Business report 346
+2-9
+Governance structure and composition
+100-104
+2-10
+Nomination and selection of the highest governance body
+101
+2-11
+Chair of the highest governance body
+100
+2-12
+Role of highest governance body in overseeing the 
+management of impacts
+17
+2-13
+Delegation of responsibility for impact management 
+impacts
+17
+2-14
+Role of highest governance body in sustainability 
+reporting
+17, 28
+2-15
+Conflicts of interest
+100-101
+2-16
+Communication of critical concerns
+17
+Business report 319-322
+2-17
+Collective knowledge of the highest governance body
+101
+2-18
+Evaluation of the performance of the highest governance body 
+102
+2-19
+Remuneration policies
+103
+2-20
+Process to determine remuneration
+103
+2-21
+Annual total compensation ratio
+130
+2-22
+Statement on sustainable development strategy
+5~6
+2-23
+Policy commitments
+136
+2-24
+Embedding policy commitments
+108-113
+2-25
+Process to remediate negative impacts
+56, 66, 109
+2-26
+Mechanisms for seeking advice and raising concerns
+56, 66, 109
+2-27
+Compliance with laws and regulations
+126
+2-28
+Membership associations (initiatives)
+124
+2-29
+Approach to stakeholder engagement
+29
+2-30
+Collective bargaining agreements
+66
+Classification
+Disclosure Indicators
+Page
+Note
+Material Topic & Topic Standards
+GRI 3: Material Topics 2021
+3-1
+Process to determine material topics
+28
+3-2
+List of material topics
+28
+Material Topic 1
+Information security
+Management method of 
+material topics
+3-3
+Management of material topics
+114
+Non-GRI/Organization’s 
+own metric
+-
+Security verification and security inspection
+116, 117
+Material Topic 2
+GHG emissions management and reduction
+Management method of 
+material topics
+3-3
+Management of material topics
+40
+GRI 305: Emissions
+305-1
+Direct GHG emissions (Scope 1)
+39, 133
+305-2
+Indirect GHG emissions (Scope 2)
+39, 133
+305-3
+Other indirect GHG emissions (Scope 3)
+39, 133
+305-4
+GHG emissions intensity
+39, 133
+305-5
+Reduction of GHG emissions
+20, 40-42
+Material Topic 3
+Compliance and business ethics
+Management method of 
+material topics
+3-3
+Management of material topics
+108, 110
+GRI 205 : Anti-corruption
+205-1
+Operations assessed for risks related to corrupti
+...[truncated, total 4264 chars]
+
+--- Page 139 ---
+Samsung SDS
+Sustainability Report 2024
+139
+INTRODUCTION
+SUSTAINABILITY MANAGEMENT
+ ESG PERFORMANCE 
+APPENDIX
+GRI Standards Index
+Classification
+Disclosure Indicators
+Page
+Note
+Material Topic & Topic Standards
+Material Topic 6
+Respect for human rights and diversity
+Management method of 
+material topics
+3-3
+Management of material topics
+55-57
+GRI 405 : Diversity and 
+equal opportunity 
+405-1
+Diversity of governance bodies and employee
+58-60
+405-2
+Ratio of basic salary and remuneration of women to men
+130
+GRI 406: Non-discrimination
+406-1
+Incidents of discrimination and corrective actions taken
+56-57
+Material Topic 7
+Talent attraction and development
+Management method of 
+material topics
+3-3
+Management of material topics
+62-63
+GRI 404 : Training and 
+education
+404-1
+Average hours of training per year per employee
+128
+404-2
+Programs for upgrading employee skills and transition 
+assistance
+62-63
+404-3
+Percentage of employees receiving regular performance 
+and career development reviews
+130
+Material Topic 8
+Supply chain ESG management
+Management method of 
+material topics
+3-3
+Management of material topics
+80-83
+GRI 308: Supplier 
+environmental assessment
+308-2
+Negative environmental impacts in the supply chain and 
+actions taken
+76-79
+GRI 414: Supplier social 
+assessment
+414-2
+Negative social impacts in the supply chain and actions 
+taken
+76-79
+Material Topic 9
+Manage health and safety
+Management method of 
+material topics
+3-3
+Management of material topics
+70
+GRI 403 : Occupational 
+Health and Safety
+403-1
+Occupational health and safety management system
+70-71
+403-2
+Hazard identification, risk assessment, and incident 
+investigation
+72-73
+403-3
+Occupational health services
+74-75
+403-4
+Employee engagement, counseling and communication 
+regarding occupational health and safety
+70
+403-5
+Worker education on occupational health and safety
+73
+403-6
+Promotion of worker health
+74-75
+403-7
+Prevention and mitigation of occupational health and 
+safety impacts directly linked by business relationships
+71-73
+403-8
+Workers covered by an occupational health and safety 
+management system
+71
+403-9
+Work-related injuries
+130
+403-10
+Work-related ill health
+130
+Classification
+Disclosure Indicators
+Page
+Note
+Material Topic & Topic Standards
+Material Topic 10
+Create a quality organizational culture
+Management method of 
+material topics
+3-3
+Management of material topics
+65, 66
+Non-GRI/Organization’s 
+own metric
+-
+Samsung Culture Index (SCI)
+67
+Topic standards
+GRI 201: Economic 
+Performance 
+201-1
+Direct economic value generated and distributed 
+123
+201-2
+Financial implications and other risks and opportunities 
+due to climate change 
+44-49
+201-3
+Defined benefit plan obligations and other retirement 
+plans 
+124
+GRI 203: 
+Indirect Economic impacts 
+203-2
+Significant indirect econom
+...[truncated, total 3654 chars]
+
+--- Page 140 ---
+Samsung SDS
+Sustainability Report 2024
+140
+INTRODUCTION
+SUSTAINABILITY MANAGEMENT
+ ESG PERFORMANCE 
+APPENDIX
+SASB Index
+Topic
+Code
+Accounting Metric
+Page
+Category
+Unit of Measure
+Environmental 
+footprint of hardware 
+infrastrucutre 
+TC-SI-130a.1
+1)Total energy consumed 2) percentage grid electricity 3)percentage renewable
+43, 133
+Quantitative
+TJ, %
+TC-SI-130a.2
+1) Total water withdrawn 2) total water consumed, percentage of each in regions with High or Extremely High Baseline 
+Water Stress
+50-51, 134
+Quantitative
+m3
+TC-SI-130a.3
+Discussion of the integration of environmental considerations into strategic planning for data center needs
+40-41, 43, 48
+Discussion and Analysis 
+N/A
+Data privacy and 
+freedom of expression
+TC-SI-220a.1
+Description of policies and practices relating to behavioral advertising and user privacy
+97-98
+Discussion and Analysis 
+N/A
+TC-SI-220a.2
+Number of user whose information is used for secondary purposes
+98, 132
+Quantitative
+Numbers
+TC-SI-220a.3
+Total amount of monetary losses as a result of legal proceedings associated with user privacy
+119, 126
+Quantitative
+Reporting currency
+TC-SI-220a.4
+1) Number of law enforcement requests for user information, 2) number of user whose information was requested, 
+3) percentage resulting in disclosure
+98, 132
+Quantitative
+Numbers, %
+TC-SI-220a.5
+List of countries where core products of services are subject to government-required monitoring, blocking, content filtering, 
+or censoring
+98
+Discussion and Analysis 
+N/A
+Data security
+TC-SI-230a.1
+1) Number of data breaches, 2) percentage involving personally identifiable information(P11), 3) Number of users affected
+119, 126
+Quantitative
+Numbers, %
+TC-SI-230a.2
+Description of approach to identifying and addressing data security risks, including use of third-party cybers security standards
+114~121
+Discussion and Analysis 
+N/A
+Recruiting and managing 
+global, diverse, and 
+skilled workforce
+TC-SI-330a.1
+Percentage of employees that are 1) foreign nationals and 2) located offshore
+127
+Quantitative
+%
+TC-SI-330a.2
+Employee engagement as a percentage
+66-67
+Quantitative
+%
+TC-SI-330a.3
+Percentage of gender and racial/ethic group representation for 1) management 2) technical staff, and 3) all other employees
+127
+Quantitative
+%
+Intellectual property 
+protection and 
+competitive behavior
+TC-SI-520a.1
+Total amount of monetary losses as a result of legal proceedings associated with anti-competitive behavior regulations
+126
+Quantitative
+Reporting currency
+Managing systemic 
+risks from technology 
+disruptions
+TC-SI-550a.1
+Number of 1) performance issues and 2) service disruptions; 3) total customer downtime
+132 
+Quantitative
+Numbers, Days
+TC-SI-550a.2
+Description of business continuity risks related to disruptions of operations
+91-92
+Discussion and Analysis 
+N/A
+...[truncated, total 3053 chars]
+
+--- Page 141 ---
+Samsung SDS
+Sustainability Report 2024
+141
+INTRODUCTION
+SUSTAINABILITY MANAGEMENT
+ ESG PERFORMANCE 
+APPENDIX
+IFRS S2 Index
+Category
+Reference no.
+Disclosure Description 
+Page
+Governance
+6
+Supervision and management of climate-related risks and opportunities
+36, 44
+Strategy
+10
+Climate-related risks and opportunity
+45-49
+13
+Impact of climate-related risks and opportunities on the company’s business modelss and value chain
+45
+14
+Company response to climate-related risks and opportunities
+18-22, 40-43, 53
+15
+Financial impact of climate-related risks and opportunities on the company
+45-47
+16
+Financial performance and cash flow for managing climate-related risks and opportunities
+45-47
+Risk Management
+25
+Scenario analysis for identifying climate-related risks
+48
+Metrics and Targets
+29
+Scope 1, 2, 3 emissions
+39, 134
+ESG Data          ESG Policy Book          ESG Value Creation Calculation Process          GRI Standards Index          SASB Index          IFRS S2 Index          ESRS Index          GHG Verification Statement          Third-Party Assurance Statement 
+
+--- Page 142 ---
+Samsung SDS
+Sustainability Report 2024
+142
+INTRODUCTION
+SUSTAINABILITY MANAGEMENT
+ ESG PERFORMANCE 
+APPENDIX
+ESRS Index
+Category
+Code
+Disclosure Requirement
+Page
+Basis for preparation 
+ESRS2
+BP - 1
+General basis for preparation of the sustainability statements
+2
+BP - 2
+Disclosures in relation to specific circumstances
+2, 39, 50, 52, 89, 123, 129, 133, 136
+Governance
+GOV - 1
+The role of the administrative, management, and supervisory bodies
+17, 100-104
+GOV - 2
+Reporting and overseeing sustainability issues
+17, 100-102, 104
+GOV - 3
+Sustainability performance incentives
+103
+Strategy and Business 
+Model
+SBM - 1
+Strategy, business model, and value chain
+7-9, 21-23, 127, 33, 137
+SBM - 2
+Interests and views of stakeholders
+31, 17
+SBM - 3
+Material impacts, risks and opportunities, and their interaction with strategy and  business model
+32, 21-23
+Impact, Risk, 
+and Opportunity 
+Management
+IRO - 1
+Identify and assess material impacts, risks, and opportunities
+32, 100-102
+MDR - P
+Policies adopted to manage material sustainability matters
+32, 36-121
+MDR - A
+Actions in relation to material sustainability matters
+32, 36-121
+Metrics and Targets
+MDR - M
+Metrics in relation to material sustainability matters
+32, 123-136
+General disclosure
+Topical Ddisclosures
+Category
+Code
+Disclosure Requirement
+Page
+Own Workforce
+S1
+S1-1
+Policies related to own workforce
+55-57, 31, 70, 73, 62-64, 66
+S1-2
+Processes for engaging workers and worker representatives
+31, 66, 58-60
+S1-3
+Processes to remediate negative impacts and channels to raise concerns
+66, 31, 109-113
+S1-4
+Taking action on material impacts, approaches to managing material risks and pursuing material opportunities, and their effectiveness
+62-63, 66, 73, 65, 66, 59-60, 55-57
+S1-5
+Targets related to managing negative material impacts, advancing positive impacts, as well as to risks and opportunities 
+59, 70 
+S1-6
+Characteristics of the undertaking’s employees
+127
+S1-8
+Collective bargaining coverage and social dialogue
+66
+S1-11
+Social protection
+60, 68, 129
+S1-12
+Persons with disabilities 
+59
+S1-13
+Training and skills development metrics
+128
+S1-14
+Health and safety metrics
+131, 70-71
+S1-15
+Work-life balance
+60, 129
+S1-16
+Pay gap and total compensation
+130
+S1-17
+Incidents and human rights impact 
+108-109, 113
+ESG Data          ESG Policy Book          ESG Value Creation Calculation Process          GRI Standards Index          SASB Index          IFRS S2 Index          ESRS Index          GHG Verification Statement          Third-Party Assurance Statement 
+
+--- Page 143 ---
+Samsung SDS
+Sustainability Report 2024
+143
+INTRODUCTION
+SUSTAINABILITY MANAGEMENT
+ ESG PERFORMANCE 
+APPENDIX
+ESRS Index
+Category
+Code
+Disclosure Requirement
+Page
+Workers in the 
+Value Chain
+S2
+S2-1
+Policies related to value chain workers
+31, 78-79
+S2-2
+Processes for engaging value chain workers about impacts
+78, 83
+S2-3
+Processes to remediate negative impacts and channels to raise concerns
+31, 83
+S2-4
+Taking action on material impacts, approaches to managing material risks and pursuing material opportunities, and their effectiveness
+76-79, 132, 55, 80-83
+S2-5
+Targets related to managing negative material impacts, advancing positive impacts, as well as to risks and opportunities
+76
+Affected Communities
+S3
+S3-1
+Policies related to affected communities
+55-57, 31, 84-88
+S3-4
+Taking action on material impacts, approaches to managing material risks and pursuing material opportunities, and their effectiveness
+84-88, 123
+Consumers
+S4
+S4-1
+Policies related to consumers and end-users
+94-95, 55, 31, 89
+S4-2
+Processes for engaging consumers and end-users about impacts
+32, 31, 89
+S4-3
+Processes to remediate negative impacts and channels to raise concerns
+89
+S4-4
+Taking action on material impacts, approaches to managing material risks and pursuing material opportunities, and their effectiveness
+89-92, 97-98, 117-120
+S4-5
+Targets related to managing negative material impacts, advancing positive impacts, as well as to risks and opportunities
+92
+SBM-3
+Material impacts, risks and opportunities, and their interaction with strategy and business model
+89
+Business Conduct
+G1
+GOV-1
+The role of the administrative, management, and supervisory bodies
+100-101
+G1-1
+Business conduct policies and corporate culture
+36, 58, 64-67, 108
+G1-2
+Management relations with suppliers
+80-81, 78
+G1-3
+Prevention and detection of corruption and bribery
+108, 126, 111
+G1-4
+Incidents of corruption or bribery 
+108
+G1-5
+Political influence and lobbying activities
+110-111, 124
+G1-6
+Payment practices
+81
+Climate Change
+E1
+E1-1
+Transition plan for climate change mitigation
+41
+E1-3
+Actions and resources in relation to climate change
+40-43
+E1-5
+Energy consumption and mix
+133
+E1-6
+Scopes 1, 2, 3 and total GHG emissions
+39, 133
+E1-9
+Potential financial effects from material physical and transition risks and opportunities 
+46-48
+Pollution
+E2
+E2-1
+Policies related to pollution
+36, 52
+E2-2
+Actions and resources related to pollution
+38, 41, 52
+Water Resources
+E3
+E3-1
+Policies related to water and marine resources
+50-51
+E3-3
+Targets related to water and marine resources
+50
+E3-4
+Water consumption
+50, 134
+E3-5
+Resource leaks
+52, 135
+E1. SMB-3
+Material impacts, risks and opportunities, and their interaction with strategy and  business model
+45
+E1. IRO-1
+Identify and assess material climate-related impacts, risks, a
+...[truncated, total 3087 chars]
+
+--- Page 144 ---
+Samsung SDS
+Sustainability Report 2024
+144
+INTRODUCTION
+SUSTAINABILITY MANAGEMENT
+ ESG PERFORMANCE 
+APPENDIX
+GHG Verification Statement
+Samsung SDS Co., Ltd. Consolidation standards (including overseas subsidiaries)
+The Korea Management Registrar Inc. (hereinafter “KMR”) has conducted the verification on the greenhouse gas 
+(hereinafter “GHG”) emission (Scope 1,2) of Samsung SDS CO., Ltd. (hereinafter “the Company”) in 2023.
+SCOPE
+Verification of places of business and emission facilities under the control of the company.
+- Domestic workplaces : Suwon DC, Sangam DC, Gumi DC, Chuncheon DC, Dongtan DC, Headquarters (West Campus), 
+East Campus, Pangyo Logistics Campus, Seoul R&D Campus, Giheung Tera Tower, Pangyo IT Campus
+- Overseas workplaces : SDSA(United States), SDSE(United Kingdom, Germany, Netherlands, Hungary), 
+   SDSLA(Brazil, Chile, Panama, Peru), SDSI(India), SDSC(China), SDSV/SDSAP(Singapore, Vietnam)
+STANDARDS
+•ISO 14064-1:2018, ISO 14064-3:2019
+•IPCC Guidelines for National Greenhouse Gas Inventories
+•Guidelines for Reporting and Certification of Emissions in the Greenhouse Gas Emissions Trading Scheme
+PROCEDURE
+We conducted a risk analysis approach and on-site verification based on data evaluation, and we identified the 
+appropriateness of the data and factors applied to GHG emission calculations based on objective evidence. The ver-
+ification team verified the GHG emissions during the reporting period in a reasonable way based on the verification 
+guidelines.
+INDEPENDENT
+KMR does not have any stake in the verified entity and does not conduct verification with biased opinions/views. We 
+have drawn an independent and objective verification conclusion based on the verification standards, and reviewed 
+the every aspect of the verification we performed throughout the entire verification process through internal review.
+LIMITATIONS
+The verification team verified the related reports, information and data presented by the audited institution by 
+sampling or enumeration methods. As a result, there are many inherent limitations, and there may be disagreements 
+in the interpretation of appropriateness. Although we have tried to faithfully perform verification that meets the 
+verification standards, we suggest that errors, omissions, and false statements that could not be found may be latent 
+as the limitations to the verification.
+OPINION
+•GHG verification has been performed to meet the limited assurance level according to the verification standards.
+•We express that no significant errors were found in the calculation of emissions during the verification process, 
+and that relevant activity data and evidence were appropriately managed and calculated. As a result, we express 
+an “unmodified” opinion.
+•Criticality: meets the criterion, which is le
+...[truncated, total 4378 chars]
+
+--- Page 145 ---
+Samsung SDS
+Sustainability Report 2024
+145
+INTRODUCTION
+SUSTAINABILITY MANAGEMENT
+ ESG PERFORMANCE 
+APPENDIX
+GHG Verification Statement
+Samsung SDS Co., Ltd. Consolidation standards (including overseas subsidiaries)
+The Korea Management Registrar Inc. (hereinafter “KMR”) has conducted the verification on the greenhouse gas 
+(hereinafter “GHG”) emission (Scope 3) of Samsung SDS CO., Ltd. (hereinafter “the Company”) in 2023.
+SCOPE
+Verification of places of business and emission facilities under the control of the company.
+- Domestic workplaces : Suwon DC, Sangam DC, Gumi DC, Chuncheon DC, Dongtan DC, Headquarters (West Campus),
+   East Campus, Pangyo Logistics Campus, Seoul R&D Campus, Giheung Tera Tower, Pangyo IT Campus
+- Overseas workplaces : SDSA(United States), SDSE(United Kingdom, Germany, Netherlands, Hungary), 
+   SDSLA(Brazil, Chile, Panama, Peru), SDSI(India), SDSC(China), SDSV/SDSAP(Singapore, Vietnam)
+STANDARDS
+•ISO 14064-1:2018, ISO 14064-3:2019 	
+	
+    •WRI/WBCSD GHG Protocol
+•IPCC Guidelines for National Greenhouse Gas Inventories
+•Guidelines for Reporting and Certification of Emissions in the Greenhouse Gas Emissions Trading Scheme
+PROCEDURE
+We conducted a risk analysis approach and on-site verification based on data evaluation, and we identified the 
+appropriateness of the data and factors applied to GHG emission calculations based on objective evidence. The ver-
+ification team verified the GHG emissions during the reporting period in a reasonable way based on the verification 
+guidelines.
+INDEPENDENT
+KMR does not have any stake in the verified entity and does not conduct verification with biased opinions/views. We 
+have drawn an independent and objective verification conclusion based on the verification standards, and reviewed 
+the every aspect of the verification we performed throughout the entire verification process through internal review.
+LIMITATIONS
+The verification team verified the related reports, information and data presented by the audited institution by 
+sampling or enumeration methods. As a result, there are many inherent limitations, and there may be disagreements 
+in the interpretation of appropriateness. Although we have tried to faithfully perform verification that meets the 
+verification standards, we suggest that errors, omissions, and false statements that could not be found may be latent 
+as the limitations to the verification.
+OPINION
+•GHG verification has been performed to meet the limited assurance level according to the verification standards.
+•We express that no significant errors were found in the calculation of emissions during the verification process, 
+and that relevant activity data and evidence were appropriately managed and calculated. As a result, we express 
+an “unmodified” opinion.
+•Criticality: 
+...[truncated, total 4592 chars]
+
+--- Page 146 ---
+Samsung SDS
+Sustainability Report 2024
+146
+INTRODUCTION
+SUSTAINABILITY MANAGEMENT
+ ESG PERFORMANCE 
+APPENDIX
+Third-Party Assurance Statement 
+To: The Stakeholders of SAMSUNG SDS CO.,LTD.	
+Overview
+BSI (British Standards Institution) Group Korea (hereinafter referred to as the "Assurer") was requested to verify the Samsung 
+SDS Sustainability Report 2024 (hereinafter referred to as the "Report"). The Assurer is independent of the SAMSUNG SDS 
+and has no major operational financial interest other than the assurance. This assurance opinion statement is intended to 
+provide information related to the assurance of the SAMSUNG SDS report relating to the environment, social and governance 
+(ESG) to the relevant stakeholders and may not be used for any purpose other than the purpose of publication. This assurance 
+opinion statement was prepared based on the information presented by the SAMSUNG SDS and the assurance was carried 
+out under the assumption that presented the information and data were complete and accurate.
+SAMSUNG SDS is responsible for managing the relevant information contained within the scope of assurance, operating the 
+relevant internal control procedures, and for all information and claims contained in the report. Any queries that may arise by 
+virtue of this independent assurance opinion statement or matters relating to it should be addressed to SAMSUNG SDS only.
+The Assurer is responsible for providing SAMSUNG SDS management with an independent assurance opinion containing 
+professional opinions derived by applying the assurance methodology to the scope specified, and to provide the information 
+to all stakeholders of SAMSUNG SDS. The Assurer shall not bear any other responsibility, including legal responsibility, to any 
+third party other than SAMSUNG SDS in providing the assurance opinion and shall not be liable to any other purpose, purpose 
+or stakeholders related thereto for which the assurance opinion may be used.
+Scope 
+The scope of engagement agreed upon with SAMSUNG SDS includes the following:
+•Reporting contents during the period from January 1st to December 31st 2023 included in the report, some data included 
+half of 2024.
+•Major assertion included in the Report, such as sustainability management policies and strategies, goals, projects, and 
+performance, and the Report contents related to material issues determined as a result of materiality assessment.
+•Appropriateness and consistency of processes and systems for data collection, analysis and review.
+•In Accordance with the four principles of AA1000 AccountAbility in the Report, based on the type of Sustainability As-
+surance based on AA1000AS v3 and if applicable, the reliability of the sustainability performance information contained 
+in the Report.
+The following con
+...[truncated, total 6987 chars]

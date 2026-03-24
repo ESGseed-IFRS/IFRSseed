@@ -1,0 +1,81 @@
+# Backend 단독 저장소 → AWS EC2 (SSH + rsync)
+#
+# 이 디렉터리는 레포 루트의 .github/workflows 와 동일합니다.
+# (이 저장소가 backend 폴더만 담은 원격 레포일 때 GitHub가 이 워크플로를 실행합니다.)
+#
+# Secrets: EC2_HOST, EC2_USER, EC2_SSH_KEY, EC2_DEPLOY_PATH
+# 선택: EC2_SSH_PORT, EC2_SERVICE_NAME
+#
+# EC2_DEPLOY_PATH: 서버에서 backend 디렉터리의 부모 (예: /home/ubuntu/app)
+#   → 코드는 $EC2_DEPLOY_PATH/backend/ 에 배치됩니다.
+#
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'api/**'
+      - 'domain/**'
+      - 'core/**'
+      - 'alembic.ini'
+      - 'alembic/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-ec2
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure SSH (rsync)
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ec2_deploy
+          chmod 600 ~/.ssh/ec2_deploy
+          HOST="${{ secrets.EC2_HOST }}"
+          PORT="${{ secrets.EC2_SSH_PORT }}"
+          if [ -z "$PORT" ]; then PORT=22; fi
+          echo "SSH_PORT=$PORT" >> "$GITHUB_ENV"
+          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts
+
+      - name: Rsync to EC2 (→ .../backend/)
+        env:
+          DEPLOY_PATH: ${{ secrets.EC2_DEPLOY_PATH }}
+        run: |
+          rsync -avz --delete \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude '**/__pycache__/' \
+            --exclude '*.pyc' \
+            --exclude '.env' \
+            --exclude '*.pem' \
+            --exclude '**/llamaparse_md/' \
+            -e "ssh -i ~/.ssh/ec2_deploy -o StrictHostKeyChecking=yes -p ${SSH_PORT}" \
+            ./ "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${DEPLOY_PATH}/backend/"
+
+      - name: Install dependencies and restart service
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: ${{ env.SSH_PORT }}
+          script_stop: true
+          script: |
+            set -euo pipefail
+            cd "${{ secrets.EC2_DEPLOY_PATH }}"
+            if [ ! -d .venv ]; then python3 -m venv .venv; fi
+            . .venv/bin/activate
+            pip install -U pip wheel
+            pip install -r backend/domain/v1/data_integration/requirement.txt
+            if [ -n "${{ secrets.EC2_SERVICE_NAME }}" ]; then
+              sudo systemctl restart "${{ secrets.EC2_SERVICE_NAME }}"
+            fi

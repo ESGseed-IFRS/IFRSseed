@@ -1,0 +1,1211 @@
+{
+    "terms": [
+        {
+            "term_ko": "GRI 지속가능성 보고 표준",
+            "term_en": "GRI Sustainability Reporting Standards",
+            "standard": "GRI",
+            "description": "GRI Standards의 약어. GRI 1: Foundation 2021에서 소개되는 지속가능성 보고 표준입니다.",
+            "paragraph_reference": "GRI 1 Introduction",
+            "related_dps": [
+                "GRI-1"
+            ]
+        },
+        {
+            "term_ko": "GRI Standards",
+            "term_en": "GRI Standards",
+            "standard": "GRI",
+            "description": "GRI 지속가능성 보고 표준의 약어.",
+            "paragraph_reference": "GRI 1 Introduction",
+            "related_dps": [
+                "GRI-1"
+            ]
+        },
+        {
+            "term_ko": "GRI 1: 기초 2021",
+            "term_en": "GRI 1: Foundation 2021",
+            "standard": "GRI",
+            "description": "GRI Standards의 목적과 시스템을 소개하고 지속가능성 보고의 핵심 개념을 설명하는 첫 번째 표준.",
+            "paragraph_reference": "GRI 1 Introduction",
+            "related_dps": [
+                "GRI-1"
+            ]
+        },
+        {
+            "term_ko": "보고 원칙",
+            "term_en": "reporting principles",
+            "standard": "GRI",
+            "description": "보고된 정보의 품질을 보장하기 위한 기본 원칙. GRI 1 Section 4에서 명시되며, 보고된 정보의 품질을 보장하는 데 근본적입니다.",
+            "paragraph_reference": "GRI 1 Introduction - Structure",
+            "related_dps": [
+                "GRI-1-4"
+            ]
+        },
+        {
+            "term_ko": "GRI 콘텐츠 인덱스",
+            "term_en": "GRI content index",
+            "standard": "GRI",
+            "description": "조직이 GRI Standards에 따라 보고한 모든 공시 항목을 나열하고 해당 정보를 찾을 수 있는 위치를 명시하는 표. GRI 1 부록에서 준비 방법에 대한 지침을 제공합니다.",
+            "paragraph_reference": "GRI 1 Introduction - Structure",
+            "related_dps": [
+                "GRI-1"
+            ]
+        },
+        {
+            "term_ko": "정의된 용어",
+            "term_en": "defined terms",
+            "standard": "GRI",
+            "description": "GRI Standards에서 사용될 때 특정 의미를 가진 용어. 이러한 용어는 GRI Standards 텍스트에서 밑줄로 표시되고 용어집의 정의에 연결됩니다.",
+            "paragraph_reference": "GRI 1 Introduction - Structure",
+            "related_dps": [
+                "GRI-1"
+            ]
+        },
+        {
+            "term_ko": "참고 문헌",
+            "term_en": "Bibliography",
+            "standard": "GRI",
+            "description": "이 표준을 개발하는 데 사용된 권위 있는 정부간 문서를 나열합니다.",
+            "paragraph_reference": "GRI 1 Introduction - Structure",
+            "related_dps": [
+                "GRI-1"
+            ]
+        },
+        {
+            "term_ko": "부록",
+            "term_en": "Appendixes",
+            "standard": "GRI",
+            "description": "GRI 콘텐츠 인덱스를 준비하는 방법에 대한 지침을 제공합니다.",
+            "paragraph_reference": "GRI 1 Introduction - Structure",
+            "related_dps": [
+                "GRI-1"
+            ]
+        },
+        {
+            "term_ko": "용어집",
+            "term_en": "Glossary",
+            "standard": "GRI",
+            "description": "GRI Standards에서 사용될 때 특정 의미를 가진 정의된 용어를 포함합니다. 이러한 용어는 GRI Standards 텍스트에서 밑줄로 표시되고 정의에 연결됩니다.",
+            "paragraph_reference": "GRI 1 Introduction - Structure",
+            "related_dps": [
+                "GRI-1"
+            ]
+        },
+        {
+            "term_ko": "권위 있는 정부간 문서",
+            "term_en": "authoritative intergovernmental instruments",
+            "standard": "GRI",
+            "description": "이 표준을 개발하는 데 사용된 권위 있는 정부간 문서. 참고 문헌에 나열됩니다.",
+            "paragraph_reference": "GRI 1 Introduction - Structure",
+            "related_dps": [
+                "GRI-1"
+            ]
+        },
+        {
+            "term_ko": "Universal Standards",
+            "term_en": "Universal Standards",
+            "standard": "GRI",
+            "description": "GRI Standards의 세 가지 시리즈 중 하나. 모든 조직이 GRI Standards에 따라 보고할 때 사용하는 표준으로, GRI 1, GRI 2, GRI 3으로 구성됩니다.",
+            "paragraph_reference": "GRI 1 Section 1.3",
+            "related_dps": [
+                "GRI-1-1-3",
+                "GRI-1-1-3-a"
+            ]
+        },
+        {
+            "term_ko": "Sector Standards",
+            "term_en": "Sector Standards",
+            "standard": "GRI",
+            "description": "GRI Standards의 세 가지 시리즈 중 하나. 조직의 가능한 중요 주제에 대한 정보를 제공합니다. 조직은 운영하는 섹터에 따라 해당하는 Sector Standards를 사용합니다.",
+            "paragraph_reference": "GRI 1 Section 1.3",
+            "related_dps": [
+                "GRI-1-1-3",
+                "GRI-1-1-3-b"
+            ]
+        },
+        {
+            "term_ko": "Topic Standards",
+            "term_en": "Topic Standards",
+            "standard": "GRI",
+            "description": "GRI Standards의 세 가지 시리즈 중 하나. 조직이 특정 주제와 관련하여 영향에 대한 정보를 보고하는 데 사용하는 공시 항목을 포함합니다. 조직은 GRI 3을 사용하여 결정한 중요 주제 목록에 따라 Topic Standards를 사용합니다.",
+            "paragraph_reference": "GRI 1 Section 1.3",
+            "related_dps": [
+                "GRI-1-1-3",
+                "GRI-1-1-3-c"
+            ]
+        },
+        {
+            "term_ko": "GRI 2: General Disclosures 2021",
+            "term_en": "GRI 2: General Disclosures 2021",
+            "standard": "GRI",
+            "description": "Universal Standards 중 하나. 조직이 보고 관행 및 기타 조직 세부사항(활동, 거버넌스, 정책 등)에 대한 정보를 제공하는 데 사용하는 공시 항목을 포함합니다. 이 정보는 조직의 프로필과 규모에 대한 통찰을 제공하고 조직의 영향을 이해하기 위한 맥락을 제공합니다.",
+            "paragraph_reference": "GRI 1 Section 1.3",
+            "related_dps": [
+                "GRI-1-1-3-a"
+            ]
+        },
+        {
+            "term_ko": "GRI 3: Material Topics 2021",
+            "term_en": "GRI 3: Material Topics 2021",
+            "standard": "GRI",
+            "description": "Universal Standards 중 하나. 중요 주제를 결정하는 방법에 대한 단계별 지침을 제공합니다. 또한 조직이 중요 주제 결정 프로세스, 중요 주제 목록, 각 주제를 관리하는 방법에 대한 정보를 보고하는 데 사용하는 공시 항목을 포함합니다.",
+            "paragraph_reference": "GRI 1 Section 1.3",
+            "related_dps": [
+                "GRI-1-1-3-a"
+            ]
+        },
+        {
+            "term_ko": "중요 주제",
+            "term_en": "material topics",
+            "standard": "GRI",
+            "description": "조직의 경제, 환경, 사람(인권에 대한 영향 포함)에 대한 가장 중요한 영향을 나타내는 주제. 자세한 정보는 GRI 1: Foundation 2021의 섹션 2.2와 GRI 3: Material Topics 2021의 섹션 1을 참조하세요.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": [
+                "GRI-1-1-3-a",
+                "GRI-1-1-3-c"
+            ]
+        },
+        {
+            "term_ko": "요구사항",
+            "term_en": "requirements",
+            "standard": "GRI",
+            "description": "GRI Standards의 모든 공시 항목에 포함된 필수 사항. 요구사항은 굵은 글꼴로 표시되며 'shall'이라는 단어로 표시됩니다. 조직은 GRI Standards에 따라 보고하기 위해 요구사항을 준수해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 1.4",
+            "related_dps": [
+                "GRI-1-1-4",
+                "GRI-1-1-4-a"
+            ]
+        },
+        {
+            "term_ko": "지침",
+            "term_en": "guidance",
+            "standard": "GRI",
+            "description": "요구사항에 수반될 수 있는 배경 정보, 설명 및 예시. 조직이 요구사항을 더 잘 이해할 수 있도록 도와주지만, 조직은 지침을 준수할 필요는 없습니다.",
+            "paragraph_reference": "GRI 1 Section 1.4",
+            "related_dps": [
+                "GRI-1-1-4-a"
+            ]
+        },
+        {
+            "term_ko": "권장사항",
+            "term_en": "recommendations",
+            "standard": "GRI",
+            "description": "특정 행동 과정이 권장되지만 필수는 아닌 경우. 'should'라는 단어로 표시됩니다.",
+            "paragraph_reference": "GRI 1 Section 1.4",
+            "related_dps": [
+                "GRI-1-1-4-a"
+            ]
+        },
+        {
+            "term_ko": "누락 사유",
+            "term_en": "reasons for omission",
+            "standard": "GRI",
+            "description": "조직이 공시 항목 또는 공시 항목 내의 요구사항을 준수할 수 없는 경우(예: 필수 정보가 기밀 또는 법적 금지 사항인 경우), 조직은 준수할 수 없는 공시 항목 또는 요구사항을 명시하고 GRI 콘텐츠 인덱스에 누락 사유와 설명을 제공해야 합니다. Table 1에 포함된 4가지 허용된 누락 사유: Not applicable, Legal prohibitions, Confidentiality constraints, Information unavailable / incomplete.",
+            "paragraph_reference": "GRI 1 Section 1.4, Requirement 6",
+            "related_dps": [
+                "GRI-1-1-4",
+                "GRI-1-1-4-d"
+            ]
+        },
+        {
+            "term_ko": "지속가능성 보고",
+            "term_en": "sustainability reporting",
+            "standard": "GRI",
+            "description": "보고 프로세스를 의미하며, 조직이 가장 중요한 영향에 기반하여 중요 주제를 결정하는 것으로 시작하여 조직이 이러한 영향에 대한 정보를 공개적으로 보고하는 것으로 끝납니다.",
+            "paragraph_reference": "GRI 1 Section 1.4",
+            "related_dps": [
+                "GRI-1-1-4-b"
+            ]
+        },
+        {
+            "term_ko": "보고된 정보",
+            "term_en": "reported information",
+            "standard": "GRI",
+            "description": "GRI Standards에서 모든 위치에서 보고된 정보를 의미합니다. 조직은 다양한 형식(전자 형식, 종이 형식)으로 하나 이상의 위치(독립 지속가능성 보고서, 웹 페이지, 연간 보고서)에서 정보를 게시하거나 접근 가능하게 만들 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 1.4",
+            "related_dps": [
+                "GRI-1-1-4-b"
+            ]
+        },
+        {
+            "term_ko": "시행일",
+            "term_en": "effective date",
+            "standard": "GRI",
+            "description": "조직이 게시한 정보가 특정 GRI Standard를 사용해야 하는 날짜. 표준의 시행일 이후에 게시된 모든 정보는 해당 표준을 사용해야 합니다. GRI 1: Foundation 2021의 시행일은 2023년 1월 1일입니다.",
+            "paragraph_reference": "GRI 1 Section 1.4",
+            "related_dps": [
+                "GRI-1-1-4-c"
+            ]
+        },
+        {
+            "term_ko": "Not applicable",
+            "term_en": "Not applicable",
+            "standard": "GRI",
+            "description": "Table 1에 포함된 허용된 누락 사유 중 하나. 공시 항목 또는 요구사항이 조직의 특성(예: 규모, 유형)에 기반하여 적용되지 않는 경우, 또는 GRI Topic Standards의 공시 항목이 중요 주제와 관련하여 조직의 영향과 관련이 없는 경우 사용됩니다.",
+            "paragraph_reference": "GRI 1 Requirement 6",
+            "related_dps": []
+        },
+        {
+            "term_ko": "법적 금지 사항",
+            "term_en": "Legal prohibitions",
+            "standard": "GRI",
+            "description": "Table 1에 포함된 허용된 누락 사유 중 하나. 법률이 필수 정보를 수집하거나 공개적으로 보고하는 것을 금지하는 경우 사용됩니다. 조직은 구체적인 법적 금지 사항을 설명해야 합니다.",
+            "paragraph_reference": "GRI 1 Requirement 6",
+            "related_dps": []
+        },
+        {
+            "term_ko": "기밀성 제약",
+            "term_en": "Confidentiality constraints",
+            "standard": "GRI",
+            "description": "Table 1에 포함된 허용된 누락 사유 중 하나. 법률이 금지하지 않지만 조직이 정보를 기밀로 간주하여 공개적으로 보고할 수 없는 경우 사용됩니다. 조직은 구체적인 기밀성 제약을 설명해야 합니다. 예외적인 경우에만 사용해야 합니다.",
+            "paragraph_reference": "GRI 1 Requirement 6",
+            "related_dps": []
+        },
+        {
+            "term_ko": "정보 사용 불가 / 불완전",
+            "term_en": "Information unavailable / incomplete",
+            "standard": "GRI",
+            "description": "Table 1에 포함된 허용된 누락 사유 중 하나. 조직이 공시 항목에 명시된 항목을 가지고 있지만 해당 항목에 대한 정보를 사용할 수 없거나 불완전한 경우 사용됩니다. 조직은 사용할 수 없거나 불완전한 정보를 명시하고, 정보가 불완전한 경우 누락된 부분을 명시해야 합니다. 예외적인 경우에만 사용해야 합니다.",
+            "paragraph_reference": "GRI 1 Requirement 6",
+            "related_dps": []
+        },
+        {
+            "term_ko": "영향",
+            "term_en": "impact",
+            "standard": "GRI",
+            "description": "조직이 경제, 환경, 사람(인권에 대한 영향 포함)에 미치거나 미칠 수 있는 효과로, 이는 차례로 지속가능한 발전에 대한 기여(부정적 또는 긍정적)를 나타낼 수 있습니다. 영향은 실제적이거나 잠재적일 수 있으며, 부정적이거나 긍정적일 수 있고, 단기적이거나 장기적일 수 있으며, 의도적이거나 의도하지 않을 수 있고, 가역적이거나 비가역적일 수 있습니다. 자세한 정보는 GRI 1: Foundation 2021의 섹션 2.1을 참조하세요.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "경제에 대한 영향",
+            "term_en": "impacts on the economy",
+            "standard": "GRI",
+            "description": "조직이 지역, 국가, 글로벌 수준의 경제 시스템에 미치는 영향. 조직은 예를 들어 경쟁 관행, 조달 관행, 정부에 대한 세금 및 지급을 통해 경제에 영향을 미칠 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 2.1",
+            "related_dps": []
+        },
+        {
+            "term_ko": "환경에 대한 영향",
+            "term_en": "impacts on the environment",
+            "standard": "GRI",
+            "description": "조직이 공기, 토지, 물, 생태계를 포함한 생물체와 무생물 요소에 미치는 영향. 조직은 예를 들어 에너지, 토지, 물 및 기타 천연 자원의 사용을 통해 환경에 영향을 미칠 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 2.1",
+            "related_dps": []
+        },
+        {
+            "term_ko": "사람에 대한 영향",
+            "term_en": "impacts on people",
+            "standard": "GRI",
+            "description": "조직이 지역사회, 취약 계층 또는 사회와 같은 개인 및 집단에 미치는 영향. 여기에는 조직이 사람의 인권에 미치는 영향이 포함됩니다. 조직은 예를 들어 고용 관행, 공급망, 제품 및 서비스를 통해 사람에 영향을 미칠 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 2.1",
+            "related_dps": []
+        },
+        {
+            "term_ko": "중요 주제 (Section 2.2)",
+            "term_en": "material topics (Section 2.2)",
+            "standard": "GRI",
+            "description": "조직이 경제, 환경, 사람(인권에 대한 영향 포함)에 대한 가장 중요한 영향을 나타내는 주제. GRI Standards를 사용할 때, 조직은 이러한 주제에 대한 보고를 우선시합니다. 중요 주제의 예로는 반부패, 직업 건강 및 안전, 물 및 폐수 등이 있습니다. 주제는 경제, 환경 또는 사람에 대한 영향으로 제한될 필요는 없으며, 세 가지 차원 모두에 걸친 영향을 다룰 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 2.2",
+            "related_dps": []
+        },
+        {
+            "term_ko": "영향 식별 및 평가",
+            "term_en": "impact identification and assessment",
+            "standard": "GRI",
+            "description": "조직의 지속적인 영향 식별 및 평가 프로세스. 관련 이해관계자 및 전문가와의 참여를 포함하며 지속가능성 보고 프로세스와 독립적으로 수행됩니다. 중요 주제를 결정하는 프로세스에 정보를 제공합니다.",
+            "paragraph_reference": "GRI 1 Section 2.2",
+            "related_dps": []
+        },
+        {
+            "term_ko": "실사",
+            "term_en": "due diligence",
+            "standard": "GRI",
+            "description": "조직이 실제 및 잠재적 부정적 영향을 식별, 예방, 완화 및 설명하는 프로세스. 자세한 정보는 GRI 1: Foundation 2021의 섹션 2.3을 참조하세요.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "이해관계자",
+            "term_en": "stakeholder",
+            "standard": "GRI",
+            "description": "조직의 활동에 의해 영향을 받거나 받을 수 있는 이익을 가진 개인이나 집단. 예: 비즈니스 파트너, 시민 사회 기구, 소비자, 고객, 직원 및 기타 근로자, 정부, 지역 사회, 비정부 기구, 주주 및 기타 투자자, 공급업체, 노동조합, 취약 집단. 자세한 정보는 GRI 1: Foundation 2021의 섹션 2.4를 참조하세요.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "재무적 중요성",
+            "term_en": "financial materiality",
+            "standard": "GRI",
+            "description": "조직의 재무 성과와 장기적 성공에 중요한 문제. 조직의 활동과 비즈니스 관계가 경제, 환경, 사람에 미치는 영향의 대부분은 결국 재무적으로 중요한 문제가 될 것입니다.",
+            "paragraph_reference": "GRI 1 Section 2 - Box 1",
+            "related_dps": []
+        },
+        {
+            "term_ko": "재무 위험 및 기회",
+            "term_en": "financial risks and opportunities",
+            "standard": "GRI",
+            "description": "조직의 영향과 관련된 재무 위험 및 기회. 지속가능성 보고를 통해 제공되는 정보는 이러한 위험과 기회를 식별하고 재무 평가를 위한 입력을 제공합니다.",
+            "paragraph_reference": "GRI 1 Section 2 - Box 1",
+            "related_dps": []
+        },
+        {
+            "term_ko": "재무 평가",
+            "term_en": "financial valuation",
+            "standard": "GRI",
+            "description": "조직의 가치를 평가하는 프로세스. 지속가능성 보고를 통해 제공되는 정보는 재무 평가를 위한 입력을 제공합니다.",
+            "paragraph_reference": "GRI 1 Section 2 - Box 1",
+            "related_dps": []
+        },
+        {
+            "term_ko": "실사 (Section 2.3)",
+            "term_en": "due diligence (Section 2.3)",
+            "standard": "GRI",
+            "description": "조직이 경제, 환경, 사람(인권에 대한 영향 포함)에 대한 실제적이고 잠재적인 부정적 영향을 식별, 예방, 완화 및 설명하는 프로세스. 조직은 예방 또는 완화를 통해 잠재적 부정적 영향을 다루고, 구제를 통해 실제 부정적 영향을 다루어야 합니다.",
+            "paragraph_reference": "GRI 1 Section 2.3",
+            "related_dps": [
+                "GRI-1-2-3-a",
+                "GRI-1-2-3-b"
+            ]
+        },
+        {
+            "term_ko": "예방",
+            "term_en": "prevent",
+            "standard": "GRI",
+            "description": "실사 프로세스의 일부. 조직은 예방 또는 완화를 통해 잠재적 부정적 영향을 다루어야 합니다.",
+            "paragraph_reference": "GRI 1 Section 2.3",
+            "related_dps": [
+                "GRI-1-2-3-a",
+                "GRI-1-2-3-b"
+            ]
+        },
+        {
+            "term_ko": "완화",
+            "term_en": "mitigate",
+            "standard": "GRI",
+            "description": "실사 프로세스의 일부. 조직은 예방 또는 완화를 통해 잠재적 부정적 영향을 다루어야 합니다.",
+            "paragraph_reference": "GRI 1 Section 2.3",
+            "related_dps": [
+                "GRI-1-2-3-a",
+                "GRI-1-2-3-b"
+            ]
+        },
+        {
+            "term_ko": "구제",
+            "term_en": "remediation",
+            "standard": "GRI",
+            "description": "부정적 영향을 상쇄하거나 보상하는 수단 또는 구제 제공. 예: 사과, 재무적 또는 비재무적 보상, 금지 명령이나 재발 방지 보장을 통한 피해 예방, 처벌적 제재(형사적 또는 행정적, 예: 벌금), 배상, 복원, 재활.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": [
+                "GRI-1-2-3-a"
+            ]
+        },
+        {
+            "term_ko": "원인",
+            "term_en": "causes",
+            "standard": "GRI",
+            "description": "조직이 부정적 영향의 원인이 되는 경우. 조직은 자체 활동을 통해 부정적 영향을 유발하거나 기여하는 것을 피하고, 이러한 영향이 발생할 때 합법적인 프로세스를 통해 구제를 제공하거나 협력하여 대응해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 2.3",
+            "related_dps": [
+                "GRI-1-2-3-a"
+            ]
+        },
+        {
+            "term_ko": "기여",
+            "term_en": "contributes",
+            "standard": "GRI",
+            "description": "조직이 부정적 영향에 기여하는 경우. 조직은 자체 활동을 통해 부정적 영향을 유발하거나 기여하는 것을 피하고, 이러한 영향이 발생할 때 합법적인 프로세스를 통해 구제를 제공하거나 협력하여 대응해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 2.3",
+            "related_dps": [
+                "GRI-1-2-3-a"
+            ]
+        },
+        {
+            "term_ko": "직접적으로 연결됨",
+            "term_en": "directly linked",
+            "standard": "GRI",
+            "description": "비즈니스 관계에 의해 조직의 운영, 제품 또는 서비스와 직접적으로 연결된 부정적 영향. 조직이 이러한 영향에 기여하지 않았더라도 이러한 영향을 예방하거나 완화하려고 노력해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 2.3",
+            "related_dps": [
+                "GRI-1-2-3-b"
+            ]
+        },
+        {
+            "term_ko": "심각성",
+            "term_en": "severity",
+            "standard": "GRI",
+            "description": "실제 또는 잠재적 부정적 영향의 심각성은 규모(영향이 얼마나 심각한지), 범위(영향이 얼마나 광범위한지, 예를 들어 영향을 받는 개인의 수 또는 환경 피해의 범위), 되돌릴 수 없는 성격(결과적 피해를 상쇄하거나 보상하기가 얼마나 어려운지)에 의해 결정됩니다. 세 가지 특성(규모, 범위, 되돌릴 수 없는 성격) 중 어느 것도 영향을 심각하게 만들 수 있습니다. 그러나 이러한 특성이 상호 의존적인 경우가 많습니다: 영향의 규모나 범위가 클수록 구제 가능성이 낮아집니다. 영향의 심각성(따라서 중요성)은 절대적 개념이 아닙니다. 영향의 심각성은 조직의 다른 영향과 관련하여 평가되어야 합니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": [
+                "GRI-1-2-3-a",
+                "GRI-1-2-3-b"
+            ]
+        },
+        {
+            "term_ko": "가능성",
+            "term_en": "likelihood",
+            "standard": "GRI",
+            "description": "영향이 발생할 가능성. 경제, 환경, 사람에 대한 모든 식별된 영향을 한 번에 다루는 것이 불가능한 경우, 조직은 심각성과 가능성에 기반하여 잠재적 부정적 영향을 다루는 순서를 우선순위화해야 합니다. 다만 잠재적 부정적 인권 영향의 경우, 영향의 심각성이 가능성보다 우선합니다.",
+            "paragraph_reference": "GRI 1 Section 2.3",
+            "related_dps": [
+                "GRI-1-2-3-a",
+                "GRI-1-2-3-b"
+            ]
+        },
+        {
+            "term_ko": "UN 비즈니스와 인권에 대한 지침 원칙",
+            "term_en": "UN Guiding Principles on Business and Human Rights",
+            "standard": "GRI",
+            "description": "실사를 설명하는 권위 있는 문서 중 하나. 유엔(UN) 비즈니스와 인권에 대한 지침 원칙은 실사 개념을 설명합니다.",
+            "paragraph_reference": "GRI 1 Section 2.3",
+            "related_dps": []
+        },
+        {
+            "term_ko": "OECD 다국적 기업 가이드라인",
+            "term_en": "OECD Guidelines for Multinational Enterprises",
+            "standard": "GRI",
+            "description": "실사를 설명하는 권위 있는 문서 중 하나. 경제협력개발기구(OECD) 다국적 기업 가이드라인은 실사 개념을 설명합니다.",
+            "paragraph_reference": "GRI 1 Section 2.3",
+            "related_dps": []
+        },
+        {
+            "term_ko": "OECD 책임 있는 비즈니스 행동을 위한 실사 지침",
+            "term_en": "OECD Due Diligence Guidance for Responsible Business Conduct",
+            "standard": "GRI",
+            "description": "실사를 설명하는 권위 있는 문서 중 하나. OECD 책임 있는 비즈니스 행동을 위한 실사 지침은 실사 개념을 설명합니다.",
+            "paragraph_reference": "GRI 1 Section 2.3",
+            "related_dps": []
+        },
+        {
+            "term_ko": "이해관계자 (Section 2.4)",
+            "term_en": "stakeholder (Section 2.4)",
+            "standard": "GRI",
+            "description": "조직의 활동으로 인해 영향을 받거나 받을 수 있는 이해관계를 가진 개인이나 집단. 일반적인 이해관계자 카테고리는 비즈니스 파트너, 시민사회 조직, 소비자, 고객, 직원 및 기타 근로자, 정부, 지역사회, 비정부 기관, 주주 및 기타 투자자, 공급업체, 노동조합, 취약 계층입니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": []
+        },
+        {
+            "term_ko": "이해관계",
+            "term_en": "interest",
+            "standard": "GRI",
+            "description": "GRI Standards에서 이해관계(interest 또는 'stake')는 조직의 활동에 의해 영향을 받을 수 있는 개인이나 집단에게 가치 있는 것입니다. 이해관계자는 하나 이상의 이해관계를 가질 수 있습니다. 모든 이해관계가 동일한 중요성을 가지는 것은 아니며 모두 동등하게 취급될 필요는 없습니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "권리 보유자",
+            "term_en": "rightsholders",
+            "standard": "GRI",
+            "description": "개인의 인권 또는 집단적 권리(원주민과 같은 집단이 보유)가 영향을 받거나 받을 수 있는 이해관계자. 인권은 국제법에 따라 모든 사람의 권리로서 특별한 지위를 가집니다. 조직이 사람에게 미칠 수 있는 가장 심각한 영향은 그들의 인권에 부정적 영향을 미치는 것입니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "이해관계자 참여",
+            "term_en": "stakeholder engagement",
+            "standard": "GRI",
+            "description": "조직이 이해관계자와 참여하는 프로세스. 이해관계자와의 참여는 조직이 부정적이고 긍정적인 영향을 식별하고 관리하는 데 도움이 됩니다. 모든 관련 이해관계자와 직접 참여하는 것이 불가능한 경우, 조직은 신뢰할 수 있는 이해관계자 대표 또는 대리 조직과 참여할 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "관련 이해관계자",
+            "term_en": "relevant stakeholders",
+            "standard": "GRI",
+            "description": "특정 활동과 관련하여 고려해야 할 이해관계를 가진 이해관계자. 모든 이해관계자가 조직의 모든 활동에 영향을 받는 것은 아닙니다. 조직은 관련 이해관계자를 식별해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "영향받은 이해관계자",
+            "term_en": "affected stakeholders",
+            "standard": "GRI",
+            "description": "이해관계가 이미 영향을 받은 이해관계자. 이 구분은 실사에서 중요하며, 어떤 이해관계자가 구제를 받아야 하는지 식별하는 데 도움이 됩니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "잠재적으로 영향받은 이해관계자",
+            "term_en": "potentially affected stakeholders",
+            "standard": "GRI",
+            "description": "아직 이해관계가 영향을 받지 않았지만 잠재적으로 영향을 받을 수 있는 이해관계자. 이 구분은 실사에서 중요하며, 예방 및 완화 조치를 식별하는 데 도움이 됩니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "이해관계자 대표",
+            "term_en": "stakeholder representatives",
+            "standard": "GRI",
+            "description": "신뢰할 수 있는 이해관계자 대표. 모든 관련 이해관계자와 직접 참여하는 것이 불가능한 경우, 조직은 이해관계자 대표 또는 대리 조직과 참여할 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "대리 조직",
+            "term_en": "proxy organizations",
+            "standard": "GRI",
+            "description": "이해관계자를 대표하는 조직. 예를 들어 비정부 기관, 노동조합 등이 있습니다. 모든 관련 이해관계자와 직접 참여하는 것이 불가능한 경우, 조직은 신뢰할 수 있는 대리 조직과 참여할 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "직접적 관계",
+            "term_en": "direct relationship",
+            "standard": "GRI",
+            "description": "조직과 이해관계자 간의 직접적인 관계. 이해관계자가 항상 조직과 직접적인 관계를 가지는 것은 아닙니다. 예를 들어, 조직의 공급망에 있는 근로자도 이해관계자가 될 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "간접적 관계",
+            "term_en": "indirect relationship",
+            "standard": "GRI",
+            "description": "조직과 이해관계자 간의 간접적인 관계. 조직의 운영으로부터 거리가 있는 곳에 거주하는 개인이나 집단이 이러한 운영에 의해 영향을 받거나 잠재적으로 영향을 받을 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "미래 세대",
+            "term_en": "future generations",
+            "standard": "GRI",
+            "description": "자신의 견해를 표현할 수 없는 이해관계자의 예. 조직은 이러한 이해관계자의 이해관계를 식별해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "전문가 상담",
+            "term_en": "expert consultation",
+            "standard": "GRI",
+            "description": "이해관계자와의 참여 외에도, 조직은 특정 문제나 맥락에 대한 전문가(예: 학자, 비정부 기관)와 상담하여 영향 식별 및 관리에 대한 조언을 구할 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 2.4",
+            "related_dps": [
+                "GRI-1-2"
+            ]
+        },
+        {
+            "term_ko": "GRI Standards에 따른 보고",
+            "term_en": "Reporting in accordance with the GRI Standards",
+            "standard": "GRI",
+            "description": "조직이 GRI Standards에 따라 보고하는 것은 조직이 경제, 환경, 사람(인권에 대한 영향 포함)에 대한 가장 중요한 영향과 이러한 영향을 관리하는 방법에 대한 포괄적인 그림을 제공할 수 있도록 합니다. 이를 통해 정보 사용자는 조직의 영향과 지속가능한 발전에 대한 기여에 대해 정보에 기반한 평가와 결정을 내릴 수 있습니다. 조직은 Section 3의 9가지 요구사항을 모두 준수해야 GRI Standards에 따라 보고할 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 3",
+            "related_dps": []
+        },
+        {
+            "term_ko": "9가지 요구사항",
+            "term_en": "nine requirements",
+            "standard": "GRI",
+            "description": "GRI Standards에 따라 보고하기 위해 조직이 준수해야 하는 9가지 요구사항. 조직이 이 9가지 요구사항을 모두 준수하지 않으면, 보고된 정보가 GRI Standards에 따라 준비되었다고 주장할 수 없습니다.",
+            "paragraph_reference": "GRI 1 Section 3",
+            "related_dps": []
+        },
+        {
+            "term_ko": "보고 원칙 적용",
+            "term_en": "apply the reporting principles",
+            "standard": "GRI",
+            "description": "요구사항 1. 조직은 Section 4에 명시된 모든 보고 원칙을 적용해야 합니다. 보고 원칙은 Accuracy(정확성), Balance(균형), Clarity(명확성), Comparability(비교가능성), Completeness(완전성), Sustainability context(지속가능성 맥락), Timeliness(시의성), Verifiability(검증가능성)입니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 1",
+            "related_dps": []
+        },
+        {
+            "term_ko": "정확성 (보고 원칙)",
+            "term_en": "accuracy (reporting principle)",
+            "standard": "GRI",
+            "description": "요구사항 1-a. 조직은 정확하고 충분히 상세한 정보를 보고하여 조직의 영향에 대한 평가를 가능하게 해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 1-a",
+            "related_dps": []
+        },
+        {
+            "term_ko": "균형 (보고 원칙)",
+            "term_en": "balance (reporting principle)",
+            "standard": "GRI",
+            "description": "요구사항 1-b. 조직은 편향되지 않은 방식으로 정보를 보고하고 조직의 부정적 및 긍정적 영향에 대한 공정한 표현을 제공해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 1-b",
+            "related_dps": []
+        },
+        {
+            "term_ko": "명확성 (보고 원칙)",
+            "term_en": "clarity (reporting principle)",
+            "standard": "GRI",
+            "description": "요구사항 1-c. 조직은 접근 가능하고 이해하기 쉬운 방식으로 정보를 제시해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 1-c",
+            "related_dps": []
+        },
+        {
+            "term_ko": "비교가능성 (보고 원칙)",
+            "term_en": "comparability (reporting principle)",
+            "standard": "GRI",
+            "description": "요구사항 1-d. 조직은 일관되게 정보를 선택, 편집 및 보고하여 시간에 따른 조직의 영향 변화 분석 및 다른 조직의 영향과의 비교 분석을 가능하게 해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 1-d",
+            "related_dps": []
+        },
+        {
+            "term_ko": "완전성 (보고 원칙)",
+            "term_en": "completeness (reporting principle)",
+            "standard": "GRI",
+            "description": "요구사항 1-e. 조직은 보고 기간 동안 조직의 영향에 대한 평가를 가능하게 하는 충분한 정보를 제공해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 1-e",
+            "related_dps": []
+        },
+        {
+            "term_ko": "지속가능성 맥락 (보고 원칙)",
+            "term_en": "sustainability context (reporting principle)",
+            "standard": "GRI",
+            "description": "요구사항 1-f. 조직은 지속가능한 발전의 더 넓은 맥락에서 조직의 영향에 대한 정보를 보고해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 1-f",
+            "related_dps": []
+        },
+        {
+            "term_ko": "시의성 (보고 원칙)",
+            "term_en": "timeliness (reporting principle)",
+            "standard": "GRI",
+            "description": "요구사항 1-g. 조직은 정기적인 일정에 따라 정보를 보고하고 정보 사용자가 결정을 내릴 수 있도록 적시에 정보를 제공해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 1-g",
+            "related_dps": []
+        },
+        {
+            "term_ko": "검증가능성 (보고 원칙)",
+            "term_en": "verifiability (reporting principle)",
+            "standard": "GRI",
+            "description": "요구사항 1-h. 조직은 정보의 품질을 확인할 수 있도록 정보를 수집, 기록, 편집 및 분석해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 1-h",
+            "related_dps": []
+        },
+        {
+            "term_ko": "GRI 2: General Disclosures 2021",
+            "term_en": "GRI 2: General Disclosures 2021",
+            "standard": "GRI",
+            "description": "요구사항 2. 조직은 GRI 2: General Disclosures 2021의 공시 항목을 보고해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 2",
+            "related_dps": []
+        },
+        {
+            "term_ko": "중요 주제 결정 (요구사항)",
+            "term_en": "determine material topics (requirement)",
+            "standard": "GRI",
+            "description": "요구사항 3. 조직은 중요 주제를 결정해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 3",
+            "related_dps": []
+        },
+        {
+            "term_ko": "GRI 3: Material Topics 2021",
+            "term_en": "GRI 3: Material Topics 2021",
+            "standard": "GRI",
+            "description": "요구사항 4. 조직은 GRI 3: Material Topics 2021의 공시 항목을 보고해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 4",
+            "related_dps": []
+        },
+        {
+            "term_ko": "GRI Topic Standards",
+            "term_en": "GRI Topic Standards",
+            "standard": "GRI",
+            "description": "요구사항 5. 조직은 각 중요 주제에 대해 GRI Topic Standards의 공시 항목을 보고해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 5",
+            "related_dps": []
+        },
+        {
+            "term_ko": "GRI 콘텐츠 인덱스 게시",
+            "term_en": "publish a GRI content index",
+            "standard": "GRI",
+            "description": "요구사항 7. 조직은 GRI 콘텐츠 인덱스를 게시해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 7",
+            "related_dps": []
+        },
+        {
+            "term_ko": "사용 선언",
+            "term_en": "statement of use",
+            "standard": "GRI",
+            "description": "요구사항 8. 조직은 사용 선언을 제공해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 8",
+            "related_dps": []
+        },
+        {
+            "term_ko": "GRI에 통지",
+            "term_en": "notify GRI",
+            "standard": "GRI",
+            "description": "요구사항 9. 조직은 GRI에 통지해야 합니다.",
+            "paragraph_reference": "GRI 1 Section 3 - Requirement 9",
+            "related_dps": []
+        },
+        {
+            "term_ko": "GRI Standards를 참조한 보고",
+            "term_en": "reporting with reference to the GRI Standards",
+            "standard": "GRI",
+            "description": "조직이 9가지 요구사항을 모두 준수하지 않으면, 보고된 정보가 GRI Standards에 따라 준비되었다고 주장할 수 없습니다. 이러한 경우, 조직은 'GRI Standards를 참조한 보고'의 요구사항을 준수하는 경우, 보고된 정보가 GRI Standards를 참조하여 준비되었다고 주장할 수 있습니다.",
+            "paragraph_reference": "GRI 1 Section 3",
+            "related_dps": []
+        },
+        {
+            "term_ko": "비즈니스 파트너",
+            "term_en": "business partner",
+            "standard": "GRI",
+            "description": "조직이 비즈니스 목적을 달성하기 위해 어떤 형태의 직접적이고 공식적인 참여를 하는 개체. 예: 계열사, 기업 간 고객, 클라이언트, 1차 공급업체, 프랜차이즈, 합작 투자 파트너, 조직이 지분을 보유한 투자 대상 기업. 참고: 비즈니스 파트너에는 조직이 통제하는 자회사 및 계열사가 포함되지 않습니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "비즈니스 관계",
+            "term_en": "business relationships",
+            "standard": "GRI",
+            "description": "조직이 비즈니스 파트너와, 가치 사슬 내의 개체(1차 이하 포함)와, 그리고 조직의 운영, 제품 또는 서비스와 직접적으로 연결된 기타 개체와 맺는 관계. 조직의 운영, 제품 또는 서비스와 직접적으로 연결된 기타 개체의 예로는 조직이 지역사회에 지원을 제공하는 비정부 기관이나 조직의 시설을 보호하는 국가 보안 부대가 있습니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "아동",
+            "term_en": "child",
+            "standard": "GRI",
+            "description": "15세 미만이거나 의무 교육 완료 연령 미만인 사람(둘 중 더 높은 연령 기준). 참고 1: 일부 국가에서는 경제 및 교육 시설이 충분히 발달하지 않아 최소 연령 14세가 적용되는 예외가 발생할 수 있습니다. 이러한 예외 국가는 국제노동기구(ILO)가 해당 국가의 특별 신청에 따라 고용주 및 근로자 대표 기관과 협의하여 지정합니다. 참고 2: ILO 최소 연령 협약, 1973년(No. 138)은 아동 노동과 청년 근로자를 모두 언급합니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "직원",
+            "term_en": "employee",
+            "standard": "GRI",
+            "description": "국가 법률 또는 관행에 따라 조직과 고용 관계에 있는 개인.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "거버넌스 기관",
+            "term_en": "governance body",
+            "standard": "GRI",
+            "description": "조직의 전략적 지도, 관리에 대한 효과적인 모니터링, 그리고 더 넓은 조직과 이해관계자에 대한 관리의 책임을 담당하는 공식화된 개인 그룹.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "최고 거버넌스 기관",
+            "term_en": "highest governance body",
+            "standard": "GRI",
+            "description": "조직에서 최고 권한을 가진 거버넌스 기관. 참고: 일부 관할권에서는 거버넌스 시스템이 두 단계로 구성되어 있으며, 여기서 감독과 관리가 분리되거나 현지 법률이 비집행 위원으로 구성된 감독 이사회가 집행 경영 이사회를 감독하도록 규정합니다. 이러한 경우 두 단계 모두 최고 거버넌스 기관의 정의에 포함됩니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "인권",
+            "term_en": "human rights",
+            "standard": "GRI",
+            "description": "모든 인간에게 고유한 권리로, 최소한 유엔(UN) 국제 인권 헌장에 명시된 권리와 국제노동기구(ILO) 근로의 기본 원칙 및 권리에 관한 선언에 명시된 기본 권리에 관한 원칙을 포함합니다. GRI 2: General Disclosures 2021의 2-23-b-i 지침에서 '인권'에 대한 자세한 정보를 참조하세요.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "원주민",
+            "term_en": "Indigenous Peoples",
+            "standard": "GRI",
+            "description": "원주민은 일반적으로 다음과 같이 식별됩니다: (1) 독립 국가의 부족 민족으로, 사회적, 문화적, 경제적 조건이 국가 공동체의 다른 부분과 구별되며, 그 지위가 전적으로 또는 부분적으로 자신의 관습이나 전통 또는 특별 법률이나 규정에 의해 규제되는 경우, (2) 독립 국가의 민족으로, 정복 또는 식민지화 또는 현재 국가 경계 설정 당시 국가 또는 국가가 속한 지리적 지역에 거주했던 인구의 후손으로 인해 원주민으로 간주되며, 법적 지위에 관계없이 자신의 사회적, 경제적, 문화적, 정치적 제도의 일부 또는 전부를 유지하는 경우.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "지역사회",
+            "term_en": "local community",
+            "standard": "GRI",
+            "description": "조직의 활동에 의해 영향을 받거나 받을 수 있는 지역에 거주하거나 일하는 개인 또는 개인 그룹. 참고: 지역사회는 조직의 운영에 인접한 지역에 거주하는 사람들부터 거리가 있는 지역에 거주하는 사람들까지 다양할 수 있습니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "완화",
+            "term_en": "mitigation",
+            "standard": "GRI",
+            "description": "부정적 영향을 줄이기 위해 취한 조치. 참고: 실제 부정적 영향의 완화는 발생한 부정적 영향의 심각성을 줄이기 위해 취한 조치를 의미하며, 잔여 영향은 구제가 필요합니다. 잠재적 부정적 영향의 완화는 부정적 영향이 발생할 가능성을 줄이기 위해 취한 조치를 의미합니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "구제",
+            "term_en": "remedy",
+            "standard": "GRI",
+            "description": "부정적 영향을 상쇄하거나 보상하는 수단 또는 구제 제공. 예: 사과, 재무적 또는 비재무적 보상, 금지 명령이나 재발 방지 보장을 통한 피해 예방, 처벌적 제재(형사적 또는 행정적, 예: 벌금), 배상, 복원, 재활.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "보고 기간",
+            "term_en": "reporting period",
+            "standard": "GRI",
+            "description": "보고된 정보가 다루는 특정 기간. 예: 회계 연도, 역년.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "공급업체",
+            "term_en": "supplier",
+            "standard": "GRI",
+            "description": "조직의 상류에 있는 개체(즉, 조직의 공급망 내)로, 조직 자체의 제품이나 서비스 개발에 사용되는 제품이나 서비스를 제공합니다. 예: 브로커, 컨설턴트, 계약자, 유통업체, 프랜차이즈, 재택 근로자, 독립 계약자, 라이센시, 제조업체, 1차 생산자, 하도급업체, 도매업체. 참고: 공급업체는 조직과 직접적인 비즈니스 관계(종종 1차 공급업체라고 함)를 가질 수 있거나 간접적인 비즈니스 관계를 가질 수 있습니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "공급망",
+            "term_en": "supply chain",
+            "standard": "GRI",
+            "description": "조직의 상류에 있는 개체가 수행하는 활동의 범위로, 조직 자체의 제품이나 서비스 개발에 사용되는 제품이나 서비스를 제공합니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "지속가능한 발전",
+            "term_en": "sustainable development",
+            "standard": "GRI",
+            "description": "현재 세대의 필요를 충족시키면서 미래 세대가 자신의 필요를 충족시킬 수 있는 능력을 훼손하지 않는 발전. 참고: GRI Standards에서 'sustainability'와 'sustainable development'라는 용어는 상호 교환적으로 사용됩니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "지속가능성",
+            "term_en": "sustainability",
+            "standard": "GRI",
+            "description": "현재 세대의 필요를 충족시키면서 미래 세대가 자신의 필요를 충족시킬 수 있는 능력을 훼손하지 않는 발전. 참고: GRI Standards에서 'sustainability'와 'sustainable development'라는 용어는 상호 교환적으로 사용됩니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "가치 사슬",
+            "term_en": "value chain",
+            "standard": "GRI",
+            "description": "조직과 조직의 상류 및 하류에 있는 개체가 수행하는 활동의 범위로, 조직의 제품이나 서비스를 개념에서 최종 사용까지 가져옵니다. 참고 1: 조직의 상류에 있는 개체(예: 공급업체)는 조직 자체의 제품이나 서비스 개발에 사용되는 제품이나 서비스를 제공합니다. 조직의 하류에 있는 개체(예: 유통업체, 고객)는 조직으로부터 제품이나 서비스를 받습니다. 참고 2: 가치 사슬에는 공급망이 포함됩니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "취약 계층",
+            "term_en": "vulnerable group",
+            "standard": "GRI",
+            "description": "조직의 활동 결과로 일반 인구보다 더 심각하게 부정적 영향을 경험할 수 있는 특정 조건이나 특성(예: 경제적, 신체적, 정치적, 사회적)을 가진 개인 그룹. 예: 아동 및 청년, 노인, 전투원, HIV/AIDS 영향 가구, 인권 수호자, 원주민, 국내 실향민, 이주 노동자 및 그 가족, 민족적, 종교적, 언어적 소수자, 성적 지향, 성 정체성, 성 표현 또는 성적 특성에 기반하여 차별받을 수 있는 사람(예: 레즈비언, 게이, 양성애자, 트랜스젠더, 인터섹스), 장애인, 난민 또는 귀환 난민, 여성. 참고: 취약성과 영향은 성별에 따라 다를 수 있습니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "근로자",
+            "term_en": "worker",
+            "standard": "GRI",
+            "description": "조직을 위해 일을 수행하는 사람. 예: 직원, 대행 근로자, 견습생, 계약자, 재택 근로자, 인턴, 자영업자, 하도급업체, 자원봉사자, 보고 조직이 아닌 다른 조직(예: 공급업체)을 위해 일하는 사람. 참고: GRI Standards에서 경우에 따라 특정 근로자 하위 집합을 사용해야 하는지 여부가 명시됩니다.",
+            "paragraph_reference": "GRI 1 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "단체 교섭",
+            "term_en": "collective bargaining",
+            "standard": "GRI",
+            "description": "한편으로는 하나 이상의 고용주 또는 고용주 조직과 다른 한편으로는 하나 이상의 근로자 조직(예: 노동조합) 간에 이루어지는 모든 협상으로, 근로 조건 및 고용 조건을 결정하거나 고용주와 근로자 간의 관계를 규제하기 위한 것입니다.",
+            "paragraph_reference": "GRI 2 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "이해상충",
+            "term_en": "conflict of interest",
+            "standard": "GRI",
+            "description": "개인이 조직 내 기능의 요구사항과 다른 개인적 또는 전문적 이익이나 책임 사이에서 선택해야 하는 상황.",
+            "paragraph_reference": "GRI 2 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "전일제 직원",
+            "term_en": "full-time employee",
+            "standard": "GRI",
+            "description": "주당, 월당 또는 연당 근로 시간이 근로 시간에 관한 국가 법률 또는 관행에 따라 정의된 직원.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "불만",
+            "term_en": "grievance",
+            "standard": "GRI",
+            "description": "개인이나 집단의 권리 의식을 불러일으키는 인지된 불의로, 법률, 계약, 명시적 또는 암묵적 약속, 관습적 관행, 또는 피해를 입은 지역사회의 공정성에 대한 일반적인 개념에 기반할 수 있습니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "불만 처리 메커니즘",
+            "term_en": "grievance mechanism",
+            "standard": "GRI",
+            "description": "불만을 제기하고 구제를 구할 수 있는 일상화된 프로세스. GRI 2: General Disclosures 2021의 Disclosure 2-25 지침에서 '불만 처리 메커니즘'에 대한 자세한 정보를 참조하세요.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "보장되지 않은 근로 시간 직원",
+            "term_en": "non-guaranteed hours employee",
+            "standard": "GRI",
+            "description": "하루, 주 또는 월당 최소 또는 고정된 근로 시간이 보장되지 않지만 필요에 따라 업무를 위해 자신을 이용 가능하게 해야 할 수 있는 직원. 예: 임시 직원, 제로 시간 계약 직원, 대기 직원.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "파트타임 직원",
+            "term_en": "part-time employee",
+            "standard": "GRI",
+            "description": "주당, 월당 또는 연당 근로 시간이 전일제 직원의 근로 시간보다 적은 직원.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "정규직 직원",
+            "term_en": "permanent employee",
+            "standard": "GRI",
+            "description": "무기한 기간(즉, 무기한 계약)의 전일제 또는 파트타임 근로를 위한 계약을 가진 직원.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "고위 경영진",
+            "term_en": "senior executive",
+            "standard": "GRI",
+            "description": "조직의 고위 관리 구성원으로, 예를 들어 최고 경영자(CEO) 또는 CEO 또는 최고 거버넌스 기관에 직접 보고하는 개인.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "임시 직원",
+            "term_en": "temporary employee",
+            "standard": "GRI",
+            "description": "제한된 기간(즉, 고정 기간 계약)의 계약을 가진 직원으로, 특정 기간이 만료되거나 특정 작업이나 이벤트(예: 프로젝트 종료 또는 교체된 직원의 복귀)가 완료되면 종료됩니다.",
+            "paragraph_reference": "GRI 3 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "소외된 사회 집단",
+            "term_en": "under-represented social group",
+            "standard": "GRI",
+            "description": "하위 집합(예: 기관이나 위원회, 조직의 직원) 내에서 일반 인구의 수에 비해 덜 대표되며, 따라서 경제적, 사회적 또는 정치적 필요와 견해를 표현할 기회가 적은 개인 그룹. 참고 1: 소외된 사회 집단에는 소수 집단이 포함될 수 있습니다. 참고 2: 이 정의에 포함된 집단은 조직의 운영 맥락에 따라 다르며 모든 조직에 대해 동일하지 않습니다.",
+            "paragraph_reference": "GRI 2 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "기준 연도",
+            "term_en": "base year",
+            "standard": "GRI",
+            "description": "시간에 걸쳐 측정을 추적하는 데 사용되는 역사적 기준점(특정 연도 또는 여러 연도에 걸친 평균).",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "기준선",
+            "term_en": "baseline",
+            "standard": "GRI",
+            "description": "비교를 위한 시작점. 참고: 에너지 보고의 맥락에서 기준선은 감소 활동이 없는 경우 예상되는 에너지 소비입니다.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "생물 발생 이산화탄소(CO₂) 배출",
+            "term_en": "biogenic carbon dioxide (CO₂) emission",
+            "standard": "GRI",
+            "description": "생물량의 연소 또는 생분해로 인한 CO₂ 배출.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "탄소 크레딧",
+            "term_en": "carbon credit",
+            "standard": "GRI",
+            "description": "1톤의 CO₂ 등가 배출 감소 또는 제거를 나타내는 양도 가능하거나 거래 가능한 도구. 참고: 탄소 크레딧은 인정받은 품질 표준에 따라 고유하게 일련 번호가 할당되고, 발행되며, 추적되고, 취소됩니다.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "이산화탄소(CO₂) 등가",
+            "term_en": "carbon dioxide (CO₂) equivalent",
+            "standard": "GRI",
+            "description": "각 온실 가스(GHG)의 지구 온난화 잠재력(GWP)을 나타내는 보편적 측정 단위로, 이산화탄소 1단위의 GWP로 표현됩니다. 참고: 가스의 CO₂ 등가는 가스의 톤 수에 관련 GWP를 곱하여 결정됩니다.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "지구 온난화 잠재력(GWP)",
+            "term_en": "global warming potential (GWP)",
+            "standard": "GRI",
+            "description": "주어진 온실 가스(GHG) 1단위가 CO₂ 1단위에 비해 상대적으로 대기에 미치는 복사 강제 영향(해로운 정도)을 설명하는 요소. 참고: GWP 값은 비-CO₂ 가스의 GHG 배출 데이터를 CO₂ 등가 단위로 변환합니다.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "온실 가스(GHG)",
+            "term_en": "greenhouse gas (GHG)",
+            "standard": "GRI",
+            "description": "적외선 복사를 흡수하여 온실 효과에 기여하는 가스. 참고: GHG는 교토 의정서가 다루는 7가지 가스입니다: 이산화탄소(CO₂), 메탄(CH₄), 아산화질소(N₂O), 수소불화탄소(HFCs), 과불화탄소(PFCs), 육불화황(SF₆), 삼불화질소(NF₃).",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "온실 가스(GHG) 제거",
+            "term_en": "greenhouse gas (GHG) removal",
+            "standard": "GRI",
+            "description": "온실 가스(GHG)를 대기에서 비대기 저장 풀로 전송하여 저장하는 것. 참고: 비대기 저장 풀의 예는 지상 생물량, 죽은 유기물, 토양 탄소 풀에 탄소를 저장하는 토지 기반 풀과 제품으로 사용되지 않는 무기 광물을 저장하는 지질학적 풀(예: 석유 및 천연 가스를 포함하는 퇴적층의 화석 탄소)입니다.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "온실 가스(GHG) 거래",
+            "term_en": "greenhouse gas (GHG) trade",
+            "standard": "GRI",
+            "description": "탄소 크레딧 또는 온실 가스(GHG) 할당량의 구매, 취소, 판매 또는 이전.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "재생 에너지원",
+            "term_en": "renewable energy source",
+            "standard": "GRI",
+            "description": "생태학적 순환 또는 농업 프로세스를 통해 짧은 시간 내에 보충될 수 있는 에너지원. 예: 생물량, 지열, 수력, 태양, 풍력.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "Scope 1 GHG 배출",
+            "term_en": "Scope 1 GHG emissions",
+            "standard": "GRI",
+            "description": "조직이 소유하거나 통제하는 소스에서 발생하는 온실 가스(GHG) 배출. 예: 연료 소비로 인한 CO₂ 배출. 참고: GHG 소스는 GHG를 대기로 방출하는 모든 물리적 단위 또는 프로세스입니다.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "Scope 2 GHG 배출",
+            "term_en": "Scope 2 GHG emissions",
+            "standard": "GRI",
+            "description": "조직이 소비하는 구매하거나 획득한 전기, 난방, 냉방 및 증기 생성으로 인한 간접 온실 가스(GHG) 배출.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "Scope 3 GHG 배출",
+            "term_en": "Scope 3 GHG emissions",
+            "standard": "GRI",
+            "description": "조직의 상류 및 하류 가치 사슬에서 발생하는 간접 온실 가스(GHG) 배출(Scope 2 GHG 배출에 포함되지 않음).",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "폐기물",
+            "term_en": "waste",
+            "standard": "GRI",
+            "description": "보유자가 폐기하거나 폐기하려고 하거나 폐기해야 하는 모든 것. 참고 1: 폐기물은 생성 지점에서 국가 법률에 따라 정의될 수 있습니다. 참고 2: 보유자는 보고 조직, 조직의 가치 사슬 상류 또는 하류의 개체(예: 공급업체 또는 소비자), 또는 폐기물 관리 조직 등일 수 있습니다.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "근로자 대표",
+            "term_en": "worker representative",
+            "standard": "GRI",
+            "description": "국가 법률 또는 관행에 따라 다음과 같이 인정받는 사람: (1) 노동조합 대표, 즉 노동조합 또는 그러한 노동조합의 구성원에 의해 지정되거나 선출된 대표, 또는 (2) 선출된 대표, 즉 해당 국가의 관련 법률, 규정 또는 단체 협약에 따라 기업의 근로자가 자유롭게 선출한 대표로, 그 기능에는 해당 국가에서 노동조합의 배타적 특권으로 인정되는 활동이 포함되지 않습니다.",
+            "paragraph_reference": "GRI 102 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "보전 및 효율성 이니셔티브",
+            "term_en": "conservation and efficiency initiative",
+            "standard": "GRI",
+            "description": "정의된 프로세스나 작업을 더 적은 에너지를 사용하여 수행할 수 있도록 하는 조직적 또는 기술적 수정. 예: 에너지 효율적인 조명과 같은 장비의 전환 및 개조, 행동 변화로 인한 불필요한 에너지 사용 제거, 프로세스 재설계.",
+            "paragraph_reference": "GRI 103 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "에너지 감소",
+            "term_en": "energy reduction",
+            "standard": "GRI",
+            "description": "기준 연도 또는 기준선에서 사용되거나 필요했던 에너지와 비교하여 더 이상 사용되지 않거나 필요하지 않은 에너지의 양.",
+            "paragraph_reference": "GRI 103 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "비재생 에너지원",
+            "term_en": "non-renewable energy source",
+            "standard": "GRI",
+            "description": "생태학적 순환 또는 농업 프로세스를 통해 짧은 시간 내에 보충, 재생산, 성장 또는 생성될 수 없는 에너지원. 예: 석탄, 석유 또는 원유에서 증류된 연료(가솔린, 디젤 연료, 제트 연료, 난방유), 천연 가스 처리 및 석유 정제에서 추출한 연료(부탄, 프로판, 액화석유가스(LPG)), 압축 천연 가스(CNG) 및 액화 천연 가스(LNG)와 같은 천연 가스, 원자력.",
+            "paragraph_reference": "GRI 103 Glossary",
+            "related_dps": []
+        },
+        {
+            "term_ko": "오존층 파괴 물질",
+            "term_en": "ozone-depleting substance (ODS)",
+            "standard": "GRI",
+            "description": "오존층 파괴 잠재력(ODP)이 0보다 큰 물질로, 성층권 오존층을 파괴할 수 있는 물질. 참고: 대부분의 ODS는 유엔 환경계획(UNEP)의 몬트리올 의정서에 따라 규제되며, 염화불화탄소(CFCs), 수소염화불화탄소(HCFCs), 할론, 메틸 브로마이드를 포함합니다.",
+            "paragraph_reference": "GRI 305 Glossary",
+            "related_dps": [
+                "GRI-305-6"
+            ]
+        },
+        {
+            "term_ko": "중요 대기 배출물",
+            "term_en": "significant air emission",
+            "standard": "GRI",
+            "description": "국제 협약 및/또는 국가 법률 또는 규정에 따라 규제되는 대기 배출물. 참고: 중요 대기 배출물에는 조직의 운영에 대한 환경 허가에 나열된 배출물이 포함됩니다.",
+            "paragraph_reference": "GRI 305 Glossary",
+            "related_dps": [
+                "GRI-305-7"
+            ]
+        },
+        {
+            "term_ko": "질소산화물",
+            "term_en": "nitrogen oxides (NOx)",
+            "standard": "GRI",
+            "description": "질소와 산소로 구성된 화합물로, 대기 오염물질의 일종입니다. NOx는 기후, 생태계, 공기 질, 서식지, 농업 및 인간과 동물의 건강에 부정적인 영향을 미칩니다.",
+            "paragraph_reference": "GRI 305 Glossary",
+            "related_dps": [
+                "GRI-305-7"
+            ]
+        },
+        {
+            "term_ko": "황산화물",
+            "term_en": "sulfur oxides (SOx)",
+            "standard": "GRI",
+            "description": "황과 산소로 구성된 화합물로, 대기 오염물질의 일종입니다. SOx는 기후, 생태계, 공기 질, 서식지, 농업 및 인간과 동물의 건강에 부정적인 영향을 미칩니다.",
+            "paragraph_reference": "GRI 305 Glossary",
+            "related_dps": [
+                "GRI-305-7"
+            ]
+        },
+        {
+            "term_ko": "탄소 상쇄",
+            "term_en": "offsets",
+            "standard": "GRI",
+            "description": "GHG 배출 목표 달성에 사용되는 배출 상쇄 또는 허용량. offsets의 유형, 양, 기준 또는 offsets가 속한 체계를 포함합니다.",
+            "paragraph_reference": "GRI 305 Section 1.2",
+            "related_dps": []
+        },
+        {
+            "term_ko": "CFC-11 등가",
+            "term_en": "CFC-11 equivalent",
+            "standard": "GRI",
+            "description": "오존층 파괴 물질(ODS)의 배출량을 표준화하기 위해 사용되는 단위. 각 ODS의 오존층 파괴 잠재력(ODP) 값에 배출량을 곱하여 CFC-11 등가로 계산됩니다.",
+            "paragraph_reference": "GRI 305 Disclosure 305-6",
+            "related_dps": [
+                "GRI-305-6"
+            ]
+        },
+        {
+            "term_ko": "오존층 파괴 잠재력",
+            "term_en": "ozone depletion potential (ODP)",
+            "standard": "GRI",
+            "description": "물질이 오존층을 파괴할 수 있는 잠재력을 나타내는 지수. CFC-11을 기준(ODP = 1.0)으로 하여 다른 물질의 상대적 파괴력을 측정합니다.",
+            "paragraph_reference": "GRI 305 Glossary",
+            "related_dps": [
+                "GRI-305-6"
+            ]
+        }
+    ]
+}

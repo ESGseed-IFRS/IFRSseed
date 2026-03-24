@@ -1,0 +1,274 @@
+{
+    "terms": [
+        {
+            "term_ko": "탄소 크레딧",
+            "term_en": "carbon credit",
+            "standard": "IFRS_S2",
+            "description": "탄소 인증 프로그램에서 발행되고 온실가스 배출 감축 또는 제거를 나타내는 배출 단위. 탄소 크레딧은 전자 등록부를 통해 고유하게 일련번호가 부여되고, 발행, 추적 및 취소됩니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-36-e",
+                "S2-36-e-i",
+                "S2-36-e-ii",
+                "S2-36-e-iii",
+                "S2-36-e-iv"
+            ]
+        },
+        {
+            "term_ko": "기후 회복력",
+            "term_en": "climate resilience",
+            "standard": "IFRS_S2",
+            "description": "기업이 기후 관련 변화, 발전 또는 불확실성에 적응할 수 있는 역량. 기후 회복력은 기후 관련 리스크를 관리하고 기후 관련 기회로부터 이익을 얻는 역량을 포함하며, 기후 관련 전환 리스크 및 기후 관련 물리적 리스크에 대응하고 적응할 수 있는 능력을 포함합니다. 기업의 기후 회복력은 기후 관련 변화, 발전 및 불확실성에 대한 전략적 회복력과 운영적 회복력을 모두 포함합니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-9-e",
+                "S2-22",
+                "S2-22-a",
+                "S2-22-a-i",
+                "S2-22-a-ii",
+                "S2-22-a-iii"
+            ]
+        },
+        {
+            "term_ko": "기후 관련 물리적 리스크",
+            "term_en": "climate-related physical risks",
+            "standard": "IFRS_S2",
+            "description": "기후 변화로 인해 발생하는 리스크로, 사건 기반(급성 물리적 리스크)이거나 기후 패턴의 장기적 변화(만성 물리적 리스크)로 인해 발생할 수 있습니다. 급성 물리적 리스크는 폭풍, 홍수, 가뭄 또는 폭염과 같은 날씨 관련 사건에서 발생하며, 심각도와 빈도가 증가하고 있습니다. 만성 물리적 리스크는 강수량 및 온도 변화를 포함한 기후 패턴의 장기적 변화에서 발생하며, 이는 해수면 상승, 물 가용성 감소, 생물 다양성 손실 및 토양 생산성 변화로 이어질 수 있습니다. 이러한 리스크는 자산에 대한 직접적 손상으로 인한 비용 또는 공급망 중단의 간접적 영향과 같은 재무적 영향을 가질 수 있습니다. 기업의 재무 성과는 물 가용성, 조달 및 품질의 변화, 기업의 건물, 운영, 공급망, 운송 요구사항 및 직원 건강 및 안전에 영향을 미치는 극단적인 온도 변화에 의해 영향을 받을 수 있습니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-10",
+                "S2-10-b",
+                "S2-29-c"
+            ]
+        },
+        {
+            "term_ko": "기후 관련 리스크와 기회",
+            "term_en": "climate-related risks and opportunities",
+            "standard": "IFRS_S2",
+            "description": "기후 관련 리스크는 기후 변화가 기업에 미치는 잠재적 부정적 영향을 의미합니다. 이러한 리스크는 기후 관련 물리적 리스크와 기후 관련 전환 리스크로 분류됩니다. 기후 관련 기회는 기후 변화로 인해 기업에 발생하는 잠재적 긍정적 영향을 의미합니다. 기후 변화 완화 및 적응 노력은 기업에 기후 관련 기회를 창출할 수 있습니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-9",
+                "S2-9-a",
+                "S2-10",
+                "S2-10-a",
+                "S2-10-b",
+                "S2-10-c",
+                "S2-10-d",
+                "S2-29-d"
+            ]
+        },
+        {
+            "term_ko": "기후 관련 전환 계획",
+            "term_en": "climate-related transition plan",
+            "standard": "IFRS_S2",
+            "description": "기업의 전체 전략의 한 측면으로, 저탄소 경제로의 전환을 위한 기업의 목표, 조치 또는 자원을 제시하며, 온실가스 배출량 감소와 같은 조치를 포함합니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-9-c",
+                "S2-14",
+                "S2-14-a",
+                "S2-14-a-iv"
+            ]
+        },
+        {
+            "term_ko": "기후 관련 전환 리스크",
+            "term_en": "climate-related transition risks",
+            "standard": "IFRS_S2",
+            "description": "저탄소 경제로의 전환 노력에서 발생하는 리스크. 전환 리스크에는 정책, 법률, 기술, 시장 및 평판 리스크가 포함됩니다. 이러한 리스크는 새로운 또는 개정된 기후 관련 규제로 인한 운영 비용 증가 또는 자산 손상과 같은 재무적 영향을 가질 수 있습니다. 기업의 재무 성과는 소비자 수요의 변화 및 신기술의 개발 및 배치에 의해 영향을 받을 수 있습니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-10",
+                "S2-10-b",
+                "S2-29-b"
+            ]
+        },
+        {
+            "term_ko": "CO2 등가량",
+            "term_en": "CO2 equivalent",
+            "standard": "IFRS_S2",
+            "description": "각 온실가스의 지구 온난화 잠재력을 나타내는 보편적 측정 단위로, 이산화탄소 1단위의 지구 온난화 잠재력으로 표현됩니다. 이 단위는 공통 기준에 대해 서로 다른 온실가스를 방출(또는 방출 방지)하는 것을 평가하는 데 사용됩니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-29-a",
+                "S2-29-a-i",
+                "S2-29-a-i-1",
+                "S2-29-a-i-2",
+                "S2-29-a-i-3"
+            ]
+        },
+        {
+            "term_ko": "재정 배출량",
+            "term_en": "financed emissions",
+            "standard": "IFRS_S2",
+            "description": "투자처 또는 거래 상대방의 총 온실가스 배출량 중 기업이 투자처 또는 거래 상대방에 대한 대출 및 투자로 인해 귀속되는 부분. 이러한 배출량은 Greenhouse Gas Protocol Corporate Value Chain (Scope 3) Accounting and Reporting Standard (2011)에 정의된 Scope 3 Category 15 (투자)의 일부입니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-29-a-vi",
+                "S2-29-a-vi-2"
+            ]
+        },
+        {
+            "term_ko": "지구 온난화 잠재력",
+            "term_en": "global warming potential",
+            "standard": "IFRS_S2",
+            "description": "주어진 온실가스 1단위의 복사 강제력 영향(대기에 대한 해로운 정도)을 CO2 1단위에 상대적으로 설명하는 요인.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-29-a",
+                "S2-29-a-iii"
+            ]
+        },
+        {
+            "term_ko": "온실가스",
+            "term_en": "greenhouse gases",
+            "standard": "IFRS_S2",
+            "description": "교토 의정서에 나열된 7가지 온실가스 - 이산화탄소(CO2), 메탄(CH4), 아산화질소(N2O), 수소불화탄소(HFCs), 삼불화질소(NF3), 과불화탄소(PFCs) 및 육불화황(SF6).",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-29-a",
+                "S2-36-a"
+            ]
+        },
+        {
+            "term_ko": "간접 온실가스 배출량",
+            "term_en": "indirect greenhouse gas emissions",
+            "standard": "IFRS_S2",
+            "description": "기업의 활동의 결과이지만 다른 기업이 소유하거나 통제하는 소스에서 발생하는 배출량.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-29-a-i-2",
+                "S2-29-a-i-3"
+            ]
+        },
+        {
+            "term_ko": "내부 탄소 가격",
+            "term_en": "internal carbon price",
+            "standard": "IFRS_S2",
+            "description": "투자, 생산 및 소비 패턴의 변화와 잠재적 기술 발전 및 미래 배출 감축 비용의 재무적 영향을 평가하는 데 기업이 사용하는 가격. 기업은 다양한 비즈니스 응용 프로그램에 내부 탄소 가격을 사용할 수 있습니다. 기업이 일반적으로 사용하는 두 가지 유형의 내부 탄소 가격은 다음과 같습니다: (a) 섀도우 가격 - 기업이 부과하지 않지만 리스크 영향, 신규 투자, 프로젝트의 순현재가치 및 다양한 이니셔티브의 비용 및 이익과 같은 것의 경제적 영향 또는 트레이드오프를 이해하는 데 사용할 수 있는 이론적 비용 또는 명목 금액, (b) 내부 세금 또는 수수료 - 온실가스 배출량을 기반으로 비즈니스 활동, 제품 라인 또는 기타 사업 단위에 부과되는 탄소 가격(이러한 내부 세금 또는 수수료는 회사 내 이전 가격과 유사함).",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-29-f",
+                "S2-29-f-i",
+                "S2-29-f-ii"
+            ]
+        },
+        {
+            "term_ko": "최신 국제 기후 협정",
+            "term_en": "latest international agreement on climate change",
+            "standard": "IFRS_S2",
+            "description": "기후 변화에 대응하기 위해 유엔 기후 변화 기본 협약의 회원국인 국가들이 체결한 협정. 이러한 협정은 온실가스 감축에 대한 규범과 목표를 설정합니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-22-b-i-4",
+                "S2-33-h"
+            ]
+        },
+        {
+            "term_ko": "Scope 1 온실가스 배출량",
+            "term_en": "Scope 1 greenhouse gas emissions",
+            "standard": "IFRS_S2",
+            "description": "기업이 소유하거나 통제하는 소스에서 발생하는 직접 온실가스 배출량.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-29-a-i-1",
+                "S2-29-a-iv",
+                "S2-36-b"
+            ]
+        },
+        {
+            "term_ko": "Scope 2 온실가스 배출량",
+            "term_en": "Scope 2 greenhouse gas emissions",
+            "standard": "IFRS_S2",
+            "description": "기업이 소비하는 구매 또는 취득한 전기, 증기, 난방 또는 냉방의 생산으로부터 발생하는 간접 온실가스 배출량. 구매 및 취득한 전기는 기업의 경계로 구매되거나 그 밖의 방법으로 가져온 전기입니다. Scope 2 온실가스 배출량은 물리적으로 전기가 생성되는 시설에서 발생합니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-29-a-i-2",
+                "S2-29-a-iv",
+                "S2-29-a-v",
+                "S2-36-b"
+            ]
+        },
+        {
+            "term_ko": "Scope 3 온실가스 배출량",
+            "term_en": "Scope 3 greenhouse gas emissions",
+            "standard": "IFRS_S2",
+            "description": "기업의 가치 사슬에서 발생하는 간접 온실가스 배출량(Scope 2 온실가스 배출량에 포함되지 않음)으로, 상류 및 하류 배출량을 모두 포함합니다. Scope 3 온실가스 배출량은 Greenhouse Gas Protocol Corporate Value Chain (Scope 3) Accounting and Reporting Standard (2011)의 Scope 3 범주를 포함합니다.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-29-a-i-3",
+                "S2-29-a-vi",
+                "S2-36-b"
+            ]
+        },
+        {
+            "term_ko": "Scope 3 범주",
+            "term_en": "Scope 3 categories",
+            "standard": "IFRS_S2",
+            "description": "Scope 3 온실가스 배출량은 Greenhouse Gas Protocol Corporate Value Chain (Scope 3) Accounting and Reporting Standard (2011)에 설명된 대로 다음 15개 범주로 분류됩니다: (1) 구매한 상품 및 서비스, (2) 자본재, (3) Scope 1 또는 Scope 2 온실가스 배출량에 포함되지 않은 연료 및 에너지 관련 활동, (4) 상류 운송 및 유통, (5) 운영에서 생성된 폐기물, (6) 출장, (7) 직원 통근, (8) 상류 임대 자산, (9) 하류 운송 및 유통, (10) 판매된 제품의 가공, (11) 판매된 제품의 사용, (12) 판매된 제품의 폐기 처리, (13) 하류 임대 자산, (14) 프랜차이즈, (15) 투자.",
+            "paragraph_reference": "IFRS S2 Appendix A",
+            "related_dps": [
+                "S2-29-a-vi",
+                "S2-29-a-vi-1"
+            ]
+        },
+        {
+            "term_ko": "사업 모델",
+            "term_en": "business model",
+            "standard": "IFRS_S2",
+            "description": "기업의 활동을 통해 투입을 산출 및 결과로 변환하는 기업의 시스템으로, 기업의 전략적 목적을 달성하고 기업에 가치를 창출하여 단기, 중기 및 장기에 걸쳐 현금흐름을 생성하는 것을 목표로 합니다.",
+            "paragraph_reference": "IFRS S2 Appendix A - Terms defined in other Standards",
+            "related_dps": [
+                "S2-9-b",
+                "S2-13",
+                "S2-22"
+            ]
+        },
+        {
+            "term_ko": "공시 주제",
+            "term_en": "disclosure topic",
+            "standard": "IFRS_S2",
+            "description": "특정 산업 내 기업이 수행하는 활동을 기반으로 한 특정 지속가능성 관련 리스크 또는 기회로, IFRS 지속가능성 공시 기준서 또는 SASB 기준에 명시된 대로.",
+            "paragraph_reference": "IFRS S2 Appendix A - Terms defined in other Standards",
+            "related_dps": [
+                "S2-28-b",
+                "S2-32"
+            ]
+        },
+        {
+            "term_ko": "일반 목적 재무보고서",
+            "term_en": "general purpose financial reports",
+            "standard": "IFRS_S2",
+            "description": "보고 기업에 대한 재무 정보를 제공하는 보고서로, 주요 사용자가 기업에 자원을 제공하는 것과 관련된 의사결정을 내리는 데 유용합니다. 이러한 결정에는 다음이 포함됩니다: (a) 자본 및 부채 상품의 매수, 매도 또는 보유, (b) 대출 및 기타 형태의 신용 제공 또는 판매, (c) 기업의 경제적 자원 사용에 영향을 미치는 기업의 경영진 조치에 대한 투표권 행사 또는 그 밖의 영향력 행사. 일반 목적 재무보고서에는 기업의 일반 목적 재무제표 및 지속가능성 관련 재무 공시가 포함되지만 이에 국한되지 않습니다.",
+            "paragraph_reference": "IFRS S2 Appendix A - Terms defined in other Standards",
+            "related_dps": []
+        },
+        {
+            "term_ko": "실행 불가능",
+            "term_en": "impracticable",
+            "standard": "IFRS_S2",
+            "description": "기업이 모든 합리적인 노력을 기울인 후에도 요구사항을 적용할 수 없는 경우 요구사항 적용이 실행 불가능한 것입니다.",
+            "paragraph_reference": "IFRS S2 Appendix A - Terms defined in other Standards",
+            "related_dps": []
+        },
+        {
+            "term_ko": "일반 목적 재무보고서의 주요 사용자",
+            "term_en": "primary users of general purpose financial reports (primary users)",
+            "standard": "IFRS_S2",
+            "description": "기존 및 잠재적 투자자, 대출자 및 기타 채권자.",
+            "paragraph_reference": "IFRS S2 Appendix A - Terms defined in other Standards",
+            "related_dps": []
+        },
+        {
+            "term_ko": "가치 사슬",
+            "term_en": "value chain",
+            "standard": "IFRS_S2",
+            "description": "보고 기업의 사업 모델 및 운영하는 외부 환경과 관련된 상호작용, 자원 및 관계의 전체 범위. 가치 사슬은 기업이 제품이나 서비스를 개념화부터 전달, 소비 및 수명 종료까지 창조하는 데 사용하고 의존하는 상호작용, 자원 및 관계를 포함하며, 인적 자원과 같은 기업의 운영 내 상호작용, 자원 및 관계, 재료 및 서비스 조달, 제품 및 서비스 판매 및 전달과 같은 공급, 마케팅 및 유통 채널을 따라, 그리고 기업이 운영하는 자금 조달, 지리적, 지정학적 및 규제 환경을 포함합니다.",
+            "paragraph_reference": "IFRS S2 Appendix A - Terms defined in other Standards",
+            "related_dps": [
+                "S2-9-b",
+                "S2-13"
+            ]
+        }
+    ]
+}

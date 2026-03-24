@@ -1,0 +1,65 @@
+# Core
+langgraph>=0.0.40
+langchain>=0.1.0
+langchain-core>=0.1.0
+langchain-groq>=0.0.3
+langchain-openai>=0.2.0
+pydantic>=2.5.0
+pydantic-settings>=2.0.0
+
+# MCP (Model Context Protocol) - 에이전트가 ai/tool MCP 서버에서 도구 로드
+# MCP 1.26+ 요구: anyio>=4.5 (4.x에서만 create_memory_object_stream[Type]() subscript 지원)
+anyio>=4.5
+mcp>=0.1.0
+fastmcp>=0.1.0
+# ai/tool MCP 서버(web_search_server, sr_tools_server) 실행 시 필요
+duckduckgo-search>=4.0.0
+# langchain-mcp-adapters>=0.0.1  # 선택: MCP 도구를 LangChain Tool로 자동 변환
+
+# Database
+sqlalchemy>=2.0.0
+alembic>=1.13.0
+psycopg2-binary>=2.9.9
+pgvector>=0.2.0
+
+# LLM (SR 에이전트용)
+groq>=0.4.0
+openai>=1.0.0
+transformers>=4.36.0
+langchain-google-genai>=0.0.5
+
+# Embedding
+sentence-transformers>=2.2.0
+FlagEmbedding>=1.2.0
+
+# Vector DB
+chromadb>=0.4.0
+
+# PDF Processing (SR 보고서 파싱: PyMuPDF, Docling 사용)
+PyMuPDF>=1.23.0
+docling>=2.0.0
+llama-parse>=0.4.0
+unstructured[pdf]>=0.10.0
+
+# Image Processing
+Pillow>=10.0.0
+torch>=2.0.0
+transformers>=4.36.0
+
+# Crawling (sr_tools_server 등 MCP 서버에서도 사용)
+playwright>=1.40.0
+beautifulsoup4>=4.12.0
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# Data Processing
+numpy>=1.24.0
+
+# API Server (anyio 4 호환: starlette 0.31+, fastapi 0.115+)
+starlette>=0.31
+fastapi>=0.115
+uvicorn[standard]>=0.27.0
+
+# Utils
+python-dotenv>=1.0.0
+loguru>=0.7.0
