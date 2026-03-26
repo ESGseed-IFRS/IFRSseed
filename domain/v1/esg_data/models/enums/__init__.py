@@ -1,4 +1,4 @@
-"""StrEnum — PG ENUM 값과 동일 (온톨로지·UCM 표현용)."""
+"""문자열 열거형(StrEnum) — PostgreSQL ENUM 값과 동일(온톨로지·UCM 표현용)."""
 
 from __future__ import annotations
 
@@ -38,7 +38,7 @@ class DisclosureRequirementEnum(StrEnum):
 
 
 class UnifiedColumnTypeEnum(StrEnum):
-    """unified_column_mappings.column_type — dp_type 과 동일 멤버."""
+    """테이블 `unified_column_mappings`의 `column_type` — `dp_type` 과 동일 멤버."""
 
     QUANTITATIVE = "quantitative"
     QUALITATIVE = "qualitative"

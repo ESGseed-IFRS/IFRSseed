@@ -1,4 +1,4 @@
-"""UCM policy scoring and decision (§2-4) — pure logic, no DB."""
+"""UCM 정책 점수·최종 판정(§2-4) — 순수 로직, DB 미사용."""
 
 from __future__ import annotations
 
@@ -54,11 +54,11 @@ def tentative_decision_from_scores(final_score: float, has_critical: bool) -> st
 
 
 def should_call_llm(hybrid_score: float, rule_pass: bool, tentative: str) -> bool:
-    if tentative != "review":
-        return False
-    if not rule_pass:
-        return False
-    return 0.65 <= hybrid_score <= 0.82
+    _ = hybrid_score
+    _ = rule_pass
+    _ = tentative
+    # LLM 중심 정책: 호출 게이트를 사실상 제거한다.
+    return True
 
 
 def merge_candidate_rule(
@@ -107,14 +107,24 @@ def decide_mapping_pair(
 
     if llm_result and llm_result.get("status") == "success" and llm_result.get("refinement_score") is not None:
         rs = float(llm_result["refinement_score"])
-        final_score = max(0.0, min(1.0, 0.85 * final_score + 0.15 * rs))
+        # LLM 중심 재가중: 정책 점수보다 LLM 보정 비중을 높인다.
+        final_score = max(0.0, min(1.0, 0.35 * final_score + 0.65 * rs))
         evidence["llm_refinement_score"] = rs
         tentative = tentative_decision_from_scores(final_score, has_critical)
+        llm_decision = str(llm_result.get("llm_decision") or "").strip().lower()
+        if llm_decision in {"accept", "review", "reject"} and not has_critical:
+            tentative = llm_decision
+            evidence["llm_decision_override"] = llm_decision
+        llm_reason_codes = llm_result.get("llm_reason_codes") or []
+        if isinstance(llm_reason_codes, list):
+            evidence["llm_reason_codes"] = [str(x) for x in llm_reason_codes if str(x).strip()]
 
     if has_critical:
         reason_codes.append("critical_violation")
     if not rule_row["rule_pass"]:
         reason_codes.append("rule_fail")
+    if llm_result and isinstance(llm_result.get("llm_reason_codes"), list):
+        reason_codes.extend(str(x) for x in llm_result.get("llm_reason_codes", []) if str(x).strip())
 
     decision = tentative
     if decision == "accept":

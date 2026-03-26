@@ -1,4 +1,4 @@
-"""UnifiedColumnMapping ORM (unified_column_mappings)."""
+"""통합 컬럼 매핑 ORM — 테이블 `unified_column_mappings`."""
 
 from sqlalchemy import (
     Column,
@@ -47,6 +47,7 @@ class UnifiedColumnMapping(Base):
     mapping_confidence = Column(Float)
     mapping_notes = Column(Text)
     rulebook_conflicts = Column(JSONB)
+    standard_metadata = Column(JSONB)
 
     column_type = Column(
         PG_ENUM(

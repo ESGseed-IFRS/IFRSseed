@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Literal
+
 from fastapi import APIRouter
 from pydantic import BaseModel, Field
 
@@ -53,6 +55,7 @@ class PolicyPipelineRequest(BaseModel):
     final_threshold: float = 0.75
     use_llm_in_mapping_service: bool = False
     llm_model: str = "gpt-5-mini"
+    persist_mode: Literal["per_item", "batch_end"] = "per_item"
 
 
 class NearestPipelineRequest(BaseModel):
@@ -64,13 +67,14 @@ class NearestPipelineRequest(BaseModel):
     final_threshold: float = 0.75
     use_llm_in_mapping_service: bool = False
     llm_model: str = "gpt-5-mini"
+    persist_mode: Literal["per_item", "batch_end"] = "per_item"
 
 
 @ucm_router.post("/create")
 async def create_mappings(request: CreateMappingsRequest):
     """매핑 추천 배치를 실행하고(옵션) DB에 반영."""
     orchestrator = UCMOrchestrator()
-    return orchestrator.create_mappings(
+    return await orchestrator.create_mappings_async(
         source_standard=request.source_standard,
         target_standard=request.target_standard,
         vector_threshold=request.vector_threshold,
@@ -85,7 +89,7 @@ async def create_mappings(request: CreateMappingsRequest):
 async def suggest_mappings(request: SuggestMappingsRequest):
     """저장 없이 매핑 후보 목록만 조회."""
     orchestrator = UCMOrchestrator()
-    return orchestrator.suggest_mappings(
+    return await orchestrator.suggest_mappings_async(
         source_standard=request.source_standard,
         target_standard=request.target_standard,
         vector_threshold=request.vector_threshold,
@@ -99,14 +103,14 @@ async def suggest_mappings(request: SuggestMappingsRequest):
 async def mapping_health():
     """매핑 상태 통계(정합성 지표) 조회."""
     orchestrator = UCMOrchestrator()
-    return orchestrator.validate_mapping_health()
+    return await orchestrator.validate_mapping_health_async()
 
 
 @ucm_router.post("/workflow/create")
 async def create_mappings_workflow(request: WorkflowCreateRequest):
-    """Phase 3 워크플로우(LangGraph 지원, 미설치 시 순차 폴백)로 생성+검증 수행."""
+    """Phase 3 워크플로우(LangGraph 지원, 미설치 시 순차 async 폴백)로 생성+검증 수행."""
     orchestrator = UCMOrchestrator()
-    return orchestrator.run_ucm_workflow(
+    return await orchestrator.run_ucm_workflow_async(
         source_standard=request.source_standard,
         target_standard=request.target_standard,
         vector_threshold=request.vector_threshold,
@@ -123,9 +127,9 @@ async def create_mappings_workflow(request: WorkflowCreateRequest):
 async def run_policy_pipeline(request: PolicyPipelineRequest):
     """문서 §2 파이프라인: 임베딩→규칙검증→(옵션)LLM→정책→payload→upsert."""
     orchestrator = UCMOrchestrator()
-    return orchestrator.run_ucm_policy_pipeline(
-        source_standard=request.source_standard,
-        target_standard=request.target_standard,
+    return await orchestrator.run_ucm_policy_pipeline_async(
+        request.source_standard,
+        request.target_standard,
         batch_size=request.batch_size,
         dry_run=request.dry_run,
         top_k=request.top_k,
@@ -134,6 +138,7 @@ async def run_policy_pipeline(request: PolicyPipelineRequest):
         final_threshold=request.final_threshold,
         use_llm_in_mapping_service=request.use_llm_in_mapping_service,
         llm_model=request.llm_model,
+        persist_mode=request.persist_mode,
     )
 
 
@@ -141,7 +146,7 @@ async def run_policy_pipeline(request: PolicyPipelineRequest):
 async def run_nearest_pipeline(request: NearestPipelineRequest):
     """기준서 입력 없이: 다른 기준서만 최근접 후보로 §2 파이프라인 수행."""
     orchestrator = UCMOrchestrator()
-    return orchestrator.run_ucm_nearest_pipeline(
+    return await orchestrator.run_ucm_nearest_pipeline_async(
         batch_size=request.batch_size,
         dry_run=request.dry_run,
         top_k=request.top_k,
@@ -150,5 +155,5 @@ async def run_nearest_pipeline(request: NearestPipelineRequest):
         final_threshold=request.final_threshold,
         use_llm_in_mapping_service=request.use_llm_in_mapping_service,
         llm_model=request.llm_model,
+        persist_mode=request.persist_mode,
     )
-

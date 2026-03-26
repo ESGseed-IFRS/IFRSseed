@@ -1,4 +1,4 @@
-"""Unit tests for UCM policy scoring (no DB)."""
+"""UCM 정책 점수·판정 단위 테스트(DB 없음)."""
 
 from __future__ import annotations
 
@@ -72,3 +72,36 @@ def test_schema_mapping_reject():
     dec = ucm_policy.build_reject_decision("S1", "x")
     r = tool.build_payload(source_dp=None, target_dp=None, decision=dec, primary_rulebook_id=None)  # type: ignore[arg-type]
     assert r["status"] == "error"
+
+
+def test_decide_mapping_pair_llm_decision_override():
+    cand: EmbeddingCandidateItem = {
+        "target_dp_id": "T2",
+        "rank": 1,
+        "vector_similarity": 0.72,
+        "structural_score": 0.71,
+        "hybrid_score": 0.72,
+    }
+    rr: RuleCandidateResult = {
+        "target_dp_id": "T2",
+        "rule_pass": True,
+        "rule_score": 0.74,
+        "structure_score": 0.71,
+        "requirement_score": 0.85,
+        "violations": [],
+    }
+    out = ucm_policy.decide_mapping_pair(
+        source_dp_id="S2",
+        candidate=cand,
+        rule_row=rr,
+        llm_result={
+            "status": "success",
+            "llm_used": True,
+            "refinement_score": 0.48,
+            "llm_decision": "reject",
+            "llm_reason_codes": ["llm_rule_conflict"],
+        },
+        policy_version="test",
+    )
+    assert out["decision"] == "reject"
+    assert "llm_rule_conflict" in out["reason_codes"]

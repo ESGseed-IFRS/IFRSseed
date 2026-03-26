@@ -105,6 +105,14 @@ class RuleValidationTool:
             key_terms.update(_key_terms_from_validation_rules(rb.validation_rules))
             if rb.key_terms:
                 key_terms.update(str(t).lower() for t in rb.key_terms)
+        validation_rules_snapshot = [
+            {
+                "rulebook_id": rb.rulebook_id,
+                "validation_rules": rb.validation_rules or {},
+                "key_terms": list(rb.key_terms or []),
+            }
+            for rb in rulebooks
+        ]
 
         per: List[RuleCandidateResult] = []
         for c in candidates:
@@ -211,6 +219,7 @@ class RuleValidationTool:
                         "rulebook_count": len(rulebooks),
                         "key_term_overlap": overlap,
                         "structural_match_details": match_details,
+                        "validation_rules": validation_rules_snapshot,
                     },
                 }
             )

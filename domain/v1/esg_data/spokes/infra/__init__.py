@@ -4,7 +4,7 @@ from backend.domain.shared.tool.UnifiedColumnMapping import (
     SchemaMappingTool,
 )
 
-from .ucm_mapping_service import UCMMappingService
+from backend.domain.v1.esg_data.hub.services.ucm_mapping_service import UCMMappingService
 
 __all__ = [
     "EmbeddingCandidateTool",

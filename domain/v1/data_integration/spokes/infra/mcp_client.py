@@ -33,12 +33,24 @@ _INFRA_DIR = Path(__file__).resolve().parent
 _REPO_ROOT = find_repo_root(Path(__file__))
 _TOOL_DIR = _REPO_ROOT / "backend" / "domain" / "shared" / "tool"
 _SR_SERVERS_IN_INFRA = {"sr_tools", "sr_index_tools", "sr_body_tools", "sr_images_tools"}
-_INPROCESS_ELIGIBLE_SERVERS = {"sr_tools", "sr_index_tools", "sr_body_tools", "sr_images_tools"}
+_INPROCESS_ELIGIBLE_SERVERS = {
+    "sr_tools",
+    "sr_index_tools",
+    "sr_body_tools",
+    "sr_images_tools",
+    "esg_data_tools",
+}
 
 # Streamable HTTP: 기본은 `get_settings()`(.env 반영), 런타임에만 바뀌는 값은 os.environ 우선
 # (예: api `data_integration/main.py` lifespan 이 MCP_SR_INDEX_TOOLS_URL 을 주입).
 _MCP_STREAMABLE_HTTP_SERVERS = frozenset(
-    {"sr_index_tools", "sr_tools", "sr_body_tools", "sr_images_tools", "web_search"}
+    {
+        "sr_index_tools",
+        "sr_tools",
+        "sr_body_tools",
+        "sr_images_tools",
+        "web_search",
+    }
 )
 _MCP_SERVER_ENV_KEYS: dict[str, str] = {
     "sr_index_tools": "MCP_SR_INDEX_TOOLS_URL",
@@ -66,6 +78,11 @@ def _remote_url_from_settings(server_name: str) -> str:
         "web_search": s.mcp_web_search_url,
     }
     return (mapping.get(server_name) or "").strip()
+
+
+def mcp_remote_url_for_server(server_name: str) -> str:
+    """설정·환경 변수 기준 원격 MCP URL (비어 있으면 in-process·stdio 후보)."""
+    return _remote_url_from_settings(server_name)
 
 
 # Python 3.11+ TaskGroup 실패 등 (except Exception 에 안 잡힘)
@@ -307,9 +324,15 @@ class MCPClient:
     def __init__(self):
         self.tool_dir = _TOOL_DIR
         self.infra_dir = _INFRA_DIR
+
+    def get_remote_url(self, server_name: str) -> str:
+        """원격(Streamable HTTP) MCP URL. 비어 있으면 stdio/in-process 후보."""
+        return _remote_url_from_settings(server_name)
     
     def _get_server_path(self, name: str) -> Path:
         """Tool 서버 스크립트 경로 반환. sr_tools, sr_index_tools, sr_body_tools는 infra, 나머지는 shared/tool."""
+        if name == "esg_data_tools":
+            return Path(__file__).resolve().parents[3] / "esg_data" / "spokes" / "infra" / "esg_tools_server.py"
         if name in _SR_SERVERS_IN_INFRA:
             return self.infra_dir / f"{name}_server.py"
         return self.tool_dir / f"{name}_server.py"
@@ -520,6 +543,51 @@ class MCPClient:
                     "sr_report_images 테이블에 배치 저장합니다.",
                 ),
             ]
+        if server_name == "esg_data_tools":
+            from backend.domain.v1.esg_data.spokes.infra import esg_ucm_tool_handlers as esg_h
+
+            def _esg_create_unified_column_mapping(**kwargs: Any) -> Any:
+                return esg_h.handle_create_unified_column_mapping(**kwargs)
+
+            def _esg_validate_ucm_mappings(**_kwargs: Any) -> Any:
+                return esg_h.handle_validate_ucm_mappings()
+
+            def _esg_run_ucm_workflow(**kwargs: Any) -> Any:
+                return esg_h.handle_run_ucm_workflow(**kwargs)
+
+            def _esg_run_ucm_mapping_pipeline(**kwargs: Any) -> Any:
+                return esg_h.handle_run_ucm_mapping_pipeline(**kwargs)
+
+            def _esg_run_ucm_nearest_pipeline(**kwargs: Any) -> Any:
+                return esg_h.handle_run_ucm_nearest_pipeline(**kwargs)
+
+            return [
+                _wrap_inprocess_tool(
+                    "create_unified_column_mapping",
+                    _esg_create_unified_column_mapping,
+                    "통합 컬럼 매핑 배치 생성.",
+                ),
+                _wrap_inprocess_tool(
+                    "validate_ucm_mappings",
+                    _esg_validate_ucm_mappings,
+                    "UCM·데이터 포인트 정합성 검증.",
+                ),
+                _wrap_inprocess_tool(
+                    "run_ucm_workflow",
+                    _esg_run_ucm_workflow,
+                    "3단계 UCM 워크플로(생성→검증→품질).",
+                ),
+                _wrap_inprocess_tool(
+                    "run_ucm_mapping_pipeline",
+                    _esg_run_ucm_mapping_pipeline,
+                    "§2 정책 파이프라인.",
+                ),
+                _wrap_inprocess_tool(
+                    "run_ucm_nearest_pipeline",
+                    _esg_run_ucm_nearest_pipeline,
+                    "최근접 기준 §2 파이프라인.",
+                ),
+            ]
         return []
 
     @asynccontextmanager
@@ -666,7 +734,12 @@ class MCPClient:
         try:
             python_exe = sys.executable
             env = os.environ.copy()
-            cwd = str(self.infra_dir) if server_name in _SR_SERVERS_IN_INFRA else str(self.tool_dir)
+            if server_name == "esg_data_tools":
+                cwd = str(server_path.parent)
+            elif server_name in _SR_SERVERS_IN_INFRA:
+                cwd = str(self.infra_dir)
+            else:
+                cwd = str(self.tool_dir)
             return StdioServerParameters(
                 command=python_exe,
                 args=[str(server_path)],

@@ -1,22 +1,15 @@
-"""ESG 데이터 도구용 MCP 서버 — stdio(기본)로 IDE/클라이언트에서 subprocess 실행."""
+"""ESG UCM MCP 툴 본문 — `esg_tools_server`와 인프로세스 `DirectEsgToolRuntime`이 공유한다."""
 
 from __future__ import annotations
 
-from mcp.server.fastmcp import FastMCP
+from typing import Any
 
-from backend.domain.v1.esg_data.spokes.infra.esg_ucm_tool_handlers import (
-    handle_create_unified_column_mapping,
-    handle_run_ucm_mapping_pipeline,
-    handle_run_ucm_nearest_pipeline,
-    handle_run_ucm_workflow,
-    handle_validate_ucm_mappings,
-)
-
-mcp = FastMCP("esg-data-tools")
+from backend.domain.v1.esg_data.hub.services.ucm_mapping_service import UCMMappingService
 
 
-@mcp.tool()
-async def create_unified_column_mapping(
+def handle_create_unified_column_mapping(
+    *,
+    _mapping_service: UCMMappingService | None = None,
     source_standard: str,
     target_standard: str,
     vector_threshold: float = 0.70,
@@ -24,9 +17,9 @@ async def create_unified_column_mapping(
     final_threshold: float = 0.75,
     batch_size: int = 40,
     dry_run: bool = False,
-) -> dict:
-    """데이터 포인트를 기반으로 통합 컬럼 매핑 레코드를 생성한다."""
-    return handle_create_unified_column_mapping(
+) -> dict[str, Any]:
+    svc = _mapping_service or UCMMappingService()
+    return svc.create_mappings(
         source_standard=source_standard,
         target_standard=target_standard,
         vector_threshold=vector_threshold,
@@ -37,14 +30,14 @@ async def create_unified_column_mapping(
     )
 
 
-@mcp.tool()
-async def validate_ucm_mappings() -> dict:
-    """통합 컬럼 매핑 정합성을 검증한다."""
-    return handle_validate_ucm_mappings()
+def handle_validate_ucm_mappings(*, _mapping_service: UCMMappingService | None = None) -> dict[str, Any]:
+    svc = _mapping_service or UCMMappingService()
+    return svc.validate_mappings()
 
 
-@mcp.tool()
-async def run_ucm_workflow(
+def handle_run_ucm_workflow(
+    *,
+    _mapping_service: UCMMappingService | None = None,
     source_standard: str,
     target_standard: str,
     vector_threshold: float = 0.70,
@@ -54,9 +47,20 @@ async def run_ucm_workflow(
     dry_run: bool = False,
     run_quality_check: bool = True,
     force_validate_only: bool = False,
-) -> dict:
-    """3단계 UCM 워크플로(생성→검증→품질 요약)를 실행한다."""
-    return handle_run_ucm_workflow(
+) -> dict[str, Any]:
+    from backend.domain.v1.esg_data.hub.orchestrator.ucm_orchestrator import UCMOrchestrator
+    from backend.domain.v1.esg_data.spokes.agents.ucm_creation_agent import UCMCreationAgent
+    from backend.domain.v1.esg_data.spokes.infra.esg_ucm_tool_runtime import DirectEsgToolRuntime
+
+    ms = _mapping_service or UCMMappingService()
+    repo = ms.repository
+    rt = DirectEsgToolRuntime(mapping_service=ms)
+    return UCMOrchestrator(
+        creation_agent=UCMCreationAgent(mapping_service=ms, tool_runtime=rt),
+        validation_tool_runtime=rt,
+        mapping_service=ms,
+        repository=repo,
+    ).run_ucm_workflow(
         source_standard=source_standard,
         target_standard=target_standard,
         vector_threshold=vector_threshold,
@@ -69,8 +73,8 @@ async def run_ucm_workflow(
     )
 
 
-@mcp.tool()
-async def run_ucm_mapping_pipeline(
+def handle_run_ucm_mapping_pipeline(
+    *,
     source_standard: str,
     target_standard: str,
     batch_size: int = 40,
@@ -81,9 +85,10 @@ async def run_ucm_mapping_pipeline(
     final_threshold: float = 0.75,
     use_llm_in_mapping_service: bool = False,
     llm_model: str = "gpt-5-mini",
-) -> dict:
-    """2단계 파이프라인(임베딩→규칙→LLM→정책→payload→upsert) 실행."""
-    return handle_run_ucm_mapping_pipeline(
+) -> dict[str, Any]:
+    from backend.domain.v1.esg_data.hub.orchestrator.ucm_orchestrator import UCMOrchestrator
+
+    return UCMOrchestrator().run_ucm_policy_pipeline(
         source_standard=source_standard,
         target_standard=target_standard,
         batch_size=batch_size,
@@ -97,8 +102,8 @@ async def run_ucm_mapping_pipeline(
     )
 
 
-@mcp.tool()
-async def run_ucm_nearest_pipeline(
+def handle_run_ucm_nearest_pipeline(
+    *,
     batch_size: int = 40,
     dry_run: bool = True,
     top_k: int = 5,
@@ -107,9 +112,10 @@ async def run_ucm_nearest_pipeline(
     final_threshold: float = 0.75,
     use_llm_in_mapping_service: bool = False,
     llm_model: str = "gpt-5-mini",
-) -> dict:
-    """기준서 입력 없이: 다른 기준서만 최근접 후보로 2단계 파이프라인 수행."""
-    return handle_run_ucm_nearest_pipeline(
+) -> dict[str, Any]:
+    from backend.domain.v1.esg_data.hub.orchestrator.ucm_orchestrator import UCMOrchestrator
+
+    return UCMOrchestrator().run_ucm_nearest_pipeline(
         batch_size=batch_size,
         dry_run=dry_run,
         top_k=top_k,
@@ -119,7 +125,3 @@ async def run_ucm_nearest_pipeline(
         use_llm_in_mapping_service=use_llm_in_mapping_service,
         llm_model=llm_model,
     )
-
-
-if __name__ == "__main__":
-    mcp.run()

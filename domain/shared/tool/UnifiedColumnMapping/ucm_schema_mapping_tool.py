@@ -55,6 +55,38 @@ class SchemaMappingTool:
         notes_parts: List[str] = list(decision.get("reason_codes") or [])
         if decision.get("decision") == "review":
             notes_parts.append("mapping_status=reviewing")
+        evidence = dict(decision.get("evidence") or {})
+        violations = evidence.get("violations", [])
+        rulebook_conflicts: dict[str, Any] | None = None
+        if isinstance(violations, list) and violations:
+            conflict_types = [str(v.get("type")) for v in violations if isinstance(v, dict) and v.get("type")]
+            if conflict_types:
+                rulebook_conflicts = {
+                    "violation_types": sorted(set(conflict_types)),
+                    "has_critical_violation": any(
+                        isinstance(v, dict) and str(v.get("severity", "")).lower() == "critical"
+                        for v in violations
+                    ),
+                    "llm_decision_override": evidence.get("llm_decision_override"),
+                }
+        standard_metadata = {
+            source_dp.standard: {
+                "dp_id": source_dp.dp_id,
+                "column_name_ko": source_dp.name_ko,
+                "column_name_en": source_dp.name_en,
+                "description": source_dp.description,
+                "topic": source_dp.topic,
+                "subtopic": source_dp.subtopic,
+            },
+            target_dp.standard: {
+                "dp_id": target_dp.dp_id,
+                "column_name_ko": target_dp.name_ko,
+                "column_name_en": target_dp.name_en,
+                "description": target_dp.description,
+                "topic": target_dp.topic,
+                "subtopic": target_dp.subtopic,
+            },
+        }
 
         payload: UCMPayload = {
             "unified_column_id": unified_column_id,
@@ -70,6 +102,8 @@ class SchemaMappingTool:
             "mapped_dp_ids": mapped,
             "mapping_confidence": float(decision.get("confidence", 0.0)),
             "mapping_notes": "; ".join(notes_parts) if notes_parts else None,
+            "rulebook_conflicts": rulebook_conflicts,
+            "standard_metadata": standard_metadata,
             "column_type": ctype,
             "unit": unit,
             "disclosure_requirement": req,
@@ -81,7 +115,7 @@ class SchemaMappingTool:
             "unified_embedding": None,
             "mapping_status": "accepted" if decision["decision"] == "accept" else "reviewing",
             "reason_codes": list(decision.get("reason_codes") or []),
-            "evidence": dict(decision.get("evidence") or {}),
+            "evidence": evidence,
             "policy_version": self.POLICY_VERSION,
         }
         return {"status": "success", "payload": payload}

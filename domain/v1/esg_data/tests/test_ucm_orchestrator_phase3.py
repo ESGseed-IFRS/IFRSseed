@@ -7,23 +7,6 @@ class _StubCreationAgent:
         return {"status": "success", "stats": {"processed": 1}}
 
 
-class _StubValidationAgent:
-    def validate(self):
-        return {
-            "status": "success",
-            "metrics": {"missing_dp_references_in_ucm": 0},
-        }
-
-
-class _StubQualityAgent:
-    def __init__(self) -> None:
-        self.called = 0
-
-    def summarize(self, **_kwargs):
-        self.called += 1
-        return {"status": "success", "issues_count": 0, "issues": []}
-
-
 def test_agent_router_routes_to_validation() -> None:
     router = AgentRouter()
     routed = router.route({"route": "validation_agent"})
@@ -31,11 +14,20 @@ def test_agent_router_routes_to_validation() -> None:
 
 
 def test_phase3_workflow_fallback_success() -> None:
-    quality = _StubQualityAgent()
+    summarize_called = 0
+
+    def summarize_fn(**_kwargs):
+        nonlocal summarize_called
+        summarize_called += 1
+        return {"status": "success", "issues_count": 0, "issues": []}
+
     orchestrator = UCMOrchestrator(
         creation_agent=_StubCreationAgent(),  # type: ignore[arg-type]
-        validation_agent=_StubValidationAgent(),  # type: ignore[arg-type]
-        quality_check_agent=quality,  # type: ignore[arg-type]
+        validate_step=lambda: {
+            "status": "success",
+            "metrics": {"missing_dp_references_in_ucm": 0},
+        },
+        summarize_workflow_quality=summarize_fn,  # type: ignore[arg-type]
     )
     result = orchestrator.run_ucm_workflow(
         source_standard="GRI",
@@ -50,15 +42,24 @@ def test_phase3_workflow_fallback_success() -> None:
     assert "quality_result" in result
     assert "workflow" in result
     assert "langgraph" in result["workflow"]
-    assert quality.called == 0  # missing=0이면 quality 단계 자동 생략
+    assert summarize_called == 0  # missing=0이면 품질 단계 자동 생략
 
 
 def test_phase3_workflow_force_validate_only() -> None:
-    quality = _StubQualityAgent()
+    summarize_called = 0
+
+    def summarize_fn(**_kwargs):
+        nonlocal summarize_called
+        summarize_called += 1
+        return {"status": "success", "issues_count": 0, "issues": []}
+
     orchestrator = UCMOrchestrator(
         creation_agent=_StubCreationAgent(),  # type: ignore[arg-type]
-        validation_agent=_StubValidationAgent(),  # type: ignore[arg-type]
-        quality_check_agent=quality,  # type: ignore[arg-type]
+        validate_step=lambda: {
+            "status": "success",
+            "metrics": {"missing_dp_references_in_ucm": 0},
+        },
+        summarize_workflow_quality=summarize_fn,  # type: ignore[arg-type]
     )
     result = orchestrator.run_ucm_workflow(
         source_standard="GRI",

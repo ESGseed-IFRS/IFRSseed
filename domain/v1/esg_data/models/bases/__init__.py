@@ -1,4 +1,4 @@
-"""온톨로지 테이블 SQLAlchemy ORM."""
+"""온톨로지 테이블용 SQLAlchemy ORM 모음."""
 
 from backend.domain.v1.esg_data.models.enums import (
     DPTypeEnum,

@@ -1,4 +1,4 @@
-"""UCM workflow 그래프 상태 (Phase 3). 필드 타입은 ``spokes.infra.ucm_pipeline_contracts`` 와 정렬."""
+"""UCM 워크플로 그래프 상태(3단계). 필드 타입은 ``spokes.infra.ucm_pipeline_contracts`` 와 맞춘다."""
 
 from __future__ import annotations
 

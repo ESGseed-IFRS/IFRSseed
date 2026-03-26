@@ -1,0 +1,3016 @@
+"""Build gri_403 datapoint.json and rulebook.json (GRI 403-1~403-10 seed). Run from repo."""
+import json
+from pathlib import Path
+
+root = Path(__file__).resolve().parent
+
+
+def DP(**kw):
+    return {
+        "dp_id": kw["dp_id"],
+        "dp_code": kw["dp_code"],
+        "name_ko": kw["name_ko"],
+        "name_en": kw["name_en"],
+        "description": kw["description"],
+        "standard": "GRI",
+        "category": kw.get("category", "S"),
+        "topic": kw["topic"],
+        "subtopic": kw["subtopic"],
+        "dp_type": kw["dp_type"],
+        "unit": kw.get("unit"),
+        "equivalent_dps": kw.get("equivalent_dps", []),
+        "parent_indicator": kw["parent_indicator"],
+        "child_dps": kw.get("child_dps", []),
+        "financial_linkages": [],
+        "financial_impact_type": None,
+        "disclosure_requirement": kw["disclosure_requirement"],
+        "reporting_frequency": "연간",
+        "validation_rules": kw["validation_rules"],
+        "value_range": None,
+    }
+
+
+def RB(rid, primary, section_name, section_content, stype, pref, keys, actions, checks, xref, related, title, disc, notes=None):
+    return {
+        "rulebook_id": rid,
+        "standard_id": "GRI403",
+        "primary_dp_id": primary,
+        "section_name": section_name,
+        "section_content": section_content,
+        "validation_rules": {
+            "section_type": stype,
+            "paragraph_reference": pref,
+            "key_terms": keys,
+            "related_concepts": [],
+            "required_actions": actions,
+            "verification_checks": checks,
+            "cross_references": xref,
+        },
+        "related_dp_ids": related,
+        "rulebook_title": title,
+        "disclosure_requirement": disc,
+        "version": "1.0",
+        "is_active": True,
+        "is_primary": False,
+        "effective_date": "2018-01-01",
+        "mapping_notes": notes,
+        "conflicts_with": [],
+    }
+
+
+def act(name, desc, mandatory=True):
+    d = {"action": name, "description": desc}
+    if not mandatory:
+        d["mandatory"] = False
+    return [d]
+
+
+def chk(cid, desc, exp="ok"):
+    return [{"check_id": cid, "description": desc, "expected": exp}]
+
+
+def _403_9_ab_branch(out: list, letter: str, code_mid: str, who_ko: str, who_en: str) -> None:
+    root = f"GRI403-9-{letter}"
+    subs = ["i", "ii", "iii", "iv", "v"]
+    out.append(
+        DP(
+            dp_id=root,
+            dp_code=f"GRI_403_DIS_9_{code_mid}",
+            name_ko=f"공개 403-9-{letter}: {who_ko}",
+            name_en=f"Disclosure 403-9-{letter}: {who_en}",
+            description=f"403-9-{letter}: 업무 관련 부상에 대한 지표를 {who_ko} 범위로 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 부상",
+            dp_type="narrative",
+            parent_indicator="GRI403-9",
+            child_dps=[f"{root}-{s}" for s in subs],
+            disclosure_requirement="필수",
+            validation_rules=[f"403-9-{letter}-i~v", "수·발생률·근로시간·유형", "편성 2.1·RULE_GRI403_9_2_1_4"],
+        )
+    )
+    meta = [
+        (
+            "i",
+            f"GRI_403_DIS_9_{code_mid}_I_FATAL",
+            "업무상 부상 사망자 수 및 사망률",
+            "Fatalities from work-related injury — count and rate",
+            "업무 관련 부상으로 인한 사망 건수와 표준화 사망률(근로시간 기준)을 보고합니다.",
+            ["사망 건수", "사망률·산정 기준(2.1.4)과 정합"],
+        ),
+        (
+            "ii",
+            f"GRI_403_DIS_9_{code_mid}_II_HIGH_CONSEQUENCE",
+            "중대한 결과 업무 관련 부상(사망 제외) 건수 및 발생률",
+            "High-consequence work-related injuries (excl. fatalities) — count and rate",
+            "사망을 제외한 중대한 결과 업무 관련 부상의 건수와 발생률을 보고합니다(편성 2.1.1: 중대 지표 산정에서 사망 제외).",
+            ["건수", "발생률", "2.1.1과 정합"],
+        ),
+        (
+            "iii",
+            f"GRI_403_DIS_9_{code_mid}_III_RECORDABLE",
+            "기록 대상 업무 관련 상해 건수 및 발생률",
+            "Recordable work-related injuries — count and rate",
+            "기록 대상 업무 관련 상해의 건수와 발생률을 보고합니다(편성 2.1.2: 기록 대상 산정 시 사망 포함).",
+            ["건수", "발생률", "2.1.2와 정합"],
+        ),
+        (
+            "iv",
+            f"GRI_403_DIS_9_{code_mid}_IV_MAIN_TYPES",
+            "주요 업무 관련 상해 유형",
+            "Main types of work-related injury",
+            "주요 업무 관련 상해 유형을 보고합니다.",
+            ["유형 분류·서술"],
+        ),
+        (
+            "v",
+            f"GRI_403_DIS_9_{code_mid}_V_HOURS",
+            "근로 시간",
+            "Hours worked",
+            "분모로 사용한 근로 시간을 보고합니다.",
+            ["총 근로시간·추정 시 방법 설명(지침)"],
+        ),
+    ]
+    for suf, dcode, nko, nen, desc, val in meta:
+        out.append(
+            DP(
+                dp_id=f"{root}-{suf}",
+                dp_code=dcode,
+                name_ko=f"공개 403-9-{letter}-{suf}: {nko}",
+                name_en=f"Disclosure 403-9-{letter}-{suf}: {nen}",
+                description=desc,
+                topic="직업 보건·안전",
+                subtopic="업무 관련 부상",
+                dp_type="narrative",
+                parent_indicator=root,
+                disclosure_requirement="필수",
+                validation_rules=val,
+            )
+        )
+
+
+def _403_10_ab_branch(out: list, letter: str, code_mid: str, who_ko: str, who_en: str) -> None:
+    root = f"GRI403-10-{letter}"
+    subs = ["i", "ii", "iii"]
+    out.append(
+        DP(
+            dp_id=root,
+            dp_code=f"GRI_403_DIS_10_{code_mid}",
+            name_ko=f"공개 403-10-{letter}: {who_ko}",
+            name_en=f"Disclosure 403-10-{letter}: {who_en}",
+            description=f"403-10-{letter}: 업무 관련 건강 이상 지표를 {who_ko} 범위로 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 건강 이상",
+            dp_type="narrative",
+            parent_indicator="GRI403-10",
+            child_dps=[f"{root}-{s}" for s in subs],
+            disclosure_requirement="필수",
+            validation_rules=[f"403-10-{letter}-i~iii", "편성 2.3·RULE_GRI403_10_2_3"],
+        )
+    )
+    rows = [
+        (
+            "i",
+            f"GRI_403_DIS_10_{code_mid}_I_FATAL",
+            "직무 관련 건강 문제 사망자 수",
+            "Deaths from work-related ill health — count",
+            "직무 관련 건강 문제로 인한 사망자 수를 보고합니다.",
+            ["사망 건수"],
+        ),
+        (
+            "ii",
+            f"GRI_403_DIS_10_{code_mid}_II_RECORDABLE",
+            "기록 대상 업무 관련 건강 이상 사례 수",
+            "Recordable cases of work-related ill health — count",
+            "기록 대상 업무 관련 건강 이상 사례 수를 보고합니다(편성 2.3: 사망 사례 포함).",
+            ["사례 수", "2.3과 정합"],
+        ),
+        (
+            "iii",
+            f"GRI_403_DIS_10_{code_mid}_III_MAIN_TYPES",
+            "주요 업무 관련 건강 이상 유형",
+            "Main types of work-related ill health",
+            "주요 업무 관련 건강 이상 유형을 보고합니다.",
+            ["유형 분류·서술"],
+        ),
+    ]
+    for suf, dcode, nko, nen, desc, val in rows:
+        out.append(
+            DP(
+                dp_id=f"{root}-{suf}",
+                dp_code=dcode,
+                name_ko=f"공개 403-10-{letter}-{suf}: {nko}",
+                name_en=f"Disclosure 403-10-{letter}-{suf}: {nen}",
+                description=desc,
+                topic="직업 보건·안전",
+                subtopic="업무 관련 건강 이상",
+                dp_type="narrative",
+                parent_indicator=root,
+                disclosure_requirement="필수",
+                validation_rules=val,
+            )
+        )
+
+
+def _dp_403_9_10() -> list:
+    out: list = []
+    out.append(
+        DP(
+            dp_id="GRI403-9",
+            dp_code="GRI_403_DIS_9_WORK_RELATED_INJURIES",
+            name_ko="공개 403-9: 업무 관련 부상",
+            name_en="Disclosure 403-9: Work-related injuries",
+            description=(
+                "업무 관련 부상 지표(직원·통제 근로자), 중대 부상 위험 유해요인(c), 기타 유해요인 대응(d), "
+                "발생률 산정 시간 기준(e), 제외(f), 방법론(g), 편성 요건 2.1, 권고 2.2를 포함합니다. "
+                "통제 위계는 공개 403-2-a와 연계; 지침·산식은 RULE_GRI403_9_*."
+            ),
+            topic="직업 보건·안전",
+            subtopic="업무 관련 부상",
+            dp_type="narrative",
+            parent_indicator="GRI403-SEC-2",
+            child_dps=[
+                "GRI403-9-a",
+                "GRI403-9-b",
+                "GRI403-9-c",
+                "GRI403-9-d",
+                "GRI403-9-e",
+                "GRI403-9-f",
+                "GRI403-9-g",
+                "GRI403-9-2-1",
+                "GRI403-9-2-2",
+            ],
+            disclosure_requirement="필수",
+            validation_rules=["403-9 트리·편성 2.1·권고 2.2", "룰북 참조"],
+        )
+    )
+    _403_9_ab_branch(out, "a", "A_EMPLOYEES", "모든 직원", "All employees")
+    _403_9_ab_branch(out, "b", "B_CONTROLLED_WORKERS", "통제 비직원 근로자", "Controlled non-employee workers")
+    out.append(
+        DP(
+            dp_id="GRI403-9-c",
+            dp_code="GRI_403_DIS_9_C_HIGH_CONSEQUENCE_HAZARDS",
+            name_ko="공개 403-9-c: 중대한 부상 위험을 초래하는 업무 관련 위험 요인",
+            name_en="Disclosure 403-9-c: Hazards posing risk of high-consequence injury",
+            description="중대한 부상 위험을 초래할 수 있는 업무 관련 위험 요인에 대해 식별 방법(i), 보고기간 중 중대 상해 유발·기여 요인(ii), 통제 위계에 따른 제거·완화 조치(iii)를 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 부상",
+            dp_type="narrative",
+            parent_indicator="GRI403-9",
+            child_dps=["GRI403-9-c-i", "GRI403-9-c-ii", "GRI403-9-c-iii"],
+            disclosure_requirement="필수",
+            validation_rules=["c-i~iii", "403-2-a와 절차 연계(지침)"],
+        )
+    )
+    for suf, dcode, nko, nen, desc, val in [
+        (
+            "i",
+            "GRI_403_DIS_9_C_I_DETERMINATION",
+            "위험 요인 확인 방법",
+            "How hazards were determined",
+            "중대 부상 위험과 연계된 위험 요인을 어떻게 확인했는지 설명합니다.",
+            ["식별 기준·과정"],
+        ),
+        (
+            "ii",
+            "GRI_403_DIS_9_C_II_CONTRIBUTING",
+            "보고기간 중 중대 상해 유발·기여 위험 요인",
+            "Hazards that caused or contributed to high-consequence injuries",
+            "보고 기간 동안 중대한 결과 부상을 유발하거나 기여한 업무 관련 위험 요인을 분석·기술합니다(개별 사건-요인 1:1 대응 불필요, 지침).",
+            ["기간 내 포괄 분석"],
+        ),
+        (
+            "iii",
+            "GRI_403_DIS_9_C_III_HOC_ACTIONS",
+            "통제 위계에 따른 제거·완화 조치",
+            "Actions using hierarchy of controls",
+            "해당 위험 요인을 제거하고 위험을 최소화하기 위한 취해진 또는 진행 중인 조치를 통제 위계에 따라 보고합니다.",
+            ["통제 위계 순서·조치"],
+        ),
+    ]:
+        out.append(
+            DP(
+                dp_id=f"GRI403-9-c-{suf}",
+                dp_code=dcode,
+                name_ko=f"공개 403-9-c-{suf}: {nko}",
+                name_en=f"Disclosure 403-9-c-{suf}: {nen}",
+                description=desc,
+                topic="직업 보건·안전",
+                subtopic="업무 관련 부상",
+                dp_type="narrative",
+                parent_indicator="GRI403-9-c",
+                disclosure_requirement="필수",
+                validation_rules=val,
+            )
+        )
+    out.append(
+        DP(
+            dp_id="GRI403-9-d",
+            dp_code="GRI_403_DIS_9_D_OTHER_HAZARDS_HOC",
+            name_ko="공개 403-9-d: 기타 업무 관련 위험에 대한 통제 위계 조치",
+            name_en="Disclosure 403-9-d: Other work-related hazards — hierarchy of controls",
+            description="403-9-c 범위 외 기타 업무 관련 위험 요소를 제거·완화하기 위한 통제 위계 기반 조치를 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 부상",
+            dp_type="narrative",
+            parent_indicator="GRI403-9",
+            disclosure_requirement="필수",
+            validation_rules=["c와 구분", "통제 위계"],
+        )
+    )
+    out.append(
+        DP(
+            dp_id="GRI403-9-e",
+            dp_code="GRI_403_DIS_9_E_RATE_BASIS",
+            name_ko="공개 403-9-e: 발생률 산정 근로시간 기준(20만·100만 시간)",
+            name_en="Disclosure 403-9-e: Rate basis — 200,000 or 1,000,000 hours",
+            description="사망률·발생률이 200,000시간 또는 1,000,000시간 근로를 기준으로 산정되었는지 여부를 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 부상",
+            dp_type="narrative",
+            parent_indicator="GRI403-9",
+            disclosure_requirement="필수",
+            validation_rules=["200,000 또는 1,000,000 명시", "2.1.4·산식과 정합"],
+        )
+    )
+    out.append(
+        DP(
+            dp_id="GRI403-9-f",
+            dp_code="GRI_403_DIS_9_F_EXCLUSIONS",
+            name_ko="공개 403-9-f: 공시 제외 근로자",
+            name_en="Disclosure 403-9-f: Workers excluded from disclosure",
+            description="본 공시에서 근로자가 제외되었는지, 제외 시 이유와 제외 근로자 유형을 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 부상",
+            dp_type="narrative",
+            parent_indicator="GRI403-9",
+            disclosure_requirement="필수",
+            validation_rules=["제외 없음 또는 사유·유형", "지침 403-9-f"],
+        )
+    )
+    out.append(
+        DP(
+            dp_id="GRI403-9-g",
+            dp_code="GRI_403_DIS_9_G_METHODOLOGY",
+            name_ko="공개 403-9-g: 데이터 집계 배경",
+            name_en="Disclosure 403-9-g: Context for compilation",
+            description="표준, 방법론, 가정 등 데이터 집계를 이해하는 데 필요한 배경 정보를 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 부상",
+            dp_type="narrative",
+            parent_indicator="GRI403-9",
+            disclosure_requirement="필수",
+            validation_rules=["방법론 투명성", "ILO 기록·통보 실무규약 정렬 시 명시(지침)"],
+        )
+    )
+    out.append(
+        DP(
+            dp_id="GRI403-9-2-1",
+            dp_code="GRI_403_DIS_9_COMP_2_1",
+            name_ko="편성 요건 2.1: 공개 403-9 정보 편성",
+            name_en="Compilation 2.1: Compiling Disclosure 403-9 information",
+            description="공개 403-9를 편성할 때 준수할 요건(2.1.1~2.1.4) 묶음입니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 부상",
+            dp_type="narrative",
+            parent_indicator="GRI403-9",
+            child_dps=[
+                "GRI403-9-2-1-1",
+                "GRI403-9-2-1-2",
+                "GRI403-9-2-1-3",
+                "GRI403-9-2-1-4",
+            ],
+            disclosure_requirement="필수",
+            validation_rules=["2.1.1~2.1.4 동시 충족"],
+        )
+    )
+    for suf, dcode, nko, desc in [
+        (
+            "1",
+            "GRI_403_DIS_9_COMP_2_1_1_EXCL_FATAL_FROM_HC",
+            "2.1.1: 중대한 결과 부상 산정에서 사망 제외",
+            "중대한 결과 업무 관련 부상의 건수·발생률을 산정할 때 사망은 제외합니다.",
+        ),
+        (
+            "2",
+            "GRI_403_DIS_9_COMP_2_1_2_INCLUDE_FATAL_IN_RECORDABLE",
+            "2.1.2: 기록 대상 부상 산정에 사망 포함",
+            "기록 대상 업무 관련 상해의 건수·발생률 산정 시 업무 관련 부상 사망을 포함합니다.",
+        ),
+        (
+            "3",
+            "GRI_403_DIS_9_COMP_2_1_3_COMMUTING",
+            "2.1.3: 통근 사고 부상 포함 조건",
+            "통근 중 사고로 인한 부상은 조직이 교통편을 직접 제공한 경우에만 포함합니다.",
+        ),
+        (
+            "4",
+            "GRI_403_DIS_9_COMP_2_1_4_RATE_FORMULA",
+            "2.1.4: 표준화 발생률 산식(20만·100만 시간)",
+            "발생률·사망률은 200,000 또는 1,000,000 근로시간을 분모로 한 표준식으로 산정합니다(룰북 산식 참조).",
+        ),
+    ]:
+        out.append(
+            DP(
+                dp_id=f"GRI403-9-2-1-{suf}",
+                dp_code=dcode,
+                name_ko=f"편성 2.1.{suf}: {nko.split(':', 1)[-1].strip()}",
+                name_en=f"Compilation 2.1.{suf}",
+                description=desc,
+                topic="직업 보건·안전",
+                subtopic="업무 관련 부상",
+                dp_type="narrative",
+                parent_indicator="GRI403-9-2-1",
+                disclosure_requirement="필수",
+                validation_rules=[f"2.1.{suf} 준수"],
+            )
+        )
+    out.append(
+        DP(
+            dp_id="GRI403-9-2-2",
+            dp_code="GRI_403_DIS_9_REC_2_2",
+            name_ko="권장 2.2: 업무 관련 부상 추가 정보",
+            name_en="Recommendation 2.2: Additional work-related injury information (should)",
+            description="표준 권장 조항 2.2(2.2.1~2.2.5) 추가 보고 묶음입니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 부상",
+            dp_type="narrative",
+            parent_indicator="GRI403-9",
+            child_dps=[
+                "GRI403-9-2-2-1",
+                "GRI403-9-2-2-2",
+                "GRI403-9-2-2-3",
+                "GRI403-9-2-2-4",
+                "GRI403-9-2-2-5",
+            ],
+            disclosure_requirement="권고",
+            validation_rules=["2.2.1~2.2.5 검토"],
+        )
+    )
+    rec22 = [
+        (
+            "1",
+            "GRI_403_DIS_9_REC_2_2_1_BREAKDOWN",
+            "2.2.1: 유형·국가·사업부문·인구통계 등 유의차 세분",
+            "Breakdown when materially higher by injury type, country, BU, demographics, worker type",
+        ),
+        (
+            "2",
+            "GRI_403_DIS_9_REC_2_2_2_BY_INCIDENT",
+            "2.2.2: 기록 대상 부상을 사고 유형별 세분",
+            "Recordable injuries by type of incident",
+        ),
+        (
+            "3",
+            "GRI_403_DIS_9_REC_2_2_3_CHEMICALS",
+            "2.2.3: 403-9-c 화학 유해요인 목록",
+            "List of chemical substances if identified in 403-9-c",
+        ),
+        (
+            "4",
+            "GRI_403_DIS_9_REC_2_2_4_HIGH_RISK_WORK",
+            "2.2.4: 고위험 작업 관련 사건 수",
+            "Incidents involving high-risk work",
+        ),
+        (
+            "5",
+            "GRI_403_DIS_9_REC_2_2_5_NEAR_MISS",
+            "2.2.5: 아차사고 식별 건수",
+            "Near-misses identified",
+        ),
+    ]
+    for suf, dcode, nko, nen in rec22:
+        out.append(
+            DP(
+                dp_id=f"GRI403-9-2-2-{suf}",
+                dp_code=dcode,
+                name_ko=f"권장 2.2.{suf}: {nko.split(':', 1)[-1].strip()}",
+                name_en=nen,
+                description=f"권장 2.2.{suf}: {nen}.",
+                topic="직업 보건·안전",
+                subtopic="업무 관련 부상",
+                dp_type="narrative",
+                parent_indicator="GRI403-9-2-2",
+                disclosure_requirement="권고",
+                validation_rules=[f"2.2.{suf} 검토"],
+            )
+        )
+
+    out.append(
+        DP(
+            dp_id="GRI403-10",
+            dp_code="GRI_403_DIS_10_WORK_RELATED_ILL_HEALTH",
+            name_ko="공개 403-10: 업무 관련 건강 이상",
+            name_en="Disclosure 403-10: Work-related ill health",
+            description=(
+                "업무 관련 건강 이상 지표(직원·통제 근로자), 건강 손상 유발 유해요인(c), 제외(d), 방법론(e), "
+                "편성 2.3, 권고 2.4를 포함합니다. 근골격계는 본 표준에서 건강 이상으로 다룸(지침). RULE_GRI403_10_*."
+            ),
+            topic="직업 보건·안전",
+            subtopic="업무 관련 건강 이상",
+            dp_type="narrative",
+            parent_indicator="GRI403-SEC-2",
+            child_dps=[
+                "GRI403-10-a",
+                "GRI403-10-b",
+                "GRI403-10-c",
+                "GRI403-10-d",
+                "GRI403-10-e",
+                "GRI403-10-2-3",
+                "GRI403-10-2-4",
+            ],
+            disclosure_requirement="필수",
+            validation_rules=["403-10 트리·2.3·2.4", "룰북 참조"],
+        )
+    )
+    _403_10_ab_branch(out, "a", "A_EMPLOYEES", "모든 직원", "All employees")
+    _403_10_ab_branch(out, "b", "B_CONTROLLED_WORKERS", "통제 비직원 근로자", "Controlled non-employee workers")
+    out.append(
+        DP(
+            dp_id="GRI403-10-c",
+            dp_code="GRI_403_DIS_10_C_HEALTH_HAZARDS",
+            name_ko="공개 403-10-c: 건강 손상을 유발할 수 있는 업무 관련 유해 요인",
+            name_en="Disclosure 403-10-c: Work-related hazards causing or contributing to ill health",
+            description="건강 손상 위험을 초래하는 업무 관련 유해 요인에 대해 확인 방법(i), 유발·기여 요인(ii), 통제 위계 조치(iii)를 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 건강 이상",
+            dp_type="narrative",
+            parent_indicator="GRI403-10",
+            child_dps=["GRI403-10-c-i", "GRI403-10-c-ii", "GRI403-10-c-iii"],
+            disclosure_requirement="필수",
+            validation_rules=["c-i~iii", "IARC·화학 노출(지침)"],
+        )
+    )
+    for suf, dcode, nko, nen, desc, val in [
+        (
+            "i",
+            "GRI_403_DIS_10_C_I_DETERMINATION",
+            "유해 요인 확인 방법",
+            "How hazards were determined",
+            "건강 손상 위험과 관련된 유해 요인을 어떻게 확인했는지 설명합니다.",
+            ["식별 기준·과정"],
+        ),
+        (
+            "ii",
+            "GRI_403_DIS_10_C_II_CONTRIBUTING",
+            "건강 손상 유발·기여 유해 요인",
+            "Hazards causing or contributing to ill health",
+            "건강 손상을 유발하거나 기여한 유해 요인을 보고합니다.",
+            ["기간·인과 서술"],
+        ),
+        (
+            "iii",
+            "GRI_403_DIS_10_C_III_HOC",
+            "통제 위계에 따른 제거·완화 조치",
+            "Hierarchy of controls actions",
+            "유해 요인 제거·위험 최소화를 위한 조치를 통제 위계에 따라 보고합니다.",
+            ["통제 위계"],
+        ),
+    ]:
+        out.append(
+            DP(
+                dp_id=f"GRI403-10-c-{suf}",
+                dp_code=dcode,
+                name_ko=f"공개 403-10-c-{suf}: {nko}",
+                name_en=f"Disclosure 403-10-c-{suf}: {nen}",
+                description=desc,
+                topic="직업 보건·안전",
+                subtopic="업무 관련 건강 이상",
+                dp_type="narrative",
+                parent_indicator="GRI403-10-c",
+                disclosure_requirement="필수",
+                validation_rules=val,
+            )
+        )
+    out.append(
+        DP(
+            dp_id="GRI403-10-d",
+            dp_code="GRI_403_DIS_10_D_EXCLUSIONS",
+            name_ko="공개 403-10-d: 공시 제외 근로자",
+            name_en="Disclosure 403-10-d: Workers excluded",
+            description="근로자가 본 공시에서 제외되었는지, 제외 시 사유와 유형을 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 건강 이상",
+            dp_type="narrative",
+            parent_indicator="GRI403-10",
+            disclosure_requirement="필수",
+            validation_rules=["제외·사유·유형", "지침 403-10-d"],
+        )
+    )
+    out.append(
+        DP(
+            dp_id="GRI403-10-e",
+            dp_code="GRI_403_DIS_10_E_METHODOLOGY",
+            name_ko="공개 403-10-e: 데이터 집계 배경",
+            name_en="Disclosure 403-10-e: Context for compilation",
+            description="집계 방법론·가정·표준 등 이해에 필요한 배경을 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 건강 이상",
+            dp_type="narrative",
+            parent_indicator="GRI403-10",
+            disclosure_requirement="필수",
+            validation_rules=["방법론", "ILO 실무규약 정렬(지침)"],
+        )
+    )
+    out.append(
+        DP(
+            dp_id="GRI403-10-2-3",
+            dp_code="GRI_403_DIS_10_COMP_2_3_RECORDABLE_INCLUDES_DEATHS",
+            name_ko="편성 요건 2.3: 기록 대상 건강 이상 산정 시 사망 포함",
+            name_en="Compilation 2.3: Include deaths in recordable ill health cases",
+            description="기록 대상인 업무 관련 건강 이상 사례 수를 산정할 때 사망 사례를 포함해야 합니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 건강 이상",
+            dp_type="narrative",
+            parent_indicator="GRI403-10",
+            disclosure_requirement="필수",
+            validation_rules=["사망 포함 산정"],
+        )
+    )
+    out.append(
+        DP(
+            dp_id="GRI403-10-2-4",
+            dp_code="GRI_403_DIS_10_REC_2_4",
+            name_ko="권장 2.4: 업무 관련 건강 이상 추가 정보",
+            name_en="Recommendation 2.4: Additional ill health information (should)",
+            description="권장 2.4.1~2.4.3 추가 보고 묶음입니다.",
+            topic="직업 보건·안전",
+            subtopic="업무 관련 건강 이상",
+            dp_type="narrative",
+            parent_indicator="GRI403-10",
+            child_dps=["GRI403-10-2-4-1", "GRI403-10-2-4-2", "GRI403-10-2-4-3"],
+            disclosure_requirement="권고",
+            validation_rules=["2.4.1~2.4.3 검토"],
+        )
+    )
+    for suf, dcode, nko, nen in [
+        (
+            "1",
+            "GRI_403_DIS_10_REC_2_4_1_BREAKDOWN",
+            "2.4.1: 유의하게 높은 세부(유형·국가·BU·인구통계 등)",
+            "Breakdown where significantly higher",
+        ),
+        (
+            "2",
+            "GRI_403_DIS_10_REC_2_4_2_CHEMICAL_LIST",
+            "2.4.2: 403-10-c 화학 유해요인 시 물질 목록",
+            "Chemical list when hazards in 403-10-c",
+        ),
+        (
+            "3",
+            "GRI_403_DIS_10_REC_2_4_3_EXPOSED_WORKERS",
+            "2.4.3: 403-10-c 유해요인에 노출된 근로자 수",
+            "Workers exposed to hazards in 403-10-c",
+        ),
+    ]:
+        out.append(
+            DP(
+                dp_id=f"GRI403-10-2-4-{suf}",
+                dp_code=dcode,
+                name_ko=f"권장 2.4.{suf}: {nko.split(':', 1)[-1].strip()}",
+                name_en=nen,
+                description=f"권장 2.4.{suf}: {nen}.",
+                topic="직업 보건·안전",
+                subtopic="업무 관련 건강 이상",
+                dp_type="narrative",
+                parent_indicator="GRI403-10-2-4",
+                disclosure_requirement="권고",
+                validation_rules=[f"2.4.{suf} 검토"],
+            )
+        )
+    return out
+
+
+def _rb_403_9_10() -> list:
+    g9_intro = (
+        "Disclosure 403-9 guidance: Injury metrics indicate harm, not safety performance alone; rising counts may reflect better reporting or scope. "
+        "Injury types include death, amputation, laceration, fracture, dislocation, burn, unconsciousness, paralysis, etc. "
+        "MSDs are generally reported under 403-10; if jurisdiction classifies MSD as injury, report under 403-9 with explanation. "
+        "Exclude injuries to the general public (visitors, third-party traffic) from 403-9 but may report separately."
+    )
+    g9_hc = (
+        "High-consequence work-related injuries (non-fatal): worker cannot recover, or is not expected to fully recover to pre-injury health within 6 months "
+        "(e.g. complicated fracture). Fatalities use 403-9-a-i and 403-9-b-i. Severity uses recovery time, not merely days away from work; "
+        "organizations may still report lost-time metrics. Formulas: fatality rate = (fatalities/hours)×[200k or 1M]; "
+        "high-consequence rate (excl. fatalities) = (HC injuries excl. deaths/hours)×[200k or 1M]; "
+        "recordable rate = (recordable injuries/hours)×[200k or 1M]."
+    )
+    g9_c = (
+        "403-9-c: Hazards that could cause high-consequence injury if uncontrolled; identified via risk assessment or after serious events. "
+        "Examples: excessive workload, trip hazards, flammable exposure. May group by region/BU. "
+        "403-9-c-i: May describe criteria/thresholds; hazard ID and hierarchy process also in 403-2-a. "
+        "403-9-c-ii: Comprehensive analysis of hazards linked to high-consequence injuries in the period—not necessarily mapping each injury to one hazard."
+    )
+    g9_d = "403-9-d: Actions for hazards not in 403-9-c scope—other work-related hazards, lower-probability HC scenarios, including non-HC injuries."
+    g9_f = (
+        "403-9-f: Classify excluded workers by regular/part-time, guaranteed hours, permanent/temporary, control type (work/workplace, sole/joint), workplace."
+    )
+    g9_g = (
+        "403-9-g: If following ILO Code of Practice on Recording and Notification of Occupational Accidents and Diseases, state so; "
+        "otherwise explain relationship to the ILO model."
+    )
+    g9_213 = (
+        "2.1.3 guidance: Include commute injuries only when the organization organizes transport (company or contracted vehicles). "
+        "Other commute accidents may be reported separately if law requires."
+    )
+    g9_214 = (
+        "2.1.4 guidance: 200,000 hours ≈ 100 FTE at 2,000 h/year (rate 1.0 = 1 event per 100 workers/year); "
+        "1,000,000 h ≈ 500 FTE/year. Report absolute counts alongside rates. If work hours cannot be measured, estimate from normal hours incl. paid leave and explain; "
+        "if impossible, disclose omission per GRI 1 Foundation (Requirement 6)."
+    )
+    g9_22 = (
+        "Recommendations 2.2.1–2.2.5 guidance: SDG 8.8 alignment; demographic breakdowns (sex, gender identity, migrant per ILO C143, age, worker type); "
+        "injury/incident type detail; chemical list when 403-9-c identifies chemical hazards; high-risk work incidents; near-miss counts. Ref [10]."
+    )
+    g9_wh = (
+        "Work hours guidance: Estimation and omission rules as above; commuting scope tied to 2.1.3."
+    )
+    g10_intro = (
+        "403-10 guidance: Work-related ill health includes acute, recurrent, chronic conditions from work (MSDs, skin/respiratory disease, cancer, noise/vibration, "
+        "mental health such as anxiety/PTSD); ILO occupational disease list informative, not exhaustive. MSDs are ill health under this Standard, not injury. "
+        "Report cases notified or found via surveillance in period; may include former workers. "
+        "Explain latency/causality judgments; supplement with hazard data for long-latency disease. "
+        "Omission reasons: legal/privacy/insurance limits, psychosocial self-report constraints—per GRI 1 Req.6. Exclude public health impacts from workplace events to the community (report separately). "
+        "Refs [5], [10], [16]."
+    )
+    g10_c = (
+        "403-10-c: Include IARC Group 1, 2A, 2B carcinogen exposure context where relevant. Refs [17], [18]; see also 403-9-c risk reporting guidance."
+    )
+    g10_d = "403-10-d: Worker classification—employment type, duration, control degree, workplace (same family as 403-9-f)."
+    g10_e = (
+        "403-10-e: ILO recording/notifications code alignment—state if followed, else explain relationship to ILO model."
+    )
+    g10_241 = (
+        "2.4.1 guidance: If driven by specific illness types or exposure incidents, detailed breakdown; cross-ref 2.2.1/2.2.2 style guidance."
+    )
+
+    ids_9 = [
+        "GRI403-9",
+        "GRI403-9-a",
+        "GRI403-9-a-i",
+        "GRI403-9-a-ii",
+        "GRI403-9-a-iii",
+        "GRI403-9-a-iv",
+        "GRI403-9-a-v",
+        "GRI403-9-b",
+        "GRI403-9-b-i",
+        "GRI403-9-b-ii",
+        "GRI403-9-b-iii",
+        "GRI403-9-b-iv",
+        "GRI403-9-b-v",
+        "GRI403-9-c",
+        "GRI403-9-c-i",
+        "GRI403-9-c-ii",
+        "GRI403-9-c-iii",
+        "GRI403-9-d",
+        "GRI403-9-e",
+        "GRI403-9-f",
+        "GRI403-9-g",
+        "GRI403-9-2-1",
+        "GRI403-9-2-1-1",
+        "GRI403-9-2-1-2",
+        "GRI403-9-2-1-3",
+        "GRI403-9-2-1-4",
+        "GRI403-9-2-2",
+        "GRI403-9-2-2-1",
+        "GRI403-9-2-2-2",
+        "GRI403-9-2-2-3",
+        "GRI403-9-2-2-4",
+        "GRI403-9-2-2-5",
+    ]
+    ids_10 = [
+        "GRI403-10",
+        "GRI403-10-a",
+        "GRI403-10-a-i",
+        "GRI403-10-a-ii",
+        "GRI403-10-a-iii",
+        "GRI403-10-b",
+        "GRI403-10-b-i",
+        "GRI403-10-b-ii",
+        "GRI403-10-b-iii",
+        "GRI403-10-c",
+        "GRI403-10-c-i",
+        "GRI403-10-c-ii",
+        "GRI403-10-c-iii",
+        "GRI403-10-d",
+        "GRI403-10-e",
+        "GRI403-10-2-3",
+        "GRI403-10-2-4",
+        "GRI403-10-2-4-1",
+        "GRI403-10-2-4-2",
+        "GRI403-10-2-4-3",
+    ]
+
+    return [
+        RB(
+            "RULE_GRI403_9",
+            "GRI403-9",
+            "공개 403-9",
+            "Disclosure 403-9: Work-related injuries — requirements a–g; compilation 2.1; recommendation 2.2.",
+            "disclosure",
+            "GRI 403 Disclosure 403-9",
+            ["injury", "fatality", "TRIR", "hierarchy of controls"],
+            act("report_403_9", "403-9 패키지"),
+            chk("GRI403_9_OK", "403-9", "ok"),
+            ["Cross-ref GRI403-2-a"],
+            ids_9,
+            "Disclosure 403-9",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_A",
+            "GRI403-9-a",
+            "403-9-a",
+            "403-9-a employees",
+            "disclosure_requirement",
+            "GRI 403 403-9-a",
+            [],
+            act("meet_403_9_a", "403-9-a"),
+            chk("GRI403_9_A_OK", "403-9-a", "ok"),
+            [],
+            [f"GRI403-9-a-{x}" for x in ["i", "ii", "iii", "iv", "v"]],
+            "403-9-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_B",
+            "GRI403-9-b",
+            "403-9-b",
+            "403-9-b controlled workers",
+            "disclosure_requirement",
+            "GRI 403 403-9-b",
+            [],
+            act("meet_403_9_b", "403-9-b"),
+            chk("GRI403_9_B_OK", "403-9-b", "ok"),
+            [],
+            [f"GRI403-9-b-{x}" for x in ["i", "ii", "iii", "iv", "v"]],
+            "403-9-b",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_C",
+            "GRI403-9-c",
+            "403-9-c",
+            "403-9-c high-consequence hazards",
+            "disclosure_requirement",
+            "GRI 403 403-9-c",
+            ["hazard", "high-consequence"],
+            act("meet_403_9_c", "403-9-c"),
+            chk("GRI403_9_C_OK", "403-9-c", "ok"),
+            [],
+            ["GRI403-9-c", "GRI403-9-c-i", "GRI403-9-c-ii", "GRI403-9-c-iii"],
+            "403-9-c",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_D",
+            "GRI403-9-d",
+            "403-9-d",
+            "403-9-d other hazards",
+            "disclosure_requirement",
+            "GRI 403 403-9-d",
+            [],
+            act("meet_403_9_d", "403-9-d"),
+            chk("GRI403_9_D_OK", "403-9-d", "ok"),
+            [],
+            ["GRI403-9-d"],
+            "403-9-d",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_E",
+            "GRI403-9-e",
+            "403-9-e",
+            "403-9-e rate basis",
+            "disclosure_requirement",
+            "GRI 403 403-9-e",
+            [],
+            act("meet_403_9_e", "403-9-e"),
+            chk("GRI403_9_E_OK", "403-9-e", "ok"),
+            [],
+            ["GRI403-9-e"],
+            "403-9-e",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_F",
+            "GRI403-9-f",
+            "403-9-f",
+            "403-9-f exclusions",
+            "disclosure_requirement",
+            "GRI 403 403-9-f",
+            [],
+            act("meet_403_9_f", "403-9-f"),
+            chk("GRI403_9_F_OK", "403-9-f", "ok"),
+            [],
+            ["GRI403-9-f"],
+            "403-9-f",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_G",
+            "GRI403-9-g",
+            "403-9-g",
+            "403-9-g methodology",
+            "disclosure_requirement",
+            "GRI 403 403-9-g",
+            [],
+            act("meet_403_9_g", "403-9-g"),
+            chk("GRI403_9_G_OK", "403-9-g", "ok"),
+            [],
+            ["GRI403-9-g"],
+            "403-9-g",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_2_1",
+            "GRI403-9-2-1",
+            "편성 2.1",
+            "Compilation requirements 2.1.1–2.1.4 for 403-9",
+            "disclosure",
+            "GRI 403 403-9 — Compilation 2.1",
+            ["compilation", "denominator", "commuting"],
+            act("compile_403_9_21", "2.1"),
+            chk("GRI403_9_21_OK", "2.1", "ok"),
+            [],
+            [
+                "GRI403-9-2-1",
+                "GRI403-9-2-1-1",
+                "GRI403-9-2-1-2",
+                "GRI403-9-2-1-3",
+                "GRI403-9-2-1-4",
+            ],
+            "Compilation 2.1",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_2_1_1",
+            "GRI403-9-2-1-1",
+            "2.1.1",
+            "Exclude fatalities from high-consequence metrics",
+            "guidance",
+            "GRI 403 2.1.1",
+            [],
+            act("rule_403_9_211", "2.1.1"),
+            chk("GRI403_9_211_OK", "2.1.1", "ok"),
+            [],
+            ["GRI403-9-2-1-1", "GRI403-9-a-ii", "GRI403-9-b-ii"],
+            "2.1.1",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_2_1_2",
+            "GRI403-9-2-1-2",
+            "2.1.2",
+            "Include fatalities in recordable metrics",
+            "guidance",
+            "GRI 403 2.1.2",
+            [],
+            act("rule_403_9_212", "2.1.2"),
+            chk("GRI403_9_212_OK", "2.1.2", "ok"),
+            [],
+            ["GRI403-9-2-1-2", "GRI403-9-a-iii", "GRI403-9-b-iii"],
+            "2.1.2",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_2_1_3",
+            "GRI403-9-2-1-3",
+            "지침: 편성 2.1.3(통근)",
+            g9_213,
+            "guidance",
+            "GRI 403 2.1.3 — Guidance",
+            ["commuting", "transport"],
+            act("interpret_403_9_213", "2.1.3", mandatory=False),
+            chk("GRI403_9_213_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-9-2-1-3"],
+            "Guidance 2.1.3",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_2_1_4",
+            "GRI403-9-2-1-4",
+            "지침: 편성 2.1.4(산식·시간 기준)",
+            g9_214,
+            "guidance",
+            "GRI 403 2.1.4 — Guidance",
+            ["200000", "1000000", "rate formula"],
+            act("interpret_403_9_214", "2.1.4", mandatory=False),
+            chk("GRI403_9_214_G_OK", "지침", "coherent"),
+            [],
+            [
+                "GRI403-9-2-1-4",
+                "GRI403-9-a-i",
+                "GRI403-9-a-ii",
+                "GRI403-9-a-iii",
+                "GRI403-9-b-i",
+                "GRI403-9-b-ii",
+                "GRI403-9-b-iii",
+                "GRI403-9-e",
+            ],
+            "Guidance 2.1.4",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_2_2",
+            "GRI403-9-2-2",
+            "권장 2.2",
+            "Recommendation 2.2",
+            "guidance",
+            "GRI 403 403-9 — Recommendation 2.2",
+            ["breakdown", "near miss", "chemical"],
+            act("review_403_9_22", "2.2", mandatory=False),
+            chk("GRI403_9_22_REVIEW", "2.2", "reviewed"),
+            [],
+            [
+                "GRI403-9-2-2",
+                "GRI403-9-2-2-1",
+                "GRI403-9-2-2-2",
+                "GRI403-9-2-2-3",
+                "GRI403-9-2-2-4",
+                "GRI403-9-2-2-5",
+            ],
+            "Recommendation 2.2",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_9_INTRO_GUIDANCE",
+            "GRI403-9",
+            "지침: 공개 403-9(해석·MSD·일반인)",
+            g9_intro,
+            "guidance",
+            "GRI 403 Disclosure 403-9 — General guidance",
+            ["injury definition", "trends", "MSD"],
+            act("interpret_403_9_intro", "403-9 개괄 지침", mandatory=False),
+            chk("GRI403_9_INTRO_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-9"],
+            "Guidance 403-9 intro",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_HIGH_CONSEQUENCE_GUIDANCE",
+            "GRI403-9-a-ii",
+            "지침: 중대한 결과 부상 정의·산식",
+            g9_hc,
+            "guidance",
+            "GRI 403 — High-consequence injury",
+            ["recovery time", "six months", "rate"],
+            act("interpret_403_9_hc", "중대 부상 지침", mandatory=False),
+            chk("GRI403_9_HC_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-9-a-ii", "GRI403-9-b-ii", "GRI403-9-a-i", "GRI403-9-b-i", "GRI403-9-a-iii", "GRI403-9-b-iii"],
+            "Guidance high-consequence",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_C_GUIDANCE",
+            "GRI403-9-c",
+            "지침: 공개 403-9-c",
+            g9_c,
+            "guidance",
+            "GRI 403 403-9-c — Guidance",
+            ["hazard identification", "403-2-a"],
+            act("interpret_403_9_c", "403-9-c 지침", mandatory=False),
+            chk("GRI403_9_C_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-9-c", "GRI403-9-c-i", "GRI403-9-c-ii", "GRI403-9-c-iii"],
+            "Guidance 403-9-c",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_D_GUIDANCE",
+            "GRI403-9-d",
+            "지침: 공개 403-9-d",
+            g9_d,
+            "guidance",
+            "GRI 403 403-9-d — Guidance",
+            ["hierarchy of controls"],
+            act("interpret_403_9_d", "403-9-d 지침", mandatory=False),
+            chk("GRI403_9_D_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-9-d"],
+            "Guidance 403-9-d",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_F_GUIDANCE",
+            "GRI403-9-f",
+            "지침: 공개 403-9-f",
+            g9_f,
+            "guidance",
+            "GRI 403 403-9-f — Guidance",
+            ["worker types"],
+            act("interpret_403_9_f", "403-9-f 지침", mandatory=False),
+            chk("GRI403_9_F_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-9-f"],
+            "Guidance 403-9-f",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_G_GUIDANCE",
+            "GRI403-9-g",
+            "지침: 공개 403-9-g(ILO)",
+            g9_g,
+            "guidance",
+            "GRI 403 403-9-g — Guidance",
+            ["ILO", "recording"],
+            act("interpret_403_9_g", "403-9-g 지침", mandatory=False),
+            chk("GRI403_9_G_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-9-g"],
+            "Guidance 403-9-g",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_2_2_GUIDANCE",
+            "GRI403-9-2-2",
+            "지침: 권장 2.2.1~2.2.5",
+            g9_22,
+            "guidance",
+            "GRI 403 — Guidance for 2.2.x",
+            ["SDG 8.8", "demographics", "near miss"],
+            act("interpret_403_9_22x", "2.2.x 지침", mandatory=False),
+            chk("GRI403_9_22x_G_OK", "지침", "coherent"),
+            ["Ref [10]"],
+            [
+                "GRI403-9-2-2",
+                "GRI403-9-2-2-1",
+                "GRI403-9-2-2-2",
+                "GRI403-9-2-2-3",
+                "GRI403-9-2-2-4",
+                "GRI403-9-2-2-5",
+            ],
+            "Guidance 2.2.x",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_9_WORK_HOURS_GUIDANCE",
+            "GRI403-9-a-v",
+            "지침: 근로시간 산정·추정",
+            g9_wh,
+            "guidance",
+            "GRI 403 — Work hours for 403-9",
+            ["denominator", "estimation"],
+            act("interpret_403_9_hours", "근로시간 지침", mandatory=False),
+            chk("GRI403_9_WH_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-9-a-v", "GRI403-9-b-v"],
+            "Guidance work hours",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10",
+            "GRI403-10",
+            "공개 403-10",
+            "Disclosure 403-10: Work-related ill health — a–e; compilation 2.3; recommendation 2.4.",
+            "disclosure",
+            "GRI 403 Disclosure 403-10",
+            ["ill health", "occupational disease", "IARC"],
+            act("report_403_10", "403-10 패키지"),
+            chk("GRI403_10_OK", "403-10", "ok"),
+            [],
+            ids_10,
+            "Disclosure 403-10",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_A",
+            "GRI403-10-a",
+            "403-10-a",
+            "403-10-a employees",
+            "disclosure_requirement",
+            "GRI 403 403-10-a",
+            [],
+            act("meet_403_10_a", "403-10-a"),
+            chk("GRI403_10_A_OK", "403-10-a", "ok"),
+            [],
+            ["GRI403-10-a", "GRI403-10-a-i", "GRI403-10-a-ii", "GRI403-10-a-iii"],
+            "403-10-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_B",
+            "GRI403-10-b",
+            "403-10-b",
+            "403-10-b controlled workers",
+            "disclosure_requirement",
+            "GRI 403 403-10-b",
+            [],
+            act("meet_403_10_b", "403-10-b"),
+            chk("GRI403_10_B_OK", "403-10-b", "ok"),
+            [],
+            ["GRI403-10-b", "GRI403-10-b-i", "GRI403-10-b-ii", "GRI403-10-b-iii"],
+            "403-10-b",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_C",
+            "GRI403-10-c",
+            "403-10-c",
+            "403-10-c health hazards",
+            "disclosure_requirement",
+            "GRI 403 403-10-c",
+            [],
+            act("meet_403_10_c", "403-10-c"),
+            chk("GRI403_10_C_OK", "403-10-c", "ok"),
+            [],
+            ["GRI403-10-c", "GRI403-10-c-i", "GRI403-10-c-ii", "GRI403-10-c-iii"],
+            "403-10-c",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_D",
+            "GRI403-10-d",
+            "403-10-d",
+            "403-10-d exclusions",
+            "disclosure_requirement",
+            "GRI 403 403-10-d",
+            [],
+            act("meet_403_10_d", "403-10-d"),
+            chk("GRI403_10_D_OK", "403-10-d", "ok"),
+            [],
+            ["GRI403-10-d"],
+            "403-10-d",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_E",
+            "GRI403-10-e",
+            "403-10-e",
+            "403-10-e methodology",
+            "disclosure_requirement",
+            "GRI 403 403-10-e",
+            [],
+            act("meet_403_10_e", "403-10-e"),
+            chk("GRI403_10_E_OK", "403-10-e", "ok"),
+            [],
+            ["GRI403-10-e"],
+            "403-10-e",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_2_3",
+            "GRI403-10-2-3",
+            "편성 2.3",
+            "Compilation 2.3: deaths included in recordable ill health count",
+            "disclosure",
+            "GRI 403 403-10 — Compilation 2.3",
+            ["recordable", "fatalities"],
+            act("compile_403_10_23", "2.3"),
+            chk("GRI403_10_23_OK", "2.3", "ok"),
+            [],
+            ["GRI403-10-2-3", "GRI403-10-a-ii", "GRI403-10-b-ii"],
+            "Compilation 2.3",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_2_4",
+            "GRI403-10-2-4",
+            "권장 2.4",
+            "Recommendation 2.4",
+            "guidance",
+            "GRI 403 403-10 — Recommendation 2.4",
+            ["breakdown", "exposure"],
+            act("review_403_10_24", "2.4", mandatory=False),
+            chk("GRI403_10_24_REVIEW", "2.4", "reviewed"),
+            [],
+            [
+                "GRI403-10-2-4",
+                "GRI403-10-2-4-1",
+                "GRI403-10-2-4-2",
+                "GRI403-10-2-4-3",
+            ],
+            "Recommendation 2.4",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_10_2_4_1",
+            "GRI403-10-2-4-1",
+            "권장 2.4.1",
+            "2.4.1",
+            "guidance",
+            "GRI 403 2.4.1",
+            [],
+            act("rec_403_10_241", "2.4.1", mandatory=False),
+            chk("GRI403_10_241_OK", "2.4.1", "optional"),
+            [],
+            ["GRI403-10-2-4-1"],
+            "2.4.1",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_10_2_4_2",
+            "GRI403-10-2-4-2",
+            "권장 2.4.2",
+            "2.4.2",
+            "guidance",
+            "GRI 403 2.4.2",
+            [],
+            act("rec_403_10_242", "2.4.2", mandatory=False),
+            chk("GRI403_10_242_OK", "2.4.2", "optional"),
+            [],
+            ["GRI403-10-2-4-2"],
+            "2.4.2",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_10_2_4_3",
+            "GRI403-10-2-4-3",
+            "권장 2.4.3",
+            "2.4.3",
+            "guidance",
+            "GRI 403 2.4.3",
+            [],
+            act("rec_403_10_243", "2.4.3", mandatory=False),
+            chk("GRI403_10_243_OK", "2.4.3", "optional"),
+            [],
+            ["GRI403-10-2-4-3"],
+            "2.4.3",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_10_INTRO_GUIDANCE",
+            "GRI403-10",
+            "지침: 공개 403-10(정의·범위·프라이버시)",
+            g10_intro,
+            "guidance",
+            "GRI 403 Disclosure 403-10 — General guidance",
+            ["ill health", "MSD", "latency"],
+            act("interpret_403_10_intro", "403-10 개괄 지침", mandatory=False),
+            chk("GRI403_10_INTRO_G_OK", "지침", "coherent"),
+            ["Refs [5], [10], [16]"],
+            ["GRI403-10"],
+            "Guidance 403-10 intro",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_C_GUIDANCE",
+            "GRI403-10-c",
+            "지침: 공개 403-10-c(IARC·화학)",
+            g10_c,
+            "guidance",
+            "GRI 403 403-10-c — Guidance",
+            ["IARC", "carcinogen"],
+            act("interpret_403_10_c", "403-10-c 지침", mandatory=False),
+            chk("GRI403_10_C_G_OK", "지침", "coherent"),
+            ["Refs [17], [18]"],
+            ["GRI403-10-c", "GRI403-10-c-i", "GRI403-10-c-ii", "GRI403-10-c-iii"],
+            "Guidance 403-10-c",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_D_GUIDANCE",
+            "GRI403-10-d",
+            "지침: 공개 403-10-d",
+            g10_d,
+            "guidance",
+            "GRI 403 403-10-d — Guidance",
+            ["worker types"],
+            act("interpret_403_10_d", "403-10-d 지침", mandatory=False),
+            chk("GRI403_10_D_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-10-d"],
+            "Guidance 403-10-d",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_E_GUIDANCE",
+            "GRI403-10-e",
+            "지침: 공개 403-10-e(ILO)",
+            g10_e,
+            "guidance",
+            "GRI 403 403-10-e — Guidance",
+            ["ILO"],
+            act("interpret_403_10_e", "403-10-e 지침", mandatory=False),
+            chk("GRI403_10_E_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-10-e"],
+            "Guidance 403-10-e",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_10_2_4_1_GUIDANCE",
+            "GRI403-10-2-4-1",
+            "지침: 권장 2.4.1",
+            g10_241,
+            "guidance",
+            "GRI 403 — Guidance for 2.4.1",
+            ["breakdown"],
+            act("interpret_403_10_241", "2.4.1 지침", mandatory=False),
+            chk("GRI403_10_241_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-10-2-4-1"],
+            "Guidance 2.4.1",
+            "필수",
+        ),
+    ]
+
+
+def main() -> None:
+    pts = [
+        DP(
+            dp_id="GRI403",
+            dp_code="GRI_403_OCCUPATIONAL_HEALTH_SAFETY",
+            name_ko="GRI 403: 직업 보건 및 안전",
+            name_en="GRI 403: Occupational Health and Safety",
+            description=(
+                "GRI 403은 조직이 근로자의 직업 보건·안전(OHS)에 관해 보고해야 하는 주제별 기준입니다. "
+                "본 시드는 주제별 공시(섹션 2) 중 공개 403-1~403-10을 포함합니다."
+            ),
+            topic="직업 보건·안전",
+            subtopic="GRI 403",
+            dp_type="narrative",
+            parent_indicator=None,
+            child_dps=["GRI403-SEC-2"],
+            disclosure_requirement="필수",
+            validation_rules=["시드 범위: 공개 403-1~403-10"],
+        ),
+        DP(
+            dp_id="GRI403-SEC-2",
+            dp_code="GRI_403_SEC_2_TOPIC_DISCLOSURES",
+            name_ko="섹션 2: 주제별 공시(시드: 403-1~403-10)",
+            name_en="Section 2: Topic-related disclosures (seed: 403-1 to 403-10)",
+            description="직업 보건·안전 주제에 대한 정량·정성 공시 묶음입니다. 본 시드에는 공개 403-1~403-10을 포함합니다.",
+            topic="직업 보건·안전",
+            subtopic="주제별 공시",
+            dp_type="narrative",
+            parent_indicator="GRI403",
+            child_dps=[
+                "GRI403-1",
+                "GRI403-2",
+                "GRI403-3",
+                "GRI403-4",
+                "GRI403-5",
+                "GRI403-6",
+                "GRI403-7",
+                "GRI403-8",
+                "GRI403-9",
+                "GRI403-10",
+            ],
+            disclosure_requirement="필수",
+            validation_rules=["공개 403-1~403-10 요건 충족(시드 범위)"],
+        ),
+        # --- 403-1 ---
+        DP(
+            dp_id="GRI403-1",
+            dp_code="GRI_403_DIS_1_OHS_MS",
+            name_ko="공개 403-1: 직업 보건 및 안전 관리 시스템",
+            name_en="Disclosure 403-1: Occupational health and safety management system",
+            description=(
+                "직원 및 조직이 통제하는 비직원 근로자에 대해, 직업 보건·안전 관리 시스템(OHS MS) 도입 여부·근거(법규·인정 기준)와 "
+                "적용 범위(포함·제외 근로자·활동·작업장 및 제외 사유)를 보고합니다. 지침의 추가 권고(전문가 유형, 지속적 개선)는 RULE_GRI403_1_G_GUIDANCE를 참조합니다(§3.2.1: 지침 전용 DP 미발급)."
+            ),
+            topic="직업 보건·안전",
+            subtopic="OHS 관리 시스템",
+            dp_type="narrative",
+            parent_indicator="GRI403-SEC-2",
+            child_dps=["GRI403-1-a", "GRI403-1-b"],
+            disclosure_requirement="필수",
+            validation_rules=["하위 a·b 충족", "지침: RULE_GRI403_1_G_GUIDANCE"],
+        ),
+        DP(
+            dp_id="GRI403-1-a",
+            dp_code="GRI_403_DIS_1_A_OHS_MS_STATEMENT",
+            name_ko="공개 403-1-a: OHS 관리 시스템 도입 진술",
+            name_en="Disclosure 403-1-a: Statement on OHS management system implementation",
+            description="OHS 관리 시스템 구축·운영 여부를 진술하고, 하위 i·ii에 따라 법적 요건 및 인정된 위험관리·경영시스템 기준을 명시합니다.",
+            topic="직업 보건·안전",
+            subtopic="OHS MS",
+            dp_type="narrative",
+            parent_indicator="GRI403-1",
+            child_dps=["GRI403-1-a-i", "GRI403-1-a-ii"],
+            disclosure_requirement="필수",
+            validation_rules=["GRI403-1-a-i·GRI403-1-a-ii와 정합"],
+        ),
+        DP(
+            dp_id="GRI403-1-a-i",
+            dp_code="GRI_403_DIS_1_A_I_LEGAL",
+            name_ko="공개 403-1-a-i: 법적 요건 기반 구축 여부 및 목록",
+            name_en="Disclosure 403-1-a-i: Legal requirements basis and list",
+            description="시스템이 법적 요건에 기초하여 구축되었는지 여부와, 그런 경우 충족·준수하는 요건 목록을 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="OHS MS·법규",
+            dp_type="narrative",
+            parent_indicator="GRI403-1-a",
+            disclosure_requirement="필수",
+            validation_rules=["법규 기반 여부 명시", "해당 시 요건 목록 식별 가능"],
+        ),
+        DP(
+            dp_id="GRI403-1-a-ii",
+            dp_code="GRI_403_DIS_1_A_II_STANDARDS",
+            name_ko="공개 403-1-a-ii: 인정된 기준·지침 기반 구축 여부 및 목록",
+            name_en="Disclosure 403-1-a-ii: Recognized standards/guidelines basis and list",
+            description="시스템이 인정된 위험관리 및/또는 경영시스템 표준·지침에 기초하는지 여부와, 그런 경우 해당 표준·지침 목록을 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="OHS MS·표준",
+            dp_type="narrative",
+            parent_indicator="GRI403-1-a",
+            disclosure_requirement="필수",
+            validation_rules=["표준·지침 기반 여부 명시", "해당 시 목록 식별 가능"],
+        ),
+        DP(
+            dp_id="GRI403-1-b",
+            dp_code="GRI_403_DIS_1_B_SCOPE",
+            name_ko="공개 403-1-b: 적용 범위 및 제외",
+            name_en="Disclosure 403-1-b: Scope and exclusions",
+            description="OHS MS가 적용되는 근로자·활동·작업장의 범위를 설명하고, 제외되는 경우 그 근로자·활동·작업장과 제외 사유를 보고합니다.",
+            topic="직업 보건·안전",
+            subtopic="OHS MS 범위",
+            dp_type="narrative",
+            parent_indicator="GRI403-1",
+            disclosure_requirement="필수",
+            validation_rules=["포함 범위·제외·제외 사유의 투명한 기술"],
+        ),
+        # --- 403-2 ---
+        DP(
+            dp_id="GRI403-2",
+            dp_code="GRI_403_DIS_2_HAZARD_RISK_INCIDENT",
+            name_ko="공개 403-2: 위험 요인 식별, 위험 평가 및 사고 조사",
+            name_en="Disclosure 403-2: Hazard identification, risk assessment, and incident investigation",
+            description=(
+                "위험 식별·위험 평가(정기·비정기) 및 통제 위계 적용, 보고·보복 방지, 작업 중단 권리, 사고 조사 절차를 보고합니다. "
+                "항목별 지침은 RULE_GRI403_2_A_GUIDANCE, RULE_GRI403_2_BC_GUIDANCE입니다."
+            ),
+            topic="직업 보건·안전",
+            subtopic="위험·사고",
+            dp_type="narrative",
+            parent_indicator="GRI403-SEC-2",
+            child_dps=["GRI403-2-a", "GRI403-2-b", "GRI403-2-c", "GRI403-2-d"],
+            disclosure_requirement="필수",
+            validation_rules=["하위 a~d 충족", "지침 룰북 참조"],
+        ),
+        DP(
+            dp_id="GRI403-2-a",
+            dp_code="GRI_403_DIS_2_A_HAZARD_RISK_PROCESS",
+            name_ko="공개 403-2-a: 위험 식별·위험 평가·통제 위계",
+            name_en="Disclosure 403-2-a: Hazard identification, risk assessment, hierarchy of controls",
+            description=(
+                "업무 관련 위험 요인 식별 및 위험 평가 절차(정기·비정기), 위험 제거·최소화를 위한 통제 위계 적용을 설명합니다. "
+                "하위 i는 절차 품질·수행자 역량, ii는 결과의 OHS MS 개선 활용을 다룹니다."
+            ),
+            topic="직업 보건·안전",
+            subtopic="위험 평가",
+            dp_type="narrative",
+            parent_indicator="GRI403-2",
+            child_dps=["GRI403-2-a-i", "GRI403-2-a-ii"],
+            disclosure_requirement="필수",
+            validation_rules=["GRI403-2-a-i·GRI403-2-a-ii 정합"],
+        ),
+    ]
+
+    pts.extend(
+        [
+            DP(
+                dp_id="GRI403-2-a-i",
+                dp_code="GRI_403_DIS_2_A_I_QUALITY",
+                name_ko="공개 403-2-a-i: 절차 품질 및 수행 역량",
+                name_en="Disclosure 403-2-a-i: Process quality and competency",
+                description="위험 식별·평가 절차의 질을 어떻게 보장하는지(수행자의 역량 포함) 설명합니다.",
+                topic="직업 보건·안전",
+                subtopic="위험 평가",
+                dp_type="narrative",
+                parent_indicator="GRI403-2-a",
+                disclosure_requirement="필수",
+                validation_rules=["품질 보증·역량 관련 서술"],
+            ),
+            DP(
+                dp_id="GRI403-2-a-ii",
+                dp_code="GRI_403_DIS_2_A_II_IMPROVEMENT",
+                name_ko="공개 403-2-a-ii: 절차 결과의 OHS MS 개선 활용",
+                name_en="Disclosure 403-2-a-ii: Using process results to improve OHS MS",
+                description="위험 식별·평가 결과를 OHS 관리 시스템의 평가 및 지속적 개선에 어떻게 사용하는지 설명합니다.",
+                topic="직업 보건·안전",
+                subtopic="위험 평가",
+                dp_type="narrative",
+                parent_indicator="GRI403-2-a",
+                disclosure_requirement="필수",
+                validation_rules=["개선 루프·피드백 서술"],
+            ),
+            DP(
+                dp_id="GRI403-2-b",
+                dp_code="GRI_403_DIS_2_B_REPORT_HAZARDS",
+                name_ko="공개 403-2-b: 위험 보고 절차 및 보복 방지",
+                name_en="Disclosure 403-2-b: Worker hazard reporting and protection from reprisals",
+                description="근로자가 업무 관련 위험·위험 상황을 보고하는 절차와, 보고에 대한 보복으로부터 근로자를 보호하는 방식을 설명합니다.",
+                topic="직업 보건·안전",
+                subtopic="보고·보복",
+                dp_type="narrative",
+                parent_indicator="GRI403-2",
+                disclosure_requirement="필수",
+                validation_rules=["보고 채널·보복 방지 메커니즘"],
+            ),
+            DP(
+                dp_id="GRI403-2-c",
+                dp_code="GRI_403_DIS_2_C_REMOVE_WORK",
+                name_ko="공개 403-2-c: 위험 작업 회피·중단 권리 및 보복 방지",
+                name_en="Disclosure 403-2-c: Right to remove from unsafe work and reprisal protection",
+                description="근로자가 부상·질병 우려가 있는 작업 상황에서 스스로 이탈할 수 있는 정책·절차와 보복 방지를 설명합니다.",
+                topic="직업 보건·안전",
+                subtopic="작업 거부권",
+                dp_type="narrative",
+                parent_indicator="GRI403-2",
+                disclosure_requirement="필수",
+                validation_rules=["이탈 권리·보복 방지"],
+            ),
+            DP(
+                dp_id="GRI403-2-d",
+                dp_code="GRI_403_DIS_2_D_INCIDENT_INVESTIGATION",
+                name_ko="공개 403-2-d: 업무 관련 사고 조사",
+                name_en="Disclosure 403-2-d: Work-related incident investigation",
+                description=(
+                    "업무 관련 사고 조사 절차를 설명합니다. 사고 관련 위험 식별·위험 평가, 통제 위계에 따른 시정 조치, "
+                    "OHS MS 개선 필요사항 도출을 포함합니다."
+                ),
+                topic="직업 보건·안전",
+                subtopic="사고 조사",
+                dp_type="narrative",
+                parent_indicator="GRI403-2",
+                disclosure_requirement="필수",
+                validation_rules=["조사·시정·체계 개선 연계"],
+            ),
+            # --- 403-3 ---
+            DP(
+                dp_id="GRI403-3",
+                dp_code="GRI_403_DIS_3_OCCUPATIONAL_HEALTH_SERVICES",
+                name_ko="공개 403-3: 직업 보건 서비스",
+                name_en="Disclosure 403-3: Occupational health services",
+                description=(
+                    "위험 제거·위험 최소화에 기여하는 직업 보건 서비스의 기능, 서비스 질 보장 방식, 근로자 접근성 확보 방식을 보고합니다. "
+                    "권장 1.3.1·1.3.2는 GRI403-3-1-3 트리입니다. 지침은 RULE_GRI403_3_G_GUIDANCE 등."
+                ),
+                topic="직업 보건·안전",
+                subtopic="직업 보건 서비스",
+                dp_type="narrative",
+                parent_indicator="GRI403-SEC-2",
+                child_dps=["GRI403-3-a", "GRI403-3-1-3"],
+                disclosure_requirement="필수",
+                validation_rules=["필수 a 및 권고 GRI403-3-1-3", "지침 룰북 참조"],
+            ),
+            DP(
+                dp_id="GRI403-3-a",
+                dp_code="GRI_403_DIS_3_A_FUNCTIONS_QUALITY_ACCESS",
+                name_ko="공개 403-3-a: 직업 보건 서비스 기능·질·접근성",
+                name_en="Disclosure 403-3-a: Functions, quality, and worker access",
+                description="직업 보건 서비스의 기능(위험 식별·제거·위험 최소화 기여), 질 보장 방법, 근로자 접근 촉진 방법을 설명합니다.",
+                topic="직업 보건·안전",
+                subtopic="직업 보건 서비스",
+                dp_type="narrative",
+                parent_indicator="GRI403-3",
+                disclosure_requirement="필수",
+                validation_rules=["기능·질·접근성 균형 있게 기술"],
+            ),
+            DP(
+                dp_id="GRI403-3-1-3",
+                dp_code="GRI_403_DIS_3_REC_1_3",
+                name_ko="권장 1.3: 직업 보건 추가 정보",
+                name_en="Recommendation 1.3: Additional occupational health information (should)",
+                description="표준 권장 조항 1.3에 따른 추가 정보 묶음입니다.",
+                topic="직업 보건·안전",
+                subtopic="직업 보건 권장",
+                dp_type="narrative",
+                parent_indicator="GRI403-3",
+                child_dps=["GRI403-3-1-3-1", "GRI403-3-1-3-2"],
+                disclosure_requirement="권고",
+                validation_rules=["1.3.1·1.3.2 검토"],
+            ),
+            DP(
+                dp_id="GRI403-3-1-3-1",
+                dp_code="GRI_403_DIS_3_REC_1_3_1_CONFIDENTIALITY",
+                name_ko="권장 1.3.1: 건강 정보 비밀 유지",
+                name_en="Recommendation 1.3.1: Confidentiality of health information",
+                description="근로자 개인 건강 관련 정보의 기밀 유지 방식을 보고할 것을 권장합니다.",
+                topic="직업 보건·안전",
+                subtopic="직업 보건 권장",
+                dp_type="narrative",
+                parent_indicator="GRI403-3-1-3",
+                disclosure_requirement="권고",
+                validation_rules=["비밀 유지 정책·실무"],
+            ),
+            DP(
+                dp_id="GRI403-3-1-3-2",
+                dp_code="GRI_403_DIS_3_REC_1_3_2_NON_DISCRIMINATION",
+                name_ko="권장 1.3.2: 건강 정보·서비스 이용의 차별 금지",
+                name_en="Recommendation 1.3.2: No favorable/unfavorable treatment based on health data",
+                description="건강 정보 및 직업 보건 서비스 이용이 근로자에 대한 유리·불리 처우에 사용되지 않도록 하는 방식을 권장합니다.",
+                topic="직업 보건·안전",
+                subtopic="직업 보건 권장",
+                dp_type="narrative",
+                parent_indicator="GRI403-3-1-3",
+                disclosure_requirement="권고",
+                validation_rules=["인사·처우와의 분리"],
+            ),
+            # --- 403-4 ---
+            DP(
+                dp_id="GRI403-4",
+                dp_code="GRI_403_DIS_4_PARTICIPATION_CONSULTATION",
+                name_ko="공개 403-4: 직업 보건·안전 관련 근로자 참여·협의·의사소통",
+                name_en="Disclosure 403-4: Worker participation, consultation, and communication on OHS",
+                description=(
+                    "OHS MS의 수립·이행·평가에의 근로자 참여·협의 및 OHS 정보 제공 절차, "
+                    "공식 노사 보건·안전 위원회가 있는 경우 그 역할·개최 빈도·의사결정 권한·근로자 대표 구성 여부 및 미구성 사유를 보고합니다. "
+                    "권고 1.4는 GRI403-4-1-4입니다."
+                ),
+                topic="직업 보건·안전",
+                subtopic="참여·소통",
+                dp_type="narrative",
+                parent_indicator="GRI403-SEC-2",
+                child_dps=["GRI403-4-a", "GRI403-4-b", "GRI403-4-1-4"],
+                disclosure_requirement="필수",
+                validation_rules=["하위 a·b 필수, GRI403-4-1-4 권고", "지침 룰북 참조"],
+            ),
+            DP(
+                dp_id="GRI403-4-a",
+                dp_code="GRI_403_DIS_4_A_PARTICIPATION_CONSULTATION_INFO",
+                name_ko="공개 403-4-a: 참여·협의 및 정보 제공",
+                name_en="Disclosure 403-4-a: Participation, consultation, and OHS information to workers",
+                description="OHS MS 개발·이행·평가에의 근로자 참여·협의 절차와 근로자에게 OHS 관련 정보를 제공하는 절차를 설명합니다.",
+                topic="직업 보건·안전",
+                subtopic="참여·소통",
+                dp_type="narrative",
+                parent_indicator="GRI403-4",
+                disclosure_requirement="필수",
+                validation_rules=["참여·협의·커뮤니케이션 채널"],
+            ),
+            DP(
+                dp_id="GRI403-4-b",
+                dp_code="GRI_403_DIS_4_B_JOINT_COMMITTEES",
+                name_ko="공개 403-4-b: 공식 노사 보건·안전 위원회",
+                name_en="Disclosure 403-4-b: Formal joint management-worker health and safety committees",
+                description=(
+                    "공식 노사 보건·안전 위원회가 있는 경우: 책임, 회의 빈도, 의사결정 권한, "
+                    "근로자가 대표로 참여하지 않는지 여부 및 그 이유를 설명합니다."
+                ),
+                topic="직업 보건·안전",
+                subtopic="노사 위원회",
+                dp_type="narrative",
+                parent_indicator="GRI403-4",
+                disclosure_requirement="필수",
+                validation_rules=["위원회 없음 시 해당 없음 명시 가능", "있을 시 역할·빈도·권한·대표성"],
+            ),
+            DP(
+                dp_id="GRI403-4-1-4",
+                dp_code="GRI_403_DIS_4_REC_1_4_TRADE_UNION",
+                name_ko="권고 1.4: 노동조합과의 공식 합의에 포함된 OHS 주제",
+                name_en="Recommendation 1.4: OHS topics in formal agreements with trade unions (should)",
+                description="지역 또는 글로벌 수준 노동조합과의 공식 합의에서 다루는 직업 보건·안전 주제가 있는지 및 어떤 주제인지 보고할 것을 권고합니다.",
+                topic="직업 보건·안전",
+                subtopic="노사 합의",
+                dp_type="narrative",
+                parent_indicator="GRI403-4",
+                disclosure_requirement="권고",
+                validation_rules=["합의 유무·범위·주제"],
+            ),
+            # --- 403-5 ---
+            DP(
+                dp_id="GRI403-5",
+                dp_code="GRI_403_DIS_5_WORKER_TRAINING",
+                name_ko="공개 403-5: 직업 보건·안전에 관한 근로자 교육",
+                name_en="Disclosure 403-5: Worker training on occupational health and safety",
+                description=(
+                    "직원 및 조직이 통제하는 비직원 근로자에 대해 제공된 산업안전보건(OHS) 교육을 설명합니다. "
+                    "일반 교육과 특정 업무 관련 위험·유해 활동·상황에 대한 교육을 모두 포함합니다. 지침은 RULE_GRI403_5_GUIDANCE."
+                ),
+                topic="직업 보건·안전",
+                subtopic="교육",
+                dp_type="narrative",
+                parent_indicator="GRI403-SEC-2",
+                child_dps=["GRI403-5-a"],
+                disclosure_requirement="필수",
+                validation_rules=["GRI403-5-a 충족", "지침 룰북 참조"],
+            ),
+            DP(
+                dp_id="GRI403-5-a",
+                dp_code="GRI_403_DIS_5_A_TRAINING_DESCRIPTION",
+                name_ko="공개 403-5-a: 제공된 OHS 교육 설명",
+                name_en="Disclosure 403-5-a: Description of OHS training provided",
+                description="근로자에게 제공된 모든 OHS 관련 교육(일반·업무별 위험·유해 활동·상황)에 대한 설명을 보고합니다.",
+                topic="직업 보건·안전",
+                subtopic="교육",
+                dp_type="narrative",
+                parent_indicator="GRI403-5",
+                disclosure_requirement="필수",
+                validation_rules=["교육 범위·대상·유형의 식별 가능한 기술"],
+            ),
+            # --- 403-6 ---
+            DP(
+                dp_id="GRI403-6",
+                dp_code="GRI_403_DIS_6_WORKER_HEALTH_PROMOTION",
+                name_ko="공개 403-6: 근로자 건강 증진",
+                name_en="Disclosure 403-6: Promotion of worker health",
+                description=(
+                    "비직업적 의료·보건 서비스 접근 지원 및 이용 범위(a), 주요 비직업적 건강 위험에 대한 자발적 건강 증진 프로그램(b)을 보고합니다. "
+                    "권장 1.5.1·1.5.2는 GRI403-6-1-5 트리입니다. 지침은 RULE_GRI403_6_A_GUIDANCE, RULE_GRI403_6_B_GUIDANCE, RULE_GRI403_6_1_5_G_GUIDANCE."
+                ),
+                topic="직업 보건·안전",
+                subtopic="건강 증진",
+                dp_type="narrative",
+                parent_indicator="GRI403-SEC-2",
+                child_dps=["GRI403-6-a", "GRI403-6-b", "GRI403-6-1-5"],
+                disclosure_requirement="필수",
+                validation_rules=["필수 a·b 및 권고 GRI403-6-1-5", "지침 룰북 참조"],
+            ),
+            DP(
+                dp_id="GRI403-6-a",
+                dp_code="GRI_403_DIS_6_A_NON_OCC_MEDICAL_ACCESS",
+                name_ko="공개 403-6-a: 비직업적 의료·보건 서비스 접근 지원",
+                name_en="Disclosure 403-6-a: Access to non-occupational medical and healthcare services",
+                description="조직이 근로자의 비직업적 의료·보건 서비스 이용을 어떻게 지원하는지와 제공되는 이용 범위를 설명합니다.",
+                topic="직업 보건·안전",
+                subtopic="건강 증진",
+                dp_type="narrative",
+                parent_indicator="GRI403-6",
+                disclosure_requirement="필수",
+                validation_rules=["지원 방식·이용 범위"],
+            ),
+            DP(
+                dp_id="GRI403-6-b",
+                dp_code="GRI_403_DIS_6_B_VOLUNTARY_HEALTH_PROGRAMS",
+                name_ko="공개 403-6-b: 자발적 건강 증진 서비스·프로그램",
+                name_en="Disclosure 403-6-b: Voluntary health promotion services and programs",
+                description=(
+                    "주요 비직업적 건강 위험을 다루기 위한 자발적 건강 증진 서비스·프로그램, 대응하는 구체적 건강 위험, "
+                    "근로자의 프로그램 이용 지원 방식을 설명합니다."
+                ),
+                topic="직업 보건·안전",
+                subtopic="건강 증진",
+                dp_type="narrative",
+                parent_indicator="GRI403-6",
+                disclosure_requirement="필수",
+                validation_rules=["프로그램·위험·접근성"],
+            ),
+            DP(
+                dp_id="GRI403-6-1-5",
+                dp_code="GRI_403_DIS_6_REC_1_5",
+                name_ko="권장 1.5: 근로자 건강 추가 정보",
+                name_en="Recommendation 1.5: Additional worker health information (should)",
+                description="표준 권장 조항 1.5에 따른 추가 정보 묶음입니다.",
+                topic="직업 보건·안전",
+                subtopic="건강 증진 권장",
+                dp_type="narrative",
+                parent_indicator="GRI403-6",
+                child_dps=["GRI403-6-1-5-1", "GRI403-6-1-5-2"],
+                disclosure_requirement="권고",
+                validation_rules=["1.5.1·1.5.2 검토"],
+            ),
+            DP(
+                dp_id="GRI403-6-1-5-1",
+                dp_code="GRI_403_DIS_6_REC_1_5_1_CONFIDENTIALITY",
+                name_ko="권장 1.5.1: 개인 건강 정보 기밀 유지",
+                name_en="Recommendation 1.5.1: Confidentiality of personal health information",
+                description="근로자 개인 건강 관련 정보의 기밀 유지 방식을 보고할 것을 권장합니다.",
+                topic="직업 보건·안전",
+                subtopic="건강 증진 권장",
+                dp_type="narrative",
+                parent_indicator="GRI403-6-1-5",
+                disclosure_requirement="권고",
+                validation_rules=["기밀 유지 정책·실무"],
+            ),
+            DP(
+                dp_id="GRI403-6-1-5-2",
+                dp_code="GRI_403_DIS_6_REC_1_5_2_NON_DISCRIMINATION",
+                name_ko="권장 1.5.2: 건강 정보·참여의 차별적 사용 금지",
+                name_en="Recommendation 1.5.2: No favorable/unfavorable treatment based on health data or participation",
+                description="개인 건강 정보 및 서비스·프로그램 참여가 근로자에 대한 우대·불이익 처우에 사용되지 않도록 하는 방식을 권장합니다.",
+                topic="직업 보건·안전",
+                subtopic="건강 증진 권장",
+                dp_type="narrative",
+                parent_indicator="GRI403-6-1-5",
+                disclosure_requirement="권고",
+                validation_rules=["인사·처우와의 분리"],
+            ),
+            # --- 403-7 ---
+            DP(
+                dp_id="GRI403-7",
+                dp_code="GRI_403_DIS_7_BUSINESS_RELATIONSHIPS_OHS",
+                name_ko="공개 403-7: 사업 관계와 직접 연관된 OHS 영향의 예방·완화",
+                name_en="Disclosure 403-7: Prevention and mitigation of OHS impacts linked by business relationships",
+                description=(
+                    "운영·제품·서비스와 사업 관계를 통해 직접 연관된 중대한 부정적 OHS 영향과 관련 위험(hazard)·위험 요소(risk)를 "
+                    "예방·완화하기 위한 접근 방식을 보고합니다. 배경·레버리지 책임은 RULE_GRI403_7_GUIDANCE(참고 [13])."
+                ),
+                topic="직업 보건·안전",
+                subtopic="가치사슬·사업관계",
+                dp_type="narrative",
+                parent_indicator="GRI403-SEC-2",
+                child_dps=["GRI403-7-a"],
+                disclosure_requirement="필수",
+                validation_rules=["GRI403-7-a 충족", "지침 룰북 참조"],
+            ),
+            DP(
+                dp_id="GRI403-7-a",
+                dp_code="GRI_403_DIS_7_A_APPROACH",
+                name_ko="공개 403-7-a: 사업 관계 연관 OHS 영향 예방·완화 접근",
+                name_en="Disclosure 403-7-a: Approach to preventing/mitigating linked OHS impacts",
+                description=(
+                    "사업 관계를 통해 운영·제품·서비스와 직접 연관된 중대한 부정적 OHS 영향과 관련 위험·위험 요소를 "
+                    "예방하거나 완화하기 위한 조직의 접근 방식을 설명합니다."
+                ),
+                topic="직업 보건·안전",
+                subtopic="가치사슬·사업관계",
+                dp_type="narrative",
+                parent_indicator="GRI403-7",
+                disclosure_requirement="필수",
+                validation_rules=["영향·위험·완화·레버리지와의 연계 서술"],
+            ),
+            # --- 403-8 ---
+            DP(
+                dp_id="GRI403-8",
+                dp_code="GRI_403_DIS_8_OHS_MS_COVERAGE",
+                name_ko="공개 403-8: 직업 보건·안전 관리 시스템 적용 대상 근로자",
+                name_en="Disclosure 403-8: Workers covered by an occupational health and safety management system",
+                description=(
+                    "법적 요건 및/또는 공인 표준·지침에 기반한 OHS MS를 도입한 경우, 적용·내부감사·외부감사·인증 적용 근로자의 수·비율(a), "
+                    "공시에서 제외된 근로자 여부·사유·유형(b), 데이터 산출 배경(c)을 보고합니다. 지침은 RULE_GRI403_8_GUIDANCE, RULE_GRI403_8_B_GUIDANCE."
+                ),
+                topic="직업 보건·안전",
+                subtopic="OHS MS 적용 범위",
+                dp_type="narrative",
+                parent_indicator="GRI403-SEC-2",
+                child_dps=["GRI403-8-a", "GRI403-8-b", "GRI403-8-c"],
+                disclosure_requirement="필수",
+                validation_rules=["조건부 a(i~iii)·b·c", "403-1-a-i·a-ii와 교차 참조(지침)"],
+            ),
+            DP(
+                dp_id="GRI403-8-a",
+                dp_code="GRI_403_DIS_8_A_CONDITIONAL_METRICS",
+                name_ko="공개 403-8-a: OHS MS 도입 시 적용·감사·인증 대상 근로자 수·비율",
+                name_en="Disclosure 403-8-a: Workers covered (conditional on OHS MS implementation)",
+                description=(
+                    "조직이 법적 요건 및/또는 공인 표준·지침에 기반한 OHS MS를 도입한 경우에 한해, "
+                    "해당 시스템 적용 근로자(i), 내부 감사를 받은 시스템 적용 근로자(ii), 외부 감사·인증을 받은 시스템 적용 근로자(iii)의 수와 비율을 보고합니다."
+                ),
+                topic="직업 보건·안전",
+                subtopic="OHS MS 적용 범위",
+                dp_type="narrative",
+                parent_indicator="GRI403-8",
+                child_dps=["GRI403-8-a-i", "GRI403-8-a-ii", "GRI403-8-a-iii"],
+                disclosure_requirement="필수",
+                validation_rules=["MS 미도입 시 해당 없음·명시", "i·ii·iii 각각 수·비율"],
+            ),
+            DP(
+                dp_id="GRI403-8-a-i",
+                dp_code="GRI_403_DIS_8_A_I_COVERED_BY_MS",
+                name_ko="공개 403-8-a-i: OHS MS 적용 근로자 수·비율",
+                name_en="Disclosure 403-8-a-i: Number and percentage covered by the OHS MS",
+                description=(
+                    "직원 및 업무·작업장이 조직에 의해 통제되는 비직원 근로자 중, 해당 OHS MS 적용을 받는 자의 수와 비율을 보고합니다."
+                ),
+                topic="직업 보건·안전",
+                subtopic="OHS MS 적용 범위",
+                dp_type="narrative",
+                parent_indicator="GRI403-8-a",
+                disclosure_requirement="필수",
+                validation_rules=["절대 수·백분율(또는 동등 표현) 동시 제시"],
+            ),
+            DP(
+                dp_id="GRI403-8-a-ii",
+                dp_code="GRI_403_DIS_8_A_II_INTERNAL_AUDIT",
+                name_ko="공개 403-8-a-ii: 내부 감사된 OHS MS 적용 근로자 수·비율",
+                name_en="Disclosure 403-8-a-ii: Covered workers where MS internally audited",
+                description=(
+                    "업무·작업장이 조직에 의해 통제되는 비직원 근로자를 포함한 전 직원·근로자 중, "
+                    "내부 감사를 받은 해당 OHS MS 적용을 받는 자의 수와 비율을 보고합니다."
+                ),
+                topic="직업 보건·안전",
+                subtopic="OHS MS 적용 범위",
+                dp_type="narrative",
+                parent_indicator="GRI403-8-a",
+                disclosure_requirement="필수",
+                validation_rules=["내부 감사 범위와 정의와 정합", "수·비율"],
+            ),
+            DP(
+                dp_id="GRI403-8-a-iii",
+                dp_code="GRI_403_DIS_8_A_III_EXTERNAL_AUDIT_CERT",
+                name_ko="공개 403-8-a-iii: 외부 감사·인증 OHS MS 적용 근로자 수·비율",
+                name_en="Disclosure 403-8-a-iii: Covered workers where MS externally audited or certified",
+                description=(
+                    "업무·작업장이 조직에 의해 통제되는 비직원 근로자를 포함한 전 직원·근로자 중, "
+                    "외부 기관의 감사 또는 인증을 받은 해당 OHS MS 적용을 받는 자의 수와 비율을 보고합니다."
+                ),
+                topic="직업 보건·안전",
+                subtopic="OHS MS 적용 범위",
+                dp_type="narrative",
+                parent_indicator="GRI403-8-a",
+                disclosure_requirement="필수",
+                validation_rules=["외부 감사·인증 정의와 정합", "수·비율"],
+            ),
+            DP(
+                dp_id="GRI403-8-b",
+                dp_code="GRI_403_DIS_8_B_EXCLUSIONS",
+                name_ko="공개 403-8-b: 공시 제외 근로자",
+                name_en="Disclosure 403-8-b: Workers excluded from this disclosure",
+                description="이번 공시에서 근로자가 제외되었는지, 제외 시 사유와 제외된 근로자 유형을 보고합니다.",
+                topic="직업 보건·안전",
+                subtopic="OHS MS 적용 범위",
+                dp_type="narrative",
+                parent_indicator="GRI403-8",
+                disclosure_requirement="필수",
+                validation_rules=["제외 없음 명시 또는 사유·유형"],
+            ),
+            DP(
+                dp_id="GRI403-8-c",
+                dp_code="GRI_403_DIS_8_C_METHODOLOGY",
+                name_ko="공개 403-8-c: 데이터 산출 배경",
+                name_en="Disclosure 403-8-c: Context for data compilation",
+                description="데이터 집계 방식을 이해하는 데 필요한 배경 정보(기준, 방법론, 가정 등)를 보고합니다.",
+                topic="직업 보건·안전",
+                subtopic="OHS MS 적용 범위",
+                dp_type="narrative",
+                parent_indicator="GRI403-8",
+                disclosure_requirement="필수",
+                validation_rules=["방법론·경계·가정의 투명성"],
+            ),
+        ]
+    )
+    pts.extend(_dp_403_9_10())
+
+    idset = {p["dp_id"] for p in pts}
+    assert len(idset) == len(pts), "duplicate dp_id"
+    for p in pts:
+        for c in p.get("child_dps") or []:
+            assert c in idset, (p["dp_id"], c)
+        par = p.get("parent_indicator")
+        if par:
+            assert par in idset, (p["dp_id"], par)
+
+    g1 = (
+        "Guidance for 403-1: The organization shall list all legal requirements met when implementing the OHS management system. "
+        "Recognized standards may be international, national, or industry-specific. "
+        "Reporting recommendations (no separate shall items): describe types of OHS professionals (employees vs consultants) responsible for the system; "
+        "describe how continuous improvement is achieved (iterative strengthening of OHS performance)."
+    )
+    g2a = (
+        "Guidance for 403-2-a: Indicate if processes are based on legal requirements or recognized standards; describe frequency/scope of routine processes; "
+        "describe triggers for non-routine processes (operational/equipment changes, investigations, complaints, workflow changes, health surveillance results); "
+        "explain how barriers for vulnerable workers (language, sensory impairments) are addressed, e.g. training in understandable languages."
+    )
+    g2bc = (
+        "Guidance for 403-2-b and 403-2-c: Reprisal protection means policies/processes protecting workers from threats or negative employment consequences "
+        "(dismissal, demotion, pay loss, discipline) for reporting hazards or removing themselves from unsafe situations, including reports to representatives, employers, or regulators. "
+        "403-2-c concerns the right to refuse or stop work when the worker believes injury or ill health could occur to themselves or others."
+    )
+    g3 = (
+        "Guidance for 403-3: Occupational health services protect workers' health in relation to work. Quality may reference competent qualified personnel and compliance with law/standards. "
+        "Access may include on-site services during hours, transport or expedited care, information in understandable languages, workload adjustments. "
+        "Effectiveness indicators and awareness-raising may be reported. References [3], [9]."
+    )
+    g313 = (
+        "Guidance for clauses 1.3.1 and 1.3.2: Respect privacy; health data and use of OHS services must not be used for employment decisions "
+        "(dismissal, demotion, promotion, compensation, favorable/unfavorable treatment). See reference [6]."
+    )
+    g4a = (
+        "Guidance for 403-4-a: Participation may be legal-based, through recognized worker representatives, direct participation (e.g. small workplaces), "
+        "committees (structure/operation), roles in hazard ID, risk assessment, controls, investigations, audits, outsourcing decisions; "
+        "barriers removed via training and retaliation protection; communication may include work-related incidents and response measures."
+    )
+    g4b = (
+        "Guidance for 403-4-b: Joint committees are common; worker representatives may participate; describe operating level, dispute resolution, chair responsibilities, member reprisal protection. "
+        "403-4-b requires whether/why workers are not represented—not the identity of members."
+    )
+    g414 = (
+        "Guidance for 1.4: Local agreements often cover PPE, inspections, rep participation in audits/investigations, training, reprisal protection. "
+        "Global agreements may cover ILO standards, problem-solving frameworks, OHS commitments and performance."
+    )
+    g5 = (
+        "Guidance for 403-5: Organizations may describe how training needs are assessed; content/topics, instructor competency, "
+        "target workers, frequency, and whether training is in languages workers easily understand; whether training is free and during paid work time, "
+        "or if off-hours whether attendance is mandatory and compensation provided; how training effectiveness is evaluated."
+    )
+    g6a = (
+        "Guidance for 403-6-a: Universal health coverage (UN SDG 3.8) context—financial risk protection and access to quality essential care. "
+        "Facilitation may include on-site clinics, treatment programs, medical systems, insurance, or financial support. "
+        "Scope may specify service types and eligible worker types. If no support because national quality access exists, or non-employees' primary employer provides access, this may be stated."
+    )
+    g6b = (
+        "Guidance for 403-6-b: UN SDG 3 context—NCDs, mental health, substance abuse, sexual/reproductive health. "
+        "Voluntary programs address major non-work-related physical and mental health risks (e.g. smoking, inactivity, diet, HIV, psychosocial factors). "
+        "Examples: cessation, dietary advice, healthy cafeterias, stress programs, gym/fitness. "
+        "Additional reporting may cover: paid-time access; extension to family; topic selection and worker involvement; evidence-based interventions (ref [19]); "
+        "effectiveness indicators; awareness approaches. Incentives must not tie to employment decisions when not based on personal goals. "
+        "Voluntary promotion complements—does not replace—mandatory OHS services; may be co-managed holistically. Refs [1], [14], [15]."
+    )
+    g615 = (
+        "Guidance for 1.5.1 and 1.5.2: Non-occupational health services must respect privacy; participation and health data must not drive "
+        "dismissal, demotion, promotion, compensation, or favorable/unfavorable treatment (ref [6])."
+    )
+    g7 = (
+        "Guidance for 403-7: Even without control over both work and workplace, the organization should use available leverage to prevent and mitigate "
+        "negative OHS impacts linked through business relationships to operations, products, or services. See 'Scope of workers' in the Standard. Ref [13]."
+    )
+    g8 = (
+        "Background: OHS management systems integrate OHS into business processes, often PDCA, with worker consultation. "
+        "System focus can improve overall OHS versus siloed hazard/risk/incident activities. "
+        "Disclosure 403-8: Percentages of employees and controlled non-employee workers covered by an OHS MS based on legal/recognized requirements—"
+        "list of those requirements is reported under Disclosure 403-1-a-i and 403-1-a-ii (management approach). "
+        "If not all workers covered, may report high injury/ill-health risk among uncovered workers. "
+        "May also report number/percentage of sites covered. "
+        "May describe internal audit approach (internal criteria vs recognized standards; auditor qualifications); "
+        "whether processes/functions excluded from audit/certification scope and how OHS performance is monitored there; audit/certification criteria used. "
+        "External audits may include second-party (customer, interested party) and third-party (registrar/certification or independent regulator)."
+    )
+    g8b = (
+        "Guidance for 403-8-b: Worker types for exclusions may be classified by regular/non-regular employment, guaranteed hours, full-time/temporary, "
+        "type/degree of control (work/workplace, sole/joint), place of work, etc."
+    )
+
+    sec2_related = [
+        "GRI403-SEC-2",
+        "GRI403-1",
+        "GRI403-2",
+        "GRI403-3",
+        "GRI403-4",
+        "GRI403-5",
+        "GRI403-6",
+        "GRI403-7",
+        "GRI403-8",
+        "GRI403-9",
+        "GRI403-10",
+    ]
+
+    rbs = [
+        RB(
+            "RULE_GRI403",
+            "GRI403",
+            "GRI 403: 직업 보건·안전",
+            "GRI 403: Occupational Health and Safety — seed disclosures 403-1 to 403-10.",
+            "standard",
+            "GRI 403",
+            ["occupational health and safety", "OHS", "workers"],
+            act("apply_gri403_seed", "시드 범위 충족"),
+            chk("GRI403_SEED", "403-1~403-10 시드", "ok"),
+            [],
+            sec2_related,
+            "GRI 403 (seed)",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_SEC_2",
+            "GRI403-SEC-2",
+            "섹션 2: 주제별 공시",
+            "Section 2: Topic-related disclosures for GRI 403 (seed).",
+            "section",
+            "GRI 403 Section 2",
+            ["403-1", "403-2", "403-3", "403-4", "403-5", "403-6", "403-7", "403-8", "403-9", "403-10"],
+            act("report_sec2_403", "403-1~403-10"),
+            chk("GRI403_SEC2_OK", "섹션 2 트리", "ok"),
+            [],
+            sec2_related,
+            "GRI 403 Section 2",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_1",
+            "GRI403-1",
+            "공개 403-1",
+            "Disclosure 403-1: OHS management system — requirements a (i, ii), b.",
+            "disclosure",
+            "GRI 403 Disclosure 403-1",
+            ["OHS management system", "ISO 45001", "legal requirements"],
+            act("report_403_1", "403-1 패키지"),
+            chk("GRI403_1_OK", "403-1", "ok"),
+            [],
+            ["GRI403-1", "GRI403-1-a", "GRI403-1-a-i", "GRI403-1-a-ii", "GRI403-1-b"],
+            "Disclosure 403-1",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_1_A",
+            "GRI403-1-a",
+            "403-1-a",
+            "403-1-a",
+            "disclosure_requirement",
+            "GRI 403 403-1-a",
+            [],
+            act("meet_403_1_a", "403-1-a"),
+            chk("GRI403_1_A_OK", "403-1-a", "ok"),
+            [],
+            ["GRI403-1-a", "GRI403-1-a-i", "GRI403-1-a-ii"],
+            "403-1-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_1_A_I",
+            "GRI403-1-a-i",
+            "403-1-a-i",
+            "403-1-a-i",
+            "disclosure_requirement",
+            "GRI 403 403-1-a-i",
+            [],
+            act("meet_403_1_a_i", "a-i"),
+            chk("GRI403_1_A_I_OK", "a-i", "ok"),
+            [],
+            ["GRI403-1-a-i"],
+            "403-1-a-i",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_1_A_II",
+            "GRI403-1-a-ii",
+            "403-1-a-ii",
+            "403-1-a-ii",
+            "disclosure_requirement",
+            "GRI 403 403-1-a-ii",
+            [],
+            act("meet_403_1_a_ii", "a-ii"),
+            chk("GRI403_1_A_II_OK", "a-ii", "ok"),
+            [],
+            ["GRI403-1-a-ii"],
+            "403-1-a-ii",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_1_B",
+            "GRI403-1-b",
+            "403-1-b",
+            "403-1-b",
+            "disclosure_requirement",
+            "GRI 403 403-1-b",
+            [],
+            act("meet_403_1_b", "403-1-b"),
+            chk("GRI403_1_B_OK", "403-1-b", "ok"),
+            [],
+            ["GRI403-1-b"],
+            "403-1-b",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_1_G_GUIDANCE",
+            "GRI403-1",
+            "지침: 공개 403-1",
+            g1,
+            "guidance",
+            "GRI 403 Disclosure 403-1 — Guidance",
+            ["OHS professionals", "continuous improvement", "legal list"],
+            act("interpret_403_1_guidance", "지침·권고 보고 항목", mandatory=False),
+            chk("GRI403_1_G_REVIEW", "지침 검토", "reviewed"),
+            [],
+            ["GRI403-1", "GRI403-1-a", "GRI403-1-b"],
+            "Guidance 403-1",
+            "필수",
+            "§3.2.1: 지침·권고 추가 서술은 DP가 아닌 본 룰북에 집약.",
+        ),
+        RB(
+            "RULE_GRI403_2",
+            "GRI403-2",
+            "공개 403-2",
+            "Disclosure 403-2: Hazard identification, risk assessment, incident investigation.",
+            "disclosure",
+            "GRI 403 Disclosure 403-2",
+            ["hazard", "risk assessment", "incident investigation", "hierarchy of controls"],
+            act("report_403_2", "403-2 패키지"),
+            chk("GRI403_2_OK", "403-2", "ok"),
+            [],
+            [
+                "GRI403-2",
+                "GRI403-2-a",
+                "GRI403-2-a-i",
+                "GRI403-2-a-ii",
+                "GRI403-2-b",
+                "GRI403-2-c",
+                "GRI403-2-d",
+            ],
+            "Disclosure 403-2",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_2_A",
+            "GRI403-2-a",
+            "403-2-a",
+            "403-2-a",
+            "disclosure_requirement",
+            "GRI 403 403-2-a",
+            [],
+            act("meet_403_2_a", "403-2-a"),
+            chk("GRI403_2_A_OK", "403-2-a", "ok"),
+            [],
+            ["GRI403-2-a", "GRI403-2-a-i", "GRI403-2-a-ii"],
+            "403-2-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_2_A_I",
+            "GRI403-2-a-i",
+            "403-2-a-i",
+            "403-2-a-i",
+            "disclosure_requirement",
+            "GRI 403 403-2-a-i",
+            [],
+            act("meet_403_2_a_i", "a-i"),
+            chk("GRI403_2_A_I_OK", "a-i", "ok"),
+            [],
+            ["GRI403-2-a-i"],
+            "403-2-a-i",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_2_A_II",
+            "GRI403-2-a-ii",
+            "403-2-a-ii",
+            "403-2-a-ii",
+            "disclosure_requirement",
+            "GRI 403 403-2-a-ii",
+            [],
+            act("meet_403_2_a_ii", "a-ii"),
+            chk("GRI403_2_A_II_OK", "a-ii", "ok"),
+            [],
+            ["GRI403-2-a-ii"],
+            "403-2-a-ii",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_2_B",
+            "GRI403-2-b",
+            "403-2-b",
+            "403-2-b",
+            "disclosure_requirement",
+            "GRI 403 403-2-b",
+            [],
+            act("meet_403_2_b", "403-2-b"),
+            chk("GRI403_2_B_OK", "403-2-b", "ok"),
+            [],
+            ["GRI403-2-b"],
+            "403-2-b",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_2_C",
+            "GRI403-2-c",
+            "403-2-c",
+            "403-2-c",
+            "disclosure_requirement",
+            "GRI 403 403-2-c",
+            [],
+            act("meet_403_2_c", "403-2-c"),
+            chk("GRI403_2_C_OK", "403-2-c", "ok"),
+            [],
+            ["GRI403-2-c"],
+            "403-2-c",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_2_D",
+            "GRI403-2-d",
+            "403-2-d",
+            "403-2-d",
+            "disclosure_requirement",
+            "GRI 403 403-2-d",
+            [],
+            act("meet_403_2_d", "403-2-d"),
+            chk("GRI403_2_D_OK", "403-2-d", "ok"),
+            [],
+            ["GRI403-2-d"],
+            "403-2-d",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_2_A_GUIDANCE",
+            "GRI403-2-a",
+            "지침: 공개 403-2-a",
+            g2a,
+            "guidance",
+            "GRI 403 403-2-a — Guidance",
+            ["non-routine", "vulnerable workers"],
+            act("interpret_403_2_a", "403-2-a 지침", mandatory=False),
+            chk("GRI403_2_A_G_OK", "지침 정합", "coherent"),
+            [],
+            ["GRI403-2-a", "GRI403-2-a-i", "GRI403-2-a-ii"],
+            "Guidance 403-2-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_2_BC_GUIDANCE",
+            "GRI403-2-b",
+            "지침: 공개 403-2-b·403-2-c",
+            g2bc,
+            "guidance",
+            "GRI 403 403-2-b,c — Guidance",
+            ["reprisal", "whistleblower", "right to refuse"],
+            act("interpret_403_2_bc", "보복·이탈권 지침", mandatory=False),
+            chk("GRI403_2_BC_G_OK", "지침 정합", "coherent"),
+            [],
+            ["GRI403-2-b", "GRI403-2-c"],
+            "Guidance 403-2-b,c",
+            "필수",
+            "primary_dp_id는 403-2-b; 403-2-c와 쌍 지침.",
+        ),
+        RB(
+            "RULE_GRI403_3",
+            "GRI403-3",
+            "공개 403-3",
+            "Disclosure 403-3: Occupational health services — requirement a; recommendations 1.3.1–1.3.2.",
+            "disclosure",
+            "GRI 403 Disclosure 403-3",
+            ["occupational health", "worker access", "confidentiality"],
+            act("report_403_3", "403-3 패키지"),
+            chk("GRI403_3_OK", "403-3", "ok"),
+            [],
+            ["GRI403-3", "GRI403-3-a", "GRI403-3-1-3", "GRI403-3-1-3-1", "GRI403-3-1-3-2"],
+            "Disclosure 403-3",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_3_A",
+            "GRI403-3-a",
+            "403-3-a",
+            "403-3-a",
+            "disclosure_requirement",
+            "GRI 403 403-3-a",
+            [],
+            act("meet_403_3_a", "403-3-a"),
+            chk("GRI403_3_A_OK", "403-3-a", "ok"),
+            [],
+            ["GRI403-3-a"],
+            "403-3-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_3_1_3",
+            "GRI403-3-1-3",
+            "권장 1.3",
+            "Recommendation 1.3",
+            "guidance",
+            "GRI 403 403-3 — Recommendation 1.3",
+            ["confidentiality", "privacy"],
+            act("review_403_3_13", "권장 1.3", mandatory=False),
+            chk("GRI403_3_13_REVIEW", "1.3 검토", "reviewed"),
+            [],
+            ["GRI403-3-1-3", "GRI403-3-1-3-1", "GRI403-3-1-3-2"],
+            "Recommendation 1.3",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_3_1_3_1",
+            "GRI403-3-1-3-1",
+            "권장 1.3.1",
+            "1.3.1",
+            "guidance",
+            "GRI 403 1.3.1",
+            [],
+            act("rec_403_3_131", "1.3.1", mandatory=False),
+            chk("GRI403_3_131_OK", "1.3.1", "optional"),
+            [],
+            ["GRI403-3-1-3-1"],
+            "1.3.1",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_3_1_3_2",
+            "GRI403-3-1-3-2",
+            "권장 1.3.2",
+            "1.3.2",
+            "guidance",
+            "GRI 403 1.3.2",
+            [],
+            act("rec_403_3_132", "1.3.2", mandatory=False),
+            chk("GRI403_3_132_OK", "1.3.2", "optional"),
+            [],
+            ["GRI403-3-1-3-2"],
+            "1.3.2",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_3_G_GUIDANCE",
+            "GRI403-3",
+            "지침: 공개 403-3",
+            g3,
+            "guidance",
+            "GRI 403 Disclosure 403-3 — Guidance",
+            ["health surveillance", "access to services"],
+            act("interpret_403_3", "403-3 본 지침", mandatory=False),
+            chk("GRI403_3_G_OK", "지침", "coherent"),
+            ["Refs [3], [9]"],
+            ["GRI403-3", "GRI403-3-a"],
+            "Guidance 403-3",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_3_1_3_G_GUIDANCE",
+            "GRI403-3-1-3",
+            "지침: 조항 1.3.1·1.3.2",
+            g313,
+            "guidance",
+            "GRI 403 — Guidance for 1.3.1 and 1.3.2",
+            ["privacy", "non-discrimination"],
+            act("interpret_403_313", "개인정보·차별 금지 지침", mandatory=False),
+            chk("GRI403_313_G_OK", "지침", "coherent"),
+            ["Ref [6]"],
+            ["GRI403-3-1-3", "GRI403-3-1-3-1", "GRI403-3-1-3-2"],
+            "Guidance 1.3.x",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_4",
+            "GRI403-4",
+            "공개 403-4",
+            "Disclosure 403-4: Participation, consultation, communication; recommendation 1.4.",
+            "disclosure",
+            "GRI 403 Disclosure 403-4",
+            ["worker participation", "joint committee", "trade union"],
+            act("report_403_4", "403-4 패키지"),
+            chk("GRI403_4_OK", "403-4", "ok"),
+            [],
+            ["GRI403-4", "GRI403-4-a", "GRI403-4-b", "GRI403-4-1-4"],
+            "Disclosure 403-4",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_4_A",
+            "GRI403-4-a",
+            "403-4-a",
+            "403-4-a",
+            "disclosure_requirement",
+            "GRI 403 403-4-a",
+            [],
+            act("meet_403_4_a", "403-4-a"),
+            chk("GRI403_4_A_OK", "403-4-a", "ok"),
+            [],
+            ["GRI403-4-a"],
+            "403-4-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_4_B",
+            "GRI403-4-b",
+            "403-4-b",
+            "403-4-b",
+            "disclosure_requirement",
+            "GRI 403 403-4-b",
+            [],
+            act("meet_403_4_b", "403-4-b"),
+            chk("GRI403_4_B_OK", "403-4-b", "ok"),
+            [],
+            ["GRI403-4-b"],
+            "403-4-b",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_4_1_4",
+            "GRI403-4-1-4",
+            "권고 1.4",
+            "Recommendation 1.4",
+            "guidance",
+            "GRI 403 403-4 — Recommendation 1.4",
+            ["collective agreement", "global framework agreement"],
+            act("rec_403_4_14", "1.4", mandatory=False),
+            chk("GRI403_4_14_REVIEW", "1.4", "reviewed"),
+            [],
+            ["GRI403-4-1-4"],
+            "Recommendation 1.4",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_4_A_GUIDANCE",
+            "GRI403-4-a",
+            "지침: 공개 403-4-a",
+            g4a,
+            "guidance",
+            "GRI 403 403-4-a — Guidance",
+            ["worker representatives", "barriers to participation"],
+            act("interpret_403_4_a", "403-4-a 지침", mandatory=False),
+            chk("GRI403_4_A_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-4-a"],
+            "Guidance 403-4-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_4_B_GUIDANCE",
+            "GRI403-4-b",
+            "지침: 공개 403-4-b",
+            g4b,
+            "guidance",
+            "GRI 403 403-4-b — Guidance",
+            ["joint committee", "dispute resolution"],
+            act("interpret_403_4_b", "403-4-b 지침", mandatory=False),
+            chk("GRI403_4_B_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-4-b"],
+            "Guidance 403-4-b",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_4_1_4_GUIDANCE",
+            "GRI403-4-1-4",
+            "지침: 권고 1.4",
+            g414,
+            "guidance",
+            "GRI 403 — Guidance for 1.4",
+            ["local agreement", "global agreement"],
+            act("interpret_403_4_14", "1.4 지침", mandatory=False),
+            chk("GRI403_4_14_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-4-1-4"],
+            "Guidance 1.4",
+            "필수",
+        ),
+        # --- 403-5 ---
+        RB(
+            "RULE_GRI403_5",
+            "GRI403-5",
+            "공개 403-5",
+            "Disclosure 403-5: Worker training on OHS — requirement a.",
+            "disclosure",
+            "GRI 403 Disclosure 403-5",
+            ["training", "worker competency", "OHS awareness"],
+            act("report_403_5", "403-5 패키지"),
+            chk("GRI403_5_OK", "403-5", "ok"),
+            [],
+            ["GRI403-5", "GRI403-5-a"],
+            "Disclosure 403-5",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_5_A",
+            "GRI403-5-a",
+            "403-5-a",
+            "403-5-a",
+            "disclosure_requirement",
+            "GRI 403 403-5-a",
+            [],
+            act("meet_403_5_a", "403-5-a"),
+            chk("GRI403_5_A_OK", "403-5-a", "ok"),
+            [],
+            ["GRI403-5-a"],
+            "403-5-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_5_GUIDANCE",
+            "GRI403-5-a",
+            "지침: 공개 403-5",
+            g5,
+            "guidance",
+            "GRI 403 Disclosure 403-5 — Guidance",
+            ["training needs", "paid time", "effectiveness"],
+            act("interpret_403_5", "403-5 지침", mandatory=False),
+            chk("GRI403_5_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-5", "GRI403-5-a"],
+            "Guidance 403-5",
+            "필수",
+        ),
+        # --- 403-6 ---
+        RB(
+            "RULE_GRI403_6",
+            "GRI403-6",
+            "공개 403-6",
+            "Disclosure 403-6: Promotion of worker health — requirements a, b; recommendations 1.5.1–1.5.2.",
+            "disclosure",
+            "GRI 403 Disclosure 403-6",
+            ["worker health", "non-occupational healthcare", "well-being"],
+            act("report_403_6", "403-6 패키지"),
+            chk("GRI403_6_OK", "403-6", "ok"),
+            [],
+            [
+                "GRI403-6",
+                "GRI403-6-a",
+                "GRI403-6-b",
+                "GRI403-6-1-5",
+                "GRI403-6-1-5-1",
+                "GRI403-6-1-5-2",
+            ],
+            "Disclosure 403-6",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_6_A",
+            "GRI403-6-a",
+            "403-6-a",
+            "403-6-a",
+            "disclosure_requirement",
+            "GRI 403 403-6-a",
+            [],
+            act("meet_403_6_a", "403-6-a"),
+            chk("GRI403_6_A_OK", "403-6-a", "ok"),
+            [],
+            ["GRI403-6-a"],
+            "403-6-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_6_B",
+            "GRI403-6-b",
+            "403-6-b",
+            "403-6-b",
+            "disclosure_requirement",
+            "GRI 403 403-6-b",
+            [],
+            act("meet_403_6_b", "403-6-b"),
+            chk("GRI403_6_B_OK", "403-6-b", "ok"),
+            [],
+            ["GRI403-6-b"],
+            "403-6-b",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_6_1_5",
+            "GRI403-6-1-5",
+            "권장 1.5",
+            "Recommendation 1.5",
+            "guidance",
+            "GRI 403 403-6 — Recommendation 1.5",
+            ["confidentiality", "privacy"],
+            act("review_403_6_15", "권장 1.5", mandatory=False),
+            chk("GRI403_6_15_REVIEW", "1.5 검토", "reviewed"),
+            [],
+            ["GRI403-6-1-5", "GRI403-6-1-5-1", "GRI403-6-1-5-2"],
+            "Recommendation 1.5",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_6_1_5_1",
+            "GRI403-6-1-5-1",
+            "권장 1.5.1",
+            "1.5.1",
+            "guidance",
+            "GRI 403 1.5.1",
+            [],
+            act("rec_403_6_151", "1.5.1", mandatory=False),
+            chk("GRI403_6_151_OK", "1.5.1", "optional"),
+            [],
+            ["GRI403-6-1-5-1"],
+            "1.5.1",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_6_1_5_2",
+            "GRI403-6-1-5-2",
+            "권장 1.5.2",
+            "1.5.2",
+            "guidance",
+            "GRI 403 1.5.2",
+            [],
+            act("rec_403_6_152", "1.5.2", mandatory=False),
+            chk("GRI403_6_152_OK", "1.5.2", "optional"),
+            [],
+            ["GRI403-6-1-5-2"],
+            "1.5.2",
+            "권고",
+        ),
+        RB(
+            "RULE_GRI403_6_A_GUIDANCE",
+            "GRI403-6-a",
+            "지침: 공개 403-6-a",
+            g6a,
+            "guidance",
+            "GRI 403 403-6-a — Guidance",
+            ["SDG 3.8", "health coverage", "access"],
+            act("interpret_403_6_a", "403-6-a 지침", mandatory=False),
+            chk("GRI403_6_A_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-6-a"],
+            "Guidance 403-6-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_6_B_GUIDANCE",
+            "GRI403-6-b",
+            "지침: 공개 403-6-b 및 자발적 건강 증진 보고 권고",
+            g6b,
+            "guidance",
+            "GRI 403 403-6-b — Guidance",
+            ["well-being", "voluntary programs", "SDG 3"],
+            act("interpret_403_6_b", "403-6-b·권고 지침", mandatory=False),
+            chk("GRI403_6_B_G_OK", "지침", "coherent"),
+            ["Refs [1], [6], [14], [15], [19]"],
+            ["GRI403-6-b"],
+            "Guidance 403-6-b",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_6_1_5_G_GUIDANCE",
+            "GRI403-6-1-5",
+            "지침: 조항 1.5.1·1.5.2",
+            g615,
+            "guidance",
+            "GRI 403 — Guidance for 1.5.1 and 1.5.2",
+            ["privacy", "non-discrimination"],
+            act("interpret_403_615", "개인정보·차별 금지 지침", mandatory=False),
+            chk("GRI403_615_G_OK", "지침", "coherent"),
+            ["Ref [6]"],
+            ["GRI403-6-1-5", "GRI403-6-1-5-1", "GRI403-6-1-5-2"],
+            "Guidance 1.5.x",
+            "필수",
+        ),
+        # --- 403-7 ---
+        RB(
+            "RULE_GRI403_7",
+            "GRI403-7",
+            "공개 403-7",
+            "Disclosure 403-7: OHS impacts linked by business relationships — requirement a.",
+            "disclosure",
+            "GRI 403 Disclosure 403-7",
+            ["business relationships", "value chain", "due diligence"],
+            act("report_403_7", "403-7 패키지"),
+            chk("GRI403_7_OK", "403-7", "ok"),
+            [],
+            ["GRI403-7", "GRI403-7-a"],
+            "Disclosure 403-7",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_7_A",
+            "GRI403-7-a",
+            "403-7-a",
+            "403-7-a",
+            "disclosure_requirement",
+            "GRI 403 403-7-a",
+            [],
+            act("meet_403_7_a", "403-7-a"),
+            chk("GRI403_7_A_OK", "403-7-a", "ok"),
+            [],
+            ["GRI403-7-a"],
+            "403-7-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_7_GUIDANCE",
+            "GRI403-7-a",
+            "지침: 공개 403-7",
+            g7,
+            "guidance",
+            "GRI 403 Disclosure 403-7 — Guidance",
+            ["leverage", "scope of workers"],
+            act("interpret_403_7", "403-7 지침", mandatory=False),
+            chk("GRI403_7_G_OK", "지침", "coherent"),
+            ["Ref [13]"],
+            ["GRI403-7", "GRI403-7-a"],
+            "Guidance 403-7",
+            "필수",
+        ),
+        # --- 403-8 ---
+        RB(
+            "RULE_GRI403_8",
+            "GRI403-8",
+            "공개 403-8",
+            "Disclosure 403-8: Workers covered by an OHS management system — requirements a (i–iii), b, c.",
+            "disclosure",
+            "GRI 403 Disclosure 403-8",
+            ["coverage", "audit", "certification", "percentage"],
+            act("report_403_8", "403-8 패키지"),
+            chk("GRI403_8_OK", "403-8", "ok"),
+            [],
+            [
+                "GRI403-8",
+                "GRI403-8-a",
+                "GRI403-8-a-i",
+                "GRI403-8-a-ii",
+                "GRI403-8-a-iii",
+                "GRI403-8-b",
+                "GRI403-8-c",
+            ],
+            "Disclosure 403-8",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_8_A",
+            "GRI403-8-a",
+            "403-8-a",
+            "403-8-a (conditional)",
+            "disclosure_requirement",
+            "GRI 403 403-8-a",
+            ["OHS MS", "conditional disclosure"],
+            act("meet_403_8_a", "403-8-a"),
+            chk("GRI403_8_A_OK", "403-8-a", "ok"),
+            [],
+            ["GRI403-8-a", "GRI403-8-a-i", "GRI403-8-a-ii", "GRI403-8-a-iii"],
+            "403-8-a",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_8_A_I",
+            "GRI403-8-a-i",
+            "403-8-a-i",
+            "403-8-a-i",
+            "disclosure_requirement",
+            "GRI 403 403-8-a-i",
+            [],
+            act("meet_403_8_a_i", "a-i"),
+            chk("GRI403_8_A_I_OK", "a-i", "ok"),
+            [],
+            ["GRI403-8-a-i"],
+            "403-8-a-i",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_8_A_II",
+            "GRI403-8-a-ii",
+            "403-8-a-ii",
+            "403-8-a-ii",
+            "disclosure_requirement",
+            "GRI 403 403-8-a-ii",
+            [],
+            act("meet_403_8_a_ii", "a-ii"),
+            chk("GRI403_8_A_II_OK", "a-ii", "ok"),
+            [],
+            ["GRI403-8-a-ii"],
+            "403-8-a-ii",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_8_A_III",
+            "GRI403-8-a-iii",
+            "403-8-a-iii",
+            "403-8-a-iii",
+            "disclosure_requirement",
+            "GRI 403 403-8-a-iii",
+            [],
+            act("meet_403_8_a_iii", "a-iii"),
+            chk("GRI403_8_A_III_OK", "a-iii", "ok"),
+            [],
+            ["GRI403-8-a-iii"],
+            "403-8-a-iii",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_8_B",
+            "GRI403-8-b",
+            "403-8-b",
+            "403-8-b",
+            "disclosure_requirement",
+            "GRI 403 403-8-b",
+            [],
+            act("meet_403_8_b", "403-8-b"),
+            chk("GRI403_8_B_OK", "403-8-b", "ok"),
+            [],
+            ["GRI403-8-b"],
+            "403-8-b",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_8_C",
+            "GRI403-8-c",
+            "403-8-c",
+            "403-8-c",
+            "disclosure_requirement",
+            "GRI 403 403-8-c",
+            [],
+            act("meet_403_8_c", "403-8-c"),
+            chk("GRI403_8_C_OK", "403-8-c", "ok"),
+            [],
+            ["GRI403-8-c"],
+            "403-8-c",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_8_GUIDANCE",
+            "GRI403-8",
+            "지침: 공개 403-8(배경·교차참조·감사)",
+            g8,
+            "guidance",
+            "GRI 403 Disclosure 403-8 — Guidance",
+            ["PDCA", "403-1", "internal audit", "external audit"],
+            act("interpret_403_8", "403-8 지침", mandatory=False),
+            chk("GRI403_8_G_OK", "지침", "coherent"),
+            ["Cross-ref 403-1-a-i, 403-1-a-ii"],
+            [
+                "GRI403-8",
+                "GRI403-8-a",
+                "GRI403-8-a-i",
+                "GRI403-8-a-ii",
+                "GRI403-8-a-iii",
+                "GRI403-8-c",
+            ],
+            "Guidance 403-8",
+            "필수",
+        ),
+        RB(
+            "RULE_GRI403_8_B_GUIDANCE",
+            "GRI403-8-b",
+            "지침: 공개 403-8-b(제외 근로자 유형)",
+            g8b,
+            "guidance",
+            "GRI 403 403-8-b — Guidance",
+            ["worker types", "exclusions"],
+            act("interpret_403_8_b", "403-8-b 지침", mandatory=False),
+            chk("GRI403_8_B_G_OK", "지침", "coherent"),
+            [],
+            ["GRI403-8-b"],
+            "Guidance 403-8-b",
+            "필수",
+        ),
+    ]
+    rbs.extend(_rb_403_9_10())
+
+    rid = {r["rulebook_id"] for r in rbs}
+    assert len(rid) == len(rbs)
+    miss = []
+    for r in rbs:
+        pid = r.get("primary_dp_id")
+        if pid and pid not in idset:
+            miss.append((r["rulebook_id"], pid))
+    assert not miss, miss
+
+    (root / "datapoint.json").write_text(
+        json.dumps({"data_points": pts}, ensure_ascii=False, indent=4), encoding="utf-8"
+    )
+    (root / "rulebook.json").write_text(
+        json.dumps({"rulebooks": rbs}, ensure_ascii=False, indent=4), encoding="utf-8"
+    )
+    print("OK", len(pts), "dps", len(rbs), "rbs")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,4 +1,4 @@
-"""DataPoint ORM (data_points)."""
+"""데이터 포인트 ORM — 테이블 `data_points`."""
 
 from sqlalchemy import (
     Column,
@@ -19,7 +19,7 @@ from backend.domain.v1.esg_data.models.bases._embedding import vector_column
 
 
 class DataPoint(Base):
-    """Data Point 테이블."""
+    """데이터 포인트 테이블."""
 
     __tablename__ = "data_points"
 

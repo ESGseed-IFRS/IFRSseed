@@ -1,7 +1,8 @@
-"""UCM creation agent (Phase 2) + policy hooks + LLM refinement stub (§2-3)."""
+"""UCM 생성 에이전트(2단계) — 정책 훅 및 §2-3 LLM 보정 연동."""
 
 from __future__ import annotations
 
+import asyncio
 import json
 import os
 from typing import Any, Dict, List, Optional, Tuple
@@ -16,14 +17,20 @@ from backend.domain.v1.esg_data.spokes.infra.ucm_pipeline_contracts import (
     UCMWorkflowCreateResult,
 )
 from backend.domain.v1.esg_data.spokes.agents import ucm_policy
-from backend.domain.v1.esg_data.spokes.infra.ucm_mapping_service import UCMMappingService
+from backend.domain.v1.esg_data.hub.services.ucm_mapping_service import UCMMappingService
+from backend.domain.v1.esg_data.spokes.infra.esg_ucm_tool_runtime import DirectEsgToolRuntime
 
 
 class UCMCreationAgent:
     """UCM 생성/추천, 정책 단계, 경계 구간 LLM 재평가(스텁)."""
 
-    def __init__(self, mapping_service: UCMMappingService | None = None) -> None:
+    def __init__(
+        self,
+        mapping_service: UCMMappingService | None = None,
+        tool_runtime: DirectEsgToolRuntime | None = None,
+    ) -> None:
         self.mapping_service = mapping_service or UCMMappingService()
+        self._tool_runtime = tool_runtime or DirectEsgToolRuntime(mapping_service=self.mapping_service)
 
     def llm_refinement(self, context: Dict[str, Any]) -> LLMRefinementResult:
         """§2-3: 경계 구간에서 LLM(gpt-5-mini) 보정 점수 계산."""
@@ -51,11 +58,14 @@ class UCMCreationAgent:
             "target_dp_id": context.get("target_dp_id"),
             "candidate": context.get("candidate", {}),
             "rule_row": context.get("rule_row", {}),
+            "validation_rules": context.get("validation_rules", []),
             "tentative_decision": context.get("tentative_decision"),
         }
         system_prompt = (
             "You are a strict ESG mapping judge. "
-            "Return ONLY JSON with keys: refinement_score (0~1 float), notes (short string)."
+            "Return ONLY JSON with keys: refinement_score (0~1 float), "
+            "llm_decision (accept|review|reject), llm_reason_codes (string array), notes (short string). "
+            "Use validation_rules explicitly when judging consistency."
         )
         user_prompt = (
             "Refine mapping confidence for a cross-standard datapoint pair.\n"
@@ -77,10 +87,21 @@ class UCMCreationAgent:
             score = float(data.get("refinement_score"))
             score = max(0.0, min(1.0, score))
             notes = str(data.get("notes") or "")
+            llm_decision = str(data.get("llm_decision") or "").strip().lower()
+            if llm_decision not in {"accept", "review", "reject"}:
+                llm_decision = ""
+            llm_reason_codes_raw = data.get("llm_reason_codes") or []
+            llm_reason_codes = (
+                [str(x).strip() for x in llm_reason_codes_raw if str(x).strip()]
+                if isinstance(llm_reason_codes_raw, list)
+                else []
+            )
             return {
                 "status": "success",
                 "refinement_score": round(score, 4),
                 "notes": notes,
+                "llm_decision": llm_decision or None,
+                "llm_reason_codes": llm_reason_codes,
                 "llm_used": True,
             }
         except Exception as e:
@@ -125,15 +146,42 @@ class UCMCreationAgent:
         batch_size: int = 40,
         dry_run: bool = False,
     ) -> UCMWorkflowCreateResult:
-        """legacy equivalent_dps 배치."""
-        return self.mapping_service.create_mappings(
-            source_standard=source_standard,
-            target_standard=target_standard,
-            vector_threshold=vector_threshold,
-            structural_threshold=structural_threshold,
-            final_threshold=final_threshold,
-            batch_size=batch_size,
-            dry_run=dry_run,
+        """레거시 equivalent_dps 배치 매핑 — MCP 툴 `create_unified_column_mapping`과 동일 경로."""
+        return self._tool_runtime.call_tool(
+            "create_unified_column_mapping",
+            {
+                "source_standard": source_standard,
+                "target_standard": target_standard,
+                "vector_threshold": vector_threshold,
+                "structural_threshold": structural_threshold,
+                "final_threshold": final_threshold,
+                "batch_size": batch_size,
+                "dry_run": dry_run,
+            },
+        )
+
+    async def acreate_mappings(
+        self,
+        source_standard: str,
+        target_standard: str,
+        vector_threshold: float = 0.70,
+        structural_threshold: float = 0.50,
+        final_threshold: float = 0.75,
+        batch_size: int = 40,
+        dry_run: bool = False,
+    ) -> UCMWorkflowCreateResult:
+        """인프로세스 핸들러(`DirectEsgToolRuntime`)를 스레드에서 호출한다."""
+        args = {
+            "source_standard": source_standard,
+            "target_standard": target_standard,
+            "vector_threshold": vector_threshold,
+            "structural_threshold": structural_threshold,
+            "final_threshold": final_threshold,
+            "batch_size": batch_size,
+            "dry_run": dry_run,
+        }
+        return await asyncio.to_thread(
+            lambda: self._tool_runtime.call_tool("create_unified_column_mapping", args),
         )
 
     def suggest_mappings(

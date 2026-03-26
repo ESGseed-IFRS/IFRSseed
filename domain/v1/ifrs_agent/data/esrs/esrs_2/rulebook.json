@@ -1,0 +1,588 @@
+{
+    "rulebooks": [
+        {
+            "rulebook_id": "RULE_ESRS2",
+            "standard_id": "ESRS2",
+            "primary_dp_id": "ESRS2",
+            "section_name": "ESRS 2: 일반 공시",
+            "section_content": "ESRS 2 General disclosures — European Sustainability Reporting Standards Set 1, general requirements for sustainability statements. This seed covers Disclosure Requirement BP-1 (Basis for preparation): paragraphs 3–5 and sub-items (a) through (e), including (b)(i) and (b)(ii).\n\nESRS 2: 일반 공시는 지속가능성 성명서의 틀·교차 참조·일반 공시(작성 근거 등)를 다룹니다.",
+            "validation_rules": {
+                "section_type": "standard",
+                "paragraph_reference": "ESRS 2 General disclosures",
+                "key_terms": [
+                    "ESRS 2",
+                    "general disclosures",
+                    "sustainability statement",
+                    "basis for preparation",
+                    "BP-1"
+                ],
+                "related_concepts": [
+                    "ESRS 1",
+                    "CSRD",
+                    "consolidated reporting"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_per_esrs2_bp1",
+                        "description": "작성 근거(BP-1)를 포함하여 ESRS 2가 요구하는 일반 공시를 이행",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRS2_BP1_SECTION_PRESENT",
+                        "description": "보고서에 작성 근거 또는 BP-1에 상응하는 일반 기초 공시 블록이 있는지",
+                        "expected": "basis_for_preparation_addressed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRS2",
+                "ESRS2-SEC-1",
+                "ESRS2-BP-1",
+                "ESRS2-BP-1-a",
+                "ESRS2-BP-1-b",
+                "ESRS2-BP-1-b-i",
+                "ESRS2-BP-1-b-ii",
+                "ESRS2-BP-1-c",
+                "ESRS2-BP-1-d",
+                "ESRS2-BP-1-e"
+            ],
+            "rulebook_title": "ESRS 2: General disclosures (standard overview)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": "시드 범위: 이미지 출처 BP-1(문단 3·4·5). §3.2.1: 요구 열거 (b)(i)(ii)는 별도 DP.",
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRS2_SEC_1",
+            "standard_id": "ESRS2",
+            "primary_dp_id": "ESRS2-SEC-1",
+            "section_name": "1. 작성 근거",
+            "section_content": "Basis for preparation — ESRS 2에서 지속가능성 성명서의 일반적 작성 기준·경계·면제 관련 옵션 사용 여부를 규정하는 절입니다. 공개 요건 BP-1이 여기에 해당합니다.\n\n한국어 원문 요지: 기업은 지속가능성 보고서의 일반적 작성 기준을 공개하고, 통합 범위·가치 사슬·정보 생략 옵션(d·e) 사용 여부 등을 통해 작성 방법에 대한 이해를 제공해야 합니다.",
+            "validation_rules": {
+                "section_type": "section",
+                "paragraph_reference": "ESRS 2 – Section 1 Basis for preparation",
+                "key_terms": [
+                    "basis for preparation",
+                    "작성 근거",
+                    "sustainability statement",
+                    "consolidation scope",
+                    "value chain"
+                ],
+                "related_concepts": [
+                    "BP-1",
+                    "omission options",
+                    "Directive 2013/34/EU"
+                ],
+                "required_actions": [
+                    {
+                        "action": "cover_bp1_requirements",
+                        "description": "BP-1 문단 3·4·5 및 (a)~(e)에 대응하는 공시를 완결적으로 제공",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRS2_SEC1_BP1_CHILDREN",
+                        "description": "(a)~(e) 및 통합 보고 시 (b)(i)(ii)가 누락 없이 다뤄졌는지",
+                        "expected": "all_bp1_items_addressed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRS2-SEC-1",
+                "ESRS2-BP-1",
+                "ESRS2-BP-1-a",
+                "ESRS2-BP-1-b",
+                "ESRS2-BP-1-b-i",
+                "ESRS2-BP-1-b-ii",
+                "ESRS2-BP-1-c",
+                "ESRS2-BP-1-d",
+                "ESRS2-BP-1-e"
+            ],
+            "rulebook_title": "ESRS 2 Section 1 – Basis for preparation",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRS2_BP_1",
+            "standard_id": "ESRS2",
+            "primary_dp_id": "ESRS2-BP-1",
+            "section_name": "BP-1 – 지속가능성 성명서 작성의 일반적 기초",
+            "section_content": "3. The undertaking shall disclose the general basis for preparation of its sustainability statement.\n\n4. The objective of this Disclosure Requirement is to provide an understanding of how the undertaking prepares its sustainability statement, including the scope of consolidation, upstream and downstream value chain information and, if applicable, whether the undertaking has used the options for omission of information referred to in points (d) and (e) in the following paragraph.\n\n5. The undertaking shall disclose the following information: (a)–(e) — see separate rulebooks per sub-item.\n\n한국어: 기업은 지속가능성 보고서의 일반적 작성 기준을 공개해야 하며, 목적은 통합 범위·상류·하류 가치 사슬·(d)(e) 생략 옵션 사용 여부 등 작성 방법에 대한 이해를 제공하는 것입니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS 2 DR BP-1 – paras 3–5 (intro)",
+                "key_terms": [
+                    "general basis for preparation",
+                    "sustainability statement",
+                    "scope of consolidation",
+                    "upstream value chain",
+                    "downstream value chain",
+                    "omission of information",
+                    "disclosure requirement objective"
+                ],
+                "related_concepts": [
+                    "ESRS 1",
+                    "reporting boundary",
+                    "materiality and value chain"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_general_basis",
+                        "description": "지속가능성 성명서의 일반적 작성 기준(문단 3)을 서술로 공개",
+                        "mandatory": true
+                    },
+                    {
+                        "action": "address_objective_elements",
+                        "description": "문단 4 목적에 부합하도록 통합 범위·가치 사슬·해당 시 (d)(e) 옵션 사용 여부가 하위 공시와 함께 이해되도록 제시",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRS2_BP1_PARA3_NARRATIVE",
+                        "description": "일반 작성 기준에 대한 서술(문단 3 요지) 존재 여부",
+                        "expected": "general_basis_narrative_present"
+                    },
+                    {
+                        "check_id": "ESRS2_BP1_PARA4_ALIGNMENT",
+                        "description": "통합 범위·가치 사슬·생략 옵션 관련 논의가 보고서 어딘가에 반영되었는지",
+                        "expected": "objective_elements_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS 1 §5.1 Reporting undertaking and value chain — BP-1(c)",
+                    "ESRS 1 §7.7 Classified/sensitive information, IP, know-how, innovation — BP-1(d)",
+                    "Directive 2013/34/EU Art. 48i, 19a(9), 29a(8), 19a(3), 29a(3) — BP-1(b)(e)"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-1",
+                "ESRS2-BP-1-a",
+                "ESRS2-BP-1-b",
+                "ESRS2-BP-1-b-i",
+                "ESRS2-BP-1-b-ii",
+                "ESRS2-BP-1-c",
+                "ESRS2-BP-1-d",
+                "ESRS2-BP-1-e"
+            ],
+            "rulebook_title": "BP-1 General basis for preparation (paras 3–5 intro)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": true,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRS2_BP_1_A",
+            "standard_id": "ESRS2",
+            "primary_dp_id": "ESRS2-BP-1-a",
+            "section_name": "BP-1-(a) 통합 또는 개별 기준",
+            "section_content": "(a) Whether the sustainability statement has been prepared on a consolidated or individual basis.\n\n(a) 지속가능성 보고서가 통합 기준 또는 개별 기준으로 작성되었는지 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS 2 – BP-1(a)",
+                "key_terms": [
+                    "consolidated basis",
+                    "individual basis",
+                    "sustainability statement",
+                    "통합 기준",
+                    "개별 기준"
+                ],
+                "related_concepts": [
+                    "financial reporting perimeter",
+                    "consolidation"
+                ],
+                "required_actions": [
+                    {
+                        "action": "state_consolidated_or_individual",
+                        "description": "지속가능성 성명서가 통합(연결)인지 개별인지 명시",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRS2_BP1_A_BASIS_STATED",
+                        "description": "consolidated 또는 individual(또는 동등 한국어/회계 용어) 중 하나가 명확히 기재되었는지",
+                        "expected": "single_clear_basis"
+                    },
+                    {
+                        "check_id": "ESRS2_BP1_A_NO_CONTRADICTION",
+                        "description": "동일 보고서 본문에서 (a)와 모순되는 경계 설명이 없는지",
+                        "expected": "consistent_with_other_bp1_items"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-1-a",
+                "ESRS2-BP-1-b"
+            ],
+            "rulebook_title": "BP-1(a) Consolidated or individual basis",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": "(a)가 개별이면 (b)는 통상 해당 없음으로 해석 가능 — 보고서 문맥에서 명시 권장.",
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRS2_BP_1_B",
+            "standard_id": "ESRS2",
+            "primary_dp_id": "ESRS2-BP-1-b",
+            "section_name": "BP-1-(b) 통합 지속가능성 보고서",
+            "section_content": "(b) In the case of a consolidated sustainability statement: (i) confirmation that the same scope of consolidation as for the financial statements has been applied or, where applicable, a statement that the reporting undertaking is not required to prepare financial statements or is preparing consolidated sustainability reporting pursuant to Article 48i of Directive 2013/34/EU; and (ii) where applicable, the identification of subsidiaries included in the consolidation that are exempted from individual or consolidated sustainability reporting pursuant to Article 19a(9) or Article 29a(8) of Directive 2013/34/EU.\n\n통합 지속가능성 보고의 경우 (i) 재무제표와 동일 통합 범위 확인 또는 제48i조 선언, (ii) 해당 시 면제 자회사 명시.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS 2 – BP-1(b)",
+                "key_terms": [
+                    "consolidated sustainability statement",
+                    "scope of consolidation",
+                    "financial statements",
+                    "Article 48i",
+                    "Article 19a(9)",
+                    "Article 29a(8)",
+                    "exempted subsidiaries"
+                ],
+                "related_concepts": [
+                    "Directive 2013/34/EU",
+                    "group reporting"
+                ],
+                "required_actions": [
+                    {
+                        "action": "when_consolidated_disclose_b_i",
+                        "description": "통합 지속가능성 보고 시 (b)(i)에 따른 확인 또는 선언 제공",
+                        "mandatory": true,
+                        "condition": "sustainability_statement_on_consolidated_basis"
+                    },
+                    {
+                        "action": "when_consolidated_disclose_b_ii",
+                        "description": "해당 시 (b)(ii)에 따라 면제 자회사 식별 정보 제공",
+                        "mandatory": true,
+                        "condition": "exempted_subsidiaries_in_consolidation"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRS2_BP1_B_IF_CONSOLIDATED",
+                        "description": "(a)가 통합인 경우 (b)(i) 충족 여부",
+                        "expected": "b_i_present_when_consolidated"
+                    },
+                    {
+                        "check_id": "ESRS2_BP1_B_II_IF_APPLICABLE",
+                        "description": "면제 자회사가 있는 경우 (b)(ii) 식별 공시 여부",
+                        "expected": "b_ii_when_exemptions_exist"
+                    }
+                ],
+                "cross_references": [
+                    "Directive 2013/34/EU Article 48i",
+                    "Directive 2013/34/EU Articles 19a(9), 29a(8)"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-1-b",
+                "ESRS2-BP-1-b-i",
+                "ESRS2-BP-1-b-ii",
+                "ESRS2-BP-1-a"
+            ],
+            "rulebook_title": "BP-1(b) Consolidated sustainability statement",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRS2_BP_1_B_I",
+            "standard_id": "ESRS2",
+            "primary_dp_id": "ESRS2-BP-1-b-i",
+            "section_name": "BP-1-(b)(i) 통합 범위와 재무제표",
+            "section_content": "(i) A confirmation that the same scope of consolidation as for the financial statements has been applied or, where applicable, a statement that the reporting undertaking is not required to draw up financial statements or that it is preparing consolidated sustainability reporting pursuant to Article 48i of Directive 2013/34/EU.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS 2 – BP-1(b)(i)",
+                "key_terms": [
+                    "scope of consolidation",
+                    "financial statements",
+                    "Article 48i",
+                    "confirmation",
+                    "declaration"
+                ],
+                "related_concepts": [
+                    "consolidated financial statements",
+                    "CSRD reporting entity"
+                ],
+                "required_actions": [
+                    {
+                        "action": "confirm_scope_or_article_48i",
+                        "description": "재무제표와 동일 통합 범위 적용 확인 또는, 해당 시 재무제표 면제/제48i조에 따른 통합 지속가능성 보고 준비 선언",
+                        "mandatory": true,
+                        "condition": "consolidated_sustainability_statement"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRS2_BP1_BI_CONFIRMATION_OR_DECLARATION",
+                        "description": "통합 보고 시 ‘재무제표와 동일 통합 범위’ 확인 또는 제48i조 관련 선언 중 적합한 하나가 있는지",
+                        "expected": "confirmation_or_48i_declaration"
+                    }
+                ],
+                "cross_references": [
+                    "Directive 2013/34/EU Article 48i"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-1-b-i",
+                "ESRS2-BP-1-b"
+            ],
+            "rulebook_title": "BP-1(b)(i) Scope vs financial statements / Art 48i",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRS2_BP_1_B_II",
+            "standard_id": "ESRS2",
+            "primary_dp_id": "ESRS2-BP-1-b-ii",
+            "section_name": "BP-1-(b)(ii) 면제된 자회사",
+            "section_content": "(ii) Where applicable, the identification of the subsidiaries included in the consolidation that are exempted from individual or consolidated sustainability reporting pursuant to Article 19a(9) or Article 29a(8) of Directive 2013/34/EU.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS 2 – BP-1(b)(ii)",
+                "key_terms": [
+                    "subsidiaries",
+                    "exemption",
+                    "Article 19a(9)",
+                    "Article 29a(8)",
+                    "consolidation"
+                ],
+                "related_concepts": [
+                    "group sustainability reporting",
+                    "Directive 2013/34/EU"
+                ],
+                "required_actions": [
+                    {
+                        "action": "identify_exempted_subsidiaries",
+                        "description": "해당 시 통합에 포함되었으나 제19a(9) 또는 제29a(8)에 따라 지속가능성 보고가 면제된 자회사를 식별·명시",
+                        "mandatory": true,
+                        "condition": "such_exempted_subsidiaries_exist"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRS2_BP1_BII_LIST_OR_NA",
+                        "description": "면제 자회사가 있으면 명시되었는지; 없으면 불적용 설명 또는 동등 처리가 문맥상 가능한지",
+                        "expected": "exempted_entities_identified_if_any"
+                    }
+                ],
+                "cross_references": [
+                    "Directive 2013/34/EU Article 19a(9)",
+                    "Directive 2013/34/EU Article 29a(8)"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-1-b-ii",
+                "ESRS2-BP-1-b"
+            ],
+            "rulebook_title": "BP-1(b)(ii) Exempted subsidiaries",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRS2_BP_1_C",
+            "standard_id": "ESRS2",
+            "primary_dp_id": "ESRS2-BP-1-c",
+            "section_name": "BP-1-(c) 가치 사슬 포괄 정도",
+            "section_content": "(c) To what extent the sustainability statement covers the undertaking’s upstream and downstream value chain (see ESRS 1 section 5.1 ‘Reporting undertaking and value chain’).\n\n(c) 지속가능성 성명서가 상류·하류 가치 사슬을 어느 정도 포괄하는지(ESRS 1 제5.1조 참조).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS 2 – BP-1(c)",
+                "key_terms": [
+                    "upstream value chain",
+                    "downstream value chain",
+                    "extent",
+                    "coverage",
+                    "value chain information"
+                ],
+                "related_concepts": [
+                    "double materiality",
+                    "scope 3 / value chain impacts (conceptual link)"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_value_chain_extent",
+                        "description": "상류·하류 가치 사슬에 대한 성명서의 포괄 정도를 서술",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRS2_BP1_C_EXTENT_NARRATIVE",
+                        "description": "가치 사슬 커버리지의 ‘정도(extent)’에 대한 설명이 있는지",
+                        "expected": "extent_of_coverage_described"
+                    },
+                    {
+                        "check_id": "ESRS2_BP1_C_UPSTREAM_DOWNSTREAM",
+                        "description": "상류 및/또는 하류가 구분되거나 함께 다뤄졌는지",
+                        "expected": "upstream_downstream_addressed"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS 1 section 5.1 Reporting undertaking and value chain"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-1-c"
+            ],
+            "rulebook_title": "BP-1(c) Value chain coverage",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRS2_BP_1_D",
+            "standard_id": "ESRS2",
+            "primary_dp_id": "ESRS2-BP-1-d",
+            "section_name": "BP-1-(d) 지재권·노하우·혁신 정보 생략 옵션",
+            "section_content": "(d) Whether the undertaking has made use of the option to omit disclosure of a specific piece of information corresponding to intellectual property, know-how or the results of innovation (see ESRS 1 section 7.7 ‘Classified and sensitive information, and information on intellectual property, know-how or results of innovation’).\n\n(d) 지적 재산권·노하우·혁신 결과에 해당하는 정보 생략 선택권 행사 여부(ESRS 1 제7.7조 참조).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS 2 – BP-1(d)",
+                "key_terms": [
+                    "intellectual property",
+                    "know-how",
+                    "results of innovation",
+                    "omission",
+                    "option to omit",
+                    "sensitive information"
+                ],
+                "related_concepts": [
+                    "ESRS 1 confidentiality",
+                    "trade secrets"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_use_of_omission_option",
+                        "description": "IP·노하우·혁신 결과 관련 특정 정보 생략 옵션 사용 여부를 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRS2_BP1_D_BINARY_OR_EXPLICIT",
+                        "description": "옵션 사용 여부가 예/아니오 또는 명확한 동등 서술로 제시되었는지",
+                        "expected": "used_or_not_stated"
+                    },
+                    {
+                        "check_id": "ESRS2_BP1_D_ESRS1_77",
+                        "description": "사용한 경우 ESRS 1 §7.7 요건과의 정합성(교차 참조·설명)이 있는지",
+                        "expected": "aligned_with_esrs1_7_7_if_omitted"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS 1 section 7.7 Classified and sensitive information; IP, know-how, innovation"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-1-d",
+                "ESRS2-BP-1"
+            ],
+            "rulebook_title": "BP-1(d) Omission option IP / know-how / innovation",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRS2_BP_1_E",
+            "standard_id": "ESRS2",
+            "primary_dp_id": "ESRS2-BP-1-e",
+            "section_name": "BP-1-(e) 협상·임박한 개발 면제",
+            "section_content": "(e) For undertakings based in an EU Member State which allows for the exemption from disclosure of impending developments or matters in the course of negotiation, as provided for in Articles 19a(3) and 29a(3) of Directive 2013/34/EU, whether the undertaking has made use of that exemption.\n\n(e) EU 회원국 소재 기업으로서 회원국이 제19a(3)·제29a(3)에 따른 공개 면제를 허용하는 경우, 그 면제 사용 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS 2 – BP-1(e)",
+                "key_terms": [
+                    "EU Member State",
+                    "exemption",
+                    "impending developments",
+                    "matters in the course of negotiation",
+                    "Article 19a(3)",
+                    "Article 29a(3)"
+                ],
+                "related_concepts": [
+                    "national transposition",
+                    "confidential negotiations"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_use_of_negotiation_exemption",
+                        "description": "적용 가능한 경우(회원국 법이 면제 허용) 해당 면제 사용 여부 공개",
+                        "mandatory": true,
+                        "condition": "undertaking_in_member_state_that_allows_exemption_under_19a3_29a3"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRS2_BP1_E_APPLICABILITY_GATE",
+                        "description": "EU 소재 및 국내법상 면제 허용 여부가 판단되었는지; 불적용 시 (e)는 문맥상 N/A 처리 가능",
+                        "expected": "jurisdictional_applicability_considered"
+                    },
+                    {
+                        "check_id": "ESRS2_BP1_E_USE_STATED",
+                        "description": "적용 가능한 기업에 대해 면제 사용 여부가 명시되었는지",
+                        "expected": "exemption_use_clear_if_applicable"
+                    }
+                ],
+                "cross_references": [
+                    "Directive 2013/34/EU Article 19a(3)",
+                    "Directive 2013/34/EU Article 29a(3)"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-1-e"
+            ],
+            "rulebook_title": "BP-1(e) Exemption impending developments / negotiations",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        }
+    ]
+}

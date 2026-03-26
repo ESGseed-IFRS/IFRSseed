@@ -1,0 +1,264 @@
+{
+    "data_points": [
+        {
+            "dp_id": "ESRS2",
+            "dp_code": "ESRS_2_GENERAL_DISCLOSURES",
+            "name_ko": "ESRS 2: 일반 공시",
+            "name_en": "ESRS 2: General disclosures",
+            "description": "유럽 지속가능성 보고 기준(ESRS) 제2호로, 지속가능성 성명서의 일반 공시를 규정합니다. 본 시드는 「1. 작성 근거」의 공개 요건 BP-1(문단 3·4·5, 항목 a~e)에 해당하는 최소 공시 단위를 포함합니다.",
+            "standard": "ESRS",
+            "category": "G",
+            "topic": "일반 공시",
+            "subtopic": "ESRS 2",
+            "dp_type": "narrative",
+            "unit": null,
+            "equivalent_dps": [],
+            "parent_indicator": null,
+            "child_dps": [
+                "ESRS2-SEC-1"
+            ],
+            "financial_linkages": [],
+            "financial_impact_type": null,
+            "disclosure_requirement": "필수",
+            "reporting_frequency": "연간",
+            "validation_rules": [
+                "ESRS 2 일반 공시 범위에서 BP-1 작성 근거 공시 충족 여부 점검"
+            ],
+            "value_range": null
+        },
+        {
+            "dp_id": "ESRS2-SEC-1",
+            "dp_code": "ESRS_2_SEC_1_BASIS_FOR_PREPARATION",
+            "name_ko": "1. 작성 근거 (Basis for preparation)",
+            "name_en": "Section 1: Basis for preparation",
+            "description": "지속가능성 성명서를 어떤 일반적 기준으로 작성·경계를 설정했는지에 대한 공시 묶음입니다. ESRS 2 공개 요건 BP-1이 이에 해당합니다.",
+            "standard": "ESRS",
+            "category": "G",
+            "topic": "작성 근거",
+            "subtopic": "일반 기초",
+            "dp_type": "narrative",
+            "unit": null,
+            "equivalent_dps": [],
+            "parent_indicator": "ESRS2",
+            "child_dps": [
+                "ESRS2-BP-1"
+            ],
+            "financial_linkages": [],
+            "financial_impact_type": null,
+            "disclosure_requirement": "필수",
+            "reporting_frequency": "연간",
+            "validation_rules": [
+                "BP-1 하위 항목(a~e, b의 i·ii)과 문단 3·4 서술이 상호 모순 없이 연결되는지 확인"
+            ],
+            "value_range": null
+        },
+        {
+            "dp_id": "ESRS2-BP-1",
+            "dp_code": "ESRS_2_BP_1_GENERAL_BASIS_SUSTAINABILITY_STATEMENT",
+            "name_ko": "공개 요건 BP-1: 지속가능성 성명서 작성의 일반적 기초",
+            "name_en": "Disclosure Requirement BP-1 – General basis for preparation of the sustainability statement",
+            "description": "기업은 지속가능성 보고서(성명서)의 일반적 작성 기준을 공개해야 합니다(문단 3). 이 공개의 목적은 통합 범위, 상류·하류 가치 사슬 정보, 해당 시 다음 문단 d)·e)항의 정보 생략 옵션 사용 여부를 포함하여 성명서를 어떻게 작성하는지에 대한 이해를 제공하는 것입니다(문단 4). 문단 5의 (a)~(e)는 구체적 공시 항목으로 하위 DP에 대응합니다.",
+            "standard": "ESRS",
+            "category": "G",
+            "topic": "작성 근거",
+            "subtopic": "BP-1 총괄",
+            "dp_type": "narrative",
+            "unit": null,
+            "equivalent_dps": [],
+            "parent_indicator": "ESRS2-SEC-1",
+            "child_dps": [
+                "ESRS2-BP-1-a",
+                "ESRS2-BP-1-b",
+                "ESRS2-BP-1-c",
+                "ESRS2-BP-1-d",
+                "ESRS2-BP-1-e"
+            ],
+            "financial_linkages": [],
+            "financial_impact_type": null,
+            "disclosure_requirement": "필수",
+            "reporting_frequency": "연간",
+            "validation_rules": [
+                "일반 작성 기준·목적(통합 범위, 가치 사슬, d)·e) 생략 옵션)이 서술로 드러나는지 확인",
+                "하위 (a)~(e) 요구를 누락 없이 충족했는지 점검"
+            ],
+            "value_range": null
+        },
+        {
+            "dp_id": "ESRS2-BP-1-a",
+            "dp_code": "ESRS_2_BP_1_A_CONSOLIDATED_OR_INDIVIDUAL",
+            "name_ko": "BP-1-(a): 통합·개별 기준 여부",
+            "name_en": "BP-1 (a): Consolidated or individual basis",
+            "description": "지속가능성 보고서가 통합(연결) 기준으로 작성되었는지, 개별 기준으로 작성되었는지를 공개해야 합니다. 재무 보고 경계와의 정합성을 판단하는 기초 정보입니다.",
+            "standard": "ESRS",
+            "category": "G",
+            "topic": "작성 근거",
+            "subtopic": "보고 경계",
+            "dp_type": "narrative",
+            "unit": null,
+            "equivalent_dps": [],
+            "parent_indicator": "ESRS2-BP-1",
+            "child_dps": [],
+            "financial_linkages": [],
+            "financial_impact_type": null,
+            "disclosure_requirement": "필수",
+            "reporting_frequency": "연간",
+            "validation_rules": [
+                "통합(consolidated) 또는 개별(individual) 준비 기준이 명시되는지 확인",
+                "모호한 표현 없이 단일 기준이 드러나야 함"
+            ],
+            "value_range": null
+        },
+        {
+            "dp_id": "ESRS2-BP-1-b",
+            "dp_code": "ESRS_2_BP_1_B_CONSOLIDATED_SUSTAINABILITY_REPORT",
+            "name_ko": "BP-1-(b): 통합 지속가능성 보고서 시 추가 정보",
+            "name_en": "BP-1 (b): Consolidated sustainability reporting – additional disclosures",
+            "description": "통합 지속가능성 보고서인 경우에 한해 (b)의 하위 (i)·(ii)를 추가로 공개합니다. (i) 재무제표와 동일한 통합 범위 적용 확인, 또는 재무제표 작성 의무 면제·지침 2013/34/EU 제48i조에 따른 통합 지속가능성 보고 준비 선언. (ii) 해당 시 통합에 포함된 자회사 중 지침 제19a조 제9항 또는 제29a조 제8항에 따라 개별·통합 지속가능성 보고에서 면제되는 자회사의 명시.",
+            "standard": "ESRS",
+            "category": "G",
+            "topic": "작성 근거",
+            "subtopic": "연결 보고",
+            "dp_type": "narrative",
+            "unit": null,
+            "equivalent_dps": [],
+            "parent_indicator": "ESRS2-BP-1",
+            "child_dps": [
+                "ESRS2-BP-1-b-i",
+                "ESRS2-BP-1-b-ii"
+            ],
+            "financial_linkages": [],
+            "financial_impact_type": null,
+            "disclosure_requirement": "필수",
+            "reporting_frequency": "연간",
+            "validation_rules": [
+                "통합 보고서가 아닌 경우 (b) 전체의 적용 범위를 문맥상 명확히 할 것",
+                "통합 보고서인 경우 (i)·(ii) 조건부 요구 충족"
+            ],
+            "value_range": null
+        },
+        {
+            "dp_id": "ESRS2-BP-1-b-i",
+            "dp_code": "ESRS_2_BP_1_B_I_SCOPE_FINANCIAL_STATEMENTS",
+            "name_ko": "BP-1-(b)(i): 통합 범위와 재무제표",
+            "name_en": "BP-1 (b)(i): Scope of consolidation vs financial statements",
+            "description": "재무제표와 동일한 통합 범위를 적용했음을 확인하거나, 해당되는 경우 보고 기업이 재무제표 작성을 의무화되지 않았거나 지침 2013/34/EU 제48i조에 따라 통합 지속가능성 보고를 작성 중임을 선언하는 내용을 공개합니다.",
+            "standard": "ESRS",
+            "category": "G",
+            "topic": "작성 근거",
+            "subtopic": "통합 범위",
+            "dp_type": "narrative",
+            "unit": null,
+            "equivalent_dps": [],
+            "parent_indicator": "ESRS2-BP-1-b",
+            "child_dps": [],
+            "financial_linkages": [],
+            "financial_impact_type": null,
+            "disclosure_requirement": "필수",
+            "reporting_frequency": "연간",
+            "validation_rules": [
+                "통합 지속가능성 보고 시: 재무제표와 동일 통합 범위 확인 또는 제48i조 등 해당 선언이 있어야 함"
+            ],
+            "value_range": null
+        },
+        {
+            "dp_id": "ESRS2-BP-1-b-ii",
+            "dp_code": "ESRS_2_BP_1_B_II_EXEMPT_SUBSIDIARIES",
+            "name_ko": "BP-1-(b)(ii): 면제 자회사",
+            "name_en": "BP-1 (b)(ii): Exempted subsidiaries in consolidation",
+            "description": "해당되는 경우, 통합에 포함된 자회사 중 유럽연합 지침 2013/34/EU 제19a조 제9항 또는 제29a조 제8항에 따라 개별 또는 통합 지속가능성 보고에서 면제되는 자회사를 명시해야 합니다.",
+            "standard": "ESRS",
+            "category": "G",
+            "topic": "작성 근거",
+            "subtopic": "면제 자회사",
+            "dp_type": "narrative",
+            "unit": null,
+            "equivalent_dps": [],
+            "parent_indicator": "ESRS2-BP-1-b",
+            "child_dps": [],
+            "financial_linkages": [],
+            "financial_impact_type": null,
+            "disclosure_requirement": "필수",
+            "reporting_frequency": "연간",
+            "validation_rules": [
+                "면제 자회사가 존재하는 경우 명칭·식별 정보 등으로 명시되었는지 확인",
+                "해당 없음이면 불적용 또는 해당 없음을 명시하는 관행 허용(문맥 일관성)"
+            ],
+            "value_range": null
+        },
+        {
+            "dp_id": "ESRS2-BP-1-c",
+            "dp_code": "ESRS_2_BP_1_C_VALUE_CHAIN_EXTENT",
+            "name_ko": "BP-1-(c): 상류·하류 가치 사슬 포괄 정도",
+            "name_en": "BP-1 (c): Upstream and downstream value chain coverage",
+            "description": "지속가능성 성명서가 해당 기업의 상류 및 하류 가치 사슬을 어느 정도까지 포괄하는지 공개합니다. ESRS 1 제5.1조 「보고 기업 및 가치 사슬」을 참고합니다.",
+            "standard": "ESRS",
+            "category": "G",
+            "topic": "작성 근거",
+            "subtopic": "가치 사슬",
+            "dp_type": "narrative",
+            "unit": null,
+            "equivalent_dps": [],
+            "parent_indicator": "ESRS2-BP-1",
+            "child_dps": [],
+            "financial_linkages": [],
+            "financial_impact_type": null,
+            "disclosure_requirement": "필수",
+            "reporting_frequency": "연간",
+            "validation_rules": [
+                "상류(upstream)·하류(downstream) 가치 사슬에 대한 포괄 정도(extent)가 서술되는지 확인",
+                "ESRS 1 §5.1과의 정합성·교차 참조 가능"
+            ],
+            "value_range": null
+        },
+        {
+            "dp_id": "ESRS2-BP-1-d",
+            "dp_code": "ESRS_2_BP_1_D_OMISSION_IP_KNOWHOW",
+            "name_ko": "BP-1-(d): 지재권·노하우·혁신 결과 정보 생략 옵션",
+            "name_en": "BP-1 (d): Omission option (IP, know-how, innovation)",
+            "description": "기업이 지적 재산권, 노하우 또는 혁신 결과에 해당하는 특정 정보의 공개를 생략할 수 있는 선택권을 행사했는지 여부를 공개합니다. ESRS 1 제7.7조 「기밀·민감 정보, 지재권·노하우·혁신 결과 정보」를 참고합니다.",
+            "standard": "ESRS",
+            "category": "G",
+            "topic": "작성 근거",
+            "subtopic": "정보 생략",
+            "dp_type": "narrative",
+            "unit": null,
+            "equivalent_dps": [],
+            "parent_indicator": "ESRS2-BP-1",
+            "child_dps": [],
+            "financial_linkages": [],
+            "financial_impact_type": null,
+            "disclosure_requirement": "필수",
+            "reporting_frequency": "연간",
+            "validation_rules": [
+                "d)항 생략 옵션 사용 여부가 예/아니오 또는 동등한 명확한 서술로 드러나는지 확인",
+                "사용한 경우 ESRS 1 §7.7 요건과의 연계 설명 권장"
+            ],
+            "value_range": null
+        },
+        {
+            "dp_id": "ESRS2-BP-1-e",
+            "dp_code": "ESRS_2_BP_1_E_NEGOTIATION_EXEMPTION",
+            "name_ko": "BP-1-(e): 임박한 개발·협상 중 사항 면제",
+            "name_en": "BP-1 (e): Exemption for impending developments or negotiations",
+            "description": "EU 회원국에 기반을 둔 기업으로서, 2013/34/EU 지침 제19a조(3)항 및 제29a조(3)항에 따른 진행 중인 개발 또는 협상 중인 사항에 대한 공개 면제를 회원국 법이 허용하는 경우, 그 면제를 적용했는지 여부를 공개합니다.",
+            "standard": "ESRS",
+            "category": "G",
+            "topic": "작성 근거",
+            "subtopic": "공시 면제",
+            "dp_type": "narrative",
+            "unit": null,
+            "equivalent_dps": [],
+            "parent_indicator": "ESRS2-BP-1",
+            "child_dps": [],
+            "financial_linkages": [],
+            "financial_impact_type": null,
+            "disclosure_requirement": "필수",
+            "reporting_frequency": "연간",
+            "validation_rules": [
+                "EU 회원국 소재이고 해당 국가 법이 면제를 허용하는 경우에만 (e) 적용",
+                "적용 시 면제 사용 여부를 명확히 공시"
+            ],
+            "value_range": null
+        }
+    ]
+}

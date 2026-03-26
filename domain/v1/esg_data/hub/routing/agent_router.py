@@ -1,4 +1,4 @@
-﻿"""ESG data agent router (Phase 3)."""
+"""ESG 데이터 에이전트 라우터(3단계)."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ AgentName = Literal["creation_agent", "validation_agent"]
 
 
 class AgentRouter:
-    """?뚰겕?뚮줈???곹깭瑜?諛뷀깢?쇰줈 ?ㅼ쓬 ?먯씠?꾪듃瑜??좏깮."""
+    """워크플로 상태에 따라 다음에 실행할 에이전트를 선택한다."""
 
     def route(self, state: UCMWorkflowState) -> AgentName:
         if state.get("force_validate_only"):

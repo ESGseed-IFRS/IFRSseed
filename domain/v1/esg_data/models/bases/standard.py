@@ -1,4 +1,4 @@
-"""Standard ORM (standards)."""
+"""기준서 ORM — 테이블 `standards`."""
 
 from sqlalchemy import Column, String, Text, Boolean, TIMESTAMP, ARRAY, Date
 from sqlalchemy.dialects.postgresql import JSONB

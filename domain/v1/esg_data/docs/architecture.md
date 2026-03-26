@@ -15,85 +15,79 @@
 
 ### 2.1 레이어 구조
 
+권장 흐름: **오케스트레이터는 에이전트만 인프로세스로 조율**하고, **에이전트는 도구 실행 시 MCP 클라이언트**(`ClientSession`, `call_tool` 등)로 **MCP 서버에 등록된 `@mcp.tool`** 을 호출한다. MCP 서버의 툴 핸들러 안에서 `UCMMappingService`·공유 Tool·Repository로 **다시 인프로세스** 내려간다.
+
+외부(IDE·원격 에이전트)는 REST 없이 **곧바로 MCP 서버**에 붙을 수도 있고, FastAPI를 타면 **API → 오케스트레이터**로 들어온 뒤 위와 동일하게 에이전트 → MCP 클라이언트 → 툴로 이어진다.
+
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  외부 클라이언트 / 에이전트                                │
-└────────────────┬────────────────────────────────────────┘
-                 │ HTTP/SSE (Streamable)
-┌────────────────▼────────────────────────────────────────┐
-│  MCP Server (esg_tools_server.py, spokes/infra)          │
-│  - FastMCP + Streamable HTTP                            │
-│  - data_integration/sr_tools_server와 동일 패턴         │
-└────────────────┬────────────────────────────────────────┘
-                 │
-┌────────────────▼────────────────────────────────────────┐
-│  API Layer (backend/api/v1/esg_data)                    │
-│  - FastAPI Router                                        │
-│  - 요청 검증 및 응답 포맷팅                              │
-└────────────────┬────────────────────────────────────────┘
-                 │ In-process
-┌────────────────▼────────────────────────────────────────┐
+│  외부 클라이언트 / IDE / 원격 에이전트                      │
+└────────────┬────────────────────┬───────────────────────┘
+             │ MCP                 │ HTTP (REST)
+             │ Streamable HTTP 등   │
+┌────────────▼────────────┐   ┌────▼────────────────────────┐
+│ MCP Server              │   │ API Layer (FastAPI)        │
+│ esg_tools_server.py     │   │ 요청 검증·응답 포맷         │
+│ (고수준 툴 직접 호출 가능) │   └────┬───────────────────────┘
+└────────────┬────────────┘        │ In-process
+             │                      │
+             └──────────┬───────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
 │  Orchestrator (hub/orchestrator)                         │
-│  - UCMOrchestrator: 전체 플로우 조율                     │
-│  - Phase 1: 단순 함수 체인                               │
-│  - Phase 2: LangGraph 적용 (필요 시)                     │
+│  - UCMOrchestrator: 단계·상태·라우팅 조율                  │
+│  - LangGraph 또는 순차 폴백 (Phase 3)                    │
 └────────────────┬────────────────────────────────────────┘
                  │ In-process
 ┌────────────────▼────────────────────────────────────────┐
 │  Routing Layer (hub/routing) [선택]                      │
-│  - Agent 1개일 땐 생략                                   │
-│  - 복수 agent 시 동적 선택                               │
 └────────────────┬────────────────────────────────────────┘
                  │ In-process
 ┌────────────────▼────────────────────────────────────────┐
-│  Agent Layer (spokes/agents)                             │
-│  - ucm_creation_agent                                    │
-│  - validation_agent (추후)                               │
-│  - quality_check_agent (추후)                            │
+│  Agent Layer (spokes/agents) + 오케스트레이터 내 단계     │
+│  - UCMCreationAgent, ucm_policy(순수 정책)                 │
+│  - 검증·품질 요약: UCMOrchestrator.run_validation_step /  │
+│    arun_validation_step, _summarize_workflow_quality      │
 └────────────────┬────────────────────────────────────────┘
-                 │ In-process
+                 │ MCP Client — call_tool / ClientSession
+                 │ (Streamable HTTP · stdio · 인프로세스 브리지)
 ┌────────────────▼────────────────────────────────────────┐
-│  Tool Layer (spokes/infra)                               │
-│  - UCMMappingService: esg_data 소유 ifrs DB/매핑 접근        │
-│  - 기존 서비스 재사용                                    │
+│  MCP Server (동일 esg_tools_server 등)                    │
+│  @mcp.tool() → UCMMappingService / 공유 Tool / Repository │
 └────────────────┬────────────────────────────────────────┘
-                 │ In-process
+                 │ In-process (툴 핸들러 내부)
 ┌────────────────▼────────────────────────────────────────┐
 │  Service Layer (ifrs_agent/service 재사용)               │
-│  - MappingSuggestionService                              │
-│  - EmbeddingService                                      │
+│  - MappingSuggestionService, EmbeddingService …          │
 └────────────────┬────────────────────────────────────────┘
-                 │
+                 │ In-process
 ┌────────────────▼────────────────────────────────────────┐
 │  Repository Layer (hub/repositories)                     │
-│  - UnifiedColumnMappingRepository (재사용 권장)         │
-│  - DataPointRepository                                   │
 └────────────────┬────────────────────────────────────────┘
                  │
 ┌────────────────▼────────────────────────────────────────┐
 │  Database (PostgreSQL + pgvector)                        │
-│  - unified_column_mappings                               │
-│  - data_points, rulebooks                                │
-│  - sr_report_unified_data                                │
 └─────────────────────────────────────────────────────────┘
 ```
+
+**구현 참고**: 일부 코드 경로는 아직 오케스트레이터·서비스가 **Python 모듈을 직접 호출**한다. 문서상 목표는 위와 같이 **에이전트→MCP 클라이언트→툴**로 수렴시키는 것이다.
 
 ### 2.2 통신 방식
 
 | 레이어 간 | 방식 | 설명 |
 |----------|------|------|
-| 외부 → MCP Server | **Streamable HTTP** | FastMCP + SSE, `data_integration`와 동일 |
-| MCP → API | In-process | 같은 프로세스 내 함수 호출 |
+| 외부 → MCP Server | **Streamable HTTP** 등 | FastMCP, `data_integration`의 MCP 패턴과 동일 |
+| 외부 → API | **HTTP** | REST 진입 후 오케스트레이터로 위임 |
 | API → Orchestrator | In-process | 직접 호출 |
-| Orchestrator → Agent | In-process | 직접 호출 |
-| Agent → Tool | In-process | 직접 호출 |
-| Tool → Service | In-process | 직접 호출 |
+| Orchestrator → Routing → Agent | In-process | 그래프/순서 제어만 담당 |
+| **Agent → MCP Server (도구)** | **MCP 클라이언트** | `call_tool`·세션 기반; 전송은 Streamable HTTP·stdio 또는 **동일 프로세스 MCP 브리지** |
+| MCP 툴 핸들러 → Service / Repository | In-process | 직렬화 없이 도메인 실행·DB 접근 |
 | Service → Repository | In-process | 직접 호출 |
 
 **장점**:
-- 외부: MCP로 표준화된 접근
-- 내부: 네트워크 오버헤드 없이 빠른 처리
-- 디버깅 용이 (단일 프로세스)
+- 외부·내부 모두 **동일 MCP 툴 계약**으로 재사용 가능 (에이전트와 IDE가 같은 툴 이름·스키마 사용)
+- 오케스트레이터↔에이전트는 가볍게 유지하고, I/O·부작용은 MCP 툴 경계로 모을 수 있음
+- Streamable HTTP·stdio·인프로세스 브리지를 환경에 맞게 선택 가능 (`data_integration`의 `mcp_client` 전략과 동일 계열)
 
 ---
 
@@ -124,13 +118,13 @@ API → Orchestrator(단순 함수) → Service(재사용) → Repository → DB
 **목표**: 확장 가능한 구조로 전환
 
 ```
-Orchestrator → Agent → Tool → Service
+Orchestrator → Agent → MCP Client → @mcp.tool → Service / Repository
 ```
 
 **구현 항목**:
 - [ ] UCMCreationAgent 추가
-- [ ] UCMMappingService 구현
-- [ ] MCP 서버로 tool 노출
+- [ ] UCMMappingService 구현 (MCP 툴 핸들러에서 호출)
+- [ ] MCP 서버로 tool 노출 + **에이전트용 MCP 클라이언트** 래퍼
 - [ ] Agent 단위 테스트
 
 **선택**:
@@ -148,16 +142,18 @@ Orchestrator(LangGraph) → Routing → Agent pool
 **구현 항목**:
 - [ ] LangGraph StateGraph 적용
 - [ ] Routing 레이어 추가
-- [ ] 복수 Agent (validation, quality_check 등)
+- [ ] 워크플로 단계: 생성(UCMCreationAgent·MCP 툴) → 검증(`validate_ucm_mappings` 동일 계약) → 조건부 품질 요약(오케스트레이터 헬퍼)
 - [ ] 조건부 플로우 (if/else/loop)
 
 ---
 
 ## 4. 주요 컴포넌트 설계
 
-### 4.1 MCP Server (외부 진입점)
+### 4.1 MCP Server (외부·내부 에이전트 공통 도구 진입점)
 
 **파일**: `backend/domain/v1/esg_data/spokes/infra/esg_tools_server.py`
+
+에이전트는 이 서버에 노출된 툴을 **MCP 클라이언트로 호출**한다. 외부 클라이언트도 동일 툴을 직접 호출할 수 있다.
 
 ```python
 from mcp.server.fastmcp import FastMCP
@@ -376,11 +372,13 @@ class UCMOrchestrator:
 
 ### 4.4 Tool Layer (Phase 2)
 
-**파일**: `backend/domain/v1/esg_data/spokes/infra/ucm_mapping_service.py`
+**파일**: `backend/domain/v1/esg_data/hub/services/ucm_mapping_service.py`
+
+MCP `@mcp.tool` 핸들러의 본문에서 주로 호출된다. 에이전트가 MCP 클라이언트로 툴을 호출하면, 최종적으로 이 서비스·공유 Tool 모듈이 실행된다.
 
 ```python
 class UCMMappingService:
-    """ifrs_agent `MappingSuggestionService`·DB 세션을 감싼 인프로세스 퍼사드 (MCP tool과 별개)."""
+    """ifrs_agent `MappingSuggestionService`·DB 세션을 감싼 퍼사드 (MCP 툴 핸들러가 인프로세스로 호출)."""
 
     def create_mappings(self, source_standard: str, target_standard: str, *, dry_run: bool = False) -> dict:
         """배치 자동 추천 후 (dry_run이 아니면) DB 반영."""
@@ -399,26 +397,29 @@ class UCMMappingService:
 
 **파일**: `backend/domain/v1/esg_data/spokes/agents/ucm_creation_agent.py`
 
+권장: **정책·분기·LLM 게이트**는 에이전트에 두고, **저장·임베딩·검증 등 부작용이 큰 작업**은 MCP 클라이언트로 `create_unified_column_mapping`, `run_ucm_mapping_pipeline` 같은 툴을 호출한다 (`data_integration`의 `MCPClient` / `tool_runtime` 패턴 참고).
+
 ```python
 class UCMCreationAgent:
     """
-    UnifiedColumnMapping 생성 전문 Agent.
-    
-    Phase 2에서 추가.
-    LLM 판단이 필요한 경우에만 활용.
+    UCM 생성 전문 Agent.
+    도구 실행은 MCP 클라이언트(call_tool)로 위임하는 것을 권장한다.
     """
-    
-    def __init__(self):
-        from backend.domain.v1.esg_data.spokes.infra.ucm_mapping_service import UCMMappingService
-        self.mapping_service = UCMMappingService()
-    
-    def create_mappings(self, source_standard: str, target_standard: str, *, dry_run: bool = False) -> dict:
-        """매핑 생성 — UCMMappingService(ifrs DB 연동)에 위임."""
-        return self.mapping_service.create_mappings(
-            source_standard, target_standard, dry_run=dry_run
-        )
 
-    # 향후: 다중 target_standard·저신뢰도 LLM 재평가 등은 여기서 분기
+    def __init__(self, mcp_tool_runtime=None):
+        # mcp_tool_runtime: 세션·call_tool을 감싼 런타임 (stdio / HTTP / in-process)
+        self._tools = mcp_tool_runtime
+
+    async def create_mappings(self, source_standard: str, target_standard: str, *, dry_run: bool = False) -> dict:
+        """예: MCP 툴 `create_unified_column_mapping` 호출."""
+        return await self._tools.call(
+            "create_unified_column_mapping",
+            {
+                "source_standard": source_standard,
+                "target_standard": target_standard,
+                "dry_run": dry_run,
+            },
+        )
 ```
 
 ---
@@ -495,19 +496,22 @@ backend/domain/v1/esg_data/
 │   ├── routing/                 # Phase 3에서 추가
 │   │   ├── __init__.py
 │   │   └── agent_router.py      # Agent 선택 로직
-│   └── repositories/            # (또는 ifrs_agent repo 재사용)
+│   ├── repositories/            # (또는 ifrs_agent repo 재사용)
+│   │   ├── __init__.py
+│   │   └── ...
+│   └── services/
 │       ├── __init__.py
-│       └── ...
+│       └── ucm_mapping_service.py  # UCM 퍼사드·툴 지원 메서드
 ├── spokes/
 │   ├── agents/                  # Phase 2에서 추가
 │   │   ├── __init__.py
 │   │   ├── ucm_creation_agent.py
-│   │   ├── validation_agent.py  # 추후
-│   │   └── quality_check_agent.py  # 추후
+│   │   └── ucm_policy.py        # 정책 점수·판정(순수 함수)
 │   └── infra/
 │       ├── __init__.py
-│       ├── esg_tools_server.py  # MCP 서버
-│       └── ucm_mapping_service.py  # ifrs DB/매핑 (esg_data 소유)
+│       ├── esg_tools_server.py       # MCP 서버 (@mcp.tool)
+│       ├── esg_ucm_tool_handlers.py  # MCP·인프로세스 공용 툴 본문
+│       └── esg_ucm_tool_runtime.py   # Agent용 DirectEsgToolRuntime (call_tool)
 ├── models/
 │   ├── bases/                   # (또는 ifrs_agent models 재사용)
 │   │   └── ...
@@ -527,14 +531,15 @@ backend/domain/v1/esg_data/
 | **목적** | SR 보고서 본문 생성 | UCM 생성 + 데이터 품질 관리 |
 | **Orchestrator** | LangGraph StateGraph | Phase 1: 단순 함수, Phase 3: LangGraph |
 | **Agent** | sr_agent (LLM 중심) | ucm_creation_agent (로직 중심, LLM 선택) |
-| **Tool** | sr_tools (PDF, RAG 등) | UCM 파이프라인 Tool + UCMMappingService |
+| **Tool** | sr_tools (PDF, RAG 등) | UCM MCP 툴 + UCMMappingService (툴 핸들러 내부) |
 | **MCP 서버** | sr_tools_server (Streamable HTTP) | esg_tools_server (Streamable HTTP) |
-| **내부 통신** | In-process | In-process |
+| **에이전트 → 도구** | MCP 클라이언트 (`mcp_client`, `tool_runtime`) | **동일: MCP 클라이언트로 툴 호출** |
+| **툴 핸들러 → DB** | In-process | In-process |
 | **Service 재사용** | 자체 서비스 | ifrs_agent/service 재사용 |
 
 **공통점**:
 - MCP Streamable HTTP (외부 접근)
-- In-process (내부 통신)
+- 에이전트가 **MCP 클라이언트**로 툴 호출, 툴 본문은 **인프로세스** 도메인 호출
 - FastMCP 사용
 
 **차이점**:
@@ -626,11 +631,11 @@ async def test_full_ucm_creation_flow():
 
 ## 10. 성능 고려사항
 
-### 10.1 In-process 장점
+### 10.1 지연·처리량
 
-- **지연 시간**: 네트워크 홉 없음 (~1ms vs ~50ms)
-- **처리량**: 직접 함수 호출로 높은 TPS
-- **디버깅**: 단일 프로세스라 breakpoint 용이
+- **MCP 툴 핸들러 내부**: Repository·서비스 호출은 인프로세스라 **저지연**을 유지할 수 있다.
+- **에이전트↔MCP 서버**: Streamable HTTP를 쓰면 네트워크 홉이 생기므로, 개발·CI에서는 **stdio 또는 인프로세스 브리지**로 같은 계약을 검증하는 방식이 `data_integration`과 같다.
+- **디버깅**: 툴 경계에서 로깅·트레이싱을 걸기 좋고, 핸들러 안에서는 기존처럼 breakpoint 가능
 
 ### 10.2 병렬 처리
 
@@ -784,7 +789,7 @@ ucm_creation_duration = Histogram(
 
 ### Q3. MCP 서버를 꼭 만들어야 하나요?
 
-**A**: 외부 에이전트가 접근할 예정이라면 권장합니다. 내부 API만 쓴다면 생략 가능합니다.
+**A**: 외부 에이전트·IDE 연동이 있으면 권장합니다. 내부만 쓰더라도 **에이전트→MCP 클라이언트→툴**로 통일하면 외부와 동일 계약으로 테스트·운영할 수 있다. REST만 쓰고 에이전트가 서비스를 직접 부르는 최소 구성도 가능하나, 문서의 권장 스택과는 다르다.
 
 ### Q4. Repository를 esg_data에 복사해야 하나요?
 
@@ -800,6 +805,7 @@ ucm_creation_duration = Histogram(
 
 - [ESG 데이터 서비스 설계](./esg_data.md)
 - [UCM 결정/정책 모듈 설계](./UCM_DECISION_POLICY_DESIGN.md)
+- [UCM 정책 파이프라인 5단계·레거시 배치](./UCM_POLICY_PIPELINE_AND_LEGACY_BATCH.md)
 - [DATABASE_TABLES_STRUCTURE.md](../../ifrs_agent/docs/DATABASE_TABLES_STRUCTURE.md)
 - [DATA_ONTOLOGY.md](../../ifrs_agent/docs/DATA_ONTOLOGY.md)
 - [data_integration 구조](../../data_integration/)
@@ -807,6 +813,6 @@ ucm_creation_duration = Histogram(
 
 ---
 
-**작성일**: 2026-03-24  
-**버전**: 1.0  
+**작성일**: 2026-03-24 (에이전트·MCP 클라이언트 경계 반영: 2026-03-26)  
+**버전**: 1.1  
 **상태**: 초안

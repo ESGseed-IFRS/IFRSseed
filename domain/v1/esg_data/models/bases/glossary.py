@@ -1,4 +1,4 @@
-"""Glossary ORM (glossary)."""
+"""용어집 ORM — 테이블 `glossary`."""
 
 from sqlalchemy import Column, String, Text, Integer, Boolean, TIMESTAMP, ARRAY
 from sqlalchemy.sql import func

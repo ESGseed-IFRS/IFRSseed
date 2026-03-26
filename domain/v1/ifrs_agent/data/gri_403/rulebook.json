@@ -1,0 +1,3974 @@
+{
+    "rulebooks": [
+        {
+            "rulebook_id": "RULE_GRI403",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403",
+            "section_name": "GRI 403: 직업 보건·안전",
+            "section_content": "GRI 403: Occupational Health and Safety — seed disclosures 403-1 to 403-10.",
+            "validation_rules": {
+                "section_type": "standard",
+                "paragraph_reference": "GRI 403",
+                "key_terms": [
+                    "occupational health and safety",
+                    "OHS",
+                    "workers"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "apply_gri403_seed",
+                        "description": "시드 범위 충족"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_SEED",
+                        "description": "403-1~403-10 시드",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-SEC-2",
+                "GRI403-1",
+                "GRI403-2",
+                "GRI403-3",
+                "GRI403-4",
+                "GRI403-5",
+                "GRI403-6",
+                "GRI403-7",
+                "GRI403-8",
+                "GRI403-9",
+                "GRI403-10"
+            ],
+            "rulebook_title": "GRI 403 (seed)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_SEC_2",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-SEC-2",
+            "section_name": "섹션 2: 주제별 공시",
+            "section_content": "Section 2: Topic-related disclosures for GRI 403 (seed).",
+            "validation_rules": {
+                "section_type": "section",
+                "paragraph_reference": "GRI 403 Section 2",
+                "key_terms": [
+                    "403-1",
+                    "403-2",
+                    "403-3",
+                    "403-4",
+                    "403-5",
+                    "403-6",
+                    "403-7",
+                    "403-8",
+                    "403-9",
+                    "403-10"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_sec2_403",
+                        "description": "403-1~403-10"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_SEC2_OK",
+                        "description": "섹션 2 트리",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-SEC-2",
+                "GRI403-1",
+                "GRI403-2",
+                "GRI403-3",
+                "GRI403-4",
+                "GRI403-5",
+                "GRI403-6",
+                "GRI403-7",
+                "GRI403-8",
+                "GRI403-9",
+                "GRI403-10"
+            ],
+            "rulebook_title": "GRI 403 Section 2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_1",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-1",
+            "section_name": "공개 403-1",
+            "section_content": "Disclosure 403-1: OHS management system — requirements a (i, ii), b.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 Disclosure 403-1",
+                "key_terms": [
+                    "OHS management system",
+                    "ISO 45001",
+                    "legal requirements"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_403_1",
+                        "description": "403-1 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_1_OK",
+                        "description": "403-1",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-1",
+                "GRI403-1-a",
+                "GRI403-1-a-i",
+                "GRI403-1-a-ii",
+                "GRI403-1-b"
+            ],
+            "rulebook_title": "Disclosure 403-1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_1_A",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-1-a",
+            "section_name": "403-1-a",
+            "section_content": "403-1-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-1-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_1_a",
+                        "description": "403-1-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_1_A_OK",
+                        "description": "403-1-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-1-a",
+                "GRI403-1-a-i",
+                "GRI403-1-a-ii"
+            ],
+            "rulebook_title": "403-1-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_1_A_I",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-1-a-i",
+            "section_name": "403-1-a-i",
+            "section_content": "403-1-a-i",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-1-a-i",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_1_a_i",
+                        "description": "a-i"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_1_A_I_OK",
+                        "description": "a-i",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-1-a-i"
+            ],
+            "rulebook_title": "403-1-a-i",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_1_A_II",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-1-a-ii",
+            "section_name": "403-1-a-ii",
+            "section_content": "403-1-a-ii",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-1-a-ii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_1_a_ii",
+                        "description": "a-ii"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_1_A_II_OK",
+                        "description": "a-ii",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-1-a-ii"
+            ],
+            "rulebook_title": "403-1-a-ii",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_1_B",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-1-b",
+            "section_name": "403-1-b",
+            "section_content": "403-1-b",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-1-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_1_b",
+                        "description": "403-1-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_1_B_OK",
+                        "description": "403-1-b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-1-b"
+            ],
+            "rulebook_title": "403-1-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_1_G_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-1",
+            "section_name": "지침: 공개 403-1",
+            "section_content": "Guidance for 403-1: The organization shall list all legal requirements met when implementing the OHS management system. Recognized standards may be international, national, or industry-specific. Reporting recommendations (no separate shall items): describe types of OHS professionals (employees vs consultants) responsible for the system; describe how continuous improvement is achieved (iterative strengthening of OHS performance).",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 Disclosure 403-1 — Guidance",
+                "key_terms": [
+                    "OHS professionals",
+                    "continuous improvement",
+                    "legal list"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_1_guidance",
+                        "description": "지침·권고 보고 항목",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_1_G_REVIEW",
+                        "description": "지침 검토",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-1",
+                "GRI403-1-a",
+                "GRI403-1-b"
+            ],
+            "rulebook_title": "Guidance 403-1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": "§3.2.1: 지침·권고 추가 서술은 DP가 아닌 본 룰북에 집약.",
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_2",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-2",
+            "section_name": "공개 403-2",
+            "section_content": "Disclosure 403-2: Hazard identification, risk assessment, incident investigation.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 Disclosure 403-2",
+                "key_terms": [
+                    "hazard",
+                    "risk assessment",
+                    "incident investigation",
+                    "hierarchy of controls"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_403_2",
+                        "description": "403-2 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_2_OK",
+                        "description": "403-2",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-2",
+                "GRI403-2-a",
+                "GRI403-2-a-i",
+                "GRI403-2-a-ii",
+                "GRI403-2-b",
+                "GRI403-2-c",
+                "GRI403-2-d"
+            ],
+            "rulebook_title": "Disclosure 403-2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_2_A",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-2-a",
+            "section_name": "403-2-a",
+            "section_content": "403-2-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-2-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_2_a",
+                        "description": "403-2-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_2_A_OK",
+                        "description": "403-2-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-2-a",
+                "GRI403-2-a-i",
+                "GRI403-2-a-ii"
+            ],
+            "rulebook_title": "403-2-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_2_A_I",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-2-a-i",
+            "section_name": "403-2-a-i",
+            "section_content": "403-2-a-i",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-2-a-i",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_2_a_i",
+                        "description": "a-i"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_2_A_I_OK",
+                        "description": "a-i",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-2-a-i"
+            ],
+            "rulebook_title": "403-2-a-i",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_2_A_II",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-2-a-ii",
+            "section_name": "403-2-a-ii",
+            "section_content": "403-2-a-ii",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-2-a-ii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_2_a_ii",
+                        "description": "a-ii"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_2_A_II_OK",
+                        "description": "a-ii",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-2-a-ii"
+            ],
+            "rulebook_title": "403-2-a-ii",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_2_B",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-2-b",
+            "section_name": "403-2-b",
+            "section_content": "403-2-b",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-2-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_2_b",
+                        "description": "403-2-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_2_B_OK",
+                        "description": "403-2-b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-2-b"
+            ],
+            "rulebook_title": "403-2-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_2_C",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-2-c",
+            "section_name": "403-2-c",
+            "section_content": "403-2-c",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-2-c",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_2_c",
+                        "description": "403-2-c"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_2_C_OK",
+                        "description": "403-2-c",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-2-c"
+            ],
+            "rulebook_title": "403-2-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_2_D",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-2-d",
+            "section_name": "403-2-d",
+            "section_content": "403-2-d",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-2-d",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_2_d",
+                        "description": "403-2-d"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_2_D_OK",
+                        "description": "403-2-d",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-2-d"
+            ],
+            "rulebook_title": "403-2-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_2_A_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-2-a",
+            "section_name": "지침: 공개 403-2-a",
+            "section_content": "Guidance for 403-2-a: Indicate if processes are based on legal requirements or recognized standards; describe frequency/scope of routine processes; describe triggers for non-routine processes (operational/equipment changes, investigations, complaints, workflow changes, health surveillance results); explain how barriers for vulnerable workers (language, sensory impairments) are addressed, e.g. training in understandable languages.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-2-a — Guidance",
+                "key_terms": [
+                    "non-routine",
+                    "vulnerable workers"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_2_a",
+                        "description": "403-2-a 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_2_A_G_OK",
+                        "description": "지침 정합",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-2-a",
+                "GRI403-2-a-i",
+                "GRI403-2-a-ii"
+            ],
+            "rulebook_title": "Guidance 403-2-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_2_BC_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-2-b",
+            "section_name": "지침: 공개 403-2-b·403-2-c",
+            "section_content": "Guidance for 403-2-b and 403-2-c: Reprisal protection means policies/processes protecting workers from threats or negative employment consequences (dismissal, demotion, pay loss, discipline) for reporting hazards or removing themselves from unsafe situations, including reports to representatives, employers, or regulators. 403-2-c concerns the right to refuse or stop work when the worker believes injury or ill health could occur to themselves or others.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-2-b,c — Guidance",
+                "key_terms": [
+                    "reprisal",
+                    "whistleblower",
+                    "right to refuse"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_2_bc",
+                        "description": "보복·이탈권 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_2_BC_G_OK",
+                        "description": "지침 정합",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-2-b",
+                "GRI403-2-c"
+            ],
+            "rulebook_title": "Guidance 403-2-b,c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": "primary_dp_id는 403-2-b; 403-2-c와 쌍 지침.",
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_3",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-3",
+            "section_name": "공개 403-3",
+            "section_content": "Disclosure 403-3: Occupational health services — requirement a; recommendations 1.3.1–1.3.2.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 Disclosure 403-3",
+                "key_terms": [
+                    "occupational health",
+                    "worker access",
+                    "confidentiality"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_403_3",
+                        "description": "403-3 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_3_OK",
+                        "description": "403-3",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-3",
+                "GRI403-3-a",
+                "GRI403-3-1-3",
+                "GRI403-3-1-3-1",
+                "GRI403-3-1-3-2"
+            ],
+            "rulebook_title": "Disclosure 403-3",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_3_A",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-3-a",
+            "section_name": "403-3-a",
+            "section_content": "403-3-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-3-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_3_a",
+                        "description": "403-3-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_3_A_OK",
+                        "description": "403-3-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-3-a"
+            ],
+            "rulebook_title": "403-3-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_3_1_3",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-3-1-3",
+            "section_name": "권장 1.3",
+            "section_content": "Recommendation 1.3",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-3 — Recommendation 1.3",
+                "key_terms": [
+                    "confidentiality",
+                    "privacy"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "review_403_3_13",
+                        "description": "권장 1.3",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_3_13_REVIEW",
+                        "description": "1.3 검토",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-3-1-3",
+                "GRI403-3-1-3-1",
+                "GRI403-3-1-3-2"
+            ],
+            "rulebook_title": "Recommendation 1.3",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_3_1_3_1",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-3-1-3-1",
+            "section_name": "권장 1.3.1",
+            "section_content": "1.3.1",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 1.3.1",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_403_3_131",
+                        "description": "1.3.1",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_3_131_OK",
+                        "description": "1.3.1",
+                        "expected": "optional"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-3-1-3-1"
+            ],
+            "rulebook_title": "1.3.1",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_3_1_3_2",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-3-1-3-2",
+            "section_name": "권장 1.3.2",
+            "section_content": "1.3.2",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 1.3.2",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_403_3_132",
+                        "description": "1.3.2",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_3_132_OK",
+                        "description": "1.3.2",
+                        "expected": "optional"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-3-1-3-2"
+            ],
+            "rulebook_title": "1.3.2",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_3_G_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-3",
+            "section_name": "지침: 공개 403-3",
+            "section_content": "Guidance for 403-3: Occupational health services protect workers' health in relation to work. Quality may reference competent qualified personnel and compliance with law/standards. Access may include on-site services during hours, transport or expedited care, information in understandable languages, workload adjustments. Effectiveness indicators and awareness-raising may be reported. References [3], [9].",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 Disclosure 403-3 — Guidance",
+                "key_terms": [
+                    "health surveillance",
+                    "access to services"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_3",
+                        "description": "403-3 본 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_3_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Refs [3], [9]"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI403-3",
+                "GRI403-3-a"
+            ],
+            "rulebook_title": "Guidance 403-3",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_3_1_3_G_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-3-1-3",
+            "section_name": "지침: 조항 1.3.1·1.3.2",
+            "section_content": "Guidance for clauses 1.3.1 and 1.3.2: Respect privacy; health data and use of OHS services must not be used for employment decisions (dismissal, demotion, promotion, compensation, favorable/unfavorable treatment). See reference [6].",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 — Guidance for 1.3.1 and 1.3.2",
+                "key_terms": [
+                    "privacy",
+                    "non-discrimination"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_313",
+                        "description": "개인정보·차별 금지 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_313_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Ref [6]"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI403-3-1-3",
+                "GRI403-3-1-3-1",
+                "GRI403-3-1-3-2"
+            ],
+            "rulebook_title": "Guidance 1.3.x",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_4",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-4",
+            "section_name": "공개 403-4",
+            "section_content": "Disclosure 403-4: Participation, consultation, communication; recommendation 1.4.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 Disclosure 403-4",
+                "key_terms": [
+                    "worker participation",
+                    "joint committee",
+                    "trade union"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_403_4",
+                        "description": "403-4 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_4_OK",
+                        "description": "403-4",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-4",
+                "GRI403-4-a",
+                "GRI403-4-b",
+                "GRI403-4-1-4"
+            ],
+            "rulebook_title": "Disclosure 403-4",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_4_A",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-4-a",
+            "section_name": "403-4-a",
+            "section_content": "403-4-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-4-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_4_a",
+                        "description": "403-4-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_4_A_OK",
+                        "description": "403-4-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-4-a"
+            ],
+            "rulebook_title": "403-4-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_4_B",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-4-b",
+            "section_name": "403-4-b",
+            "section_content": "403-4-b",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-4-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_4_b",
+                        "description": "403-4-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_4_B_OK",
+                        "description": "403-4-b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-4-b"
+            ],
+            "rulebook_title": "403-4-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_4_1_4",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-4-1-4",
+            "section_name": "권고 1.4",
+            "section_content": "Recommendation 1.4",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-4 — Recommendation 1.4",
+                "key_terms": [
+                    "collective agreement",
+                    "global framework agreement"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_403_4_14",
+                        "description": "1.4",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_4_14_REVIEW",
+                        "description": "1.4",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-4-1-4"
+            ],
+            "rulebook_title": "Recommendation 1.4",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_4_A_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-4-a",
+            "section_name": "지침: 공개 403-4-a",
+            "section_content": "Guidance for 403-4-a: Participation may be legal-based, through recognized worker representatives, direct participation (e.g. small workplaces), committees (structure/operation), roles in hazard ID, risk assessment, controls, investigations, audits, outsourcing decisions; barriers removed via training and retaliation protection; communication may include work-related incidents and response measures.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-4-a — Guidance",
+                "key_terms": [
+                    "worker representatives",
+                    "barriers to participation"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_4_a",
+                        "description": "403-4-a 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_4_A_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-4-a"
+            ],
+            "rulebook_title": "Guidance 403-4-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_4_B_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-4-b",
+            "section_name": "지침: 공개 403-4-b",
+            "section_content": "Guidance for 403-4-b: Joint committees are common; worker representatives may participate; describe operating level, dispute resolution, chair responsibilities, member reprisal protection. 403-4-b requires whether/why workers are not represented—not the identity of members.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-4-b — Guidance",
+                "key_terms": [
+                    "joint committee",
+                    "dispute resolution"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_4_b",
+                        "description": "403-4-b 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_4_B_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-4-b"
+            ],
+            "rulebook_title": "Guidance 403-4-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_4_1_4_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-4-1-4",
+            "section_name": "지침: 권고 1.4",
+            "section_content": "Guidance for 1.4: Local agreements often cover PPE, inspections, rep participation in audits/investigations, training, reprisal protection. Global agreements may cover ILO standards, problem-solving frameworks, OHS commitments and performance.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 — Guidance for 1.4",
+                "key_terms": [
+                    "local agreement",
+                    "global agreement"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_4_14",
+                        "description": "1.4 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_4_14_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-4-1-4"
+            ],
+            "rulebook_title": "Guidance 1.4",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_5",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-5",
+            "section_name": "공개 403-5",
+            "section_content": "Disclosure 403-5: Worker training on OHS — requirement a.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 Disclosure 403-5",
+                "key_terms": [
+                    "training",
+                    "worker competency",
+                    "OHS awareness"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_403_5",
+                        "description": "403-5 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_5_OK",
+                        "description": "403-5",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-5",
+                "GRI403-5-a"
+            ],
+            "rulebook_title": "Disclosure 403-5",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_5_A",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-5-a",
+            "section_name": "403-5-a",
+            "section_content": "403-5-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-5-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_5_a",
+                        "description": "403-5-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_5_A_OK",
+                        "description": "403-5-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-5-a"
+            ],
+            "rulebook_title": "403-5-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_5_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-5-a",
+            "section_name": "지침: 공개 403-5",
+            "section_content": "Guidance for 403-5: Organizations may describe how training needs are assessed; content/topics, instructor competency, target workers, frequency, and whether training is in languages workers easily understand; whether training is free and during paid work time, or if off-hours whether attendance is mandatory and compensation provided; how training effectiveness is evaluated.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 Disclosure 403-5 — Guidance",
+                "key_terms": [
+                    "training needs",
+                    "paid time",
+                    "effectiveness"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_5",
+                        "description": "403-5 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_5_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-5",
+                "GRI403-5-a"
+            ],
+            "rulebook_title": "Guidance 403-5",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_6",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-6",
+            "section_name": "공개 403-6",
+            "section_content": "Disclosure 403-6: Promotion of worker health — requirements a, b; recommendations 1.5.1–1.5.2.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 Disclosure 403-6",
+                "key_terms": [
+                    "worker health",
+                    "non-occupational healthcare",
+                    "well-being"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_403_6",
+                        "description": "403-6 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_6_OK",
+                        "description": "403-6",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-6",
+                "GRI403-6-a",
+                "GRI403-6-b",
+                "GRI403-6-1-5",
+                "GRI403-6-1-5-1",
+                "GRI403-6-1-5-2"
+            ],
+            "rulebook_title": "Disclosure 403-6",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_6_A",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-6-a",
+            "section_name": "403-6-a",
+            "section_content": "403-6-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-6-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_6_a",
+                        "description": "403-6-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_6_A_OK",
+                        "description": "403-6-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-6-a"
+            ],
+            "rulebook_title": "403-6-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_6_B",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-6-b",
+            "section_name": "403-6-b",
+            "section_content": "403-6-b",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-6-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_6_b",
+                        "description": "403-6-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_6_B_OK",
+                        "description": "403-6-b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-6-b"
+            ],
+            "rulebook_title": "403-6-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_6_1_5",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-6-1-5",
+            "section_name": "권장 1.5",
+            "section_content": "Recommendation 1.5",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-6 — Recommendation 1.5",
+                "key_terms": [
+                    "confidentiality",
+                    "privacy"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "review_403_6_15",
+                        "description": "권장 1.5",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_6_15_REVIEW",
+                        "description": "1.5 검토",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-6-1-5",
+                "GRI403-6-1-5-1",
+                "GRI403-6-1-5-2"
+            ],
+            "rulebook_title": "Recommendation 1.5",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_6_1_5_1",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-6-1-5-1",
+            "section_name": "권장 1.5.1",
+            "section_content": "1.5.1",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 1.5.1",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_403_6_151",
+                        "description": "1.5.1",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_6_151_OK",
+                        "description": "1.5.1",
+                        "expected": "optional"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-6-1-5-1"
+            ],
+            "rulebook_title": "1.5.1",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_6_1_5_2",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-6-1-5-2",
+            "section_name": "권장 1.5.2",
+            "section_content": "1.5.2",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 1.5.2",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_403_6_152",
+                        "description": "1.5.2",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_6_152_OK",
+                        "description": "1.5.2",
+                        "expected": "optional"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-6-1-5-2"
+            ],
+            "rulebook_title": "1.5.2",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_6_A_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-6-a",
+            "section_name": "지침: 공개 403-6-a",
+            "section_content": "Guidance for 403-6-a: Universal health coverage (UN SDG 3.8) context—financial risk protection and access to quality essential care. Facilitation may include on-site clinics, treatment programs, medical systems, insurance, or financial support. Scope may specify service types and eligible worker types. If no support because national quality access exists, or non-employees' primary employer provides access, this may be stated.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-6-a — Guidance",
+                "key_terms": [
+                    "SDG 3.8",
+                    "health coverage",
+                    "access"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_6_a",
+                        "description": "403-6-a 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_6_A_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-6-a"
+            ],
+            "rulebook_title": "Guidance 403-6-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_6_B_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-6-b",
+            "section_name": "지침: 공개 403-6-b 및 자발적 건강 증진 보고 권고",
+            "section_content": "Guidance for 403-6-b: UN SDG 3 context—NCDs, mental health, substance abuse, sexual/reproductive health. Voluntary programs address major non-work-related physical and mental health risks (e.g. smoking, inactivity, diet, HIV, psychosocial factors). Examples: cessation, dietary advice, healthy cafeterias, stress programs, gym/fitness. Additional reporting may cover: paid-time access; extension to family; topic selection and worker involvement; evidence-based interventions (ref [19]); effectiveness indicators; awareness approaches. Incentives must not tie to employment decisions when not based on personal goals. Voluntary promotion complements—does not replace—mandatory OHS services; may be co-managed holistically. Refs [1], [14], [15].",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-6-b — Guidance",
+                "key_terms": [
+                    "well-being",
+                    "voluntary programs",
+                    "SDG 3"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_6_b",
+                        "description": "403-6-b·권고 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_6_B_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Refs [1], [6], [14], [15], [19]"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI403-6-b"
+            ],
+            "rulebook_title": "Guidance 403-6-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_6_1_5_G_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-6-1-5",
+            "section_name": "지침: 조항 1.5.1·1.5.2",
+            "section_content": "Guidance for 1.5.1 and 1.5.2: Non-occupational health services must respect privacy; participation and health data must not drive dismissal, demotion, promotion, compensation, or favorable/unfavorable treatment (ref [6]).",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 — Guidance for 1.5.1 and 1.5.2",
+                "key_terms": [
+                    "privacy",
+                    "non-discrimination"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_615",
+                        "description": "개인정보·차별 금지 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_615_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Ref [6]"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI403-6-1-5",
+                "GRI403-6-1-5-1",
+                "GRI403-6-1-5-2"
+            ],
+            "rulebook_title": "Guidance 1.5.x",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_7",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-7",
+            "section_name": "공개 403-7",
+            "section_content": "Disclosure 403-7: OHS impacts linked by business relationships — requirement a.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 Disclosure 403-7",
+                "key_terms": [
+                    "business relationships",
+                    "value chain",
+                    "due diligence"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_403_7",
+                        "description": "403-7 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_7_OK",
+                        "description": "403-7",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-7",
+                "GRI403-7-a"
+            ],
+            "rulebook_title": "Disclosure 403-7",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_7_A",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-7-a",
+            "section_name": "403-7-a",
+            "section_content": "403-7-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-7-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_7_a",
+                        "description": "403-7-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_7_A_OK",
+                        "description": "403-7-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-7-a"
+            ],
+            "rulebook_title": "403-7-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_7_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-7-a",
+            "section_name": "지침: 공개 403-7",
+            "section_content": "Guidance for 403-7: Even without control over both work and workplace, the organization should use available leverage to prevent and mitigate negative OHS impacts linked through business relationships to operations, products, or services. See 'Scope of workers' in the Standard. Ref [13].",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 Disclosure 403-7 — Guidance",
+                "key_terms": [
+                    "leverage",
+                    "scope of workers"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_7",
+                        "description": "403-7 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_7_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Ref [13]"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI403-7",
+                "GRI403-7-a"
+            ],
+            "rulebook_title": "Guidance 403-7",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_8",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-8",
+            "section_name": "공개 403-8",
+            "section_content": "Disclosure 403-8: Workers covered by an OHS management system — requirements a (i–iii), b, c.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 Disclosure 403-8",
+                "key_terms": [
+                    "coverage",
+                    "audit",
+                    "certification",
+                    "percentage"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_403_8",
+                        "description": "403-8 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_8_OK",
+                        "description": "403-8",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-8",
+                "GRI403-8-a",
+                "GRI403-8-a-i",
+                "GRI403-8-a-ii",
+                "GRI403-8-a-iii",
+                "GRI403-8-b",
+                "GRI403-8-c"
+            ],
+            "rulebook_title": "Disclosure 403-8",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_8_A",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-8-a",
+            "section_name": "403-8-a",
+            "section_content": "403-8-a (conditional)",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-8-a",
+                "key_terms": [
+                    "OHS MS",
+                    "conditional disclosure"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_8_a",
+                        "description": "403-8-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_8_A_OK",
+                        "description": "403-8-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-8-a",
+                "GRI403-8-a-i",
+                "GRI403-8-a-ii",
+                "GRI403-8-a-iii"
+            ],
+            "rulebook_title": "403-8-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_8_A_I",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-8-a-i",
+            "section_name": "403-8-a-i",
+            "section_content": "403-8-a-i",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-8-a-i",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_8_a_i",
+                        "description": "a-i"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_8_A_I_OK",
+                        "description": "a-i",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-8-a-i"
+            ],
+            "rulebook_title": "403-8-a-i",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_8_A_II",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-8-a-ii",
+            "section_name": "403-8-a-ii",
+            "section_content": "403-8-a-ii",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-8-a-ii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_8_a_ii",
+                        "description": "a-ii"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_8_A_II_OK",
+                        "description": "a-ii",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-8-a-ii"
+            ],
+            "rulebook_title": "403-8-a-ii",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_8_A_III",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-8-a-iii",
+            "section_name": "403-8-a-iii",
+            "section_content": "403-8-a-iii",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-8-a-iii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_8_a_iii",
+                        "description": "a-iii"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_8_A_III_OK",
+                        "description": "a-iii",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-8-a-iii"
+            ],
+            "rulebook_title": "403-8-a-iii",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_8_B",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-8-b",
+            "section_name": "403-8-b",
+            "section_content": "403-8-b",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-8-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_8_b",
+                        "description": "403-8-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_8_B_OK",
+                        "description": "403-8-b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-8-b"
+            ],
+            "rulebook_title": "403-8-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_8_C",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-8-c",
+            "section_name": "403-8-c",
+            "section_content": "403-8-c",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-8-c",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_8_c",
+                        "description": "403-8-c"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_8_C_OK",
+                        "description": "403-8-c",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-8-c"
+            ],
+            "rulebook_title": "403-8-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_8_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-8",
+            "section_name": "지침: 공개 403-8(배경·교차참조·감사)",
+            "section_content": "Background: OHS management systems integrate OHS into business processes, often PDCA, with worker consultation. System focus can improve overall OHS versus siloed hazard/risk/incident activities. Disclosure 403-8: Percentages of employees and controlled non-employee workers covered by an OHS MS based on legal/recognized requirements—list of those requirements is reported under Disclosure 403-1-a-i and 403-1-a-ii (management approach). If not all workers covered, may report high injury/ill-health risk among uncovered workers. May also report number/percentage of sites covered. May describe internal audit approach (internal criteria vs recognized standards; auditor qualifications); whether processes/functions excluded from audit/certification scope and how OHS performance is monitored there; audit/certification criteria used. External audits may include second-party (customer, interested party) and third-party (registrar/certification or independent regulator).",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 Disclosure 403-8 — Guidance",
+                "key_terms": [
+                    "PDCA",
+                    "403-1",
+                    "internal audit",
+                    "external audit"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_8",
+                        "description": "403-8 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_8_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Cross-ref 403-1-a-i, 403-1-a-ii"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI403-8",
+                "GRI403-8-a",
+                "GRI403-8-a-i",
+                "GRI403-8-a-ii",
+                "GRI403-8-a-iii",
+                "GRI403-8-c"
+            ],
+            "rulebook_title": "Guidance 403-8",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_8_B_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-8-b",
+            "section_name": "지침: 공개 403-8-b(제외 근로자 유형)",
+            "section_content": "Guidance for 403-8-b: Worker types for exclusions may be classified by regular/non-regular employment, guaranteed hours, full-time/temporary, type/degree of control (work/workplace, sole/joint), place of work, etc.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-8-b — Guidance",
+                "key_terms": [
+                    "worker types",
+                    "exclusions"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_8_b",
+                        "description": "403-8-b 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_8_B_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-8-b"
+            ],
+            "rulebook_title": "Guidance 403-8-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9",
+            "section_name": "공개 403-9",
+            "section_content": "Disclosure 403-9: Work-related injuries — requirements a–g; compilation 2.1; recommendation 2.2.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 Disclosure 403-9",
+                "key_terms": [
+                    "injury",
+                    "fatality",
+                    "TRIR",
+                    "hierarchy of controls"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_403_9",
+                        "description": "403-9 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_OK",
+                        "description": "403-9",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": [
+                    "Cross-ref GRI403-2-a"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI403-9",
+                "GRI403-9-a",
+                "GRI403-9-a-i",
+                "GRI403-9-a-ii",
+                "GRI403-9-a-iii",
+                "GRI403-9-a-iv",
+                "GRI403-9-a-v",
+                "GRI403-9-b",
+                "GRI403-9-b-i",
+                "GRI403-9-b-ii",
+                "GRI403-9-b-iii",
+                "GRI403-9-b-iv",
+                "GRI403-9-b-v",
+                "GRI403-9-c",
+                "GRI403-9-c-i",
+                "GRI403-9-c-ii",
+                "GRI403-9-c-iii",
+                "GRI403-9-d",
+                "GRI403-9-e",
+                "GRI403-9-f",
+                "GRI403-9-g",
+                "GRI403-9-2-1",
+                "GRI403-9-2-1-1",
+                "GRI403-9-2-1-2",
+                "GRI403-9-2-1-3",
+                "GRI403-9-2-1-4",
+                "GRI403-9-2-2",
+                "GRI403-9-2-2-1",
+                "GRI403-9-2-2-2",
+                "GRI403-9-2-2-3",
+                "GRI403-9-2-2-4",
+                "GRI403-9-2-2-5"
+            ],
+            "rulebook_title": "Disclosure 403-9",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_A",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-a",
+            "section_name": "403-9-a",
+            "section_content": "403-9-a employees",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-9-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_9_a",
+                        "description": "403-9-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_A_OK",
+                        "description": "403-9-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-a-i",
+                "GRI403-9-a-ii",
+                "GRI403-9-a-iii",
+                "GRI403-9-a-iv",
+                "GRI403-9-a-v"
+            ],
+            "rulebook_title": "403-9-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_B",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-b",
+            "section_name": "403-9-b",
+            "section_content": "403-9-b controlled workers",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-9-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_9_b",
+                        "description": "403-9-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_B_OK",
+                        "description": "403-9-b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-b-i",
+                "GRI403-9-b-ii",
+                "GRI403-9-b-iii",
+                "GRI403-9-b-iv",
+                "GRI403-9-b-v"
+            ],
+            "rulebook_title": "403-9-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_C",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-c",
+            "section_name": "403-9-c",
+            "section_content": "403-9-c high-consequence hazards",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-9-c",
+                "key_terms": [
+                    "hazard",
+                    "high-consequence"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_9_c",
+                        "description": "403-9-c"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_C_OK",
+                        "description": "403-9-c",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-c",
+                "GRI403-9-c-i",
+                "GRI403-9-c-ii",
+                "GRI403-9-c-iii"
+            ],
+            "rulebook_title": "403-9-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_D",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-d",
+            "section_name": "403-9-d",
+            "section_content": "403-9-d other hazards",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-9-d",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_9_d",
+                        "description": "403-9-d"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_D_OK",
+                        "description": "403-9-d",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-d"
+            ],
+            "rulebook_title": "403-9-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_E",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-e",
+            "section_name": "403-9-e",
+            "section_content": "403-9-e rate basis",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-9-e",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_9_e",
+                        "description": "403-9-e"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_E_OK",
+                        "description": "403-9-e",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-e"
+            ],
+            "rulebook_title": "403-9-e",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_F",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-f",
+            "section_name": "403-9-f",
+            "section_content": "403-9-f exclusions",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-9-f",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_9_f",
+                        "description": "403-9-f"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_F_OK",
+                        "description": "403-9-f",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-f"
+            ],
+            "rulebook_title": "403-9-f",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_G",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-g",
+            "section_name": "403-9-g",
+            "section_content": "403-9-g methodology",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-9-g",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_9_g",
+                        "description": "403-9-g"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_G_OK",
+                        "description": "403-9-g",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-g"
+            ],
+            "rulebook_title": "403-9-g",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_2_1",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-2-1",
+            "section_name": "편성 2.1",
+            "section_content": "Compilation requirements 2.1.1–2.1.4 for 403-9",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 403-9 — Compilation 2.1",
+                "key_terms": [
+                    "compilation",
+                    "denominator",
+                    "commuting"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "compile_403_9_21",
+                        "description": "2.1"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_21_OK",
+                        "description": "2.1",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-2-1",
+                "GRI403-9-2-1-1",
+                "GRI403-9-2-1-2",
+                "GRI403-9-2-1-3",
+                "GRI403-9-2-1-4"
+            ],
+            "rulebook_title": "Compilation 2.1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_2_1_1",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-2-1-1",
+            "section_name": "2.1.1",
+            "section_content": "Exclude fatalities from high-consequence metrics",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 2.1.1",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rule_403_9_211",
+                        "description": "2.1.1"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_211_OK",
+                        "description": "2.1.1",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-2-1-1",
+                "GRI403-9-a-ii",
+                "GRI403-9-b-ii"
+            ],
+            "rulebook_title": "2.1.1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_2_1_2",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-2-1-2",
+            "section_name": "2.1.2",
+            "section_content": "Include fatalities in recordable metrics",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 2.1.2",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rule_403_9_212",
+                        "description": "2.1.2"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_212_OK",
+                        "description": "2.1.2",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-2-1-2",
+                "GRI403-9-a-iii",
+                "GRI403-9-b-iii"
+            ],
+            "rulebook_title": "2.1.2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_2_1_3",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-2-1-3",
+            "section_name": "지침: 편성 2.1.3(통근)",
+            "section_content": "2.1.3 guidance: Include commute injuries only when the organization organizes transport (company or contracted vehicles). Other commute accidents may be reported separately if law requires.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 2.1.3 — Guidance",
+                "key_terms": [
+                    "commuting",
+                    "transport"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_9_213",
+                        "description": "2.1.3",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_213_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-2-1-3"
+            ],
+            "rulebook_title": "Guidance 2.1.3",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_2_1_4",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-2-1-4",
+            "section_name": "지침: 편성 2.1.4(산식·시간 기준)",
+            "section_content": "2.1.4 guidance: 200,000 hours ≈ 100 FTE at 2,000 h/year (rate 1.0 = 1 event per 100 workers/year); 1,000,000 h ≈ 500 FTE/year. Report absolute counts alongside rates. If work hours cannot be measured, estimate from normal hours incl. paid leave and explain; if impossible, disclose omission per GRI 1 Foundation (Requirement 6).",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 2.1.4 — Guidance",
+                "key_terms": [
+                    "200000",
+                    "1000000",
+                    "rate formula"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_9_214",
+                        "description": "2.1.4",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_214_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-2-1-4",
+                "GRI403-9-a-i",
+                "GRI403-9-a-ii",
+                "GRI403-9-a-iii",
+                "GRI403-9-b-i",
+                "GRI403-9-b-ii",
+                "GRI403-9-b-iii",
+                "GRI403-9-e"
+            ],
+            "rulebook_title": "Guidance 2.1.4",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_2_2",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-2-2",
+            "section_name": "권장 2.2",
+            "section_content": "Recommendation 2.2",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-9 — Recommendation 2.2",
+                "key_terms": [
+                    "breakdown",
+                    "near miss",
+                    "chemical"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "review_403_9_22",
+                        "description": "2.2",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_22_REVIEW",
+                        "description": "2.2",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-2-2",
+                "GRI403-9-2-2-1",
+                "GRI403-9-2-2-2",
+                "GRI403-9-2-2-3",
+                "GRI403-9-2-2-4",
+                "GRI403-9-2-2-5"
+            ],
+            "rulebook_title": "Recommendation 2.2",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_INTRO_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9",
+            "section_name": "지침: 공개 403-9(해석·MSD·일반인)",
+            "section_content": "Disclosure 403-9 guidance: Injury metrics indicate harm, not safety performance alone; rising counts may reflect better reporting or scope. Injury types include death, amputation, laceration, fracture, dislocation, burn, unconsciousness, paralysis, etc. MSDs are generally reported under 403-10; if jurisdiction classifies MSD as injury, report under 403-9 with explanation. Exclude injuries to the general public (visitors, third-party traffic) from 403-9 but may report separately.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 Disclosure 403-9 — General guidance",
+                "key_terms": [
+                    "injury definition",
+                    "trends",
+                    "MSD"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_9_intro",
+                        "description": "403-9 개괄 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_INTRO_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9"
+            ],
+            "rulebook_title": "Guidance 403-9 intro",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_HIGH_CONSEQUENCE_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-a-ii",
+            "section_name": "지침: 중대한 결과 부상 정의·산식",
+            "section_content": "High-consequence work-related injuries (non-fatal): worker cannot recover, or is not expected to fully recover to pre-injury health within 6 months (e.g. complicated fracture). Fatalities use 403-9-a-i and 403-9-b-i. Severity uses recovery time, not merely days away from work; organizations may still report lost-time metrics. Formulas: fatality rate = (fatalities/hours)×[200k or 1M]; high-consequence rate (excl. fatalities) = (HC injuries excl. deaths/hours)×[200k or 1M]; recordable rate = (recordable injuries/hours)×[200k or 1M].",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 — High-consequence injury",
+                "key_terms": [
+                    "recovery time",
+                    "six months",
+                    "rate"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_9_hc",
+                        "description": "중대 부상 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_HC_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-a-ii",
+                "GRI403-9-b-ii",
+                "GRI403-9-a-i",
+                "GRI403-9-b-i",
+                "GRI403-9-a-iii",
+                "GRI403-9-b-iii"
+            ],
+            "rulebook_title": "Guidance high-consequence",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_C_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-c",
+            "section_name": "지침: 공개 403-9-c",
+            "section_content": "403-9-c: Hazards that could cause high-consequence injury if uncontrolled; identified via risk assessment or after serious events. Examples: excessive workload, trip hazards, flammable exposure. May group by region/BU. 403-9-c-i: May describe criteria/thresholds; hazard ID and hierarchy process also in 403-2-a. 403-9-c-ii: Comprehensive analysis of hazards linked to high-consequence injuries in the period—not necessarily mapping each injury to one hazard.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-9-c — Guidance",
+                "key_terms": [
+                    "hazard identification",
+                    "403-2-a"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_9_c",
+                        "description": "403-9-c 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_C_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-c",
+                "GRI403-9-c-i",
+                "GRI403-9-c-ii",
+                "GRI403-9-c-iii"
+            ],
+            "rulebook_title": "Guidance 403-9-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_D_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-d",
+            "section_name": "지침: 공개 403-9-d",
+            "section_content": "403-9-d: Actions for hazards not in 403-9-c scope—other work-related hazards, lower-probability HC scenarios, including non-HC injuries.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-9-d — Guidance",
+                "key_terms": [
+                    "hierarchy of controls"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_9_d",
+                        "description": "403-9-d 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_D_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-d"
+            ],
+            "rulebook_title": "Guidance 403-9-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_F_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-f",
+            "section_name": "지침: 공개 403-9-f",
+            "section_content": "403-9-f: Classify excluded workers by regular/part-time, guaranteed hours, permanent/temporary, control type (work/workplace, sole/joint), workplace.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-9-f — Guidance",
+                "key_terms": [
+                    "worker types"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_9_f",
+                        "description": "403-9-f 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_F_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-f"
+            ],
+            "rulebook_title": "Guidance 403-9-f",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_G_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-g",
+            "section_name": "지침: 공개 403-9-g(ILO)",
+            "section_content": "403-9-g: If following ILO Code of Practice on Recording and Notification of Occupational Accidents and Diseases, state so; otherwise explain relationship to the ILO model.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-9-g — Guidance",
+                "key_terms": [
+                    "ILO",
+                    "recording"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_9_g",
+                        "description": "403-9-g 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_G_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-g"
+            ],
+            "rulebook_title": "Guidance 403-9-g",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_2_2_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-2-2",
+            "section_name": "지침: 권장 2.2.1~2.2.5",
+            "section_content": "Recommendations 2.2.1–2.2.5 guidance: SDG 8.8 alignment; demographic breakdowns (sex, gender identity, migrant per ILO C143, age, worker type); injury/incident type detail; chemical list when 403-9-c identifies chemical hazards; high-risk work incidents; near-miss counts. Ref [10].",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 — Guidance for 2.2.x",
+                "key_terms": [
+                    "SDG 8.8",
+                    "demographics",
+                    "near miss"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_9_22x",
+                        "description": "2.2.x 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_22x_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Ref [10]"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI403-9-2-2",
+                "GRI403-9-2-2-1",
+                "GRI403-9-2-2-2",
+                "GRI403-9-2-2-3",
+                "GRI403-9-2-2-4",
+                "GRI403-9-2-2-5"
+            ],
+            "rulebook_title": "Guidance 2.2.x",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_9_WORK_HOURS_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-9-a-v",
+            "section_name": "지침: 근로시간 산정·추정",
+            "section_content": "Work hours guidance: Estimation and omission rules as above; commuting scope tied to 2.1.3.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 — Work hours for 403-9",
+                "key_terms": [
+                    "denominator",
+                    "estimation"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_9_hours",
+                        "description": "근로시간 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_9_WH_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-9-a-v",
+                "GRI403-9-b-v"
+            ],
+            "rulebook_title": "Guidance work hours",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10",
+            "section_name": "공개 403-10",
+            "section_content": "Disclosure 403-10: Work-related ill health — a–e; compilation 2.3; recommendation 2.4.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 Disclosure 403-10",
+                "key_terms": [
+                    "ill health",
+                    "occupational disease",
+                    "IARC"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_403_10",
+                        "description": "403-10 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_OK",
+                        "description": "403-10",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10",
+                "GRI403-10-a",
+                "GRI403-10-a-i",
+                "GRI403-10-a-ii",
+                "GRI403-10-a-iii",
+                "GRI403-10-b",
+                "GRI403-10-b-i",
+                "GRI403-10-b-ii",
+                "GRI403-10-b-iii",
+                "GRI403-10-c",
+                "GRI403-10-c-i",
+                "GRI403-10-c-ii",
+                "GRI403-10-c-iii",
+                "GRI403-10-d",
+                "GRI403-10-e",
+                "GRI403-10-2-3",
+                "GRI403-10-2-4",
+                "GRI403-10-2-4-1",
+                "GRI403-10-2-4-2",
+                "GRI403-10-2-4-3"
+            ],
+            "rulebook_title": "Disclosure 403-10",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_A",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-a",
+            "section_name": "403-10-a",
+            "section_content": "403-10-a employees",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-10-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_10_a",
+                        "description": "403-10-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_A_OK",
+                        "description": "403-10-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-a",
+                "GRI403-10-a-i",
+                "GRI403-10-a-ii",
+                "GRI403-10-a-iii"
+            ],
+            "rulebook_title": "403-10-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_B",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-b",
+            "section_name": "403-10-b",
+            "section_content": "403-10-b controlled workers",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-10-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_10_b",
+                        "description": "403-10-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_B_OK",
+                        "description": "403-10-b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-b",
+                "GRI403-10-b-i",
+                "GRI403-10-b-ii",
+                "GRI403-10-b-iii"
+            ],
+            "rulebook_title": "403-10-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_C",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-c",
+            "section_name": "403-10-c",
+            "section_content": "403-10-c health hazards",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-10-c",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_10_c",
+                        "description": "403-10-c"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_C_OK",
+                        "description": "403-10-c",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-c",
+                "GRI403-10-c-i",
+                "GRI403-10-c-ii",
+                "GRI403-10-c-iii"
+            ],
+            "rulebook_title": "403-10-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_D",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-d",
+            "section_name": "403-10-d",
+            "section_content": "403-10-d exclusions",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-10-d",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_10_d",
+                        "description": "403-10-d"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_D_OK",
+                        "description": "403-10-d",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-d"
+            ],
+            "rulebook_title": "403-10-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_E",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-e",
+            "section_name": "403-10-e",
+            "section_content": "403-10-e methodology",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 403 403-10-e",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_403_10_e",
+                        "description": "403-10-e"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_E_OK",
+                        "description": "403-10-e",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-e"
+            ],
+            "rulebook_title": "403-10-e",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_2_3",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-2-3",
+            "section_name": "편성 2.3",
+            "section_content": "Compilation 2.3: deaths included in recordable ill health count",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 403 403-10 — Compilation 2.3",
+                "key_terms": [
+                    "recordable",
+                    "fatalities"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "compile_403_10_23",
+                        "description": "2.3"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_23_OK",
+                        "description": "2.3",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-2-3",
+                "GRI403-10-a-ii",
+                "GRI403-10-b-ii"
+            ],
+            "rulebook_title": "Compilation 2.3",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_2_4",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-2-4",
+            "section_name": "권장 2.4",
+            "section_content": "Recommendation 2.4",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-10 — Recommendation 2.4",
+                "key_terms": [
+                    "breakdown",
+                    "exposure"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "review_403_10_24",
+                        "description": "2.4",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_24_REVIEW",
+                        "description": "2.4",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-2-4",
+                "GRI403-10-2-4-1",
+                "GRI403-10-2-4-2",
+                "GRI403-10-2-4-3"
+            ],
+            "rulebook_title": "Recommendation 2.4",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_2_4_1",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-2-4-1",
+            "section_name": "권장 2.4.1",
+            "section_content": "2.4.1",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 2.4.1",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_403_10_241",
+                        "description": "2.4.1",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_241_OK",
+                        "description": "2.4.1",
+                        "expected": "optional"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-2-4-1"
+            ],
+            "rulebook_title": "2.4.1",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_2_4_2",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-2-4-2",
+            "section_name": "권장 2.4.2",
+            "section_content": "2.4.2",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 2.4.2",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_403_10_242",
+                        "description": "2.4.2",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_242_OK",
+                        "description": "2.4.2",
+                        "expected": "optional"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-2-4-2"
+            ],
+            "rulebook_title": "2.4.2",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_2_4_3",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-2-4-3",
+            "section_name": "권장 2.4.3",
+            "section_content": "2.4.3",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 2.4.3",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_403_10_243",
+                        "description": "2.4.3",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_243_OK",
+                        "description": "2.4.3",
+                        "expected": "optional"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-2-4-3"
+            ],
+            "rulebook_title": "2.4.3",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_INTRO_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10",
+            "section_name": "지침: 공개 403-10(정의·범위·프라이버시)",
+            "section_content": "403-10 guidance: Work-related ill health includes acute, recurrent, chronic conditions from work (MSDs, skin/respiratory disease, cancer, noise/vibration, mental health such as anxiety/PTSD); ILO occupational disease list informative, not exhaustive. MSDs are ill health under this Standard, not injury. Report cases notified or found via surveillance in period; may include former workers. Explain latency/causality judgments; supplement with hazard data for long-latency disease. Omission reasons: legal/privacy/insurance limits, psychosocial self-report constraints—per GRI 1 Req.6. Exclude public health impacts from workplace events to the community (report separately). Refs [5], [10], [16].",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 Disclosure 403-10 — General guidance",
+                "key_terms": [
+                    "ill health",
+                    "MSD",
+                    "latency"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_10_intro",
+                        "description": "403-10 개괄 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_INTRO_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Refs [5], [10], [16]"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI403-10"
+            ],
+            "rulebook_title": "Guidance 403-10 intro",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_C_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-c",
+            "section_name": "지침: 공개 403-10-c(IARC·화학)",
+            "section_content": "403-10-c: Include IARC Group 1, 2A, 2B carcinogen exposure context where relevant. Refs [17], [18]; see also 403-9-c risk reporting guidance.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-10-c — Guidance",
+                "key_terms": [
+                    "IARC",
+                    "carcinogen"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_10_c",
+                        "description": "403-10-c 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_C_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Refs [17], [18]"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI403-10-c",
+                "GRI403-10-c-i",
+                "GRI403-10-c-ii",
+                "GRI403-10-c-iii"
+            ],
+            "rulebook_title": "Guidance 403-10-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_D_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-d",
+            "section_name": "지침: 공개 403-10-d",
+            "section_content": "403-10-d: Worker classification—employment type, duration, control degree, workplace (same family as 403-9-f).",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-10-d — Guidance",
+                "key_terms": [
+                    "worker types"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_10_d",
+                        "description": "403-10-d 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_D_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-d"
+            ],
+            "rulebook_title": "Guidance 403-10-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_E_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-e",
+            "section_name": "지침: 공개 403-10-e(ILO)",
+            "section_content": "403-10-e: ILO recording/notifications code alignment—state if followed, else explain relationship to ILO model.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 403-10-e — Guidance",
+                "key_terms": [
+                    "ILO"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_10_e",
+                        "description": "403-10-e 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_E_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-e"
+            ],
+            "rulebook_title": "Guidance 403-10-e",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI403_10_2_4_1_GUIDANCE",
+            "standard_id": "GRI403",
+            "primary_dp_id": "GRI403-10-2-4-1",
+            "section_name": "지침: 권장 2.4.1",
+            "section_content": "2.4.1 guidance: If driven by specific illness types or exposure incidents, detailed breakdown; cross-ref 2.2.1/2.2.2 style guidance.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 403 — Guidance for 2.4.1",
+                "key_terms": [
+                    "breakdown"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_403_10_241",
+                        "description": "2.4.1 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI403_10_241_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI403-10-2-4-1"
+            ],
+            "rulebook_title": "Guidance 2.4.1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        }
+    ]
+}

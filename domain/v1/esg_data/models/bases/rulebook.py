@@ -1,4 +1,4 @@
-"""Rulebook ORM (rulebooks)."""
+"""룰북 ORM — 테이블 `rulebooks`."""
 
 from sqlalchemy import (
     Column,
@@ -20,7 +20,7 @@ from backend.domain.v1.esg_data.models.bases._embedding import vector_column
 
 
 class Rulebook(Base):
-    """Rulebook 테이블 (기준서별 공시 요구사항 상세)."""
+    """룰북 테이블(기준서별 공시 요구사항 상세)."""
 
     __tablename__ = "rulebooks"
 

@@ -1,4 +1,4 @@
-"""esg_data UCM service facade — repository 위임 + 배치 매핑 스텁."""
+"""esg_data UCM 서비스 퍼사드 — 저장소 위임 + 배치 매핑 스텁."""
 
 from __future__ import annotations
 
@@ -6,6 +6,7 @@ from typing import Any, Dict
 
 from loguru import logger
 from sqlalchemy import text
+
 from backend.domain.v1.esg_data.hub.repositories import UCMRepository
 from backend.domain.v1.esg_data.spokes.infra.ucm_pipeline_contracts import (
     UCMWorkflowCreateResult,
@@ -59,14 +60,14 @@ class UCMMappingService:
         }
 
     def upsert_ucm_from_payload(self, payload: Dict[str, Any]) -> Dict[str, Any]:
-        """SchemaMappingTool payload → unified_column_mappings upsert."""
+        """스키마 매핑 툴 페이로드를 `unified_column_mappings`에 삽입 또는 갱신한다."""
         return self.repository.upsert_ucm_from_payload(payload)
 
     def validate_mappings(self) -> UCMWorkflowValidationResult:
-        """UCM·data_points 정합성 요약 통계."""
+        """UCM과 데이터 포인트 정합성 요약 통계."""
         return self.repository.validate_mappings()
 
-    # --- Tool support methods (EmbeddingCandidateTool / RuleValidationTool) ---
+    # --- 툴 지원 메서드(임베딩 후보 툴 / 룰 검증 툴) ---
     def _are_units_compatible(self, source_unit: str, target_unit: str) -> bool:
         if source_unit == target_unit:
             return True
@@ -116,7 +117,7 @@ class UCMMappingService:
         final_threshold: float = 0.75,
         top_k: int = 5,
     ) -> list[dict[str, Any]]:
-        """Simple in-process hybrid search fallback for UCM tools."""
+        """UCM 툴용 단순 인프로세스 하이브리드 검색 폴백."""
         _ = vector_threshold
         db = None
         try:
@@ -147,7 +148,7 @@ class UCMMappingService:
             rows: list[dict[str, Any]] = []
             for target in targets:
                 structural_score, details = self._calculate_structural_match(source, target)
-                # Vector score fallback: use 0.0 when no embedding similarity infra is wired.
+                # 벡터 유사도 인프라가 없으면 벡터 점수는 0.0으로 둔다.
                 vector_similarity = 0.0
                 final_score = round(0.6 * structural_score + 0.4 * vector_similarity, 4)
                 if structural_score < structural_threshold or final_score < final_threshold:
@@ -195,13 +196,13 @@ class UCMMappingService:
             if not source:
                 return []
 
-            # embedding 컬럼이 vector가 아니면(또는 null이면) 구조 점수 기반 폴백
+            # 임베딩 컬럼이 벡터 타입이 아니거나 null이면 구조 점수 기반 폴백
             if getattr(source, "embedding", None) is None:
                 return self._cross_standard_structural_fallback(
                     source, structural_threshold=structural_threshold, final_threshold=final_threshold, top_k=top_k
                 )
 
-            # pgvector distance: smaller is closer. Convert to similarity in [0,1] approximately.
+            # pgvector 거리: 작을수록 가깝다. 대략 [0,1] 유사도로 변환.
             sql = """
             SELECT t.dp_id AS target_dp_id,
                    (s.embedding <-> t.embedding) AS distance
@@ -219,7 +220,7 @@ class UCMMappingService:
             """
             rows = db.execute(text(sql), {"source_dp_id": source_dp_id, "top_k": int(top_k)}).fetchall()
 
-            # Load targets for structural scoring
+            # 구조 점수 계산을 위해 타깃 DP 로드
             target_ids = [r[0] for r in rows]
             if not target_ids:
                 return []
@@ -234,7 +235,7 @@ class UCMMappingService:
             for r in rows:
                 tid = r[0]
                 dist = float(r[1] or 0.0)
-                # Similarity heuristic
+                # 유사도 휴리스틱
                 vector_similarity = max(0.0, min(1.0, 1.0 / (1.0 + dist)))
                 target = by_id.get(tid)
                 if not target:
@@ -273,7 +274,7 @@ class UCMMappingService:
         final_threshold: float,
         top_k: int,
     ) -> list[dict[str, Any]]:
-        """embedding이 없을 때: 다른 기준서만 구조 점수로 후보를 뽑는다."""
+        """임베딩이 없을 때: 다른 기준서만 구조 점수로 후보를 뽑는다."""
         from backend.domain.v1.esg_data.models.bases import DataPoint
         from backend.core.db import get_session
 

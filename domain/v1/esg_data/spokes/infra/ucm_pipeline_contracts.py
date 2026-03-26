@@ -1,10 +1,10 @@
-"""UCM policy pipeline + workflow result contracts (TypedDict) — esg_data infra 단일 소스."""
+"""UCM 정책 파이프라인·워크플로 결과 계약(TypedDict) — esg_data 인프라 단일 정의."""
 
 from __future__ import annotations
 
 from typing import Any, List, Literal, NotRequired, TypedDict
 
-# --- §2 policy pipeline (tool / agent step I/O) ---
+# --- §2 정책 파이프라인(툴·에이전트 단계 입출력) ---
 
 
 class EmbeddingCandidateItem(TypedDict):
@@ -51,6 +51,8 @@ class LLMRefinementResult(TypedDict):
     status: Literal["success", "skipped", "error"]
     refinement_score: NotRequired[float]
     notes: NotRequired[str]
+    llm_decision: NotRequired[DecisionLiteral]
+    llm_reason_codes: NotRequired[List[str]]
     llm_used: bool
 
 
@@ -81,6 +83,8 @@ class UCMPayload(TypedDict, total=False):
     mapped_dp_ids: List[str]
     mapping_confidence: float | None
     mapping_notes: str | None
+    rulebook_conflicts: dict[str, Any] | None
+    standard_metadata: dict[str, Any] | None
     column_type: str
     unit: str | None
     disclosure_requirement: str | None
@@ -100,11 +104,11 @@ class SchemaMappingResult(TypedDict):
     message: NotRequired[str]
 
 
-# --- Phase 3 LangGraph / orchestrator agent outputs ---
+# --- 3단계 LangGraph / 오케스트레이터 에이전트 출력 ---
 
 
 class UCMWorkflowCreateResult(TypedDict, total=False):
-    """`UCMMappingService.create_mappings` / creation agent 배치 결과."""
+    """UCMMappingService.create_mappings 및 매핑 생성 에이전트의 배치 결과."""
 
     status: Literal["success", "error"]
     mode: str
@@ -115,7 +119,7 @@ class UCMWorkflowCreateResult(TypedDict, total=False):
 
 
 class UCMWorkflowValidationResult(TypedDict, total=False):
-    """`validate_mappings` / validation agent 헬스 결과."""
+    """`validate_mappings` 및 검증 에이전트의 헬스 결과."""
 
     status: Literal["success", "error"]
     metrics: dict[str, Any]
@@ -129,7 +133,7 @@ class UCMQualityIssue(TypedDict, total=False):
 
 
 class UCMWorkflowQualityResult(TypedDict, total=False):
-    """`QualityCheckAgent.summarize` 출력."""
+    """품질 점검 에이전트 summarize 메서드 출력."""
 
     status: Literal["success", "error"]
     issues_count: int
