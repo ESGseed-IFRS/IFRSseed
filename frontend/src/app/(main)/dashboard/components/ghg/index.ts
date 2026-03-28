@@ -1,0 +1,1 @@
+export { DashboardGhgTab } from './DashboardGhgTab';
