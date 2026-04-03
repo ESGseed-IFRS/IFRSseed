@@ -32,47 +32,51 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Configure SSH (rsync)
-        env:
-          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+      - name: Start ssh-agent (EC2 개인키)
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: known_hosts 및 연결 변수
         run: |
           set -euo pipefail
-          if [ -z "${EC2_SSH_KEY//[$'\t\r\n ']/}" ]; then
-            echo "::error::EC2_SSH_KEY 시크릿이 비어 있습니다. 저장소 Settings → Secrets → Actions를 확인하세요."
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          HOST=$(echo -n "${{ secrets.EC2_HOST }}" | tr -d '\r' | xargs)
+          USER=$(echo -n "${{ secrets.EC2_USER }}" | tr -d '\r' | xargs)
+          PORT=$(echo -n "${{ secrets.EC2_SSH_PORT }}" | tr -d '\r' | xargs)
+          if [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "::error::EC2_HOST 또는 EC2_USER 시크릿이 비어 있거나 공백만 있습니다."
             exit 1
           fi
-          mkdir -p ~/.ssh
-          # 셸 printf/echo로 PEM 개행이 깨지는 경우 방지: Python으로 그대로 기록
-          python3 - <<'PY'
-          import os, pathlib, stat
-          key = os.environ["EC2_SSH_KEY"].replace("\r\n", "\n").replace("\r", "\n").strip()
-          if not key.startswith("-----BEGIN") or "PRIVATE KEY" not in key:
-              raise SystemExit("EC2_SSH_KEY가 OpenSSH PEM 형식이 아닙니다. -----BEGIN ... PRIVATE KEY----- 로 시작하는지 확인하세요.")
-          path = pathlib.Path.home() / ".ssh" / "ec2_deploy"
-          path.write_text(key + ("\n" if not key.endswith("\n") else ""))
-          path.chmod(stat.S_IRUSR | stat.S_IWUSR)
-          PY
-          HOST="${{ secrets.EC2_HOST }}"
-          PORT="${{ secrets.EC2_SSH_PORT }}"
           if [ -z "$PORT" ]; then PORT=22; fi
           echo "SSH_PORT=$PORT" >> "$GITHUB_ENV"
+          echo "EC2_HOST_TR=$HOST" >> "$GITHUB_ENV"
+          echo "EC2_USER_TR=$USER" >> "$GITHUB_ENV"
           ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts
+          echo "=== 로드된 키 지문 (민감정보 아님). AWS EC2 키 페어 지문과 종류가 맞는지 확인 ==="
+          ssh-add -l || true
 
       - name: SSH 연결 확인 (rsync 전)
+        env:
+          DEPLOY_PATH_RAW: ${{ secrets.EC2_DEPLOY_PATH }}
         run: |
           set -euo pipefail
-          ssh -i ~/.ssh/ec2_deploy \
-            -o IdentitiesOnly=yes \
-            -o BatchMode=yes \
+          DEPLOY_PATH=$(echo -n "$DEPLOY_PATH_RAW" | tr -d '\r' | xargs)
+          if [ -z "$DEPLOY_PATH" ]; then
+            echo "::error::EC2_DEPLOY_PATH 시크릿이 비어 있습니다."
+            exit 1
+          fi
+          echo "EC2_DEPLOY_PATH_TR=$DEPLOY_PATH" >> "$GITHUB_ENV"
+          # IdentitiesOnly=yes 는 에이전트 키를 막을 수 있어 기본(에이전트 사용)으로 접속
+          ssh -o BatchMode=yes \
             -o StrictHostKeyChecking=yes \
-            -o ConnectTimeout=20 \
+            -o ConnectTimeout=25 \
             -p "${SSH_PORT}" \
-            "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}" \
+            "${EC2_USER_TR}@${EC2_HOST_TR}" \
             "echo 'ssh ok'"
 
       - name: Rsync to EC2 (→ .../backend/)
-        env:
-          DEPLOY_PATH: ${{ secrets.EC2_DEPLOY_PATH }}
         run: |
           rsync -avz --delete \
             --exclude '.git/' \
@@ -82,20 +86,20 @@ jobs:
             --exclude '.env' \
             --exclude '*.pem' \
             --exclude '**/llamaparse_md/' \
-            -e "ssh -i ~/.ssh/ec2_deploy -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -p ${SSH_PORT}" \
-            ./backend/ "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${DEPLOY_PATH}/backend/"
+            -e "ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -p ${SSH_PORT}" \
+            ./backend/ "${EC2_USER_TR}@${EC2_HOST_TR}:${EC2_DEPLOY_PATH_TR}/backend/"
 
       - name: Install dependencies and restart service
         uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
+          host: ${{ env.EC2_HOST_TR }}
+          username: ${{ env.EC2_USER_TR }}
           key: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script_stop: true
           script: |
             set -euo pipefail
-            cd "${{ secrets.EC2_DEPLOY_PATH }}"
+            cd "${{ env.EC2_DEPLOY_PATH_TR }}"
             if [ ! -d .venv ]; then python3 -m venv .venv; fi
             . .venv/bin/activate
             pip install -U pip wheel
