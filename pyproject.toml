@@ -1,0 +1,16 @@
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+src = ["backend"]
+# Alembic revision 스크립트는 수집 시점에만 쓰이는 이름이 많아 F821 등 오탐이 잦음
+extend-exclude = ["**/alembic/versions"]
+
+[tool.ruff.lint]
+# 스타일·미사용 import 전부는 기존 코드량 대비 노이즈가 커서, 문법/미정의 이름 등 치명적 항목만
+select = ["E9", "F821", "F822", "F823"]
+ignore = []
+
+[tool.pytest.ini_options]
+testpaths = ["backend/domain"]
+pythonpath = ["."]
+addopts = "-q --tb=short"

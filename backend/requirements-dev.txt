@@ -1,0 +1,4 @@
+# CI: 린트·테스트 (배포용 requirement.txt 외 별도 설치)
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+ruff>=0.8.0
