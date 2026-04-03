@@ -1,0 +1,10 @@
+record_id,year,director_id,director_name,director_type,gender,nationality,age,tenure_years,appointment_date,term_end_date,primary_expertise,independence_yn,audit_committee_yn,esg_committee_yn,compensation_committee_yn,risk_committee_yn,meeting_attendance_rate_pct,shareholding_count,education,source_system,created_at,updated_at,updated_by
+BOD-2024-DIR-001,2024,DIR-001,황성우,사내이사(대표),남,한국,60,3,2022-03-01,2025-03-01,IT경영·AI,N,N,Y,N,N,100.0,8500,KAIST 전산학 박사,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BOD-2024-DIR-002,2024,DIR-002,이재용,사내이사,남,한국,55,2,2023-03-01,2026-03-01,재무·경영,N,N,N,Y,N,95.0,3200,서울대 경영학 석사,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BOD-2024-DIR-003,2024,DIR-003,박정호,사내이사,남,한국,52,1,2024-03-01,2027-03-01,운영·기술,N,N,N,N,Y,92.0,1800,연세대 전자공학 학사,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BOD-2024-DIR-004,2024,DIR-004,김현석,사외이사,남,한국,63,4,2021-03-01,2025-03-01,IT·반도체,Y,Y,N,Y,N,100.0,0,MIT 전자공학 박사,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BOD-2024-DIR-005,2024,DIR-005,이상훈,사외이사,남,한국,61,4,2021-03-01,2025-03-01,회계·재무,Y,Y,N,N,Y,95.0,0,서울대 경영학 박사,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BOD-2024-DIR-006,2024,DIR-006,박선영,사외이사,여,한국,57,3,2022-03-01,2025-03-01,ESG·지속가능경영,Y,N,Y,Y,N,100.0,0,고려대 법학 박사,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BOD-2024-DIR-007,2024,DIR-007,최지영,사외이사,여,한국,54,2,2023-03-01,2026-03-01,AI·데이터,Y,Y,Y,N,N,92.0,0,POSTECH 컴퓨터공학 박사,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BOD-2024-DIR-008,2024,DIR-008,James K.,사외이사,남,미국,59,2,2023-03-01,2026-03-01,글로벌IT·클라우드,Y,N,N,Y,Y,88.0,0,Stanford MBA,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BOD-2024-DIR-009,2024,DIR-009,이영배,사외이사,남,한국,66,1,2024-03-01,2027-03-01,법률·컴플라이언스,Y,Y,N,N,Y,95.0,0,서울대 법학 박사,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov

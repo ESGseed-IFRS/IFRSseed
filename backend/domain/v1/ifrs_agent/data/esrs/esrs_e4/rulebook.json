@@ -1,0 +1,4304 @@
+{
+    "rulebooks": [
+        {
+            "rulebook_id": "RULE_ESRSE4",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4",
+            "section_name": "ESRS E4(문단 11~45)",
+            "section_content": "ESRS E4 — E4-1~E4-4, SBM-3(16), IRO-1(17~19), E4-5(33~41), E4-6(42~45). datapoint.json과 동일.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E4 paras 11-45",
+                "key_terms": [
+                    "biodiversity",
+                    "ecosystem",
+                    "Kunming-Montreal",
+                    "SBM-3",
+                    "IRO-1",
+                    "resilience",
+                    "transition plan",
+                    "MDR-P",
+                    "MDR-A",
+                    "MDR-T",
+                    "E4-2",
+                    "E4-3",
+                    "E4-4",
+                    "E4-5",
+                    "E4-6",
+                    "impact metrics",
+                    "anticipated financial effects"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse4_root",
+                        "description": "ESRS E4 총괄",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4",
+                        "description": "ESRS E4 총괄",
+                        "expected": "esrse4_root_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3",
+                    "ESRS2-IRO-1",
+                    "CBD",
+                    "EU-2030-Biodiversity",
+                    "ESRS1-Appendix-B",
+                    "ESRS2-SBM-3-48d"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4",
+                "ESRSE4-SEC-1",
+                "ESRSE4-E4-1",
+                "ESRSE4-E4-1-11",
+                "ESRSE4-E4-1-12",
+                "ESRSE4-E4-1-13-a",
+                "ESRSE4-E4-1-13-b",
+                "ESRSE4-E4-1-13-c",
+                "ESRSE4-E4-1-13-d",
+                "ESRSE4-E4-1-13-e",
+                "ESRSE4-E4-1-13-f",
+                "ESRSE4-E4-1-14",
+                "ESRSE4-E4-1-15",
+                "ESRSE4-SBM-3",
+                "ESRSE4-SBM-3-16-a",
+                "ESRSE4-SBM-3-16-a-i",
+                "ESRSE4-SBM-3-16-a-ii",
+                "ESRSE4-SBM-3-16-a-iii",
+                "ESRSE4-SBM-3-16-b",
+                "ESRSE4-SBM-3-16-c",
+                "ESRSE4-IRO-1",
+                "ESRSE4-IRO-1-17-a",
+                "ESRSE4-IRO-1-17-b",
+                "ESRSE4-IRO-1-17-c",
+                "ESRSE4-IRO-1-17-d",
+                "ESRSE4-IRO-1-17-e-i",
+                "ESRSE4-IRO-1-17-e-ii",
+                "ESRSE4-IRO-1-17-e-iii",
+                "ESRSE4-IRO-1-18-a",
+                "ESRSE4-IRO-1-18-b",
+                "ESRSE4-IRO-1-18-c",
+                "ESRSE4-IRO-1-19-a",
+                "ESRSE4-IRO-1-19-b",
+                "ESRSE4-E4-2",
+                "ESRSE4-E4-2-20",
+                "ESRSE4-E4-2-21",
+                "ESRSE4-E4-2-22",
+                "ESRSE4-E4-2-23-a",
+                "ESRSE4-E4-2-23-b",
+                "ESRSE4-E4-2-23-c",
+                "ESRSE4-E4-2-23-d",
+                "ESRSE4-E4-2-23-e",
+                "ESRSE4-E4-2-23-f",
+                "ESRSE4-E4-2-24-a",
+                "ESRSE4-E4-2-24-b",
+                "ESRSE4-E4-2-24-c",
+                "ESRSE4-E4-2-24-d",
+                "ESRSE4-E4-3",
+                "ESRSE4-E4-3-25",
+                "ESRSE4-E4-3-26",
+                "ESRSE4-E4-3-27",
+                "ESRSE4-E4-3-28-a",
+                "ESRSE4-E4-3-28-b",
+                "ESRSE4-E4-3-28-b-i",
+                "ESRSE4-E4-3-28-b-ii",
+                "ESRSE4-E4-3-28-b-iii",
+                "ESRSE4-E4-3-28-c",
+                "ESRSE4-E4-4",
+                "ESRSE4-E4-4-29",
+                "ESRSE4-E4-4-30",
+                "ESRSE4-E4-4-31",
+                "ESRSE4-E4-4-32-a",
+                "ESRSE4-E4-4-32-a-i",
+                "ESRSE4-E4-4-32-a-ii",
+                "ESRSE4-E4-4-32-a-iii",
+                "ESRSE4-E4-4-32-b",
+                "ESRSE4-E4-4-32-c",
+                "ESRSE4-E4-4-32-d",
+                "ESRSE4-E4-4-32-e",
+                "ESRSE4-E4-4-32-f",
+                "ESRSE4-E4-5",
+                "ESRSE4-E4-5-33",
+                "ESRSE4-E4-5-34",
+                "ESRSE4-E4-5-35-a",
+                "ESRSE4-E4-5-35-b",
+                "ESRSE4-E4-5-36",
+                "ESRSE4-E4-5-37",
+                "ESRSE4-E4-5-38-a",
+                "ESRSE4-E4-5-38-b",
+                "ESRSE4-E4-5-38-c",
+                "ESRSE4-E4-5-38-d",
+                "ESRSE4-E4-5-38-e",
+                "ESRSE4-E4-5-39",
+                "ESRSE4-E4-5-40-a",
+                "ESRSE4-E4-5-40-b",
+                "ESRSE4-E4-5-40-c",
+                "ESRSE4-E4-5-40-d",
+                "ESRSE4-E4-5-40-d-i",
+                "ESRSE4-E4-5-40-d-ii",
+                "ESRSE4-E4-5-41-a",
+                "ESRSE4-E4-5-41-b",
+                "ESRSE4-E4-5-41-b-i",
+                "ESRSE4-E4-5-41-b-ii",
+                "ESRSE4-E4-5-41-b-iii",
+                "ESRSE4-E4-6",
+                "ESRSE4-E4-6-42",
+                "ESRSE4-E4-6-43",
+                "ESRSE4-E4-6-44-a",
+                "ESRSE4-E4-6-44-b",
+                "ESRSE4-E4-6-45-a",
+                "ESRSE4-E4-6-45-b",
+                "ESRSE4-E4-6-45-c"
+            ],
+            "rulebook_title": "ESRS E4 총괄",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_SEC_1",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-SEC-1",
+            "section_name": "Section 1 — 문단 11~45 묶음",
+            "section_content": "ESRS E4 Section 1 — E4-1~E4-6, SBM-3, IRO-1.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E4 Section 1",
+                "key_terms": [
+                    "Section 1"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse4_sec1",
+                        "description": "E4 Section 1",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_SEC_1",
+                        "description": "E4 Section 1",
+                        "expected": "esrse4_sec1_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-SEC-1",
+                "ESRSE4-E4-1",
+                "ESRSE4-E4-1-11",
+                "ESRSE4-E4-1-12",
+                "ESRSE4-E4-1-13-a",
+                "ESRSE4-E4-1-13-b",
+                "ESRSE4-E4-1-13-c",
+                "ESRSE4-E4-1-13-d",
+                "ESRSE4-E4-1-13-e",
+                "ESRSE4-E4-1-13-f",
+                "ESRSE4-E4-1-14",
+                "ESRSE4-E4-1-15",
+                "ESRSE4-SBM-3",
+                "ESRSE4-SBM-3-16-a",
+                "ESRSE4-SBM-3-16-a-i",
+                "ESRSE4-SBM-3-16-a-ii",
+                "ESRSE4-SBM-3-16-a-iii",
+                "ESRSE4-SBM-3-16-b",
+                "ESRSE4-SBM-3-16-c",
+                "ESRSE4-IRO-1",
+                "ESRSE4-IRO-1-17-a",
+                "ESRSE4-IRO-1-17-b",
+                "ESRSE4-IRO-1-17-c",
+                "ESRSE4-IRO-1-17-d",
+                "ESRSE4-IRO-1-17-e-i",
+                "ESRSE4-IRO-1-17-e-ii",
+                "ESRSE4-IRO-1-17-e-iii",
+                "ESRSE4-IRO-1-18-a",
+                "ESRSE4-IRO-1-18-b",
+                "ESRSE4-IRO-1-18-c",
+                "ESRSE4-IRO-1-19-a",
+                "ESRSE4-IRO-1-19-b",
+                "ESRSE4-E4-2",
+                "ESRSE4-E4-2-20",
+                "ESRSE4-E4-2-21",
+                "ESRSE4-E4-2-22",
+                "ESRSE4-E4-2-23-a",
+                "ESRSE4-E4-2-23-b",
+                "ESRSE4-E4-2-23-c",
+                "ESRSE4-E4-2-23-d",
+                "ESRSE4-E4-2-23-e",
+                "ESRSE4-E4-2-23-f",
+                "ESRSE4-E4-2-24-a",
+                "ESRSE4-E4-2-24-b",
+                "ESRSE4-E4-2-24-c",
+                "ESRSE4-E4-2-24-d",
+                "ESRSE4-E4-3",
+                "ESRSE4-E4-3-25",
+                "ESRSE4-E4-3-26",
+                "ESRSE4-E4-3-27",
+                "ESRSE4-E4-3-28-a",
+                "ESRSE4-E4-3-28-b",
+                "ESRSE4-E4-3-28-b-i",
+                "ESRSE4-E4-3-28-b-ii",
+                "ESRSE4-E4-3-28-b-iii",
+                "ESRSE4-E4-3-28-c",
+                "ESRSE4-E4-4",
+                "ESRSE4-E4-4-29",
+                "ESRSE4-E4-4-30",
+                "ESRSE4-E4-4-31",
+                "ESRSE4-E4-4-32-a",
+                "ESRSE4-E4-4-32-a-i",
+                "ESRSE4-E4-4-32-a-ii",
+                "ESRSE4-E4-4-32-a-iii",
+                "ESRSE4-E4-4-32-b",
+                "ESRSE4-E4-4-32-c",
+                "ESRSE4-E4-4-32-d",
+                "ESRSE4-E4-4-32-e",
+                "ESRSE4-E4-4-32-f",
+                "ESRSE4-E4-5",
+                "ESRSE4-E4-5-33",
+                "ESRSE4-E4-5-34",
+                "ESRSE4-E4-5-35-a",
+                "ESRSE4-E4-5-35-b",
+                "ESRSE4-E4-5-36",
+                "ESRSE4-E4-5-37",
+                "ESRSE4-E4-5-38-a",
+                "ESRSE4-E4-5-38-b",
+                "ESRSE4-E4-5-38-c",
+                "ESRSE4-E4-5-38-d",
+                "ESRSE4-E4-5-38-e",
+                "ESRSE4-E4-5-39",
+                "ESRSE4-E4-5-40-a",
+                "ESRSE4-E4-5-40-b",
+                "ESRSE4-E4-5-40-c",
+                "ESRSE4-E4-5-40-d",
+                "ESRSE4-E4-5-40-d-i",
+                "ESRSE4-E4-5-40-d-ii",
+                "ESRSE4-E4-5-41-a",
+                "ESRSE4-E4-5-41-b",
+                "ESRSE4-E4-5-41-b-i",
+                "ESRSE4-E4-5-41-b-ii",
+                "ESRSE4-E4-5-41-b-iii",
+                "ESRSE4-E4-6",
+                "ESRSE4-E4-6-42",
+                "ESRSE4-E4-6-43",
+                "ESRSE4-E4-6-44-a",
+                "ESRSE4-E4-6-44-b",
+                "ESRSE4-E4-6-45-a",
+                "ESRSE4-E4-6-45-b",
+                "ESRSE4-E4-6-45-c"
+            ],
+            "rulebook_title": "E4 Section 1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1",
+            "section_name": "E4-1 전략·비즈니스 모델(문단 11~15)",
+            "section_content": "공개 요건 E4-1 – 전략 및 비즈니스 모델에서의 전환 계획 및 생물 다양성과 생태계 고려. 문단 11~15.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E4 - E4-1 paras 11-15",
+                "key_terms": [
+                    "resilience",
+                    "transition plan",
+                    "strategy"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse4_e4_1",
+                        "description": "E4-1",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1",
+                        "description": "E4-1",
+                        "expected": "esrse4_e4_1_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1",
+                "ESRSE4-E4-1-11",
+                "ESRSE4-E4-1-12",
+                "ESRSE4-E4-1-13-a",
+                "ESRSE4-E4-1-13-b",
+                "ESRSE4-E4-1-13-c",
+                "ESRSE4-E4-1-13-d",
+                "ESRSE4-E4-1-13-e",
+                "ESRSE4-E4-1-13-f",
+                "ESRSE4-E4-1-14",
+                "ESRSE4-E4-1-15"
+            ],
+            "rulebook_title": "E4-1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1_11",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1-11",
+            "section_name": "E4-1 문단 11",
+            "section_content": "11. 기업은 생물다양성 및 생태계 영향, 의존성, 위험 및 기회가 어떻게 전략 및 비즈니스 모델의 적응을 유발하는지 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "E4-1 문단 11",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_1_11",
+                        "description": "E4-1 문단 11",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1_11",
+                        "description": "문단 11",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1-11"
+            ],
+            "rulebook_title": "E4-1 문단 11",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1_12",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1-12",
+            "section_name": "E4-1 문단 12",
+            "section_content": "12. 본 공시 요건의 목적은 해당 기업의 전략 및 비즈니스 모델이 생물다양성과 생태계 측면에서 얼마나 회복탄력성을 갖추고 있는지, 그리고 생물다양성과 생태계와 관련된 지역적·국가적·글로벌 공공정책 목표와 얼마나 부합하는지 이해할 수 있도록 하는 데 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "E4-1 문단 12",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_1_12",
+                        "description": "E4-1 문단 12",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1_12",
+                        "description": "문단 12",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1-12"
+            ],
+            "rulebook_title": "E4-1 문단 12",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1_13_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1-13-a",
+            "section_name": "E4-1 문단 13(a)",
+            "section_content": "(a) 생물다양성 및 생태계 관련 물리적 위험, 전환 위험 및 체계적 위험에 대한 현재 사업 모델 및 전략의 회복탄력성 평가;",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "E4-1 문단 13(a)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_1_13_a",
+                        "description": "E4-1 문단 13(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1_13_A",
+                        "description": "13(a)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1-13-a"
+            ],
+            "rulebook_title": "E4-1 문단 13(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1_13_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1-13-b",
+            "section_name": "E4-1 문단 13(b)",
+            "section_content": "(b) 해당 분석에서 고려된 위험과 관련하여 기업 자체 운영 및 상·하류 가치 사슬에 대한 회복력 분석 범위;",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "E4-1 문단 13(b)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_1_13_b",
+                        "description": "E4-1 문단 13(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1_13_B",
+                        "description": "13(b)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1-13-b"
+            ],
+            "rulebook_title": "E4-1 문단 13(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1_13_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1-13-c",
+            "section_name": "E4-1 문단 13(c)",
+            "section_content": "(c) 주요 가정 사항;",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "E4-1 문단 13(c)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_1_13_c",
+                        "description": "E4-1 문단 13(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1_13_C",
+                        "description": "13(c)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1-13-c"
+            ],
+            "rulebook_title": "E4-1 문단 13(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1_13_D",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1-13-d",
+            "section_name": "E4-1 문단 13(d)",
+            "section_content": "(d) 사용된 시간 범위;",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "E4-1 문단 13(d)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_1_13_d",
+                        "description": "E4-1 문단 13(d)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1_13_D",
+                        "description": "13(d)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1-13-d"
+            ],
+            "rulebook_title": "E4-1 문단 13(d)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1_13_E",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1-13-e",
+            "section_name": "E4-1 문단 13(e)",
+            "section_content": "(e) 복원력 분석 결과; 및",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "E4-1 문단 13(e)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_1_13_e",
+                        "description": "E4-1 문단 13(e)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1_13_E",
+                        "description": "13(e)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1-13-e"
+            ],
+            "rulebook_title": "E4-1 문단 13(e)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1_13_F",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1-13-f",
+            "section_name": "E4-1 문단 13(f)",
+            "section_content": "(f) 적절한 경우 원주민 및 지역 지식 보유자를 포함한 이해관계자의 참여.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "E4-1 문단 13(f)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_1_13_f",
+                        "description": "E4-1 문단 13(f)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1_13_F",
+                        "description": "13(f)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1-13-f"
+            ],
+            "rulebook_title": "E4-1 문단 13(f)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1_14",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1-14",
+            "section_name": "E4-1 문단 14",
+            "section_content": "14. 본 공개 요건에 명시된 정보가 ESRS 2 SBM-3에 따라 요구되는 정보의 일부로 기업에 의해 공개된 경우, 해당 기업은 ESRS 2 SBM-3 하에 공개한 정보를 참조할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "E4-1 문단 14",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_1_14",
+                        "description": "E4-1 문단 14",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1_14",
+                        "description": "문단 14",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1-14"
+            ],
+            "rulebook_title": "E4-1 문단 14",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_1_15",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-1-15",
+            "section_name": "E4-1 문단 15",
+            "section_content": "15. 기업은 쿤밍-몬트리올 글로벌 생물다양성 프레임워크 및 관련 목표와 EU 2030 생물다양성 전략의 비전, 생물권 보전 및 토지 시스템 변화와 관련된 행성 경계 존중과 기업 비즈니스 모델 및 전략의 조화를 개선하고 궁극적으로 달성하기 위한 전환 계획을 공개할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E4 - E4-1 para 15",
+                "key_terms": [
+                    "transition plan",
+                    "planetary boundaries",
+                    "Kunming-Montreal"
+                ],
+                "required_actions": [
+                    {
+                        "action": "may_disclose_transition_plan_e4",
+                        "description": "전환 계획 공개는 선택(공개할 수 있음)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_1_15",
+                        "description": "문단 15 선택 공시",
+                        "expected": "optional_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "CBD",
+                    "EU-2030-Biodiversity"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-1-15"
+            ],
+            "rulebook_title": "E4-1 문단 15",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_SBM_3",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-SBM-3",
+            "section_name": "SBM-3(E4) 문단 16 — 중요 사이트 등",
+            "section_content": "공개 요건 SBM 3 – 중대한 영향, 위험 및 기회와 전략 및 비즈니스 모델과의 상호작용(E4 맥락). 16. 사업체는 다음을 공개해야 합니다. (a)는 17(a) 결과에 기반한 중요 사이트 목록 및 i~iii 공시 방식. (b)(c)는 각주 74·75 참조.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E4 - SBM-3 para 16",
+                "key_terms": [
+                    "material sites",
+                    "biodiversity-sensitive",
+                    "threatened species",
+                    "soil sealing"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse4_sbm3_16",
+                        "description": "E4 SBM-3 16",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_SBM_3",
+                        "description": "문단 16",
+                        "expected": "esrse4_sbm3_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3",
+                    "ESRSE4-IRO-1-17-a",
+                    "FN-73",
+                    "FN-74",
+                    "FN-75"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-SBM-3",
+                "ESRSE4-SBM-3-16-a",
+                "ESRSE4-SBM-3-16-a-i",
+                "ESRSE4-SBM-3-16-a-ii",
+                "ESRSE4-SBM-3-16-a-iii",
+                "ESRSE4-SBM-3-16-b",
+                "ESRSE4-SBM-3-16-c"
+            ],
+            "rulebook_title": "E4 SBM-3 (16)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_SBM_3_16_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-SBM-3-16-a",
+            "section_name": "16(a) — 중요 사이트 목록 및 위치 공개",
+            "section_content": "(a) 17(a)항의 결과에 기반하여 자체 운영 내 중요 사이트 목록(운영 통제 하에 있는 사이트 포함). 기업은 다음 방법으로 해당 위치를 공개해야 합니다: i. 생물다양성 민감 지역에 부정적 영향을 미치는 활동 명시(73); ii. 확인된 영향 및 의존성에 따라, 그리고 해당 지역이 위치한 생태계 상태(특정 생태계 기준 수준 참조)에 따라 사이트를 세분화하여 제시하고; iii. 생물다양성 민감 지역의 영향을 명시하여, 사용자가 제16조(a)항 i호에 명시된 활동과 관련하여 해당 위치 및 책임 있는 관할 기관을 확인할 수 있도록 하고;",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E4 SBM-3 para 16(a)",
+                "key_terms": [
+                    "material sites",
+                    "biodiversity-sensitive areas",
+                    "operational control",
+                    "competent authority"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse4_sbm3_16a",
+                        "description": "문단 16(a) 중요 사이트 및 i~iii 공시 방식",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_SBM_3_16_A",
+                        "description": "16(a) 목록 및 (i)(ii)(iii)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3",
+                    "ESRSE4-IRO-1-17-a",
+                    "FN-73"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-SBM-3-16-a",
+                "ESRSE4-SBM-3-16-a-i",
+                "ESRSE4-SBM-3-16-a-ii",
+                "ESRSE4-SBM-3-16-a-iii"
+            ],
+            "rulebook_title": "16(a) 중요 사이트",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_SBM_3_16_A_I",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-SBM-3-16-a-i",
+            "section_name": "16(a)(i)",
+            "section_content": "생물다양성 민감 지역에 부정적 영향을 미치는 활동 명시(각주 73).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "16(a)(i)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_sbm_3_16_a_i",
+                        "description": "16(a)(i)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_SBM_3_16_A_I",
+                        "description": "16(a)(i)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "FN-73"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-SBM-3-16-a",
+                "ESRSE4-SBM-3-16-a-i"
+            ],
+            "rulebook_title": "16(a)(i)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_SBM_3_16_A_II",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-SBM-3-16-a-ii",
+            "section_name": "16(a)(ii)",
+            "section_content": "확인된 영향 및 의존성에 따라, 그리고 해당 지역이 위치한 생태계 상태(특정 생태계 기준 수준 참조)에 따라 사이트를 세분화하여 제시.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "16(a)(ii)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_sbm_3_16_a_ii",
+                        "description": "16(a)(ii)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_SBM_3_16_A_II",
+                        "description": "16(a)(ii)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-SBM-3-16-a",
+                "ESRSE4-SBM-3-16-a-ii"
+            ],
+            "rulebook_title": "16(a)(ii)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_SBM_3_16_A_III",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-SBM-3-16-a-iii",
+            "section_name": "16(a)(iii)",
+            "section_content": "생물다양성 민감 지역의 영향을 명시하여, 사용자가 제16조(a)항 i호에 명시된 활동과 관련하여 해당 위치 및 책임 있는 관할 기관을 확인할 수 있도록 하고;",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "16(a)(iii)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_sbm_3_16_a_iii",
+                        "description": "16(a)(iii)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_SBM_3_16_A_III",
+                        "description": "16(a)(iii)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-SBM-3-16-a",
+                "ESRSE4-SBM-3-16-a-iii"
+            ],
+            "rulebook_title": "16(a)(iii)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_SBM_3_16_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-SBM-3-16-b",
+            "section_name": "16(b)",
+            "section_content": "토지 황폐화, 사막화 또는 토양 밀봉과 관련하여 중대한 부정적 영향을 확인했는지 여부(각주 74).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "16(b)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_sbm_3_16_b",
+                        "description": "16(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_SBM_3_16_B",
+                        "description": "16(b)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "FN-74"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-SBM-3-16-b"
+            ],
+            "rulebook_title": "16(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_SBM_3_16_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-SBM-3-16-c",
+            "section_name": "16(c)",
+            "section_content": "위협받는 종에 영향을 미치는 운영이 있는지 여부(각주 75).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "16(c)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_sbm_3_16_c",
+                        "description": "16(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_SBM_3_16_C",
+                        "description": "16(c)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "FN-75"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-SBM-3-16-c"
+            ],
+            "rulebook_title": "16(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1",
+            "section_name": "IRO-1(E4) 문단 17~19",
+            "section_content": "ESRS 2 IRO-1 관련 공개 요건 — 중요한 생물 다양성 및 생태계 관련 영향, 위험, 의존성 및 기회를 식별하고 평가하는 프로세스(문단 17~19).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E4 - IRO-1 paras 17-19",
+                "key_terms": [
+                    "IRO",
+                    "ecosystem services",
+                    "scenario analysis",
+                    "sensitive areas",
+                    "mitigation"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse4_iro1",
+                        "description": "E4 IRO-1 블록",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1",
+                        "description": "IRO-1 17-19",
+                        "expected": "esrse4_iro1_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-IRO-1",
+                    "EU-2009-147-EC",
+                    "EU-92-43-EEC",
+                    "EU-2011-92-EU",
+                    "IFC-PS6",
+                    "IPBES",
+                    "CBD"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1",
+                "ESRSE4-IRO-1-17-a",
+                "ESRSE4-IRO-1-17-b",
+                "ESRSE4-IRO-1-17-c",
+                "ESRSE4-IRO-1-17-d",
+                "ESRSE4-IRO-1-17-e-i",
+                "ESRSE4-IRO-1-17-e-ii",
+                "ESRSE4-IRO-1-17-e-iii",
+                "ESRSE4-IRO-1-18-a",
+                "ESRSE4-IRO-1-18-b",
+                "ESRSE4-IRO-1-18-c",
+                "ESRSE4-IRO-1-19-a",
+                "ESRSE4-IRO-1-19-b"
+            ],
+            "rulebook_title": "E4 IRO-1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_17_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-17-a",
+            "section_name": "17(a)",
+            "section_content": "(a) 자체 사업장 및 상·하류 가치 사슬 내에서 생물다양성과 생태계에 대한 실제적·잠재적 영향을 식별하고 평가했는지 여부 및 적용한 평가 기준;",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "17(a)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_17_a",
+                        "description": "17(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_17_A",
+                        "description": "17(a)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-17-a"
+            ],
+            "rulebook_title": "17(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_17_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-17-b",
+            "section_name": "17(b)",
+            "section_content": "(b) 자체 사업장 및 상·하류 가치 사슬 내에서 생물다양성 및 생태계와 그 서비스에 대한 의존성을 식별하고 평가한 사항(적용된 평가 기준 포함). 교란되거나 교란될 가능성이 있는 생태계 서비스가 포함된 경우 이를 명시할 것;",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "17(b)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_17_b",
+                        "description": "17(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_17_B",
+                        "description": "17(b)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-17-b"
+            ],
+            "rulebook_title": "17(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_17_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-17-c",
+            "section_name": "17(c)",
+            "section_content": "(c) 생물다양성 및 생태계와 관련된 전환 위험, 물리적 위험 및 기회를 식별하고 평가한 사항(영향 및 의존도에 기반한 적용 평가 기준 포함);",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "17(c)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_17_c",
+                        "description": "17(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_17_C",
+                        "description": "17(c)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-17-c"
+            ],
+            "rulebook_title": "17(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_17_D",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-17-d",
+            "section_name": "17(d)",
+            "section_content": "(d) 체계적 위험을 고려하였습니다 — 절차 기술에 체계적 위험 고려가 포함되도록 공시.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "17(d)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_17_d",
+                        "description": "17(d)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_17_D",
+                        "description": "17(d)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-17-d"
+            ],
+            "rulebook_title": "17(d)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_17_E_I",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-17-e-i",
+            "section_name": "17(e)(i)",
+            "section_content": "공유 생물자원·생태계 지속가능성 평가 맥락에서 부정적 영향 잠재 사이트·원료 생산·조달 위치 식별.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "17(e)(i)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_17_e_i",
+                        "description": "17(e)(i)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_17_E_I",
+                        "description": "17(e)(i)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-17-e-i"
+            ],
+            "rulebook_title": "17(e)(i)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_17_E_II",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-17-e-ii",
+            "section_name": "17(e)(ii)",
+            "section_content": "영향 지역사회가 있는 경우 중대성 평가에의 참여 방식 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "17(e)(ii)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_17_e_ii",
+                        "description": "17(e)(ii)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_17_E_II",
+                        "description": "17(e)(ii)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-17-e-ii"
+            ],
+            "rulebook_title": "17(e)(ii)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_17_E_III",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-17-e-iii",
+            "section_name": "17(e)(iii)",
+            "section_content": "자체 운영에서 영향 지역사회 관련 생태계 서비스 부정적 영향 회피 방법; 돌이킬 수 없을 경우 우선순위 서비스의 가치·기능 유지를 위한 완화 조치 계획 제시 가능.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "17(e)(iii)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_17_e_iii",
+                        "description": "17(e)(iii)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_17_E_III",
+                        "description": "17(e)(iii)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-17-e-iii"
+            ],
+            "rulebook_title": "17(e)(iii)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_18_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-18-a",
+            "section_name": "18(a)",
+            "section_content": "시나리오 분석을 사용한 경우 특정 시나리오를 선택한 이유.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "18(a)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_18_a",
+                        "description": "18(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_18_A",
+                        "description": "18(a)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-18-a"
+            ],
+            "rulebook_title": "18(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_18_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-18-b",
+            "section_name": "18(b)",
+            "section_content": "변화하는 조건 및 신규 동향에 따라 시나리오를 갱신하는 방식.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "18(b)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_18_b",
+                        "description": "18(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_18_B",
+                        "description": "18(b)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-18-b"
+            ],
+            "rulebook_title": "18(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_18_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-18-c",
+            "section_name": "18(c)",
+            "section_content": "시나리오가 권위 있는 정부간 전망(예: 생물다양성 협약) 또는 과학적 합의(예: IPBES)에 기반하는지 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "18(c)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_18_c",
+                        "description": "18(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_18_C",
+                        "description": "18(c)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-18-c"
+            ],
+            "rulebook_title": "18(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_19_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-19-a",
+            "section_name": "19(a)",
+            "section_content": "사업장이 생물다양성 민감 지역 내 또는 인접에 위치하는지, 서식지 훼손·종 교란 등으로 보호구역 등에 부정적 영향을 유발하는지.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "19(a)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_19_a",
+                        "description": "19(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_19_A",
+                        "description": "19(a)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-19-a"
+            ],
+            "rulebook_title": "19(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_IRO_1_19_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-IRO-1-19-b",
+            "section_name": "19(b)",
+            "section_content": "완화가 필요한 경우 조치가 2009/147/EC(야생조류), 92/43/EEC(서식지·야생동식물), 2011/92/EU(EIA)를 따르는지 공개; 제3국 활동은 IFC Performance Standard 6 또는 동등한 국제·국가 기준.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "19(b)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_iro_1_19_b",
+                        "description": "19(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_IRO_1_19_B",
+                        "description": "19(b)",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "EU-2009-147-EC",
+                    "EU-92-43-EEC",
+                    "EU-2011-92-EU",
+                    "IFC-PS6"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-IRO-1-19-b"
+            ],
+            "rulebook_title": "19(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2",
+            "section_name": "공개 요건 E4-2: 생물다양성 및 생태계 관련 정책",
+            "section_content": "문단 20~24: 정책 설명(20), 목적(21), MDR-P 연계(22), MDR-P 외 추가 범위(23 a~f), 구체 정책 존재(24 a~d, 각주 77~79).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요건 E4-2: 생물다양성 및 생태계 관련 정책",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2",
+                        "description": "공개 요건 E4-2: 생물다양성 및 생태계 관련 정책",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2",
+                        "description": "ESRSE4-E4-2",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2",
+                "ESRSE4-E4-2-20",
+                "ESRSE4-E4-2-21",
+                "ESRSE4-E4-2-22",
+                "ESRSE4-E4-2-23-a",
+                "ESRSE4-E4-2-23-b",
+                "ESRSE4-E4-2-23-c",
+                "ESRSE4-E4-2-23-d",
+                "ESRSE4-E4-2-23-e",
+                "ESRSE4-E4-2-23-f",
+                "ESRSE4-E4-2-24-a",
+                "ESRSE4-E4-2-24-b",
+                "ESRSE4-E4-2-24-c",
+                "ESRSE4-E4-2-24-d"
+            ],
+            "rulebook_title": "공개 요건 E4-2: 생물다양성 및 생태계 관련 정책",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_20",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-20",
+            "section_name": "문단 20: 생물다양성·생태계 관련 중대 IRO 대응 정책 설명",
+            "section_content": "사업체는 생물다양성 및 생태계와 관련된 중대한 영향, 위험, 의존성 및 기회에 대응하기 위해 채택한 정책을 설명해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 20: 생물다양성·생태계 관련 중대 IRO 대응 정책 설명",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_20",
+                        "description": "문단 20: 생물다양성·생태계 관련 중대 IRO 대응 정책 설명",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_20",
+                        "description": "ESRSE4-E4-2-20",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-20"
+            ],
+            "rulebook_title": "문단 20: 생물다양성·생태계 관련 중대 IRO 대응 정책 설명",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_21",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-21",
+            "section_name": "문단 21: 본 공개 요건의 목적",
+            "section_content": "본 공개 요건의 목적은 기업이 생물다양성 및 생태계 관련 중대한 영향, 의존성, 위험 및 기회의 식별, 평가, 관리 및/또는 개선을 다루는 정책을 어느 정도 보유하고 있는지 이해할 수 있도록 하는 것이다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 21: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_21",
+                        "description": "문단 21: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_21",
+                        "description": "ESRSE4-E4-2-21",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-21"
+            ],
+            "rulebook_title": "문단 21: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_22",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-22",
+            "section_name": "문단 22: MDR-P에 따른 정책 정보 포함",
+            "section_content": "제20항에 따라 요구되는 공개 내용에는 ESRS 2 MDR-P(중요 지속가능성 사안 관리 정책)에 따라 생물다양성 및 생태계와 관련된 기업의 중대 영향, 위험, 의존성 및 기회 관리를 위해 마련된 정책에 대한 정보가 포함되어야 한다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 22: MDR-P에 따른 정책 정보 포함",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_22",
+                        "description": "문단 22: MDR-P에 따른 정책 정보 포함",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_22",
+                        "description": "ESRSE4-E4-2-22",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-P"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-22"
+            ],
+            "rulebook_title": "문단 22: MDR-P에 따른 정책 정보 포함",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_23_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-23-a",
+            "section_name": "문단 23-(a): 정책 범위·방식",
+            "section_content": "ESRS E4 AR 4에 명시된 사항과의 관련성 및 방식",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 23-(a): 정책 범위·방식",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_23_a",
+                        "description": "문단 23-(a): 정책 범위·방식",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_23_A",
+                        "description": "ESRSE4-E4-2-23-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS-E4-AR-4"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-23-a"
+            ],
+            "rulebook_title": "문단 23-(a): 정책 범위·방식",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_23_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-23-b",
+            "section_name": "문단 23-(b): 정책 범위·방식",
+            "section_content": "중대한 생물다양성·생태계 영향과의 관련성 및 방식",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 23-(b): 정책 범위·방식",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_23_b",
+                        "description": "문단 23-(b): 정책 범위·방식",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_23_B",
+                        "description": "ESRSE4-E4-2-23-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-23-b"
+            ],
+            "rulebook_title": "문단 23-(b): 정책 범위·방식",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_23_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-23-c",
+            "section_name": "문단 23-(c): 정책 범위·방식",
+            "section_content": "중대 의존성·물리·전환 위험 및 기회와의 관련성 및 방식",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 23-(c): 정책 범위·방식",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_23_c",
+                        "description": "문단 23-(c): 정책 범위·방식",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_23_C",
+                        "description": "ESRSE4-E4-2-23-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-23-c"
+            ],
+            "rulebook_title": "문단 23-(c): 정책 범위·방식",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_23_D",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-23-d",
+            "section_name": "문단 23-(d): 정책 범위·방식",
+            "section_content": "가치사슬에서 실제·잠재 영향이 있는 제품·부품·원자재의 추적가능성 지원 여부 및 방식",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 23-(d): 정책 범위·방식",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_23_d",
+                        "description": "문단 23-(d): 정책 범위·방식",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_23_D",
+                        "description": "ESRSE4-E4-2-23-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-23-d"
+            ],
+            "rulebook_title": "문단 23-(d): 정책 범위·방식",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_23_E",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-23-e",
+            "section_name": "문단 23-(e): 정책 범위·방식",
+            "section_content": "모니터링으로 입증된 생물다양성 조건 유지·향상 생태계로부터의 생산·조달·소비 처리",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 23-(e): 정책 범위·방식",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_23_e",
+                        "description": "문단 23-(e): 정책 범위·방식",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_23_E",
+                        "description": "ESRSE4-E4-2-23-e",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-23-e"
+            ],
+            "rulebook_title": "문단 23-(e): 정책 범위·방식",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_23_F",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-23-f",
+            "section_name": "문단 23-(f): 정책 범위·방식",
+            "section_content": "생물다양성·생태계 영향에 따른 사회적 결과 해결 여부 및 방식",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 23-(f): 정책 범위·방식",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_23_f",
+                        "description": "문단 23-(f): 정책 범위·방식",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_23_F",
+                        "description": "ESRSE4-E4-2-23-f",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-23-f"
+            ],
+            "rulebook_title": "문단 23-(f): 정책 범위·방식",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_24_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-24-a",
+            "section_name": "문단 24-(a): 민감 지역 인근 운영 현장 포괄 보호 정책",
+            "section_content": "생물다양성 민감 지역 내 또는 인근 운영 현장을 포괄하는 생물다양성·생태계 보호 정책 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(a): 민감 지역 인근 운영 현장 포괄 보호 정책",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_24_a",
+                        "description": "문단 24-(a): 민감 지역 인근 운영 현장 포괄 보호 정책",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_24_A",
+                        "description": "ESRSE4-E4-2-24-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-24-a"
+            ],
+            "rulebook_title": "문단 24-(a): 민감 지역 인근 운영 현장 포괄 보호 정책",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_24_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-24-b",
+            "section_name": "문단 24-(b): 지속가능한 토지·농업 관행/정책(각주 77)",
+            "section_content": "지속 가능한 토지/농업 관행 또는 정책(원문 각주 77).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(b): 지속가능한 토지·농업 관행/정책(각주 77)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_24_b",
+                        "description": "문단 24-(b): 지속가능한 토지·농업 관행/정책(각주 77)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_24_B",
+                        "description": "ESRSE4-E4-2-24-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "FN-77"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-24-b"
+            ],
+            "rulebook_title": "문단 24-(b): 지속가능한 토지·농업 관행/정책(각주 77)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_24_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-24-c",
+            "section_name": "문단 24-(c): 지속가능한 해양 관행/정책(각주 78)",
+            "section_content": "지속 가능한 해양 관행 또는 정책(원문 각주 78).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(c): 지속가능한 해양 관행/정책(각주 78)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_24_c",
+                        "description": "문단 24-(c): 지속가능한 해양 관행/정책(각주 78)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_24_C",
+                        "description": "ESRSE4-E4-2-24-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "FN-78"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-24-c"
+            ],
+            "rulebook_title": "문단 24-(c): 지속가능한 해양 관행/정책(각주 78)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_2_24_D",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-2-24-d",
+            "section_name": "문단 24-(d): 삼림 파괴 대응 정책(각주 79)",
+            "section_content": "삼림 파괴 대응 정책(원문 각주 79).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(d): 삼림 파괴 대응 정책(각주 79)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_2_24_d",
+                        "description": "문단 24-(d): 삼림 파괴 대응 정책(각주 79)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_2_24_D",
+                        "description": "ESRSE4-E4-2-24-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "FN-79"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-2-24-d"
+            ],
+            "rulebook_title": "문단 24-(d): 삼림 파괴 대응 정책(각주 79)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_3",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-3",
+            "section_name": "공개 요건 E4-3: 생물다양성 및 생태계 관련 조치 및 자원",
+            "section_content": "문단 25~28: 조치·자원(25), 목적(26), MDR-A 준수(27), 완화 계층(28a 선택)·상쇄(28b 및 b-i~iii)·원주민지식·NbS(28c).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요건 E4-3: 생물다양성 및 생태계 관련 조치 및 자원",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_3",
+                        "description": "공개 요건 E4-3: 생물다양성 및 생태계 관련 조치 및 자원",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_3",
+                        "description": "ESRSE4-E4-3",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-3",
+                "ESRSE4-E4-3-25",
+                "ESRSE4-E4-3-26",
+                "ESRSE4-E4-3-27",
+                "ESRSE4-E4-3-28-a",
+                "ESRSE4-E4-3-28-b",
+                "ESRSE4-E4-3-28-c"
+            ],
+            "rulebook_title": "공개 요건 E4-3: 생물다양성 및 생태계 관련 조치 및 자원",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_3_25",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-3-25",
+            "section_name": "문단 25: 조치 및 이행 자원 공개",
+            "section_content": "생물다양성 및 생태계 관련 조치와 그 이행에 할당된 자원을 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 25: 조치 및 이행 자원 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_3_25",
+                        "description": "문단 25: 조치 및 이행 자원 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_3_25",
+                        "description": "ESRSE4-E4-3-25",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-3-25"
+            ],
+            "rulebook_title": "문단 25: 조치 및 이행 자원 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_3_26",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-3-26",
+            "section_name": "문단 26: 본 공개 요건의 목적",
+            "section_content": "정책목표·목표달성에 크게 기여하는 주요 실행 및 계획된 조치에 대한 이해.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 26: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_3_26",
+                        "description": "문단 26: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_3_26",
+                        "description": "ESRSE4-E4-3-26",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-3-26"
+            ],
+            "rulebook_title": "문단 26: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_3_27",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-3-27",
+            "section_name": "문단 27: ESRS 2 MDR-A 필수 내용 준수",
+            "section_content": "주요 조치 및 자원 설명은 ESRS 2 MDR-A(중대 지속가능성 사안 관련 조치·자원)의 필수 내용을 따라야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 27: ESRS 2 MDR-A 필수 내용 준수",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_3_27",
+                        "description": "문단 27: ESRS 2 MDR-A 필수 내용 준수",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_3_27",
+                        "description": "ESRSE4-E4-3-27",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-A"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-3-27"
+            ],
+            "rulebook_title": "문단 27: ESRS 2 MDR-A 필수 내용 준수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_3_28_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-3-28-a",
+            "section_name": "문단 28-(a): 완화 계층 적용(선택 공시)",
+            "section_content": "조치에 완화 계층(회피·최소화·복원/재활·보상 또는 상쇄) 적용 방식을 공개할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 28-(a): 완화 계층 적용(선택 공시)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_3_28_a",
+                        "description": "문단 28-(a): 완화 계층 적용(선택 공시)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_3_28_A",
+                        "description": "ESRSE4-E4-3-28-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-3-28-a"
+            ],
+            "rulebook_title": "문단 28-(a): 완화 계층 적용(선택 공시)",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_3_28_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-3-28-b",
+            "section_name": "문단 28-(b): 생물다양성 상쇄 사용 여부 및 포함 시 세부",
+            "section_content": "실행 계획에 생물다양성 상쇄 적용 여부를 공개해야 하며, 포함 시 (i) 목적·핵심 성과지표 (ii) 재무적 효과(직·간접 비용) 금전 표시 (iii) 보전 조치 설명(면적·유형·품질기준·준수 표준)을 포함해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 28-(b): 생물다양성 상쇄 사용 여부 및 포함 시 세부",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_3_28_b",
+                        "description": "문단 28-(b): 생물다양성 상쇄 사용 여부 및 포함 시 세부",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_3_28_B",
+                        "description": "ESRSE4-E4-3-28-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-3-28-b",
+                "ESRSE4-E4-3-28-b-i",
+                "ESRSE4-E4-3-28-b-ii",
+                "ESRSE4-E4-3-28-b-iii"
+            ],
+            "rulebook_title": "문단 28-(b): 생물다양성 상쇄 사용 여부 및 포함 시 세부",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_3_28_B_I",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-3-28-b-i",
+            "section_name": "문단 28-(b)(i): 상쇄 목적 및 핵심 성과지표",
+            "section_content": "상쇄의 목적 및 사용된 핵심 성과 지표.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 28-(b)(i): 상쇄 목적 및 핵심 성과지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_3_28_b_i",
+                        "description": "문단 28-(b)(i): 상쇄 목적 및 핵심 성과지표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_3_28_B_I",
+                        "description": "ESRSE4-E4-3-28-b-i",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-3-28-b-i"
+            ],
+            "rulebook_title": "문단 28-(b)(i): 상쇄 목적 및 핵심 성과지표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_3_28_B_II",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-3-28-b-ii",
+            "section_name": "문단 28-(b)(ii): 상쇄의 재무적 효과(금액)",
+            "section_content": "생물다양성 상쇄의 재무적 효과(직접 및 간접 비용)를 금전적 가치로 표시.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 28-(b)(ii): 상쇄의 재무적 효과(금액)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_3_28_b_ii",
+                        "description": "문단 28-(b)(ii): 상쇄의 재무적 효과(금액)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_3_28_B_II",
+                        "description": "ESRSE4-E4-3-28-b-ii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-3-28-b-ii"
+            ],
+            "rulebook_title": "문단 28-(b)(ii): 상쇄의 재무적 효과(금액)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_3_28_B_III",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-3-28-b-iii",
+            "section_name": "문단 28-(b)(iii): 보전 조치 설명",
+            "section_content": "보전 조치에 대한 설명(면적, 유형, 적용된 품질 기준 및 준수 표준).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 28-(b)(iii): 보전 조치 설명",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_3_28_b_iii",
+                        "description": "문단 28-(b)(iii): 보전 조치 설명",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_3_28_B_III",
+                        "description": "ESRSE4-E4-3-28-b-iii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-3-28-b-iii"
+            ],
+            "rulebook_title": "문단 28-(b)(iii): 보전 조치 설명",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_3_28_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-3-28-c",
+            "section_name": "문단 28-(c): 지역·원주민 지식 및 자연 기반 해결책 통합",
+            "section_content": "생물다양성 및 생태계 관련 조치에 지역 및 원주민 지식과 자연 기반 해결책을 통합했는지 여부와 그 방법을 설명해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 28-(c): 지역·원주민 지식 및 자연 기반 해결책 통합",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_3_28_c",
+                        "description": "문단 28-(c): 지역·원주민 지식 및 자연 기반 해결책 통합",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_3_28_C",
+                        "description": "ESRSE4-E4-3-28-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-3-28-c"
+            ],
+            "rulebook_title": "문단 28-(c): 지역·원주민 지식 및 자연 기반 해결책 통합",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4",
+            "section_name": "공개 요건 E4-4: 생물다양성 및 생태계 관련 목표",
+            "section_content": "문단 29~32: 목표 공개(29), 목적(30), MDR-T(31), 목표 설명 요건 32(a)~(f) 및 32(a) 하위 i~iii.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요건 E4-4: 생물다양성 및 생태계 관련 목표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4",
+                        "description": "공개 요건 E4-4: 생물다양성 및 생태계 관련 목표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4",
+                        "description": "ESRSE4-E4-4",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4",
+                "ESRSE4-E4-4-29",
+                "ESRSE4-E4-4-30",
+                "ESRSE4-E4-4-31",
+                "ESRSE4-E4-4-32-a",
+                "ESRSE4-E4-4-32-b",
+                "ESRSE4-E4-4-32-c",
+                "ESRSE4-E4-4-32-d",
+                "ESRSE4-E4-4-32-e",
+                "ESRSE4-E4-4-32-f"
+            ],
+            "rulebook_title": "공개 요건 E4-4: 생물다양성 및 생태계 관련 목표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_29",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-29",
+            "section_name": "문단 29: 설정된 생물다양성·생태계 목표 공개",
+            "section_content": "설정된 생물다양성 및 생태계 관련 목표를 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 29: 설정된 생물다양성·생태계 목표 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_29",
+                        "description": "문단 29: 설정된 생물다양성·생태계 목표 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_29",
+                        "description": "ESRSE4-E4-4-29",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-29"
+            ],
+            "rulebook_title": "문단 29: 설정된 생물다양성·생태계 목표 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_30",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-30",
+            "section_name": "문단 30: 본 공개 요건의 목적",
+            "section_content": "정책 지원 및 중대 영향·의존성·위험·기회 대응을 위해 채택한 목표에 대한 이해.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 30: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_30",
+                        "description": "문단 30: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_30",
+                        "description": "ESRSE4-E4-4-30",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-30"
+            ],
+            "rulebook_title": "문단 30: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_31",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-31",
+            "section_name": "문단 31: ESRS 2 MDR-T 필수 내용",
+            "section_content": "목표 설명은 ESRS 2 MDR-T(목표를 통한 정책·조치 추적 효과성)의 필수 내용을 따라야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 31: ESRS 2 MDR-T 필수 내용",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_31",
+                        "description": "문단 31: ESRS 2 MDR-T 필수 내용",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_31",
+                        "description": "ESRSE4-E4-4-31",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-31"
+            ],
+            "rulebook_title": "문단 31: ESRS 2 MDR-T 필수 내용",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_32_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-32-a",
+            "section_name": "문단 32-(a): 생태학적 한계치·영향 배분 고려",
+            "section_content": "목표 설정 시 생태학적 한계치 및 사업체에 대한 영향 배분 적용 여부; 적용 시 (i) 확인된 한계치·방법론 (ii) 한계 사업체 특정 여부·결정 방법 (iii) 한계 준수 책임의 사업 내 배분.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(a): 생태학적 한계치·영향 배분 고려",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_32_a",
+                        "description": "문단 32-(a): 생태학적 한계치·영향 배분 고려",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_32_A",
+                        "description": "ESRSE4-E4-4-32-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-32-a",
+                "ESRSE4-E4-4-32-a-i",
+                "ESRSE4-E4-4-32-a-ii",
+                "ESRSE4-E4-4-32-a-iii"
+            ],
+            "rulebook_title": "문단 32-(a): 생태학적 한계치·영향 배분 고려",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_32_A_I",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-32-a-i",
+            "section_name": "문단 32-(a)(i): 확인된 생태적 한계치 및 방법론",
+            "section_content": "목표 설정 시 생태학적 한계치를 적용한 경우 명시해야 하는 하위 항목.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(a)(i): 확인된 생태적 한계치 및 방법론",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_32_a_i",
+                        "description": "문단 32-(a)(i): 확인된 생태적 한계치 및 방법론",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_32_A_I",
+                        "description": "ESRSE4-E4-4-32-a-i",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-32-a-i"
+            ],
+            "rulebook_title": "문단 32-(a)(i): 확인된 생태적 한계치 및 방법론",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_32_A_II",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-32-a-ii",
+            "section_name": "문단 32-(a)(ii): 한계의 사업체 특정 여부 및 결정 방법",
+            "section_content": "목표 설정 시 생태학적 한계치를 적용한 경우 명시해야 하는 하위 항목.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(a)(ii): 한계의 사업체 특정 여부 및 결정 방법",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_32_a_ii",
+                        "description": "문단 32-(a)(ii): 한계의 사업체 특정 여부 및 결정 방법",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_32_A_II",
+                        "description": "ESRSE4-E4-4-32-a-ii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-32-a-ii"
+            ],
+            "rulebook_title": "문단 32-(a)(ii): 한계의 사업체 특정 여부 및 결정 방법",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_32_A_III",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-32-a-iii",
+            "section_name": "문단 32-(a)(iii): 한계 준수 책임의 내부 배분",
+            "section_content": "목표 설정 시 생태학적 한계치를 적용한 경우 명시해야 하는 하위 항목.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(a)(iii): 한계 준수 책임의 내부 배분",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_32_a_iii",
+                        "description": "문단 32-(a)(iii): 한계 준수 책임의 내부 배분",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_32_A_III",
+                        "description": "ESRSE4-E4-4-32-a-iii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-32-a-iii"
+            ],
+            "rulebook_title": "문단 32-(a)(iii): 한계 준수 책임의 내부 배분",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_32_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-32-b",
+            "section_name": "문단 32-(b): 글로벌/EU/국가 정책·법률과의 정렬",
+            "section_content": "목표가 쿤밍-몬트리올 GBF, EU 2030 생물다양성 전략 관련 측면 및 기타 국가 정책·법률에 기반하거나 부합하는지.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(b): 글로벌/EU/국가 정책·법률과의 정렬",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_32_b",
+                        "description": "문단 32-(b): 글로벌/EU/국가 정책·법률과의 정렬",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_32_B",
+                        "description": "ESRSE4-E4-4-32-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "CBD-KMGBF",
+                    "EU-2030-Biodiversity"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-32-b"
+            ],
+            "rulebook_title": "문단 32-(b): 글로벌/EU/국가 정책·법률과의 정렬",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_32_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-32-c",
+            "section_name": "문단 32-(c): 식별된 IRO와의 연관",
+            "section_content": "자체 운영·상·하류 가치사슬에서 식별한 생물다양성·생태계 영향·의존성·위험·기회와 목표의 연관.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(c): 식별된 IRO와의 연관",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_32_c",
+                        "description": "문단 32-(c): 식별된 IRO와의 연관",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_32_C",
+                        "description": "ESRSE4-E4-4-32-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-32-c"
+            ],
+            "rulebook_title": "문단 32-(c): 식별된 IRO와의 연관",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_32_D",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-32-d",
+            "section_name": "문단 32-(d): 지리적 범위",
+            "section_content": "해당 시 목표의 지리적 범위.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(d): 지리적 범위",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_32_d",
+                        "description": "문단 32-(d): 지리적 범위",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_32_D",
+                        "description": "ESRSE4-E4-4-32-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-32-d"
+            ],
+            "rulebook_title": "문단 32-(d): 지리적 범위",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_32_E",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-32-e",
+            "section_name": "문단 32-(e): 목표 설정 시 생물다양성 상쇄 활용 여부",
+            "section_content": "목표 설정 시 생물다양성 상쇄 방식 활용 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(e): 목표 설정 시 생물다양성 상쇄 활용 여부",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_32_e",
+                        "description": "문단 32-(e): 목표 설정 시 생물다양성 상쇄 활용 여부",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_32_E",
+                        "description": "ESRSE4-E4-4-32-e",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-32-e"
+            ],
+            "rulebook_title": "문단 32-(e): 목표 설정 시 생물다양성 상쇄 활용 여부",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_4_32_F",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-4-32-f",
+            "section_name": "문단 32-(f): 완화 계층 단계 배분",
+            "section_content": "목표가 완화 계층의 어느 단계(회피·최소화·복원·재활·보상·상쇄)에 할당되는지.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(f): 완화 계층 단계 배분",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_4_32_f",
+                        "description": "문단 32-(f): 완화 계층 단계 배분",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_4_32_F",
+                        "description": "ESRSE4-E4-4-32-f",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-4-32-f"
+            ],
+            "rulebook_title": "문단 32-(f): 완화 계층 단계 배분",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5",
+            "section_name": "공개 요건 E4-5: 생물다양성 및 생태계 변화 관련 영향 측정 지표",
+            "section_content": "문단 33~41: 중대 영향 지표(33~34), 19(a) 해당 시 사이트 수·면적(35), LCA 토지이용 선택(36), 38~41은 자체 운영(37), 동인 지표(38), 외래종(39), 종 상태(40), 생태계(41).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요건 E4-5: 생물다양성 및 생태계 변화 관련 영향 측정 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5",
+                        "description": "공개 요건 E4-5: 생물다양성 및 생태계 변화 관련 영향 측정 지표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5",
+                        "description": "ESRSE4-E4-5",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5",
+                "ESRSE4-E4-5-33",
+                "ESRSE4-E4-5-34",
+                "ESRSE4-E4-5-35-a",
+                "ESRSE4-E4-5-35-b",
+                "ESRSE4-E4-5-36",
+                "ESRSE4-E4-5-37",
+                "ESRSE4-E4-5-38-a",
+                "ESRSE4-E4-5-38-b",
+                "ESRSE4-E4-5-38-c",
+                "ESRSE4-E4-5-38-d",
+                "ESRSE4-E4-5-38-e",
+                "ESRSE4-E4-5-39",
+                "ESRSE4-E4-5-40-a",
+                "ESRSE4-E4-5-40-b",
+                "ESRSE4-E4-5-40-c",
+                "ESRSE4-E4-5-40-d",
+                "ESRSE4-E4-5-41-a",
+                "ESRSE4-E4-5-41-b"
+            ],
+            "rulebook_title": "공개 요건 E4-5: 생물다양성 및 생태계 변화 관련 영향 측정 지표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_33",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-33",
+            "section_name": "문단 33: 생물다양성·생태계 중대 영향 관련 지표 보고",
+            "section_content": "사업체는 생물다양성 및 생태계에 대한 중대한 영향과 관련된 지표를 보고해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 33: 생물다양성·생태계 중대 영향 관련 지표 보고",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_33",
+                        "description": "문단 33: 생물다양성·생태계 중대 영향 관련 지표 보고",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_33",
+                        "description": "ESRSE4-E4-5-33",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-33"
+            ],
+            "rulebook_title": "문단 33: 생물다양성·생태계 중대 영향 관련 지표 보고",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_34",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-34",
+            "section_name": "문단 34: 본 공개 요건의 목적",
+            "section_content": "중대성 평가에서 생물다양성·생태계 변화와 관련하여 중대한 것으로 식별된 영향 대비 기업 성과에 대한 이해.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 34: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_34",
+                        "description": "문단 34: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_34",
+                        "description": "ESRSE4-E4-5-34",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-34"
+            ],
+            "rulebook_title": "문단 34: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_35_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-35-a",
+            "section_name": "문단 35: 민감 지역 인근 사이트 수(19(a) 해당 시)",
+            "section_content": "생물다양성 민감 지역 내·인근에 위치하고 부정적 영향을 미치는 사이트를 식별한 경우(19(a)), 소유·리스·관리하는 해당 보호지역·핵심 생물다양성 지역 등 인근 사이트 수.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 35: 민감 지역 인근 사이트 수(19(a) 해당 시)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_35_a",
+                        "description": "문단 35: 민감 지역 인근 사이트 수(19(a) 해당 시)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_35_A",
+                        "description": "ESRSE4-E4-5-35-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRSE4-IRO-1-19-a"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-35-a"
+            ],
+            "rulebook_title": "문단 35: 민감 지역 인근 사이트 수(19(a) 해당 시)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_35_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-35-b",
+            "section_name": "문단 35: 민감 지역 인근 사이트 면적(헥타르)(19(a) 해당 시)",
+            "section_content": "동일 조건 하 소유·리스·관리 사이트의 면적(헥타르).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 35: 민감 지역 인근 사이트 면적(헥타르)(19(a) 해당 시)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_35_b",
+                        "description": "문단 35: 민감 지역 인근 사이트 면적(헥타르)(19(a) 해당 시)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_35_B",
+                        "description": "ESRSE4-E4-5-35-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRSE4-IRO-1-19-a"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-35-b"
+            ],
+            "rulebook_title": "문단 35: 민감 지역 인근 사이트 면적(헥타르)(19(a) 해당 시)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_36",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-36",
+            "section_name": "문단 36: 토지이용 LCA 기반 공시(선택)",
+            "section_content": "토지이용 변화 또는 생태계 범위·상태 관련 중대 영향이 식별된 경우 수명주기평가(LCA)에 기반한 토지이용을 공개할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 36: 토지이용 LCA 기반 공시(선택)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_36",
+                        "description": "문단 36: 토지이용 LCA 기반 공시(선택)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_36",
+                        "description": "ESRSE4-E4-5-36",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-36"
+            ],
+            "rulebook_title": "문단 36: 토지이용 LCA 기반 공시(선택)",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_37",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-37",
+            "section_name": "문단 37: 문단 38~41 지표는 자체 운영 고려",
+            "section_content": "문단 38~41의 데이터포인트에 대해 기업은 자체 운영을 고려해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37: 문단 38~41 지표는 자체 운영 고려",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_37",
+                        "description": "문단 37: 문단 38~41 지표는 자체 운영 고려",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_37",
+                        "description": "ESRSE4-E4-5-37",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-37"
+            ],
+            "rulebook_title": "문단 37: 문단 38~41 지표는 자체 운영 고려",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_38_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-38-a",
+            "section_name": "문단 38-(a): 토지·담수·해역 이용 변화 동인 지표",
+            "section_content": "토지 피복 변화 시계열(예: 1년·5년)(예: 삼림벌채·채광) — 토지이용·담수이용·해역이용 변화에 대한 영향 동인에 직접 기여한다고 판단하는 경우 관련 지표를 보고해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(a): 토지·담수·해역 이용 변화 동인 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_38_a",
+                        "description": "문단 38-(a): 토지·담수·해역 이용 변화 동인 지표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_38_A",
+                        "description": "ESRSE4-E4-5-38-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-38-a"
+            ],
+            "rulebook_title": "문단 38-(a): 토지·담수·해역 이용 변화 동인 지표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_38_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-38-b",
+            "section_name": "문단 38-(b): 토지·담수·해역 이용 변화 동인 지표",
+            "section_content": "생태계 관리 변화 시계열(집약화·관행 개선·벌채 등) — 토지이용·담수이용·해역이용 변화에 대한 영향 동인에 직접 기여한다고 판단하는 경우 관련 지표를 보고해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(b): 토지·담수·해역 이용 변화 동인 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_38_b",
+                        "description": "문단 38-(b): 토지·담수·해역 이용 변화 동인 지표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_38_B",
+                        "description": "ESRSE4-E4-5-38-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-38-b"
+            ],
+            "rulebook_title": "문단 38-(b): 토지·담수·해역 이용 변화 동인 지표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_38_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-38-c",
+            "section_name": "문단 38-(c): 토지·담수·해역 이용 변화 동인 지표",
+            "section_content": "경관 공간 구조 변화(서식지 파편화·연결성) — 토지이용·담수이용·해역이용 변화에 대한 영향 동인에 직접 기여한다고 판단하는 경우 관련 지표를 보고해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(c): 토지·담수·해역 이용 변화 동인 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_38_c",
+                        "description": "문단 38-(c): 토지·담수·해역 이용 변화 동인 지표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_38_C",
+                        "description": "ESRSE4-E4-5-38-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-38-c"
+            ],
+            "rulebook_title": "문단 38-(c): 토지·담수·해역 이용 변화 동인 지표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_38_D",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-38-d",
+            "section_name": "문단 38-(d): 토지·담수·해역 이용 변화 동인 지표",
+            "section_content": "생태계 구조적 연결성 변화(서식지 투과성 등) — 토지이용·담수이용·해역이용 변화에 대한 영향 동인에 직접 기여한다고 판단하는 경우 관련 지표를 보고해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(d): 토지·담수·해역 이용 변화 동인 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_38_d",
+                        "description": "문단 38-(d): 토지·담수·해역 이용 변화 동인 지표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_38_D",
+                        "description": "ESRSE4-E4-5-38-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-38-d"
+            ],
+            "rulebook_title": "문단 38-(d): 토지·담수·해역 이용 변화 동인 지표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_38_E",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-38-e",
+            "section_name": "문단 38-(e): 토지·담수·해역 이용 변화 동인 지표",
+            "section_content": "기능적 연결성(유전자·개체 이동) — 토지이용·담수이용·해역이용 변화에 대한 영향 동인에 직접 기여한다고 판단하는 경우 관련 지표를 보고해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(e): 토지·담수·해역 이용 변화 동인 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_38_e",
+                        "description": "문단 38-(e): 토지·담수·해역 이용 변화 동인 지표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_38_E",
+                        "description": "ESRSE4-E4-5-38-e",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-38-e"
+            ],
+            "rulebook_title": "문단 38-(e): 토지·담수·해역 이용 변화 동인 지표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_39",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-39",
+            "section_name": "문단 39: 외래 침입종 유입·확산 지표(선택)",
+            "section_content": "우발적·고의적 외래 침입종 유입에 직접 기여한다고 판단하면, 유입·확산 경로 관리 및 위험 관리에 사용하는 지표를 공개할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 39: 외래 침입종 유입·확산 지표(선택)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_39",
+                        "description": "문단 39: 외래 침입종 유입·확산 지표(선택)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_39",
+                        "description": "ESRSE4-E4-5-39",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-39"
+            ],
+            "rulebook_title": "문단 39: 외래 침입종 유입·확산 지표(선택)",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_40_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-40-a",
+            "section_name": "문단 40-(a): ESRS E1·E2·E3·E5 관련 공개 요건 참조",
+            "section_content": "종 상태 관련 중대 영향이 식별된 경우 ESRS E1, E2, E3, E5의 관련 공개 요건을 참조할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 40-(a): ESRS E1·E2·E3·E5 관련 공개 요건 참조",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_40_a",
+                        "description": "문단 40-(a): ESRS E1·E2·E3·E5 관련 공개 요건 참조",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_40_A",
+                        "description": "ESRSE4-E4-5-40-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS-E1",
+                    "ESRS-E2",
+                    "ESRS-E3",
+                    "ESRS-E5"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-40-a"
+            ],
+            "rulebook_title": "문단 40-(a): ESRS E1·E2·E3·E5 관련 공개 요건 참조",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_40_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-40-b",
+            "section_name": "문단 40-(b): 개체수·분포·멸종위험 등 측정 기준",
+            "section_content": "집단 크기, 특정 생태계 내 분포, 멸종 위험 등 종 건강·회복력 이해에 관련된 측정 기준을 고려할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 40-(b): 개체수·분포·멸종위험 등 측정 기준",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_40_b",
+                        "description": "문단 40-(b): 개체수·분포·멸종위험 등 측정 기준",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_40_B",
+                        "description": "ESRSE4-E4-5-40-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-40-b"
+            ],
+            "rulebook_title": "문단 40-(b): 개체수·분포·멸종위험 등 측정 기준",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_40_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-40-c",
+            "section_name": "문단 40-(c): 특정 구역 내 개체 수 변화 지표",
+            "section_content": "특정 구역 내 종 개체 수 변화를 측정하는 지표를 공개할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 40-(c): 특정 구역 내 개체 수 변화 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_40_c",
+                        "description": "문단 40-(c): 특정 구역 내 개체 수 변화 지표",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_40_C",
+                        "description": "ESRSE4-E4-5-40-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-40-c"
+            ],
+            "rulebook_title": "문단 40-(c): 특정 구역 내 개체 수 변화 지표",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_40_D",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-40-d",
+            "section_name": "문단 40-(d): 멸종위험 종 지표",
+            "section_content": "멸종 위험에 처한 종에 대한 지표: (i) 위협 상태 및 활동·압력이 위협 등급에 미치는 영향 (ii) 위협받는 종 관련 서식지 변화(지역 개체군 멸종위험 대리지표).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 40-(d): 멸종위험 종 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_40_d",
+                        "description": "문단 40-(d): 멸종위험 종 지표",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_40_D",
+                        "description": "ESRSE4-E4-5-40-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "FN-98"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-40-d",
+                "ESRSE4-E4-5-40-d-i",
+                "ESRSE4-E4-5-40-d-ii"
+            ],
+            "rulebook_title": "문단 40-(d): 멸종위험 종 지표",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_40_D_I",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-40-d-i",
+            "section_name": "문단 40-(d)(i): 위협 등급·압력 영향",
+            "section_content": "종의 위협 상태 및 기업 활동·압력이 위협 상태에 미치는 영향.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 40-(d)(i): 위협 등급·압력 영향",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_40_d_i",
+                        "description": "문단 40-(d)(i): 위협 등급·압력 영향",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_40_D_I",
+                        "description": "ESRSE4-E4-5-40-d-i",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "FN-98"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-40-d-i"
+            ],
+            "rulebook_title": "문단 40-(d)(i): 위협 등급·압력 영향",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_40_D_II",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-40-d-ii",
+            "section_name": "문단 40-(d)(ii): 위협받는 종 서식지 변화(대리지표)",
+            "section_content": "위협받는 종과 관련된 서식지 변화(지역 개체군 멸종위험 영향의 대리지표).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 40-(d)(ii): 위협받는 종 서식지 변화(대리지표)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_40_d_ii",
+                        "description": "문단 40-(d)(ii): 위협받는 종 서식지 변화(대리지표)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_40_D_II",
+                        "description": "ESRSE4-E4-5-40-d-ii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "FN-98"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-40-d-ii"
+            ],
+            "rulebook_title": "문단 40-(d)(ii): 위협받는 종 서식지 변화(대리지표)",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_41_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-41-a",
+            "section_name": "문단 41-(a): 생태계 범위(면적 분포) 지표",
+            "section_content": "특정 생태계의 면적 분포를 재는 지표(서식지 피복의 질적 측면 없이 범위만 측정하는 경우 포함).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 41-(a): 생태계 범위(면적 분포) 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_41_a",
+                        "description": "문단 41-(a): 생태계 범위(면적 분포) 지표",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_41_A",
+                        "description": "ESRSE4-E4-5-41-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-41-a"
+            ],
+            "rulebook_title": "문단 41-(a): 생태계 범위(면적 분포) 지표",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_41_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-41-b",
+            "section_name": "문단 41-(b): 생태계 상태 지표",
+            "section_content": "생태계 상태: (i) 기준 상태 대비 질 (ii) 단일 종이 아닌 복수 종·조성·풍부도·Kunming-Montreal 목표 대비 변화 (iii) 서식지 연결성 등 구조 요소.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 41-(b): 생태계 상태 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_41_b",
+                        "description": "문단 41-(b): 생태계 상태 지표",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_41_B",
+                        "description": "ESRSE4-E4-5-41-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-41-b",
+                "ESRSE4-E4-5-41-b-i",
+                "ESRSE4-E4-5-41-b-ii",
+                "ESRSE4-E4-5-41-b-iii"
+            ],
+            "rulebook_title": "문단 41-(b): 생태계 상태 지표",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_41_B_I",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-41-b-i",
+            "section_name": "문단 41-(b)(i)",
+            "section_content": "기준 상태 대비 생태계 질 지표",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 41-(b)(i)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_41_b_i",
+                        "description": "문단 41-(b)(i)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_41_B_I",
+                        "description": "ESRSE4-E4-5-41-b-i",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-41-b-i"
+            ],
+            "rulebook_title": "문단 41-(b)(i)",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_41_B_II",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-41-b-ii",
+            "section_name": "문단 41-(b)(ii)",
+            "section_content": "복수 종·다양성·조성·KM-GBF 목표 대비 변화",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 41-(b)(ii)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_41_b_ii",
+                        "description": "문단 41-(b)(ii)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_41_B_II",
+                        "description": "ESRSE4-E4-5-41-b-ii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "CBD-KMGBF"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-41-b-ii"
+            ],
+            "rulebook_title": "문단 41-(b)(ii)",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_5_41_B_III",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-5-41-b-iii",
+            "section_name": "문단 41-(b)(iii)",
+            "section_content": "구조·서식지 연결성 지표",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 41-(b)(iii)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_5_41_b_iii",
+                        "description": "문단 41-(b)(iii)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_5_41_B_III",
+                        "description": "ESRSE4-E4-5-41-b-iii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-5-41-b-iii"
+            ],
+            "rulebook_title": "문단 41-(b)(iii)",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_6",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-6",
+            "section_name": "공개 요건 E4-6: 생물다양성·생태계 관련 예상 재무적 영향",
+            "section_content": "문단 42~45: 예상 재무영향(42), SBM-3 48(d) 현재 재무영향에 추가(43), 목적 44(a)(b), 세부 45(a) 정량·정성·기회·ESRS 1 부속서 B, 45(b) 영향·의존성·기간, 45(c) 가정·불확실성.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요건 E4-6: 생물다양성·생태계 관련 예상 재무적 영향",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_6",
+                        "description": "공개 요건 E4-6: 생물다양성·생태계 관련 예상 재무적 영향",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_6",
+                        "description": "ESRSE4-E4-6",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-6",
+                "ESRSE4-E4-6-42",
+                "ESRSE4-E4-6-43",
+                "ESRSE4-E4-6-44-a",
+                "ESRSE4-E4-6-44-b",
+                "ESRSE4-E4-6-45-a",
+                "ESRSE4-E4-6-45-b",
+                "ESRSE4-E4-6-45-c"
+            ],
+            "rulebook_title": "공개 요건 E4-6: 생물다양성·생태계 관련 예상 재무적 영향",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_6_42",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-6-42",
+            "section_name": "문단 42: 생물다양성·생태계 관련 예상 재무적 영향",
+            "section_content": "기업은 중요한 생물다양성 및 생태계 관련 위험과 기회에 따른 예상 재무적 영향을 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 42: 생물다양성·생태계 관련 예상 재무적 영향",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_6_42",
+                        "description": "문단 42: 생물다양성·생태계 관련 예상 재무적 영향",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_6_42",
+                        "description": "ESRSE4-E4-6-42",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-6-42"
+            ],
+            "rulebook_title": "문단 42: 생물다양성·생태계 관련 예상 재무적 영향",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_6_43",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-6-43",
+            "section_name": "문단 43: ESRS 2 SBM-3 제48항(d) 현재 재무영향 정보에 추가",
+            "section_content": "제42항 정보는 보고 기간 동안 재무상태·성과·현금흐름에 대한 현재 재무적 영향에 관해 ESRS 2 SBM-3 제48항(d)에서 요구하는 정보에 추가됩니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 43: ESRS 2 SBM-3 제48항(d) 현재 재무영향 정보에 추가",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_6_43",
+                        "description": "문단 43: ESRS 2 SBM-3 제48항(d) 현재 재무영향 정보에 추가",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_6_43",
+                        "description": "ESRSE4-E4-6-43",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3-48d"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-6-43"
+            ],
+            "rulebook_title": "문단 43: ESRS 2 SBM-3 제48항(d) 현재 재무영향 정보에 추가",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_6_44_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-6-44-a",
+            "section_name": "문단 44-(a): 영향·의존성에서 오는 위험의 예상 재무영향·기간",
+            "section_content": "생물다양성·생태계 관련 영향과 의존성에서 비롯하는 중대 위험의 예상 재무영향 및 단·중·장기 재무에 미칠 수 있는 합리적 가능성에 대한 이해.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 44-(a): 영향·의존성에서 오는 위험의 예상 재무영향·기간",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_6_44_a",
+                        "description": "문단 44-(a): 영향·의존성에서 오는 위험의 예상 재무영향·기간",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_6_44_A",
+                        "description": "ESRSE4-E4-6-44-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-6-44-a"
+            ],
+            "rulebook_title": "문단 44-(a): 영향·의존성에서 오는 위험의 예상 재무영향·기간",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_6_44_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-6-44-b",
+            "section_name": "문단 44-(b): 중대 기회의 예상 재무영향",
+            "section_content": "생물다양성 및 생태계 관련 중대 기회에 따른 예상 재무적 영향에 대한 이해.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 44-(b): 중대 기회의 예상 재무영향",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_6_44_b",
+                        "description": "문단 44-(b): 중대 기회의 예상 재무영향",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_6_44_B",
+                        "description": "ESRSE4-E4-6-44-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-6-44-b"
+            ],
+            "rulebook_title": "문단 44-(b): 중대 기회의 예상 재무영향",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_6_45_A",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-6-45-a",
+            "section_name": "문단 45-(a): 조치 반영 전 예상 재무효과 정량·과도 비용 시 정성·기회·부속서 B",
+            "section_content": "조치 고려 전 예상 재무효과를 금전적으로 정량화하거나, 과도한 비용·노력 없이 불가하면 질적 정보. 기회는 ESRS 1 부속서 B 질적 특성에 맞지 않으면 정량 불필요. 단일 금액 또는 구간.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 45-(a): 조치 반영 전 예상 재무효과 정량·과도 비용 시 정성·기회·부속서 B",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_6_45_a",
+                        "description": "문단 45-(a): 조치 반영 전 예상 재무효과 정량·과도 비용 시 정성·기회·부속서 B",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_6_45_A",
+                        "description": "ESRSE4-E4-6-45-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS1-Appendix-B"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-6-45-a"
+            ],
+            "rulebook_title": "문단 45-(a): 조치 반영 전 예상 재무효과 정량·과도 비용 시 정성·기회·부속서 B",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_6_45_B",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-6-45-b",
+            "section_name": "문단 45-(b): 영향·의존성·시간 범위",
+            "section_content": "고려한 효과, 관련 영향·의존성, 실현 가능 시간 범위 설명.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 45-(b): 영향·의존성·시간 범위",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_6_45_b",
+                        "description": "문단 45-(b): 영향·의존성·시간 범위",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_6_45_B",
+                        "description": "ESRSE4-E4-6-45-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-6-45-b"
+            ],
+            "rulebook_title": "문단 45-(b): 영향·의존성·시간 범위",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE4_E4_6_45_C",
+            "standard_id": "ESRSE4",
+            "primary_dp_id": "ESRSE4-E4-6-45-c",
+            "section_name": "문단 45-(c): 핵심 가정·출처·불확실성",
+            "section_content": "예상 재무효과 정량에 사용한 핵심 가정, 출처, 불확실성 수준.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 45-(c): 핵심 가정·출처·불확실성",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse4_e4_6_45_c",
+                        "description": "문단 45-(c): 핵심 가정·출처·불확실성",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE4_E4_6_45_C",
+                        "description": "ESRSE4-E4-6-45-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE4-E4-6-45-c"
+            ],
+            "rulebook_title": "문단 45-(c): 핵심 가정·출처·불확실성",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        }
+    ]
+}

@@ -1,0 +1,2968 @@
+{
+    "rulebooks": [
+        {
+            "rulebook_id": "RULE_ESRSE5",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5",
+            "section_name": "ESRS E5(문단 11~43)",
+            "section_content": "ESRS E5 — IRO-1(11), E5-1(12~16), E5-2(17~20), E5-3(21~27), E5-4(28~32), E5-5(33~40), E5-6(41~43).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E5 paras 11-43",
+                "key_terms": [
+                    "resource inflows",
+                    "resource outflows",
+                    "waste",
+                    "circular economy",
+                    "E5-1",
+                    "E5-2",
+                    "E5-3",
+                    "MDR-P",
+                    "MDR-A",
+                    "MDR-T",
+                    "E5-4",
+                    "E5-5",
+                    "E5-6",
+                    "anticipated financial effects"
+                ],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5",
+                        "description": "ESRS E5: 자원 사용 및 순환 경제",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5",
+                        "description": "ESRSE5",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-IRO-1",
+                    "ESRS2-MDR-P",
+                    "ESRS2-MDR-A",
+                    "ESRS2-MDR-T",
+                    "ESRS2-SBM-3-48d",
+                    "ESRS1-Appendix-B"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5",
+                "ESRSE5-SEC-1",
+                "ESRSE5-E5-4",
+                "ESRSE5-E5-4-28",
+                "ESRSE5-E5-4-29",
+                "ESRSE5-E5-4-30",
+                "ESRSE5-E5-4-31-a",
+                "ESRSE5-E5-4-31-b",
+                "ESRSE5-E5-4-31-c",
+                "ESRSE5-E5-4-32",
+                "ESRSE5-E5-5",
+                "ESRSE5-E5-5-33",
+                "ESRSE5-E5-5-34-a",
+                "ESRSE5-E5-5-34-b",
+                "ESRSE5-E5-5-35",
+                "ESRSE5-E5-5-36-a",
+                "ESRSE5-E5-5-36-b",
+                "ESRSE5-E5-5-36-c",
+                "ESRSE5-E5-5-37-a",
+                "ESRSE5-E5-5-37-b",
+                "ESRSE5-E5-5-37-b-i",
+                "ESRSE5-E5-5-37-b-ii",
+                "ESRSE5-E5-5-37-b-iii",
+                "ESRSE5-E5-5-37-c",
+                "ESRSE5-E5-5-37-c-i",
+                "ESRSE5-E5-5-37-c-ii",
+                "ESRSE5-E5-5-37-c-iii",
+                "ESRSE5-E5-5-37-d",
+                "ESRSE5-E5-5-38-a",
+                "ESRSE5-E5-5-38-b",
+                "ESRSE5-E5-5-39",
+                "ESRSE5-E5-5-40",
+                "ESRSE5-E5-6",
+                "ESRSE5-E5-6-41",
+                "ESRSE5-E5-6-42-a",
+                "ESRSE5-E5-6-42-b",
+                "ESRSE5-E5-6-43-a",
+                "ESRSE5-E5-6-43-b",
+                "ESRSE5-E5-6-43-c"
+            ],
+            "rulebook_title": "ESRS E5: 자원 사용 및 순환 경제",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_SEC_1",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-SEC-1",
+            "section_name": "Section 1 — 문단 11~43 묶음",
+            "section_content": "ESRS E5 제1절: IRO-1, E5-1~E5-6.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "1. 자원 사용 및 순환경제 관련 공시(문단 11~27)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_sec_1",
+                        "description": "1. 자원 사용 및 순환경제 관련 공시(문단 11~27)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_SEC_1",
+                        "description": "ESRSE5-SEC-1",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-SEC-1",
+                "ESRSE5-IRO-1",
+                "ESRSE5-E5-1",
+                "ESRSE5-E5-2",
+                "ESRSE5-E5-3",
+                "ESRSE5-E5-4",
+                "ESRSE5-E5-5",
+                "ESRSE5-E5-6"
+            ],
+            "rulebook_title": "1. 자원 사용 및 순환경제 관련 공시(문단 11~27)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_IRO_1",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-IRO-1",
+            "section_name": "ESRS 2 IRO-1 연계: 자원 사용·순환경제 IRO 식별·평가 절차",
+            "section_content": "문단 11: 자원 유입·자원 유출·폐기물 관련 중대한 영향·위험·기회 식별 절차 및 (a)(b) 정보.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS 2 IRO-1 연계: 자원 사용·순환경제 IRO 식별·평가 절차",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_iro_1",
+                        "description": "ESRS 2 IRO-1 연계: 자원 사용·순환경제 IRO 식별·평가 절차",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_IRO_1",
+                        "description": "ESRSE5-IRO-1",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-IRO-1"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5-IRO-1",
+                "ESRSE5-IRO-1-11-a",
+                "ESRSE5-IRO-1-11-b"
+            ],
+            "rulebook_title": "ESRS 2 IRO-1 연계: 자원 사용·순환경제 IRO 식별·평가 절차",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_IRO_1_11_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-IRO-1-11-a",
+            "section_name": "문단 11-(a): 자산 검토 여부·방법·가정",
+            "section_content": "자사 운영 및 상·하류 가치사슬 내 실재적·잠재적 영향·위험·기회 식별을 위해 자산을 검토했는지, 검토했다면 사용한 방법·가정.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 11-(a): 자산 검토 여부·방법·가정",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_iro_1_11_a",
+                        "description": "문단 11-(a): 자산 검토 여부·방법·가정",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_IRO_1_11_A",
+                        "description": "ESRSE5-IRO-1-11-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-IRO-1-11-a"
+            ],
+            "rulebook_title": "문단 11-(a): 자산 검토 여부·방법·가정",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_IRO_1_11_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-IRO-1-11-b",
+            "section_name": "문단 11-(b): 영향 지역사회 협의 여부·방법",
+            "section_content": "해당 기업이 특히 영향을 받는 지역사회와 협의했는지 여부 및 방법.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 11-(b): 영향 지역사회 협의 여부·방법",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_iro_1_11_b",
+                        "description": "문단 11-(b): 영향 지역사회 협의 여부·방법",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_IRO_1_11_B",
+                        "description": "ESRSE5-IRO-1-11-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-IRO-1-11-b"
+            ],
+            "rulebook_title": "문단 11-(b): 영향 지역사회 협의 여부·방법",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_1",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-1",
+            "section_name": "공개 요구사항 E5-1: 자원 사용 및 순환경제 관련 정책",
+            "section_content": "문단 12~16: 정책 설명(12), 목적(13), MDR-P 연계(14), 정책 핵심 고려사항(15a,b), 가치사슬 적용(16).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 E5-1: 자원 사용 및 순환경제 관련 정책",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_1",
+                        "description": "공개 요구사항 E5-1: 자원 사용 및 순환경제 관련 정책",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_1",
+                        "description": "ESRSE5-E5-1",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-1",
+                "ESRSE5-E5-1-12",
+                "ESRSE5-E5-1-13",
+                "ESRSE5-E5-1-14",
+                "ESRSE5-E5-1-15-a",
+                "ESRSE5-E5-1-15-b",
+                "ESRSE5-E5-1-16"
+            ],
+            "rulebook_title": "공개 요구사항 E5-1: 자원 사용 및 순환경제 관련 정책",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_1_12",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-1-12",
+            "section_name": "문단 12: 자원 사용·순환경제 중대 IRO 대응 정책 설명",
+            "section_content": "기업은 자원 사용 및 순환 경제와 관련된 중대한 영향, 위험 및 기회에 대응하기 위해 채택한 정책을 설명해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 12: 자원 사용·순환경제 중대 IRO 대응 정책 설명",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_1_12",
+                        "description": "문단 12: 자원 사용·순환경제 중대 IRO 대응 정책 설명",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_1_12",
+                        "description": "ESRSE5-E5-1-12",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-1-12"
+            ],
+            "rulebook_title": "문단 12: 자원 사용·순환경제 중대 IRO 대응 정책 설명",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_1_13",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-1-13",
+            "section_name": "문단 13: 본 공개 요건의 목적",
+            "section_content": "자원 사용 및 순환 경제 관련 중대한 영향·위험·기회 식별·관리·개선을 다루는 정책 보유 정도 이해.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 13: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_1_13",
+                        "description": "문단 13: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_1_13",
+                        "description": "ESRSE5-E5-1-13",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-1-13"
+            ],
+            "rulebook_title": "문단 13: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_1_14",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-1-14",
+            "section_name": "문단 14: MDR-P 필수 정보 포함",
+            "section_content": "제12항 공개에는 ESRS 2 MDR-P(중요 지속가능성 사안 관리 정책) 관련 필수 정보가 포함되어야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 14: MDR-P 필수 정보 포함",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_1_14",
+                        "description": "문단 14: MDR-P 필수 정보 포함",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_1_14",
+                        "description": "ESRSE5-E5-1-14",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-P"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-1-14"
+            ],
+            "rulebook_title": "문단 14: MDR-P 필수 정보 포함",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_1_15_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-1-15-a",
+            "section_name": "문단 15-(a): 자원 사용 저감·대체 전략",
+            "section_content": "원자재 사용 저하 및 대체(예: 재활용 자원 비중 증가)를 어떻게 다루는지.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 15-(a): 자원 사용 저감·대체 전략",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_1_15_a",
+                        "description": "문단 15-(a): 자원 사용 저감·대체 전략",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_1_15_A",
+                        "description": "ESRSE5-E5-1-15-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-1-15-a"
+            ],
+            "rulebook_title": "문단 15-(a): 자원 사용 저감·대체 전략",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_1_15_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-1-15-b",
+            "section_name": "문단 15-(b): 재생 가능 시스템·생산 향상",
+            "section_content": "재생 가능 자원의 지속가능한 조달 및 생산 관련 정책.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 15-(b): 재생 가능 시스템·생산 향상",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_1_15_b",
+                        "description": "문단 15-(b): 재생 가능 시스템·생산 향상",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_1_15_B",
+                        "description": "ESRSE5-E5-1-15-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-1-15-b"
+            ],
+            "rulebook_title": "문단 15-(b): 재생 가능 시스템·생산 향상",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_1_16",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-1-16",
+            "section_name": "문단 16: 정책의 가치사슬 적용",
+            "section_content": "정책은 자체 운영 및 상·하류 가치 사슬 전반에서 발생하는 중대 영향·위험·기회에 대응해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 16: 정책의 가치사슬 적용",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_1_16",
+                        "description": "문단 16: 정책의 가치사슬 적용",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_1_16",
+                        "description": "ESRSE5-E5-1-16",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-1-16"
+            ],
+            "rulebook_title": "문단 16: 정책의 가치사슬 적용",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_2",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-2",
+            "section_name": "공개 요구사항 E5-2: 자원 사용 및 순환 경제 관련 조치 및 자원",
+            "section_content": "문단 17~20: 조치·자원(17), 목적(18), MDR-A 연계(19), 선택적 상세 조치(20a~f).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 E5-2: 자원 사용 및 순환 경제 관련 조치 및 자원",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_2",
+                        "description": "공개 요구사항 E5-2: 자원 사용 및 순환 경제 관련 조치 및 자원",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_2",
+                        "description": "ESRSE5-E5-2",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-2",
+                "ESRSE5-E5-2-17",
+                "ESRSE5-E5-2-18",
+                "ESRSE5-E5-2-19",
+                "ESRSE5-E5-2-20-a",
+                "ESRSE5-E5-2-20-b",
+                "ESRSE5-E5-2-20-c",
+                "ESRSE5-E5-2-20-d",
+                "ESRSE5-E5-2-20-e",
+                "ESRSE5-E5-2-20-f"
+            ],
+            "rulebook_title": "공개 요구사항 E5-2: 자원 사용 및 순환 경제 관련 조치 및 자원",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_2_17",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-2-17",
+            "section_name": "문단 17: 조치 및 할당 자원 공개",
+            "section_content": "기업은 자원의 사용 및 순환 경제와 관련된 조치와 그 이행에 할당된 자원을 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 17: 조치 및 할당 자원 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_2_17",
+                        "description": "문단 17: 조치 및 할당 자원 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_2_17",
+                        "description": "ESRSE5-E5-2-17",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-2-17"
+            ],
+            "rulebook_title": "문단 17: 조치 및 할당 자원 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_2_18",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-2-18",
+            "section_name": "문단 18: 본 공개 요건의 목적",
+            "section_content": "정책·목표를 달성하기 위한 주요 조치와 계획된 조치에 대한 이해 제공.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 18: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_2_18",
+                        "description": "문단 18: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_2_18",
+                        "description": "ESRSE5-E5-2-18",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-2-18"
+            ],
+            "rulebook_title": "문단 18: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_2_19",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-2-19",
+            "section_name": "문단 19: MDR-A 필수 정보 포함",
+            "section_content": "조치·자원 설명은 ESRS 2 MDR-A(중요 지속가능성 관련 조치 및 자원) 정의된 필수 정보를 따라야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 19: MDR-A 필수 정보 포함",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_2_19",
+                        "description": "문단 19: MDR-A 필수 정보 포함",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_2_19",
+                        "description": "ESRSE5-E5-2-19",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-A"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-2-19"
+            ],
+            "rulebook_title": "문단 19: MDR-A 필수 정보 포함",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_2_20_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-2-20-a",
+            "section_name": "문단 20-(a): 선택적 조치 예시",
+            "section_content": "중요 원자재 및 원료 흐름·정보시스템 관련 기술·생물학적 재료/사용 비중 향상 조치",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 20-(a): 선택적 조치 예시",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_2_20_a",
+                        "description": "문단 20-(a): 선택적 조치 예시",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_2_20_A",
+                        "description": "ESRSE5-E5-2-20-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-2-20-a"
+            ],
+            "rulebook_title": "문단 20-(a): 선택적 조치 예시",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_2_20_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-2-20-b",
+            "section_name": "문단 20-(b): 선택적 조치 예시",
+            "section_content": "2차 원자재(재활용물) 사용 향상 조치",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 20-(b): 선택적 조치 예시",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_2_20_b",
+                        "description": "문단 20-(b): 선택적 조치 예시",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_2_20_B",
+                        "description": "ESRSE5-E5-2-20-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-2-20-b"
+            ],
+            "rulebook_title": "문단 20-(b): 선택적 조치 예시",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_2_20_C",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-2-20-c",
+            "section_name": "문단 20-(c): 선택적 조치 예시",
+            "section_content": "순환 디자인 적용으로 제품 내구성/재사용/수리/재제조/분해 용이성 향상",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 20-(c): 선택적 조치 예시",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_2_20_c",
+                        "description": "문단 20-(c): 선택적 조치 예시",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_2_20_C",
+                        "description": "ESRSE5-E5-2-20-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-2-20-c"
+            ],
+            "rulebook_title": "문단 20-(c): 선택적 조치 예시",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_2_20_D",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-2-20-d",
+            "section_name": "문단 20-(d): 선택적 조치 예시",
+            "section_content": "순환 비즈니스 모델 적용 및 부품회수·재사용 생산 지원 범위",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 20-(d): 선택적 조치 예시",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_2_20_d",
+                        "description": "문단 20-(d): 선택적 조치 예시",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_2_20_D",
+                        "description": "ESRSE5-E5-2-20-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-2-20-d"
+            ],
+            "rulebook_title": "문단 20-(d): 선택적 조치 예시",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_2_20_E",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-2-20-e",
+            "section_name": "문단 20-(e): 선택적 조치 예시",
+            "section_content": "기업 상류·가치사슬의 폐기물 발생 방지 조치",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 20-(e): 선택적 조치 예시",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_2_20_e",
+                        "description": "문단 20-(e): 선택적 조치 예시",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_2_20_E",
+                        "description": "ESRSE5-E5-2-20-e",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-2-20-e"
+            ],
+            "rulebook_title": "문단 20-(e): 선택적 조치 예시",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_2_20_F",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-2-20-f",
+            "section_name": "문단 20-(f): 선택적 조치 예시",
+            "section_content": "폐기물 계층구조에 따른 폐기물 관리 최적화",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 20-(f): 선택적 조치 예시",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_2_20_f",
+                        "description": "문단 20-(f): 선택적 조치 예시",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_2_20_F",
+                        "description": "ESRSE5-E5-2-20-f",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-2-20-f"
+            ],
+            "rulebook_title": "문단 20-(f): 선택적 조치 예시",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3",
+            "section_name": "공개 요구사항 E5-3: 자원 사용 및 순환 경제 관련 목표",
+            "section_content": "문단 21~27: 목표 공시(21), 목적(22), MDR-T(23), 목표-자원 유입/유출/폐기물 연계(24a~f), 폐기물 계층단계(25), 생태학적 경계 고려 목표(26a~c), 법적 의무 목표 여부(27).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 E5-3: 자원 사용 및 순환 경제 관련 목표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3",
+                        "description": "공개 요구사항 E5-3: 자원 사용 및 순환 경제 관련 목표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3",
+                        "description": "ESRSE5-E5-3",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3",
+                "ESRSE5-E5-3-21",
+                "ESRSE5-E5-3-22",
+                "ESRSE5-E5-3-23",
+                "ESRSE5-E5-3-24-a",
+                "ESRSE5-E5-3-24-b",
+                "ESRSE5-E5-3-24-c",
+                "ESRSE5-E5-3-24-d",
+                "ESRSE5-E5-3-24-e",
+                "ESRSE5-E5-3-24-f",
+                "ESRSE5-E5-3-25",
+                "ESRSE5-E5-3-26-a",
+                "ESRSE5-E5-3-26-b",
+                "ESRSE5-E5-3-26-c",
+                "ESRSE5-E5-3-27"
+            ],
+            "rulebook_title": "공개 요구사항 E5-3: 자원 사용 및 순환 경제 관련 목표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_21",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-21",
+            "section_name": "문단 21: 목표 설정 시 공개",
+            "section_content": "사업체는 자원 이용 및 순환경제와 관련된 목표를 설정한 경우 이를 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 21: 목표 설정 시 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_21",
+                        "description": "문단 21: 목표 설정 시 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_21",
+                        "description": "ESRSE5-E5-3-21",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-21"
+            ],
+            "rulebook_title": "문단 21: 목표 설정 시 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_22",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-22",
+            "section_name": "문단 22: 본 공개 요건의 목적",
+            "section_content": "기업이 자원 사용 및 순환경제 정책을 지원하고 중대 영향·위험·기회에 대응하기 위해 채택한 목표 이해 제공.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 22: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_22",
+                        "description": "문단 22: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_22",
+                        "description": "ESRSE5-E5-3-22",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-22"
+            ],
+            "rulebook_title": "문단 22: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_23",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-23",
+            "section_name": "문단 23: MDR-T 요구사항 포함",
+            "section_content": "목표 설명에는 ESRS 2 MDR-T(목표를 통한 정책·조치 효과 추적) 요구사항이 포함되어야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 23: MDR-T 요구사항 포함",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_23",
+                        "description": "문단 23: MDR-T 요구사항 포함",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_23",
+                        "description": "ESRSE5-E5-3-23",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-23"
+            ],
+            "rulebook_title": "문단 23: MDR-T 요구사항 포함",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_24_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-24-a",
+            "section_name": "문단 24-(a): 목표와 자원 유입/유출/폐기물 연계",
+            "section_content": "순환 제품 설계 증가(내구성·분해 가능성·수리 가능성·재활용 가능성)",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(a): 목표와 자원 유입/유출/폐기물 연계",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_24_a",
+                        "description": "문단 24-(a): 목표와 자원 유입/유출/폐기물 연계",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_24_A",
+                        "description": "ESRSE5-E5-3-24-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-24-a"
+            ],
+            "rulebook_title": "문단 24-(a): 목표와 자원 유입/유출/폐기물 연계",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_24_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-24-b",
+            "section_name": "문단 24-(b): 목표와 자원 유입/유출/폐기물 연계",
+            "section_content": "순환 재료 사용 증대",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(b): 목표와 자원 유입/유출/폐기물 연계",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_24_b",
+                        "description": "문단 24-(b): 목표와 자원 유입/유출/폐기물 연계",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_24_B",
+                        "description": "ESRSE5-E5-3-24-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-24-b"
+            ],
+            "rulebook_title": "문단 24-(b): 목표와 자원 유입/유출/폐기물 연계",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_24_C",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-24-c",
+            "section_name": "문단 24-(c): 목표와 자원 유입/유출/폐기물 연계",
+            "section_content": "1차 원자재 사용 최소화",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(c): 목표와 자원 유입/유출/폐기물 연계",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_24_c",
+                        "description": "문단 24-(c): 목표와 자원 유입/유출/폐기물 연계",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_24_C",
+                        "description": "ESRSE5-E5-3-24-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-24-c"
+            ],
+            "rulebook_title": "문단 24-(c): 목표와 자원 유입/유출/폐기물 연계",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_24_D",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-24-d",
+            "section_name": "문단 24-(d): 목표와 자원 유입/유출/폐기물 연계",
+            "section_content": "재생 가능 자원의 지속가능한 조달 및 사용",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(d): 목표와 자원 유입/유출/폐기물 연계",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_24_d",
+                        "description": "문단 24-(d): 목표와 자원 유입/유출/폐기물 연계",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_24_D",
+                        "description": "ESRSE5-E5-3-24-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-24-d"
+            ],
+            "rulebook_title": "문단 24-(d): 목표와 자원 유입/유출/폐기물 연계",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_24_E",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-24-e",
+            "section_name": "문단 24-(e): 목표와 자원 유입/유출/폐기물 연계",
+            "section_content": "폐기물 관련 재사용 비율 증가",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(e): 목표와 자원 유입/유출/폐기물 연계",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_24_e",
+                        "description": "문단 24-(e): 목표와 자원 유입/유출/폐기물 연계",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_24_E",
+                        "description": "ESRSE5-E5-3-24-e",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-24-e"
+            ],
+            "rulebook_title": "문단 24-(e): 목표와 자원 유입/유출/폐기물 연계",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_24_F",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-24-f",
+            "section_name": "문단 24-(f): 목표와 자원 유입/유출/폐기물 연계",
+            "section_content": "자원사용 또는 순환경제 관련 기타 사항",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(f): 목표와 자원 유입/유출/폐기물 연계",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_24_f",
+                        "description": "문단 24-(f): 목표와 자원 유입/유출/폐기물 연계",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_24_F",
+                        "description": "ESRSE5-E5-3-24-f",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-24-f"
+            ],
+            "rulebook_title": "문단 24-(f): 목표와 자원 유입/유출/폐기물 연계",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_25",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-25",
+            "section_name": "문단 25: 목표의 폐기물 계층구조 단계 명시",
+            "section_content": "사업자는 목표가 폐기물 계층구조의 어느 단계에 해당하는지 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 25: 목표의 폐기물 계층구조 단계 명시",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_25",
+                        "description": "문단 25: 목표의 폐기물 계층구조 단계 명시",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_25",
+                        "description": "ESRSE5-E5-3-25",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-25"
+            ],
+            "rulebook_title": "문단 25: 목표의 폐기물 계층구조 단계 명시",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_26_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-26-a",
+            "section_name": "문단 26-(a): 생태학적 경계 고려 목표",
+            "section_content": "확인된 생태학적 임계값 및 임계값 확인 방법",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 26-(a): 생태학적 경계 고려 목표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_26_a",
+                        "description": "문단 26-(a): 생태학적 경계 고려 목표",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_26_A",
+                        "description": "ESRSE5-E5-3-26-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-26-a"
+            ],
+            "rulebook_title": "문단 26-(a): 생태학적 경계 고려 목표",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_26_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-26-b",
+            "section_name": "문단 26-(b): 생태학적 경계 고려 목표",
+            "section_content": "해당 기준이 기업별인지 여부 및 해당 시 결정 방법",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 26-(b): 생태학적 경계 고려 목표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_26_b",
+                        "description": "문단 26-(b): 생태학적 경계 고려 목표",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_26_B",
+                        "description": "ESRSE5-E5-3-26-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-26-b"
+            ],
+            "rulebook_title": "문단 26-(b): 생태학적 경계 고려 목표",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_26_C",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-26-c",
+            "section_name": "문단 26-(c): 생태학적 경계 고려 목표",
+            "section_content": "사업체의 생태학적 한계치 준수 책임이 내부에서 어떻게 배분되는지",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 26-(c): 생태학적 경계 고려 목표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_26_c",
+                        "description": "문단 26-(c): 생태학적 경계 고려 목표",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_26_C",
+                        "description": "ESRSE5-E5-3-26-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-26-c"
+            ],
+            "rulebook_title": "문단 26-(c): 생태학적 경계 고려 목표",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_3_27",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-3-27",
+            "section_name": "문단 27: 목표의 법적 의무 여부",
+            "section_content": "목표가 의무적인지(법률이 요구하는지) 여부를 배경 정보와 함께 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 27: 목표의 법적 의무 여부",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_3_27",
+                        "description": "문단 27: 목표의 법적 의무 여부",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_3_27",
+                        "description": "ESRSE5-E5-3-27",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-3-27"
+            ],
+            "rulebook_title": "문단 27: 목표의 법적 의무 여부",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_4",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-4",
+            "section_name": "공개 요구사항 E5-4: 자원 유입",
+            "section_content": "문단 28~32: 자원 유입 공개(28), 목적(29), 총중량·재생원료/재활용원료 및 비중·총사용량 설명(30), 지속가능성 원재료 관련 3개 정보(31-a~c), 측정기준·가정(32).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 E5-4: 자원 유입",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_4",
+                        "description": "공개 요구사항 E5-4: 자원 유입",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_4",
+                        "description": "ESRSE5-E5-4",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-4",
+                "ESRSE5-E5-4-28",
+                "ESRSE5-E5-4-29",
+                "ESRSE5-E5-4-30",
+                "ESRSE5-E5-4-31-a",
+                "ESRSE5-E5-4-31-b",
+                "ESRSE5-E5-4-31-c",
+                "ESRSE5-E5-4-32"
+            ],
+            "rulebook_title": "공개 요구사항 E5-4: 자원 유입",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_4_28",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-4-28",
+            "section_name": "문단 28: 자원 유입 정보 공개",
+            "section_content": "기업은 중대한 영향·위험·기회와 관련된 자원의 유입에 대한 정보를 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 28: 자원 유입 정보 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_4_28",
+                        "description": "문단 28: 자원 유입 정보 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_4_28",
+                        "description": "ESRSE5-E5-4-28",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-4-28"
+            ],
+            "rulebook_title": "문단 28: 자원 유입 정보 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_4_29",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-4-29",
+            "section_name": "문단 29: 본 공개 요건의 목적",
+            "section_content": "자체 운영 및 상·하류 가치사슬에서의 자원 사용에 대한 이해를 제공하는 것.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 29: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_4_29",
+                        "description": "문단 29: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_4_29",
+                        "description": "ESRSE5-E5-4-29",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-4-29"
+            ],
+            "rulebook_title": "문단 29: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_4_30",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-4-30",
+            "section_name": "문단 30: 자원 유입(중량기준) 설명",
+            "section_content": "중량 기준(중량기준 포함)으로 원자재(재생 원자재 및 재활용 원자재 포함) 유입, 그리고 자체 운영·가치사슬 전반에서 사용되는 유입자산을 설명.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 30: 자원 유입(중량기준) 설명",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_4_30",
+                        "description": "문단 30: 자원 유입(중량기준) 설명",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_4_30",
+                        "description": "ESRSE5-E5-4-30",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-4-30"
+            ],
+            "rulebook_title": "문단 30: 자원 유입(중량기준) 설명",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_4_31_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-4-31-a",
+            "section_name": "문단 31-(a): 생물학적 원자재 중량",
+            "section_content": "보고 기간 동안 사용한 원재료 중 생물학적 원자재의 총 중량.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 31-(a): 생물학적 원자재 중량",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_4_31_a",
+                        "description": "문단 31-(a): 생물학적 원자재 중량",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_4_31_A",
+                        "description": "ESRSE5-E5-4-31-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-4-31-a"
+            ],
+            "rulebook_title": "문단 31-(a): 생물학적 원자재 중량",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_4_31_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-4-31-b",
+            "section_name": "문단 31-(b): 지속가능 조달 비율·인증체계",
+            "section_content": "제품·서비스 제조에 사용된 생물학적 재료의 지속가능 조달 비율, 사용된 인증체계와 기준 정보.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 31-(b): 지속가능 조달 비율·인증체계",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_4_31_b",
+                        "description": "문단 31-(b): 지속가능 조달 비율·인증체계",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_4_31_B",
+                        "description": "ESRSE5-E5-4-31-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-4-31-b"
+            ],
+            "rulebook_title": "문단 31-(b): 지속가능 조달 비율·인증체계",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_4_31_C",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-4-31-c",
+            "section_name": "문단 31-(c): 2차/재활용/재사용 부품·자재 중량",
+            "section_content": "제품·서비스 제조에 사용된 2차 자원 또는 재활용 부품, 2차 중간 제품 및 2차 재료의 절대값 및 배분 기준 중량.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 31-(c): 2차/재활용/재사용 부품·자재 중량",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_4_31_c",
+                        "description": "문단 31-(c): 2차/재활용/재사용 부품·자재 중량",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_4_31_C",
+                        "description": "ESRSE5-E5-4-31-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-4-31-c"
+            ],
+            "rulebook_title": "문단 31-(c): 2차/재활용/재사용 부품·자재 중량",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_4_32",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-4-32",
+            "section_name": "문단 32: 측정기준·가정 공개",
+            "section_content": "사용된 방법론·측정기준 및 데이터 직접측정/추정 여부와 주요 가정을 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32: 측정기준·가정 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_4_32",
+                        "description": "문단 32: 측정기준·가정 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_4_32",
+                        "description": "ESRSE5-E5-4-32",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-4-32"
+            ],
+            "rulebook_title": "문단 32: 측정기준·가정 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5",
+            "section_name": "공개 요구사항 E5-5: 자원 유출",
+            "section_content": "문단 33~40: 자원 유출/폐기물 정보(33), 목적(34-a,b), 제품·재료 최적화 전략(35), 내구성/수리가능성 등 36(a~c), 폐기물 총량·분류·처리·재활용비율 37(a~d), 폐기물 구성 공개 시 38(a,b), 방사성폐기물 39, 측정기준·가정 40.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 E5-5: 자원 유출",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5",
+                        "description": "공개 요구사항 E5-5: 자원 유출",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5",
+                        "description": "ESRSE5-E5-5",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5",
+                "ESRSE5-E5-5-33",
+                "ESRSE5-E5-5-34-a",
+                "ESRSE5-E5-5-34-b",
+                "ESRSE5-E5-5-35",
+                "ESRSE5-E5-5-36-a",
+                "ESRSE5-E5-5-36-b",
+                "ESRSE5-E5-5-36-c",
+                "ESRSE5-E5-5-37-a",
+                "ESRSE5-E5-5-37-b",
+                "ESRSE5-E5-5-37-c",
+                "ESRSE5-E5-5-37-d",
+                "ESRSE5-E5-5-38-a",
+                "ESRSE5-E5-5-38-b",
+                "ESRSE5-E5-5-39",
+                "ESRSE5-E5-5-40"
+            ],
+            "rulebook_title": "공개 요구사항 E5-5: 자원 유출",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_33",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-33",
+            "section_name": "문단 33: 자원 유출(폐기물 포함) 공개",
+            "section_content": "기업은 자원의 유출(폐기물 포함)에 관한 정보를 공개해야 하며, 실질적 영향·위험·기회와 관련되어야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 33: 자원 유출(폐기물 포함) 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_33",
+                        "description": "문단 33: 자원 유출(폐기물 포함) 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_33",
+                        "description": "ESRSE5-E5-5-33",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-33"
+            ],
+            "rulebook_title": "문단 33: 자원 유출(폐기물 포함) 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_34_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-34-a",
+            "section_name": "문단 34-(a): 순환경제 기여 방식",
+            "section_content": "제품·재료·폐기물 처리의 실제 전환을 통해 순환경제에 기여하는 방식.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 34-(a): 순환경제 기여 방식",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_34_a",
+                        "description": "문단 34-(a): 순환경제 기여 방식",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_34_A",
+                        "description": "ESRSE5-E5-5-34-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-34-a"
+            ],
+            "rulebook_title": "문단 34-(a): 순환경제 기여 방식",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_34_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-34-b",
+            "section_name": "문단 34-(b): 폐기물 감량·관리 수준",
+            "section_content": "사업체의 폐기물 감량 및 처리 관행이 폐기물 발생과 관리를 어떻게 다루는지 파악 가능하도록 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 34-(b): 폐기물 감량·관리 수준",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_34_b",
+                        "description": "문단 34-(b): 폐기물 감량·관리 수준",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_34_B",
+                        "description": "ESRSE5-E5-5-34-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-34-b"
+            ],
+            "rulebook_title": "문단 34-(b): 폐기물 감량·관리 수준",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_35",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-35",
+            "section_name": "문단 35: 제품·재료 최적화 전략",
+            "section_content": "내구성, 재사용성, 수리 가능성, 분해 가능성, 재제조, 재활용, 생물학적 순환 및 순환 비즈니스 모델을 통한 최적화 전략.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 35: 제품·재료 최적화 전략",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_35",
+                        "description": "문단 35: 제품·재료 최적화 전략",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_35",
+                        "description": "ESRSE5-E5-5-35",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-35"
+            ],
+            "rulebook_title": "문단 35: 제품·재료 최적화 전략",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_36_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-36-a",
+            "section_name": "문단 36-(a): 설계 대비 실제 내구성 비교",
+            "section_content": "시장 출시 제품의 예상 내구성과 제품군별 업계 평균 비교.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 36-(a): 설계 대비 실제 내구성 비교",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_36_a",
+                        "description": "문단 36-(a): 설계 대비 실제 내구성 비교",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_36_A",
+                        "description": "ESRSE5-E5-5-36-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-36-a"
+            ],
+            "rulebook_title": "문단 36-(a): 설계 대비 실제 내구성 비교",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_36_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-36-b",
+            "section_name": "문단 36-(b): 확립된 시스템 기반 수리 가능성",
+            "section_content": "가능한 경우 확립된 시스템을 활용한 제품의 수리 가능성.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 36-(b): 확립된 시스템 기반 수리 가능성",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_36_b",
+                        "description": "문단 36-(b): 확립된 시스템 기반 수리 가능성",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_36_B",
+                        "description": "ESRSE5-E5-5-36-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-36-b"
+            ],
+            "rulebook_title": "문단 36-(b): 확립된 시스템 기반 수리 가능성",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_36_C",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-36-c",
+            "section_name": "문단 36-(c): 제품·포장재 재활용 가능 비율",
+            "section_content": "제품 및 포장재의 재활용 가능 비율.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 36-(c): 제품·포장재 재활용 가능 비율",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_36_c",
+                        "description": "문단 36-(c): 제품·포장재 재활용 가능 비율",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_36_C",
+                        "description": "ESRSE5-E5-5-36-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-36-c"
+            ],
+            "rulebook_title": "문단 36-(c): 제품·포장재 재활용 가능 비율",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_37_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-37-a",
+            "section_name": "문단 37-(a): 발생 폐기물 총량",
+            "section_content": "자체 운영 과정에서 발생한 폐기물 총량(톤 또는 킬로그램).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37-(a): 발생 폐기물 총량",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_37_a",
+                        "description": "문단 37-(a): 발생 폐기물 총량",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_37_A",
+                        "description": "ESRSE5-E5-5-37-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-37-a"
+            ],
+            "rulebook_title": "문단 37-(a): 발생 폐기물 총량",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_37_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-37-b",
+            "section_name": "문단 37-(b): 비유해/유해 및 회수 작업별 분류",
+            "section_content": "처분 전 총량을 유해/비유해로 구분하고 회수 작업 유형별로 세분화(재사용 준비, 재활용, 기타 회수).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37-(b): 비유해/유해 및 회수 작업별 분류",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_37_b",
+                        "description": "문단 37-(b): 비유해/유해 및 회수 작업별 분류",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_37_B",
+                        "description": "ESRSE5-E5-5-37-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-37-b",
+                "ESRSE5-E5-5-37-b-i",
+                "ESRSE5-E5-5-37-b-ii",
+                "ESRSE5-E5-5-37-b-iii"
+            ],
+            "rulebook_title": "문단 37-(b): 비유해/유해 및 회수 작업별 분류",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_37_B_I",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-37-b-i",
+            "section_name": "문단 37-(b)(i): 재사용 준비",
+            "section_content": "회수 작업 유형: 재사용 준비.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37-(b)(i): 재사용 준비",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_37_b_i",
+                        "description": "문단 37-(b)(i): 재사용 준비",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_37_B_I",
+                        "description": "ESRSE5-E5-5-37-b-i",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-37-b-i"
+            ],
+            "rulebook_title": "문단 37-(b)(i): 재사용 준비",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_37_B_II",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-37-b-ii",
+            "section_name": "문단 37-(b)(ii): 재활용",
+            "section_content": "회수 작업 유형: 재활용.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37-(b)(ii): 재활용",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_37_b_ii",
+                        "description": "문단 37-(b)(ii): 재활용",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_37_B_II",
+                        "description": "ESRSE5-E5-5-37-b-ii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-37-b-ii"
+            ],
+            "rulebook_title": "문단 37-(b)(ii): 재활용",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_37_B_III",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-37-b-iii",
+            "section_name": "문단 37-(b)(iii): 기타 회수 작업",
+            "section_content": "회수 작업 유형: 기타 회수 작업.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37-(b)(iii): 기타 회수 작업",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_37_b_iii",
+                        "description": "문단 37-(b)(iii): 기타 회수 작업",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_37_B_III",
+                        "description": "ESRSE5-E5-5-37-b-iii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-37-b-iii"
+            ],
+            "rulebook_title": "문단 37-(b)(iii): 기타 회수 작업",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_37_C",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-37-c",
+            "section_name": "문단 37-(c): 처리 유형별 처분 총량",
+            "section_content": "처리 유형별 처분 총량(유해/비유해 포함): 소각, 매립, 기타 처리.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37-(c): 처리 유형별 처분 총량",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_37_c",
+                        "description": "문단 37-(c): 처리 유형별 처분 총량",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_37_C",
+                        "description": "ESRSE5-E5-5-37-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-37-c",
+                "ESRSE5-E5-5-37-c-i",
+                "ESRSE5-E5-5-37-c-ii",
+                "ESRSE5-E5-5-37-c-iii"
+            ],
+            "rulebook_title": "문단 37-(c): 처리 유형별 처분 총량",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_37_C_I",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-37-c-i",
+            "section_name": "문단 37-(c)(i): 소각",
+            "section_content": "처리 유형: 소각.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37-(c)(i): 소각",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_37_c_i",
+                        "description": "문단 37-(c)(i): 소각",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_37_C_I",
+                        "description": "ESRSE5-E5-5-37-c-i",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-37-c-i"
+            ],
+            "rulebook_title": "문단 37-(c)(i): 소각",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_37_C_II",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-37-c-ii",
+            "section_name": "문단 37-(c)(ii): 매립",
+            "section_content": "처리 유형: 매립.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37-(c)(ii): 매립",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_37_c_ii",
+                        "description": "문단 37-(c)(ii): 매립",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_37_C_II",
+                        "description": "ESRSE5-E5-5-37-c-ii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-37-c-ii"
+            ],
+            "rulebook_title": "문단 37-(c)(ii): 매립",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_37_C_III",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-37-c-iii",
+            "section_name": "문단 37-(c)(iii): 기타 처리",
+            "section_content": "처리 유형: 기타 처리 작업.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37-(c)(iii): 기타 처리",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_37_c_iii",
+                        "description": "문단 37-(c)(iii): 기타 처리",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_37_C_III",
+                        "description": "ESRSE5-E5-5-37-c-iii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-37-c-iii"
+            ],
+            "rulebook_title": "문단 37-(c)(iii): 기타 처리",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_37_D",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-37-d",
+            "section_name": "문단 37-(d): 재활용되지 않은 폐기물 총량·비율",
+            "section_content": "재활용되지 않은 폐기물의 총량 및 비율.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37-(d): 재활용되지 않은 폐기물 총량·비율",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_37_d",
+                        "description": "문단 37-(d): 재활용되지 않은 폐기물 총량·비율",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_37_D",
+                        "description": "ESRSE5-E5-5-37-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-37-d"
+            ],
+            "rulebook_title": "문단 37-(d): 재활용되지 않은 폐기물 총량·비율",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_38_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-38-a",
+            "section_name": "문단 38-(a): 업종별 폐기물 유입원",
+            "section_content": "폐기물 구성 공개 시 부문별 폐기물 유입원(예: 광업, 소비자재, 농업·축산 등) 명시.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(a): 업종별 폐기물 유입원",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_38_a",
+                        "description": "문단 38-(a): 업종별 폐기물 유입원",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_38_A",
+                        "description": "ESRSE5-E5-5-38-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-38-a"
+            ],
+            "rulebook_title": "문단 38-(a): 업종별 폐기물 유입원",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_38_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-38-b",
+            "section_name": "문단 38-(b): 폐기물 포함 물질",
+            "section_content": "폐기물의 포함 물질(예: 바이오매스, 금속, 비금속 광물, 플라스틱, 섬유, 희생 원자재·토류).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(b): 폐기물 포함 물질",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_38_b",
+                        "description": "문단 38-(b): 폐기물 포함 물질",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_38_B",
+                        "description": "ESRSE5-E5-5-38-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-38-b"
+            ],
+            "rulebook_title": "문단 38-(b): 폐기물 포함 물질",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_39",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-39",
+            "section_name": "문단 39: 방사성 폐기물 총량",
+            "section_content": "방사성 폐기물은 유럽폐기물목록 등 관련 기준에 따라 별도로 총량을 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 39: 방사성 폐기물 총량",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_39",
+                        "description": "문단 39: 방사성 폐기물 총량",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_39",
+                        "description": "ESRSE5-E5-5-39",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-39"
+            ],
+            "rulebook_title": "문단 39: 방사성 폐기물 총량",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_5_40",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-5-40",
+            "section_name": "문단 40: 측정기준·분류기준·가정 공개",
+            "section_content": "데이터 계산 시 사용 방법론, 제3항의 기준에 따른 제품 결정·분류 기준, 직접측정/추정 여부 및 주요 가정.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 40: 측정기준·분류기준·가정 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_5_40",
+                        "description": "문단 40: 측정기준·분류기준·가정 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_5_40",
+                        "description": "ESRSE5-E5-5-40",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-5-40"
+            ],
+            "rulebook_title": "문단 40: 측정기준·분류기준·가정 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_6",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-6",
+            "section_name": "공개 요구사항 E5-6: 자원 사용 및 순환 경제 관련 위험/기회로부터의 예상 재무적 영향",
+            "section_content": "문단 41~43: 중대 위험·기회의 예상 재무영향 공개(41), SBM-3 48(d) 추가 및 목적 42(a)(b), 상세 43(a)(b)(c).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 E5-6: 자원 사용 및 순환 경제 관련 위험/기회로부터의 예상 재무적 영향",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_6",
+                        "description": "공개 요구사항 E5-6: 자원 사용 및 순환 경제 관련 위험/기회로부터의 예상 재무적 영향",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_6",
+                        "description": "ESRSE5-E5-6",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3-48d"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-6",
+                "ESRSE5-E5-6-41",
+                "ESRSE5-E5-6-42-a",
+                "ESRSE5-E5-6-42-b",
+                "ESRSE5-E5-6-43-a",
+                "ESRSE5-E5-6-43-b",
+                "ESRSE5-E5-6-43-c"
+            ],
+            "rulebook_title": "공개 요구사항 E5-6: 자원 사용 및 순환 경제 관련 위험/기회로부터의 예상 재무적 영향",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_6_41",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-6-41",
+            "section_name": "문단 41: 예상 재무적 영향 공개",
+            "section_content": "자원 사용 및 순환 경제 관련 중대 위험·기회에 따른 예상 재무적 영향을 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 41: 예상 재무적 영향 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_6_41",
+                        "description": "문단 41: 예상 재무적 영향 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_6_41",
+                        "description": "ESRSE5-E5-6-41",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-6-41"
+            ],
+            "rulebook_title": "문단 41: 예상 재무적 영향 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_6_42_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-6-42-a",
+            "section_name": "문단 42-(a): 영향/의존성 위험의 예상 재무영향",
+            "section_content": "중요 자원 사용·순환경제 관련 영향과 의존성에서 발생하는 중대 위험의 예상 재무영향 및 기간별 영향 가능성 이해.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 42-(a): 영향/의존성 위험의 예상 재무영향",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_6_42_a",
+                        "description": "문단 42-(a): 영향/의존성 위험의 예상 재무영향",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_6_42_A",
+                        "description": "ESRSE5-E5-6-42-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3-48d"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-6-42-a"
+            ],
+            "rulebook_title": "문단 42-(a): 영향/의존성 위험의 예상 재무영향",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_6_42_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-6-42-b",
+            "section_name": "문단 42-(b): 중대 기회의 예상 재무영향",
+            "section_content": "자원 사용 및 순환 경제 관련 중대 기회에 따른 예상 재무적 영향.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 42-(b): 중대 기회의 예상 재무영향",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_6_42_b",
+                        "description": "문단 42-(b): 중대 기회의 예상 재무영향",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_6_42_B",
+                        "description": "ESRSE5-E5-6-42-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-6-42-b"
+            ],
+            "rulebook_title": "문단 42-(b): 중대 기회의 예상 재무영향",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_6_43_A",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-6-43-a",
+            "section_name": "문단 43-(a): 조치 반영 전 예상 재무효과 정량/정성",
+            "section_content": "조치를 고려하기 전 예상 재무효과를 정량화하거나 과도한 비용·노력 시 정성 정보 제공(ESRS 1 부속서 B 질적 특성 고려).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 43-(a): 조치 반영 전 예상 재무효과 정량/정성",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_6_43_a",
+                        "description": "문단 43-(a): 조치 반영 전 예상 재무효과 정량/정성",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_6_43_A",
+                        "description": "ESRSE5-E5-6-43-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS1-Appendix-B"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-6-43-a"
+            ],
+            "rulebook_title": "문단 43-(a): 조치 반영 전 예상 재무효과 정량/정성",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_6_43_B",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-6-43-b",
+            "section_name": "문단 43-(b): 효과·영향·의존성·시간범위",
+            "section_content": "고려된 효과, 관련 영향 및 의존성, 해당 효과가 실현될 가능성이 있는 시간 범위 설명.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 43-(b): 효과·영향·의존성·시간범위",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_6_43_b",
+                        "description": "문단 43-(b): 효과·영향·의존성·시간범위",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_6_43_B",
+                        "description": "ESRSE5-E5-6-43-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-6-43-b"
+            ],
+            "rulebook_title": "문단 43-(b): 효과·영향·의존성·시간범위",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE5_E5_6_43_C",
+            "standard_id": "ESRSE5",
+            "primary_dp_id": "ESRSE5-E5-6-43-c",
+            "section_name": "문단 43-(c): 핵심 가정·출처·불확실성",
+            "section_content": "예상 재무효과 정량에 사용된 핵심 가정, 가정의 출처 및 불확실성 수준.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 43-(c): 핵심 가정·출처·불확실성",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrse5_es_6_43_c",
+                        "description": "문단 43-(c): 핵심 가정·출처·불확실성",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE5_E5_6_43_C",
+                        "description": "ESRSE5-E5-6-43-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE5-E5-6-43-c"
+            ],
+            "rulebook_title": "문단 43-(c): 핵심 가정·출처·불확실성",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        }
+    ]
+}

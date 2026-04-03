@@ -1,0 +1,2467 @@
+{
+    "rulebooks": [
+        {
+            "rulebook_id": "RULE_ESRSE2",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2",
+            "section_name": "ESRS E2 오염(문단 12~41)",
+            "section_content": "ESRS E2 Pollution — E2-1~E2-6, datapoint.json과 동일 범위.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - paras 12-41",
+                "key_terms": [
+                    "ESRS E2",
+                    "pollution",
+                    "MDR-P",
+                    "MDR-A",
+                    "MDR-T",
+                    "E-PRTR",
+                    "SoC",
+                    "SVHC",
+                    "microplastics",
+                    "anticipated financial effects",
+                    "SBM-3"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_root",
+                        "description": "ESRS E2 총괄",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_ROOT",
+                        "description": "ESRS E2 총괄",
+                        "expected": "esrse2_root_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-P",
+                    "ESRS2-MDR-A",
+                    "ESRS2-MDR-T",
+                    "ESRSE1",
+                    "ESRS2-SBM-3-48d",
+                    "ESRS1-Appendix-B"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2",
+                "ESRSE2-SEC-1",
+                "ESRSE2-E2-1",
+                "ESRSE2-E2-1-12",
+                "ESRSE2-E2-1-13",
+                "ESRSE2-E2-1-14",
+                "ESRSE2-E2-1-15-a",
+                "ESRSE2-E2-1-15-b",
+                "ESRSE2-E2-1-15-c",
+                "ESRSE2-E2-2",
+                "ESRSE2-E2-2-16",
+                "ESRSE2-E2-2-17",
+                "ESRSE2-E2-2-18",
+                "ESRSE2-E2-2-19-a",
+                "ESRSE2-E2-2-19-b",
+                "ESRSE2-E2-2-19-c",
+                "ESRSE2-E2-3",
+                "ESRSE2-E2-3-20",
+                "ESRSE2-E2-3-21",
+                "ESRSE2-E2-3-22",
+                "ESRSE2-E2-3-23-a",
+                "ESRSE2-E2-3-23-b",
+                "ESRSE2-E2-3-23-c",
+                "ESRSE2-E2-3-23-d",
+                "ESRSE2-E2-3-24",
+                "ESRSE2-E2-3-24-a",
+                "ESRSE2-E2-3-24-b",
+                "ESRSE2-E2-3-24-c",
+                "ESRSE2-E2-3-25",
+                "ESRSE2-E2-4",
+                "ESRSE2-E2-4-26",
+                "ESRSE2-E2-4-27",
+                "ESRSE2-E2-4-28-a",
+                "ESRSE2-E2-4-28-b",
+                "ESRSE2-E2-4-29",
+                "ESRSE2-E2-4-30-a",
+                "ESRSE2-E2-4-30-b",
+                "ESRSE2-E2-4-30-c",
+                "ESRSE2-E2-4-31",
+                "ESRSE2-E2-5",
+                "ESRSE2-E2-5-32",
+                "ESRSE2-E2-5-33",
+                "ESRSE2-E2-5-34",
+                "ESRSE2-E2-5-35",
+                "ESRSE2-E2-6",
+                "ESRSE2-E2-6-36",
+                "ESRSE2-E2-6-37",
+                "ESRSE2-E2-6-38-a",
+                "ESRSE2-E2-6-38-b",
+                "ESRSE2-E2-6-39-a",
+                "ESRSE2-E2-6-39-b",
+                "ESRSE2-E2-6-39-c",
+                "ESRSE2-E2-6-40-a",
+                "ESRSE2-E2-6-40-b",
+                "ESRSE2-E2-6-40-c",
+                "ESRSE2-E2-6-41"
+            ],
+            "rulebook_title": "ESRS E2 총괄",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_SEC_1",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-SEC-1",
+            "section_name": "Section 1 오염 공시 묶음",
+            "section_content": "ESRS E2 Section 1 범위로 묶인 공개 요건 E2-1~E2-6. datapoint.json 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - Section 1",
+                "key_terms": [
+                    "ESRS E2",
+                    "pollution"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_sec1",
+                        "description": "E2 Section 1",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_SEC1",
+                        "description": "E2 Section 1",
+                        "expected": "esrse2_sec1_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-SEC-1",
+                "ESRSE2-E2-1",
+                "ESRSE2-E2-2",
+                "ESRSE2-E2-3",
+                "ESRSE2-E2-4",
+                "ESRSE2-E2-5",
+                "ESRSE2-E2-6"
+            ],
+            "rulebook_title": "E2 Section 1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_1",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-1",
+            "section_name": "E2-1 오염 관련 정책(문단 12~15)",
+            "section_content": "Disclosure Requirement E2-1 — paras 12–15. datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-1 paras 12-15",
+                "key_terms": [
+                    "ESRS E2",
+                    "pollution policy",
+                    "MDR-P"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_1",
+                        "description": "E2-1 policies",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_1",
+                        "description": "E2-1 policies",
+                        "expected": "esrse2_e2_1_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-P"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-1",
+                "ESRSE2-E2-1-12",
+                "ESRSE2-E2-1-13",
+                "ESRSE2-E2-1-14",
+                "ESRSE2-E2-1-15-a",
+                "ESRSE2-E2-1-15-b",
+                "ESRSE2-E2-1-15-c"
+            ],
+            "rulebook_title": "E2-1 정책",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_1_12",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-1-12",
+            "section_name": "E2-1 문단 12",
+            "section_content": "ESRS E2 - E2-1 para 12. datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-1 para 12",
+                "key_terms": [
+                    "ESRS E2",
+                    "pollution prevention"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_1_12",
+                        "description": "E2-1 para 12",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_1_12",
+                        "description": "E2-1 para 12",
+                        "expected": "esrse2_e2_1_12_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-1-12"
+            ],
+            "rulebook_title": "E2-1 12",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_1_13",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-1-13",
+            "section_name": "E2-1 문단 13",
+            "section_content": "ESRS E2 - E2-1 para 13. datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-1 para 13",
+                "key_terms": [
+                    "ESRS E2",
+                    "pollution"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_1_13",
+                        "description": "E2-1 para 13",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_1_13",
+                        "description": "E2-1 para 13",
+                        "expected": "esrse2_e2_1_13_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-1-13"
+            ],
+            "rulebook_title": "E2-1 13",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_1_14",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-1-14",
+            "section_name": "E2-1 문단 14 MDR-P",
+            "section_content": "ESRS E2 - E2-1 para 14. datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-1 para 14",
+                "key_terms": [
+                    "ESRS E2",
+                    "MDR-P"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_1_14",
+                        "description": "E2-1 para 14",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_1_14",
+                        "description": "E2-1 para 14",
+                        "expected": "esrse2_e2_1_14_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-P"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-1-14"
+            ],
+            "rulebook_title": "E2-1 14",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_1_15_A",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-1-15-a",
+            "section_name": "E2-1 문단 15(a)",
+            "section_content": "ESRS E2 - E2-1 para 15(a). datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-1 para 15(a)",
+                "key_terms": [
+                    "ESRS E2",
+                    "air water soil pollution"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_1_15a",
+                        "description": "E2-1 15(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_1_15A",
+                        "description": "E2-1 15(a)",
+                        "expected": "esrse2_e2_1_15a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-1-15-a"
+            ],
+            "rulebook_title": "E2-1 15(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_1_15_B",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-1-15-b",
+            "section_name": "E2-1 문단 15(b)",
+            "section_content": "ESRS E2 - E2-1 para 15(b). datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-1 para 15(b)",
+                "key_terms": [
+                    "ESRS E2",
+                    "substances of concern",
+                    "SVHC"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_1_15b",
+                        "description": "E2-1 15(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_1_15B",
+                        "description": "E2-1 15(b)",
+                        "expected": "esrse2_e2_1_15b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-1-15-b"
+            ],
+            "rulebook_title": "E2-1 15(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_1_15_C",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-1-15-c",
+            "section_name": "E2-1 문단 15(c)",
+            "section_content": "ESRS E2 - E2-1 para 15(c). datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-1 para 15(c)",
+                "key_terms": [
+                    "ESRS E2",
+                    "accidents",
+                    "emergencies"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_1_15c",
+                        "description": "E2-1 15(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_1_15C",
+                        "description": "E2-1 15(c)",
+                        "expected": "esrse2_e2_1_15c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-1-15-c"
+            ],
+            "rulebook_title": "E2-1 15(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_2",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-2",
+            "section_name": "E2-2 오염 관련 조치·자원(문단 16~19)",
+            "section_content": "Disclosure Requirement E2-2 — paras 16–19. datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-2 paras 16-19",
+                "key_terms": [
+                    "ESRS E2",
+                    "pollution actions",
+                    "MDR-A"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_2",
+                        "description": "E2-2 actions",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_2",
+                        "description": "E2-2 actions",
+                        "expected": "esrse2_e2_2_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-A"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-2",
+                "ESRSE2-E2-2-16",
+                "ESRSE2-E2-2-17",
+                "ESRSE2-E2-2-18",
+                "ESRSE2-E2-2-19-a",
+                "ESRSE2-E2-2-19-b",
+                "ESRSE2-E2-2-19-c"
+            ],
+            "rulebook_title": "E2-2 조치·자원",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_2_16",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-2-16",
+            "section_name": "E2-2 문단 16",
+            "section_content": "ESRS E2 - E2-2 para 16. datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-2 para 16",
+                "key_terms": [
+                    "ESRS E2",
+                    "pollution actions"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_2_16",
+                        "description": "E2-2 para 16",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_2_16",
+                        "description": "E2-2 para 16",
+                        "expected": "esrse2_e2_2_16_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-2-16"
+            ],
+            "rulebook_title": "E2-2 16",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_2_17",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-2-17",
+            "section_name": "E2-2 문단 17",
+            "section_content": "ESRS E2 - E2-2 para 17. datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-2 para 17",
+                "key_terms": [
+                    "ESRS E2",
+                    "pollution"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_2_17",
+                        "description": "E2-2 para 17",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_2_17",
+                        "description": "E2-2 para 17",
+                        "expected": "esrse2_e2_2_17_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-2-17"
+            ],
+            "rulebook_title": "E2-2 17",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_2_18",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-2-18",
+            "section_name": "E2-2 문단 18 MDR-A",
+            "section_content": "ESRS E2 - E2-2 para 18. datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-2 para 18",
+                "key_terms": [
+                    "ESRS E2",
+                    "MDR-A"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_2_18",
+                        "description": "E2-2 para 18",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_2_18",
+                        "description": "E2-2 para 18",
+                        "expected": "esrse2_e2_2_18_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-A"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-2-18"
+            ],
+            "rulebook_title": "E2-2 18",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_2_19_A",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-2-19-a",
+            "section_name": "E2-2 문단 19(a) 완화 계층—방지",
+            "section_content": "ESRS E2 - E2-2 para 19(a). datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-2 para 19(a)",
+                "key_terms": [
+                    "ESRS E2",
+                    "mitigation hierarchy",
+                    "pollution prevention"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_2_19a",
+                        "description": "E2-2 19(a) optional mitigation hierarchy layer (may disclose)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_2_19A",
+                        "description": "E2-2 19(a)",
+                        "expected": "esrse2_e2_2_19a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-2-19-a"
+            ],
+            "rulebook_title": "E2-2 19(a)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_2_19_B",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-2-19-b",
+            "section_name": "E2-2 문단 19(b) 완화 계층—저감",
+            "section_content": "ESRS E2 - E2-2 para 19(b). datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-2 para 19(b)",
+                "key_terms": [
+                    "ESRS E2",
+                    "BAT",
+                    "DNSH",
+                    "EU Taxonomy"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_2_19b",
+                        "description": "E2-2 19(b) optional mitigation hierarchy layer (may disclose)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_2_19B",
+                        "description": "E2-2 19(b)",
+                        "expected": "esrse2_e2_2_19b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-2-19-b"
+            ],
+            "rulebook_title": "E2-2 19(b)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_2_19_C",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-2-19-c",
+            "section_name": "E2-2 문단 19(c) 생태계 복원",
+            "section_content": "ESRS E2 - E2-2 para 19(c). datapoint.json description 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-2 para 19(c)",
+                "key_terms": [
+                    "ESRS E2",
+                    "ecosystem restoration"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_2_19c",
+                        "description": "E2-2 19(c) optional mitigation hierarchy layer (may disclose)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_2_19C",
+                        "description": "E2-2 19(c)",
+                        "expected": "esrse2_e2_2_19c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-2-19-c"
+            ],
+            "rulebook_title": "E2-2 19(c)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3",
+            "section_name": "E2-3 오염 관련 목표(문단 20~25)",
+            "section_content": "공개 요건 E2-3 – 오염 관련 목표. 기업은 설정한 오염 관련 목표를 공개한다(20). 목적: 정책 지원 및 중대 오염 영향·위험·기회 해결을 위한 목표 이해(21). 목표 설명에 ESRS 2 MDR-T 정보 요구 포함(22). 문단 20 목표가 대기 오염물질·부하(23-a), 수역 배출·부하(23-b), 토양 오염·부하(23-c), 관심물질·SVHC(23-d)의 예방·통제와 연관되는지·방식 명시. MDR-T 외 생태학적 한계치·할당량 고려 명시 가능(24); 고려 시 (a) 확인 한계치·방법론 (b) 기업 적용·결정 (c) 준수 책임 배분을 추가 명시 가능(모두 선택). 목표의 의무(법률)·자발 성격 명시(25).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 paras 20-25",
+                "key_terms": [
+                    "ESRS E2",
+                    "targets",
+                    "MDR-T",
+                    "ecological thresholds",
+                    "SVHC"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3",
+                        "description": "E2-3 targets",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3",
+                        "description": "E2-3 targets",
+                        "expected": "esrse2_e2_3_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3",
+                "ESRSE2-E2-3-20",
+                "ESRSE2-E2-3-21",
+                "ESRSE2-E2-3-22",
+                "ESRSE2-E2-3-23-a",
+                "ESRSE2-E2-3-23-b",
+                "ESRSE2-E2-3-23-c",
+                "ESRSE2-E2-3-23-d",
+                "ESRSE2-E2-3-24",
+                "ESRSE2-E2-3-24-a",
+                "ESRSE2-E2-3-24-b",
+                "ESRSE2-E2-3-24-c",
+                "ESRSE2-E2-3-25"
+            ],
+            "rulebook_title": "E2-3 목표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_20",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-20",
+            "section_name": "E2-3 문단 20",
+            "section_content": "20. 기업은 설정한 오염 관련 목표를 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 20",
+                "key_terms": [
+                    "pollution targets"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_20",
+                        "description": "E2-3 para 20",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_20",
+                        "description": "E2-3 para 20",
+                        "expected": "esrse2_e2_3_20_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-20"
+            ],
+            "rulebook_title": "E2-3 20",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_21",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-21",
+            "section_name": "E2-3 문단 21",
+            "section_content": "21. 본 공개 요건의 목적은 정책 지원 및 중요한 오염 영향, 위험, 기회 해결을 위해 설정된 목표를 이해하도록 돕는 것입니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 21",
+                "key_terms": [
+                    "objective"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_21",
+                        "description": "E2-3 para 21",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_21",
+                        "description": "E2-3 para 21",
+                        "expected": "esrse2_e2_3_21_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-21"
+            ],
+            "rulebook_title": "E2-3 21",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_22",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-22",
+            "section_name": "E2-3 문단 22 MDR-T",
+            "section_content": "22. 목표 설명에는 ESRS 2 MDR-T「목표를 통한 정책 및 조치의 효과 추적」에서 정의된 정보 요구 사항이 포함되어야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 22",
+                "key_terms": [
+                    "MDR-T"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_22",
+                        "description": "E2-3 para 22",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_22",
+                        "description": "E2-3 para 22",
+                        "expected": "esrse2_e2_3_22_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-22"
+            ],
+            "rulebook_title": "E2-3 22",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_23_A",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-23-a",
+            "section_name": "E2-3 문단 23(a)",
+            "section_content": "23(a). 문단 20 목표가 대기 오염물질 및 해당 특정 부하량의 예방 및 통제와 관련 있는지 여부와 그 연관 방식을 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 23(a)",
+                "key_terms": [
+                    "air pollution",
+                    "load"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_23a",
+                        "description": "E2-3 23(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_23A",
+                        "description": "E2-3 23(a)",
+                        "expected": "esrse2_e2_3_23a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-23-a"
+            ],
+            "rulebook_title": "E2-3 23(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_23_B",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-23-b",
+            "section_name": "E2-3 문단 23(b)",
+            "section_content": "23(b). 문단 20 목표가 수역으로의 배출 및 해당 특정 부하량의 예방 및 통제와 관련 있는지 여부와 그 연관 방식을 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 23(b)",
+                "key_terms": [
+                    "water",
+                    "discharge"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_23b",
+                        "description": "E2-3 23(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_23B",
+                        "description": "E2-3 23(b)",
+                        "expected": "esrse2_e2_3_23b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-23-b"
+            ],
+            "rulebook_title": "E2-3 23(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_23_C",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-23-c",
+            "section_name": "E2-3 문단 23(c)",
+            "section_content": "23(c). 문단 20 목표가 토양 오염 및 해당 특정 부하량의 예방 및 통제와 관련 있는지 여부와 그 연관 방식을 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 23(c)",
+                "key_terms": [
+                    "soil pollution"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_23c",
+                        "description": "E2-3 23(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_23C",
+                        "description": "E2-3 23(c)",
+                        "expected": "esrse2_e2_3_23c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-23-c"
+            ],
+            "rulebook_title": "E2-3 23(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_23_D",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-23-d",
+            "section_name": "E2-3 문단 23(d)",
+            "section_content": "23(d). 문단 20 목표가 관심 물질 및 매우 높은 관심 물질(SVHC)의 예방 및 통제와 관련 있는지 여부와 그 연관 방식을 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 23(d)",
+                "key_terms": [
+                    "SoC",
+                    "SVHC"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_23d",
+                        "description": "E2-3 23(d)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_23D",
+                        "description": "E2-3 23(d)",
+                        "expected": "esrse2_e2_3_23d_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-23-d"
+            ],
+            "rulebook_title": "E2-3 23(d)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_24",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-24",
+            "section_name": "E2-3 문단 24(선택)",
+            "section_content": "24. ESRS 2 MDR-T 외에 목표 설정 시 생태학적 한계치 및 사업체별 할당량을 고려했는지 명시할 수 있습니다(선택).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 24",
+                "key_terms": [
+                    "ecological thresholds",
+                    "planetary boundaries"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_24",
+                        "description": "E2-3 para 24 optional",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_24",
+                        "description": "E2-3 para 24",
+                        "expected": "esrse2_e2_3_24_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-24"
+            ],
+            "rulebook_title": "E2-3 24",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_24_A",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-24-a",
+            "section_name": "E2-3 문단 24(a)(선택)",
+            "section_content": "24(a). 고려를 공시한 경우 확인된 생태학적 한계치 및 확인 방법론을 추가로 명시할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 24(a)",
+                "key_terms": [
+                    "thresholds",
+                    "methodology"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_24a",
+                        "description": "E2-3 24(a) optional",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_24A",
+                        "description": "E2-3 24(a)",
+                        "expected": "esrse2_e2_3_24a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-24-a"
+            ],
+            "rulebook_title": "E2-3 24(a)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_24_B",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-24-b",
+            "section_name": "E2-3 문단 24(b)(선택)",
+            "section_content": "24(b). 해당 역치의 기업 적용 여부 및 결정 방식을 추가로 명시할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 24(b)",
+                "key_terms": [
+                    "applicability"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_24b",
+                        "description": "E2-3 24(b) optional",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_24B",
+                        "description": "E2-3 24(b)",
+                        "expected": "esrse2_e2_3_24b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-24-b"
+            ],
+            "rulebook_title": "E2-3 24(b)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_24_C",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-24-c",
+            "section_name": "E2-3 문단 24(c)(선택)",
+            "section_content": "24(c). 한계치 준수에 대한 사내 책임 배분 방식을 추가로 명시할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 24(c)",
+                "key_terms": [
+                    "governance",
+                    "responsibility"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_24c",
+                        "description": "E2-3 24(c) optional",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_24C",
+                        "description": "E2-3 24(c)",
+                        "expected": "esrse2_e2_3_24c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-24-c"
+            ],
+            "rulebook_title": "E2-3 24(c)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_3_25",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-3-25",
+            "section_name": "E2-3 문단 25",
+            "section_content": "25. 제시한 목표가 의무적(법률 요구)인지 자발적인지 여부를 배경 정보로 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-3 para 25",
+                "key_terms": [
+                    "mandatory",
+                    "voluntary"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_3_25",
+                        "description": "E2-3 para 25",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_3_25",
+                        "description": "E2-3 para 25",
+                        "expected": "esrse2_e2_3_25_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-3-25"
+            ],
+            "rulebook_title": "E2-3 25",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_4",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-4",
+            "section_name": "E2-4 대기·수질·토양 오염(문단 26~31)",
+            "section_content": "공개 요건 E2-4 – 대기, 수질 및 토양 오염. 자체 운영 오염물질·미세플라스틱 공개(26), 목적(27), E-PRTR 부속서 II 물질 양(28-a, ESRS E1 GHG 제외)·미세플라스틱(28-b), 통합·역치(29), 맥락(30-a~c), 방법·불확실성(31).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-4 paras 26-31",
+                "key_terms": [
+                    "E-PRTR",
+                    "microplastics",
+                    "consolidation",
+                    "uncertainty"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_4",
+                        "description": "E2-4 air water soil",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_4",
+                        "description": "E2-4",
+                        "expected": "esrse2_e2_4_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRSE1",
+                    "EC-166-2006"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-4",
+                "ESRSE2-E2-4-26",
+                "ESRSE2-E2-4-27",
+                "ESRSE2-E2-4-28-a",
+                "ESRSE2-E2-4-28-b",
+                "ESRSE2-E2-4-29",
+                "ESRSE2-E2-4-30-a",
+                "ESRSE2-E2-4-30-b",
+                "ESRSE2-E2-4-30-c",
+                "ESRSE2-E2-4-31"
+            ],
+            "rulebook_title": "E2-4 대기·수·토양",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_4_26",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-4-26",
+            "section_name": "E2-4 문단 26",
+            "section_content": "26. 사업체는 자체 운영을 통해 배출하는 오염 물질과 생성하거나 사용하는 미세 플라스틱을 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-4 para 26",
+                "key_terms": [
+                    "pollutants",
+                    "microplastics"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_4_26",
+                        "description": "E2-4 para 26",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_4_26",
+                        "description": "E2-4 para 26",
+                        "expected": "esrse2_e2_4_26_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-4-26"
+            ],
+            "rulebook_title": "E2-4 26",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_4_27",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-4-27",
+            "section_name": "E2-4 문단 27",
+            "section_content": "27. 이 공개 요건의 목적은 기업이 자체 운영 과정에서 공기, 물, 토양으로 배출하는 물질과 미세 플라스틱의 생성 및 사용에 대한 이해를 제공하는 데 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-4 para 27",
+                "key_terms": [
+                    "objective"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_4_27",
+                        "description": "E2-4 para 27",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_4_27",
+                        "description": "E2-4 para 27",
+                        "expected": "esrse2_e2_4_27_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-4-27"
+            ],
+            "rulebook_title": "E2-4 27",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_4_28_A",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-4-28-a",
+            "section_name": "E2-4 문단 28(a) E-PRTR",
+            "section_content": "28(a). 유럽의회 및 이사회 규정(EC) No 166/2006 부속서 II에 열거된 각 오염물질(E-PRTR)이 대기, 수질 및 토양으로 배출되는 양을 공개합니다. ESRS E1 기후변화에 따라 공개되는 온실가스 배출은 제외합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-4 para 28(a)",
+                "key_terms": [
+                    "E-PRTR",
+                    "Annex II"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_4_28a",
+                        "description": "E2-4 28(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_4_28A",
+                        "description": "E2-4 28(a)",
+                        "expected": "esrse2_e2_4_28a_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRSE1",
+                    "EC-166-2006"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-4-28-a"
+            ],
+            "rulebook_title": "E2-4 28(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_4_28_B",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-4-28-b",
+            "section_name": "E2-4 문단 28(b) 미세플라스틱",
+            "section_content": "28(b). 기업이 생성하거나 사용하는 미세 플라스틱의 양을 공개합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-4 para 28(b)",
+                "key_terms": [
+                    "microplastics"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_4_28b",
+                        "description": "E2-4 28(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_4_28B",
+                        "description": "E2-4 28(b)",
+                        "expected": "esrse2_e2_4_28b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-4-28-b"
+            ],
+            "rulebook_title": "E2-4 28(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_4_29",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-4-29",
+            "section_name": "E2-4 문단 29 통합·역치",
+            "section_content": "29. 제28항 배출량은 재정적 통제권과 운영 통제권 시설을 포함한 통합 배출량이어야 하며, 통합에는 규정(EC) No 166/2006 부속서 II의 적용 가능한 기준값을 초과하는 시설 배출만 포함되어야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-4 para 29",
+                "key_terms": [
+                    "consolidation",
+                    "financial control",
+                    "operational control",
+                    "thresholds"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_4_29",
+                        "description": "E2-4 para 29",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_4_29",
+                        "description": "E2-4 para 29",
+                        "expected": "esrse2_e2_4_29_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "EC-166-2006"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-4-29"
+            ],
+            "rulebook_title": "E2-4 29",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_4_30_A",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-4-30-a",
+            "section_name": "E2-4 문단 30(a)",
+            "section_content": "30. 사업체는 공시를 맥락에 맞게 설명하고 다음을 기술합니다. (a) 시간에 따른 변화.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-4 para 30(a)",
+                "key_terms": [
+                    "trends"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_4_30a",
+                        "description": "E2-4 30(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_4_30A",
+                        "description": "E2-4 30(a)",
+                        "expected": "esrse2_e2_4_30a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-4-30-a"
+            ],
+            "rulebook_title": "E2-4 30(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_4_30_B",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-4-30-b",
+            "section_name": "E2-4 문단 30(b)",
+            "section_content": "30. 사업체는 공시를 맥락에 맞게 설명하고 다음을 기술합니다. (b) 측정 방법론.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-4 para 30(b)",
+                "key_terms": [
+                    "methodology"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_4_30b",
+                        "description": "E2-4 30(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_4_30B",
+                        "description": "E2-4 30(b)",
+                        "expected": "esrse2_e2_4_30b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-4-30-b"
+            ],
+            "rulebook_title": "E2-4 30(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_4_30_C",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-4-30-c",
+            "section_name": "E2-4 문단 30(c)",
+            "section_content": "30. 사업체는 공시를 맥락에 맞게 설명하고 다음을 기술합니다. (c) 오염 관련 회계·보고용 데이터 수집 절차(필요 데이터 유형·정보 출처 포함).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-4 para 30(c)",
+                "key_terms": [
+                    "data collection"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_4_30c",
+                        "description": "E2-4 30(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_4_30C",
+                        "description": "E2-4 30(c)",
+                        "expected": "esrse2_e2_4_30c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-4-30-c"
+            ],
+            "rulebook_title": "E2-4 30(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_4_31",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-4-31",
+            "section_name": "E2-4 문단 31 방법·불확실성",
+            "section_content": "31. 배출량 정량화에 직접 측정보다 열등한 방법론을 선택한 경우 그 이유를 설명해야 합니다. 추정치를 사용하는 경우 근거가 되는 표준·부문별 연구·출처와 측정 불확실성을 반영한 추정치의 불확실성 정도 및 범위를 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-4 para 31",
+                "key_terms": [
+                    "estimates",
+                    "uncertainty",
+                    "direct measurement"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_4_31",
+                        "description": "E2-4 para 31",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_4_31",
+                        "description": "E2-4 para 31",
+                        "expected": "esrse2_e2_4_31_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-4-31"
+            ],
+            "rulebook_title": "E2-4 31",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_5",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-5",
+            "section_name": "E2-5 관심·초고관심 물질(문단 32~35)",
+            "section_content": "공개 요건 E2-5 – 관심 물질 및 매우 높은 관심 물질. 단독·혼합물·제품 내 SoC/SVHC 생산·사용·유통·상업화·수출입 정보(32), 목적(33), 위해 등급별 총량(34), SVHC 별도 제시(35).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-5 paras 32-35",
+                "key_terms": [
+                    "SoC",
+                    "SVHC",
+                    "hazard class"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_5",
+                        "description": "E2-5 substances",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_5",
+                        "description": "E2-5",
+                        "expected": "esrse2_e2_5_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-5",
+                "ESRSE2-E2-5-32",
+                "ESRSE2-E2-5-33",
+                "ESRSE2-E2-5-34",
+                "ESRSE2-E2-5-35"
+            ],
+            "rulebook_title": "E2-5 물질",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_5_32",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-5-32",
+            "section_name": "E2-5 문단 32",
+            "section_content": "32. 사업자는 자체적으로, 혼합물 내 또는 제품 내로 존재하는 관심물질 및 매우 높은 관심물질의 생산, 사용, 유통, 상업화 및 수입/수출에 관한 정보를 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-5 para 32",
+                "key_terms": [
+                    "SoC",
+                    "SVHC"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_5_32",
+                        "description": "E2-5 para 32",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_5_32",
+                        "description": "E2-5 para 32",
+                        "expected": "esrse2_e2_5_32_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-5-32"
+            ],
+            "rulebook_title": "E2-5 32",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_5_33",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-5-33",
+            "section_name": "E2-5 문단 33",
+            "section_content": "33. 본 공개 요건의 목적은 해당 사업체가 자체적으로 취급하는 관심물질 및 매우 높은 관심물질에 대한 건강 및 환경 영향에 대한 이해를 가능하게 하는 데 있습니다. 또한 실질적 위험과 기회, 노출 및 규정 변경으로 인한 위험에 대한 이해를 가능하게 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-5 para 33",
+                "key_terms": [
+                    "objective",
+                    "health",
+                    "environment"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_5_33",
+                        "description": "E2-5 para 33",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_5_33",
+                        "description": "E2-5 para 33",
+                        "expected": "esrse2_e2_5_33_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-5-33"
+            ],
+            "rulebook_title": "E2-5 33",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_5_34",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-5-34",
+            "section_name": "E2-5 문단 34",
+            "section_content": "34. 제32항 공개에는 생산 과정에서 발생하거나 사용되는, 또는 조달되는 관심물질의 총량과 배출물, 제품, 제품 또는 서비스의 일부로서 시설을 떠나는 관심물질의 총량이 포함되어야 하며, 관심물질의 주요 위해 등급별로 구분되어야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-5 para 34",
+                "key_terms": [
+                    "totals",
+                    "hazard class"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_5_34",
+                        "description": "E2-5 para 34",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_5_34",
+                        "description": "E2-5 para 34",
+                        "expected": "esrse2_e2_5_34_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-5-34"
+            ],
+            "rulebook_title": "E2-5 34",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_5_35",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-5-35",
+            "section_name": "E2-5 문단 35",
+            "section_content": "35. 사업체는 매우 높은 우려 물질에 대한 정보를 별도로 제시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-5 para 35",
+                "key_terms": [
+                    "SVHC",
+                    "separate disclosure"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_5_35",
+                        "description": "E2-5 para 35",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_5_35",
+                        "description": "E2-5 para 35",
+                        "expected": "esrse2_e2_5_35_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-5-35"
+            ],
+            "rulebook_title": "E2-5 35",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6",
+            "section_name": "E2-6 예상 재무적 영향(문단 36~41)",
+            "section_content": "공개 요건 E2-6 – 중대 오염 관련 위험·기회에 따른 예상 재무적 영향. 예상 재무영향 공시(36), SBM-3 48(d) 현재 재무영향에 추가(37), 목적 38(a)(b), 예상 재무영향의 정량·정성·기간·가정·불확실성(39), 문단 38(a) 관련 매출 비중·사고·적치 비용·복구 충당(40), 중대 사고·적치 맥락(41).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 paras 36-41",
+                "key_terms": [
+                    "anticipated financial effects",
+                    "SBM-3",
+                    "SoC",
+                    "SVHC",
+                    "CapEx",
+                    "OpEx",
+                    "provisions"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6",
+                        "description": "E2-6 anticipated financial effects",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6",
+                        "description": "E2-6",
+                        "expected": "esrse2_e2_6_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3-48d",
+                    "ESRS1-Appendix-B"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6",
+                "ESRSE2-E2-6-36",
+                "ESRSE2-E2-6-37",
+                "ESRSE2-E2-6-38-a",
+                "ESRSE2-E2-6-38-b",
+                "ESRSE2-E2-6-39-a",
+                "ESRSE2-E2-6-39-b",
+                "ESRSE2-E2-6-39-c",
+                "ESRSE2-E2-6-40-a",
+                "ESRSE2-E2-6-40-b",
+                "ESRSE2-E2-6-40-c",
+                "ESRSE2-E2-6-41"
+            ],
+            "rulebook_title": "E2-6 재무영향",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_36",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-36",
+            "section_name": "E2-6 문단 36",
+            "section_content": "36. 기업은 중대한 오염 관련 위험 및 기회에 따른 예상 재무적 영향을 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 36",
+                "key_terms": [
+                    "anticipated financial effects",
+                    "material risks",
+                    "opportunities"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_36",
+                        "description": "E2-6 para 36",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_36",
+                        "description": "E2-6 para 36",
+                        "expected": "esrse2_e2_6_36_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-36"
+            ],
+            "rulebook_title": "E2-6 36",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_37",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-37",
+            "section_name": "E2-6 문단 37 SBM-3",
+            "section_content": "37. 제36항 정보는 보고 기간 동안 재무상태·성과·현금흐름에 대한 현재 재무적 영향에 관해 ESRS 2 SBM-3 제48항(d)에서 요구하는 정보에 추가됩니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 37",
+                "key_terms": [
+                    "SBM-3",
+                    "current financial effects"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_37",
+                        "description": "E2-6 para 37",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_37",
+                        "description": "E2-6 para 37",
+                        "expected": "esrse2_e2_6_37_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3-48d"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-37"
+            ],
+            "rulebook_title": "E2-6 37",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_38_A",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-38-a",
+            "section_name": "E2-6 문단 38(a)",
+            "section_content": "38. 본 공시 요건의 목적은 다음에 대한 이해를 제공합니다. (a) 오염 관련 영향 및 의존성으로 인한 중대 위험의 예상 재무적 영향, 및 단기·중기·장기에 재무상태·성과·현금흐름에 중대 영향을 미쳤거나 미칠 수 있는 합리적 가능성.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 38(a)",
+                "key_terms": [
+                    "dependencies",
+                    "time horizons"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_38a",
+                        "description": "E2-6 38(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_38A",
+                        "description": "E2-6 38(a)",
+                        "expected": "esrse2_e2_6_38a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-38-a"
+            ],
+            "rulebook_title": "E2-6 38(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_38_B",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-38-b",
+            "section_name": "E2-6 문단 38(b)",
+            "section_content": "38(b). 오염 방지 및 통제와 관련된 중대한 기회에 따른 예상 재무적 영향.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 38(b)",
+                "key_terms": [
+                    "pollution prevention",
+                    "opportunities"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_38b",
+                        "description": "E2-6 38(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_38B",
+                        "description": "E2-6 38(b)",
+                        "expected": "esrse2_e2_6_38b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-38-b"
+            ],
+            "rulebook_title": "E2-6 38(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_39_A",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-39-a",
+            "section_name": "E2-6 문단 39(a)",
+            "section_content": "39(a). 오염 관련 영향·위험·기회에서 오는 예상 재무영향의 화폐적 정량화(오염 관련 조치 반영 전). 과도한 비용·노력 없이 불가하면 정성 정보. 기회에서 유래하는 재무영향은 ESRS 1 부속서 B 정보 특성을 충족하지 못하면 정량화 요구에서 제외될 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 39(a)",
+                "key_terms": [
+                    "monetary quantification",
+                    "qualitative"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_39a",
+                        "description": "E2-6 39(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_39A",
+                        "description": "E2-6 39(a)",
+                        "expected": "esrse2_e2_6_39a_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS1-Appendix-B"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-39-a"
+            ],
+            "rulebook_title": "E2-6 39(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_39_B",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-39-b",
+            "section_name": "E2-6 문단 39(b)",
+            "section_content": "39(b). 고려한 효과, 관련 영향 및 효과가 예상되는 시간 범위에 대한 설명.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 39(b)",
+                "key_terms": [
+                    "impacts",
+                    "time horizons"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_39b",
+                        "description": "E2-6 39(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_39B",
+                        "description": "E2-6 39(b)",
+                        "expected": "esrse2_e2_6_39b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-39-b"
+            ],
+            "rulebook_title": "E2-6 39(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_39_C",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-39-c",
+            "section_name": "E2-6 문단 39(c)",
+            "section_content": "39(c). 예상 재무영향 정량화에 사용한 주요 가정, 가정의 출처, 불확실성 수준.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 39(c)",
+                "key_terms": [
+                    "assumptions",
+                    "uncertainty"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_39c",
+                        "description": "E2-6 39(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_39C",
+                        "description": "E2-6 39(c)",
+                        "expected": "esrse2_e2_6_39c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-39-c"
+            ],
+            "rulebook_title": "E2-6 39(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_40_A",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-40-a",
+            "section_name": "E2-6 문단 40(a)",
+            "section_content": "40(a). 문단 38(a)에 따른 정보: 관심 물질을 함유하거나 그 자체인 제품·서비스의 순매출 비중, 매우 높은 관심 물질을 함유하거나 그 자체인 제품·서비스의 순매출 비중.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 40(a)",
+                "key_terms": [
+                    "net revenue",
+                    "SoC",
+                    "SVHC"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_40a",
+                        "description": "E2-6 40(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_40A",
+                        "description": "E2-6 40(a)",
+                        "expected": "esrse2_e2_6_40a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-40-a"
+            ],
+            "rulebook_title": "E2-6 40(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_40_B",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-40-b",
+            "section_name": "E2-6 문단 40(b)",
+            "section_content": "40(b). 문단 38(a) 정보: 보고 기간 중 주요 사고·적치와 관련된 운영비 및 자본지출.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 40(b)",
+                "key_terms": [
+                    "OpEx",
+                    "CapEx",
+                    "incidents"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_40b",
+                        "description": "E2-6 40(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_40B",
+                        "description": "E2-6 40(b)",
+                        "expected": "esrse2_e2_6_40b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-40-b"
+            ],
+            "rulebook_title": "E2-6 40(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_40_C",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-40-c",
+            "section_name": "E2-6 문단 40(c)",
+            "section_content": "40(c). 문단 38(a) 정보: 환경 보호 및 복구 비용에 대한 충당(오염 부지 복원, 매립 봉쇄, 기존 생산·저장 시설의 오염 제거 등 유사 조치).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 40(c)",
+                "key_terms": [
+                    "provisions",
+                    "restoration"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_40c",
+                        "description": "E2-6 40(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_40C",
+                        "description": "E2-6 40(c)",
+                        "expected": "esrse2_e2_6_40c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-40-c"
+            ],
+            "rulebook_title": "E2-6 40(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE2_E2_6_41",
+            "standard_id": "ESRSE2",
+            "primary_dp_id": "ESRSE2-E2-6-41",
+            "section_name": "E2-6 문단 41",
+            "section_content": "41. 환경에 부정 영향을 미친 또는 단기·중기·장기 재무상태·성과·현금흐름에 부정 영향을 미쳤거나 미칠 것으로 예상되는 중대 사고·적치에 관한 관련 맥락 정보를 공개합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E2 - E2-6 para 41",
+                "key_terms": [
+                    "environmental incidents",
+                    "context"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse2_e2_6_41",
+                        "description": "E2-6 para 41",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE2_E2_6_41",
+                        "description": "E2-6 para 41",
+                        "expected": "esrse2_e2_6_41_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE2-E2-6-41"
+            ],
+            "rulebook_title": "E2-6 41",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        }
+    ]
+}

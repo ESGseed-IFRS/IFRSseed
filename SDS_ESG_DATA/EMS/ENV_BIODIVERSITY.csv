@@ -1,0 +1,9 @@
+record_id,year,site_code,site_name,site_type,ecologically_sensitive_adjacent,iucn_area_adjacent,ramsar_area_adjacent,protected_area_adjacent,distance_to_sensitive_area_km,biodiversity_impact_assessment_yn,mitigation_measures,green_area_sqm,tree_count,green_area_change_sqm,source_system,created_at,updated_at,updated_by
+BIO-2024-001,2024,SITE-DC01,수원 데이터센터,데이터센터,N,N,N,N,5.2,Y,우수저감시설 설치,3200,180,0,EHS,2024-03-31 09:00:00,2024-04-05 10:00:00,user_ehs
+BIO-2024-002,2024,SITE-DC02,동탄 데이터센터,데이터센터,N,N,N,N,8.5,Y,빗물재이용시스템,2800,145,200,EHS,2024-03-31 09:00:00,2024-04-05 10:00:00,user_ehs
+BIO-2024-003,2024,SITE-DC03,상암 데이터센터,데이터센터,N,N,N,N,3.1,Y,옥상녹화,1500,85,50,EHS,2024-03-31 09:00:00,2024-04-05 10:00:00,user_ehs
+BIO-2024-004,2024,SITE-DC04,춘천 데이터센터,데이터센터,N,N,N,N,12.3,Y,주변 생태 모니터링,5800,320,500,EHS,2024-03-31 09:00:00,2024-04-05 10:00:00,user_ehs
+BIO-2024-005,2024,SITE-DC05,구미 데이터센터,데이터센터,N,N,N,N,6.8,Y,조경관리,2100,115,0,EHS,2024-03-31 09:00:00,2024-04-05 10:00:00,user_ehs
+BIO-2024-006,2024,SITE-OF01,잠실 본사,오피스,N,N,N,N,2.3,Y,실내식물벽 조성,650,42,120,EHS,2024-03-31 09:00:00,2024-04-05 10:00:00,user_ehs
+BIO-2024-007,2024,SITE-OF02,수원 오피스,오피스,N,N,N,N,4.1,N,해당없음,420,28,0,EHS,2024-03-31 09:00:00,2024-04-05 10:00:00,user_ehs
+BIO-2024-008,2024,SITE-OF03,구미 오피스,오피스,N,N,N,N,5.5,N,해당없음,380,22,0,EHS,2024-03-31 09:00:00,2024-04-05 10:00:00,user_ehs

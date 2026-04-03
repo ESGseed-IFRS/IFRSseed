@@ -1,0 +1,5 @@
+record_id,year,program_name,fund_type,total_fund_m,disbursed_m,beneficiary_companies,avg_loan_rate_pct,partner_bank,sme_ratio_pct,economic_effect_m,employment_effect,source_system,created_at,updated_at,updated_by
+MG-2024-001,2024,협력사 저금리 대출 펀드,대출지원,30000,28500,185,2.5,IBK기업은행,95,85000,320,ERP,2024-12-31 09:00:00,2024-12-31 10:00:00,user_srm
+MG-2024-002,2024,기술개발 공동투자 펀드,투자지원,8000,6800,35,0.0,삼성SDS직접,80,24000,110,ERP,2024-12-31 09:00:00,2024-12-31 10:00:00,user_srm
+MG-2024-003,2024,스마트공장 구축 지원,설비지원,9500,9200,48,1.5,우리은행,88,32000,145,ERP,2024-12-31 09:00:00,2024-12-31 10:00:00,user_srm
+MG-2024-004,2024,글로벌 진출 지원,해외지원,2937,2837,17,2.0,하나은행,70,9500,42,ERP,2024-12-31 09:00:00,2024-12-31 10:00:00,user_srm

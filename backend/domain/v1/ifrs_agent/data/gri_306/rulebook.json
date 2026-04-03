@@ -1,0 +1,2442 @@
+{
+    "rulebooks": [
+        {
+            "rulebook_id": "RULE_GRI306",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306",
+            "section_name": "GRI 306: 폐기물",
+            "section_content": "GRI 306: Waste 2020 — seed disclosures 306-3 to 306-5.",
+            "validation_rules": {
+                "section_type": "standard",
+                "paragraph_reference": "GRI 306",
+                "key_terms": [
+                    "waste",
+                    "circular economy",
+                    "metric ton"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "apply_gri306_seed",
+                        "description": "시드 범위 충족"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_SEED",
+                        "description": "306-3~306-5",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306",
+                "GRI306-SEC-2",
+                "GRI306-3",
+                "GRI306-4",
+                "GRI306-5"
+            ],
+            "rulebook_title": "GRI 306 (seed)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_SEC_2",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-SEC-2",
+            "section_name": "섹션 2: 주제별 공시",
+            "section_content": "Section 2: Topic-related waste disclosures (seed).",
+            "validation_rules": {
+                "section_type": "section",
+                "paragraph_reference": "GRI 306 Section 2",
+                "key_terms": [
+                    "306-3",
+                    "306-4",
+                    "306-5"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_sec2_306",
+                        "description": "306-3~306-5"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_SEC2_OK",
+                        "description": "섹션 2",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-SEC-2",
+                "GRI306-3",
+                "GRI306-4",
+                "GRI306-5"
+            ],
+            "rulebook_title": "GRI 306 Section 2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_3",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-3",
+            "section_name": "공개 306-3",
+            "section_content": "Disclosure 306-3: Waste generated.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 306 Disclosure 306-3",
+                "key_terms": [
+                    "waste generated",
+                    "composition",
+                    "effluents"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_306_3",
+                        "description": "306-3 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_3_OK",
+                        "description": "306-3",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-3",
+                "GRI306-3-a",
+                "GRI306-3-b",
+                "GRI306-3-2-1",
+                "GRI306-3-2-1-1",
+                "GRI306-3-2-1-2"
+            ],
+            "rulebook_title": "Disclosure 306-3",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_3_A",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-3-a",
+            "section_name": "306-3-a",
+            "section_content": "306-3-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-3-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_3_a",
+                        "description": "306-3-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_3_A_OK",
+                        "description": "306-3-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-3-a"
+            ],
+            "rulebook_title": "306-3-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_3_B",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-3-b",
+            "section_name": "306-3-b",
+            "section_content": "306-3-b",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-3-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_3_b",
+                        "description": "306-3-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_3_B_OK",
+                        "description": "306-3-b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-3-b"
+            ],
+            "rulebook_title": "306-3-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_3_2_1",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-3-2-1",
+            "section_name": "편성 2.1",
+            "section_content": "Reporting requirement 2.1 for 306-3-a",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 306 — 2.1",
+                "key_terms": [
+                    "effluents",
+                    "metric ton"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "compile_306_3_21",
+                        "description": "2.1"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_3_21_OK",
+                        "description": "2.1",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-3-2-1",
+                "GRI306-3-2-1-1",
+                "GRI306-3-2-1-2"
+            ],
+            "rulebook_title": "Compilation 2.1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_3_2_1_1",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-3-2-1-1",
+            "section_name": "2.1.1",
+            "section_content": "Exclude effluents unless law requires",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 2.1.1",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rule_306_3_211",
+                        "description": "2.1.1"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_3_211_OK",
+                        "description": "2.1.1",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-3-2-1-1"
+            ],
+            "rulebook_title": "2.1.1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_3_2_1_2",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-3-2-1-2",
+            "section_name": "2.1.2",
+            "section_content": "1000 kg = 1 t",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 2.1.2",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rule_306_3_212",
+                        "description": "2.1.2"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_3_212_OK",
+                        "description": "2.1.2",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-3-2-1-2"
+            ],
+            "rulebook_title": "2.1.2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_3_GEN_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-3",
+            "section_name": "지침: 306-3 배경·가치사슬",
+            "section_content": "Background: Comparing waste generated with amounts directed to recovery and disposal clarifies how the organization manages waste impacts; composition informs suitable recovery/disposal routes. Waste from the organization's own activities; if data allow, upstream/downstream value chain waste may be reported separately. Refs bibliography [1], [4], [10], [11].",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 Disclosure 306-3 — General",
+                "key_terms": [
+                    "value chain",
+                    "recovery",
+                    "disposal"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_3_gen",
+                        "description": "306-3 개괄",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_3_GEN_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Refs [1],[4],[10],[11]"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-3",
+                "GRI306-3-a"
+            ],
+            "rulebook_title": "Guidance 306-3 general",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_3_A_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-3-a",
+            "section_name": "지침: 306-3-a 구성",
+            "section_content": "306-3-a guidance: Describe composition using waste type (hazardous/non-hazardous), industry-relevant streams (e.g. tailings, e-waste, food waste), and materials (biomass, metals, non-metallic minerals, plastics, textiles). Appendix reporting template may apply.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 306-3-a — Guidance",
+                "key_terms": [
+                    "hazardous",
+                    "waste stream",
+                    "material"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_3_a",
+                        "description": "306-3-a 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_3_A_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-3-a"
+            ],
+            "rulebook_title": "Guidance 306-3-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_3_B_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-3-b",
+            "section_name": "지침: 306-3-b 집계",
+            "section_content": "306-3-b guidance: Explain differences between waste generated vs directed to recovery/disposal (evaporation, leaks, losses, physical/technical vs administrative issues). State if data are modeled, from contractor transfer notes, externally assured, or from waste data audits.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 306-3-b — Guidance",
+                "key_terms": [
+                    "mass balance",
+                    "methodology"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_3_b",
+                        "description": "306-3-b 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_3_B_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-3-b"
+            ],
+            "rulebook_title": "Guidance 306-3-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4",
+            "section_name": "공개 306-4",
+            "section_content": "Disclosure 306-4: Waste diverted from disposal.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 306 Disclosure 306-4",
+                "key_terms": [
+                    "diversion",
+                    "recovery",
+                    "recycling"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_306_4",
+                        "description": "306-4 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_OK",
+                        "description": "306-4",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": [
+                    "Cross-ref Disclosure 306-2-a for 2.3"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-4",
+                "GRI306-4-a",
+                "GRI306-4-b",
+                "GRI306-4-b-i",
+                "GRI306-4-b-ii",
+                "GRI306-4-b-iii",
+                "GRI306-4-c",
+                "GRI306-4-c-i",
+                "GRI306-4-c-ii",
+                "GRI306-4-c-iii",
+                "GRI306-4-d",
+                "GRI306-4-d-i",
+                "GRI306-4-d-ii",
+                "GRI306-4-e",
+                "GRI306-4-2-2",
+                "GRI306-4-2-2-1",
+                "GRI306-4-2-2-2",
+                "GRI306-4-2-3"
+            ],
+            "rulebook_title": "Disclosure 306-4",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_A",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-a",
+            "section_name": "306-4-a",
+            "section_content": "306-4-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_4_a",
+                        "description": "306-4-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_A_OK",
+                        "description": "306-4-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-a"
+            ],
+            "rulebook_title": "306-4-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_B",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-b",
+            "section_name": "306-4-b",
+            "section_content": "306-4-b hazardous diverted",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_4_b",
+                        "description": "306-4-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_B_OK",
+                        "description": "306-4-b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-b",
+                "GRI306-4-b-i",
+                "GRI306-4-b-ii",
+                "GRI306-4-b-iii"
+            ],
+            "rulebook_title": "306-4-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_C",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-c",
+            "section_name": "306-4-c",
+            "section_content": "306-4-c non-hazardous diverted",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-c",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_4_c",
+                        "description": "306-4-c"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_C_OK",
+                        "description": "306-4-c",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-c",
+                "GRI306-4-c-i",
+                "GRI306-4-c-ii",
+                "GRI306-4-c-iii"
+            ],
+            "rulebook_title": "306-4-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_D",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-d",
+            "section_name": "306-4-d",
+            "section_content": "306-4-d onsite/offsite",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-d",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_4_d",
+                        "description": "306-4-d"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_D_OK",
+                        "description": "306-4-d",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-d",
+                "GRI306-4-d-i",
+                "GRI306-4-d-ii"
+            ],
+            "rulebook_title": "306-4-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_E",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-e",
+            "section_name": "306-4-e",
+            "section_content": "306-4-e",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-e",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_4_e",
+                        "description": "306-4-e"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_E_OK",
+                        "description": "306-4-e",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-e"
+            ],
+            "rulebook_title": "306-4-e",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_B_I",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-b-i",
+            "section_name": "306-4-b-i 유해 — 재사용 전처리",
+            "section_content": "공개 306-4-b 항목 i(요구사항): 처분에서 전환된 유해폐기물 총중량(미터톤)을 재사용을 위한 전처리(preparation for reuse)별로 분해 보고합니다. 편성 시 공개 306-4 작성 요건 2.2(배출수 제외, 1미터톤=1,000kg)을 준수합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-b-i",
+                "key_terms": [
+                    "preparation for reuse",
+                    "hazardous waste",
+                    "metric ton",
+                    "diverted from disposal"
+                ],
+                "related_concepts": [
+                    "306-4-b",
+                    "recovery operations"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_4_b_i",
+                        "description": "유해폐기물 중 재사용 전처리로 전환된 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_B_I_OK",
+                        "description": "306-4-b-i 수치·단위 및 b 총량과 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Disclosure 306-4-b",
+                    "Reporting requirement 2.2"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-4",
+                "GRI306-4-b",
+                "GRI306-4-b-i",
+                "GRI306-4-2-2"
+            ],
+            "rulebook_title": "306-4-b-i preparation for reuse (hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_B_III",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-b-iii",
+            "section_name": "306-4-b-iii 유해 — 기타 회수",
+            "section_content": "공개 306-4-b 항목 iii: 유해폐기물 중 재사용 전처리·재활용 이외의 기타 회수 작업(other recovery)으로 처분에서 전환된 중량(미터톤)을 보고합니다. 지침에 따라 용도 변경·재생(repurposing, reclamation) 등도 기타 회수에 포함해 기술할 수 있습니다(RULE_GRI306_4_BC_GUIDANCE 참고).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-b-iii",
+                "key_terms": [
+                    "other recovery",
+                    "hazardous waste",
+                    "reclamation"
+                ],
+                "related_concepts": [
+                    "306-4-b-iii",
+                    "306-4-b-ii"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_4_b_iii",
+                        "description": "기타 회수로 전환된 유해폐기물 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_B_III_OK",
+                        "description": "306-4-b-iii 및 b 총량·ii와 배타 합산 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Guidance 306-4-b,c recovery detail"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-4-b",
+                "GRI306-4-b-iii",
+                "GRI306-4-b-ii",
+                "GRI306-4-2-2"
+            ],
+            "rulebook_title": "306-4-b-iii other recovery (hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_C_I",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-c-i",
+            "section_name": "306-4-c-i 비유해 — 재사용 전처리",
+            "section_content": "공개 306-4-c 항목 i: 처분에서 전환된 비유해폐기물 총중량(미터톤) 중 재사용을 위한 전처리로 전환된 중량을 보고합니다. 편성 2.2와 동일하게 적용됩니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-c-i",
+                "key_terms": [
+                    "non-hazardous",
+                    "preparation for reuse",
+                    "metric ton"
+                ],
+                "related_concepts": [
+                    "306-4-c"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_4_c_i",
+                        "description": "비유해폐기물 재사용 전처리 전환 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_C_I_OK",
+                        "description": "306-4-c-i 및 c 총량 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Disclosure 306-4-c",
+                    "Reporting requirement 2.2"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-4-c",
+                "GRI306-4-c-i",
+                "GRI306-4-2-2"
+            ],
+            "rulebook_title": "306-4-c-i preparation for reuse (non-hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_C_II",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-c-ii",
+            "section_name": "306-4-c-ii 비유해 — 재활용",
+            "section_content": "공개 306-4-c 항목 ii: 비유해폐기물 중 재활용(recycling)으로 처분에서 전환된 중량(미터톤)을 보고합니다. 지침: 재활용 보고 시 다운사이클링·업사이클링·퇴비화·혐기성 소화 등 재활용 운영 유형을 명시할 수 있습니다(RULE_GRI306_4_BC_GUIDANCE와 취지 동일).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-c-ii",
+                "key_terms": [
+                    "recycling",
+                    "composting",
+                    "non-hazardous waste"
+                ],
+                "related_concepts": [
+                    "306-4-c",
+                    "306-4-b-ii"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_4_c_ii",
+                        "description": "비유해 재활용 전환 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_C_II_OK",
+                        "description": "306-4-c-ii 및 c 총량 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Guidance 306-4-b,c recovery detail"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-4-c",
+                "GRI306-4-c-ii",
+                "GRI306-4-c-i",
+                "GRI306-4-c-iii",
+                "GRI306-4-2-2"
+            ],
+            "rulebook_title": "306-4-c-ii recycling (non-hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_C_III",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-c-iii",
+            "section_name": "306-4-c-iii 비유해 — 기타 회수",
+            "section_content": "공개 306-4-c 항목 iii: 비유해폐기물 중 기타 회수 작업으로 전환된 중량(미터톤)을 보고합니다. 지침: 재사용·재활용 외 회수(용도 변경·재생 등)를 306-4-b-iii·c-iii에 따라 기술할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-c-iii",
+                "key_terms": [
+                    "other recovery",
+                    "non-hazardous waste"
+                ],
+                "related_concepts": [
+                    "306-4-c-iii",
+                    "306-4-b-iii"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_4_c_iii",
+                        "description": "기타 회수로 전환된 비유해폐기물 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_C_III_OK",
+                        "description": "306-4-c-iii 및 c 총량 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Guidance 306-4-b,c recovery detail"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-4-c",
+                "GRI306-4-c-iii",
+                "GRI306-4-2-2"
+            ],
+            "rulebook_title": "306-4-c-iii other recovery (non-hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_D_I",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-d-i",
+            "section_name": "306-4-d-i 현장 내 회수",
+            "section_content": "공개 306-4-d 항목 i: 공개 306-4-b 및 306-4-c에 열거된 각 회수 작업별로, 처분에서 전환된 유해·비유해 폐기물 총중량을 현장 내(onsite)로 세분 보고합니다. 지침: 현장은 보고 조직의 물리적 경계 내 또는 행정적 통제 하에 있는 곳을 의미합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-d-i",
+                "key_terms": [
+                    "onsite",
+                    "recovery operation",
+                    "diverted"
+                ],
+                "related_concepts": [
+                    "306-4-d",
+                    "306-4-b",
+                    "306-4-c"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_4_d_i",
+                        "description": "회수 작업별 현장 내 전환 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_D_I_OK",
+                        "description": "306-4-d-i와 각 b·c 작업·d 총괄 정합",
+                        "expected": "breakdown_consistent"
+                    }
+                ],
+                "cross_references": [
+                    "Guidance 306-4-d onsite/offsite"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-4-d",
+                "GRI306-4-d-i",
+                "GRI306-4-b",
+                "GRI306-4-c"
+            ],
+            "rulebook_title": "306-4-d-i onsite diversion breakdown",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_D_II",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-d-ii",
+            "section_name": "306-4-d-ii 현장 외 회수",
+            "section_content": "공개 306-4-d 항목 ii: 동일 회수 작업별로 처분에서 전환된 유해·비유해 폐기물을 현장 외(offsite)로 세분 보고합니다. 지침: 현장 외는 물리적 경계 밖 또는 행정적 통제 범위를 벗어난 곳입니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-4-d-ii",
+                "key_terms": [
+                    "offsite",
+                    "recovery operation",
+                    "diverted"
+                ],
+                "related_concepts": [
+                    "306-4-d",
+                    "306-4-d-i"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_4_d_ii",
+                        "description": "회수 작업별 현장 외 전환 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_D_II_OK",
+                        "description": "306-4-d-ii 및 d-i와 작업별 합산 정합",
+                        "expected": "breakdown_consistent"
+                    }
+                ],
+                "cross_references": [
+                    "Guidance 306-4-d onsite/offsite",
+                    "Guidance 306-4-e context"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-4-d",
+                "GRI306-4-d-ii",
+                "GRI306-4-d-i"
+            ],
+            "rulebook_title": "306-4-d-ii offsite diversion breakdown",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_2_2",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-2-2",
+            "section_name": "편성 2.2",
+            "section_content": "Reporting requirement 2.2 for 306-4",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 306 — 2.2",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "compile_306_4_22",
+                        "description": "2.2"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_22_OK",
+                        "description": "2.2",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-2-2",
+                "GRI306-4-2-2-1",
+                "GRI306-4-2-2-2"
+            ],
+            "rulebook_title": "Compilation 2.2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_2_2_1",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-2-2-1",
+            "section_name": "2.2.1",
+            "section_content": "Effluents exclusion",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 2.2.1",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rule_306_4_221",
+                        "description": "2.2.1"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_221_OK",
+                        "description": "2.2.1",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-2-2-1"
+            ],
+            "rulebook_title": "2.2.1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_2_2_2",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-2-2-2",
+            "section_name": "2.2.2",
+            "section_content": "Metric ton",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 2.2.2",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rule_306_4_222",
+                        "description": "2.2.2"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_222_OK",
+                        "description": "2.2.2",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-2-2-2"
+            ],
+            "rulebook_title": "2.2.2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_2_3",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-2-3",
+            "section_name": "권장 2.3",
+            "section_content": "Recommendation 2.3 waste prevented",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 — Recommendation 2.3",
+                "key_terms": [
+                    "prevention",
+                    "306-2"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_306_4_23",
+                        "description": "2.3",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_23_REVIEW",
+                        "description": "2.3",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-2-3"
+            ],
+            "rulebook_title": "Recommendation 2.3",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_GEN_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4",
+            "section_name": "지침: 306-4 배경·위계·306-4-a",
+            "section_content": "Background: Waste management hierarchy prioritizes prevention, then preparation for reuse, recycling, other recovery, to avoid final disposal. Appendix template applies. 306-4-a composition guidance parallels 306-3-a (types, streams, materials).",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 Disclosure 306-4 — General",
+                "key_terms": [
+                    "waste hierarchy",
+                    "reuse",
+                    "recycling"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_4_gen",
+                        "description": "306-4 개괄",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_GEN_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4",
+                "GRI306-4-a"
+            ],
+            "rulebook_title": "Guidance 306-4 general",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_BC_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-b-ii",
+            "section_name": "지침: 306-4-b·c 회수 세부",
+            "section_content": "306-4-b-ii and 306-4-c-ii (recycling): May specify downcycling, upcycling, composting, anaerobic digestion. 306-4-b-iii and 306-4-c-iii (other recovery): May include repurposing, reclamation beyond reuse preparation. Ref [1].",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 306-4-b,c — Recovery detail",
+                "key_terms": [
+                    "composting",
+                    "upcycling"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_4_bc",
+                        "description": "b·c 회수 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_BC_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Ref [1]"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-4-b-ii",
+                "GRI306-4-b-iii",
+                "GRI306-4-c-ii",
+                "GRI306-4-c-iii"
+            ],
+            "rulebook_title": "Guidance 306-4-b,c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": "primary: 306-4-b-ii; also covers c-ii/iii.",
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_D_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-d",
+            "section_name": "지침: 306-4-d 온·오프 정의",
+            "section_content": "306-4-d: Onsite = within physical boundary or administrative control of reporting organization; offsite = outside. Reporting quantities/types diverted onsite vs offsite shows depth of waste management understanding.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 306-4-d — Guidance",
+                "key_terms": [
+                    "onsite",
+                    "offsite"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_4_d",
+                        "description": "306-4-d 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_D_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-d",
+                "GRI306-4-d-i",
+                "GRI306-4-d-ii"
+            ],
+            "rulebook_title": "Guidance 306-4-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_E_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-e",
+            "section_name": "지침: 306-4-e",
+            "section_content": "306-4-e: Explain weight differences between onsite and offsite diversion (e.g. lack of onsite recovery infrastructure). May describe sector practices, standards, or regulations mandating recovery operations. Data: modeled vs measured (transfer notes, verification, audits).",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 306-4-e — Guidance",
+                "key_terms": [
+                    "methodology",
+                    "regulation"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_4_e",
+                        "description": "306-4-e 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_E_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-e"
+            ],
+            "rulebook_title": "Guidance 306-4-e",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_4_2_3_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-4-2-3",
+            "section_name": "지침: 권장 2.3(방지)",
+            "section_content": "Recommendation 2.3 guidance: Prevention is top of hierarchy. 'Prevented waste' may be estimated from actions reported under Disclosure 306-2-a; reduction due only to lower production capacity is not prevention. May include prevention in upstream/downstream value chain.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 — Guidance for 2.3",
+                "key_terms": [
+                    "waste prevention",
+                    "306-2-a"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_4_23",
+                        "description": "2.3 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_4_23_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-4-2-3"
+            ],
+            "rulebook_title": "Guidance 2.3",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5",
+            "section_name": "공개 306-5",
+            "section_content": "Disclosure 306-5: Waste directed to disposal.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 306 Disclosure 306-5",
+                "key_terms": [
+                    "landfill",
+                    "incineration",
+                    "disposal"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_306_5",
+                        "description": "306-5 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_OK",
+                        "description": "306-5",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5",
+                "GRI306-5-a",
+                "GRI306-5-b",
+                "GRI306-5-b-i",
+                "GRI306-5-b-ii",
+                "GRI306-5-b-iii",
+                "GRI306-5-b-iv",
+                "GRI306-5-c",
+                "GRI306-5-c-i",
+                "GRI306-5-c-ii",
+                "GRI306-5-c-iii",
+                "GRI306-5-c-iv",
+                "GRI306-5-d",
+                "GRI306-5-d-i",
+                "GRI306-5-d-ii",
+                "GRI306-5-e",
+                "GRI306-5-2-4",
+                "GRI306-5-2-4-1",
+                "GRI306-5-2-4-2"
+            ],
+            "rulebook_title": "Disclosure 306-5",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_A",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-a",
+            "section_name": "306-5-a",
+            "section_content": "306-5-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_5_a",
+                        "description": "306-5-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_A_OK",
+                        "description": "306-5-a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-a"
+            ],
+            "rulebook_title": "306-5-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_B",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-b",
+            "section_name": "306-5-b",
+            "section_content": "306-5-b hazardous disposal",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_5_b",
+                        "description": "306-5-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_B_OK",
+                        "description": "306-5-b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-b",
+                "GRI306-5-b-i",
+                "GRI306-5-b-ii",
+                "GRI306-5-b-iii",
+                "GRI306-5-b-iv"
+            ],
+            "rulebook_title": "306-5-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_C",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-c",
+            "section_name": "306-5-c",
+            "section_content": "306-5-c non-hazardous disposal",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-c",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_5_c",
+                        "description": "306-5-c"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_C_OK",
+                        "description": "306-5-c",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-c",
+                "GRI306-5-c-i",
+                "GRI306-5-c-ii",
+                "GRI306-5-c-iii",
+                "GRI306-5-c-iv"
+            ],
+            "rulebook_title": "306-5-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_D",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-d",
+            "section_name": "306-5-d",
+            "section_content": "306-5-d onsite/offsite disposal",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-d",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_5_d",
+                        "description": "306-5-d"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_D_OK",
+                        "description": "306-5-d",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-d",
+                "GRI306-5-d-i",
+                "GRI306-5-d-ii"
+            ],
+            "rulebook_title": "306-5-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_E",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-e",
+            "section_name": "306-5-e",
+            "section_content": "306-5-e",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-e",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_306_5_e",
+                        "description": "306-5-e"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_E_OK",
+                        "description": "306-5-e",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-e"
+            ],
+            "rulebook_title": "306-5-e",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_B_I",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-b-i",
+            "section_name": "306-5-b-i 유해 — 소각(에너지 회수)",
+            "section_content": "공개 306-5-b 항목 i: 처분으로 이송된 유해폐기물 총중량(미터톤) 중 에너지 회수가 있는 소각(incineration with energy recovery)으로 처분된 중량을 보고합니다. 편성 요건 2.4(배출수, 1t=1000kg) 준수.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-b-i",
+                "key_terms": [
+                    "incineration",
+                    "energy recovery",
+                    "hazardous waste"
+                ],
+                "related_concepts": [
+                    "306-5-b",
+                    "disposal"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_5_b_i",
+                        "description": "에너지 회수 소각으로 처분된 유해폐기물 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_B_I_OK",
+                        "description": "306-5-b-i 및 b 총량 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Disclosure 306-5-b",
+                    "Reporting requirement 2.4"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-5-b",
+                "GRI306-5-b-i",
+                "GRI306-5-2-4"
+            ],
+            "rulebook_title": "306-5-b-i incineration with energy (hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_B_II",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-b-ii",
+            "section_name": "306-5-b-ii 유해 — 소각(비에너지)",
+            "section_content": "공개 306-5-b 항목 ii: 에너지 회수 없이 소각으로 처분된 유해폐기물 중량(미터톤)을 보고합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-b-ii",
+                "key_terms": [
+                    "incineration",
+                    "hazardous waste",
+                    "no energy recovery"
+                ],
+                "related_concepts": [
+                    "306-5-b"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_5_b_ii",
+                        "description": "비에너지 소각 처분 유해폐기물 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_B_II_LEAF_OK",
+                        "description": "306-5-b-ii 및 b 총량 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Disclosure 306-5-b"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-5-b",
+                "GRI306-5-b-ii",
+                "GRI306-5-2-4"
+            ],
+            "rulebook_title": "306-5-b-ii incineration without energy (hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_B_III",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-b-iii",
+            "section_name": "306-5-b-iii 유해 — 매립",
+            "section_content": "공개 306-5-b 항목 iii: 매립(landfilling)으로 처분된 유해폐기물 중량(미터톤)을 보고합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-b-iii",
+                "key_terms": [
+                    "landfill",
+                    "hazardous waste"
+                ],
+                "related_concepts": [
+                    "306-5-b"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_5_b_iii",
+                        "description": "매립 처분 유해폐기물 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_B_III_LEAF_OK",
+                        "description": "306-5-b-iii 및 b 총량 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Disclosure 306-5-b"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-5-b",
+                "GRI306-5-b-iii",
+                "GRI306-5-2-4"
+            ],
+            "rulebook_title": "306-5-b-iii landfilling (hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_C_I",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-c-i",
+            "section_name": "306-5-c-i 비유해 — 소각(에너지 회수)",
+            "section_content": "공개 306-5-c 항목 i: 처분으로 이송된 비유해폐기물 중 에너지 회수가 있는 소각으로 처분된 중량(미터톤)을 보고합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-c-i",
+                "key_terms": [
+                    "incineration",
+                    "energy recovery",
+                    "non-hazardous waste"
+                ],
+                "related_concepts": [
+                    "306-5-c"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_5_c_i",
+                        "description": "에너지 회수 소각 처분 비유해 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_C_I_OK",
+                        "description": "306-5-c-i 및 c 총량 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Disclosure 306-5-c"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-5-c",
+                "GRI306-5-c-i",
+                "GRI306-5-2-4"
+            ],
+            "rulebook_title": "306-5-c-i incineration with energy (non-hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_C_II",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-c-ii",
+            "section_name": "306-5-c-ii 비유해 — 소각(비에너지)",
+            "section_content": "공개 306-5-c 항목 ii: 에너지 회수 없이 소각으로 처분된 비유해폐기물 중량(미터톤)을 보고합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-c-ii",
+                "key_terms": [
+                    "incineration",
+                    "non-hazardous waste"
+                ],
+                "related_concepts": [
+                    "306-5-c"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_5_c_ii",
+                        "description": "비에너지 소각 처분 비유해 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_C_II_LEAF_OK",
+                        "description": "306-5-c-ii 및 c 총량 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Disclosure 306-5-c"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-5-c",
+                "GRI306-5-c-ii",
+                "GRI306-5-2-4"
+            ],
+            "rulebook_title": "306-5-c-ii incineration without energy (non-hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_C_III",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-c-iii",
+            "section_name": "306-5-c-iii 비유해 — 매립",
+            "section_content": "공개 306-5-c 항목 iii: 매립으로 처분된 비유해폐기물 중량(미터톤)을 보고합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-c-iii",
+                "key_terms": [
+                    "landfill",
+                    "non-hazardous waste"
+                ],
+                "related_concepts": [
+                    "306-5-c"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_5_c_iii",
+                        "description": "매립 처분 비유해 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_C_III_LEAF_OK",
+                        "description": "306-5-c-iii 및 c 총량 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Disclosure 306-5-c"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-5-c",
+                "GRI306-5-c-iii",
+                "GRI306-5-2-4"
+            ],
+            "rulebook_title": "306-5-c-iii landfilling (non-hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_C_IV",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-c-iv",
+            "section_name": "306-5-c-iv 비유해 — 기타 처분",
+            "section_content": "공개 306-5-c 항목 iv: 기타 처분 작업으로 이송된 비유해폐기물 중량(미터톤)을 보고합니다. 지침: 투기·개소각·심부 주입 등은 기타 처분 예시이며(RULE_GRI306_5_BC_GUIDANCE), 유해 측 306-5-b-iv와 취지를 같이합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-c-iv",
+                "key_terms": [
+                    "other disposal",
+                    "non-hazardous waste"
+                ],
+                "related_concepts": [
+                    "306-5-c-iv",
+                    "306-5-b-iv"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_5_c_iv",
+                        "description": "기타 처분 비유해 중량(미터톤) 및 작업 유형 기술"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_C_IV_LEAF_OK",
+                        "description": "306-5-c-iv 및 c 총량 정합",
+                        "expected": "metric_tons_reported"
+                    }
+                ],
+                "cross_references": [
+                    "Guidance 306-5-b,c other disposal"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-5-c",
+                "GRI306-5-c-iv",
+                "GRI306-5-b-iv",
+                "GRI306-5-2-4"
+            ],
+            "rulebook_title": "306-5-c-iv other disposal (non-hazardous)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_D_I",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-d-i",
+            "section_name": "306-5-d-i 현장 내 처분",
+            "section_content": "공개 306-5-d 항목 i: 공개 306-5-b 및 306-5-c의 각 처분 작업별 유해·비유해 폐기물 총중량을 현장 내(onsite)로 세분 보고합니다. 지침: 현장은 물리적 경계 내 또는 행정적 통제 하에 있는 곳이고, 현장 외는 그 밖을 의미합니다(RULE_GRI306_5_D_GUIDANCE).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-d-i",
+                "key_terms": [
+                    "onsite",
+                    "disposal operation",
+                    "hazardous and non-hazardous"
+                ],
+                "related_concepts": [
+                    "306-5-d",
+                    "306-5-b",
+                    "306-5-c"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_5_d_i",
+                        "description": "처분 작업별 현장 내 이송 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_D_I_OK",
+                        "description": "306-5-d-i와 b·c 작업별 정합",
+                        "expected": "breakdown_consistent"
+                    }
+                ],
+                "cross_references": [
+                    "Guidance 306-5-d"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-5-d",
+                "GRI306-5-d-i",
+                "GRI306-5-b",
+                "GRI306-5-c"
+            ],
+            "rulebook_title": "306-5-d-i onsite disposal breakdown",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_D_II",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-d-ii",
+            "section_name": "306-5-d-ii 현장 외 처분",
+            "section_content": "공개 306-5-d 항목 ii: 동일 처분 작업별 총중량을 현장 외(offsite)로 세분 보고합니다. 온·오프 중량 차이는 306-5-e 및 지침에서 설명·방법론을 보완할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 306-5-d-ii",
+                "key_terms": [
+                    "offsite",
+                    "disposal operation"
+                ],
+                "related_concepts": [
+                    "306-5-d",
+                    "306-5-d-i",
+                    "306-5-e"
+                ],
+                "required_actions": [
+                    {
+                        "action": "report_306_5_d_ii",
+                        "description": "처분 작업별 현장 외 이송 중량(미터톤) 보고"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_D_II_OK",
+                        "description": "306-5-d-ii 및 d-i 정합",
+                        "expected": "breakdown_consistent"
+                    }
+                ],
+                "cross_references": [
+                    "Guidance 306-5-d",
+                    "Guidance 306-5-e"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI306-5-d",
+                "GRI306-5-d-ii",
+                "GRI306-5-d-i",
+                "GRI306-5-e"
+            ],
+            "rulebook_title": "306-5-d-ii offsite disposal breakdown",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_2_4",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-2-4",
+            "section_name": "편성 2.4",
+            "section_content": "Reporting requirement 2.4 for 306-5",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 306 — 2.4",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "compile_306_5_24",
+                        "description": "2.4"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_24_OK",
+                        "description": "2.4",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-2-4",
+                "GRI306-5-2-4-1",
+                "GRI306-5-2-4-2"
+            ],
+            "rulebook_title": "Compilation 2.4",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_2_4_1",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-2-4-1",
+            "section_name": "2.4.1",
+            "section_content": "Effluents exclusion",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 2.4.1",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rule_306_5_241",
+                        "description": "2.4.1"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_241_OK",
+                        "description": "2.4.1",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-2-4-1"
+            ],
+            "rulebook_title": "2.4.1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_2_4_2",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-2-4-2",
+            "section_name": "2.4.2",
+            "section_content": "Metric ton",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 306 2.4.2",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rule_306_5_242",
+                        "description": "2.4.2"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_242_OK",
+                        "description": "2.4.2",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-2-4-2"
+            ],
+            "rulebook_title": "2.4.2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_GEN_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5",
+            "section_name": "지침: 306-5 배경·처분·306-5-a",
+            "section_content": "Background: Disposal is least preferred (leachate, methane, air emissions). Appendix Table 3 format. 306-5-a composition guidance parallels 306-3-a / 306-4-a.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 Disclosure 306-5 — General",
+                "key_terms": [
+                    "landfill",
+                    "leachate",
+                    "methane"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_5_gen",
+                        "description": "306-5 개괄",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_GEN_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5",
+                "GRI306-5-a"
+            ],
+            "rulebook_title": "Guidance 306-5 general",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_BC_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-b-iv",
+            "section_name": "지침: 306-5-b·c 기타 처분",
+            "section_content": "306-5-b-iv and 306-5-c-iv: Other disposal may include dumping, open burning, deep well injection, etc.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 306-5-b,c — Other disposal",
+                "key_terms": [
+                    "open burning",
+                    "deep well"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_5_bc",
+                        "description": "기타 처분 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_BC_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-b-iv",
+                "GRI306-5-c-iv"
+            ],
+            "rulebook_title": "Guidance 306-5-b,c iv",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_D_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-d",
+            "section_name": "지침: 306-5-d 온·오프",
+            "section_content": "306-5-d: Same onsite/offsite definitions as 306-4-d; demonstrates understanding of how disposal is managed.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 306-5-d — Guidance",
+                "key_terms": [
+                    "onsite",
+                    "offsite"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_5_d",
+                        "description": "306-5-d 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_D_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-d",
+                "GRI306-5-d-i",
+                "GRI306-5-d-ii"
+            ],
+            "rulebook_title": "Guidance 306-5-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI306_5_E_GUIDANCE",
+            "standard_id": "GRI306",
+            "primary_dp_id": "GRI306-5-e",
+            "section_name": "지침: 306-5-e",
+            "section_content": "306-5-e: Explain onsite vs offsite disposal weight differences (e.g. local bans on landfilling certain wastes). Sector practices, standards, external regulations. Data: modeled vs direct measurement (transfer notes, verification, waste data audits).",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 306 306-5-e — Guidance",
+                "key_terms": [
+                    "methodology",
+                    "regulation"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_306_5_e",
+                        "description": "306-5-e 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI306_5_E_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI306-5-e"
+            ],
+            "rulebook_title": "Guidance 306-5-e",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2020-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        }
+    ]
+}

@@ -1,0 +1,514 @@
+{
+  "rulebooks": [
+    {
+      "rulebook_id": "RULE_ISSB2_6",
+      "standard_id": "ISSB2",
+      "primary_dp_id": "ISSB2-6",
+      "section_name": "문단 6: 지배구조 요구사항",
+      "section_content": "6\nTo achieve this objective, an entity shall disclose information about: (a) governance body(s) or individual(s) responsible for oversight of climate-related risks and opportunities, including sub-items (i) to (v); and (b) management's role in governance processes, controls and procedures, including sub-items (i) and (ii).\n\n한국어 요지: 기업은 기후 관련 위험 및 기회를 감독하는 지배구조 주체와 경영진 역할을 항목별로 공시해야 합니다.",
+      "validation_rules": {
+        "section_type": "disclosure_requirement",
+        "paragraph_reference": "ISSB 2 paragraph 6",
+        "key_terms": [
+          "governance body",
+          "individual",
+          "oversight",
+          "climate-related risks",
+          "climate-related opportunities",
+          "management role",
+          "controls and procedures"
+        ],
+        "related_concepts": [
+          "board oversight",
+          "governance process",
+          "internal control",
+          "risk governance"
+        ],
+        "required_actions": [
+          {
+            "action": "identify_governance_and_management_roles",
+            "description": "문단 6의 (a), (b) 구조에 따라 지배구조 주체 및 경영진 역할을 공시",
+            "mandatory": true
+          }
+        ],
+        "verification_checks": [
+          {
+            "check_id": "ISSB2_6_A_AND_B_PRESENT",
+            "description": "(a) 지배구조 주체와 (b) 경영진 역할 공시가 모두 존재하는지 확인",
+            "expected": "both_sections_present"
+          }
+        ],
+        "cross_references": [
+          "ISSB2-6-a",
+          "ISSB2-6-b"
+        ]
+      },
+      "related_dp_ids": [
+        "ISSB2-6",
+        "ISSB2-6-a",
+        "ISSB2-6-a-i",
+        "ISSB2-6-a-ii",
+        "ISSB2-6-a-iii",
+        "ISSB2-6-a-iv",
+        "ISSB2-6-a-v",
+        "ISSB2-6-b",
+        "ISSB2-6-b-i",
+        "ISSB2-6-b-ii"
+      ],
+      "rulebook_title": "ISSB 2 Governance requirements (paragraph 6)",
+      "disclosure_requirement": "필수",
+      "version": "1.0",
+      "is_active": true,
+      "is_primary": true,
+      "effective_date": "2024-01-01",
+      "mapping_notes": "이미지 원문의 문단 6 구조(a,b 및 i~v, i~ii)를 그대로 분해하여 UCM 매핑 가능성 확보",
+      "conflicts_with": []
+    },
+    {
+      "rulebook_id": "RULE_ISSB2_6_A",
+      "standard_id": "ISSB2",
+      "primary_dp_id": "ISSB2-6-a",
+      "section_name": "문단 6(a): 지배구조 기관 또는 개인",
+      "section_content": "6(a)\n기후 관련 위험 및 기회를 감독할 책임이 있는 지배구조 기관(이사회, 위원회 등) 또는 개인을 식별하고, (i)~(v) 정보를 공시해야 합니다.",
+      "validation_rules": {
+        "section_type": "disclosure_requirement",
+        "paragraph_reference": "ISSB 2 paragraph 6(a)",
+        "key_terms": [
+          "governance body",
+          "board",
+          "committee",
+          "individual",
+          "oversight responsibility"
+        ],
+        "related_concepts": [
+          "governance accountability",
+          "board committee oversight"
+        ],
+        "required_actions": [
+          {
+            "action": "identify_body_or_individual",
+            "description": "감독 책임이 있는 지배구조 기관 또는 개인을 식별하고 (i)~(v) 근거를 제시",
+            "mandatory": true
+          }
+        ],
+        "verification_checks": [
+          {
+            "check_id": "ISSB2_6_A_ENTITY_IDENTIFIED",
+            "description": "지배구조 기관/개인 식별 정보가 명시되었는지 확인",
+            "expected": "body_or_individual_identified"
+          }
+        ],
+        "cross_references": []
+      },
+      "related_dp_ids": [
+        "ISSB2-6-a",
+        "ISSB2-6-a-i",
+        "ISSB2-6-a-ii",
+        "ISSB2-6-a-iii",
+        "ISSB2-6-a-iv",
+        "ISSB2-6-a-v"
+      ],
+      "rulebook_title": "Governance body(s) or individual(s)",
+      "disclosure_requirement": "필수",
+      "version": "1.0",
+      "is_active": true,
+      "is_primary": false,
+      "effective_date": "2024-01-01",
+      "mapping_notes": null,
+      "conflicts_with": []
+    },
+    {
+      "rulebook_id": "RULE_ISSB2_6_A_I",
+      "standard_id": "ISSB2",
+      "primary_dp_id": "ISSB2-6-a-i",
+      "section_name": "문단 6(a)(i): 책임 반영 방식",
+      "section_content": "6(a)(i)\n기후 관련 위험 및 기회에 대한 책임이 권한 범위, 위임, 역할 설명, 관련 정책에 어떻게 반영되는지.",
+      "validation_rules": {
+        "section_type": "disclosure_requirement",
+        "paragraph_reference": "ISSB 2 paragraph 6(a)(i)",
+        "key_terms": [
+          "responsibilities",
+          "terms of reference",
+          "mandates",
+          "role descriptions",
+          "policies"
+        ],
+        "related_concepts": [
+          "policy governance",
+          "responsibility assignment"
+        ],
+        "required_actions": [
+          {
+            "action": "describe_responsibility_reflection",
+            "description": "책임이 규정·역할·정책에 반영된 방식을 설명",
+            "mandatory": true
+          }
+        ],
+        "verification_checks": [
+          {
+            "check_id": "ISSB2_6_A_I_RESPONSIBILITY_TRACE",
+            "description": "책임이 문서화된 정책/역할 체계로 추적 가능한지 확인",
+            "expected": "responsibility_traceable"
+          }
+        ],
+        "cross_references": []
+      },
+      "related_dp_ids": [
+        "ISSB2-6-a-i"
+      ],
+      "rulebook_title": "How responsibilities are reflected",
+      "disclosure_requirement": "필수",
+      "version": "1.0",
+      "is_active": true,
+      "is_primary": false,
+      "effective_date": "2024-01-01",
+      "mapping_notes": null,
+      "conflicts_with": []
+    },
+    {
+      "rulebook_id": "RULE_ISSB2_6_A_II",
+      "standard_id": "ISSB2",
+      "primary_dp_id": "ISSB2-6-a-ii",
+      "section_name": "문단 6(a)(ii): 기술 및 역량 판단 방식",
+      "section_content": "6(a)(ii)\n기후 대응 전략 감독에 필요한 기술과 역량이 확보되었거나 개발될 것인지를 어떻게 판단하는지.",
+      "validation_rules": {
+        "section_type": "disclosure_requirement",
+        "paragraph_reference": "ISSB 2 paragraph 6(a)(ii)",
+        "key_terms": [
+          "skills",
+          "competencies",
+          "available",
+          "developed",
+          "oversight strategy"
+        ],
+        "related_concepts": [
+          "competency framework",
+          "capacity building"
+        ],
+        "required_actions": [
+          {
+            "action": "explain_skills_competency_assessment",
+            "description": "기술·역량 적정성 판단 및 개발 접근을 설명",
+            "mandatory": true
+          }
+        ],
+        "verification_checks": [
+          {
+            "check_id": "ISSB2_6_A_II_SKILL_METHOD_DISCLOSED",
+            "description": "기술·역량 판단 방식이 구체적으로 제시되었는지 확인",
+            "expected": "assessment_method_disclosed"
+          }
+        ],
+        "cross_references": []
+      },
+      "related_dp_ids": [
+        "ISSB2-6-a-ii"
+      ],
+      "rulebook_title": "How skills and competencies are determined",
+      "disclosure_requirement": "필수",
+      "version": "1.0",
+      "is_active": true,
+      "is_primary": false,
+      "effective_date": "2024-01-01",
+      "mapping_notes": null,
+      "conflicts_with": []
+    },
+    {
+      "rulebook_id": "RULE_ISSB2_6_A_III",
+      "standard_id": "ISSB2",
+      "primary_dp_id": "ISSB2-6-a-iii",
+      "section_name": "문단 6(a)(iii): 정보 전달 방식 및 빈도",
+      "section_content": "6(a)(iii)\n지배구조 기관 또는 개인이 기후 관련 위험 및 기회 정보를 어떻게, 얼마나 자주 받는지.",
+      "validation_rules": {
+        "section_type": "disclosure_requirement",
+        "paragraph_reference": "ISSB 2 paragraph 6(a)(iii)",
+        "key_terms": [
+          "informed",
+          "how often",
+          "information flow",
+          "reporting cadence"
+        ],
+        "related_concepts": [
+          "management reporting",
+          "governance reporting cycle"
+        ],
+        "required_actions": [
+          {
+            "action": "describe_information_flow_and_frequency",
+            "description": "정보 전달 방식과 빈도를 명시",
+            "mandatory": true
+          }
+        ],
+        "verification_checks": [
+          {
+            "check_id": "ISSB2_6_A_III_CADENCE_PRESENT",
+            "description": "정보 전달 빈도 또는 주기가 확인 가능한지 점검",
+            "expected": "cadence_or_frequency_present"
+          }
+        ],
+        "cross_references": []
+      },
+      "related_dp_ids": [
+        "ISSB2-6-a-iii"
+      ],
+      "rulebook_title": "How and how often informed",
+      "disclosure_requirement": "필수",
+      "version": "1.0",
+      "is_active": true,
+      "is_primary": false,
+      "effective_date": "2024-01-01",
+      "mapping_notes": null,
+      "conflicts_with": []
+    },
+    {
+      "rulebook_id": "RULE_ISSB2_6_A_IV",
+      "standard_id": "ISSB2",
+      "primary_dp_id": "ISSB2-6-a-iv",
+      "section_name": "문단 6(a)(iv): 전략·거래·위험관리 감독 시 고려 방식",
+      "section_content": "6(a)(iv)\n전략, 주요 거래 결정, 위험관리 프로세스 및 관련 정책 감독에서 기후 관련 위험·기회를 어떻게 고려하는지와 관련 트레이드오프 고려 여부.",
+      "validation_rules": {
+        "section_type": "disclosure_requirement",
+        "paragraph_reference": "ISSB 2 paragraph 6(a)(iv)",
+        "key_terms": [
+          "strategy oversight",
+          "major transactions",
+          "risk management",
+          "trade-offs"
+        ],
+        "related_concepts": [
+          "strategic decision making",
+          "risk appetite",
+          "policy governance"
+        ],
+        "required_actions": [
+          {
+            "action": "explain_oversight_consideration",
+            "description": "감독 활동에 기후 관련 요소를 반영하는 접근과 트레이드오프 고려 여부를 설명",
+            "mandatory": true
+          }
+        ],
+        "verification_checks": [
+          {
+            "check_id": "ISSB2_6_A_IV_TRADEOFF_DISCLOSED",
+            "description": "전략/거래/위험관리와 연계된 고려 및 트레이드오프 설명이 존재하는지 확인",
+            "expected": "oversight_and_tradeoff_explained"
+          }
+        ],
+        "cross_references": []
+      },
+      "related_dp_ids": [
+        "ISSB2-6-a-iv"
+      ],
+      "rulebook_title": "How climate matters are considered in oversight",
+      "disclosure_requirement": "필수",
+      "version": "1.0",
+      "is_active": true,
+      "is_primary": false,
+      "effective_date": "2024-01-01",
+      "mapping_notes": null,
+      "conflicts_with": []
+    },
+    {
+      "rulebook_id": "RULE_ISSB2_6_A_V",
+      "standard_id": "ISSB2",
+      "primary_dp_id": "ISSB2-6-a-v",
+      "section_name": "문단 6(a)(v): 목표 설정 및 진척 모니터링 감독",
+      "section_content": "6(a)(v)\n기후 관련 위험·기회 목표의 설정을 어떻게 감독하고, 해당 목표에 대한 진척을 어떻게 모니터링하는지. 관련 성과지표가 보상 정책에 포함되는지와 그 방식 포함(문단 29(g) 참조).",
+      "validation_rules": {
+        "section_type": "disclosure_requirement",
+        "paragraph_reference": "ISSB 2 paragraph 6(a)(v)",
+        "key_terms": [
+          "targets",
+          "monitor progress",
+          "performance metrics",
+          "remuneration policies"
+        ],
+        "related_concepts": [
+          "target governance",
+          "performance management",
+          "executive remuneration"
+        ],
+        "required_actions": [
+          {
+            "action": "describe_target_oversight_and_progress_monitoring",
+            "description": "목표 설정 감독과 진척 모니터링 방식, 보상 정책 연계를 공시",
+            "mandatory": true
+          }
+        ],
+        "verification_checks": [
+          {
+            "check_id": "ISSB2_6_A_V_TARGET_PROGRESS_DISCLOSED",
+            "description": "목표 설정 감독 및 진척 모니터링 방식이 모두 확인되는지",
+            "expected": "target_and_progress_disclosed"
+          },
+          {
+            "check_id": "ISSB2_6_A_V_REMUNERATION_LINK",
+            "description": "성과지표의 보상 정책 반영 여부/방식이 언급되었는지",
+            "expected": "remuneration_link_addressed"
+          }
+        ],
+        "cross_references": [
+          "ISSB 2 paragraph 29(g)"
+        ]
+      },
+      "related_dp_ids": [
+        "ISSB2-6-a-v"
+      ],
+      "rulebook_title": "Oversight of target setting and progress",
+      "disclosure_requirement": "필수",
+      "version": "1.0",
+      "is_active": true,
+      "is_primary": false,
+      "effective_date": "2024-01-01",
+      "mapping_notes": null,
+      "conflicts_with": []
+    },
+    {
+      "rulebook_id": "RULE_ISSB2_6_B",
+      "standard_id": "ISSB2",
+      "primary_dp_id": "ISSB2-6-b",
+      "section_name": "문단 6(b): 경영진의 역할",
+      "section_content": "6(b)\n기후 관련 위험 및 기회를 모니터링·관리·감독하기 위한 지배구조 프로세스, 통제 및 절차에서 경영진의 역할.",
+      "validation_rules": {
+        "section_type": "disclosure_requirement",
+        "paragraph_reference": "ISSB 2 paragraph 6(b)",
+        "key_terms": [
+          "management role",
+          "monitor",
+          "manage",
+          "oversee",
+          "governance process",
+          "controls",
+          "procedures"
+        ],
+        "related_concepts": [
+          "management accountability",
+          "internal governance processes"
+        ],
+        "required_actions": [
+          {
+            "action": "describe_management_role_in_governance",
+            "description": "경영진 역할을 (i) 위임/감독, (ii) 통제/절차 통합 구조로 공시",
+            "mandatory": true
+          }
+        ],
+        "verification_checks": [
+          {
+            "check_id": "ISSB2_6_B_SUBITEMS_PRESENT",
+            "description": "(b)(i), (b)(ii) 관점이 모두 다뤄졌는지 확인",
+            "expected": "both_subitems_addressed"
+          }
+        ],
+        "cross_references": []
+      },
+      "related_dp_ids": [
+        "ISSB2-6-b",
+        "ISSB2-6-b-i",
+        "ISSB2-6-b-ii"
+      ],
+      "rulebook_title": "Management's role",
+      "disclosure_requirement": "필수",
+      "version": "1.0",
+      "is_active": true,
+      "is_primary": false,
+      "effective_date": "2024-01-01",
+      "mapping_notes": null,
+      "conflicts_with": []
+    },
+    {
+      "rulebook_id": "RULE_ISSB2_6_B_I",
+      "standard_id": "ISSB2",
+      "primary_dp_id": "ISSB2-6-b-i",
+      "section_name": "문단 6(b)(i): 위임 여부 및 감독 행사 방식",
+      "section_content": "6(b)(i)\n역할이 특정 경영 수준의 직위 또는 위원회에 위임되는지 여부와, 해당 직위 또는 위원회에 대한 감독이 어떻게 행사되는지.",
+      "validation_rules": {
+        "section_type": "disclosure_requirement",
+        "paragraph_reference": "ISSB 2 paragraph 6(b)(i)",
+        "key_terms": [
+          "delegated",
+          "management-level position",
+          "committee",
+          "oversight"
+        ],
+        "related_concepts": [
+          "delegation model",
+          "management committee governance"
+        ],
+        "required_actions": [
+          {
+            "action": "describe_delegation_and_oversight",
+            "description": "위임 대상과 감독 메커니즘을 함께 명시",
+            "mandatory": true
+          }
+        ],
+        "verification_checks": [
+          {
+            "check_id": "ISSB2_6_B_I_DELEGATION_MECHANISM",
+            "description": "위임 구조와 감독 방식이 구체적으로 확인되는지",
+            "expected": "delegation_and_oversight_explained"
+          }
+        ],
+        "cross_references": []
+      },
+      "related_dp_ids": [
+        "ISSB2-6-b-i"
+      ],
+      "rulebook_title": "Delegation and oversight",
+      "disclosure_requirement": "필수",
+      "version": "1.0",
+      "is_active": true,
+      "is_primary": false,
+      "effective_date": "2024-01-01",
+      "mapping_notes": null,
+      "conflicts_with": []
+    },
+    {
+      "rulebook_id": "RULE_ISSB2_6_B_II",
+      "standard_id": "ISSB2",
+      "primary_dp_id": "ISSB2-6-b-ii",
+      "section_name": "문단 6(b)(ii): 통제·절차 사용 및 내부 기능 통합",
+      "section_content": "6(b)(ii)\n경영진이 기후 관련 위험·기회 감독을 지원하기 위해 통제 및 절차를 사용하는지 여부와, 사용하는 경우 다른 내부 기능과의 통합 방식.",
+      "validation_rules": {
+        "section_type": "disclosure_requirement",
+        "paragraph_reference": "ISSB 2 paragraph 6(b)(ii)",
+        "key_terms": [
+          "controls",
+          "procedures",
+          "integration",
+          "internal functions",
+          "management support"
+        ],
+        "related_concepts": [
+          "internal control system",
+          "cross-functional integration"
+        ],
+        "required_actions": [
+          {
+            "action": "disclose_controls_and_integration",
+            "description": "통제·절차 사용 여부와 내부 기능 통합 방식을 명시",
+            "mandatory": true
+          }
+        ],
+        "verification_checks": [
+          {
+            "check_id": "ISSB2_6_B_II_INTEGRATION_DISCLOSED",
+            "description": "통제/절차 사용 여부와 내부 기능 통합 설명이 확인되는지",
+            "expected": "controls_and_integration_disclosed"
+          }
+        ],
+        "cross_references": []
+      },
+      "related_dp_ids": [
+        "ISSB2-6-b-ii"
+      ],
+      "rulebook_title": "Controls and procedures integration",
+      "disclosure_requirement": "필수",
+      "version": "1.0",
+      "is_active": true,
+      "is_primary": false,
+      "effective_date": "2024-01-01",
+      "mapping_notes": null,
+      "conflicts_with": []
+    }
+  ]
+}

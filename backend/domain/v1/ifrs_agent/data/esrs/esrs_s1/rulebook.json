@@ -1,0 +1,4214 @@
+{
+    "rulebooks": [
+        {
+            "rulebook_id": "RULE_ESRSS1",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1",
+            "section_name": "ESRS S1(문단 17~71)",
+            "section_content": "ESRS S1 — S1-1~S1-10(문단 17~71).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS S1 paras 17-71",
+                "key_terms": [
+                    "S1-4",
+                    "S1-5",
+                    "S1-6",
+                    "MDR-A",
+                    "MDR-T",
+                    "workforce characteristics",
+                    "S1-7",
+                    "S1-8",
+                    "S1-9",
+                    "S1-10",
+                    "non-employee workers",
+                    "collective bargaining",
+                    "diversity",
+                    "adequate wages"
+                ],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1",
+                        "description": "ESRS S1: 자체 인력",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1",
+                        "description": "ESRSS1",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-P",
+                    "ESRSS1-S1-10",
+                    "ESRS2-MDR-A",
+                    "ESRS2-MDR-T",
+                    "ESRS2-General-40(iii)",
+                    "EEA",
+                    "ESRS2-Pay-adequacy-context"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1",
+                "ESRSS1-SEC-1",
+                "ESRSS1-S1-4",
+                "ESRSS1-S1-4-35",
+                "ESRSS1-S1-4-36-a",
+                "ESRSS1-S1-4-36-b",
+                "ESRSS1-S1-4-37",
+                "ESRSS1-S1-4-38-a",
+                "ESRSS1-S1-4-38-b",
+                "ESRSS1-S1-4-38-c",
+                "ESRSS1-S1-4-38-d",
+                "ESRSS1-S1-4-39",
+                "ESRSS1-S1-4-40-a",
+                "ESRSS1-S1-4-40-b",
+                "ESRSS1-S1-4-41",
+                "ESRSS1-S1-4-42",
+                "ESRSS1-S1-4-43",
+                "ESRSS1-S1-5",
+                "ESRSS1-S1-5-44-a",
+                "ESRSS1-S1-5-44-b",
+                "ESRSS1-S1-5-44-c",
+                "ESRSS1-S1-5-45",
+                "ESRSS1-S1-5-46",
+                "ESRSS1-S1-5-47-a",
+                "ESRSS1-S1-5-47-b",
+                "ESRSS1-S1-5-47-c",
+                "ESRSS1-S1-6",
+                "ESRSS1-S1-6-48",
+                "ESRSS1-S1-6-49",
+                "ESRSS1-S1-6-50-a",
+                "ESRSS1-S1-6-50-b-i",
+                "ESRSS1-S1-6-50-b-ii",
+                "ESRSS1-S1-6-50-b-iii",
+                "ESRSS1-S1-6-50-c",
+                "ESRSS1-S1-6-50-d-i",
+                "ESRSS1-S1-6-50-d-ii",
+                "ESRSS1-S1-6-50-e",
+                "ESRSS1-S1-6-50-f",
+                "ESRSS1-S1-6-51",
+                "ESRSS1-S1-6-52-a",
+                "ESRSS1-S1-6-52-b",
+                "ESRSS1-S1-7",
+                "ESRSS1-S1-7-53",
+                "ESRSS1-S1-7-54",
+                "ESRSS1-S1-7-55-a",
+                "ESRSS1-S1-7-55-b-i",
+                "ESRSS1-S1-7-55-b-ii",
+                "ESRSS1-S1-7-55-c",
+                "ESRSS1-S1-7-56",
+                "ESRSS1-S1-7-57",
+                "ESRSS1-S1-8",
+                "ESRSS1-S1-8-58",
+                "ESRSS1-S1-8-59",
+                "ESRSS1-S1-8-60-a",
+                "ESRSS1-S1-8-60-b",
+                "ESRSS1-S1-8-60-c",
+                "ESRSS1-S1-8-61",
+                "ESRSS1-S1-8-62",
+                "ESRSS1-S1-8-63-a",
+                "ESRSS1-S1-8-63-b",
+                "ESRSS1-S1-9",
+                "ESRSS1-S1-9-64",
+                "ESRSS1-S1-9-65",
+                "ESRSS1-S1-9-66-a",
+                "ESRSS1-S1-9-66-b",
+                "ESRSS1-S1-10",
+                "ESRSS1-S1-10-67",
+                "ESRSS1-S1-10-68",
+                "ESRSS1-S1-10-69",
+                "ESRSS1-S1-10-70",
+                "ESRSS1-S1-10-71"
+            ],
+            "rulebook_title": "ESRS S1: 자체 인력",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_SEC_1",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-SEC-1",
+            "section_name": "Section 1 — 문단 17~71 묶음",
+            "section_content": "ESRS S1 제1절: S1-1~S1-10.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "1. 자체 인력 관련 공시(문단 17~34)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_sec_1",
+                        "description": "1. 자체 인력 관련 공시(문단 17~34)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_SEC_1",
+                        "description": "ESRSS1-SEC-1",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-SEC-1",
+                "ESRSS1-S1-1",
+                "ESRSS1-S1-2",
+                "ESRSS1-S1-3",
+                "ESRSS1-S1-4",
+                "ESRSS1-S1-5",
+                "ESRSS1-S1-6",
+                "ESRSS1-S1-7",
+                "ESRSS1-S1-8",
+                "ESRSS1-S1-9",
+                "ESRSS1-S1-10"
+            ],
+            "rulebook_title": "1. 자체 인력 관련 공시(문단 17~34)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1",
+            "section_name": "공개 요구사항 S1-1: 자체 인력 관련 정책",
+            "section_content": "문단 17~24: 정책 설명(17), 목적(18), MDR-P 연계(19), 인권 정책 핵심 요소(20a~c), 국제 기준 일치(21), 아동/강제노동 인식(22), 정책 관리시스템(23), 다양성·포용 정책 세부(24a~d).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 S1-1: 자체 인력 관련 정책",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1",
+                        "description": "공개 요구사항 S1-1: 자체 인력 관련 정책",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1",
+                        "description": "ESRSS1-S1-1",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1",
+                "ESRSS1-S1-1-17",
+                "ESRSS1-S1-1-18",
+                "ESRSS1-S1-1-19",
+                "ESRSS1-S1-1-20-a",
+                "ESRSS1-S1-1-20-b",
+                "ESRSS1-S1-1-20-c",
+                "ESRSS1-S1-1-21",
+                "ESRSS1-S1-1-22",
+                "ESRSS1-S1-1-23",
+                "ESRSS1-S1-1-24-a",
+                "ESRSS1-S1-1-24-b",
+                "ESRSS1-S1-1-24-c",
+                "ESRSS1-S1-1-24-d"
+            ],
+            "rulebook_title": "공개 요구사항 S1-1: 자체 인력 관련 정책",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_17",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-17",
+            "section_name": "문단 17: 자체 인력 관련 정책 설명",
+            "section_content": "기업은 자체 인력에 대한 중대한 영향과 관련된 위험 및 기회를 관리하기 위해 채택한 정책을 설명해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 17: 자체 인력 관련 정책 설명",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_17",
+                        "description": "문단 17: 자체 인력 관련 정책 설명",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_17",
+                        "description": "ESRSS1-S1-1-17",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-17"
+            ],
+            "rulebook_title": "문단 17: 자체 인력 관련 정책 설명",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_18",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-18",
+            "section_name": "문단 18: 본 공개 요건의 목적",
+            "section_content": "가치사슬에서 자체 인력 관련 중대한 영향 식별·평가·관리·시정 조치를 다루는 정책과 자체 근로자 관련 영향·위험·기회 대응 수준을 이해할 수 있도록 하는 것.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 18: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_18",
+                        "description": "문단 18: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_18",
+                        "description": "ESRSS1-S1-1-18",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-18"
+            ],
+            "rulebook_title": "문단 18: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_19",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-19",
+            "section_name": "문단 19: MDR-P 정책 정보 포함",
+            "section_content": "제17항 공개에는 폐기·중대 지속가능성 사안 관련 ESRS 2 MDR-P 정책에 따른 자체 인력 관련 중대 영향·위험·기회 관리 정책 정보가 포함되어야 하며, 정책 적용 대상을 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 19: MDR-P 정책 정보 포함",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_19",
+                        "description": "문단 19: MDR-P 정책 정보 포함",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_19",
+                        "description": "ESRSS1-S1-1-19",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-P"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-19"
+            ],
+            "rulebook_title": "문단 19: MDR-P 정책 정보 포함",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_20_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-20-a",
+            "section_name": "문단 20-(a): UNGP/ILO/OECD 기준 존중",
+            "section_content": "자사 근로자의 권리(노동권 포함) 존중.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 20-(a): UNGP/ILO/OECD 기준 존중",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_20_a",
+                        "description": "문단 20-(a): UNGP/ILO/OECD 기준 존중",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_20_A",
+                        "description": "ESRSS1-S1-1-20-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-20-a"
+            ],
+            "rulebook_title": "문단 20-(a): UNGP/ILO/OECD 기준 존중",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_20_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-20-b",
+            "section_name": "문단 20-(b): 재해·사고 통제 우선",
+            "section_content": "재해와 통제구역 설비의 소통.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 20-(b): 재해·사고 통제 우선",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_20_b",
+                        "description": "문단 20-(b): 재해·사고 통제 우선",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_20_B",
+                        "description": "ESRSS1-S1-1-20-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-20-b"
+            ],
+            "rulebook_title": "문단 20-(b): 재해·사고 통제 우선",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_20_C",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-20-c",
+            "section_name": "문단 20-(c): 인권 침해 구제 경로 제공",
+            "section_content": "인권 침해에 대한 구제 조치를 제공하고 접근 가능하게 하는 방안.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 20-(c): 인권 침해 구제 경로 제공",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_20_c",
+                        "description": "문단 20-(c): 인권 침해 구제 경로 제공",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_20_C",
+                        "description": "ESRSS1-S1-1-20-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-20-c"
+            ],
+            "rulebook_title": "문단 20-(c): 인권 침해 구제 경로 제공",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_21",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-21",
+            "section_name": "문단 21: 국제적으로 인정된 문서 일치 여부",
+            "section_content": "자체 인권 관련 정책이 유엔 인권 관련 지침 원칙 등을 비롯한 국제적으로 인정된 문서와 일치하는지 여부와 방법 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 21: 국제적으로 인정된 문서 일치 여부",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_21",
+                        "description": "문단 21: 국제적으로 인정된 문서 일치 여부",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_21",
+                        "description": "ESRSS1-S1-1-21",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-21"
+            ],
+            "rulebook_title": "문단 21: 국제적으로 인정된 문서 일치 여부",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_22",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-22",
+            "section_name": "문단 22: 인신매매/강제노동/아동노동 인식",
+            "section_content": "자체 인력 관련 정책이 인신매매, 강제노동 또는 아동노동을 명시적으로 다루는지 여부 명시.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 22: 인신매매/강제노동/아동노동 인식",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_22",
+                        "description": "문단 22: 인신매매/강제노동/아동노동 인식",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_22",
+                        "description": "ESRSS1-S1-1-22",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-22"
+            ],
+            "rulebook_title": "문단 22: 인신매매/강제노동/아동노동 인식",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_23",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-23",
+            "section_name": "문단 23: 정책 관리 시스템 여부",
+            "section_content": "직장에서의 정책 또는 관리 시스템이 있는지 여부 명시.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 23: 정책 관리 시스템 여부",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_23",
+                        "description": "문단 23: 정책 관리 시스템 여부",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_23",
+                        "description": "ESRSS1-S1-1-23",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-23"
+            ],
+            "rulebook_title": "문단 23: 정책 관리 시스템 여부",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_24_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-24-a",
+            "section_name": "문단 24-(a): 차별/괴롭힘 금지·다양성 촉진 정책",
+            "section_content": "차별(괴롭힘 포함), 기회균등 촉진 및 다양성·포용성 촉진을 위한 구체 정책 유무.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(a): 차별/괴롭힘 금지·다양성 촉진 정책",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_24_a",
+                        "description": "문단 24-(a): 차별/괴롭힘 금지·다양성 촉진 정책",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_24_A",
+                        "description": "ESRSS1-S1-1-24-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-24-a"
+            ],
+            "rulebook_title": "문단 24-(a): 차별/괴롭힘 금지·다양성 촉진 정책",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_24_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-24-b",
+            "section_name": "문단 24-(b): 차별 정책 적용 대상",
+            "section_content": "해당 정책의 적용 대상(인종·민족적 집단, 피부색, 성별, 성적 지향, 성정체성, 장애, 연령, 종교, 정치적 견해 등) 및 관련 법적 보호범주 포함 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(b): 차별 정책 적용 대상",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_24_b",
+                        "description": "문단 24-(b): 차별 정책 적용 대상",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_24_B",
+                        "description": "ESRSS1-S1-1-24-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-24-b"
+            ],
+            "rulebook_title": "문단 24-(b): 차별 정책 적용 대상",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_24_C",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-24-c",
+            "section_name": "문단 24-(c): 차별 위험 방지 정책 약속",
+            "section_content": "위험에 처한 집단에 대한 포용성과 적극적 조치 관련 구체 정책적 약속 유무 및 예외 시 사유.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(c): 차별 위험 방지 정책 약속",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_24_c",
+                        "description": "문단 24-(c): 차별 위험 방지 정책 약속",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_24_C",
+                        "description": "ESRSS1-S1-1-24-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-24-c"
+            ],
+            "rulebook_title": "문단 24-(c): 차별 위험 방지 정책 약속",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_1_24_D",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-1-24-d",
+            "section_name": "문단 24-(d): 차별 방지 관찰·시정 절차",
+            "section_content": "차별을 방지하고 관찰하며 발견 시 조치를 취하기 위한 절차와 방법, 전반적 다양성과 포용성 증진 절차 유무.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 24-(d): 차별 방지 관찰·시정 절차",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_1_24_d",
+                        "description": "문단 24-(d): 차별 방지 관찰·시정 절차",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_1_24_D",
+                        "description": "ESRSS1-S1-1-24-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-1-24-d"
+            ],
+            "rulebook_title": "문단 24-(d): 차별 방지 관찰·시정 절차",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_2",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-2",
+            "section_name": "공개 요구사항 S1-2: 자체 인력 및 근로자 대표와의 영향 관련 협의 절차",
+            "section_content": "문단 25~29: 실질 영향 협의 절차 공개(25), 목적(26), 실질/잠재 영향 대응 시 인력 관점 반영(27a~e), 취약 소외 근로자 관점 조치(28), 협의 절차 미구축 시 사실·일정 공개(29).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 S1-2: 자체 인력 및 근로자 대표와의 영향 관련 협의 절차",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_2",
+                        "description": "공개 요구사항 S1-2: 자체 인력 및 근로자 대표와의 영향 관련 협의 절차",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_2",
+                        "description": "ESRSS1-S1-2",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-2",
+                "ESRSS1-S1-2-25",
+                "ESRSS1-S1-2-26",
+                "ESRSS1-S1-2-27-a",
+                "ESRSS1-S1-2-27-b",
+                "ESRSS1-S1-2-27-c",
+                "ESRSS1-S1-2-27-d",
+                "ESRSS1-S1-2-27-e",
+                "ESRSS1-S1-2-28",
+                "ESRSS1-S1-2-29"
+            ],
+            "rulebook_title": "공개 요구사항 S1-2: 자체 인력 및 근로자 대표와의 영향 관련 협의 절차",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_2_25",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-2-25",
+            "section_name": "문단 25: 실질 영향 협의 절차 공개",
+            "section_content": "기업은 자체 근로자 및 근로자 대표와의 실질 및 잠재적 영향 협의 활동 및 절차를 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 25: 실질 영향 협의 절차 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_2_25",
+                        "description": "문단 25: 실질 영향 협의 절차 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_2_25",
+                        "description": "ESRSS1-S1-2-25",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-2-25"
+            ],
+            "rulebook_title": "문단 25: 실질 영향 협의 절차 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_2_26",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-2-26",
+            "section_name": "문단 26: 본 공개 요건의 목적",
+            "section_content": "실사 과정에서 자체 근로자 및 근로자 대표에게 미치는 실질적/잠재적 부정적 영향에 어떻게 대응하는지와 의사결정 시 인력 관점 고려 여부·방식 이해.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 26: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_2_26",
+                        "description": "문단 26: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_2_26",
+                        "description": "ESRSS1-S1-2-26",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-2-26"
+            ],
+            "rulebook_title": "문단 26: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_2_27_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-2-27-a",
+            "section_name": "문단 27-(a): 직접 소통 여부",
+            "section_content": "기업이 자체 근로자 또는 근로자 대표와 직접 소통하는지 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 27-(a): 직접 소통 여부",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_2_27_a",
+                        "description": "문단 27-(a): 직접 소통 여부",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_2_27_A",
+                        "description": "ESRSS1-S1-2-27-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-2-27-a"
+            ],
+            "rulebook_title": "문단 27-(a): 직접 소통 여부",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_2_27_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-2-27-b",
+            "section_name": "문단 27-(b): 참여 단계·빈도",
+            "section_content": "참여가 이루어지는 단계, 참여 유형 및 참여 빈도.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 27-(b): 참여 단계·빈도",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_2_27_b",
+                        "description": "문단 27-(b): 참여 단계·빈도",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_2_27_B",
+                        "description": "ESRSS1-S1-2-27-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-2-27-b"
+            ],
+            "rulebook_title": "문단 27-(b): 참여 단계·빈도",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_2_27_C",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-2-27-c",
+            "section_name": "문단 27-(c): 참여의 운영 책임·반영 보장",
+            "section_content": "기업 내 참여 운영 책임과 결과의 의사결정 반영 보장을 수행하는 직책.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 27-(c): 참여의 운영 책임·반영 보장",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_2_27_c",
+                        "description": "문단 27-(c): 참여의 운영 책임·반영 보장",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_2_27_C",
+                        "description": "ESRSS1-S1-2-27-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-2-27-c"
+            ],
+            "rulebook_title": "문단 27-(c): 참여의 운영 책임·반영 보장",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_2_27_D",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-2-27-d",
+            "section_name": "문단 27-(d): 근로자 대표 권리 존중·통찰 반영",
+            "section_content": "근로자 대표 권리 존중 관련 글로벌 기준/관행 및 근로자 대상 논의 통찰을 경영에 반영하는 방식.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 27-(d): 근로자 대표 권리 존중·통찰 반영",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_2_27_d",
+                        "description": "문단 27-(d): 근로자 대표 권리 존중·통찰 반영",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_2_27_D",
+                        "description": "ESRSS1-S1-2-27-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-2-27-d"
+            ],
+            "rulebook_title": "문단 27-(d): 근로자 대표 권리 존중·통찰 반영",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_2_27_E",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-2-27-e",
+            "section_name": "문단 27-(e): 노동조합 참여율 반영",
+            "section_content": "기업 자체 노동조합 참여 절차를 둘 경우 노동조합 참여나 범위 포함 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 27-(e): 노동조합 참여율 반영",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_2_27_e",
+                        "description": "문단 27-(e): 노동조합 참여율 반영",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_2_27_E",
+                        "description": "ESRSS1-S1-2-27-e",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-2-27-e"
+            ],
+            "rulebook_title": "문단 27-(e): 노동조합 참여율 반영",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_2_28",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-2-28",
+            "section_name": "문단 28: 취약·소외 근로자 관점 파악 조치",
+            "section_content": "여성, 이주자, 장애인 등 취약 소외 근로자의 관점을 파악하기 위한 조치 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 28: 취약·소외 근로자 관점 파악 조치",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_2_28",
+                        "description": "문단 28: 취약·소외 근로자 관점 파악 조치",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_2_28",
+                        "description": "ESRSS1-S1-2-28",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-2-28"
+            ],
+            "rulebook_title": "문단 28: 취약·소외 근로자 관점 파악 조치",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_2_29",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-2-29",
+            "section_name": "문단 29: 협의 절차 미구축 시 사실·예정 시점",
+            "section_content": "자체 인력과의 소통을 위한 일반적 절차가 아직 없으면 그 사실을 공개하고, 마련 예정 시점도 공개 가능.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 29: 협의 절차 미구축 시 사실·예정 시점",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_2_29",
+                        "description": "문단 29: 협의 절차 미구축 시 사실·예정 시점",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_2_29",
+                        "description": "ESRSS1-S1-2-29",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-2-29"
+            ],
+            "rulebook_title": "문단 29: 협의 절차 미구축 시 사실·예정 시점",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_3",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-3",
+            "section_name": "공개 요구사항 S1-3: 부정적 영향/불만 처리 및 자체 인력 대상 우려 제기 채널",
+            "section_content": "문단 30~34: 부정적 영향·고충 처리 절차(30), 사안 전달 공식 수단과 우려 채널 목적(31), 절차 구조 설명(32a~e), 신뢰·인지·접근성 및 지원정책(33), 채널 미도입 시 사실·향후 목표 공개(34).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 S1-3: 부정적 영향/불만 처리 및 자체 인력 대상 우려 제기 채널",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_3",
+                        "description": "공개 요구사항 S1-3: 부정적 영향/불만 처리 및 자체 인력 대상 우려 제기 채널",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_3",
+                        "description": "ESRSS1-S1-3",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-3",
+                "ESRSS1-S1-3-30",
+                "ESRSS1-S1-3-31",
+                "ESRSS1-S1-3-32-a",
+                "ESRSS1-S1-3-32-b",
+                "ESRSS1-S1-3-32-c",
+                "ESRSS1-S1-3-32-d",
+                "ESRSS1-S1-3-32-e",
+                "ESRSS1-S1-3-33",
+                "ESRSS1-S1-3-34"
+            ],
+            "rulebook_title": "공개 요구사항 S1-3: 부정적 영향/불만 처리 및 자체 인력 대상 우려 제기 채널",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_3_30",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-3-30",
+            "section_name": "문단 30: 부정적 영향 대응 절차 설명",
+            "section_content": "사업체는 자체 근로자에 미치는 부정적 영향에 대해 관여 시 이를 시정하기 위한 절차를 설명하고, 문제 제기·공식 채널 정보로 불만 제기 가능 여부를 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 30: 부정적 영향 대응 절차 설명",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_3_30",
+                        "description": "문단 30: 부정적 영향 대응 절차 설명",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_3_30",
+                        "description": "ESRSS1-S1-3-30",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-3-30"
+            ],
+            "rulebook_title": "문단 30: 부정적 영향 대응 절차 설명",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_3_31",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-3-31",
+            "section_name": "문단 31: 공식 수단/채널 목적",
+            "section_content": "자체 인력/근로자가 우려사항을 전달할 수 있는 공식 수단 및 사업체가 직접 보유한 채널의 목적·처리 방식과 채널 목적이 어떻게 달성되는지 설명.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 31: 공식 수단/채널 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_3_31",
+                        "description": "문단 31: 공식 수단/채널 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_3_31",
+                        "description": "ESRSS1-S1-3-31",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-3-31"
+            ],
+            "rulebook_title": "문단 31: 공식 수단/채널 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_3_32_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-3-32-a",
+            "section_name": "문단 32-(a): 구제조치 제공 방식·효과·평가",
+            "section_content": "부정적 영향을 초래/기여한 경우 제공하는 구제조치 또는 일반적 접근 방식(제공된 조치 효과성과 평가 방법 포함).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(a): 구제조치 제공 방식·효과·평가",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_3_32_a",
+                        "description": "문단 32-(a): 구제조치 제공 방식·효과·평가",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_3_32_A",
+                        "description": "ESRSS1-S1-3-32-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-3-32-a"
+            ],
+            "rulebook_title": "문단 32-(a): 구제조치 제공 방식·효과·평가",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_3_32_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-3-32-b",
+            "section_name": "문단 32-(b): 특정 채널의 구체 구조",
+            "section_content": "우려사항 제기·해결 채널의 구체적 구조 및 제3자 참여 등 마련 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(b): 특정 채널의 구체 구조",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_3_32_b",
+                        "description": "문단 32-(b): 특정 채널의 구체 구조",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_3_32_B",
+                        "description": "ESRSS1-S1-3-32-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-3-32-b"
+            ],
+            "rulebook_title": "문단 32-(b): 특정 채널의 구체 구조",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_3_32_C",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-3-32-c",
+            "section_name": "문단 32-(c): 고충/불만 처리 메커니즘 유무",
+            "section_content": "기업 직원 관련 문제에 대한 고충/불만 처리 메커니즘 유무.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(c): 고충/불만 처리 메커니즘 유무",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_3_32_c",
+                        "description": "문단 32-(c): 고충/불만 처리 메커니즘 유무",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_3_32_C",
+                        "description": "ESRSS1-S1-3-32-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-3-32-c"
+            ],
+            "rulebook_title": "문단 32-(c): 고충/불만 처리 메커니즘 유무",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_3_32_D",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-3-32-d",
+            "section_name": "문단 32-(d): 채널 접근성 지원 절차",
+            "section_content": "자체 근로자의 직장에서 채널 접근 가능성을 지원하는 절차.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(d): 채널 접근성 지원 절차",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_3_32_d",
+                        "description": "문단 32-(d): 채널 접근성 지원 절차",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_3_32_D",
+                        "description": "ESRSS1-S1-3-32-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-3-32-d"
+            ],
+            "rulebook_title": "문단 32-(d): 채널 접근성 지원 절차",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_3_32_E",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-3-32-e",
+            "section_name": "문단 32-(e): 문제 추적·모니터링·효과 보장",
+            "section_content": "제기·해결 문제 추적 및 모니터링 방법, 채널 효과성 보장 방법(의도된 사용자인 이해관계자 참여 포함).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 32-(e): 문제 추적·모니터링·효과 보장",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_3_32_e",
+                        "description": "문단 32-(e): 문제 추적·모니터링·효과 보장",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_3_32_E",
+                        "description": "ESRSS1-S1-3-32-e",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-3-32-e"
+            ],
+            "rulebook_title": "문단 32-(e): 문제 추적·모니터링·효과 보장",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_3_33",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-3-33",
+            "section_name": "문단 33: 채널 인지·신뢰·사용가능성",
+            "section_content": "자체 근로자의 우려 제기·해결 수단 인지·신뢰 여부 및 운영정책 통합 여부 공개, 필요 시 S1-10 정보 참조 가능.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 33: 채널 인지·신뢰·사용가능성",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_3_33",
+                        "description": "문단 33: 채널 인지·신뢰·사용가능성",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_3_33",
+                        "description": "ESRSS1-S1-3-33",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRSS1-S1-10"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-3-33"
+            ],
+            "rulebook_title": "문단 33: 채널 인지·신뢰·사용가능성",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_3_34",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-3-34",
+            "section_name": "문단 34: 채널 미도입 시 사실·향후 목표",
+            "section_content": "사후 처리 채널 미도입 또는 자체 근로자 우려 채널 운영 미지원 시 그 사실 공개 및 향후 목표 공개 가능.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 34: 채널 미도입 시 사실·향후 목표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_3_34",
+                        "description": "문단 34: 채널 미도입 시 사실·향후 목표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_3_34",
+                        "description": "ESRSS1-S1-3-34",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-3-34"
+            ],
+            "rulebook_title": "문단 34: 채널 미도입 시 사실·향후 목표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4",
+            "section_name": "공개 요구사항 S1-4: 자체 근로자 대상 중대한 영향 관련 조치, 위험/기회 관리 및 효과성",
+            "section_content": "문단 35~43: 조치·효과성 공개(35), 목적(36a,b), MDR-A 요약(37), 부정적 영향 완화/시정(38a~d), 필요한 조치 식별(39), 위험/기회 관리(40a,b), 인권 영향 초래/기여 방지(41), 목표-조치 효과 연계(42), 관련 활동 자원 공개(43).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 S1-4: 자체 근로자 대상 중대한 영향 관련 조치, 위험/기회 관리 및 효과성",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4",
+                        "description": "공개 요구사항 S1-4: 자체 근로자 대상 중대한 영향 관련 조치, 위험/기회 관리 및 효과성",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4",
+                        "description": "ESRSS1-S1-4",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4",
+                "ESRSS1-S1-4-35",
+                "ESRSS1-S1-4-36-a",
+                "ESRSS1-S1-4-36-b",
+                "ESRSS1-S1-4-37",
+                "ESRSS1-S1-4-38-a",
+                "ESRSS1-S1-4-38-b",
+                "ESRSS1-S1-4-38-c",
+                "ESRSS1-S1-4-38-d",
+                "ESRSS1-S1-4-39",
+                "ESRSS1-S1-4-40-a",
+                "ESRSS1-S1-4-40-b",
+                "ESRSS1-S1-4-41",
+                "ESRSS1-S1-4-42",
+                "ESRSS1-S1-4-43"
+            ],
+            "rulebook_title": "공개 요구사항 S1-4: 자체 근로자 대상 중대한 영향 관련 조치, 위험/기회 관리 및 효과성",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_35",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-35",
+            "section_name": "문단 35: 조치 방법·효과성 공개",
+            "section_content": "자체 인력에 대한 중대한 부정적·긍정적 영향 대응, 중대한 위험 관리, 중대한 기회 추구를 위한 조치 방법 및 효과성을 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 35: 조치 방법·효과성 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_35",
+                        "description": "문단 35: 조치 방법·효과성 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_35",
+                        "description": "ESRSS1-S1-4-35",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-35"
+            ],
+            "rulebook_title": "문단 35: 조치 방법·효과성 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_36_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-36-a",
+            "section_name": "문단 36-(a): 부정적 영향 예방·완화·시정 계획",
+            "section_content": "자체 근로자에 대한 부정적 중대한 영향을 예방·완화·시정하기 위한 조치 계획.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 36-(a): 부정적 영향 예방·완화·시정 계획",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_36_a",
+                        "description": "문단 36-(a): 부정적 영향 예방·완화·시정 계획",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_36_A",
+                        "description": "ESRSS1-S1-4-36-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-36-a"
+            ],
+            "rulebook_title": "문단 36-(a): 부정적 영향 예방·완화·시정 계획",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_36_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-36-b",
+            "section_name": "문단 36-(b): 긍정적 영향 달성 계획",
+            "section_content": "자사 근로자에 긍정적 중대한 영향을 달성하기 위한 계획.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 36-(b): 긍정적 영향 달성 계획",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_36_b",
+                        "description": "문단 36-(b): 긍정적 영향 달성 계획",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_36_B",
+                        "description": "ESRSS1-S1-4-36-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-36-b"
+            ],
+            "rulebook_title": "문단 36-(b): 긍정적 영향 달성 계획",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_37",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-37",
+            "section_name": "문단 37: MDR-A 조치·자원 요약",
+            "section_content": "자체 인력 관련 중대한 영향·위험·기회를 관리하기 위한 계획과 자원에 관한 요약 설명 제공.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 37: MDR-A 조치·자원 요약",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_37",
+                        "description": "문단 37: MDR-A 조치·자원 요약",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_37",
+                        "description": "ESRSS1-S1-4-37",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-A"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-37"
+            ],
+            "rulebook_title": "문단 37: MDR-A 조치·자원 요약",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_38_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-38-a",
+            "section_name": "문단 38-(a): 부정적 영향 완화/시정 조치",
+            "section_content": "중대한 부정적 영향을 예방·완화하기 위한 조치 또는 긍정 영향 진전을 위한 조치.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(a): 부정적 영향 완화/시정 조치",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_38_a",
+                        "description": "문단 38-(a): 부정적 영향 완화/시정 조치",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_38_A",
+                        "description": "ESRSS1-S1-4-38-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-38-a"
+            ],
+            "rulebook_title": "문단 38-(a): 부정적 영향 완화/시정 조치",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_38_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-38-b",
+            "section_name": "문단 38-(b): 구제조치 제공 가능 여부·방법",
+            "section_content": "실제 중대한 영향과 관련해 구제조치를 제공하거나 제공 계획 여부 및 방법.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(b): 구제조치 제공 가능 여부·방법",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_38_b",
+                        "description": "문단 38-(b): 구제조치 제공 가능 여부·방법",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_38_B",
+                        "description": "ESRSS1-S1-4-38-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-38-b"
+            ],
+            "rulebook_title": "문단 38-(b): 구제조치 제공 가능 여부·방법",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_38_C",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-38-c",
+            "section_name": "문단 38-(c): 긍정 영향 증진 조치",
+            "section_content": "자체 인력의 대응 긍정적 영향 창출을 위한 조치 또는 계획.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(c): 긍정 영향 증진 조치",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_38_c",
+                        "description": "문단 38-(c): 긍정 영향 증진 조치",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_38_C",
+                        "description": "ESRSS1-S1-4-38-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-38-c"
+            ],
+            "rulebook_title": "문단 38-(c): 긍정 영향 증진 조치",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_38_D",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-38-d",
+            "section_name": "문단 38-(d): 조치 효과 추적·평가 방법",
+            "section_content": "조치/계획이 결과를 달성하는 데 효과성을 추적·평가하는 방법.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 38-(d): 조치 효과 추적·평가 방법",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_38_d",
+                        "description": "문단 38-(d): 조치 효과 추적·평가 방법",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_38_D",
+                        "description": "ESRSS1-S1-4-38-d",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-38-d"
+            ],
+            "rulebook_title": "문단 38-(d): 조치 효과 추적·평가 방법",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_39",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-39",
+            "section_name": "문단 39: 필요한 적절 조치 식별 과정",
+            "section_content": "실제 또는 잠재적 부정적 영향에 대응하기 위해 필요한 적절 조치가 무엇인지 식별하는 과정 설명.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 39: 필요한 적절 조치 식별 과정",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_39",
+                        "description": "문단 39: 필요한 적절 조치 식별 과정",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_39",
+                        "description": "ESRSS1-S1-4-39",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-39"
+            ],
+            "rulebook_title": "문단 39: 필요한 적절 조치 식별 과정",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_40_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-40-a",
+            "section_name": "문단 40-(a): 위험 완화/방지 조치 효과성",
+            "section_content": "자체 인력에 대한 영향·의존성으로 발생 가능한 중대 위험을 완화/방지하기 위한 조치의 실제 효과와 방법.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 40-(a): 위험 완화/방지 조치 효과성",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_40_a",
+                        "description": "문단 40-(a): 위험 완화/방지 조치 효과성",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_40_A",
+                        "description": "ESRSS1-S1-4-40-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-40-a"
+            ],
+            "rulebook_title": "문단 40-(a): 위험 완화/방지 조치 효과성",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_40_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-40-b",
+            "section_name": "문단 40-(b): 기회 추구 계획/조치",
+            "section_content": "자체 인력 관련 중대한 기회를 추구하기 위한 계획/조치.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 40-(b): 기회 추구 계획/조치",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_40_b",
+                        "description": "문단 40-(b): 기회 추구 계획/조치",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_40_B",
+                        "description": "ESRSS1-S1-4-40-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-40-b"
+            ],
+            "rulebook_title": "문단 40-(b): 기회 추구 계획/조치",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_41",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-41",
+            "section_name": "문단 41: 부정적 영향 초래/기여 방지 여부·방법",
+            "section_content": "자사의 관행이 부정적 영향을 초래/기여하지 않도록 보장하는지 여부와 방법(보상 포함) 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 41: 부정적 영향 초래/기여 방지 여부·방법",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_41",
+                        "description": "문단 41: 부정적 영향 초래/기여 방지 여부·방법",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_41",
+                        "description": "ESRSS1-S1-4-41",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-41"
+            ],
+            "rulebook_title": "문단 41: 부정적 영향 초래/기여 방지 여부·방법",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_42",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-42",
+            "section_name": "문단 42: 목표 설정 시 효과 추적",
+            "section_content": "목표 설정을 통해 조치 효과를 평가하는 경우 ESRS 2 MDR-T를 고려해야 함.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 42: 목표 설정 시 효과 추적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_42",
+                        "description": "문단 42: 목표 설정 시 효과 추적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_42",
+                        "description": "ESRSS1-S1-4-42",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-42"
+            ],
+            "rulebook_title": "문단 42: 목표 설정 시 효과 추적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_4_43",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-4-43",
+            "section_name": "문단 43: 활동 자원 공개",
+            "section_content": "중대한 영향이 어떻게 관리되는지 이해할 수 있도록 중대한 영향 관리 활동에 할당된 자원 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 43: 활동 자원 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_4_43",
+                        "description": "문단 43: 활동 자원 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_4_43",
+                        "description": "ESRSS1-S1-4-43",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-4-43"
+            ],
+            "rulebook_title": "문단 43: 활동 자원 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_5",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-5",
+            "section_name": "공개 요구사항 S1-5: 중대한 부정적 영향 관리, 긍정적 영향 증진, 위험/기회 관리 목표",
+            "section_content": "문단 44~47: 시간제한·결과지향 목표(44a~c), 목적(45), MDR-T 요소(46), 목표 설정 시 근로자/대표 참여 여부(47a~c).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 S1-5: 중대한 부정적 영향 관리, 긍정적 영향 증진, 위험/기회 관리 목표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_5",
+                        "description": "공개 요구사항 S1-5: 중대한 부정적 영향 관리, 긍정적 영향 증진, 위험/기회 관리 목표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_5",
+                        "description": "ESRSS1-S1-5",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-5",
+                "ESRSS1-S1-5-44-a",
+                "ESRSS1-S1-5-44-b",
+                "ESRSS1-S1-5-44-c",
+                "ESRSS1-S1-5-45",
+                "ESRSS1-S1-5-46",
+                "ESRSS1-S1-5-47-a",
+                "ESRSS1-S1-5-47-b",
+                "ESRSS1-S1-5-47-c"
+            ],
+            "rulebook_title": "공개 요구사항 S1-5: 중대한 부정적 영향 관리, 긍정적 영향 증진, 위험/기회 관리 목표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_5_44_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-5-44-a",
+            "section_name": "문단 44-(a): 부정적 영향 감소 목표",
+            "section_content": "자체 인력에 대한 부정적 영향 감소를 위한 시간 제한적·결과 지향적 목표.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 44-(a): 부정적 영향 감소 목표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_5_44_a",
+                        "description": "문단 44-(a): 부정적 영향 감소 목표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_5_44_A",
+                        "description": "ESRSS1-S1-5-44-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-5-44-a"
+            ],
+            "rulebook_title": "문단 44-(a): 부정적 영향 감소 목표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_5_44_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-5-44-b",
+            "section_name": "문단 44-(b): 긍정적 영향 증진 목표",
+            "section_content": "자사 인력에 대한 긍정적 영향 증진 목표.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 44-(b): 긍정적 영향 증진 목표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_5_44_b",
+                        "description": "문단 44-(b): 긍정적 영향 증진 목표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_5_44_B",
+                        "description": "ESRSS1-S1-5-44-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-5-44-b"
+            ],
+            "rulebook_title": "문단 44-(b): 긍정적 영향 증진 목표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_5_44_C",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-5-44-c",
+            "section_name": "문단 44-(c): 위험·기회 관리 목표",
+            "section_content": "자사 인력 관련 중대한 위험 및 기회 관리 목표.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 44-(c): 위험·기회 관리 목표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_5_44_c",
+                        "description": "문단 44-(c): 위험·기회 관리 목표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_5_44_C",
+                        "description": "ESRSS1-S1-5-44-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-5-44-c"
+            ],
+            "rulebook_title": "문단 44-(c): 위험·기회 관리 목표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_5_45",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-5-45",
+            "section_name": "문단 45: 본 공개 요건의 목적",
+            "section_content": "부정적 영향 해결/예방, 긍정적 영향 증진, 위험 및 기회 관리 관련 설정 목표를 이해할 수 있도록 하는 것.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 45: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_5_45",
+                        "description": "문단 45: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_5_45",
+                        "description": "ESRSS1-S1-5-45",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-5-45"
+            ],
+            "rulebook_title": "문단 45: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_5_46",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-5-46",
+            "section_name": "문단 46: MDR-T 정보 요구사항",
+            "section_content": "목표 설정 시 ESRS 2 MDR-T에 정의된 정보 요구사항(지속적 실사 과정에서의 목표·기준)을 포함.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 46: MDR-T 정보 요구사항",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_5_46",
+                        "description": "문단 46: MDR-T 정보 요구사항",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_5_46",
+                        "description": "ESRSS1-S1-5-46",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-5-46"
+            ],
+            "rulebook_title": "문단 46: MDR-T 정보 요구사항",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_5_47_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-5-47-a",
+            "section_name": "문단 47-(a): 목표 설정 시 직접 협의 여부",
+            "section_content": "사업체가 자체 인력 또는 근로자 대표와 직접 협의했는지 여부와 방법.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 47-(a): 목표 설정 시 직접 협의 여부",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_5_47_a",
+                        "description": "문단 47-(a): 목표 설정 시 직접 협의 여부",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_5_47_A",
+                        "description": "ESRSS1-S1-5-47-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-5-47-a"
+            ],
+            "rulebook_title": "문단 47-(a): 목표 설정 시 직접 협의 여부",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_5_47_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-5-47-b",
+            "section_name": "문단 47-(b): 대응 사안·조치",
+            "section_content": "협의를 통해 대응한 사안 및 조치.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 47-(b): 대응 사안·조치",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_5_47_b",
+                        "description": "문단 47-(b): 대응 사안·조치",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_5_47_B",
+                        "description": "ESRSS1-S1-5-47-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-5-47-b"
+            ],
+            "rulebook_title": "문단 47-(b): 대응 사안·조치",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_5_47_C",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-5-47-c",
+            "section_name": "문단 47-(c): 성과 비교 기준·개선 식별",
+            "section_content": "기업 성과 비교 기준 또는 개선 사항 식별 방식.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 47-(c): 성과 비교 기준·개선 식별",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_5_47_c",
+                        "description": "문단 47-(c): 성과 비교 기준·개선 식별",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_5_47_C",
+                        "description": "ESRSS1-S1-5-47-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-5-47-c"
+            ],
+            "rulebook_title": "문단 47-(c): 성과 비교 기준·개선 식별",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6",
+            "section_name": "공개 요구사항 S1-6: 기업의 직원 특성",
+            "section_content": "문단 48~52: 직원 집단 주요 특성(48), 목적(49), 총인원/FTE 및 계약·성별/국가·연령·기타 항목(50a~f), 구조적 특성 보충(51), 전체 FTE(52a,b).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 S1-6: 기업의 직원 특성",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6",
+                        "description": "공개 요구사항 S1-6: 기업의 직원 특성",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6",
+                        "description": "ESRSS1-S1-6",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6",
+                "ESRSS1-S1-6-48",
+                "ESRSS1-S1-6-49",
+                "ESRSS1-S1-6-50-a",
+                "ESRSS1-S1-6-50-b-i",
+                "ESRSS1-S1-6-50-b-ii",
+                "ESRSS1-S1-6-50-b-iii",
+                "ESRSS1-S1-6-50-c",
+                "ESRSS1-S1-6-50-d-i",
+                "ESRSS1-S1-6-50-d-ii",
+                "ESRSS1-S1-6-50-e",
+                "ESRSS1-S1-6-50-f",
+                "ESRSS1-S1-6-51",
+                "ESRSS1-S1-6-52-a",
+                "ESRSS1-S1-6-52-b"
+            ],
+            "rulebook_title": "공개 요구사항 S1-6: 기업의 직원 특성",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_48",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-48",
+            "section_name": "문단 48: 직원 집단 주요 특성 기술",
+            "section_content": "사업체는 자체 근로자 집단의 주요 특성을 기술해야 한다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 48: 직원 집단 주요 특성 기술",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_48",
+                        "description": "문단 48: 직원 집단 주요 특성 기술",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_48",
+                        "description": "ESRSS1-S1-6-48",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-48"
+            ],
+            "rulebook_title": "문단 48: 직원 집단 주요 특성 기술",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_49",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-49",
+            "section_name": "문단 49: 본 공개 요건의 목적",
+            "section_content": "고용 관점 영향 범위·성격·공공 접근 방식 이해를 위한 맥락 정보 제공(다른 공시 재무제표 근거 활용 가능).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 49: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_49",
+                        "description": "문단 49: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_49",
+                        "description": "ESRSS1-S1-6-49",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-49"
+            ],
+            "rulebook_title": "문단 49: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_50_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-50-a",
+            "section_name": "문단 50-(a): 총인원수·국가/성별·10% 이상 집중",
+            "section_content": "총인원수와 50명 이상 종업원이 있으며 전체의 최소 10%를 차지하는 국가별 성별·구성 내역.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 50-(a): 총인원수·국가/성별·10% 이상 집중",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_50_a",
+                        "description": "문단 50-(a): 총인원수·국가/성별·10% 이상 집중",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_50_A",
+                        "description": "ESRSS1-S1-6-50-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-50-a"
+            ],
+            "rulebook_title": "문단 50-(a): 총인원수·국가/성별·10% 이상 집중",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_50_B_I",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-50-b-i",
+            "section_name": "문단 50-(b)(i): 정규직 계약 수·성별",
+            "section_content": "정규직 계약 수 및 성별 내역.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 50-(b)(i): 정규직 계약 수·성별",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_50_b_i",
+                        "description": "문단 50-(b)(i): 정규직 계약 수·성별",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_50_B_I",
+                        "description": "ESRSS1-S1-6-50-b-i",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-50-b-i"
+            ],
+            "rulebook_title": "문단 50-(b)(i): 정규직 계약 수·성별",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_50_B_II",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-50-b-ii",
+            "section_name": "문단 50-(b)(ii): 임시직 계약 수·성별",
+            "section_content": "임시직 계약 수 및 성별 내역.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 50-(b)(ii): 임시직 계약 수·성별",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_50_b_ii",
+                        "description": "문단 50-(b)(ii): 임시직 계약 수·성별",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_50_B_II",
+                        "description": "ESRSS1-S1-6-50-b-ii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-50-b-ii"
+            ],
+            "rulebook_title": "문단 50-(b)(ii): 임시직 계약 수·성별",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_50_B_III",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-50-b-iii",
+            "section_name": "문단 50-(b)(iii): 비상근 근로시간 계약 수·성별",
+            "section_content": "비상근 근로시간 계약자 수의 성별 내역.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 50-(b)(iii): 비상근 근로시간 계약 수·성별",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_50_b_iii",
+                        "description": "문단 50-(b)(iii): 비상근 근로시간 계약 수·성별",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_50_B_III",
+                        "description": "ESRSS1-S1-6-50-b-iii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-50-b-iii"
+            ],
+            "rulebook_title": "문단 50-(b)(iii): 비상근 근로시간 계약 수·성별",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_50_C",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-50-c",
+            "section_name": "문단 50-(c): 보고기간 말 계약 특성과 인증",
+            "section_content": "보고기간 말 계약 특성과 보고기간 내 직접 인증.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 50-(c): 보고기간 말 계약 특성과 인증",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_50_c",
+                        "description": "문단 50-(c): 보고기간 말 계약 특성과 인증",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_50_C",
+                        "description": "ESRSS1-S1-6-50-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-50-c"
+            ],
+            "rulebook_title": "문단 50-(c): 보고기간 말 계약 특성과 인증",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_50_D_I",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-50-d-i",
+            "section_name": "문단 50-(d)(i): FTE 설정 포함/제외 방법",
+            "section_content": "데이터 계산에 사용된 방법론·가정 중 인원수/FTE 설정 포함 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 50-(d)(i): FTE 설정 포함/제외 방법",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_50_d_i",
+                        "description": "문단 50-(d)(i): FTE 설정 포함/제외 방법",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_50_D_I",
+                        "description": "ESRSS1-S1-6-50-d-i",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-50-d-i"
+            ],
+            "rulebook_title": "문단 50-(d)(i): FTE 설정 포함/제외 방법",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_50_D_II",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-50-d-ii",
+            "section_name": "문단 50-(d)(ii): 보고기간 말/평균/기타 방식",
+            "section_content": "보고 기간 말, 보고 기간 전체 평균 또는 다른 방법론 사용 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 50-(d)(ii): 보고기간 말/평균/기타 방식",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_50_d_ii",
+                        "description": "문단 50-(d)(ii): 보고기간 말/평균/기타 방식",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_50_D_II",
+                        "description": "ESRSS1-S1-6-50-d-ii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-50-d-ii"
+            ],
+            "rulebook_title": "문단 50-(d)(ii): 보고기간 말/평균/기타 방식",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_50_E",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-50-e",
+            "section_name": "문단 50-(e): 데이터 이해에 필요한 상황 정보",
+            "section_content": "보고 기간 동안 직원 수 변동 이해에 필요한 상황 정보 제공.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 50-(e): 데이터 이해에 필요한 상황 정보",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_50_e",
+                        "description": "문단 50-(e): 데이터 이해에 필요한 상황 정보",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_50_E",
+                        "description": "ESRSS1-S1-6-50-e",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-50-e"
+            ],
+            "rulebook_title": "문단 50-(e): 데이터 이해에 필요한 상황 정보",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_50_F",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-50-f",
+            "section_name": "문단 50-(f): 보고 정보와 재무제표 대표지표 상호참조",
+            "section_content": "위 (a)~(e) 정보와 재무제표 내 대표 수치 간 상호 참조.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 50-(f): 보고 정보와 재무제표 대표지표 상호참조",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_50_f",
+                        "description": "문단 50-(f): 보고 정보와 재무제표 대표지표 상호참조",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_50_F",
+                        "description": "ESRSS1-S1-6-50-f",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-50-f"
+            ],
+            "rulebook_title": "문단 50-(f): 보고 정보와 재무제표 대표지표 상호참조",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_51",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-51",
+            "section_name": "문단 51: 구조적 특성 보충 공개(선택)",
+            "section_content": "제50항 정보에 대해 구조적 특성 보충 정보를 공개할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 51: 구조적 특성 보충 공개(선택)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_51",
+                        "description": "문단 51: 구조적 특성 보충 공개(선택)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_51",
+                        "description": "ESRSS1-S1-6-51",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-51"
+            ],
+            "rulebook_title": "문단 51: 구조적 특성 보충 공개(선택)",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_52_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-52-a",
+            "section_name": "문단 52-(a): 정규직 FTE 성별·지역별 분포",
+            "section_content": "정규직 직원의 성별 및 지역별 분포를 FTE로 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 52-(a): 정규직 FTE 성별·지역별 분포",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_52_a",
+                        "description": "문단 52-(a): 정규직 FTE 성별·지역별 분포",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_52_A",
+                        "description": "ESRSS1-S1-6-52-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-52-a"
+            ],
+            "rulebook_title": "문단 52-(a): 정규직 FTE 성별·지역별 분포",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_6_52_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-6-52-b",
+            "section_name": "문단 52-(b): 시간제 근로자 FTE 성별·지역별 분류",
+            "section_content": "시간제 근로자의 성별 및 지역별 분류를 FTE로 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 52-(b): 시간제 근로자 FTE 성별·지역별 분류",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_6_52_b",
+                        "description": "문단 52-(b): 시간제 근로자 FTE 성별·지역별 분류",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_6_52_B",
+                        "description": "ESRSS1-S1-6-52-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-6-52-b"
+            ],
+            "rulebook_title": "문단 52-(b): 시간제 근로자 FTE 성별·지역별 분류",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_7",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-7",
+            "section_name": "공개 요구사항 S1-7: 사업체 자체 인력 내 비정규직 근로자의 특성",
+            "section_content": "문단 53~57: 비정규직 근로자 규모/특성(53), 목적(54), 공시 포함사항(55a,b,c), 비정규직 유형 공개(56), 데이터 미존재 시 추정치·산출근거 공개(57).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 S1-7: 사업체 자체 인력 내 비정규직 근로자의 특성",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_7",
+                        "description": "공개 요구사항 S1-7: 사업체 자체 인력 내 비정규직 근로자의 특성",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_7",
+                        "description": "ESRSS1-S1-7",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-7",
+                "ESRSS1-S1-7-53",
+                "ESRSS1-S1-7-54",
+                "ESRSS1-S1-7-55-a",
+                "ESRSS1-S1-7-55-b-i",
+                "ESRSS1-S1-7-55-b-ii",
+                "ESRSS1-S1-7-55-c",
+                "ESRSS1-S1-7-56",
+                "ESRSS1-S1-7-57"
+            ],
+            "rulebook_title": "공개 요구사항 S1-7: 사업체 자체 인력 내 비정규직 근로자의 특성",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_7_53",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-7-53",
+            "section_name": "문단 53: 비정규직 근로자 주요 특성 기술",
+            "section_content": "사업체는 자체 인력 내 비정규직 근로자의 규모 특성을 기술해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 53: 비정규직 근로자 주요 특성 기술",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_7_53",
+                        "description": "문단 53: 비정규직 근로자 주요 특성 기술",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_7_53",
+                        "description": "ESRSS1-S1-7-53",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-7-53"
+            ],
+            "rulebook_title": "문단 53: 비정규직 근로자 주요 특성 기술",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_7_54",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-7-54",
+            "section_name": "문단 54: 본 공개 요건의 목적",
+            "section_content": "고용 관계 영향 범위·성격 및 공공 접근 방식 이해를 돕는 맥락 정보 제공, 비정규직 근로자 범위 이해 지원.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 54: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_7_54",
+                        "description": "문단 54: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_7_54",
+                        "description": "ESRSS1-S1-7-54",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-7-54"
+            ],
+            "rulebook_title": "문단 54: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_7_55_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-7-55-a",
+            "section_name": "문단 55-(a): 비정규직 근로자 총수 및 고용 계약 산업 분류",
+            "section_content": "자체 인력 내 비정규직 근로자 총수와 노동력 공급 계약 체결 사업분류(산업 시스템/NAE 등).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 55-(a): 비정규직 근로자 총수 및 고용 계약 산업 분류",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_7_55_a",
+                        "description": "문단 55-(a): 비정규직 근로자 총수 및 고용 계약 산업 분류",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_7_55_A",
+                        "description": "ESRSS1-S1-7-55-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-7-55-a"
+            ],
+            "rulebook_title": "문단 55-(a): 비정규직 근로자 총수 및 고용 계약 산업 분류",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_7_55_B_I",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-7-55-b-i",
+            "section_name": "문단 55-(b)(i): 인원수/FTE 포함 기준",
+            "section_content": "데이터 집계 방법·가정: 인원 수 또는 FTE 포함 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 55-(b)(i): 인원수/FTE 포함 기준",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_7_55_b_i",
+                        "description": "문단 55-(b)(i): 인원수/FTE 포함 기준",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_7_55_B_I",
+                        "description": "ESRSS1-S1-7-55-b-i",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-7-55-b-i"
+            ],
+            "rulebook_title": "문단 55-(b)(i): 인원수/FTE 포함 기준",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_7_55_B_II",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-7-55-b-ii",
+            "section_name": "문단 55-(b)(ii): 보고기간 말/평균/기타 기준",
+            "section_content": "보고 기간 말, 보고 기간 전체 평균 또는 다른 방법론 사용 기준.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 55-(b)(ii): 보고기간 말/평균/기타 기준",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_7_55_b_ii",
+                        "description": "문단 55-(b)(ii): 보고기간 말/평균/기타 기준",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_7_55_B_II",
+                        "description": "ESRSS1-S1-7-55-b-ii",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-7-55-b-ii"
+            ],
+            "rulebook_title": "문단 55-(b)(ii): 보고기간 말/평균/기타 기준",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_7_55_C",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-7-55-c",
+            "section_name": "문단 55-(c): 배경 정보",
+            "section_content": "데이터 이해에 필요한 배경 정보(기간 중 비정규직 수의 상당한 변동 등).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 55-(c): 배경 정보",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_7_55_c",
+                        "description": "문단 55-(c): 배경 정보",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_7_55_C",
+                        "description": "ESRSS1-S1-7-55-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-7-55-c"
+            ],
+            "rulebook_title": "문단 55-(c): 배경 정보",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_7_56",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-7-56",
+            "section_name": "문단 56: 비정규직 유형·업무 유형 공개(선택)",
+            "section_content": "기업은 비정규직 유형(고용 활동 기업의 인력/관련 유사 유형 등) 및 수행 업무 유형을 공개할 수 있다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 56: 비정규직 유형·업무 유형 공개(선택)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_7_56",
+                        "description": "문단 56: 비정규직 유형·업무 유형 공개(선택)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_7_56",
+                        "description": "ESRSS1-S1-7-56",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-7-56"
+            ],
+            "rulebook_title": "문단 56: 비정규직 유형·업무 유형 공개(선택)",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_7_57",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-7-57",
+            "section_name": "문단 57: 추정치 산출 근거 공개",
+            "section_content": "데이터가 없는 경우 추정치를 산출·공시하며, 추정치 산출 근거를 설명해야 한다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 57: 추정치 산출 근거 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_7_57",
+                        "description": "문단 57: 추정치 산출 근거 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_7_57",
+                        "description": "ESRSS1-S1-7-57",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-7-57"
+            ],
+            "rulebook_title": "문단 57: 추정치 산출 근거 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_8",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-8",
+            "section_name": "공개 요구사항 S1-8: 단체교섭 범위 및 사회적 대화",
+            "section_content": "문단 58~63: 단체협약 영향 정보(58), 목적(59), 단체교섭 적용 비율/EEA 내외 지표(60a~c), 적용 제외 근로자 결정 근거(61), 비정규직 영향 지표(62), 사회적 대화 정보(63a,b).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 S1-8: 단체교섭 범위 및 사회적 대화",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_8",
+                        "description": "공개 요구사항 S1-8: 단체교섭 범위 및 사회적 대화",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_8",
+                        "description": "ESRSS1-S1-8",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-8",
+                "ESRSS1-S1-8-58",
+                "ESRSS1-S1-8-59",
+                "ESRSS1-S1-8-60-a",
+                "ESRSS1-S1-8-60-b",
+                "ESRSS1-S1-8-60-c",
+                "ESRSS1-S1-8-61",
+                "ESRSS1-S1-8-62",
+                "ESRSS1-S1-8-63-a",
+                "ESRSS1-S1-8-63-b"
+            ],
+            "rulebook_title": "공개 요구사항 S1-8: 단체교섭 범위 및 사회적 대화",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_8_58",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-8-58",
+            "section_name": "문단 58: 단체협약 영향 정도·사회적 대화 대표성",
+            "section_content": "자체 근로자 고용 조건 단체 합의 영향 정도, EEA 내 사업장/국가의 사회적 대화에서 대표되는 정도 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 58: 단체협약 영향 정도·사회적 대화 대표성",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_8_58",
+                        "description": "문단 58: 단체협약 영향 정도·사회적 대화 대표성",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_8_58",
+                        "description": "ESRSS1-S1-8-58",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-8-58"
+            ],
+            "rulebook_title": "문단 58: 단체협약 영향 정도·사회적 대화 대표성",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_8_59",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-8-59",
+            "section_name": "문단 59: 본 공개 요건의 목적",
+            "section_content": "직원에 대한 단체교섭 범위 및 사회적 대화 적용 범위를 이해할 수 있도록 하는 것.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 59: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_8_59",
+                        "description": "문단 59: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_8_59",
+                        "description": "ESRSS1-S1-8-59",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-8-59"
+            ],
+            "rulebook_title": "문단 59: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_8_60_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-8-60-a",
+            "section_name": "문단 60-(a): 단체협약 적용 비율(총직원)",
+            "section_content": "총 직원 중 단체협약 적용 대상자 비율.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 60-(a): 단체협약 적용 비율(총직원)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_8_60_a",
+                        "description": "문단 60-(a): 단체협약 적용 비율(총직원)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_8_60_A",
+                        "description": "ESRSS1-S1-8-60-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-8-60-a"
+            ],
+            "rulebook_title": "문단 60-(a): 단체협약 적용 비율(총직원)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_8_60_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-8-60-b",
+            "section_name": "문단 60-(b): EEA 내 단체교섭 범위·성별 비율",
+            "section_content": "EEA 지역 내 단체교섭 합의 비율 이상 존재 여부 및 해당 적용 대상 성별 비율.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 60-(b): EEA 내 단체교섭 범위·성별 비율",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_8_60_b",
+                        "description": "문단 60-(b): EEA 내 단체교섭 범위·성별 비율",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_8_60_B",
+                        "description": "ESRSS1-S1-8-60-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "EEA"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-8-60-b"
+            ],
+            "rulebook_title": "문단 60-(b): EEA 내 단체교섭 범위·성별 비율",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_8_60_C",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-8-60-c",
+            "section_name": "문단 60-(c): EEA 외 지역 비율",
+            "section_content": "EEA 외 지역에서 단체교섭 적용 대상 비율.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 60-(c): EEA 외 지역 비율",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_8_60_c",
+                        "description": "문단 60-(c): EEA 외 지역 비율",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_8_60_C",
+                        "description": "ESRSS1-S1-8-60-c",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-8-60-c"
+            ],
+            "rulebook_title": "문단 60-(c): EEA 외 지역 비율",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_8_61",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-8-61",
+            "section_name": "문단 61: 적용 제외 근로자의 결정 근거",
+            "section_content": "단체교섭 적용을 받지 않는 근로자에 대해 적용 결정 근거(다른 근로자/사업체 협약 근거) 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 61: 적용 제외 근로자의 결정 근거",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_8_61",
+                        "description": "문단 61: 적용 제외 근로자의 결정 근거",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_8_61",
+                        "description": "ESRSS1-S1-8-61",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-8-61"
+            ],
+            "rulebook_title": "문단 61: 적용 제외 근로자의 결정 근거",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_8_62",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-8-62",
+            "section_name": "문단 62: 비정규직 근로자 단체협약 영향 지표",
+            "section_content": "자체 인력 내 비정규직 근로자의 고용 조건이 단체협약 영향 받는 정도(적용 중 지표) 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 62: 비정규직 근로자 단체협약 영향 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_8_62",
+                        "description": "문단 62: 비정규직 근로자 단체협약 영향 지표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_8_62",
+                        "description": "ESRSS1-S1-8-62",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-8-62"
+            ],
+            "rulebook_title": "문단 62: 비정규직 근로자 단체협약 영향 지표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_8_63_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-8-63-a",
+            "section_name": "문단 63-(a): 근로자 대표 존재 국가/범위",
+            "section_content": "EEA 국가/근로자 집단 중 근로자 대표가 적용되는 전체 직원 비율.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 63-(a): 근로자 대표 존재 국가/범위",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_8_63_a",
+                        "description": "문단 63-(a): 근로자 대표 존재 국가/범위",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_8_63_A",
+                        "description": "ESRSS1-S1-8-63-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "EEA"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-8-63-a"
+            ],
+            "rulebook_title": "문단 63-(a): 근로자 대표 존재 국가/범위",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_8_63_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-8-63-b",
+            "section_name": "문단 63-(b): 대표와의 정기 접촉 여부",
+            "section_content": "유럽 근로자위원회·사업장위원회·SCD 대표직 등 근로자 대표와의 정기 접촉 존재 여부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 63-(b): 대표와의 정기 접촉 여부",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_8_63_b",
+                        "description": "문단 63-(b): 대표와의 정기 접촉 여부",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_8_63_B",
+                        "description": "ESRSS1-S1-8-63-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-8-63-b"
+            ],
+            "rulebook_title": "문단 63-(b): 대표와의 정기 접촉 여부",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_9",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-9",
+            "section_name": "공개 요구사항 S1-9: 다양성 지표",
+            "section_content": "문단 64~66: 최고 경영진 성별·직원 연령 분포 공시(64), 목적(65), 공시 항목 66(a)(b).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 S1-9: 다양성 지표",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_9",
+                        "description": "공개 요구사항 S1-9: 다양성 지표",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_9",
+                        "description": "ESRSS1-S1-9",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-9",
+                "ESRSS1-S1-9-64",
+                "ESRSS1-S1-9-65",
+                "ESRSS1-S1-9-66-a",
+                "ESRSS1-S1-9-66-b"
+            ],
+            "rulebook_title": "공개 요구사항 S1-9: 다양성 지표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_9_64",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-9-64",
+            "section_name": "문단 64: 최고 경영진 성별·직원 연령 분포 공개",
+            "section_content": "기업은 최고 경영진의 성별 분포와 직원들의 연령 분포를 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 64: 최고 경영진 성별·직원 연령 분포 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_9_64",
+                        "description": "문단 64: 최고 경영진 성별·직원 연령 분포 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_9_64",
+                        "description": "ESRSS1-S1-9-64",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-9-64"
+            ],
+            "rulebook_title": "문단 64: 최고 경영진 성별·직원 연령 분포 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_9_65",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-9-65",
+            "section_name": "문단 65: 본 공개 요건의 목적",
+            "section_content": "최고 경영진의 성별 다양성과 직원 연령 분포를 이해할 수 있도록 하는 것.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 65: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_9_65",
+                        "description": "문단 65: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_9_65",
+                        "description": "ESRSS1-S1-9-65",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-9-65"
+            ],
+            "rulebook_title": "문단 65: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_9_66_A",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-9-66-a",
+            "section_name": "문단 66-(a): 최고 경영진 성별 수·비율",
+            "section_content": "최고 경영진 성별 수 및 비율.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 66-(a): 최고 경영진 성별 수·비율",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_9_66_a",
+                        "description": "문단 66-(a): 최고 경영진 성별 수·비율",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_9_66_A",
+                        "description": "ESRSS1-S1-9-66-a",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-9-66-a"
+            ],
+            "rulebook_title": "문단 66-(a): 최고 경영진 성별 수·비율",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_9_66_B",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-9-66-b",
+            "section_name": "문단 66-(b): 연령대별 직원 분포",
+            "section_content": "연령대별 직원 분포(30세 미만, 30~50세, 50세 이상).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 66-(b): 연령대별 직원 분포",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_9_66_b",
+                        "description": "문단 66-(b): 연령대별 직원 분포",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_9_66_B",
+                        "description": "ESRSS1-S1-9-66-b",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-9-66-b"
+            ],
+            "rulebook_title": "문단 66-(b): 연령대별 직원 분포",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_10",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-10",
+            "section_name": "공개 요구사항 S1-10: 적정 임금",
+            "section_content": "문단 67~71: 적정 임금 지급 여부 및 국가별 비율 공개(67), 목적(68), 모든 직원의 적정임금 충족 여부(69), 미충족 국가 비율(70), 비적정임금 분포 정보 공개 가능(71).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "공개 요구사항 S1-10: 적정 임금",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_10",
+                        "description": "공개 요구사항 S1-10: 적정 임금",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_10",
+                        "description": "ESRSS1-S1-10",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-10",
+                "ESRSS1-S1-10-67",
+                "ESRSS1-S1-10-68",
+                "ESRSS1-S1-10-69",
+                "ESRSS1-S1-10-70",
+                "ESRSS1-S1-10-71"
+            ],
+            "rulebook_title": "공개 요구사항 S1-10: 적정 임금",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_10_67",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-10-67",
+            "section_name": "문단 67: 적정 임금 지급 여부·국가별 비율 공개",
+            "section_content": "직원에게 적정 임금이 지급되는지 여부와, 지급되지 않는 경우 해당 국가 관련 직원 비율 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 67: 적정 임금 지급 여부·국가별 비율 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_10_67",
+                        "description": "문단 67: 적정 임금 지급 여부·국가별 비율 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_10_67",
+                        "description": "ESRSS1-S1-10-67",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-Pay-adequacy-context"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-10-67"
+            ],
+            "rulebook_title": "문단 67: 적정 임금 지급 여부·국가별 비율 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_10_68",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-10-68",
+            "section_name": "문단 68: 본 공개 요건의 목적",
+            "section_content": "기업이 모든 직원에게 적정/생존 가능한 기준에 부합하는 적정 임금을 지급하는지 이해할 수 있도록 하는 것.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 68: 본 공개 요건의 목적",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_10_68",
+                        "description": "문단 68: 본 공개 요건의 목적",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_10_68",
+                        "description": "ESRSS1-S1-10-68",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-Pay-adequacy-context"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-10-68"
+            ],
+            "rulebook_title": "문단 68: 본 공개 요건의 목적",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_10_69",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-10-69",
+            "section_name": "문단 69: 모든 직원의 적정 임금 수령 여부",
+            "section_content": "모든 직원이 적정/생존 가능한 기준에 부합하는 적정 임금을 지급받고 있는지 여부 공개(충족 시 추가 정보 요약 가능).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 69: 모든 직원의 적정 임금 수령 여부",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_10_69",
+                        "description": "문단 69: 모든 직원의 적정 임금 수령 여부",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_10_69",
+                        "description": "ESRSS1-S1-10-69",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-Pay-adequacy-context"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-10-69"
+            ],
+            "rulebook_title": "문단 69: 모든 직원의 적정 임금 수령 여부",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_10_70",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-10-70",
+            "section_name": "문단 70: 국가별 미충족 비율 공개",
+            "section_content": "적정 임금 기준을 준수하지 못하는 국가와 해당 국가의 직원 비율 공개.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 70: 국가별 미충족 비율 공개",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_10_70",
+                        "description": "문단 70: 국가별 미충족 비율 공개",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_10_70",
+                        "description": "ESRSS1-S1-10-70",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-Pay-adequacy-context"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-10-70"
+            ],
+            "rulebook_title": "문단 70: 국가별 미충족 비율 공개",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSS1_S1_10_71",
+            "standard_id": "ESRSS1",
+            "primary_dp_id": "ESRSS1-S1-10-71",
+            "section_name": "문단 71: 비적정임금 분포 정보 공개(선택)",
+            "section_content": "사업체는 비적정임금 분포와 규모에 대한 정보를 공개할 수 있다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "문단 71: 비적정임금 분포 정보 공개(선택)",
+                "key_terms": [],
+                "required_actions": [
+                    {
+                        "action": "rule_esrss1_s1_10_71",
+                        "description": "문단 71: 비적정임금 분포 정보 공개(선택)",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSS1_S1_10_71",
+                        "description": "ESRSS1-S1-10-71",
+                        "expected": "traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-Pay-adequacy-context"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSS1-S1-10-71"
+            ],
+            "rulebook_title": "문단 71: 비적정임금 분포 정보 공개(선택)",
+            "disclosure_requirement": "선택",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        }
+    ]
+}

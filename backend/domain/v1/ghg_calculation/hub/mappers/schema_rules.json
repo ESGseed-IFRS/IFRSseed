@@ -1,0 +1,117 @@
+{
+  "energy": [
+    {
+      "schema_type": "energy_monthly_long",
+      "requires_all": [["month", "월", "m"], ["year", "연도", "yr"]],
+      "requires_any": [
+        [
+          "re_type",
+          "energy_type",
+          "에너지원",
+          "에너지원명",
+          "generation_kwh",
+          "amount_kwh",
+          "kwh",
+          "usage",
+          "amount",
+          "quantity"
+        ]
+      ]
+    }
+  ],
+  "waste": [
+    {
+      "schema_type": "waste_quarterly_long",
+      "requires_all": [["quarter", "분기", "q"], ["year", "연도", "yr"]],
+      "requires_any": [["amount", "quantity", "qty", "amount_ton", "value", "usage", "generation_kwh"]]
+    },
+    {
+      "schema_type": "waste_monthly_long",
+      "requires_all": [["month", "월", "m"], ["year", "연도", "yr"]],
+      "requires_any": [["amount", "quantity", "qty", "amount_ton", "value", "usage", "generation_kwh"]]
+    },
+    {
+      "schema_type": "waste_wide_q1q3",
+      "requires_any": [["jan", "feb", "mar", "1월", "2월", "3월", "m01", "m02", "m03"]]
+    }
+  ],
+  "pollution": [
+    {
+      "schema_type": "pollution_quarterly_long",
+      "requires_all": [["quarter", "분기", "q"], ["year", "연도", "yr"]],
+      "requires_any": [["pollutant", "오염물질", "substance_name", "pollutant_name", "concentration", "measured", "measured_value", "value", "nox_ton", "sox_ton", "voc_ton", "dust_ton", "bod_mg_l", "cod_mg_l", "ss_mg_l", "volume_ton"]]
+    },
+    {
+      "schema_type": "pollution_monthly_long",
+      "requires_all": [["month", "월", "m"], ["year", "연도", "yr"]],
+      "requires_any": [["pollutant", "오염물질", "substance_name", "pollutant_name", "concentration", "measured", "measured_value", "value", "nox_ton", "sox_ton", "voc_ton", "dust_ton", "bod_mg_l", "cod_mg_l", "ss_mg_l", "volume_ton"]]
+    },
+    {
+      "schema_type": "pollution_wide_q1q3",
+      "requires_any": [
+        ["jan", "feb", "mar", "1월", "2월", "3월", "m01", "m02", "m03"],
+        ["pollutant", "오염물질", "substance_name", "pollutant_name"]
+      ]
+    }
+  ],
+  "chemical": [
+    {
+      "schema_type": "chemical_quarterly_long",
+      "requires_all": [["quarter", "분기", "q"], ["year", "연도", "yr"]],
+      "requires_any": [["chemical_name", "chem_name", "substance_name", "material_name", "약품명"]]
+    },
+    {
+      "schema_type": "chemical_monthly_long",
+      "requires_all": [["month", "월", "m"], ["year", "연도", "yr"]],
+      "requires_any": [["chemical_name", "chem_name", "substance_name", "material_name", "약품명"]]
+    },
+    {
+      "schema_type": "chemical_wide_q1q3",
+      "requires_any": [
+        ["jan", "feb", "mar", "1월", "2월", "3월", "m01", "m02", "m03"],
+        ["chemical_name", "chem_name", "substance_name", "material_name", "약품명"]
+      ]
+    },
+    {
+      "schema_type": "chemical_yearly_simple",
+      "requires_all": [["year", "연도", "yr"]],
+      "requires_any": [
+        ["chemical_name", "chem_name", "substance_name", "material_name", "약품명"],
+        ["usage_kg", "amount_kg", "usage", "quantity", "amount", "qty", "value"]
+      ]
+    }
+  ],
+  "energy-provider": [
+    {
+      "schema_type": "energy_provider_master",
+      "requires_any": [
+        ["provider_name", "provider", "supplier", "vendor_name", "supplier_name"],
+        ["energy_type", "energy_source", "공급유형", "에너지유형", "type", "category"]
+      ]
+    },
+    {
+      "schema_type": "energy_provider_master",
+      "requires_any": [
+        ["supplier_name"],
+        ["esg_score", "audit_yn", "critical_issue_yn"]
+      ]
+    }
+  ],
+  "consignment": [
+    {
+      "schema_type": "consignment_master",
+      "requires_any": [
+        ["vendor_name", "vendor", "consignee"],
+        ["permit_no", "permit_number", "license_no", "인허가번호", "허가번호"]
+      ]
+    },
+    {
+      "schema_type": "consignment_master",
+      "requires_all": [["quarter", "분기", "q"], ["year", "연도", "yr"]],
+      "requires_any": [
+        ["category"],
+        ["purchase_amount_krw_mil", "amount", "quantity", "qty", "value"]
+      ]
+    }
+  ]
+}

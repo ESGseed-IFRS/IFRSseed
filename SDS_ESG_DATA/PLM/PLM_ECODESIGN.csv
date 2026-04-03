@@ -1,0 +1,7 @@
+record_id,year,product_code,product_name,ecodesign_principle,implementation_status,implementation_detail,energy_saving_kwh_annual,co2_reduction_tco2e_annual,material_reduction_kg,recycled_content_pct,design_stage_applied_yn,sdg_linkage,source_system,created_at,updated_at,updated_by
+PLM-ECO-2024-001,2024,PRD-001,클라우드 인프라 서비스,에너지 효율화,완료,고효율 ARM 기반 서버 도입·가상화율 85% 달성,12500000,5750,0,0,Y,SDG13,PLM,2024-03-31 09:00:00,2024-04-05 10:00:00,user_plm
+PLM-ECO-2024-002,2024,PRD-001,클라우드 인프라 서비스,재생에너지 우선 배치,진행중,RE100 달성 로드맵에 따라 DC 재생에너지 비중 단계적 확대,0,8200,0,0,Y,SDG7,PLM,2024-03-31 09:00:00,2024-04-05 10:00:00,user_plm
+PLM-ECO-2024-003,2024,PRD-002,물류IT 플랫폼(Cello Square),경로 최적화,완료,AI 기반 최적 경로 추천으로 공차율 12% 감소,0,3200,0,0,Y,SDG13,PLM,2024-03-31 09:00:00,2024-04-05 10:00:00,user_plm
+PLM-ECO-2024-004,2024,PRD-003,스마트팩토리 솔루션,에너지 모니터링,완료,실시간 공정 에너지 모니터링·이상감지로 고객사 에너지 절감,8500000,3910,0,0,Y,SDG9,PLM,2024-03-31 09:00:00,2024-04-05 10:00:00,user_plm
+PLM-ECO-2024-005,2024,PRD-006,AI 플랫폼(Brightics AI),경량 모델 최적화,진행중,모델 압축(Pruning·Quantization)으로 추론 전력 30% 절감,3200000,1472,0,0,Y,SDG13,PLM,2024-03-31 09:00:00,2024-04-05 10:00:00,user_plm
+PLM-ECO-2024-006,2024,PRD-008,블록체인 공급망 추적,저에너지 합의 알고리즘,완료,PoW → PoA 전환으로 트랜잭션당 에너지 95% 절감,850000,391,0,0,Y,SDG13,PLM,2024-03-31 09:00:00,2024-04-05 10:00:00,user_plm

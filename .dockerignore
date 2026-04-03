@@ -1,0 +1,70 @@
+# Build outputs
+**/bin/
+**/build/
+**/dist/
+**/.gradle/
+**/out/
+
+# IDE
+**/.vscode/
+**/.idea/
+**/*.iml
+
+# OS
+**/.DS_Store
+**/Thumbs.db
+
+# Node
+**/node_modules/
+**/.next/
+**/out/
+
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+**/*.so
+**/.Python
+**/*.egg-info/
+**/*.egg
+**/venv/
+**/env/
+**/ENV/
+**/.pytest_cache/
+**/.coverage
+**/htmlcov/
+**/.tox/
+
+# Logs
+**/*.log
+**/logs/
+
+# Environment
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Git
+**/.git/
+**/.gitignore
+
+# Temporary
+**/*.tmp
+**/*.swp
+**/*.swo
+**/*~
+
+# Documentation
+**/docs/_build/
+**/*.md.bak
+
+# Data (큰 파일 제외 - 선택적)
+# **/data/*.pdf
+# **/data/*.xlsx
+# **/data/*.csv
+
+# Docker
+**/Dockerfile
+**/.dockerignore
+**/docker-compose.yml
+

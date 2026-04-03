@@ -1,0 +1,3326 @@
+{
+    "rulebooks": [
+        {
+            "standard_id": "ESRS2",
+            "section_name": "IRO-2 공시 요구사항 준수 보고 방법론",
+            "section_content": "기업은 지속가능성 보고서에서 준수한 공시 요구사항에 대해 보고해야 합니다. 이 공시 요구사항의 목적은 중요성 평가 결과에 따라 지속가능성 보고서에 포함된 공시 요구사항과 중요하지 않은 것으로 생략된 주제에 대한 이해를 제공하는 것입니다.\n\n기업은 중요성 평가 결과에 따라 지속가능성 보고서 작성 시 준수한 공시 요구사항 목록을 포함해야 하며, 관련 공시가 지속가능성 보고서에서 위치한 페이지 번호 및/또는 단락을 포함해야 합니다. 이는 목차로 제시될 수 있습니다.\n\n기업은 또한 본 표준의 부록 B에 나열된 기타 EU 법률에서 도출된 모든 데이터포인트 표를 포함해야 하며, 지속가능성 보고서에서 찾을 수 있는 위치를 표시하고 중요하지 않은 것으로 평가한 데이터포인트도 포함해야 하며, 이 경우 기업은 ESRS 1 제35단락에 따라 표에 '중요하지 않음'을 표시해야 합니다.\n\n기업이 기후 변화가 중요하지 않다고 결론을 내리고 따라서 ESRS E1 기후 변화의 모든 공시 요구사항을 생략하는 경우, 기후 변화에 관한 중요성 평가의 결론에 대한 상세한 설명을 공시해야 하며, 기후 변화가 미래에 중요하다고 결론을 내릴 수 있는 조건에 대한 전향적 분석을 포함해야 합니다.\n\n기업이 기후 변화 외의 주제가 중요하지 않다고 결론을 내리고 따라서 해당 주제별 ESRS의 모든 공시 요구사항을 생략하는 경우, 해당 주제에 대한 중요성 평가의 결론에 대한 간략한 설명을 제공할 수 있습니다.\n\n기업은 중요한 것으로 평가한 영향, 리스크 및 기회와 관련하여 공시할 중요 정보를 어떻게 결정했는지에 대한 설명을 제공해야 하며, 임계값의 사용 및/또는 ESRS 1 제3.2절 중요 사항 및 정보의 중요성에 있는 기준을 어떻게 구현했는지를 포함해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_methodology",
+                "paragraph_reference": "ESRS 2 - IRO-2 (54-59)",
+                "key_terms": [
+                    "disclosure requirements",
+                    "materiality assessment",
+                    "content index",
+                    "EU legislation datapoints",
+                    "not material",
+                    "material information determination",
+                    "thresholds",
+                    "forward-looking analysis"
+                ],
+                "related_concepts": [
+                    "disclosure compliance",
+                    "omission explanation",
+                    "materiality criteria",
+                    "ESRS 1 chapter 3",
+                    "ESRS 1 section 3.2",
+                    "Appendix B"
+                ],
+                "required_actions": [
+                    {
+                        "action": "list_complied_requirements",
+                        "description": "준수한 공시 요구사항 목록 포함 (페이지 번호/단락 포함, 목차로 제시 가능)"
+                    },
+                    {
+                        "action": "include_eu_legislation_table",
+                        "description": "부록 B의 기타 EU 법률 데이터포인트 표 포함 (위치 표시, 중요하지 않은 경우 '중요하지 않음' 표시)"
+                    },
+                    {
+                        "action": "explain_climate_change_omission",
+                        "description": "기후 변화가 중요하지 않은 경우 상세 설명 및 전향적 분석 포함 (조건부, 필수)"
+                    },
+                    {
+                        "action": "explain_other_topic_omission",
+                        "description": "기타 주제가 중요하지 않은 경우 간략한 설명 제공 (조건부, 선택적)"
+                    },
+                    {
+                        "action": "explain_material_info_determination",
+                        "description": "중요 정보 결정 방법 설명 (임계값 사용, ESRS 1 제3.2절 기준 구현 방법 포함)"
+                    }
+                ],
+                "conditional_requirements": [
+                    {
+                        "condition": "climate_change_not_material",
+                        "requirement": "기후 변화 중요성 평가 결론에 대한 상세 설명 및 미래 중요성 가능 조건에 대한 전향적 분석 필수"
+                    },
+                    {
+                        "condition": "other_topic_not_material",
+                        "requirement": "해당 주제 중요성 평가 결론에 대한 간략한 설명 제공 (선택적)"
+                    }
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-IRO-2",
+                "ESRS2-IRO-2-a",
+                "ESRS2-IRO-2-b",
+                "ESRS2-IRO-2-c",
+                "ESRS2-IRO-2-d",
+                "ESRS2-IRO-2-e"
+            ]
+        },
+        {
+            "standard_id": "ESRS2",
+            "section_name": "4.2 최소 공시 요구사항 - 정책 및 조치",
+            "section_content": "이 섹션은 기업이 실제 및 잠재적 중요 영향을 예방, 완화 및 구제하고, 중요 리스크를 해결하고/또는 중요 기회를 추구하기 위한 정책 및 조치에 대한 정보를 공시할 때 포함해야 하는 최소 공시 요구사항을 규정합니다 (집합적으로 '중요 지속가능성 사항 관리'라고 지칭).\n\n이러한 최소 공시 요구사항은 관련 주제별 및 섹터별 ESRS에서 제공하는 공시 요구사항(응용 요구사항 포함)과 함께 적용되어야 합니다. 또한 기업이 기업별 공시를 준비할 때도 적용되어야 합니다.\n\n해당 공시는 관련 ESRS에 규정된 공시와 함께 위치해야 합니다. 단일 정책 또는 동일한 조치가 여러 상호연결된 지속가능성 사항을 다루는 경우, 기업은 하나의 주제별 ESRS 하에서 보고에서 필요한 정보를 공시하고 다른 주제별 ESRS 하에서 보고에서 이를 교차 참조할 수 있습니다.\n\n기업이 관련 ESRS에 따라 정책 및 조치에 대한 정보를 공시할 수 없는 경우, 즉 해당 지속가능성 사항에 대한 정책 및/또는 조치를 채택하지 않은 경우, 기업은 이러한 사실을 공시하고 정책 및/또는 조치를 채택하지 않은 이유를 제공해야 합니다. 기업은 이를 채택할 목표 시기를 공시할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "minimum_disclosure_requirement",
+                "paragraph_reference": "ESRS 2 - 4.2 (60-62)",
+                "key_terms": [
+                    "minimum disclosure requirements",
+                    "policies and actions",
+                    "material impacts",
+                    "material risks",
+                    "material opportunities",
+                    "manage material sustainability matters",
+                    "prevent, mitigate and remediate",
+                    "cross-reference",
+                    "entity-specific disclosures"
+                ],
+                "related_concepts": [
+                    "disclosure methodology",
+                    "topical ESRS",
+                    "sector-specific ESRS",
+                    "application requirements",
+                    "interconnected sustainability matters",
+                    "policy adoption",
+                    "action implementation"
+                ],
+                "required_actions": [
+                    {
+                        "action": "apply_with_topical_esrs",
+                        "description": "관련 주제별 및 섹터별 ESRS의 공시 요구사항(응용 요구사항 포함)과 함께 적용"
+                    },
+                    {
+                        "action": "apply_with_entity_disclosures",
+                        "description": "기업별 공시 준비 시에도 적용"
+                    },
+                    {
+                        "action": "locate_alongside_relevant_esrs",
+                        "description": "해당 공시를 관련 ESRS에 규정된 공시와 함께 위치"
+                    },
+                    {
+                        "action": "allow_cross_reference",
+                        "description": "단일 정책 또는 동일 조치가 여러 상호연결된 지속가능성 사항을 다루는 경우 교차 참조 허용"
+                    },
+                    {
+                        "action": "disclose_absence_with_reasons",
+                        "description": "정책/조치가 없는 경우 그 사실과 이유 공시 (조건부, 필수)"
+                    },
+                    {
+                        "action": "disclose_timeframe",
+                        "description": "정책/조치 채택 목표 시기 공시 (조건부, 선택적)"
+                    }
+                ],
+                "conditional_requirements": [
+                    {
+                        "condition": "policies_actions_not_adopted",
+                        "requirement": "정책 및/또는 조치를 채택하지 않은 사실과 이유 공시 필수, 채택 목표 시기 공시 선택적"
+                    }
+                ],
+                "application_scope": [
+                    "prevent, mitigate and remediate actual and potential material impacts",
+                    "address material risks",
+                    "pursue material opportunities"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-MDR-P",
+                "ESRS2-MDR-A",
+                "ESRS2-MDR-M",
+                "ESRS2-MDR-T"
+            ]
+        },
+        {
+            "standard_id": "ESRS2",
+            "section_name": "MDR-P 정책 공시 방법론",
+            "section_content": "기업은 중요한 것으로 식별된 각 지속가능성 사항과 관련하여 기업이 보유한 정책에 대해 공시할 때 이 조항에 정의된 최소 공시 요구사항을 적용해야 합니다.\n\n이 최소 공시 요구사항의 목적은 실제 및 잠재적 영향을 예방, 완화 및 구제하고, 리스크를 해결하고 기회를 추구하기 위해 기업이 보유한 정책에 대한 이해를 제공하는 것입니다.\n\n기업은 중요 지속가능성 사항을 관리하기 위해 채택한 정책에 대한 정보를 공시해야 합니다. 공시에는 다음 정보가 포함되어야 합니다:\n(a) 정책의 주요 내용 설명, 일반 목표 및 정책이 관련된 중요 영향, 리스크 또는 기회, 그리고 모니터링 프로세스 포함\n(b) 활동, 상류 및/또는 하류 가치사슬, 지역 및 관련되는 경우 영향받은 이해관계자 그룹 측면에서 정책의 범위 또는 제외 사항에 대한 설명\n(c) 정책 구현에 대한 책임이 있는 기업 조직 내 최고 수준\n(d) 해당되는 경우, 정책 구현을 통해 기업이 준수하기로 약속한 제3자 표준 또는 이니셔티브에 대한 참조\n(e) 해당되는 경우, 정책 수립 시 주요 이해관계자의 이익에 대한 고려에 대한 설명\n(f) 해당되는 경우, 잠재적으로 영향받은 이해관계자 및 정책 구현에 도움이 필요한 이해관계자에게 기업이 정책을 제공하는지 여부 및 방법",
+            "validation_rules": {
+                "section_type": "minimum_disclosure_requirement",
+                "paragraph_reference": "ESRS 2 - MDR-P (63-65)",
+                "key_terms": [
+                    "policies",
+                    "material sustainability matters",
+                    "prevent, mitigate and remediate",
+                    "material impacts",
+                    "material risks",
+                    "material opportunities",
+                    "policy scope",
+                    "value chain",
+                    "stakeholder groups",
+                    "third-party standards",
+                    "policy implementation"
+                ],
+                "related_concepts": [
+                    "minimum disclosure requirements",
+                    "policy management",
+                    "stakeholder engagement",
+                    "monitoring process",
+                    "accountability"
+                ],
+                "required_actions": [
+                    {
+                        "action": "describe_key_contents",
+                        "description": "정책의 주요 내용 설명 (일반 목표, 관련 중요 영향/리스크/기회, 모니터링 프로세스 포함)"
+                    },
+                    {
+                        "action": "describe_scope",
+                        "description": "정책의 범위 또는 제외 사항 설명 (활동, 가치사슬, 지역, 이해관계자 그룹)"
+                    },
+                    {
+                        "action": "identify_accountable_level",
+                        "description": "정책 구현 책임 최고 수준 식별"
+                    },
+                    {
+                        "action": "reference_third_party_standards",
+                        "description": "제3자 표준 또는 이니셔티브 참조 (조건부)"
+                    },
+                    {
+                        "action": "describe_stakeholder_consideration",
+                        "description": "정책 수립 시 이해관계자 이익 고려 설명 (조건부)"
+                    },
+                    {
+                        "action": "describe_policy_availability",
+                        "description": "이해관계자에게 정책 제공 여부 및 방법 (조건부)"
+                    }
+                ],
+                "conditional_requirements": [
+                    {
+                        "condition": "third_party_standards_applicable",
+                        "requirement": "제3자 표준 또는 이니셔티브 참조 공시"
+                    },
+                    {
+                        "condition": "stakeholder_interests_considered",
+                        "requirement": "정책 수립 시 이해관계자 이익 고려 설명 공시"
+                    },
+                    {
+                        "condition": "policy_available_to_stakeholders",
+                        "requirement": "이해관계자에게 정책 제공 여부 및 방법 공시"
+                    }
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-MDR-P",
+                "ESRS2-MDR-P-a",
+                "ESRS2-MDR-P-b",
+                "ESRS2-MDR-P-c",
+                "ESRS2-MDR-P-d",
+                "ESRS2-MDR-P-e",
+                "ESRS2-MDR-P-f"
+            ]
+        },
+        {
+            "standard_id": "ESRS2",
+            "section_name": "MDR-A 조치 및 자원 공시 방법론",
+            "section_content": "기업은 각 중요 지속가능성 사항을 관리하는 조치(조치 계획 및 할당 및/또는 계획된 자원 포함)를 설명할 때 이 조항에 규정된 공시 내용 요구사항을 적용해야 합니다.\n\n이 최소 공시 요구사항의 목적은 실제 및 잠재적 영향을 예방, 완화 및 구제하고, 리스크와 기회를 해결하기 위해 취한 및/또는 계획된 주요 조치에 대한 이해를 제공하고, 해당되는 경우 관련 정책의 목표 및 목표를 달성하는 것입니다.\n\n정책 구현에 조치 또는 포괄적인 조치 계획이 필요하여 목표를 달성해야 하는 경우, 그리고 특정 정책 없이 조치가 구현되는 경우, 기업은 다음 정보를 공시해야 합니다:\n(a) 보고 연도에 취한 주요 조치 및 미래에 계획된 주요 조치 목록, 예상 결과 및 관련되는 경우 그 구현이 정책 목표 및 목표 달성에 어떻게 기여하는지\n(b) 주요 조치의 범위(즉, 활동, 상류 및/또는 하류 가치사슬, 지역 및 관련되는 경우 영향받은 이해관계자 그룹 측면에서의 적용 범위)\n(c) 기업이 각 주요 조치를 완료하려는 시간 범위\n(d) 해당되는 경우, 실제 중요 영향으로 인해 피해를 입은 사람들을 위한 구제를 제공하고 협력하거나 지원하기 위해 취한 주요 조치(결과 포함)\n(e) 해당되는 경우, 이전 기간에 공시된 조치 또는 조치 계획의 진행 상황에 대한 정량적 및 정성적 정보\n\n조치 계획 구현에 상당한 운영비용(Opex) 및/또는 자본 지출(Capex)이 필요한 경우, 기업은:\n(a) 조치 계획에 할당된 현재 및 미래 재무 및 기타 자원 유형에 대한 설명, 해당되는 경우 관련 지속가능 금융 상품 조건(예: 그린 본드, 소셜 본드, 그린 대출), 환경 또는 사회 목표, 그리고 조치 또는 조치 계획 구현 능력이 특정 전제 조건에 의존하는지 여부\n(b) 현재 재무 자원 금액 제공 및 재무제표에 제시된 가장 관련성 높은 금액과 어떻게 관련되는지 설명\n(c) 미래 재무 자원 금액 제공",
+            "validation_rules": {
+                "section_type": "minimum_disclosure_requirement",
+                "paragraph_reference": "ESRS 2 - MDR-A (66-69)",
+                "key_terms": [
+                    "actions",
+                    "action plans",
+                    "resources",
+                    "material sustainability matters",
+                    "prevent, mitigate and remediate",
+                    "material impacts",
+                    "material risks",
+                    "material opportunities",
+                    "policy objectives",
+                    "time horizons",
+                    "remedy",
+                    "operational expenditures",
+                    "capital expenditures",
+                    "sustainable finance instruments",
+                    "green bonds",
+                    "social bonds",
+                    "green loans"
+                ],
+                "related_concepts": [
+                    "minimum disclosure requirements",
+                    "action management",
+                    "resource allocation",
+                    "financial statements",
+                    "progress tracking"
+                ],
+                "required_actions": [
+                    {
+                        "action": "list_key_actions",
+                        "description": "보고 연도에 취한 주요 조치 및 미래에 계획된 주요 조치 목록, 예상 결과 및 정책 목표 달성 기여 설명"
+                    },
+                    {
+                        "action": "describe_scope_actions",
+                        "description": "주요 조치의 범위 설명 (활동, 가치사슬, 지역, 이해관계자 그룹)"
+                    },
+                    {
+                        "action": "disclose_time_horizons",
+                        "description": "각 주요 조치 완료 예정 시간 범위 공시"
+                    },
+                    {
+                        "action": "disclose_remedy_actions",
+                        "description": "실제 중요 영향으로 인해 피해를 입은 사람들을 위한 구제 조치 (조건부)"
+                    },
+                    {
+                        "action": "disclose_progress_prior_periods",
+                        "description": "이전 기간에 공시된 조치 또는 조치 계획의 진행 상황 (조건부)"
+                    },
+                    {
+                        "action": "describe_financial_resources",
+                        "description": "상당한 Opex/Capex이 필요한 경우 재무 및 기타 자원 유형 설명 (조건부)"
+                    },
+                    {
+                        "action": "provide_current_financial_amount",
+                        "description": "현재 재무 자원 금액 제공 및 재무제표 연결 설명 (조건부)"
+                    },
+                    {
+                        "action": "provide_future_financial_amount",
+                        "description": "미래 재무 자원 금액 제공 (조건부)"
+                    }
+                ],
+                "conditional_requirements": [
+                    {
+                        "condition": "remedy_actions_required",
+                        "requirement": "실제 중요 영향으로 인해 피해를 입은 사람들을 위한 구제 조치 공시"
+                    },
+                    {
+                        "condition": "actions_disclosed_prior_periods",
+                        "requirement": "이전 기간에 공시된 조치 또는 조치 계획의 진행 상황 공시"
+                    },
+                    {
+                        "condition": "significant_opex_capex_required",
+                        "requirement": "상당한 운영비용 및/또는 자본 지출이 필요한 경우 재무 자원 정보 공시 필수"
+                    }
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-MDR-A",
+                "ESRS2-MDR-A-a",
+                "ESRS2-MDR-A-b",
+                "ESRS2-MDR-A-c",
+                "ESRS2-MDR-A-d",
+                "ESRS2-MDR-A-e",
+                "ESRS2-MDR-A-f",
+                "ESRS2-MDR-A-g",
+                "ESRS2-MDR-A-h"
+            ]
+        },
+        {
+            "standard_id": "ESRS2",
+            "section_name": "5. 지표 및 목표 최소 공시 요구사항",
+            "section_content": "이 장은 기업이 각 중요 지속가능성 사항과 관련된 지표 및 목표에 대한 정보를 공시할 때 포함해야 하는 최소 공시 요구사항을 규정합니다. 이러한 최소 공시 요구사항은 관련 주제별 ESRS에서 제공하는 공시 요구사항(응용 요구사항 포함)과 함께 적용되어야 합니다. 또한 기업이 기업별 공시를 준비할 때도 적용되어야 합니다.\n\n해당 공시는 주제별 ESRS에 규정된 공시와 함께 위치해야 합니다.\n\n기업이 관련 주제별 ESRS에 따라 목표에 대한 정보를 공시할 수 없는 경우, 즉 해당 지속가능성 사항에 대한 목표를 설정하지 않은 경우, 기업은 이러한 사실을 공시하고 목표를 채택하지 않은 이유를 제공해야 합니다. 기업은 이를 채택할 목표 시기를 공시할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "minimum_disclosure_requirement",
+                "paragraph_reference": "ESRS 2 - 5. Metrics and targets (70-72)",
+                "key_terms": [
+                    "metrics",
+                    "targets",
+                    "material sustainability matters",
+                    "minimum disclosure requirements",
+                    "topical ESRS",
+                    "entity-specific disclosures",
+                    "target setting"
+                ],
+                "related_concepts": [
+                    "disclosure methodology",
+                    "application requirements",
+                    "target adoption",
+                    "timeframe for adoption"
+                ],
+                "required_actions": [
+                    {
+                        "action": "apply_with_topical_esrs",
+                        "description": "관련 주제별 ESRS의 공시 요구사항(응용 요구사항 포함)과 함께 적용"
+                    },
+                    {
+                        "action": "apply_with_entity_disclosures",
+                        "description": "기업별 공시 준비 시에도 적용"
+                    },
+                    {
+                        "action": "locate_alongside_topical_esrs",
+                        "description": "해당 공시를 주제별 ESRS에 규정된 공시와 함께 위치"
+                    },
+                    {
+                        "action": "disclose_absence_with_reasons",
+                        "description": "목표가 없는 경우 그 사실과 이유 공시 (조건부, 필수)"
+                    },
+                    {
+                        "action": "disclose_timeframe",
+                        "description": "목표 채택 목표 시기 공시 (조건부, 선택적)"
+                    }
+                ],
+                "conditional_requirements": [
+                    {
+                        "condition": "targets_not_set",
+                        "requirement": "목표를 설정하지 않은 사실과 이유 공시 필수, 채택 목표 시기 공시 선택적"
+                    }
+                ],
+                "application_scope": [
+                    "metrics related to material sustainability matters",
+                    "targets related to material sustainability matters"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-MDR-M",
+                "ESRS2-MDR-T"
+            ]
+        },
+        {
+            "standard_id": "ESRS2",
+            "section_name": "MDR-M 지표 공시 방법론",
+            "section_content": "기업은 각 중요 지속가능성 사항과 관련하여 기업이 보유한 지표에 대해 공시할 때 이 조항에 규정된 공시 내용 요구사항을 적용해야 합니다.\n\n이 최소 공시 요구사항의 목적은 중요 지속가능성 사항을 관리하기 위한 조치의 효과를 추적하는 데 기업이 사용하는 지표에 대한 이해를 제공하는 것입니다.\n\n기업은 중요 영향, 리스크 또는 기회와 관련하여 성과 및 효과를 평가하는 데 사용하는 모든 지표를 공시해야 합니다.\n\n지표는 ESRS에 정의된 지표뿐만 아니라 기업별 기준으로 식별된 지표도 포함해야 하며, 이는 다른 출처에서 가져온 것이든 기업 자체가 개발한 것이든 상관없습니다.\n\n각 지표에 대해 기업은:\n(a) 지표의 방법론 및 중요한 가정을 공시해야 하며, 사용된 방법론의 한계를 포함해야 합니다\n(b) 지표 측정이 보증 제공자 이외의 외부 기관에 의해 검증되는지 여부 및 검증되는 경우 어떤 기관인지를 공시해야 합니다\n(c) 의미 있고 명확하며 정확한 이름과 설명을 사용하여 지표를 라벨하고 정의해야 합니다\n(d) 통화가 측정 단위로 지정된 경우, 재무제표의 표시 통화를 사용해야 합니다",
+            "validation_rules": {
+                "section_type": "minimum_disclosure_requirement",
+                "paragraph_reference": "ESRS 2 - MDR-M (73-77)",
+                "key_terms": [
+                    "metrics",
+                    "material sustainability matters",
+                    "track effectiveness",
+                    "performance evaluation",
+                    "ESRS defined metrics",
+                    "entity-specific metrics",
+                    "methodologies",
+                    "assumptions",
+                    "limitations",
+                    "external validation",
+                    "presentation currency"
+                ],
+                "related_concepts": [
+                    "minimum disclosure requirements",
+                    "metric management",
+                    "measurement methodology",
+                    "financial statements",
+                    "assurance provider"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_all_metrics",
+                        "description": "성과 및 효과 평가에 사용하는 모든 지표 공시"
+                    },
+                    {
+                        "action": "include_esrs_and_entity_metrics",
+                        "description": "ESRS에 정의된 지표 및 기업별 지표 포함"
+                    },
+                    {
+                        "action": "disclose_methodologies_assumptions",
+                        "description": "각 지표의 방법론 및 중요한 가정 공시 (한계 포함)"
+                    },
+                    {
+                        "action": "disclose_external_validation",
+                        "description": "외부 기관 검증 여부 및 기관 식별"
+                    },
+                    {
+                        "action": "label_define_metric",
+                        "description": "의미 있고 명확하며 정확한 이름과 설명으로 지표 라벨 및 정의"
+                    },
+                    {
+                        "action": "use_presentation_currency",
+                        "description": "통화 단위 사용 시 재무제표 표시 통화 사용 (조건부)"
+                    }
+                ],
+                "conditional_requirements": [
+                    {
+                        "condition": "currency_is_unit_of_measure",
+                        "requirement": "통화가 측정 단위로 지정된 경우 재무제표 표시 통화 사용 필수"
+                    }
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-MDR-M",
+                "ESRS2-MDR-M-a",
+                "ESRS2-MDR-M-b",
+                "ESRS2-MDR-M-c",
+                "ESRS2-MDR-M-d"
+            ]
+        },
+        {
+            "standard_id": "ESRS2",
+            "section_name": "MDR-T 목표 공시 방법론",
+            "section_content": "기업은 각 중요 지속가능성 사항과 관련하여 기업이 설정한 목표에 대한 정보를 공시할 때 이 조항에 규정된 공시 내용 요구사항을 적용해야 합니다.\n\n이 최소 공시 요구사항의 목적은 각 중요 지속가능성 사항에 대해 다음에 대한 이해를 제공하는 것입니다:\n(a) 기업이 중요 영향, 리스크 및 기회를 해결하기 위한 조치의 효과를 추적하는지 여부 및 방법, 이를 수행하는 데 사용하는 지표 포함\n(b) 정책의 목표를 충족하기 위해 기업이 설정한 측정 가능한 시간 제한 결과 지향적 목표, 중요 영향, 리스크 및 기회에 대한 사람, 환경 또는 기업에 대한 예상 결과 측면에서 정의됨\n(c) 시간에 따른 채택된 목표를 향한 전체 진행 상황\n(d) 기업이 측정 가능한 시간 제한 결과 지향적 목표를 설정하지 않은 경우, 여전히 중요 영향, 리스크 및 기회를 해결하기 위한 조치의 효과를 추적하는지 여부 및 방법 및 정책 목표 달성에서의 진행 상황을 측정하는지 여부\n(e) 각 중요 지속가능성 사항에 대한 목표 설정에서 이해관계자가 참여했는지 여부 및 방법\n\n기업은 진행 상황을 평가하기 위해 설정한 측정 가능하고 결과 지향적이며 시간 제한이 있는 중요 지속가능성 사항에 대한 목표를 공시해야 합니다. 각 목표에 대해 공시에는 다음 정보가 포함되어야 합니다:\n(a) 목표와 정책 목표의 관계에 대한 설명\n(b) 달성할 정의된 목표 수준, 해당되는 경우 목표가 절대적인지 상대적인지 및 어떤 단위로 측정되는지 포함\n(c) 목표의 범위, 기업의 활동 및/또는 상류 및/또는 하류 가치사슬(해당되는 경우) 및 지역적 경계 포함\n(d) 진행 상황을 측정하는 기준값 및 기준연도\n(e) 목표가 적용되는 기간 및 해당되는 경우 마일스톤 또는 중간 목표\n(f) 목표를 정의하는 데 사용된 방법론 및 중요한 가정, 해당되는 경우 선택된 시나리오, 데이터 소스, 국가, EU 또는 국제 정책 목표와의 정렬, 그리고 목표가 지속가능한 발전의 광범위한 맥락 및/또는 영향이 발생하는 지역 상황을 어떻게 고려하는지 포함\n(g) 기업의 환경 관련 목표가 결정적인 과학적 근거를 기반으로 하는지 여부\n(h) 각 중요 지속가능성 사항에 대한 목표 설정에서 이해관계자가 참여했는지 여부 및 방법\n(i) 정의된 시간 범위 내에서 채택된 목표 및 해당 지표 또는 기본 측정 방법론, 중요한 가정, 한계, 소스 및 데이터 수집 프로세스의 변경사항. 이는 이러한 변경사항의 근거 및 비교 가능성에 대한 영향에 대한 설명을 포함 (본 표준의 공시 요구사항 BP-2 특정 상황과 관련된 공시 참조)\n(j) 공시된 목표에 대한 성과, 목표가 모니터링되고 검토되는 방법에 대한 정보 및 사용된 지표, 진행 상황이 초기에 계획된 것과 일치하는지 여부, 그리고 목표 달성을 향한 기업의 성과에서 추세 또는 중요한 변경사항에 대한 분석 포함\n\n기업이 측정 가능한 결과 지향적 목표를 설정하지 않은 경우:\n(a) 이러한 목표가 설정될지 여부 및 설정 시기를 공시하거나, 기업이 이러한 목표를 설정할 계획이 없는 이유를 공시할 수 있습니다\n(b) 여전히 중요 지속가능성 관련 영향, 리스크 및 기회와 관련하여 정책 및 조치의 효과를 추적하는지 여부를 공시해야 하며, 추적하는 경우:\ni. 이를 수행하는 프로세스\nii. 달성할 정의된 야망 수준 및 진행 상황을 평가하는 데 사용하는 정성적 또는 정량적 지표(진행 상황을 측정하는 기준 기간 포함)",
+            "validation_rules": {
+                "section_type": "minimum_disclosure_requirement",
+                "paragraph_reference": "ESRS 2 - MDR-T (78-81)",
+                "key_terms": [
+                    "targets",
+                    "material sustainability matters",
+                    "track effectiveness",
+                    "measurable time-bound outcome-oriented targets",
+                    "policy objectives",
+                    "baseline value",
+                    "base year",
+                    "milestones",
+                    "interim targets",
+                    "scientific evidence",
+                    "stakeholder involvement",
+                    "performance against targets",
+                    "trends",
+                    "changes in targets"
+                ],
+                "related_concepts": [
+                    "minimum disclosure requirements",
+                    "target management",
+                    "progress tracking",
+                    "comparability",
+                    "BP-2",
+                    "level of ambition",
+                    "qualitative indicators",
+                    "quantitative indicators"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_measurable_targets",
+                        "description": "측정 가능하고 결과 지향적이며 시간 제한이 있는 목표 공시"
+                    },
+                    {
+                        "action": "describe_relationship_policy",
+                        "description": "각 목표에 대해 목표와 정책 목표의 관계 설명"
+                    },
+                    {
+                        "action": "disclose_target_level",
+                        "description": "정의된 목표 수준 공시 (절대/상대, 측정 단위 포함)"
+                    },
+                    {
+                        "action": "disclose_scope_target",
+                        "description": "목표의 범위 공시 (활동, 가치사슬, 지역적 경계)"
+                    },
+                    {
+                        "action": "disclose_baseline_base_year",
+                        "description": "기준값 및 기준연도 공시"
+                    },
+                    {
+                        "action": "disclose_period_milestones",
+                        "description": "목표 적용 기간 및 마일스톤 또는 중간 목표 공시"
+                    },
+                    {
+                        "action": "disclose_methodologies_assumptions",
+                        "description": "목표 정의 방법론 및 중요한 가정 공시 (시나리오, 데이터 소스, 정책 목표 정렬, 지속가능한 발전 맥락 포함)"
+                    },
+                    {
+                        "action": "disclose_scientific_evidence",
+                        "description": "환경 관련 목표의 과학적 근거 기반 여부 공시"
+                    },
+                    {
+                        "action": "disclose_stakeholder_involvement",
+                        "description": "목표 설정 시 이해관계자 참여 여부 및 방법 공시"
+                    },
+                    {
+                        "action": "disclose_changes_targets",
+                        "description": "목표 및 관련 지표 또는 기본 측정 방법론 변경사항 공시 (근거 및 비교 가능성 영향 포함)"
+                    },
+                    {
+                        "action": "disclose_performance_targets",
+                        "description": "공시된 목표에 대한 성과 공시 (모니터링 방법, 지표, 계획 대비 진행 상황, 추세 분석 포함)"
+                    },
+                    {
+                        "action": "disclose_no_targets_case",
+                        "description": "측정 가능한 결과 지향적 목표가 없는 경우 목표 설정 계획 또는 이유, 효과 추적 여부 및 방법 공시 (조건부)"
+                    }
+                ],
+                "conditional_requirements": [
+                    {
+                        "condition": "no_measurable_outcome_targets",
+                        "requirement": "측정 가능한 결과 지향적 목표가 없는 경우 목표 설정 계획 또는 이유 공시 선택적, 효과 추적 여부 및 방법 공시 필수"
+                    }
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-MDR-T",
+                "ESRS2-MDR-T-a",
+                "ESRS2-MDR-T-b",
+                "ESRS2-MDR-T-c",
+                "ESRS2-MDR-T-d",
+                "ESRS2-MDR-T-e",
+                "ESRS2-MDR-T-f",
+                "ESRS2-MDR-T-g",
+                "ESRS2-MDR-T-h",
+                "ESRS2-MDR-T-i",
+                "ESRS2-MDR-T-j",
+                "ESRS2-MDR-T-k",
+                "ESRS2-MDR-T-k-i",
+                "ESRS2-MDR-T-k-ii"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "1.1 Categories of ESRS standards",
+            "section_content": "ESRS 표준에는 세 가지 범주가 있습니다:\n(a) 교차 기준서(cross-cutting standards);\n(b) 주제별 기준서(topical standards, 환경, 사회 및 거버넌스 기준서);\n(c) 부문별 기준서(sector-specific standards).\n\n교차 기준서와 주제별 기준서는 부문에 구애받지 않으며(sector-agnostic), 이는 기업이 운영하는 부문과 관계없이 모든 기업에 적용됨을 의미합니다.\n\n교차 기준서인 ESRS 1 일반 요구사항(General requirements)과 ESRS 2 일반 공시(General disclosures)는 주제별 기준서 및 부문별 기준서에서 다루는 지속가능성 사항에 적용됩니다.\n\n본 기준서(ESRS 1)는 ESRS 기준서의 구조를 설명하고, 작성 규칙과 기본 개념을 설명하며, 지속가능성 관련 정보를 준비하고 제시하기 위한 일반 요구사항을 규정합니다.\n\nESRS 2는 거버넌스, 전략, 영향, 리스크 및 기회 관리, 지표 및 목표의 보고 영역에서 모든 중요 지속가능성 사항에 대해 일반 수준에서 기업이 제공해야 하는 정보에 대한 공시 요구사항을 규정합니다.\n\n주제별 ESRS는 지속가능성 주제를 다루며 주제 및 하위 주제로 구성되며, 필요한 경우 하위-하위 주제로 구성됩니다. 본 기준서의 적용 요구사항 16(AR 16)의 표는 주제별 ESRS에서 다루는 지속가능성 주제, 하위 주제 및 하위-하위 주제(통칭 '지속가능성 사항')에 대한 개요를 제공합니다.\n\n주제별 ESRS는 ESRS 2의 일반 수준 공시 요구사항을 보완하는 특정 요구사항을 포함할 수 있습니다. ESRS 2 부록 C 'ESRS 2 일반 공시와 공동으로 적용되는 주제별 ESRS의 공시/적용 요구사항'은 기업이 ESRS 2의 일반 수준 공시 요구사항과 함께 적용해야 하는 주제별 ESRS의 추가 요구사항 목록을 제공합니다.\n\n부문별 기준서는 부문 내의 모든 기업에 적용됩니다. 부문별 기준서는 특정 부문의 모든 기업에 중요할 가능성이 높고 주제별 기준서에서 다루지 않거나 충분히 다루지 않은 영향, 리스크 및 기회를 다룹니다. 부문별 기준서는 다중 주제이며 해당 부문에 가장 관련성이 높은 주제를 다룹니다. 부문별 기준서는 높은 수준의 비교 가능성을 달성합니다.\n\nESRS의 세 가지 범주에 규정된 공시 요구사항 외에도, 기업이 영향, 리스크 또는 기회가 ESRS에서 다루지 않거나 충분한 세분화로 다루지 않지만 특정 사실과 상황으로 인해 중요한 것으로 결론을 내리는 경우, 사용자가 기업의 지속가능성 관련 영향, 리스크 또는 기회를 이해할 수 있도록 추가적인 기업별 공시(entity-specific disclosures)를 제공해야 합니다. 적용 요구사항 AR 1부터 AR 5까지는 기업별 공시에 대한 추가 지침을 제공합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 1.1 (4-11)",
+                "key_terms": [
+                    "categories of ESRS standards",
+                    "cross-cutting standards",
+                    "topical standards",
+                    "sector-specific standards",
+                    "ESRS 1 General requirements",
+                    "ESRS 2 General disclosures",
+                    "sector-agnostic",
+                    "sustainability matters",
+                    "disclosure requirements",
+                    "entity-specific disclosures",
+                    "AR 16",
+                    "AR 1 to AR 5"
+                ],
+                "related_concepts": [
+                    "ESRS architecture",
+                    "reporting areas",
+                    "governance",
+                    "strategy",
+                    "impact risk opportunity management",
+                    "metrics and targets",
+                    "topics and sub-topics",
+                    "comparability",
+                    "materiality assessment"
+                ],
+                "esrs_categories": [
+                    {
+                        "category": "cross-cutting standards",
+                        "description": "ESRS 1과 ESRS 2로 구성, 모든 기업에 적용",
+                        "standards": [
+                            "ESRS 1",
+                            "ESRS 2"
+                        ]
+                    },
+                    {
+                        "category": "topical standards",
+                        "description": "환경(E), 사회(S), 거버넌스(G) 주제별 기준서",
+                        "structure": "topics, sub-topics, sub-sub-topics"
+                    },
+                    {
+                        "category": "sector-specific standards",
+                        "description": "특정 부문의 모든 기업에 적용, 다중 주제, 높은 비교 가능성"
+                    }
+                ],
+                "entity_specific_disclosures": {
+                    "condition": "impact, risk or opportunity not covered or not sufficiently covered by ESRS but material",
+                    "requirement": "provide additional entity-specific disclosures",
+                    "guidance": "AR 1 to AR 5"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-SBM-3-h",
+                "ESRS2-BP-2-p",
+                "ESRS2-BP-2-p-a",
+                "ESRS2-BP-2-p-b",
+                "ESRS2-BP-2-p-c",
+                "ESRS2-BP-2-p-d",
+                "ESRS2-BP-2-p-e"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "1.2 Reporting areas and minimum content disclosure requirements on policies, actions, targets and metrics",
+            "section_content": "ESRS 2, 주제별 ESRS 및 부문별 ESRS의 공시 요구사항은 다음 보고 영역으로 구성됩니다:\n\n(a) 거버넌스 (GOV): 영향, 리스크 및 기회를 모니터링, 관리 및 감독하는 데 사용되는 거버넌스 프로세스, 통제 및 절차 (ESRS 2 제2장 거버넌스 참조)\n\n(b) 전략 (SBM): 기업의 전략 및 사업 모델이 중요 영향, 리스크 및 기회와 어떻게 상호작용하는지, 기업이 그러한 영향, 리스크 및 기회를 어떻게 해결하는지 포함 (ESRS 2 제3장 전략 참조)\n\n(c) 영향, 리스크 및 기회 관리 (IRO): 기업이 다음을 수행하는 프로세스:\ni. 영향, 리스크 및 기회를 식별하고 중요성을 평가 (ESRS 2 제4.1절 IRO-1 참조)\nii. 정책 및 조치를 통해 중요 지속가능성 사항을 관리 (ESRS 2 제4.2절 참조)\n\n(d) 지표 및 목표 (MT): 기업의 성과, 설정한 목표 및 목표 달성을 위한 진행 상황 포함 (ESRS 2 제5장 지표 및 목표 참조)\n\nESRS 2는 다음을 포함합니다:\n(a) 제4.2절 정책(MDR-P) 및 조치(MDR-A)에 관한 최소 공시 요구사항\n(b) 제5절 지표(MDR-M) 및 목표(MDR-T)에 관한 최소 공시 요구사항\n\n기업은 정책, 조치, 지표 및 목표에 관한 최소 공시 요구사항을 주제별 및 부문별 ESRS의 해당 공시 요구사항과 함께 적용해야 합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 1.2 (12-13)",
+                "key_terms": [
+                    "reporting areas",
+                    "governance (GOV)",
+                    "strategy (SBM)",
+                    "impact risk opportunity management (IRO)",
+                    "metrics and targets (MT)",
+                    "minimum disclosure requirements",
+                    "MDR-P",
+                    "MDR-A",
+                    "MDR-M",
+                    "MDR-T",
+                    "disclosure requirements",
+                    "topical ESRS",
+                    "sector-specific ESRS"
+                ],
+                "related_concepts": [
+                    "ESRS 2 structure",
+                    "reporting framework",
+                    "disclosure obligations",
+                    "material sustainability matters",
+                    "policies",
+                    "actions",
+                    "targets",
+                    "metrics"
+                ],
+                "reporting_areas": [
+                    {
+                        "area": "Governance (GOV)",
+                        "description": "영향, 리스크 및 기회를 모니터링, 관리 및 감독하는 거버넌스 프로세스, 통제 및 절차",
+                        "reference": "ESRS 2 chapter 2"
+                    },
+                    {
+                        "area": "Strategy (SBM)",
+                        "description": "기업의 전략 및 사업 모델이 중요 영향, 리스크 및 기회와의 상호작용 및 해결 방법",
+                        "reference": "ESRS 2 chapter 3"
+                    },
+                    {
+                        "area": "Impact, risk and opportunity management (IRO)",
+                        "description": "영향, 리스크 및 기회 식별 및 중요성 평가, 정책 및 조치를 통한 중요 지속가능성 사항 관리",
+                        "reference": "ESRS 2 section 4.1 (IRO-1), section 4.2"
+                    },
+                    {
+                        "area": "Metrics and targets (MT)",
+                        "description": "기업의 성과, 설정한 목표 및 목표 달성을 위한 진행 상황",
+                        "reference": "ESRS 2 chapter 5"
+                    }
+                ],
+                "minimum_disclosure_requirements": [
+                    {
+                        "mdr": "MDR-P",
+                        "description": "정책에 관한 최소 공시 요구사항",
+                        "location": "ESRS 2 section 4.2"
+                    },
+                    {
+                        "mdr": "MDR-A",
+                        "description": "조치에 관한 최소 공시 요구사항",
+                        "location": "ESRS 2 section 4.2"
+                    },
+                    {
+                        "mdr": "MDR-M",
+                        "description": "지표에 관한 최소 공시 요구사항",
+                        "location": "ESRS 2 section 5"
+                    },
+                    {
+                        "mdr": "MDR-T",
+                        "description": "목표에 관한 최소 공시 요구사항",
+                        "location": "ESRS 2 section 5"
+                    }
+                ],
+                "application_rule": "기업은 정책, 조치, 지표 및 목표에 관한 최소 공시 요구사항을 주제별 및 부문별 ESRS의 해당 공시 요구사항과 함께 적용해야 함"
+            },
+            "related_dp_ids": [
+                "ESRS2-GOV-1",
+                "ESRS2-SBM-1",
+                "ESRS2-SBM-2",
+                "ESRS2-SBM-3",
+                "ESRS2-IRO-1",
+                "ESRS2-MDR-P",
+                "ESRS2-MDR-A",
+                "ESRS2-MDR-M",
+                "ESRS2-MDR-T"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "1.3 Drafting conventions",
+            "section_content": "모든 ESRS에서:\n\n(a) \"영향(impacts)\"이라는 용어는 영향 중요성 평가를 통해 식별된 기업의 사업과 연결된 긍정적 및 부정적 지속가능성 관련 영향을 의미합니다 (제3.4절 영향 중요성 참조). 이는 실제 영향과 잠재적 미래 영향을 모두 의미합니다.\n\n(b) \"리스크 및 기회(risks and opportunities)\"라는 용어는 재무 중요성 평가를 통해 식별된 기업의 지속가능성 관련 재무 리스크 및 기회를 의미하며, 자연, 인간 및 사회 자원에 대한 의존성에서 파생된 것을 포함합니다 (제3.5절 참조).\n\n통칭하여 이것들을 \"영향, 리스크 및 기회(impacts, risks and opportunities)\" (IROs)라고 합니다. 이것들은 제3절에서 설명한 ESRS의 이중 중요성 관점을 반영합니다.\n\nESRS 전반에 걸쳐, 정의 용어집(부록 II)에 정의된 용어는 굵은 이탤릭체로 표시되며, 동일 단락에서 정의된 용어가 한 번 이상 사용되는 경우는 제외됩니다.\n\nESRS는 공시 요구사항 하에 공시할 정보를 구조화합니다. 각 공시 요구사항은 하나 이상의 고유한 데이터포인트로 구성됩니다. \"데이터포인트(datapoint)\"라는 용어는 공시 요구사항의 서술적 하위 요소를 의미할 수도 있습니다.\n\n공시 요구사항 외에도 대부분의 ESRS는 적용 요구사항(Application Requirements)도 포함합니다. 적용 요구사항은 공시 요구사항의 적용을 지원하며 ESRS의 다른 부분과 동일한 권한을 가집니다.\n\nESRS는 기업이 정보를 공시할 의무의 정도를 구분하기 위해 다음 용어를 사용합니다:\n(a) \"공시해야 함(shall disclose)\" - 조항이 공시 요구사항 또는 데이터포인트에 의해 규정됨을 나타냅니다\n(b) \"공시할 수 있음(may disclose)\" - 모범 사례를 장려하기 위한 자발적 공시를 나타냅니다\n\n또한 ESRS는 해당되는 경우 기업이 특정 공시를 준비할 때 고려하거나 사용할 것으로 예상되는 사항, 자원 또는 방법론을 언급할 때 \"고려해야 함(shall consider)\"이라는 용어를 사용합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 1.3 (14-18)",
+                "key_terms": [
+                    "impacts",
+                    "risks and opportunities",
+                    "impacts risks and opportunities (IROs)",
+                    "double materiality",
+                    "impact materiality assessment",
+                    "financial materiality assessment",
+                    "defined terms",
+                    "bold italic",
+                    "glossary of definitions",
+                    "Annex II",
+                    "Disclosure Requirements",
+                    "datapoints",
+                    "Application Requirements",
+                    "shall disclose",
+                    "may disclose",
+                    "shall consider"
+                ],
+                "related_concepts": [
+                    "terminology",
+                    "drafting standards",
+                    "obligation levels",
+                    "mandatory disclosure",
+                    "voluntary disclosure",
+                    "guidance requirements"
+                ],
+                "term_definitions": [
+                    {
+                        "term": "impacts",
+                        "definition": "영향 중요성 평가를 통해 식별된 기업의 사업과 연결된 긍정적 및 부정적 지속가능성 관련 영향 (실제 영향 및 잠재적 미래 영향 포함)",
+                        "reference": "ESRS 1 section 3.4 Impact materiality"
+                    },
+                    {
+                        "term": "risks and opportunities",
+                        "definition": "재무 중요성 평가를 통해 식별된 기업의 지속가능성 관련 재무 리스크 및 기회 (자연, 인간 및 사회 자원에 대한 의존성에서 파생된 것 포함)",
+                        "reference": "ESRS 1 section 3.5 Financial materiality"
+                    },
+                    {
+                        "term": "impacts, risks and opportunities (IROs)",
+                        "definition": "영향, 리스크 및 기회의 통칭, ESRS의 이중 중요성 관점 반영",
+                        "reference": "ESRS 1 section 3 Double materiality"
+                    }
+                ],
+                "drafting_conventions": [
+                    {
+                        "convention": "defined_terms_formatting",
+                        "description": "정의 용어집(부록 II)에 정의된 용어는 굵은 이탤릭체로 표시 (동일 단락에서 한 번 이상 사용되는 경우 제외)"
+                    },
+                    {
+                        "convention": "disclosure_requirement_structure",
+                        "description": "각 공시 요구사항은 하나 이상의 고유한 데이터포인트로 구성, 데이터포인트는 공시 요구사항의 서술적 하위 요소를 의미할 수도 있음"
+                    },
+                    {
+                        "convention": "application_requirements",
+                        "description": "대부분의 ESRS는 공시 요구사항 외에도 적용 요구사항 포함, 적용 요구사항은 공시 요구사항의 적용을 지원하며 ESRS의 다른 부분과 동일한 권한을 가짐"
+                    }
+                ],
+                "obligation_levels": [
+                    {
+                        "term": "shall disclose",
+                        "level": "mandatory",
+                        "description": "조항이 공시 요구사항 또는 데이터포인트에 의해 규정됨을 나타냄"
+                    },
+                    {
+                        "term": "may disclose",
+                        "level": "voluntary",
+                        "description": "모범 사례를 장려하기 위한 자발적 공시를 나타냄"
+                    },
+                    {
+                        "term": "shall consider",
+                        "level": "guidance",
+                        "description": "해당되는 경우 기업이 특정 공시를 준비할 때 고려하거나 사용할 것으로 예상되는 사항, 자원 또는 방법론을 언급"
+                    }
+                ]
+            },
+            "related_dp_ids": [
+                "ESRS2-IRO-1",
+                "ESRS2-IRO-1-a",
+                "ESRS2-BP-1",
+                "ESRS2-BP-1-a",
+                "ESRS2-GOV-1",
+                "ESRS2-GOV-1-a"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "2. Qualitative characteristics of information",
+            "section_content": "기업이 지속가능성 보고서를 준비할 때 다음을 적용해야 합니다:\n\n(a) 정보의 기본 정성적 특성, 즉 관련성(relevance)과 충실한 표시(faithful representation)\n(b) 정보의 향상 정성적 특성, 즉 비교 가능성(comparability), 검증 가능성(verifiability) 및 이해 가능성(understandability)\n\n이러한 정보의 정성적 특성은 본 기준서의 부록 B에 정의 및 설명되어 있습니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 2 (19-20)",
+                "key_terms": [
+                    "qualitative characteristics",
+                    "relevance",
+                    "faithful representation",
+                    "comparability",
+                    "verifiability",
+                    "understandability",
+                    "fundamental qualitative characteristics",
+                    "enhancing qualitative characteristics",
+                    "Appendix B"
+                ],
+                "related_concepts": [
+                    "information quality",
+                    "disclosure quality",
+                    "reporting standards",
+                    "financial reporting principles"
+                ],
+                "fundamental_characteristics": [
+                    {
+                        "characteristic": "relevance",
+                        "description": "관련성 - 정보가 사용자의 의사결정에 유용한지 여부"
+                    },
+                    {
+                        "characteristic": "faithful representation",
+                        "description": "충실한 표시 - 정보가 실제 현상을 정확하고 완전하게 반영하는지 여부"
+                    }
+                ],
+                "enhancing_characteristics": [
+                    {
+                        "characteristic": "comparability",
+                        "description": "비교 가능성 - 다른 기간 및 다른 기업과 비교할 수 있는지 여부"
+                    },
+                    {
+                        "characteristic": "verifiability",
+                        "description": "검증 가능성 - 정보가 독립적인 관찰자에 의해 확인될 수 있는지 여부"
+                    },
+                    {
+                        "characteristic": "understandability",
+                        "description": "이해 가능성 - 정보가 합리적인 지식을 가진 사용자가 이해할 수 있는지 여부"
+                    }
+                ],
+                "reference": "Appendix B of ESRS 1"
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "3. Double materiality as the basis for sustainability disclosures",
+            "section_content": "기업은 본 장에서 정의 및 설명한 이중 중요성 원칙을 기반으로 지속가능성 사항에 대해 보고해야 합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 3 (21)",
+                "key_terms": [
+                    "double materiality",
+                    "sustainability disclosures",
+                    "materiality principle"
+                ],
+                "related_concepts": [
+                    "impact materiality",
+                    "financial materiality",
+                    "sustainability reporting basis"
+                ],
+                "principle": "기업은 이중 중요성 원칙을 기반으로 지속가능성 사항에 대해 보고해야 함"
+            },
+            "related_dp_ids": [
+                "ESRS2-IRO-1",
+                "ESRS2-SBM-3"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "3.1 Stakeholders and their relevance to the materiality assessment process",
+            "section_content": "이해관계자는 기업에 영향을 미치거나 기업에 의해 영향을 받을 수 있는 사람들입니다. 이해관계자에는 두 가지 주요 그룹이 있습니다:\n\n(a) 영향받는 이해관계자(affected stakeholders): 기업의 활동 및 가치사슬 전반에 걸친 직접적 및 간접적 비즈니스 관계에 의해 이익이 긍정적 또는 부정적으로 영향을 받거나 받을 수 있는 개인 또는 그룹\n\n(b) 지속가능성 보고서 사용자(users of sustainability statements): 일반 목적 재무보고의 주요 사용자(기존 및 잠재적 투자자, 대출자 및 기타 채권자, 자산 관리자, 신용 기관, 보험 기업 포함) 및 지속가능성 보고서의 기타 사용자(기업의 비즈니스 파트너, 노동조합 및 사회 파트너, 시민 사회 및 비정부 기구, 정부, 분석가 및 학자 포함)\n\n일부 이해관계자는 제22단락에서 언급한 두 그룹 모두에 속할 수 있지만, 모든 이해관계자가 그런 것은 아닙니다.\n\n영향받는 이해관계자와의 협력은 기업의 지속적인 실사 프로세스(제4장 실사 참조) 및 지속가능성 중요성 평가의 핵심입니다. 여기에는 실제 및 잠재적 부정적 영향을 식별하고 평가하는 프로세스가 포함되며, 이는 지속가능성 보고 목적을 위한 중요 영향을 식별하는 평가 프로세스에 정보를 제공합니다(본 기준서 제3.4절 참조).",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 3.1 (22-24)",
+                "key_terms": [
+                    "stakeholders",
+                    "affected stakeholders",
+                    "users of sustainability statements",
+                    "primary users",
+                    "general-purpose financial reporting",
+                    "due diligence process",
+                    "materiality assessment",
+                    "negative impacts",
+                    "value chain"
+                ],
+                "related_concepts": [
+                    "stakeholder engagement",
+                    "impact assessment",
+                    "sustainability reporting users",
+                    "investors",
+                    "creditors",
+                    "business partners",
+                    "civil society"
+                ],
+                "stakeholder_groups": [
+                    {
+                        "group": "affected stakeholders",
+                        "description": "기업의 활동 및 가치사슬 전반에 걸친 직접적 및 간접적 비즈니스 관계에 의해 이익이 긍정적 또는 부정적으로 영향을 받거나 받을 수 있는 개인 또는 그룹"
+                    },
+                    {
+                        "group": "users of sustainability statements",
+                        "description": "일반 목적 재무보고의 주요 사용자(기존 및 잠재적 투자자, 대출자 및 기타 채권자, 자산 관리자, 신용 기관, 보험 기업 포함) 및 지속가능성 보고서의 기타 사용자(기업의 비즈니스 파트너, 노동조합 및 사회 파트너, 시민 사회 및 비정부 기구, 정부, 분석가 및 학자 포함)"
+                    }
+                ],
+                "stakeholder_engagement": {
+                    "importance": "영향받는 이해관계자와의 협력은 기업의 지속적인 실사 프로세스 및 지속가능성 중요성 평가의 핵심",
+                    "process": "실제 및 잠재적 부정적 영향을 식별하고 평가하는 프로세스 포함",
+                    "purpose": "지속가능성 보고 목적을 위한 중요 영향을 식별하는 평가 프로세스에 정보 제공"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-IRO-1",
+                "ESRS2-IRO-1-b-iii",
+                "ESRS2-SBM-2"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "3.2 Material matters and materiality of information",
+            "section_content": "중요성 평가 수행(본 기준서 제3.4절 영향 중요성 및 제3.5절 재무 중요성 참조)은 기업이 보고할 중요 영향, 리스크 및 기회를 식별하는 데 필요합니다.\n\n중요성 평가는 ESRS 하에서 지속가능성 보고의 출발점입니다. ESRS 2 제4.1절의 IRO-1은 영향, 리스크 및 기회를 식별하고 중요성을 평가하는 기업의 프로세스에 대한 일반 공시 요구사항을 포함합니다. ESRS 2의 SBM-3는 기업의 중요성 평가에서 도출된 중요 영향, 리스크 및 기회에 대한 일반 공시 요구사항을 제공합니다.\n\n본 기준서 부록 A의 적용 요구사항에는 중요성 평가를 지원하기 위해 주제별 ESRS에서 다루는 지속가능성 사항 목록이 주제, 하위 주제 및 하위-하위 주제로 분류되어 포함되어 있습니다. 본 기준서 부록 E '포함할 공시 결정을 위한 플로우차트'는 본 절에서 설명한 중요성 평가를 설명합니다.\n\n지속가능성 사항은 영향 중요성(본 기준서 제3.4절 참조) 또는 재무 중요성(본 기준서 제3.5절 참조)에 대해 정의된 기준을 충족하거나 둘 다 충족할 때 \"중요한(material)\" 것입니다.\n\n중요성 평가 결과와 관계없이, 기업은 항상 다음에 의해 요구되는 정보를 공시해야 합니다: ESRS 2 일반 공시(즉, ESRS 2에 규정된 모든 공시 요구사항 및 데이터포인트) 및 ESRS 2 일반 공시와 공동으로 적용되는 주제별 ESRS의 공시/적용 요구사항에 나열된 공시 요구사항 IRO-1 '중요 영향, 리스크 및 기회 식별 및 평가 프로세스 설명'과 관련된 주제별 ESRS의 공시 요구사항(데이터포인트 포함).\n\n기업이 중요성 평가 결과로 지속가능성 사항이 중요하다고 결론을 내리는 경우(ESRS 2 IRO-1, IRO-2 및 SBM-3가 공시 요구사항을 설정함), 기업은:\n(a) 해당 지속가능성 사항과 관련된 주제별 및 부문별 ESRS의 공시 요구사항(적용 요구사항 포함)에 따라 정보를 공시해야 하며\n(b) 중요 지속가능성 사항이 ESRS에서 다루지 않거나 충분한 세분화로 다루지 않는 경우 추가 기업별 공시(본 기준서 제11단락 및 AR 1부터 AR 5 참조)를 공시해야 합니다.\n\n공시 요구사항 내에서 규정된 적용 가능한 정보(데이터포인트 포함) 또는 기업별 공시는, 기업이 중요 정보 평가의 일부로 평가할 때 다음 관점 중 하나 이상에서 관련성이 있는 경우 공시해야 합니다:\n(a) 정보가 묘사하거나 설명하려는 사항과 관련하여 정보의 중요성 또는\n(b) 일반 목적 재무보고의 주요 사용자(제48단락에서 설명) 및/또는 주요 관심사가 기업의 영향에 대한 정보인 사용자의 요구를 포함하여 사용자의 의사결정 요구를 충족할 수 있는 정보의 능력\n\n기업이 기후 변화가 중요하지 않다고 결론을 내리고 따라서 ESRS E1 기후 변화의 모든 공시 요구사항을 생략하는 경우, 기업은 기후 변화에 관한 중요성 평가의 결론에 대한 상세한 설명을 공시해야 하며(ESRS 2 IRO-2 '기업의 지속가능성 보고서에서 다루는 ESRS의 공시 요구사항' 참조), 기후 변화가 미래에 중요하다고 결론을 내릴 수 있는 조건에 대한 전향적 분석을 포함해야 합니다. 기업이 기후 변화 외의 주제가 중요하지 않다고 결론을 내리고 따라서 해당 주제별 ESRS의 모든 공시 요구사항을 생략하는 경우, 기업은 해당 주제에 대한 중요성 평가의 결론에 대한 간략한 설명을 제공할 수 있습니다.\n\n중요한 것으로 평가된 지속가능성 사항과 관련하여 정책, 조치 및 목표에 대한 정보를 공시할 때, 기업은 해당 사항과 관련된 주제별 및 부문별 ESRS의 모든 공시 요구사항 및 데이터포인트와 ESRS 2에서 요구하는 정책, 조치 및 목표에 대한 해당 최소 공시 요구사항에 규정된 정보를 포함해야 합니다. 기업이 각각의 정책을 채택하지 않았거나, 각각의 조치를 구현하지 않았거나, 각각의 목표를 설정하지 않았기 때문에 주제별 또는 부문별 ESRS의 공시 요구사항 및 데이터포인트 또는 ESRS 2의 정책, 조치 및 목표에 대한 최소 공시 요구사항에 규정된 정보를 공시할 수 없는 경우, 기업은 이를 공시해야 하며 이러한 사항을 마련할 목표 시기를 보고할 수 있습니다.\n\n관련 주제별 ESRS의 지표 및 목표 섹션에 따라 중요 지속가능성 사항에 대한 지표 정보를 공시할 때, 기업은:\n(a) 기업이 그러한 정보를 중요하다고 평가하는 경우 공시 요구사항에 규정된 정보를 포함해야 하며\n(b) 기업이 그러한 정보를 중요하지 않다고 평가하고 그러한 정보가 공시 요구사항의 목적을 충족하는 데 필요하지 않다고 결론을 내리는 경우 공시 요구사항의 데이터포인트에 규정된 정보를 생략할 수 있습니다.\n\n기업이 ESRS 2 부록 B에 나열된 기타 EU 법률에서 도출된 데이터포인트에 규정된 정보를 생략하는 경우, 기업은 해당 정보가 \"중요하지 않음\"이라고 명시적으로 명시해야 합니다.\n\n기업은 다음을 결정하기 위해 적절한 임계값을 포함한 기준을 적용하는 방법을 설정해야 합니다:\n(a) 제34단락에 따라 관련 주제별 ESRS의 지표 및 목표 섹션에 따라 중요 지속가능성 사항에 대한 지표 정보를 공시하는 방법 및\n(b) 기업별 공시로 공시할 정보.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 3.2 (25-36)",
+                "key_terms": [
+                    "materiality assessment",
+                    "impact materiality",
+                    "financial materiality",
+                    "material impacts risks and opportunities",
+                    "IRO-1",
+                    "IRO-2",
+                    "SBM-3",
+                    "entity-specific disclosures",
+                    "minimum disclosure requirements",
+                    "MDR-P",
+                    "MDR-A",
+                    "MDR-T",
+                    "climate change",
+                    "ESRS E1",
+                    "not material",
+                    "thresholds",
+                    "criteria"
+                ],
+                "related_concepts": [
+                    "double materiality",
+                    "materiality criteria",
+                    "disclosure requirements",
+                    "topical ESRS",
+                    "sector-specific ESRS",
+                    "Appendix A",
+                    "Appendix B",
+                    "Appendix C",
+                    "Appendix E"
+                ],
+                "materiality_assessment": {
+                    "purpose": "보고할 중요 영향, 리스크 및 기회를 식별",
+                    "starting_point": "ESRS 하에서 지속가능성 보고의 출발점",
+                    "key_disclosure_requirements": [
+                        "IRO-1: 영향, 리스크 및 기회 식별 및 중요성 평가 프로세스",
+                        "SBM-3: 중요성 평가에서 도출된 중요 영향, 리스크 및 기회"
+                    ],
+                    "supporting_materials": [
+                        "Appendix A: 주제별 ESRS의 지속가능성 사항 목록 (주제, 하위 주제, 하위-하위 주제로 분류)",
+                        "Appendix E: 포함할 공시 결정을 위한 플로우차트"
+                    ]
+                },
+                "materiality_criteria": {
+                    "impact_materiality": "영향 중요성 기준 충족",
+                    "financial_materiality": "재무 중요성 기준 충족",
+                    "both": "둘 다 충족"
+                },
+                "mandatory_disclosures": {
+                    "always_required": [
+                        "ESRS 2 General Disclosures (모든 공시 요구사항 및 데이터포인트)",
+                        "IRO-1과 관련된 주제별 ESRS의 공시 요구사항 (ESRS 2 Appendix C에 나열)"
+                    ],
+                    "regardless_of_materiality": "중요성 평가 결과와 관계없이 항상 공시"
+                },
+                "material_sustainability_matter_disclosures": {
+                    "when_material": [
+                        "주제별 및 부문별 ESRS의 해당 공시 요구사항(적용 요구사항 포함)에 따라 정보 공시",
+                        "ESRS에서 다루지 않거나 충분한 세분화로 다루지 않는 경우 추가 기업별 공시 (AR 1-5 참조)"
+                    ]
+                },
+                "information_materiality": {
+                    "criteria": [
+                        "정보가 묘사하거나 설명하려는 사항과 관련하여 정보의 중요성",
+                        "사용자의 의사결정 요구를 충족할 수 있는 정보의 능력 (주요 사용자 및 영향에 관심이 있는 사용자 포함)"
+                    ]
+                },
+                "climate_change_special_provision": {
+                    "if_not_material": "기후 변화가 중요하지 않은 경우 상세한 설명 및 전향적 분석 필수",
+                    "other_topics": "기타 주제가 중요하지 않은 경우 간략한 설명 선택적"
+                },
+                "policies_actions_targets_disclosure": {
+                    "requirement": "중요 지속가능성 사항과 관련하여 정책, 조치 및 목표에 대한 정보 공시 시 모든 관련 공시 요구사항 및 데이터포인트 포함",
+                    "if_cannot_disclose": "정책을 채택하지 않았거나, 조치를 구현하지 않았거나, 목표를 설정하지 않은 경우 이를 공시하고 목표 시기 보고 가능"
+                },
+                "metrics_disclosure": {
+                    "if_material": "공시 요구사항에 규정된 정보 포함 필수",
+                    "if_not_material": "데이터포인트에 규정된 정보 생략 가능 (공시 요구사항의 목적을 충족하는 데 필요하지 않은 경우)"
+                },
+                "eu_legislation_datapoints": {
+                    "if_omitted": "ESRS 2 Appendix B의 기타 EU 법률에서 도출된 데이터포인트 생략 시 '중요하지 않음' 명시적 명시 필수"
+                },
+                "thresholds_and_criteria": {
+                    "required_for": [
+                        "중요 지속가능성 사항에 대한 지표 정보 공시 방법 결정",
+                        "기업별 공시로 공시할 정보 결정"
+                    ]
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-IRO-1",
+                "ESRS2-IRO-2",
+                "ESRS2-SBM-3",
+                "ESRS2-SBM-3-h",
+                "ESRS2-MDR-P",
+                "ESRS2-MDR-A",
+                "ESRS2-MDR-T",
+                "ESRS2-MDR-M"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "3.3 Double materiality",
+            "section_content": "이중 중요성에는 두 가지 차원이 있습니다: 영향 중요성(impact materiality)과 재무 중요성(financial materiality). 달리 명시되지 않는 한, ESRS 전반에 걸쳐 \"중요한(material)\" 및 \"중요성(materiality)\"이라는 용어는 이중 중요성을 의미하는 데 사용됩니다.\n\n영향 중요성 평가와 재무 중요성 평가는 상호 연관되어 있으며, 이 두 차원 간의 상호 의존성을 고려해야 합니다. 일반적으로 출발점은 영향 평가이지만, 기업의 영향과 관련이 없는 중요 리스크 및 기회도 있을 수 있습니다. 지속가능성 영향은 시작부터 재무적으로 중요할 수 있거나, 단기, 중기 또는 장기에 걸쳐 기업의 재무 상태, 재무 성과, 현금 흐름, 자금 조달 접근성 또는 자본 비용에 합리적으로 예상되는 영향을 미칠 수 있을 때 재무적으로 중요해질 수 있습니다. 영향은 재무적으로 중요한지 여부와 관계없이 영향 중요성 관점에서 포착됩니다.\n\n기업의 가치사슬에서 영향, 리스크 및 기회를 식별하고 평가하여 중요성을 결정할 때, 기업은 활동, 비즈니스 관계, 지역 또는 기타 관련 요인의 성격을 기반으로 영향, 리스크 및 기회가 발생할 가능성이 높은 영역에 초점을 맞춰야 합니다.\n\n기업은 해당 자원에 대한 잠재적 영향과 관계없이 적절한 가격과 품질로 자연, 인간 및 사회 자원의 가용성에 대한 의존성에 의해 어떻게 영향을 받는지 고려해야 합니다.\n\n기업의 주요 영향, 리스크 및 기회는 이중 중요성 원칙 하에서 식별된 중요 영향, 리스크 및 기회와 동일한 것으로 이해되며, 따라서 지속가능성 보고서에서 보고됩니다.\n\n기업은 적절한 정량적 및/또는 정성적 임계값을 사용하여 본 기준서 제3.4절 및 제3.5절에 설정된 기준을 적용해야 합니다. 적절한 임계값은 어떤 영향, 리스크 및 기회가 중요한 것으로 식별되고 기업에 의해 해결되는지, 그리고 어떤 지속가능성 사항이 보고 목적상 중요한지 결정하는 데 필요합니다. 일부 기존 기준서 및 프레임워크는 ESRS에서 \"중요 영향\"으로 설명되는 영향을 식별하는 데 사용되는 임계값을 언급할 때 \"가장 중요한 영향\"이라는 용어를 사용합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 3.3 (37-42)",
+                "key_terms": [
+                    "double materiality",
+                    "impact materiality",
+                    "financial materiality",
+                    "material",
+                    "materiality",
+                    "interdependencies",
+                    "value chain",
+                    "dependencies",
+                    "natural resources",
+                    "human resources",
+                    "social resources",
+                    "principal impacts risks and opportunities",
+                    "thresholds",
+                    "quantitative thresholds",
+                    "qualitative thresholds",
+                    "most significant impacts"
+                ],
+                "related_concepts": [
+                    "materiality assessment",
+                    "sustainability impacts",
+                    "financial effects",
+                    "business relationships",
+                    "upstream value chain",
+                    "downstream value chain"
+                ],
+                "double_materiality_dimensions": [
+                    {
+                        "dimension": "impact materiality",
+                        "description": "영향 중요성 - 기업의 영향에 대한 관점"
+                    },
+                    {
+                        "dimension": "financial materiality",
+                        "description": "재무 중요성 - 재무 효과에 대한 관점"
+                    }
+                ],
+                "interdependencies": {
+                    "relationship": "영향 중요성 평가와 재무 중요성 평가는 상호 연관되어 있으며 상호 의존성을 고려해야 함",
+                    "starting_point": "일반적으로 출발점은 영향 평가이지만, 기업의 영향과 관련이 없는 중요 리스크 및 기회도 있을 수 있음"
+                },
+                "impact_financial_relationship": {
+                    "description": "지속가능성 영향은 시작부터 재무적으로 중요할 수 있거나, 단기, 중기 또는 장기에 걸쳐 재무 효과를 미칠 수 있을 때 재무적으로 중요해질 수 있음",
+                    "capture_principle": "영향은 재무적으로 중요한지 여부와 관계없이 영향 중요성 관점에서 포착됨"
+                },
+                "value_chain_assessment": {
+                    "focus": "활동, 비즈니스 관계, 지역 또는 기타 관련 요인의 성격을 기반으로 영향, 리스크 및 기회가 발생할 가능성이 높은 영역에 초점"
+                },
+                "dependencies": {
+                    "description": "적절한 가격과 품질로 자연, 인간 및 사회 자원의 가용성에 대한 의존성에 의해 어떻게 영향을 받는지 고려",
+                    "regardless": "해당 자원에 대한 잠재적 영향과 관계없이"
+                },
+                "principal_impacts": {
+                    "definition": "기업의 주요 영향, 리스크 및 기회는 이중 중요성 원칙 하에서 식별된 중요 영향, 리스크 및 기회와 동일",
+                    "reporting": "지속가능성 보고서에서 보고됨"
+                },
+                "thresholds": {
+                    "requirement": "적절한 정량적 및/또는 정성적 임계값 사용",
+                    "purpose": [
+                        "어떤 영향, 리스크 및 기회가 중요한 것으로 식별되고 해결되는지 결정",
+                        "어떤 지속가능성 사항이 보고 목적상 중요한지 결정"
+                    ],
+                    "note": "일부 기존 기준서는 '가장 중요한 영향'이라는 용어를 사용하지만, ESRS에서는 '중요 영향'으로 설명됨"
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "3.4 Impact materiality",
+            "section_content": "지속가능성 사항은 단기, 중기 또는 장기에 걸쳐 사람이나 환경에 대한 기업의 중요 실제 또는 잠재적, 긍정적 또는 부정적 영향과 관련될 때 영향 관점에서 중요합니다. 영향에는 기업의 자체 운영 및 상류 및 하류 가치사슬과 연결된 영향이 포함되며, 제품 및 서비스를 통해서뿐만 아니라 비즈니스 관계를 통해서도 포함됩니다. 비즈니스 관계에는 기업의 상류 및 하류 가치사슬의 관계가 포함되며 직접 계약 관계에 국한되지 않습니다.\n\n이 맥락에서 사람이나 환경에 대한 영향에는 환경, 사회 및 거버넌스 사항과 관련된 영향이 포함됩니다.\n\n부정적 영향의 중요성 평가는 UN 비즈니스와 인권에 관한 지침 원칙 및 다국적 기업을 위한 OECD 가이드라인의 국제 기구에서 정의한 실사 프로세스에 의해 알려집니다. 실제 부정적 영향의 경우, 중요성은 영향의 심각도에 기반하며, 잠재적 부정적 영향의 경우 영향의 심각도 및 가능성에 기반합니다. 심각도는 다음 요인에 기반합니다:\n(a) 규모(scale)\n(b) 범위(scope)\n(c) 영향의 구제 불가능한 성격(irremediable character)\n\n잠재적 부정적 인권 영향의 경우, 영향의 심각도가 가능성보다 우선합니다.\n\n긍정적 영향의 경우, 중요성은 다음에 기반합니다:\n(a) 실제 영향의 경우 영향의 규모 및 범위\n(b) 잠재적 영향의 경우 영향의 규모, 범위 및 가능성",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 3.4 (43-46)",
+                "key_terms": [
+                    "impact materiality",
+                    "material actual or potential impacts",
+                    "positive or negative impacts",
+                    "people or the environment",
+                    "short- medium- or long-term",
+                    "own operations",
+                    "upstream value chain",
+                    "downstream value chain",
+                    "products and services",
+                    "business relationships",
+                    "environmental social and governance matters",
+                    "due diligence process",
+                    "UN Guiding Principles on Business and Human Rights",
+                    "OECD Guidelines for Multinational Enterprises",
+                    "severity",
+                    "likelihood",
+                    "scale",
+                    "scope",
+                    "irremediable character",
+                    "human rights impact"
+                ],
+                "related_concepts": [
+                    "materiality assessment",
+                    "sustainability impacts",
+                    "value chain impacts",
+                    "negative impacts",
+                    "positive impacts",
+                    "actual impacts",
+                    "potential impacts"
+                ],
+                "impact_materiality_definition": {
+                    "condition": "단기, 중기 또는 장기에 걸쳐 사람이나 환경에 대한 기업의 중요 실제 또는 잠재적, 긍정적 또는 부정적 영향과 관련될 때",
+                    "scope": "기업의 자체 운영 및 상류 및 하류 가치사슬과 연결된 영향, 제품 및 서비스를 통한 영향, 비즈니스 관계를 통한 영향"
+                },
+                "business_relationships": {
+                    "scope": "기업의 상류 및 하류 가치사슬의 관계",
+                    "note": "직접 계약 관계에 국한되지 않음"
+                },
+                "impact_scope": {
+                    "includes": "환경, 사회 및 거버넌스 사항과 관련된 영향"
+                },
+                "negative_impact_assessment": {
+                    "basis": "UN 비즈니스와 인권에 관한 지침 원칙 및 다국적 기업을 위한 OECD 가이드라인의 실사 프로세스",
+                    "actual_impacts": "중요성은 영향의 심각도에 기반",
+                    "potential_impacts": "중요성은 영향의 심각도 및 가능성에 기반",
+                    "severity_factors": [
+                        "규모(scale)",
+                        "범위(scope)",
+                        "구제 불가능한 성격(irremediable character)"
+                    ],
+                    "human_rights_special_case": "잠재적 부정적 인권 영향의 경우, 영향의 심각도가 가능성보다 우선"
+                },
+                "positive_impact_assessment": {
+                    "actual_impacts": "중요성은 영향의 규모 및 범위에 기반",
+                    "potential_impacts": "중요성은 영향의 규모, 범위 및 가능성에 기반"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-IRO-1-b-iv"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "3.5 Financial materiality",
+            "section_content": "지속가능성 보고를 위한 재무 중요성의 범위는 기업의 재무제표에 포함할 정보를 결정하는 프로세스에서 사용되는 중요성의 범위를 확장한 것입니다.\n\n재무 중요성 평가는 일반 목적 재무보고의 주요 사용자가 기업에 자원을 제공하는 것과 관련된 의사결정을 내리는 데 중요하다고 간주되는 정보의 식별에 해당합니다. 특히, 정보를 생략, 오기 또는 모호하게 하는 것이 기업의 지속가능성 보고서를 기반으로 주요 사용자가 내리는 의사결정에 합리적으로 예상되는 영향을 미칠 수 있는 경우, 해당 정보는 일반 목적 재무보고의 주요 사용자에게 중요하다고 간주됩니다.\n\n지속가능성 사항은 기업에 중요 재무 효과를 유발하거나 합리적으로 예상되는 재무 효과를 유발할 수 있는 경우 재무 관점에서 중요합니다. 이는 지속가능성 사항이 단기, 중기 또는 장기에 걸쳐 기업의 발전, 재무 상태, 재무 성과, 현금 흐름, 자금 조달 접근성 또는 자본 비용에 중요 영향 또는 합리적으로 예상되는 중요 영향을 미치거나 미칠 수 있는 리스크 또는 기회를 생성할 때 해당됩니다. 리스크 및 기회는 과거 사건 또는 미래 사건에서 파생될 수 있습니다. 지속가능성 사항의 재무 중요성은 기업의 통제 범위 내에 있는 사항에 국한되지 않으며 재무제표 준비에 사용되는 통합 범위를 넘어서는 비즈니스 관계에 기인한 중요 리스크 및 기회에 대한 정보를 포함합니다.\n\n자연, 인간 및 사회 자원에 대한 의존성은 재무 리스크 또는 기회의 원천이 될 수 있습니다. 의존성은 두 가지 가능한 방식으로 효과를 유발할 수 있습니다:\n(a) 기업이 비즈니스 프로세스에 필요한 자원을 계속 사용하거나 획득할 수 있는 능력뿐만 아니라 그러한 자원의 품질 및 가격에 영향을 미칠 수 있음\n(b) 기업이 비즈니스 프로세스에 필요한 관계를 허용 가능한 조건으로 의존할 수 있는 능력에 영향을 미칠 수 있음\n\n리스크 및 기회의 중요성은 발생 가능성과 재무 효과의 잠재적 규모의 조합에 기반하여 평가됩니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 3.5 (47-51)",
+                "key_terms": [
+                    "financial materiality",
+                    "scope of materiality",
+                    "financial statements",
+                    "primary users",
+                    "general-purpose financial reports",
+                    "decision-making",
+                    "omitting misstating or obscuring information",
+                    "material financial effects",
+                    "financial position",
+                    "financial performance",
+                    "cash flows",
+                    "access to finance",
+                    "cost of capital",
+                    "short- medium- or long-term",
+                    "risks and opportunities",
+                    "past events",
+                    "future events",
+                    "control",
+                    "consolidation scope",
+                    "business relationships",
+                    "dependencies",
+                    "natural resources",
+                    "human resources",
+                    "social resources",
+                    "likelihood of occurrence",
+                    "potential magnitude of financial effects"
+                ],
+                "related_concepts": [
+                    "materiality assessment",
+                    "financial reporting",
+                    "sustainability reporting",
+                    "investors",
+                    "creditors",
+                    "resource allocation decisions"
+                ],
+                "financial_materiality_scope": {
+                    "description": "지속가능성 보고를 위한 재무 중요성의 범위는 재무제표에 포함할 정보를 결정하는 프로세스에서 사용되는 중요성의 범위를 확장한 것"
+                },
+                "financial_materiality_assessment": {
+                    "purpose": "일반 목적 재무보고의 주요 사용자가 기업에 자원을 제공하는 것과 관련된 의사결정을 내리는 데 중요하다고 간주되는 정보의 식별",
+                    "materiality_criterion": "정보를 생략, 오기 또는 모호하게 하는 것이 기업의 지속가능성 보고서를 기반으로 주요 사용자가 내리는 의사결정에 합리적으로 예상되는 영향을 미칠 수 있는 경우"
+                },
+                "material_sustainability_matter": {
+                    "condition": "기업에 중요 재무 효과를 유발하거나 합리적으로 예상되는 재무 효과를 유발할 수 있는 경우",
+                    "triggers": "단기, 중기 또는 장기에 걸쳐 기업의 발전, 재무 상태, 재무 성과, 현금 흐름, 자금 조달 접근성 또는 자본 비용에 중요 영향 또는 합리적으로 예상되는 중요 영향을 미치거나 미칠 수 있는 리스크 또는 기회를 생성",
+                    "sources": "리스크 및 기회는 과거 사건 또는 미래 사건에서 파생될 수 있음",
+                    "scope": "기업의 통제 범위 내에 있는 사항에 국한되지 않으며 재무제표 준비에 사용되는 통합 범위를 넘어서는 비즈니스 관계에 기인한 중요 리스크 및 기회에 대한 정보를 포함"
+                },
+                "dependencies": {
+                    "sources": "자연, 인간 및 사회 자원에 대한 의존성은 재무 리스크 또는 기회의 원천이 될 수 있음",
+                    "effects": [
+                        "기업이 비즈니스 프로세스에 필요한 자원을 계속 사용하거나 획득할 수 있는 능력뿐만 아니라 그러한 자원의 품질 및 가격에 영향을 미칠 수 있음",
+                        "기업이 비즈니스 프로세스에 필요한 관계를 허용 가능한 조건으로 의존할 수 있는 능력에 영향을 미칠 수 있음"
+                    ]
+                },
+                "materiality_assessment": {
+                    "basis": "리스크 및 기회의 중요성은 발생 가능성과 재무 효과의 잠재적 규모의 조합에 기반하여 평가됨"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-IRO-1-c-ii"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "3.6 Material impacts or risks arising from actions to address sustainability matters",
+            "section_content": "기업의 중요성 평가는 특정 지속가능성 사항과 관련하여 특정 영향 또는 리스크를 해결하거나 특정 기회로부터 이익을 얻기 위한 조치가 하나 이상의 다른 지속가능성 사항과 관련하여 중요 부정적 영향 또는 중요 리스크를 유발할 수 있는 상황을 식별할 수 있습니다. 예를 들어:\n\n(a) 특정 제품을 포기하는 탈탄소화 생산 조치 계획이 기업 자체 인력에 중요 부정적 영향을 미치고 퇴직금으로 인한 중요 리스크를 초래할 수 있음\n(b) 자동차 공급업체의 전기 자동차 공급에 초점을 맞추는 조치 계획이 기존 자동차용 공급 부품 생산을 위한 좌초 자산을 초래할 수 있음\n\n이러한 상황에서 기업은:\n(a) 중요 부정적 영향 또는 중요 리스크의 존재를 이를 생성하는 조치와 함께 공시하고, 영향 또는 리스크가 관련된 주제에 대한 상호 참조를 제공해야 하며\n(b) 중요 부정적 영향 또는 중요 리스크가 관련된 주제 하에서 어떻게 해결되는지에 대한 설명을 제공해야 합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 3.6 (52-53)",
+                "key_terms": [
+                    "materiality assessment",
+                    "actions to address sustainability matters",
+                    "material negative impacts",
+                    "material risks",
+                    "trade-offs",
+                    "cross-reference",
+                    "stranded assets",
+                    "redundancy payments"
+                ],
+                "related_concepts": [
+                    "sustainability trade-offs",
+                    "conflicting objectives",
+                    "unintended consequences",
+                    "action planning"
+                ],
+                "situation": {
+                    "description": "특정 지속가능성 사항과 관련하여 특정 영향 또는 리스크를 해결하거나 특정 기회로부터 이익을 얻기 위한 조치가 하나 이상의 다른 지속가능성 사항과 관련하여 중요 부정적 영향 또는 중요 리스크를 유발할 수 있는 상황",
+                    "examples": [
+                        "탈탄소화 생산 조치 계획이 자체 인력에 부정적 영향을 미치고 퇴직금으로 인한 리스크를 초래",
+                        "전기 자동차 공급에 초점을 맞추는 조치 계획이 기존 자동차용 공급 부품 생산을 위한 좌초 자산을 초래"
+                    ]
+                },
+                "disclosure_requirements": [
+                    {
+                        "requirement": "disclose_existence",
+                        "description": "중요 부정적 영향 또는 중요 리스크의 존재를 이를 생성하는 조치와 함께 공시"
+                    },
+                    {
+                        "requirement": "cross_reference",
+                        "description": "영향 또는 리스크가 관련된 주제에 대한 상호 참조 제공"
+                    },
+                    {
+                        "requirement": "describe_addressing",
+                        "description": "중요 부정적 영향 또는 중요 리스크가 관련된 주제 하에서 어떻게 해결되는지에 대한 설명 제공"
+                    }
+                ]
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "3.7 Level of disaggregation",
+            "section_content": "중요 영향, 리스크 및 기회에 대한 적절한 이해를 위해 필요한 경우, 기업은 보고된 정보를 세분화해야 합니다:\n\n(a) 국가별로, 국가 간에 중요 영향, 리스크 및 기회의 중요한 변동이 있고 더 높은 수준의 집계로 정보를 제시하는 것이 영향, 리스크 또는 기회에 대한 중요 정보를 모호하게 하는 경우\n(b) 중요한 현장별 또는 중요한 자산별로, 중요 영향, 리스크 및 기회가 특정 위치 또는 자산에 크게 의존하는 경우\n\n보고에 대한 적절한 세분화 수준을 정의할 때, 기업은 중요성 평가에서 채택한 세분화를 고려해야 합니다. 기업의 특정 사실과 상황에 따라 자회사별 세분화가 필요할 수 있습니다.\n\n다른 수준 또는 수준 내 여러 위치의 데이터가 집계되는 경우, 기업은 이러한 집계가 정보를 해석하는 데 필요한 특정성과 맥락을 모호하게 하지 않도록 해야 합니다. 기업은 성격이 다른 중요 항목을 집계해서는 안 됩니다.\n\n기업이 섹터별로 세분화된 정보를 제시할 때, 기업은 Directive 2013/34/EU의 제29b(1) 제3항 제(ii)호에 따라 위원회가 채택한 위임 행위에 명시될 ESRS 섹터 분류를 채택해야 합니다. 주제별 또는 부문별 ESRS가 특정 정보 항목을 준비할 때 특정 세분화 수준을 채택하도록 요구하는 경우, 주제별 또는 부문별 ESRS의 요구사항이 우선합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 3.7 (54-57)",
+                "key_terms": [
+                    "disaggregation",
+                    "level of disaggregation",
+                    "by country",
+                    "by significant site",
+                    "by significant asset",
+                    "by subsidiary",
+                    "aggregation",
+                    "material impacts risks and opportunities",
+                    "significant variations",
+                    "obscure material information",
+                    "specificity and context",
+                    "material items that differ in nature",
+                    "ESRS sector classification",
+                    "topical ESRS",
+                    "sector-specific ESRS"
+                ],
+                "related_concepts": [
+                    "information presentation",
+                    "materiality assessment disaggregation",
+                    "geographic disaggregation",
+                    "asset-level disaggregation",
+                    "sector disaggregation"
+                ],
+                "disaggregation_requirements": [
+                    {
+                        "level": "by country",
+                        "condition": "국가 간에 중요 영향, 리스크 및 기회의 중요한 변동이 있고 더 높은 수준의 집계로 정보를 제시하는 것이 영향, 리스크 또는 기회에 대한 중요 정보를 모호하게 하는 경우"
+                    },
+                    {
+                        "level": "by significant site or by significant asset",
+                        "condition": "중요 영향, 리스크 및 기회가 특정 위치 또는 자산에 크게 의존하는 경우"
+                    }
+                ],
+                "disaggregation_considerations": {
+                    "materiality_assessment": "보고에 대한 적절한 세분화 수준을 정의할 때, 기업은 중요성 평가에서 채택한 세분화를 고려해야 함",
+                    "subsidiary_level": "기업의 특정 사실과 상황에 따라 자회사별 세분화가 필요할 수 있음"
+                },
+                "aggregation_rules": {
+                    "prohibition": "기업은 성격이 다른 중요 항목을 집계해서는 안 됨",
+                    "requirement": "집계가 정보를 해석하는 데 필요한 특정성과 맥락을 모호하게 하지 않도록 해야 함"
+                },
+                "sector_disaggregation": {
+                    "requirement": "기업이 섹터별로 세분화된 정보를 제시할 때, ESRS 섹터 분류를 채택해야 함",
+                    "classification_source": "Directive 2013/34/EU의 제29b(1) 제3항 제(ii)호에 따라 위원회가 채택한 위임 행위에 명시",
+                    "precedence": "주제별 또는 부문별 ESRS가 특정 세분화 수준을 채택하도록 요구하는 경우, 주제별 또는 부문별 ESRS의 요구사항이 우선"
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "4. Due diligence",
+            "section_content": "기업의 지속가능성 실사 프로세스 결과(아래에 언급된 국제 기구에서 \"실사\"라고 함)는 기업의 중요 영향, 리스크 및 기회 평가에 정보를 제공합니다. ESRS는 실사와 관련하여 어떤 행동 요구사항도 부과하지 않으며, 실사 수행과 관련하여 기업의 행정, 경영 또는 감독 기구의 역할을 확장하거나 수정하지도 않습니다.\n\n실사는 기업이 사업과 연결된 환경과 사람에 대한 실제 및 잠재적 부정적 영향을 식별, 예방, 완화 및 설명하는 프로세스입니다. 여기에는 기업의 자체 운영 및 상류 및 하류 가치사슬과 연결된 부정적 영향이 포함되며, 제품 또는 서비스를 통해서뿐만 아니라 비즈니스 관계를 통해서도 포함됩니다. 실사는 지속적인 실천으로, 기업의 전략, 사업 모델, 활동, 비즈니스 관계, 운영, 조달 및 판매 맥락의 변화에 대응하고 이를 유발할 수 있습니다. 이 프로세스는 UN 비즈니스와 인권에 관한 지침 원칙 및 다국적 기업을 위한 OECD 가이드라인의 국제 기구에서 설명되어 있습니다.\n\n이러한 국제 기구는 실사 프로세스의 여러 단계를 식별하며, 여기에는 기업의 자체 운영 및 상류 및 하류 가치사슬과 연결된 부정적 영향의 식별 및 평가가 포함되며, 제품 또는 서비스를 통해서뿐만 아니라 비즈니스 관계를 통해서도 포함됩니다. 기업이 모든 영향을 한 번에 해결할 수 없는 경우, 실사 프로세스는 영향의 심각도 및 가능성에 기반하여 조치를 우선순위화할 수 있도록 합니다. 실사 프로세스의 이 측면이 중요 영향 평가에 정보를 제공합니다(본 기준서 제3.4절 참조). 중요 영향의 식별은 종종 그러한 영향의 산물인 중요 지속가능성 리스크 및 기회의 식별을 지원합니다.\n\n실사의 핵심 요소는 ESRS 2 및 주제별 ESRS에 규정된 공시 요구사항에 직접 반영되며, 다음과 같이 설명됩니다:\n(a) 거버넌스, 전략 및 사업 모델에 실사 내재화. 이는 다음에서 다루어집니다:\ni. ESRS 2 GOV-2: 기업의 행정, 경영 및 감독 기구에 제공된 정보 및 지속가능성 사항\nii. ESRS 2 GOV-3: 인센티브 제도에 지속가능성 관련 성과 통합\niii. ESRS 2 SBM-3: 중요 영향, 리스크 및 기회와 전략 및 사업 모델의 상호작용\n(b) 영향받는 이해관계자와의 협력. 이는 다음에서 다루어집니다:\ni. ESRS 2 GOV-2\nii. ESRS 2 SBM-2: 이해관계자의 이익 및 견해\niii. ESRS 2 IRO-1\niv. ESRS 2 MDR-P\nv. 주제별 ESRS: 실사 프로세스 전반에 걸친 이해관계자 협력의 다양한 단계 및 목적 반영\n(c) 사람과 환경에 대한 부정적 영향 식별 및 평가. 이는 다음에서 다루어집니다:\ni. ESRS 2 IRO-1 (관련 ESRS의 특정 지속가능성 사항과 관련된 적용 요구사항 포함)\nii. ESRS 2 SBM-3\n(d) 사람과 환경에 대한 부정적 영향 해결을 위한 조치. 이는 다음에서 다루어집니다:\ni. ESRS 2 MDR-A\nii. 주제별 ESRS: 전환 계획을 포함한 조치 범위 반영, 이를 통해 영향이 해결됨\n(e) 이러한 노력의 효과 추적. 이는 다음에서 다루어집니다:\ni. ESRS 2 MDR-M\nii. ESRS 2 MDR-T\niii. 주제별 ESRS: 지표 및 목표에 관한",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 4 (58-61)",
+                "key_terms": [
+                    "due diligence",
+                    "sustainability due diligence process",
+                    "material impacts risks and opportunities",
+                    "conduct requirements",
+                    "administrative management supervisory bodies",
+                    "UN Guiding Principles on Business and Human Rights",
+                    "OECD Guidelines for Multinational Enterprises",
+                    "negative impacts",
+                    "environment and people",
+                    "own operations",
+                    "upstream value chain",
+                    "downstream value chain",
+                    "products and services",
+                    "business relationships",
+                    "severity",
+                    "likelihood",
+                    "material impacts",
+                    "material sustainability risks and opportunities"
+                ],
+                "related_concepts": [
+                    "materiality assessment",
+                    "impact assessment",
+                    "stakeholder engagement",
+                    "governance",
+                    "strategy",
+                    "business model",
+                    "actions",
+                    "metrics",
+                    "targets"
+                ],
+                "due_diligence_definition": {
+                    "process": "기업이 사업과 연결된 환경과 사람에 대한 실제 및 잠재적 부정적 영향을 식별, 예방, 완화 및 설명하는 프로세스",
+                    "scope": "기업의 자체 운영 및 상류 및 하류 가치사슬과 연결된 부정적 영향, 제품 또는 서비스를 통한 영향, 비즈니스 관계를 통한 영향",
+                    "nature": "지속적인 실천으로, 기업의 전략, 사업 모델, 활동, 비즈니스 관계, 운영, 조달 및 판매 맥락의 변화에 대응하고 이를 유발할 수 있음",
+                    "international_instruments": [
+                        "UN 비즈니스와 인권에 관한 지침 원칙",
+                        "다국적 기업을 위한 OECD 가이드라인"
+                    ]
+                },
+                "due_diligence_steps": {
+                    "identification_assessment": "기업의 자체 운영 및 상류 및 하류 가치사슬과 연결된 부정적 영향의 식별 및 평가",
+                    "prioritization": "영향의 심각도 및 가능성에 기반하여 조치를 우선순위화",
+                    "relationship_to_materiality": "실사 프로세스의 이 측면이 중요 영향 평가에 정보를 제공 (ESRS 1 제3.4절 참조)",
+                    "support_for_risk_opportunity_identification": "중요 영향의 식별은 종종 그러한 영향의 산물인 중요 지속가능성 리스크 및 기회의 식별을 지원"
+                },
+                "core_elements_reflected_in_disclosure_requirements": [
+                    {
+                        "element": "embedding_due_diligence_in_governance_strategy_business_model",
+                        "addressed_under": [
+                            "ESRS 2 GOV-2: Information provided to and sustainability matters addressed by the undertaking's administrative, management and supervisory bodies",
+                            "ESRS 2 GOV-3: Integration of sustainability-related performance in incentive schemes",
+                            "ESRS 2 SBM-3: Material impacts, risks and opportunities and their interaction with strategy and business model"
+                        ]
+                    },
+                    {
+                        "element": "engaging_with_affected_stakeholders",
+                        "addressed_under": [
+                            "ESRS 2 GOV-2",
+                            "ESRS 2 SBM-2: Interests and views of stakeholders",
+                            "ESRS 2 IRO-1",
+                            "ESRS 2 MDR-P",
+                            "Topical ESRS: reflecting the different stages and purposes of stakeholder engagement throughout the due diligence process"
+                        ]
+                    },
+                    {
+                        "element": "identifying_and_assessing_negative_impacts",
+                        "addressed_under": [
+                            "ESRS 2 IRO-1 (including Application Requirements related to specific sustainability matters in the relevant ESRS)",
+                            "ESRS 2 SBM-3"
+                        ]
+                    },
+                    {
+                        "element": "taking_action_to_address_negative_impacts",
+                        "addressed_under": [
+                            "ESRS 2 MDR-A",
+                            "Topical ESRS: reflecting the range of actions, including transition plans, through which impacts are addressed"
+                        ]
+                    },
+                    {
+                        "element": "tracking_effectiveness",
+                        "addressed_under": [
+                            "ESRS 2 MDR-M",
+                            "ESRS 2 MDR-T",
+                            "Topical ESRS: regarding metrics and targets"
+                        ]
+                    }
+                ],
+                "esrs_limitations": {
+                    "no_conduct_requirements": "ESRS는 실사와 관련하여 어떤 행동 요구사항도 부과하지 않음",
+                    "no_role_extension": "실사 수행과 관련하여 기업의 행정, 경영 또는 감독 기구의 역할을 확장하거나 수정하지 않음"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-GOV-2",
+                "ESRS2-GOV-3",
+                "ESRS2-SBM-2",
+                "ESRS2-SBM-3",
+                "ESRS2-IRO-1",
+                "ESRS2-MDR-P",
+                "ESRS2-MDR-A",
+                "ESRS2-MDR-M",
+                "ESRS2-MDR-T"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "5.1 Reporting undertaking and value chain",
+            "section_content": "지속가능성 보고서는 재무제표와 동일한 보고 기업에 대한 것이어야 합니다. 예를 들어, 보고 기업이 통합 재무제표를 준비해야 하는 모회사인 경우, 지속가능성 보고서는 그룹에 대한 것입니다. 이 요구사항은 보고 기업이 재무제표를 작성할 필요가 없거나 보고 기업이 Directive 2013/34/EU의 제48i조에 따라 통합 지속가능성 보고를 준비하는 경우에는 적용되지 않습니다.\n\n지속가능성 보고서에서 제공되는 보고 기업에 대한 정보는 상류 및/또는 하류 가치사슬의 직접적 및 간접적 비즈니스 관계를 통해 기업과 연결된 중요 영향, 리스크 및 기회에 대한 정보(\"가치사슬 정보\")를 포함하도록 확장되어야 합니다. 보고 기업에 대한 정보를 확장할 때, 기업은 다음에 따라 상류 및 하류 가치사슬과 연결된 중요 영향, 리스크 및 기회를 포함해야 합니다:\n(a) 실사 프로세스 및 중요성 평가 결과에 따라\n(b) 다른 ESRS의 가치사슬과 관련된 특정 요구사항에 따라\n\n제63단락은 가치사슬의 각 행위자에 대한 정보를 요구하지 않으며, 중요 상류 및 하류 가치사슬 정보만 포함하도록 요구합니다. 다른 지속가능성 사항은 기업의 상류 및 하류 가치사슬의 다른 부분과 관련하여 중요할 수 있습니다. 정보는 해당 사항이 중요한 가치사슬 부분에 대해서만 가치사슬 정보를 포함하도록 확장되어야 합니다.\n\n기업은 다음이 필요한 경우 중요 가치사슬 정보를 포함해야 합니다:\n(a) 지속가능성 보고서 사용자가 기업의 중요 영향, 리스크 및 기회를 이해할 수 있도록 하기 위해\n(b) 정보의 정성적 특성을 충족하는 정보 집합을 생성하기 위해(본 기준서 부록 B 참조)\n\n자체 운영 및 상류 및 하류 가치사슬 내에서 중요 지속가능성 사항이 발생하는 수준을 결정할 때, 기업은 이중 중요성 원칙에 따라 영향, 리스크 및 기회 평가를 사용해야 합니다(본 기준서 제3장 참조).\n\n지분법 또는 비례 통합으로 재무제표에서 회계 처리되는 관련기업 또는 합작투자기업이 기업의 가치사슬의 일부인 경우(예: 공급업체), 기업은 제63단락에 따라 가치사슬의 다른 비즈니스 관계에 대해 채택한 접근 방식과 일관되게 그러한 관련기업 또는 합작투자기업과 관련된 정보를 포함해야 합니다. 이 경우, 영향 지표를 결정할 때, 관련기업 또는 합작투자기업의 데이터는 보유 지분에 국한되지 않으며, 비즈니스 관계를 통해 기업의 제품 및 서비스와 연결된 영향에 기반하여 고려되어야 합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 5.1 (62-67)",
+                "key_terms": [
+                    "reporting undertaking",
+                    "financial statements",
+                    "consolidated financial statements",
+                    "parent company",
+                    "group",
+                    "Article 48i of Directive 2013/34/EU",
+                    "value chain information",
+                    "upstream value chain",
+                    "downstream value chain",
+                    "direct and indirect business relationships",
+                    "material impacts risks and opportunities",
+                    "due diligence process",
+                    "materiality assessment",
+                    "qualitative characteristics of information",
+                    "double materiality principle",
+                    "associates",
+                    "joint ventures",
+                    "equity method",
+                    "proportionally consolidated"
+                ],
+                "related_concepts": [
+                    "consolidation scope",
+                    "value chain coverage",
+                    "materiality determination",
+                    "business relationships"
+                ],
+                "reporting_undertaking_requirement": {
+                    "principle": "지속가능성 보고서는 재무제표와 동일한 보고 기업에 대한 것이어야 함",
+                    "example": "보고 기업이 통합 재무제표를 준비해야 하는 모회사인 경우, 지속가능성 보고서는 그룹에 대한 것",
+                    "exceptions": [
+                        "보고 기업이 재무제표를 작성할 필요가 없는 경우",
+                        "보고 기업이 Directive 2013/34/EU의 제48i조에 따라 통합 지속가능성 보고를 준비하는 경우"
+                    ]
+                },
+                "value_chain_information_extension": {
+                    "requirement": "상류 및/또는 하류 가치사슬의 직접적 및 간접적 비즈니스 관계를 통해 기업과 연결된 중요 영향, 리스크 및 기회에 대한 정보 포함",
+                    "basis": [
+                        "실사 프로세스 및 중요성 평가 결과에 따라",
+                        "다른 ESRS의 가치사슬과 관련된 특정 요구사항에 따라"
+                    ],
+                    "scope": "가치사슬의 각 행위자에 대한 정보를 요구하지 않으며, 중요 상류 및 하류 가치사슬 정보만 포함",
+                    "selectivity": "다른 지속가능성 사항은 기업의 상류 및 하류 가치사슬의 다른 부분과 관련하여 중요할 수 있으며, 해당 사항이 중요한 가치사슬 부분에 대해서만 가치사슬 정보를 포함"
+                },
+                "value_chain_information_necessity": {
+                    "conditions": [
+                        "지속가능성 보고서 사용자가 기업의 중요 영향, 리스크 및 기회를 이해할 수 있도록 하기 위해",
+                        "정보의 정성적 특성을 충족하는 정보 집합을 생성하기 위해 (ESRS 1 부록 B 참조)"
+                    ]
+                },
+                "materiality_determination": {
+                    "principle": "이중 중요성 원칙에 따라 영향, 리스크 및 기회 평가를 사용",
+                    "reference": "ESRS 1 제3장 참조"
+                },
+                "associates_and_joint_ventures": {
+                    "requirement": "지분법 또는 비례 통합으로 재무제표에서 회계 처리되는 관련기업 또는 합작투자기업이 가치사슬의 일부인 경우, 가치사슬의 다른 비즈니스 관계에 대해 채택한 접근 방식과 일관되게 정보 포함",
+                    "impact_metrics": "영향 지표를 결정할 때, 관련기업 또는 합작투자기업의 데이터는 보유 지분에 국한되지 않으며, 비즈니스 관계를 통해 기업의 제품 및 서비스와 연결된 영향에 기반하여 고려"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-1-c"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "5.2 Estimation using sector averages and proxies",
+            "section_content": "기업이 필요한 상류 및 하류 가치사슬 정보를 얻을 수 있는 능력은 기업의 계약적 배치, 통합 범위를 벗어난 운영에 대해 행사하는 통제 수준 및 구매력과 같은 다양한 요인에 따라 달라질 수 있습니다. 기업이 상류 및/또는 하류 가치사슬 및 비즈니스 관계의 활동을 통제할 수 있는 능력이 없는 경우, 가치사슬 정보를 얻는 것이 더 어려울 수 있습니다.\n\n기업이 합리적인 노력을 한 후에도 제63단락에서 요구하는 상류 및 하류 가치사슬에 대한 정보를 수집할 수 없는 상황이 있습니다. 이러한 상황에서 기업은 섹터 평균 데이터 및 기타 대리 지표와 같은 모든 합리적이고 지지 가능한 정보를 사용하여 상류 및 하류 가치사슬에 대해 보고할 정보를 추정해야 합니다.\n\n가치사슬 정보를 얻는 것은 Directive 2013/34/EU의 제19a조 및 제29a조에서 요구하는 지속가능성 보고 범위에 있지 않은 중소기업 및 기타 상류 및/또는 하류 가치사슬 기업의 경우에도 어려울 수 있습니다(ESRS 2 BP-2 특정 상황과 관련된 공시 참조).\n\n정책, 조치 및 목표와 관련하여, 기업의 보고는 해당 정책, 조치 및 목표가 가치사슬의 행위자를 포함하는 범위까지 상류 및/또는 하류 가치사슬 정보를 포함해야 합니다. 지표와 관련하여, 많은 경우, 특히 대리 지표가 사용 가능한 환경 사항의 경우, 기업은 상류 및 하류 가치사슬의 행위자, 특히 중소기업으로부터 데이터를 수집하지 않고도 보고 요구사항을 준수할 수 있을 수 있습니다. 예를 들어, 기업의 GHG Scope 3 배출량을 계산할 때와 같습니다.\n\n섹터 평균 데이터 또는 기타 대리 지표를 사용하여 만든 추정의 통합은 정보의 정성적 특성을 충족하지 않는 정보를 초래해서는 안 됩니다(본 기준서 제2장 및 제7.2절 추정 및 결과 불확실성의 원천 참조).",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 5.2 (68-72)",
+                "key_terms": [
+                    "value chain information",
+                    "upstream value chain",
+                    "downstream value chain",
+                    "contractual arrangements",
+                    "level of control",
+                    "buying power",
+                    "reasonable efforts",
+                    "sector-average data",
+                    "proxies",
+                    "SMEs",
+                    "Directive 2013/34/EU Article 19a and 29a",
+                    "ESRS 2 BP-2",
+                    "policies actions and targets",
+                    "metrics",
+                    "GHG Scope 3 emissions",
+                    "qualitative characteristics of information",
+                    "sources of estimation and outcome uncertainty"
+                ],
+                "related_concepts": [
+                    "data collection challenges",
+                    "estimation methods",
+                    "information quality",
+                    "value chain actors"
+                ],
+                "value_chain_information_challenges": {
+                    "factors_affecting_ability": [
+                        "기업의 계약적 배치",
+                        "통합 범위를 벗어난 운영에 대해 행사하는 통제 수준",
+                        "구매력"
+                    ],
+                    "difficulty_when": "기업이 상류 및/또는 하류 가치사슬 및 비즈니스 관계의 활동을 통제할 수 있는 능력이 없는 경우"
+                },
+                "estimation_requirement": {
+                    "condition": "기업이 합리적인 노력을 한 후에도 제63단락에서 요구하는 상류 및 하류 가치사슬에 대한 정보를 수집할 수 없는 상황",
+                    "method": "섹터 평균 데이터 및 기타 대리 지표와 같은 모든 합리적이고 지지 가능한 정보를 사용하여 추정",
+                    "reference": "ESRS 2 BP-2 특정 상황과 관련된 공시 참조"
+                },
+                "sme_challenges": {
+                    "description": "Directive 2013/34/EU의 제19a조 및 제29a조에서 요구하는 지속가능성 보고 범위에 있지 않은 중소기업 및 기타 상류 및/또는 하류 가치사슬 기업의 경우 가치사슬 정보를 얻는 것이 어려울 수 있음"
+                },
+                "reporting_requirements": {
+                    "policies_actions_targets": "정책, 조치 및 목표와 관련하여, 해당 정책, 조치 및 목표가 가치사슬의 행위자를 포함하는 범위까지 상류 및/또는 하류 가치사슬 정보를 포함해야 함",
+                    "metrics": "지표와 관련하여, 많은 경우, 특히 대리 지표가 사용 가능한 환경 사항의 경우, 기업은 상류 및 하류 가치사슬의 행위자, 특히 중소기업으로부터 데이터를 수집하지 않고도 보고 요구사항을 준수할 수 있을 수 있음",
+                    "example": "기업의 GHG Scope 3 배출량을 계산할 때"
+                },
+                "estimation_quality_requirement": {
+                    "prohibition": "섹터 평균 데이터 또는 기타 대리 지표를 사용하여 만든 추정의 통합은 정보의 정성적 특성을 충족하지 않는 정보를 초래해서는 안 됨",
+                    "references": [
+                        "ESRS 1 제2장 (정보의 정성적 특성)",
+                        "ESRS 1 제7.2절 (추정 및 결과 불확실성의 원천)"
+                    ]
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-2-c"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "6.1 Reporting period",
+            "section_content": "기업의 지속가능성 보고서에 대한 보고 기간은 재무제표의 보고 기간과 일관되어야 합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 6.1 (73)",
+                "key_terms": [
+                    "reporting period",
+                    "financial statements",
+                    "consistency"
+                ],
+                "related_concepts": [
+                    "temporal alignment",
+                    "reporting consistency"
+                ],
+                "requirement": "지속가능성 보고서의 보고 기간은 재무제표의 보고 기간과 일관되어야 함"
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "6.2 Linking past, present and future",
+            "section_content": "기업은 관련되는 경우 지속가능성 보고서에서 회고적 정보와 전향적 정보 간의 적절한 연결을 설정하여 역사적 정보가 미래 지향적 정보와 어떻게 관련되는지에 대한 명확한 이해를 촉진해야 합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 6.2 (74)",
+                "key_terms": [
+                    "retrospective information",
+                    "forward-looking information",
+                    "historical information",
+                    "linkages"
+                ],
+                "related_concepts": [
+                    "temporal connectivity",
+                    "information coherence"
+                ],
+                "requirement": "회고적 정보와 전향적 정보 간의 적절한 연결을 설정하여 역사적 정보가 미래 지향적 정보와 어떻게 관련되는지에 대한 명확한 이해를 촉진"
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "6.3 Reporting progress against the base year",
+            "section_content": "기준연도는 정보가 사용 가능하고 이후 정보가 시간에 걸쳐 비교될 수 있는 역사적 기준 날짜 또는 기간입니다.\n\n기업은 목표에 대한 발전 및 진행 상황을 보고할 때 현재 기간에 보고된 금액에 대해 기준연도에 대한 비교 정보를 제시해야 하며, 관련 공시 요구사항이 이미 진행 상황을 보고하는 방법을 정의하지 않는 한 그렇게 해야 합니다. 기업은 관련 정보인 경우 기준연도와 보고 기간 사이에 달성된 마일스톤에 대한 역사적 정보를 포함할 수도 있습니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 6.3 (75-76)",
+                "key_terms": [
+                    "base year",
+                    "historical reference date",
+                    "comparative information",
+                    "target",
+                    "progress",
+                    "milestones"
+                ],
+                "related_concepts": [
+                    "temporal comparison",
+                    "progress tracking",
+                    "target monitoring"
+                ],
+                "base_year_definition": {
+                    "description": "정보가 사용 가능하고 이후 정보가 시간에 걸쳐 비교될 수 있는 역사적 기준 날짜 또는 기간"
+                },
+                "comparative_information_requirement": {
+                    "requirement": "목표에 대한 발전 및 진행 상황을 보고할 때 현재 기간에 보고된 금액에 대해 기준연도에 대한 비교 정보를 제시",
+                    "exception": "관련 공시 요구사항이 이미 진행 상황을 보고하는 방법을 정의한 경우"
+                },
+                "optional_information": {
+                    "description": "기준연도와 보고 기간 사이에 달성된 마일스톤에 대한 역사적 정보 포함 (관련 정보인 경우)"
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "6.4 Definition of short-, medium- and long-term for reporting purposes",
+            "section_content": "기업이 지속가능성 보고서를 준비할 때, 기업은 보고 기간 종료 시점부터 다음 시간 간격을 채택해야 합니다:\n\n(a) 단기 시간 범위: 기업이 재무제표에서 보고 기간으로 채택한 기간\n(b) 중기 시간 범위: (a)에서 정의한 단기 보고 기간 종료 시점부터 최대 5년까지\n(c) 장기 시간 범위: 5년 이상\n\n기업은 영향 또는 조치가 5년보다 긴 기간에 예상되는 경우 지속가능성 보고서 사용자에게 관련 정보를 제공하기 위해 필요한 경우 장기 시간 범위에 대한 추가 세분화를 사용해야 합니다.\n\n다른 ESRS의 특정 공시 항목에 대해 중기 또는 장기 시간 범위의 다른 정의가 필요한 경우, 해당 ESRS의 정의가 우선합니다.\n\n제77단락에서 정의한 중기 또는 장기 시간 범위의 사용이 비관련 정보를 초래하는 상황이 있을 수 있습니다. 이는 기업이 (i) 중요 영향, 리스크 및 기회의 식별 및 관리 프로세스 또는 (ii) 조치 및 목표 설정의 정의에 대해 다른 정의를 사용하기 때문입니다. 이러한 상황은 산업별 특성, 예를 들어 현금 흐름 및 사업 주기, 자본 투자의 예상 지속 기간, 지속가능성 보고서 사용자가 평가를 수행하는 시간 범위 또는 기업의 산업에서 의사결정을 위해 일반적으로 사용되는 계획 범위로 인해 발생할 수 있습니다. 이러한 상황에서 기업은 중기 및/또는 장기 시간 범위의 다른 정의를 채택할 수 있습니다(ESRS 2 BP-2, 제9단락 참조).\n\nESRS에서 \"단기\", \"중기\", \"장기\"에 대한 참조는 제77단락부터 제80단락까지의 조항에 따라 기업이 결정한 시간 범위를 의미합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 6.4 (77-81)",
+                "key_terms": [
+                    "short-term time horizon",
+                    "medium-term time horizon",
+                    "long-term time horizon",
+                    "reporting period",
+                    "financial statements",
+                    "5 years",
+                    "more than 5 years",
+                    "additional breakdown",
+                    "industry-specific characteristics",
+                    "cash flow cycles",
+                    "business cycles",
+                    "capital investments",
+                    "planning horizons"
+                ],
+                "related_concepts": [
+                    "temporal definitions",
+                    "time horizon classification",
+                    "reporting consistency"
+                ],
+                "time_horizon_definitions": [
+                    {
+                        "horizon": "short-term",
+                        "definition": "기업이 재무제표에서 보고 기간으로 채택한 기간"
+                    },
+                    {
+                        "horizon": "medium-term",
+                        "definition": "단기 보고 기간 종료 시점부터 최대 5년까지"
+                    },
+                    {
+                        "horizon": "long-term",
+                        "definition": "5년 이상"
+                    }
+                ],
+                "additional_breakdown": {
+                    "condition": "영향 또는 조치가 5년보다 긴 기간에 예상되는 경우",
+                    "purpose": "지속가능성 보고서 사용자에게 관련 정보를 제공하기 위해 필요한 경우"
+                },
+                "precedence": {
+                    "rule": "다른 ESRS의 특정 공시 항목에 대해 중기 또는 장기 시간 범위의 다른 정의가 필요한 경우, 해당 ESRS의 정의가 우선"
+                },
+                "alternative_definitions": {
+                    "circumstances": "제77단락에서 정의한 중기 또는 장기 시간 범위의 사용이 비관련 정보를 초래하는 상황",
+                    "reasons": [
+                        "기업이 중요 영향, 리스크 및 기회의 식별 및 관리 프로세스에 대해 다른 정의를 사용",
+                        "기업이 조치 및 목표 설정의 정의에 대해 다른 정의를 사용"
+                    ],
+                    "factors": [
+                        "산업별 특성",
+                        "현금 흐름 및 사업 주기",
+                        "자본 투자의 예상 지속 기간",
+                        "지속가능성 보고서 사용자가 평가를 수행하는 시간 범위",
+                        "기업의 산업에서 의사결정을 위해 일반적으로 사용되는 계획 범위"
+                    ],
+                    "permission": "이러한 상황에서 기업은 중기 및/또는 장기 시간 범위의 다른 정의를 채택할 수 있음",
+                    "reference": "ESRS 2 BP-2, 제9단락 참조"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-2-a",
+                "ESRS2-BP-2-b"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "7.1 Presenting comparative information",
+            "section_content": "기업은 현재 기간에 공시된 모든 정량 지표 및 금액에 대해 이전 기간에 대한 비교 정보를 공시해야 합니다. 현재 기간의 지속가능성 보고서를 이해하는 데 관련되는 경우, 기업은 서술적 공시에 대해서도 비교 정보를 공시해야 합니다.\n\n기업이 이전 기간에 보고된 정보와 다른 비교 정보를 보고하는 경우, 기업은 다음을 공시해야 합니다:\n(a) 이전 기간에 보고된 수치와 수정된 비교 수치 간의 차이\n(b) 수치 수정의 이유\n\n때로는 하나 이상의 이전 기간에 대한 비교 정보를 현재 기간과 비교 가능하도록 조정하는 것이 불가능합니다. 예를 들어, 데이터가 이전 기간에 새로운 지표 또는 목표 정의의 회고적 적용 또는 이전 기간 오류를 수정하기 위한 회고적 재표시를 허용하는 방식으로 수집되지 않았을 수 있으며, 정보를 재생성하는 것이 불가능할 수 있습니다(ESRS 2 BP-2 참조). 하나 이상의 이전 기간에 대한 비교 정보를 조정하는 것이 불가능한 경우, 기업은 이 사실을 공시해야 합니다.\n\nESRS가 기업이 지표 또는 데이터포인트에 대해 하나 이상의 비교 기간을 제시하도록 요구하는 경우, 해당 ESRS의 요구사항이 우선합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 7.1 (83-86)",
+                "key_terms": [
+                    "comparative information",
+                    "quantitative metrics",
+                    "monetary amounts",
+                    "narrative disclosures",
+                    "previous period",
+                    "revised comparative figure",
+                    "reasons for revision",
+                    "impracticable",
+                    "retrospective application",
+                    "prior period error",
+                    "multiple comparative periods"
+                ],
+                "related_concepts": [
+                    "temporal comparability",
+                    "information consistency",
+                    "restatement"
+                ],
+                "comparative_information_requirement": {
+                    "quantitative_metrics": "현재 기간에 공시된 모든 정량 지표 및 금액에 대해 이전 기간에 대한 비교 정보 공시 필수",
+                    "narrative_disclosures": "현재 기간의 지속가능성 보고서를 이해하는 데 관련되는 경우 서술적 공시에 대해서도 비교 정보 공시"
+                },
+                "revised_comparative_figures": {
+                    "requirement": "이전 기간에 보고된 정보와 다른 비교 정보를 보고하는 경우",
+                    "disclosures": [
+                        "이전 기간에 보고된 수치와 수정된 비교 수치 간의 차이",
+                        "수치 수정의 이유"
+                    ]
+                },
+                "impracticable_adjustment": {
+                    "examples": [
+                        "데이터가 이전 기간에 새로운 지표 또는 목표 정의의 회고적 적용을 허용하는 방식으로 수집되지 않음",
+                        "데이터가 이전 기간 오류를 수정하기 위한 회고적 재표시를 허용하는 방식으로 수집되지 않음",
+                        "정보를 재생성하는 것이 불가능"
+                    ],
+                    "reference": "ESRS 2 BP-2 참조",
+                    "requirement": "하나 이상의 이전 기간에 대한 비교 정보를 조정하는 것이 불가능한 경우, 이 사실을 공시"
+                },
+                "precedence": {
+                    "rule": "ESRS가 기업이 지표 또는 데이터포인트에 대해 하나 이상의 비교 기간을 제시하도록 요구하는 경우, 해당 ESRS의 요구사항이 우선"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-2-i",
+                "ESRS2-BP-2-j"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "7.2 Sources of estimation and outcome uncertainty",
+            "section_content": "정량 지표 및 금액(본 기준서 제5장 참조의 상류 및 하류 가치사슬 정보 포함)을 직접 측정할 수 없고 추정만 가능한 경우, 측정 불확실성이 발생할 수 있습니다.\n\n기업은 사용자가 지속가능성 보고서에 보고된 정량 지표 및 금액에 영향을 미치는 가장 중요한 불확실성을 이해할 수 있도록 정보를 공시해야 합니다.\n\n합리적인 가정 및 추정의 사용, 시나리오 또는 민감도 분석을 포함하여, 지속가능성 관련 정보를 준비하는 데 필수적인 부분이며, 가정 및 추정이 정확하게 설명되고 설명되는 한 해당 정보의 유용성을 훼손하지 않습니다. 높은 수준의 측정 불확실성이라도 그러한 가정 또는 추정이 유용한 정보를 제공하거나 정보의 정성적 특성을 충족하는 것을 반드시 방해하지는 않습니다(본 기준서 부록 B 참조).\n\n지속가능성 보고서를 준비하는 데 사용되는 데이터 및 가정은 가능한 한 기업의 재무제표에 사용되는 해당 재무 데이터 및 가정과 일관되어야 합니다.\n\n일부 ESRS는 불확실한 결과를 가진 가능한 미래 사건에 대한 설명과 같은 정보의 공시를 요구합니다. 그러한 가능한 미래 사건에 대한 정보가 중요한지 판단할 때, 기업은 본 기준서 제3장의 기준을 참조하고 다음을 고려해야 합니다:\n(a) 사건의 잠재적 재무 효과(가능한 결과)\n(b) 가능한 사건으로 인한 사람이나 환경에 대한 영향의 심각도 및 가능성, 제45단락에 명시된 심각도 요인을 고려\n(c) 가능한 결과의 전체 범위 및 해당 범위 내 가능한 결과의 가능성\n\n가능한 결과를 평가할 때, 기업은 집계될 때 중요해질 수 있는 낮은 확률 및 높은 영향 결과에 대한 정보를 포함하여 모든 관련 사실과 상황을 고려해야 합니다. 예를 들어, 기업은 각각 동일한 유형의 중단(예: 기업의 공급망 중단)을 유발할 수 있는 여러 영향 또는 리스크에 노출될 수 있습니다. 해당 소스에서 중단이 발생할 가능성이 매우 낮은 경우 개별 리스크 소스에 대한 정보는 중요하지 않을 수 있습니다. 그러나 모든 소스에서 공급망 중단의 집계 리스크에 대한 정보는 중요할 수 있습니다(ESRS 2 BP-2 참조).",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 7.2 (87-92)",
+                "key_terms": [
+                    "estimation",
+                    "measurement uncertainty",
+                    "quantitative metrics",
+                    "monetary amounts",
+                    "upstream value chain",
+                    "downstream value chain",
+                    "significant uncertainties",
+                    "reasonable assumptions",
+                    "estimates",
+                    "scenario analysis",
+                    "sensitivity analysis",
+                    "qualitative characteristics of information",
+                    "consistency with financial statements",
+                    "future events",
+                    "uncertain outcomes",
+                    "potential financial effects",
+                    "severity",
+                    "likelihood",
+                    "aggregate risk",
+                    "low-probability high-impact outcomes"
+                ],
+                "related_concepts": [
+                    "information quality",
+                    "estimation methods",
+                    "uncertainty disclosure",
+                    "materiality assessment"
+                ],
+                "measurement_uncertainty": {
+                    "arises_when": "정량 지표 및 금액(상류 및 하류 가치사슬 정보 포함)을 직접 측정할 수 없고 추정만 가능한 경우",
+                    "disclosure_requirement": "사용자가 지속가능성 보고서에 보고된 정량 지표 및 금액에 영향을 미치는 가장 중요한 불확실성을 이해할 수 있도록 정보 공시"
+                },
+                "assumptions_and_estimates": {
+                    "essential_part": "합리적인 가정 및 추정의 사용, 시나리오 또는 민감도 분석을 포함하여, 지속가능성 관련 정보를 준비하는 데 필수적인 부분",
+                    "condition": "가정 및 추정이 정확하게 설명되고 설명되는 한 해당 정보의 유용성을 훼손하지 않음",
+                    "high_uncertainty": "높은 수준의 측정 불확실성이라도 그러한 가정 또는 추정이 유용한 정보를 제공하거나 정보의 정성적 특성을 충족하는 것을 반드시 방해하지는 않음",
+                    "reference": "ESRS 1 부록 B 참조"
+                },
+                "consistency_requirement": {
+                    "requirement": "지속가능성 보고서를 준비하는 데 사용되는 데이터 및 가정은 가능한 한 기업의 재무제표에 사용되는 해당 재무 데이터 및 가정과 일관되어야 함"
+                },
+                "future_events_materiality": {
+                    "reference": "본 기준서 제3장의 기준을 참조",
+                    "considerations": [
+                        "사건의 잠재적 재무 효과(가능한 결과)",
+                        "가능한 사건으로 인한 사람이나 환경에 대한 영향의 심각도 및 가능성, 제45단락에 명시된 심각도 요인을 고려",
+                        "가능한 결과의 전체 범위 및 해당 범위 내 가능한 결과의 가능성"
+                    ]
+                },
+                "aggregate_risk_assessment": {
+                    "requirement": "집계될 때 중요해질 수 있는 낮은 확률 및 높은 영향 결과에 대한 정보를 포함하여 모든 관련 사실과 상황을 고려",
+                    "example": "각각 동일한 유형의 중단(예: 기업의 공급망 중단)을 유발할 수 있는 여러 영향 또는 리스크에 노출될 수 있으며, 개별 리스크 소스에 대한 정보는 중요하지 않을 수 있지만 모든 소스에서 공급망 중단의 집계 리스크에 대한 정보는 중요할 수 있음",
+                    "reference": "ESRS 2 BP-2 참조"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-2-g",
+                "ESRS2-BP-2-g-i",
+                "ESRS2-BP-2-g-ii"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "7.3 Updating disclosures about events after the end of the reporting period",
+            "section_content": "일부 경우, 기업은 보고 기간 이후이지만 경영 보고서가 발행 승인되기 전에 정보를 받을 수 있습니다. 그러한 정보가 기간 종료 시점에 존재하는 조건에 대한 증거 또는 통찰력을 제공하는 경우, 기업은 적절한 경우 새로운 정보를 고려하여 추정 및 지속가능성 공시를 업데이트해야 합니다.\n\n그러한 정보가 보고 기간 종료 후 발생하는 중요 거래, 기타 사건 및 조건에 대한 증거 또는 통찰력을 제공하는 경우, 기업은 적절한 경우 이러한 연도 종료 후 사건의 존재, 성격 및 잠재적 결과를 나타내는 서술적 정보를 제공해야 합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 7.3 (93-94)",
+                "key_terms": [
+                    "events after the end of the reporting period",
+                    "management report",
+                    "approval for issuance",
+                    "conditions existing at period end",
+                    "material transactions",
+                    "post-year end events",
+                    "existence",
+                    "nature",
+                    "potential consequences"
+                ],
+                "related_concepts": [
+                    "subsequent events",
+                    "information updates",
+                    "disclosure timing"
+                ],
+                "updating_requirements": {
+                    "condition": "보고 기간 이후이지만 경영 보고서가 발행 승인되기 전에 정보를 받고, 그러한 정보가 기간 종료 시점에 존재하는 조건에 대한 증거 또는 통찰력을 제공하는 경우",
+                    "requirement": "적절한 경우 새로운 정보를 고려하여 추정 및 지속가능성 공시를 업데이트"
+                },
+                "post_year_end_events": {
+                    "condition": "보고 기간 종료 후 발생하는 중요 거래, 기타 사건 및 조건에 대한 증거 또는 통찰력을 제공하는 경우",
+                    "requirement": "적절한 경우 이러한 연도 종료 후 사건의 존재, 성격 및 잠재적 결과를 나타내는 서술적 정보를 제공"
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "7.4 Changes in preparation or presentation of sustainability information",
+            "section_content": "지표의 정의 및 계산, 목표 설정 및 목표 달성을 위한 진행 상황 모니터링에 사용되는 지표를 포함하여, 시간에 걸쳐 일관되어야 합니다. 기업은 다음이 있는 경우 수정된 비교 수치를 제공해야 하며, 이를 수행하는 것이 불가능한 경우는 제외합니다(ESRS 2 BP-2 참조):\n(a) 지표 또는 목표를 재정의하거나 대체한 경우\n(b) 이전 기간에 공시된 추정 수치와 관련하여 새로운 정보를 식별하고 새로운 정보가 해당 기간에 존재했던 조건에 대한 증거를 제공하는 경우",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 7.4 (95)",
+                "key_terms": [
+                    "changes in preparation or presentation",
+                    "definition and calculation of metrics",
+                    "targets",
+                    "monitor progress",
+                    "consistency over time",
+                    "restated comparative figures",
+                    "impracticable",
+                    "redefined metric",
+                    "replaced metric",
+                    "new information",
+                    "prior period"
+                ],
+                "related_concepts": [
+                    "information consistency",
+                    "restatement",
+                    "comparability"
+                ],
+                "consistency_requirement": {
+                    "requirement": "지표의 정의 및 계산, 목표 설정 및 목표 달성을 위한 진행 상황 모니터링에 사용되는 지표를 포함하여, 시간에 걸쳐 일관되어야 함"
+                },
+                "restatement_requirements": {
+                    "when_required": [
+                        "지표 또는 목표를 재정의하거나 대체한 경우",
+                        "이전 기간에 공시된 추정 수치와 관련하여 새로운 정보를 식별하고 새로운 정보가 해당 기간에 존재했던 조건에 대한 증거를 제공하는 경우"
+                    ],
+                    "requirement": "수정된 비교 수치를 제공해야 하며, 이를 수행하는 것이 불가능한 경우는 제외",
+                    "reference": "ESRS 2 BP-2 참조"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-2-h",
+                "ESRS2-BP-2-i",
+                "ESRS2-BP-2-j"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "7.5 Reporting errors in prior periods",
+            "section_content": "기업은 이를 수행하는 것이 불가능한 경우를 제외하고 이전 기간의 중요 오류를 수정하여 공시된 이전 기간에 대한 비교 금액을 재표시해야 합니다. 이 요구사항은 기업이 ESRS를 적용한 첫 해 이전의 보고 기간까지 확장되지 않습니다.\n\n이전 기간 오류는 기업의 지속가능성 보고서에서 하나 이상의 이전 기간에 대한 누락 및 오기입니다. 이러한 오류는 다음의 신뢰할 수 있는 정보를 사용하지 않았거나 오용한 결과로 발생합니다:\n(a) 해당 기간의 지속가능성 보고서를 포함하는 경영 보고서가 발행 승인되었을 때 사용 가능했던 정보\n(b) 이러한 보고서에 포함된 지속가능성 공시를 준비할 때 합리적으로 예상되는 정보를 얻고 고려할 수 있었던 정보\n\n이러한 오류에는 수학적 실수의 효과, 지표 또는 목표에 대한 정의 적용의 실수, 사실에 대한 간과 또는 오해석, 그리고 사기 행위가 포함됩니다.\n\n현재 기간에 발견된 현재 기간의 잠재적 오류는 경영 보고서가 발행 승인되기 전에 수정됩니다. 그러나 중요 오류는 때로는 후속 기간에만 발견됩니다.\n\n제시된 모든 이전 기간에 대한 오류의 효과를 결정하는 것이 불가능한 경우, 기업은 실행 가능한 가장 이른 날짜부터 오류를 수정하기 위해 비교 정보를 재표시해야 합니다. 이전 기간에 대한 공시를 수정할 때, 기업은 이전 기간에 경영진의 의도가 무엇이었을지에 대한 가정을 하거나 이전 기간에 공시된 금액을 추정할 때 후견을 사용해서는 안 됩니다. 이 요구사항은 회고적 및 전향적 공시 모두의 수정에 적용됩니다.\n\n오류의 수정은 추정의 변경과 구별됩니다. 추정은 추가 정보가 알려지면 수정이 필요할 수 있습니다(ESRS 2 BP-2 참조).",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 7.5 (96-101)",
+                "key_terms": [
+                    "prior period errors",
+                    "material errors",
+                    "restatement",
+                    "comparative amounts",
+                    "impracticable",
+                    "first year of application",
+                    "omissions",
+                    "misstatements",
+                    "reliable information",
+                    "mathematical mistakes",
+                    "mistakes in applying definitions",
+                    "oversights",
+                    "misinterpretations",
+                    "fraud",
+                    "current period errors",
+                    "subsequent period",
+                    "hindsight",
+                    "changes in estimates"
+                ],
+                "related_concepts": [
+                    "error correction",
+                    "restatement",
+                    "comparability",
+                    "information reliability"
+                ],
+                "correction_requirement": {
+                    "requirement": "이전 기간의 중요 오류를 수정하여 공시된 이전 기간에 대한 비교 금액을 재표시",
+                    "exception": "이를 수행하는 것이 불가능한 경우",
+                    "limitation": "기업이 ESRS를 적용한 첫 해 이전의 보고 기간까지 확장되지 않음"
+                },
+                "prior_period_error_definition": {
+                    "description": "기업의 지속가능성 보고서에서 하나 이상의 이전 기간에 대한 누락 및 오기",
+                    "causes": [
+                        "신뢰할 수 있는 정보를 사용하지 않았거나 오용",
+                        "해당 기간의 지속가능성 보고서를 포함하는 경영 보고서가 발행 승인되었을 때 사용 가능했던 정보",
+                        "지속가능성 공시를 준비할 때 합리적으로 예상되는 정보를 얻고 고려할 수 있었던 정보"
+                    ],
+                    "types": [
+                        "수학적 실수의 효과",
+                        "지표 또는 목표에 대한 정의 적용의 실수",
+                        "사실에 대한 간과 또는 오해석",
+                        "사기 행위"
+                    ]
+                },
+                "error_discovery": {
+                    "current_period": "현재 기간에 발견된 현재 기간의 잠재적 오류는 경영 보고서가 발행 승인되기 전에 수정",
+                    "subsequent_period": "중요 오류는 때로는 후속 기간에만 발견됨"
+                },
+                "restatement_requirements": {
+                    "when_impracticable": "제시된 모든 이전 기간에 대한 오류의 효과를 결정하는 것이 불가능한 경우, 실행 가능한 가장 이른 날짜부터 오류를 수정하기 위해 비교 정보를 재표시",
+                    "prohibition": "이전 기간에 경영진의 의도가 무엇이었을지에 대한 가정을 하거나 이전 기간에 공시된 금액을 추정할 때 후견을 사용해서는 안 됨",
+                    "scope": "회고적 및 전향적 공시 모두의 수정에 적용"
+                },
+                "distinction_from_estimates": {
+                    "description": "오류의 수정은 추정의 변경과 구별됨",
+                    "note": "추정은 추가 정보가 알려지면 수정이 필요할 수 있음",
+                    "reference": "ESRS 2 BP-2 참조"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-2-k",
+                "ESRS2-BP-2-l",
+                "ESRS2-BP-2-m"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "7.6 Consolidated reporting and subsidiary exemption",
+            "section_content": "기업이 통합 수준에서 보고하는 경우, 그룹의 법적 구조와 관계없이 전체 통합 그룹에 대한 중요 영향, 리스크 및 기회 평가를 수행해야 합니다. 기업은 모든 자회사가 중요 영향, 리스크 및 기회의 편향되지 않은 식별을 허용하는 방식으로 다루어지도록 해야 합니다. 영향, 리스크 또는 기회를 중요한 것으로 평가하기 위한 기준 및 임계값은 본 기준서 제3장에 따라 결정되어야 합니다.\n\n기업이 그룹 수준의 중요 영향, 리스크 또는 기회와 하나 이상의 자회사의 중요 영향, 리스크 또는 기회 간에 중요한 차이를 식별하는 경우, 기업은 적절한 경우 해당 자회사 또는 자회사들의 영향, 리스크 및 기회에 대한 적절한 설명을 제공해야 합니다.\n\n그룹 수준의 중요 영향, 리스크 또는 기회와 하나 이상의 자회사의 중요 영향, 리스크 또는 기회 간의 차이가 중요한지 평가할 때, 기업은 자회사 또는 자회사들이 그룹의 나머지 부분과 다른 섹터에서 운영되는지 여부 또는 제3.7절 세분화 수준에 반영된 상황과 같은 다양한 상황을 고려할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 7.6 (102-104)",
+                "key_terms": [
+                    "consolidated reporting",
+                    "subsidiary exemption",
+                    "consolidated group",
+                    "group legal structure",
+                    "material impacts risks and opportunities",
+                    "unbiased identification",
+                    "criteria and thresholds",
+                    "significant differences",
+                    "different sectors",
+                    "level of disaggregation"
+                ],
+                "related_concepts": [
+                    "consolidation scope",
+                    "group reporting",
+                    "subsidiary reporting",
+                    "materiality assessment"
+                ],
+                "consolidated_reporting_requirement": {
+                    "requirement": "통합 수준에서 보고하는 경우, 그룹의 법적 구조와 관계없이 전체 통합 그룹에 대한 중요 영향, 리스크 및 기회 평가를 수행",
+                    "subsidiary_coverage": "모든 자회사가 중요 영향, 리스크 및 기회의 편향되지 않은 식별을 허용하는 방식으로 다루어지도록 해야 함",
+                    "criteria_basis": "영향, 리스크 또는 기회를 중요한 것으로 평가하기 위한 기준 및 임계값은 본 기준서 제3장에 따라 결정"
+                },
+                "significant_differences": {
+                    "requirement": "그룹 수준의 중요 영향, 리스크 또는 기회와 하나 이상의 자회사의 중요 영향, 리스크 또는 기회 간에 중요한 차이를 식별하는 경우, 해당 자회사 또는 자회사들의 영향, 리스크 및 기회에 대한 적절한 설명을 제공",
+                    "assessment_factors": [
+                        "자회사 또는 자회사들이 그룹의 나머지 부분과 다른 섹터에서 운영되는지 여부",
+                        "제3.7절 세분화 수준에 반영된 상황"
+                    ]
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "7.7 Classified and sensitive information, and information on intellectual property, know-how or results of innovation",
+            "section_content": "기업은 그러한 정보가 중요한 것으로 간주되더라도 기밀 정보 또는 민감 정보를 공시할 필요가 없습니다.\n\n전략, 계획 및 조치에 대한 정보를 공시할 때, 지적재산권, 노하우 또는 혁신 결과에 해당하는 특정 정보가 공시 요구사항의 목적을 충족하는 데 관련되는 경우, 기업은 다음을 충족하는 경우 그 특정 정보를 생략할 수 있습니다:\n(a) 비밀로서, 일반적으로 해당 종류의 정보를 다루는 사람들 사이에서 일반적으로 알려져 있지 않거나 쉽게 접근할 수 없는 정보로서, 전체적으로 또는 구성 요소의 정확한 구성 및 조립에서 비밀로서\n(b) 비밀이기 때문에 상업적 가치를 가짐\n(c) 기업이 이를 비밀로 유지하기 위해 합리적인 조치를 취했음\n\n기업이 이전 단락에서 설정한 기준을 충족하기 때문에 기밀 정보 또는 민감 정보, 또는 지적재산권, 노하우 또는 혁신 결과에 해당하는 특정 정보를 생략하는 경우, 기업은 다른 모든 필수 정보를 공시하여 해당 공시 요구사항을 준수해야 합니다.\n\n기업은 기밀 정보 또는 민감 정보, 또는 지적재산권, 노하우 또는 혁신 결과에 해당하는 특정 정보의 생략을 넘어서 해당 공시의 전체 관련성이 손상되지 않도록 모든 합리적인 노력을 기울여야 합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 7.7 (105-108)",
+                "key_terms": [
+                    "classified information",
+                    "sensitive information",
+                    "intellectual property",
+                    "know-how",
+                    "results of innovation",
+                    "material information",
+                    "secret",
+                    "commercial value",
+                    "reasonable steps",
+                    "disclosure requirement",
+                    "overall relevance"
+                ],
+                "related_concepts": [
+                    "information confidentiality",
+                    "trade secrets",
+                    "competitive advantage",
+                    "disclosure exemptions"
+                ],
+                "classified_sensitive_information": {
+                    "exemption": "기업은 그러한 정보가 중요한 것으로 간주되더라도 기밀 정보 또는 민감 정보를 공시할 필요가 없음"
+                },
+                "intellectual_property_omission": {
+                    "condition": "지적재산권, 노하우 또는 혁신 결과에 해당하는 특정 정보가 공시 요구사항의 목적을 충족하는 데 관련되는 경우",
+                    "criteria": [
+                        "비밀로서, 일반적으로 해당 종류의 정보를 다루는 사람들 사이에서 일반적으로 알려져 있지 않거나 쉽게 접근할 수 없는 정보로서, 전체적으로 또는 구성 요소의 정확한 구성 및 조립에서 비밀로서",
+                        "비밀이기 때문에 상업적 가치를 가짐",
+                        "기업이 이를 비밀로 유지하기 위해 합리적인 조치를 취했음"
+                    ],
+                    "permission": "이러한 기준을 충족하는 경우 그 특정 정보를 생략할 수 있음"
+                },
+                "disclosure_requirement_compliance": {
+                    "requirement": "기밀 정보 또는 민감 정보, 또는 지적재산권, 노하우 또는 혁신 결과에 해당하는 특정 정보를 생략하는 경우, 다른 모든 필수 정보를 공시하여 해당 공시 요구사항을 준수해야 함"
+                },
+                "overall_relevance": {
+                    "requirement": "기밀 정보 또는 민감 정보, 또는 지적재산권, 노하우 또는 혁신 결과에 해당하는 특정 정보의 생략을 넘어서 해당 공시의 전체 관련성이 손상되지 않도록 모든 합리적인 노력을 기울여야 함"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-1-d"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "7.8 Reporting on opportunities",
+            "section_content": "기회에 대해 보고할 때, 공시는 독자가 기업 또는 전체 섹터에 대한 기회를 이해할 수 있도록 하는 서술적 정보로 구성되어야 합니다. 기회에 대해 보고할 때, 기업은 공시할 정보의 중요성을 고려해야 합니다. 이 맥락에서 기업은 다음을 포함한 다른 요인들을 고려해야 합니다:\n(a) 기회가 현재 추구되고 있으며 일반 전략에 통합되어 있는지 여부, 기업 또는 섹터에 대한 일반적인 기회와 대조적으로\n(b) 예상되는 재무 효과의 정량적 측정 포함이 적절한지 여부, 필요한 가정의 수와 그에 따른 불확실성을 고려",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 7.8 (109)",
+                "key_terms": [
+                    "opportunities",
+                    "descriptive information",
+                    "undertaking",
+                    "sector",
+                    "materiality of information",
+                    "currently being pursued",
+                    "general strategy",
+                    "quantitative measures",
+                    "anticipated financial effects",
+                    "assumptions",
+                    "uncertainty"
+                ],
+                "related_concepts": [
+                    "opportunity reporting",
+                    "forward-looking information",
+                    "materiality assessment"
+                ],
+                "opportunity_reporting_requirements": {
+                    "content": "독자가 기업 또는 전체 섹터에 대한 기회를 이해할 수 있도록 하는 서술적 정보로 구성",
+                    "materiality_consideration": "공시할 정보의 중요성을 고려해야 함"
+                },
+                "materiality_factors": [
+                    {
+                        "factor": "currently_pursued",
+                        "description": "기회가 현재 추구되고 있으며 일반 전략에 통합되어 있는지 여부, 기업 또는 섹터에 대한 일반적인 기회와 대조적으로"
+                    },
+                    {
+                        "factor": "quantitative_measures",
+                        "description": "예상되는 재무 효과의 정량적 측정 포함이 적절한지 여부, 필요한 가정의 수와 그에 따른 불확실성을 고려"
+                    }
+                ]
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "8.1 General presentation requirement",
+            "section_content": "지속가능성 정보는 다음 방식으로 제시되어야 합니다:\n(a) ESRS의 공시에 의해 요구되는 정보와 경영 보고서에 포함된 기타 정보를 구분할 수 있는 방식으로\n(b) 지속가능성 보고서에 대한 접근 및 이해를 촉진하는 구조 하에서, 사람이 읽을 수 있고 기계가 읽을 수 있는 형식으로",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 8.1 (111)",
+                "key_terms": [
+                    "sustainability information",
+                    "ESRS disclosures",
+                    "management report",
+                    "other information",
+                    "distinction",
+                    "structure",
+                    "access",
+                    "understanding",
+                    "human-readable",
+                    "machine-readable"
+                ],
+                "related_concepts": [
+                    "information presentation",
+                    "reporting format",
+                    "accessibility"
+                ],
+                "presentation_requirements": [
+                    {
+                        "requirement": "distinction",
+                        "description": "ESRS의 공시에 의해 요구되는 정보와 경영 보고서에 포함된 기타 정보를 구분할 수 있는 방식으로 제시"
+                    },
+                    {
+                        "requirement": "structure_and_format",
+                        "description": "지속가능성 보고서에 대한 접근 및 이해를 촉진하는 구조 하에서, 사람이 읽을 수 있고 기계가 읽을 수 있는 형식으로 제시"
+                    }
+                ]
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "8.2 Content and structure of the sustainability statement",
+            "section_content": "본 기준서 제9.1절 참조에 의한 정보 통합을 제외하고, 기업은 본 기준서 제1장에 따라 ESRS에 의해 요구되는 모든 적용 가능한 공시를 경영 보고서의 전용 섹션 내에서 보고해야 합니다.\n\n기업은 Regulation (EU) 2020/852의 제8조 및 그러한 공시의 내용 및 기타 양식을 명시하는 위원회 위임 규정에 따라 공시를 지속가능성 보고서에 포함해야 합니다. 기업은 이러한 공시가 지속가능성 보고서 내에서 별도로 식별 가능하도록 해야 합니다. Taxonomy Regulation에 정의된 각 환경 목표와 관련된 공시는 지속가능성 보고서의 환경 섹션의 명확하게 식별 가능한 부분에 함께 제시되어야 합니다. 이러한 공시는 본 단락 및 본 기준서 제115단락의 첫 문장을 제외하고 ESRS의 조항에 적용되지 않습니다.\n\n기업이 지속가능성 보고서에 (i) 기업이 지속가능성 정보를 공시하도록 요구하는 기타 법률에서 도출된 추가 공시 또는 (ii) 국제 지속가능성 표준 위원회 또는 글로벌 리포팅 이니셔티브와 같은 다른 표준 설정 기관에서 발행한 일반적으로 인정되는 지속가능성 보고 기준서 및 프레임워크(비의무적 지침 및 부문별 지침 포함)에서 도출된 추가 공시를 포함하는 경우, 그러한 공시는:\n(a) 관련 법률, 기준서 또는 프레임워크에 대한 적절한 참조와 함께 명확하게 식별되어야 합니다(ESRS 2 BP-2, 제15단락 참조)\n(b) 본 기준서 제2장 및 부록 B에 명시된 정보의 정성적 특성에 대한 요구사항을 충족해야 합니다.\n\n기업은 다음 순서로 네 부분으로 지속가능성 보고서를 구조화해야 합니다: 일반 정보, 환경 정보(Regulation (EU) 2020/852의 제8조에 따른 공시 포함), 사회 정보 및 거버넌스 정보. 본 기준서 제3.6절 '지속가능성 사항 해결을 위한 조치로 인한 중요 영향 또는 리스크'의 조항을 준수하여, 한 부분에 제공된 정보가 다른 부분에서 보고할 정보를 포함하는 경우, 기업은 한 부분에서 다른 부분에 제시된 정보를 참조할 수 있으며, 중복을 피할 수 있습니다. 기업은 본 기준서 부록 F에 설명된 상세한 구조를 적용할 수 있습니다.\n\n부문별 ESRS에 의해 요구되는 공시는 보고 영역별로, 그리고 해당되는 경우 지속가능성 주제별로 그룹화되어야 합니다. 이러한 공시는 ESRS 2 및 해당 주제별 ESRS에 의해 요구되는 공시와 함께 제시되어야 합니다.\n\n기업이 제11단락에 따라 중요 기업별 공시를 개발하는 경우, 기업은 가장 관련성 높은 부문에 구애받지 않는 공시 및 부문별 공시와 함께 그러한 공시를 보고해야 합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 8.2 (112-117)",
+                "key_terms": [
+                    "sustainability statement",
+                    "management report",
+                    "dedicated section",
+                    "incorporation by reference",
+                    "Regulation (EU) 2020/852 Article 8",
+                    "Taxonomy Regulation",
+                    "environmental objectives",
+                    "other legislation",
+                    "generally accepted sustainability reporting standards",
+                    "International Sustainability Standards Board",
+                    "Global Reporting Initiative",
+                    "qualitative characteristics of information",
+                    "general information",
+                    "environmental information",
+                    "social information",
+                    "governance information",
+                    "sector-specific ESRS",
+                    "reporting areas",
+                    "sustainability topics",
+                    "entity-specific disclosures"
+                ],
+                "related_concepts": [
+                    "reporting structure",
+                    "information organization",
+                    "cross-referencing",
+                    "duplication avoidance"
+                ],
+                "disclosure_requirements": {
+                    "location": "본 기준서 제1장에 따라 ESRS에 의해 요구되는 모든 적용 가능한 공시를 경영 보고서의 전용 섹션 내에서 보고",
+                    "exception": "본 기준서 제9.1절 참조에 의한 정보 통합을 제외"
+                },
+                "taxonomy_disclosures": {
+                    "requirement": "Regulation (EU) 2020/852의 제8조 및 그러한 공시의 내용 및 기타 양식을 명시하는 위원회 위임 규정에 따라 공시를 지속가능성 보고서에 포함",
+                    "identifiability": "이러한 공시가 지속가능성 보고서 내에서 별도로 식별 가능하도록 해야 함",
+                    "presentation": "Taxonomy Regulation에 정의된 각 환경 목표와 관련된 공시는 지속가능성 보고서의 환경 섹션의 명확하게 식별 가능한 부분에 함께 제시",
+                    "esrs_applicability": "이러한 공시는 본 단락 및 본 기준서 제115단락의 첫 문장을 제외하고 ESRS의 조항에 적용되지 않음"
+                },
+                "additional_disclosures": {
+                    "sources": [
+                        "기업이 지속가능성 정보를 공시하도록 요구하는 기타 법률에서 도출된 추가 공시",
+                        "국제 지속가능성 표준 위원회 또는 글로벌 리포팅 이니셔티브와 같은 다른 표준 설정 기관에서 발행한 일반적으로 인정되는 지속가능성 보고 기준서 및 프레임워크(비의무적 지침 및 부문별 지침 포함)에서 도출된 추가 공시"
+                    ],
+                    "requirements": [
+                        "관련 법률, 기준서 또는 프레임워크에 대한 적절한 참조와 함께 명확하게 식별 (ESRS 2 BP-2, 제15단락 참조)",
+                        "본 기준서 제2장 및 부록 B에 명시된 정보의 정성적 특성에 대한 요구사항을 충족"
+                    ]
+                },
+                "structure_requirements": {
+                    "four_parts": [
+                        "일반 정보",
+                        "환경 정보 (Regulation (EU) 2020/852의 제8조에 따른 공시 포함)",
+                        "사회 정보",
+                        "거버넌스 정보"
+                    ],
+                    "cross_referencing": "본 기준서 제3.6절의 조항을 준수하여, 한 부분에 제공된 정보가 다른 부분에서 보고할 정보를 포함하는 경우, 한 부분에서 다른 부분에 제시된 정보를 참조할 수 있으며, 중복을 피할 수 있음",
+                    "detailed_structure": "본 기준서 부록 F에 설명된 상세한 구조를 적용할 수 있음"
+                },
+                "sector_specific_disclosures": {
+                    "grouping": "부문별 ESRS에 의해 요구되는 공시는 보고 영역별로, 그리고 해당되는 경우 지속가능성 주제별로 그룹화",
+                    "presentation": "ESRS 2 및 해당 주제별 ESRS에 의해 요구되는 공시와 함께 제시"
+                },
+                "entity_specific_disclosures": {
+                    "requirement": "중요 기업별 공시를 개발하는 경우, 가장 관련성 높은 부문에 구애받지 않는 공시 및 부문별 공시와 함께 그러한 공시를 보고"
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "9. Linkages with other parts of corporate reporting and connected information",
+            "section_content": "기업은 지속가능성 보고서 사용자가 보고서 내의 서로 다른 정보 조각 간의 연결, 그리고 지속가능성 보고서의 정보와 기업이 기업 보고의 다른 부분에서 공시하는 기타 정보 간의 연결을 이해할 수 있도록 하는 정보를 제공해야 합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 9 (118)",
+                "key_terms": [
+                    "linkages",
+                    "corporate reporting",
+                    "connected information",
+                    "sustainability statement",
+                    "connections between information"
+                ],
+                "related_concepts": [
+                    "information connectivity",
+                    "cross-referencing",
+                    "reporting coherence"
+                ],
+                "requirement": "지속가능성 보고서 사용자가 보고서 내의 서로 다른 정보 조각 간의 연결, 그리고 지속가능성 보고서의 정보와 기업이 기업 보고의 다른 부분에서 공시하는 기타 정보 간의 연결을 이해할 수 있도록 하는 정보를 제공"
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "9.1 Incorporation by reference",
+            "section_content": "제120단락에 명시된 조건이 충족되는 경우, ESRS의 공시 요구사항에 의해 규정된 정보, 공시 요구사항에 의해 규정된 특정 데이터포인트를 포함하여, 다음을 참조하여 지속가능성 보고서에 통합할 수 있습니다:\n\n(a) 경영 보고서의 다른 섹션\n(b) 재무제표\n(c) 기업 지배구조 보고서(경영 보고서의 일부가 아닌 경우)\n(d) Directive 2007/36/EC에 의해 요구되는 보수 보고서\n(e) Regulation (EU) 2017/1129의 제9조에 언급된 범용 등록 문서\n(f) Regulation (EU) No 575/2013에 따른 공개 공시(Pillar 3 공시). 기업이 Pillar 3 공시에서 참조에 의해 정보를 통합하는 경우, 기업은 통합된 정보를 필요한 경우 추가 요소로 보완하여 정보가 지속가능성 보고서에 사용된 통합 범위와 일치하도록 해야 합니다.\n\n기업은 제119단락에 나열된 문서 또는 문서의 일부를 참조하여 정보를 통합할 수 있으며, 참조에 의해 통합된 공시가 다음을 충족하는 경우:\n\n(a) 별도의 정보 요소를 구성하고 관련 문서에서 관련 공시 요구사항 또는 공시 요구사항에 의해 규정된 관련 특정 데이터포인트를 다루는 것으로 명확하게 식별됨\n(b) 경영 보고서와 동시에 또는 그 이전에 게시됨\n(c) 지속가능성 보고서와 동일한 언어로 작성됨\n(d) 지속가능성 보고서와 최소한 동일한 수준의 보증을 받음\n(e) 지속가능성 보고서와 동일한 기술적 디지털화 요구사항을 충족함\n\n제120단락에 설정된 조건이 충족되는 경우, ESRS의 공시 요구사항에 의해 규정된 정보, 공시 요구사항에 의해 규정된 특정 데이터포인트를 포함하여, EU Eco-Management and Audit Scheme (EMAS) Regulation (EU) No 1221/2009에 따라 준비된 기업의 보고서를 참조하여 지속가능성 보고서에 통합할 수 있습니다. 이 경우, 기업은 참조에 의해 통합된 정보가 통합 범위 및 가치사슬 정보 처리를 포함하여 ESRS 정보의 준비 근거와 동일한 근거를 사용하여 생성되도록 해야 합니다.\n\n참조에 의한 통합을 사용하여 지속가능성 보고서를 준비할 때, 기업은 보고된 정보의 전체 응집력을 고려하고 참조에 의한 통합이 지속가능성 보고서의 가독성을 손상시키지 않도록 해야 합니다. 본 기준서 부록 G 참조에 의한 통합의 예는 참조에 의한 통합의 예시입니다(ESRS 2 BP-2 참조).",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 9.1 (119-122)",
+                "key_terms": [
+                    "incorporation by reference",
+                    "Disclosure Requirement",
+                    "datapoint",
+                    "management report",
+                    "financial statements",
+                    "corporate governance statement",
+                    "remuneration report",
+                    "universal registration document",
+                    "Pillar 3 disclosures",
+                    "EMAS Regulation",
+                    "scope of consolidation",
+                    "value chain information",
+                    "cohesiveness",
+                    "readability"
+                ],
+                "related_concepts": [
+                    "information integration",
+                    "cross-referencing",
+                    "reporting efficiency"
+                ],
+                "permitted_sources": [
+                    {
+                        "source": "another section of the management report",
+                        "description": "경영 보고서의 다른 섹션"
+                    },
+                    {
+                        "source": "financial statements",
+                        "description": "재무제표"
+                    },
+                    {
+                        "source": "corporate governance statement",
+                        "condition": "경영 보고서의 일부가 아닌 경우"
+                    },
+                    {
+                        "source": "remuneration report",
+                        "regulation": "Directive 2007/36/EC에 의해 요구"
+                    },
+                    {
+                        "source": "universal registration document",
+                        "regulation": "Regulation (EU) 2017/1129의 제9조"
+                    },
+                    {
+                        "source": "Pillar 3 disclosures",
+                        "regulation": "Regulation (EU) No 575/2013",
+                        "special_requirement": "기업이 Pillar 3 공시에서 참조에 의해 정보를 통합하는 경우, 기업은 통합된 정보를 필요한 경우 추가 요소로 보완하여 정보가 지속가능성 보고서에 사용된 통합 범위와 일치하도록 해야 함"
+                    },
+                    {
+                        "source": "EMAS report",
+                        "regulation": "EU Eco-Management and Audit Scheme (EMAS) Regulation (EU) No 1221/2009",
+                        "special_requirement": "참조에 의해 통합된 정보가 통합 범위 및 가치사슬 정보 처리를 포함하여 ESRS 정보의 준비 근거와 동일한 근거를 사용하여 생성되도록 해야 함"
+                    }
+                ],
+                "conditions_for_incorporation": [
+                    {
+                        "condition": "separate_element",
+                        "description": "별도의 정보 요소를 구성하고 관련 문서에서 관련 공시 요구사항 또는 공시 요구사항에 의해 규정된 관련 특정 데이터포인트를 다루는 것으로 명확하게 식별됨"
+                    },
+                    {
+                        "condition": "publication_timing",
+                        "description": "경영 보고서와 동시에 또는 그 이전에 게시됨"
+                    },
+                    {
+                        "condition": "language",
+                        "description": "지속가능성 보고서와 동일한 언어로 작성됨"
+                    },
+                    {
+                        "condition": "assurance_level",
+                        "description": "지속가능성 보고서와 최소한 동일한 수준의 보증을 받음"
+                    },
+                    {
+                        "condition": "digitalisation_requirements",
+                        "description": "지속가능성 보고서와 동일한 기술적 디지털화 요구사항을 충족함"
+                    }
+                ],
+                "preparation_considerations": {
+                    "cohesiveness": "보고된 정보의 전체 응집력을 고려",
+                    "readability": "참조에 의한 통합이 지속가능성 보고서의 가독성을 손상시키지 않도록 해야 함",
+                    "reference": "본 기준서 부록 G 참조에 의한 통합의 예는 참조에 의한 통합의 예시 (ESRS 2 BP-2 참조)"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-2-o"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "9.2 Connected information and connectivity with financial statements",
+            "section_content": "기업은 서로 다른 정보 조각 간의 관계를 설명해야 합니다. 이를 위해서는 거버넌스, 전략 및 리스크 관리에 대한 서술적 정보를 관련 지표 및 목표와 연결해야 할 수 있습니다. 예를 들어, 연결된 정보를 제공할 때, 기업은 전략이 재무제표 또는 재무 계획에 미치는 영향 또는 예상되는 영향을 설명하거나, 전략이 성과 대비 진행 상황을 측정하는 데 사용되는 지표 및 목표와 어떻게 관련되는지 설명해야 할 수 있습니다. 또한 기업은 자연 자원의 사용 및 공급망 내의 변화가 중요 영향, 리스크 및 기회를 증폭, 변경 또는 감소시킬 수 있는 방법을 설명해야 할 수 있습니다. 기업은 이 정보를 생산 비용에 대한 현재 또는 예상되는 재무 효과에 대한 정보, 그러한 영향 또는 리스크를 완화하기 위한 전략적 대응, 그리고 신규 자산에 대한 관련 투자와 연결해야 할 수 있습니다. 기업은 또한 서술적 정보를 관련 지표 및 목표와 재무제표의 정보와 연결해야 할 수 있습니다. 연결을 설명하는 정보는 명확하고 간결해야 합니다.\n\n지속가능성 보고서에 중요성 임계값을 초과하고 재무제표에 제시된 금액 또는 기타 정량 데이터포인트가 포함되는 경우(지속가능성 보고서에 공시된 정보와 재무제표에 공시된 정보 간의 직접 연결), 기업은 해당 정보를 찾을 수 있는 재무제표의 관련 단락에 대한 참조를 포함해야 합니다.\n\n지속가능성 보고서에는 중요성 임계값을 초과하고 기업의 재무제표에 제시된 금액 또는 정량 데이터의 집계 또는 일부인 금액 또는 기타 정량 데이터포인트가 포함될 수 있습니다(지속가능성 보고서에 공시된 정보와 재무제표에 공시된 정보 간의 간접 연결). 이 경우, 기업은 지속가능성 보고서의 이러한 금액 또는 데이터포인트가 재무제표에 제시된 가장 관련성 높은 금액과 어떻게 관련되는지 설명해야 합니다. 이 공시에는 해당 정보를 찾을 수 있는 재무제표의 계정 항목 및/또는 관련 단락에 대한 참조가 포함되어야 합니다. 적절한 경우 조정표가 제공될 수 있으며, 표 형식으로 제시될 수 있습니다.\n\n제124단락 및 제125단락에서 다루지 않는 정보의 경우, 기업은 중요성 임계값을 기반으로 지속가능성 보고서에 포함된 중요한 데이터, 가정 및 정성적 정보가 재무제표에 포함된 해당 데이터, 가정 및 정성적 정보와의 일관성을 설명해야 합니다. 이는 지속가능성 보고서에 다음이 포함되는 경우 발생할 수 있습니다:\n(a) 재무제표에 제시된 금액 또는 기타 정량 데이터와 연결된 금액 또는 기타 정량 데이터\n(b) 재무제표에 제시된 정성적 정보와 연결된 정성적 정보\n\n제126단락에 요구되는 일관성은 단일 데이터포인트 수준에서 이루어져야 하며 재무제표 주석의 관련 계정 항목 또는 단락에 대한 참조를 포함해야 합니다. 중요한 데이터, 가정 및 정성적 정보가 일관되지 않은 경우, 기업은 그 사실을 명시하고 이유를 설명해야 합니다.\n\n제126단락에 요구되는 설명이 필요한 항목의 예는 다음과 같습니다:\n(a) 동일한 지표가 재무제표에서 보고일 기준으로 제시되고 지속가능성 보고서에서 향후 기간에 대한 예측으로 제시되는 경우\n(b) 거시경제 또는 사업 예측이 지속가능성 보고서에서 지표를 개발하는 데 사용되고 재무제표에서 자산의 회수 가능 금액, 부채 또는 준비금액을 추정하는 데에도 관련되는 경우\n\n주제별 및 부문별 ESRS에는 특정 공시 요구사항에 대해 조정표를 포함하거나 데이터 및 가정의 일관성을 설명하는 요구사항이 포함될 수 있습니다. 이러한 경우, 해당 ESRS의 요구사항이 우선합니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 9.2 (123-129)",
+                "key_terms": [
+                    "connected information",
+                    "connectivity with financial statements",
+                    "relationships between information",
+                    "governance",
+                    "strategy",
+                    "risk management",
+                    "metrics",
+                    "targets",
+                    "natural resources",
+                    "supply chain",
+                    "material impacts risks and opportunities",
+                    "financial effects",
+                    "production costs",
+                    "strategic response",
+                    "investment in new assets",
+                    "monetary amounts",
+                    "quantitative datapoints",
+                    "threshold of materiality",
+                    "direct connectivity",
+                    "indirect connectivity",
+                    "aggregation",
+                    "reconciliation",
+                    "consistency",
+                    "data",
+                    "assumptions",
+                    "qualitative information",
+                    "line item",
+                    "notes to financial statements",
+                    "reporting date",
+                    "forecast",
+                    "macroeconomic projections",
+                    "business projections",
+                    "recoverable amount",
+                    "liabilities",
+                    "provisions"
+                ],
+                "related_concepts": [
+                    "information connectivity",
+                    "financial statement linkage",
+                    "cross-referencing",
+                    "data consistency"
+                ],
+                "connected_information_requirements": {
+                    "general_requirement": "서로 다른 정보 조각 간의 관계를 설명",
+                    "examples": [
+                        "거버넌스, 전략 및 리스크 관리에 대한 서술적 정보를 관련 지표 및 목표와 연결",
+                        "전략이 재무제표 또는 재무 계획에 미치는 영향 또는 예상되는 영향을 설명",
+                        "전략이 성과 대비 진행 상황을 측정하는 데 사용되는 지표 및 목표와 어떻게 관련되는지 설명",
+                        "자연 자원의 사용 및 공급망 내의 변화가 중요 영향, 리스크 및 기회를 증폭, 변경 또는 감소시킬 수 있는 방법을 설명",
+                        "이 정보를 생산 비용에 대한 현재 또는 예상되는 재무 효과에 대한 정보, 그러한 영향 또는 리스크를 완화하기 위한 전략적 대응, 그리고 신규 자산에 대한 관련 투자와 연결",
+                        "서술적 정보를 관련 지표 및 목표와 재무제표의 정보와 연결"
+                    ],
+                    "quality_requirement": "연결을 설명하는 정보는 명확하고 간결해야 함"
+                },
+                "direct_connectivity": {
+                    "condition": "지속가능성 보고서에 중요성 임계값을 초과하고 재무제표에 제시된 금액 또는 기타 정량 데이터포인트가 포함되는 경우",
+                    "requirement": "해당 정보를 찾을 수 있는 재무제표의 관련 단락에 대한 참조를 포함해야 함"
+                },
+                "indirect_connectivity": {
+                    "condition": "지속가능성 보고서에 중요성 임계값을 초과하고 기업의 재무제표에 제시된 금액 또는 정량 데이터의 집계 또는 일부인 금액 또는 기타 정량 데이터포인트가 포함되는 경우",
+                    "requirement": [
+                        "지속가능성 보고서의 이러한 금액 또는 데이터포인트가 재무제표에 제시된 가장 관련성 높은 금액과 어떻게 관련되는지 설명",
+                        "해당 정보를 찾을 수 있는 재무제표의 계정 항목 및/또는 관련 단락에 대한 참조가 포함되어야 함",
+                        "적절한 경우 조정표가 제공될 수 있으며, 표 형식으로 제시될 수 있음"
+                    ]
+                },
+                "consistency_requirements": {
+                    "scope": "제124단락 및 제125단락에서 다루지 않는 정보의 경우",
+                    "basis": "중요성 임계값을 기반으로",
+                    "requirement": "지속가능성 보고서에 포함된 중요한 데이터, 가정 및 정성적 정보가 재무제표에 포함된 해당 데이터, 가정 및 정성적 정보와의 일관성을 설명",
+                    "applicable_cases": [
+                        "재무제표에 제시된 금액 또는 기타 정량 데이터와 연결된 금액 또는 기타 정량 데이터",
+                        "재무제표에 제시된 정성적 정보와 연결된 정성적 정보"
+                    ],
+                    "level": "단일 데이터포인트 수준에서",
+                    "reference_requirement": "재무제표 주석의 관련 계정 항목 또는 단락에 대한 참조를 포함",
+                    "inconsistency_disclosure": "중요한 데이터, 가정 및 정성적 정보가 일관되지 않은 경우, 그 사실을 명시하고 이유를 설명해야 함"
+                },
+                "consistency_examples": [
+                    {
+                        "example": "동일한 지표가 재무제표에서 보고일 기준으로 제시되고 지속가능성 보고서에서 향후 기간에 대한 예측으로 제시되는 경우"
+                    },
+                    {
+                        "example": "거시경제 또는 사업 예측이 지속가능성 보고서에서 지표를 개발하는 데 사용되고 재무제표에서 자산의 회수 가능 금액, 부채 또는 준비금액을 추정하는 데에도 관련되는 경우"
+                    }
+                ],
+                "precedence": {
+                    "rule": "주제별 및 부문별 ESRS에는 특정 공시 요구사항에 대해 조정표를 포함하거나 데이터 및 가정의 일관성을 설명하는 요구사항이 포함될 수 있으며, 이러한 경우 해당 ESRS의 요구사항이 우선"
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "10. Transitional provisions",
+            "section_content": "ESRS에 의해 지속가능성 사항이 다루어지는 범위는 추가 공시 요구사항이 개발됨에 따라 진화할 것으로 예상됩니다. 따라서 기업별 공시의 필요성은 시간이 지남에 따라 감소할 가능성이 높으며, 특히 부문별 기준서의 향후 채택 결과로 인해 그렇습니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 10 (130)",
+                "key_terms": [
+                    "transitional provisions",
+                    "sustainability matters",
+                    "Disclosure Requirements",
+                    "entity-specific disclosures",
+                    "sector-specific standards"
+                ],
+                "related_concepts": [
+                    "phased implementation",
+                    "reporting evolution",
+                    "standard development"
+                ],
+                "evolution_expectation": "ESRS에 의해 지속가능성 사항이 다루어지는 범위는 추가 공시 요구사항이 개발됨에 따라 진화할 것으로 예상",
+                "decreasing_need": "기업별 공시의 필요성은 시간이 지남에 따라 감소할 가능성이 높으며, 특히 부문별 기준서의 향후 채택 결과로 인해 그렇습니다"
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "10.1 Transitional provision related to entity-specific disclosures",
+            "section_content": "기업별 공시를 정의할 때, 기업은 첫 세 개의 연간 지속가능성 보고서에서 준비를 위한 과도기 조치를 채택할 수 있으며, 이를 통해 우선적으로:\n\n(a) 이전 기간에 보고한 기업별 공시를 보고에 도입할 수 있으며, 이러한 공시가 본 기준서 제2장에서 언급된 정보의 정성적 특성을 충족하거나 충족하도록 적응된 경우\n(b) 주제별 ESRS를 기반으로 준비한 공시를 기업의 섹터에서 중요한 지속가능성 사항을 다루기 위한 적절한 추가 공시 세트로 보완할 수 있으며, 사용 가능한 모범 사례 및/또는 사용 가능한 프레임워크 또는 보고 기준서(예: IFRS 산업 기반 지침 및 GRI 섹터 기준서)를 사용",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 10.1 (131)",
+                "key_terms": [
+                    "entity-specific disclosures",
+                    "transitional measures",
+                    "first three annual sustainability statements",
+                    "prior periods",
+                    "qualitative characteristics of information",
+                    "topical ESRS",
+                    "sector-specific standards",
+                    "best practice",
+                    "IFRS industry-based guidance",
+                    "GRI Sector Standards"
+                ],
+                "related_concepts": [
+                    "phased implementation",
+                    "reporting adaptation",
+                    "standard alignment"
+                ],
+                "transitional_measures": {
+                    "scope": "첫 세 개의 연간 지속가능성 보고서에서 준비를 위한 과도기 조치를 채택할 수 있음",
+                    "priorities": [
+                        {
+                            "priority": "a",
+                            "description": "이전 기간에 보고한 기업별 공시를 보고에 도입",
+                            "condition": "이러한 공시가 본 기준서 제2장에서 언급된 정보의 정성적 특성을 충족하거나 충족하도록 적응된 경우"
+                        },
+                        {
+                            "priority": "b",
+                            "description": "주제별 ESRS를 기반으로 준비한 공시를 기업의 섹터에서 중요한 지속가능성 사항을 다루기 위한 적절한 추가 공시 세트로 보완",
+                            "sources": [
+                                "사용 가능한 모범 사례",
+                                "사용 가능한 프레임워크 또는 보고 기준서",
+                                "IFRS 산업 기반 지침",
+                                "GRI 섹터 기준서"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "10.2 Transitional provision related to chapter 5 Value chain",
+            "section_content": "기업이 ESRS에 따라 지속가능성 보고를 수행하는 첫 3년 동안, 상류 및 하류 가치사슬에 대한 모든 필요한 정보를 사용할 수 없는 경우, 기업은 상류 및 하류 가치사슬에 대한 필요한 정보를 얻기 위해 기울인 노력, 모든 필요한 정보를 얻을 수 없었던 이유, 그리고 향후 필요한 정보를 얻기 위한 계획을 설명해야 합니다.\n\n기업이 ESRS에 따라 지속가능성 보고를 수행하는 첫 3년 동안, 가치사슬 전반에 걸쳐 행위자로부터 정보를 수집하는 데 기업이 직면할 수 있는 어려움을 고려하고 가치사슬의 중소기업에 대한 부담을 제한하기 위해:\n\n(a) ESRS2 및 기타 ESRS에 따라 정책, 조치 및 목표에 대한 정보를 공시할 때, 기업은 상류 및 하류 가치사슬 정보를 기업 내에서 사용 가능한 정보(예: 기업이 이미 사용 가능한 데이터 및 공개적으로 사용 가능한 정보)로 제한할 수 있습니다.\n(b) 지표를 공시할 때, 기업은 ESRS 2 부록 B에 나열된 다른 EU 법률에서 도출된 데이터포인트를 제외하고 상류 및 하류 가치사슬 정보를 포함할 필요가 없습니다.\n\n제132단락 및 제133단락은 가치사슬의 관련 행위자가 중소기업인지 여부와 관계없이 적용됩니다.\n\nESRS에 따른 보고의 네 번째 해부터, 기업은 제63단락에 따라 상류 및/또는 하류 가치사슬 정보를 포함해야 합니다. 이 맥락에서, 기업의 상류 및/또는 하류 가치사슬의 중소기업 기업으로부터 얻어야 하는 ESRS에 의해 요구되는 정보는 향후 상장 중소기업을 위한 ESRS의 내용을 초과하지 않습니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 10.2 (132-135)",
+                "key_terms": [
+                    "transitional provision",
+                    "value chain",
+                    "first 3 years",
+                    "upstream value chain",
+                    "downstream value chain",
+                    "necessary information",
+                    "efforts made",
+                    "reasons",
+                    "plans",
+                    "SMEs",
+                    "in-house information",
+                    "publicly available information",
+                    "datapoints derived from other EU legislation",
+                    "ESRS 2 Appendix B",
+                    "fourth year",
+                    "paragraph 63",
+                    "listed SMEs"
+                ],
+                "related_concepts": [
+                    "phased implementation",
+                    "information availability",
+                    "SME burden limitation"
+                ],
+                "first_three_years": {
+                    "disclosure_requirement": "상류 및 하류 가치사슬에 대한 필요한 정보를 얻기 위해 기울인 노력, 모든 필요한 정보를 얻을 수 없었던 이유, 그리고 향후 필요한 정보를 얻기 위한 계획을 설명",
+                    "limitations": [
+                        {
+                            "scope": "정책, 조치 및 목표에 대한 정보를 공시할 때",
+                            "limitation": "상류 및 하류 가치사슬 정보를 기업 내에서 사용 가능한 정보(예: 기업이 이미 사용 가능한 데이터 및 공개적으로 사용 가능한 정보)로 제한할 수 있음"
+                        },
+                        {
+                            "scope": "지표를 공시할 때",
+                            "limitation": "ESRS 2 부록 B에 나열된 다른 EU 법률에서 도출된 데이터포인트를 제외하고 상류 및 하류 가치사슬 정보를 포함할 필요가 없음"
+                        }
+                    ],
+                    "applicability": "가치사슬의 관련 행위자가 중소기업인지 여부와 관계없이 적용"
+                },
+                "from_fourth_year": {
+                    "requirement": "제63단락에 따라 상류 및/또는 하류 가치사슬 정보를 포함해야 함",
+                    "sme_limitation": "기업의 상류 및/또는 하류 가치사슬의 중소기업 기업으로부터 얻어야 하는 ESRS에 의해 요구되는 정보는 향후 상장 중소기업을 위한 ESRS의 내용을 초과하지 않음"
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "10.3 Transitional provision related to section 7.1 Presenting comparative information",
+            "section_content": "본 기준서의 최초 적용을 용이하게 하기 위해, 기업은 ESRS에 따라 지속가능성 보고서를 준비하는 첫 해에 제7.1절 비교 정보 제시에 의해 요구되는 비교 정보를 공시할 필요가 없습니다. 부록 C 단계적 도입 공시 요구사항 목록에 나열된 공시 요구사항의 경우, 이 과도기 조항은 단계적 도입 공시 요구사항의 의무 적용 첫 해를 참조하여 적용됩니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 10.3 (136)",
+                "key_terms": [
+                    "transitional provision",
+                    "first-time application",
+                    "first year",
+                    "comparative information",
+                    "section 7.1",
+                    "Appendix C",
+                    "phased-in Disclosure Requirements",
+                    "first year of mandatory application"
+                ],
+                "related_concepts": [
+                    "phased implementation",
+                    "reporting ease",
+                    "comparative information exemption"
+                ],
+                "exemption": {
+                    "scope": "ESRS에 따라 지속가능성 보고서를 준비하는 첫 해",
+                    "requirement": "제7.1절 비교 정보 제시에 의해 요구되는 비교 정보를 공시할 필요가 없음",
+                    "purpose": "본 기준서의 최초 적용을 용이하게 하기 위해"
+                },
+                "phased_in_requirements": {
+                    "scope": "부록 C 단계적 도입 공시 요구사항 목록에 나열된 공시 요구사항",
+                    "application": "단계적 도입 공시 요구사항의 의무 적용 첫 해를 참조하여 적용"
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "10.4 Transitional provision: List of Disclosure Requirements that are phased-in",
+            "section_content": "본 기준서 부록 C 단계적 도입 공시 요구사항 목록은 ESRS의 공시 요구사항 또는 공시 요구사항의 데이터포인트에 대한 단계적 도입 조항을 설정하며, 이는 ESRS에 따라 지속가능성 보고서를 준비하는 첫 해(들)에 생략되거나 적용되지 않을 수 있습니다.",
+            "validation_rules": {
+                "section_type": "general_requirement",
+                "paragraph_reference": "ESRS 1 - 10.4 (137)",
+                "key_terms": [
+                    "transitional provision",
+                    "Appendix C",
+                    "List of phased-in Disclosure Requirements",
+                    "phase-in provisions",
+                    "Disclosure Requirements",
+                    "datapoints",
+                    "first year(s)",
+                    "omitted",
+                    "not applicable"
+                ],
+                "related_concepts": [
+                    "phased implementation",
+                    "gradual adoption",
+                    "reporting flexibility"
+                ],
+                "phase_in_provisions": {
+                    "source": "본 기준서 부록 C 단계적 도입 공시 요구사항 목록",
+                    "scope": "ESRS의 공시 요구사항 또는 공시 요구사항의 데이터포인트",
+                    "application": "ESRS에 따라 지속가능성 보고서를 준비하는 첫 해(들)에 생략되거나 적용되지 않을 수 있음"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-2-p",
+                "ESRS2-BP-2-p-a",
+                "ESRS2-BP-2-p-b",
+                "ESRS2-BP-2-p-c",
+                "ESRS2-BP-2-p-d",
+                "ESRS2-BP-2-p-e"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "Appendix A: Application Requirements - Entity specific disclosures",
+            "section_content": "본 부록은 ESRS 1의 필수 구성 요소이며 기준서의 다른 부분과 동일한 권한을 가집니다.\n\n기업별 공시\n\nAR 1. 기업별 공시는 사용자가 환경, 사회 또는 거버넌스 사항과 관련하여 기업의 영향, 리스크 및 기회를 이해할 수 있도록 해야 합니다.\n\nAR 2. 기업별 공시를 개발할 때, 기업은 다음을 보장해야 합니다:\n(a) 공시가 제2장 정보의 정성적 특성에 명시된 정보의 정성적 특성을 충족하는지\n(b) 공시가 해당되는 경우 거버넌스, 전략, 영향, 리스크 및 기회 관리, 지표 및 목표의 보고 영역과 관련된 모든 중요 정보를 포함하는지(ESRS 2 제2장부터 제5장 참조)\n\nAR 3. 기업별 공시에 포함할 지표의 유용성을 결정할 때, 기업은 다음을 고려해야 합니다:\n(a) 선택한 성과 지표가 다음에 대한 통찰력을 제공하는지:\ni. 실천이 사람과 환경에 대한 부정적 결과를 감소시키고/또는 긍정적 결과를 증가시키는 데 얼마나 효과적인지(영향의 경우)\nii. 실천이 기업에 재무적 영향을 미칠 가능성(리스크 및 기회의 경우)\n(b) 측정된 결과가 충분히 신뢰할 수 있는지, 즉 과도한 수의 가정과 미지수를 포함하지 않아 지표가 너무 임의적이어서 충실한 표현을 제공할 수 없게 되는지\n(c) 성과 지표를 적절하게 해석하기 위한 충분한 맥락 정보를 제공했는지, 그리고 그러한 맥락 정보의 변동이 시간에 걸쳐 지표의 비교 가능성에 영향을 미칠 수 있는지\n\nAR 4. 기업별 공시를 개발할 때, 기업은 다음을 신중하게 고려해야 합니다:\n(a) 기업 간 비교 가능성: 제공된 정보의 관련성을 여전히 보장하면서, 기업별 공시의 경우 비교 가능성이 제한될 수 있음을 인식합니다. 기업은 사용 가능하고 관련성 있는 프레임워크, 이니셔티브, 보고 기준서 및 벤치마크(예: 국제 지속가능성 표준 위원회 또는 글로벌 리포팅 이니셔티브에서 발행한 기술 자료)가 가능한 최대한 비교 가능성을 지원할 수 있는 요소를 제공하는지 고려해야 합니다\n(b) 시간에 걸친 비교 가능성: 방법론 및 공시의 일관성은 시간에 걸쳐 비교 가능성을 달성하는 핵심 요소입니다\n\nAR 5. 기업별 공시를 개발하기 위한 추가 지침은 유사한 지속가능성 사항을 다루는 주제별 ESRS에서 요구되는 정보를 고려하여 찾을 수 있습니다.",
+            "validation_rules": {
+                "section_type": "application_requirement",
+                "paragraph_reference": "ESRS 1 - Appendix A, AR 1-5",
+                "key_terms": [
+                    "entity-specific disclosures",
+                    "qualitative characteristics of information",
+                    "reporting areas",
+                    "governance",
+                    "strategy",
+                    "impact risk opportunity management",
+                    "metrics and targets",
+                    "performance metrics",
+                    "negative outcomes",
+                    "positive outcomes",
+                    "reliability",
+                    "contextual information",
+                    "comparability between undertakings",
+                    "comparability over time",
+                    "consistency of methodologies"
+                ],
+                "related_concepts": [
+                    "disclosure development",
+                    "information quality",
+                    "stakeholder understanding"
+                ],
+                "ar1_requirement": {
+                    "purpose": "사용자가 환경, 사회 또는 거버넌스 사항과 관련하여 기업의 영향, 리스크 및 기회를 이해할 수 있도록 해야 함"
+                },
+                "ar2_requirements": [
+                    {
+                        "requirement": "a",
+                        "description": "공시가 제2장 정보의 정성적 특성에 명시된 정보의 정성적 특성을 충족하는지"
+                    },
+                    {
+                        "requirement": "b",
+                        "description": "공시가 해당되는 경우 거버넌스, 전략, 영향, 리스크 및 기회 관리, 지표 및 목표의 보고 영역과 관련된 모든 중요 정보를 포함하는지",
+                        "reference": "ESRS 2 제2장부터 제5장 참조"
+                    }
+                ],
+                "ar3_considerations": [
+                    {
+                        "consideration": "a",
+                        "description": "선택한 성과 지표가 다음에 대한 통찰력을 제공하는지",
+                        "sub_considerations": [
+                            "실천이 사람과 환경에 대한 부정적 결과를 감소시키고/또는 긍정적 결과를 증가시키는 데 얼마나 효과적인지(영향의 경우)",
+                            "실천이 기업에 재무적 영향을 미칠 가능성(리스크 및 기회의 경우)"
+                        ]
+                    },
+                    {
+                        "consideration": "b",
+                        "description": "측정된 결과가 충분히 신뢰할 수 있는지, 즉 과도한 수의 가정과 미지수를 포함하지 않아 지표가 너무 임의적이어서 충실한 표현을 제공할 수 없게 되는지"
+                    },
+                    {
+                        "consideration": "c",
+                        "description": "성과 지표를 적절하게 해석하기 위한 충분한 맥락 정보를 제공했는지, 그리고 그러한 맥락 정보의 변동이 시간에 걸쳐 지표의 비교 가능성에 영향을 미칠 수 있는지"
+                    }
+                ],
+                "ar4_considerations": [
+                    {
+                        "consideration": "a",
+                        "description": "기업 간 비교 가능성: 제공된 정보의 관련성을 여전히 보장하면서, 기업별 공시의 경우 비교 가능성이 제한될 수 있음을 인식",
+                        "guidance": "사용 가능하고 관련성 있는 프레임워크, 이니셔티브, 보고 기준서 및 벤치마크(예: 국제 지속가능성 표준 위원회 또는 글로벌 리포팅 이니셔티브에서 발행한 기술 자료)가 가능한 최대한 비교 가능성을 지원할 수 있는 요소를 제공하는지 고려"
+                    },
+                    {
+                        "consideration": "b",
+                        "description": "시간에 걸친 비교 가능성: 방법론 및 공시의 일관성은 시간에 걸쳐 비교 가능성을 달성하는 핵심 요소"
+                    }
+                ],
+                "ar5_guidance": {
+                    "description": "기업별 공시를 개발하기 위한 추가 지침은 유사한 지속가능성 사항을 다루는 주제별 ESRS에서 요구되는 정보를 고려하여 찾을 수 있음"
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "Appendix A: Application Requirements - Double materiality - Stakeholders and their relevance to the materiality assessment process",
+            "section_content": "AR 6. 제22단락에 나열된 이해관계자 범주에 추가하여, 일반적인 이해관계자 범주는 다음과 같습니다: 직원 및 기타 근로자, 공급업체, 소비자, 고객, 최종 사용자, 지역 사회 및 취약한 상황에 있는 사람들, 그리고 규제 기관, 감독 기관 및 중앙은행을 포함한 공공 당국입니다.\n\nAR 7. 자연은 침묵하는 이해관계자로 간주될 수 있습니다. 이 경우, 생태학적 데이터 및 종 보존에 대한 데이터가 기업의 중요성 평가를 지원할 수 있습니다.\n\nAR 8. 중요성 평가는 영향받은 이해관계자와의 대화를 통해 알려집니다. 기업은 영향받은 이해관계자 또는 그 대표(예: 직원 또는 노동조합)와 함께 지속가능성 보고 사용자 및 기타 전문가와 협력하여 중요 영향, 리스크 및 기회에 대한 결론에 대한 입력 또는 피드백을 제공할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "application_requirement",
+                "paragraph_reference": "ESRS 1 - Appendix A, AR 6-8",
+                "key_terms": [
+                    "stakeholders",
+                    "employees and other workers",
+                    "suppliers",
+                    "consumers",
+                    "customers",
+                    "end-users",
+                    "local communities",
+                    "persons in vulnerable situations",
+                    "public authorities",
+                    "regulators",
+                    "supervisors",
+                    "central banks",
+                    "nature as silent stakeholder",
+                    "ecological data",
+                    "species conservation",
+                    "materiality assessment",
+                    "dialogue with affected stakeholders",
+                    "trade unions",
+                    "users of sustainability reporting",
+                    "experts",
+                    "material impacts risks and opportunities"
+                ],
+                "related_concepts": [
+                    "stakeholder engagement",
+                    "materiality assessment process",
+                    "stakeholder categories"
+                ],
+                "ar6_common_stakeholder_categories": [
+                    "직원 및 기타 근로자",
+                    "공급업체",
+                    "소비자",
+                    "고객",
+                    "최종 사용자",
+                    "지역 사회 및 취약한 상황에 있는 사람들",
+                    "규제 기관, 감독 기관 및 중앙은행을 포함한 공공 당국"
+                ],
+                "ar7_nature_as_stakeholder": {
+                    "concept": "자연은 침묵하는 이해관계자로 간주될 수 있음",
+                    "supporting_data": [
+                        "생태학적 데이터",
+                        "종 보존에 대한 데이터"
+                    ],
+                    "purpose": "기업의 중요성 평가를 지원"
+                },
+                "ar8_stakeholder_engagement": {
+                    "participants": [
+                        "영향받은 이해관계자 또는 그 대표(예: 직원 또는 노동조합)",
+                        "지속가능성 보고 사용자",
+                        "기타 전문가"
+                    ],
+                    "purpose": "중요 영향, 리스크 및 기회에 대한 결론에 대한 입력 또는 피드백을 제공",
+                    "basis": "중요성 평가는 영향받은 이해관계자와의 대화를 통해 알려짐"
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "Appendix A: Application Requirements - Double materiality - Assessment of impact materiality",
+            "section_content": "AR 9. 영향 중요성을 평가하고 보고할 중요 사항을 결정할 때, 기업은 다음 세 단계를 고려해야 합니다:\n(a) 활동, 비즈니스 관계 및 이해관계자를 포함하여 영향과 관련된 맥락 이해\n(b) 이해관계자 및 전문가와의 협력을 통해 실제 및 잠재적 영향(부정적 및 긍정적 모두) 식별. 이 단계에서 기업은 지속가능성 사항에 대한 영향에 대한 과학적 및 분석적 연구에 의존할 수 있습니다\n(c) 실제 및 잠재적 영향의 중요성 평가 및 중요 사항 결정. 이 단계에서 기업은 지속가능성 보고서에서 다룰 영향 중 어느 것을 결정하기 위해 임계값을 채택해야 합니다.\n\n심각도의 특성\n\nAR 10. 심각도는 다음 요인에 의해 결정됩니다:\n(a) 규모: 부정적 영향이 얼마나 심각한지 또는 긍정적 영향이 사람이나 환경에 얼마나 유익한지\n(b) 범위: 부정적 또는 긍정적 영향이 얼마나 광범위한지. 환경 영향의 경우, 범위는 환경 피해의 정도 또는 지리적 범위로 이해될 수 있습니다. 사람에 대한 영향의 경우, 범위는 부정적 영향을 받는 사람의 수로 이해될 수 있습니다\n(c) 불가역적 특성: 부정적 영향이 구제될 수 있는지 여부 및 정도, 즉 환경 또는 영향받은 사람들을 이전 상태로 복원하는 것\n\nAR 11. 세 가지 특성(규모, 범위, 불가역적 특성) 중 어느 것도 부정적 영향을 심각하게 만들 수 있습니다. 잠재적 부정적 인권 영향의 경우, 영향의 심각도가 가능성보다 우선합니다.\n\n기업과 연결된 영향\n\nAR 12. 예시로:\n(a) 기업이 아동 노동을 사용하여 채굴된 코발트를 제품에 사용하는 경우, 부정적 영향(즉, 아동 노동)은 상류 가치사슬의 비즈니스 관계 계층을 통해 기업의 제품과 연결됩니다. 이러한 관계에는 제련소 및 광물 거래업체와 아동 노동을 사용하는 채굴 기업이 포함됩니다\n(b) 기업이 합의된 기준을 위반하여 운영 주변의 물과 토지를 오염시키는 사업 활동을 위해 기업에 금융 대출을 제공하는 경우, 이 부정적 영향은 대출을 제공하는 기업과의 관계를 통해 기업과 연결됩니다.",
+            "validation_rules": {
+                "section_type": "application_requirement",
+                "paragraph_reference": "ESRS 1 - Appendix A, AR 9-12",
+                "key_terms": [
+                    "impact materiality",
+                    "material matters",
+                    "three steps",
+                    "understanding context",
+                    "activities",
+                    "business relationships",
+                    "stakeholders",
+                    "identification of actual and potential impacts",
+                    "negative impacts",
+                    "positive impacts",
+                    "scientific and analytical research",
+                    "assessment of materiality",
+                    "thresholds",
+                    "severity",
+                    "scale",
+                    "scope",
+                    "irremediable character",
+                    "environmental damage",
+                    "geographical perimeter",
+                    "number of people adversely affected",
+                    "remediation",
+                    "restoring to prior state",
+                    "potential negative human rights impact",
+                    "severity takes precedence over likelihood",
+                    "impacts connected with undertaking",
+                    "upstream value chain",
+                    "tiers of business relationships",
+                    "financial loans",
+                    "contamination"
+                ],
+                "related_concepts": [
+                    "materiality assessment process",
+                    "impact assessment",
+                    "severity factors",
+                    "value chain connections"
+                ],
+                "ar9_three_steps": [
+                    {
+                        "step": "a",
+                        "description": "활동, 비즈니스 관계 및 이해관계자를 포함하여 영향과 관련된 맥락 이해"
+                    },
+                    {
+                        "step": "b",
+                        "description": "이해관계자 및 전문가와의 협력을 통해 실제 및 잠재적 영향(부정적 및 긍정적 모두) 식별",
+                        "note": "이 단계에서 기업은 지속가능성 사항에 대한 영향에 대한 과학적 및 분석적 연구에 의존할 수 있음"
+                    },
+                    {
+                        "step": "c",
+                        "description": "실제 및 잠재적 영향의 중요성 평가 및 중요 사항 결정",
+                        "requirement": "이 단계에서 기업은 지속가능성 보고서에서 다룰 영향 중 어느 것을 결정하기 위해 임계값을 채택해야 함"
+                    }
+                ],
+                "ar10_severity_factors": [
+                    {
+                        "factor": "scale",
+                        "description": "부정적 영향이 얼마나 심각한지 또는 긍정적 영향이 사람이나 환경에 얼마나 유익한지"
+                    },
+                    {
+                        "factor": "scope",
+                        "description": "부정적 또는 긍정적 영향이 얼마나 광범위한지",
+                        "environmental_impacts": "환경 영향의 경우, 범위는 환경 피해의 정도 또는 지리적 범위로 이해될 수 있음",
+                        "impacts_on_people": "사람에 대한 영향의 경우, 범위는 부정적 영향을 받는 사람의 수로 이해될 수 있음"
+                    },
+                    {
+                        "factor": "irremediable_character",
+                        "description": "부정적 영향이 구제될 수 있는지 여부 및 정도, 즉 환경 또는 영향받은 사람들을 이전 상태로 복원하는 것"
+                    }
+                ],
+                "ar11_severity_precedence": {
+                    "general_rule": "세 가지 특성(규모, 범위, 불가역적 특성) 중 어느 것도 부정적 영향을 심각하게 만들 수 있음",
+                    "human_rights_impact": "잠재적 부정적 인권 영향의 경우, 영향의 심각도가 가능성보다 우선함"
+                },
+                "ar12_illustrations": [
+                    {
+                        "example": "a",
+                        "scenario": "기업이 아동 노동을 사용하여 채굴된 코발트를 제품에 사용하는 경우",
+                        "connection": "부정적 영향(즉, 아동 노동)은 상류 가치사슬의 비즈니스 관계 계층을 통해 기업의 제품과 연결됨",
+                        "relationships": [
+                            "제련소 및 광물 거래업체",
+                            "아동 노동을 사용하는 채굴 기업"
+                        ]
+                    },
+                    {
+                        "example": "b",
+                        "scenario": "기업이 합의된 기준을 위반하여 운영 주변의 물과 토지를 오염시키는 사업 활동을 위해 기업에 금융 대출을 제공하는 경우",
+                        "connection": "이 부정적 영향은 대출을 제공하는 기업과의 관계를 통해 기업과 연결됨"
+                    }
+                ]
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "Appendix A: Application Requirements - Double materiality - Assessment of financial materiality",
+            "section_content": "AR 13. 다음은 영향 및 의존성이 리스크 또는 기회의 원천이 되는 방법의 예입니다:\n(a) 기업의 사업 모델이 물과 같은 천연 자원에 의존하는 경우, 해당 자원의 품질, 가용성 및 가격 변화의 영향을 받을 가능성이 높습니다\n(b) 기업의 활동이 지역 사회에 대한 부정적 영향을 초래하는 경우, 활동이 더 엄격한 정부 규제의 대상이 될 수 있고/또는 영향이 평판적 성격의 결과를 유발할 수 있습니다. 이것들은 기업의 브랜드에 부정적 영향을 미칠 수 있고 더 높은 채용 비용이 발생할 수 있습니다\n(c) 기업의 비즈니스 파트너가 중요한 지속가능성 관련 리스크에 직면하는 경우, 기업도 관련 결과에 노출될 수 있습니다.\n\nAR 14. 단기, 중기 또는 장기에 걸쳐 기업의 재무 상태, 재무 성과, 현금 흐름, 자금 조달 접근 또는 자본 비용에 영향을 미치거나 합리적으로 예상되는 리스크 및 기회를 식별하는 것은 재무 중요성 평가의 출발점입니다. 이 맥락에서 기업은 다음을 고려해야 합니다:\n(a) 재무적 효과의 원천으로서 자연 및 사회 자원에 대한 의존성의 존재(제50단락 참조)\n(b) 다음의 원천으로서 분류:\ni. 리스크(미래 예상 현금 유입의 부정적 편차에 기여하거나 미래 예상 현금 유출의 편차 증가 및/또는 재무제표에 인식되지 않은 자본의 예상 변화로부터의 부정적 편차)\nii. 기회(미래 예상 현금 유입의 긍정적 편차에 기여하거나 미래 현금 유출의 편차 감소 및/또는 재무제표에 인식되지 않은 자본의 예상 변화로부터의 긍정적 편차)\n\nAR 15. 기업이 리스크 및 기회를 식별한 후, 기업은 보고에 중요한 것 중 어느 것을 결정해야 합니다. 이것은 (i) 발생 가능성과 (ii) 적절한 임계값을 기반으로 결정된 재무적 효과의 잠재적 규모의 조합을 기반으로 해야 합니다. 이 단계에서 기업은 다음을 기반으로 단기, 중기 및 장기에 걸쳐 이러한 리스크 및 기회가 재무적 효과에 기여하는 것을 고려해야 합니다:\n(a) 실현될 가능성이 높다고 간주되는 시나리오/예측\n(b) \"50%보다 높을 가능성\" 임계값 미만의 상황 또는 재무제표에 반영되지 않았거나 아직 반영되지 않은 자산/부채에서 파생되는 지속가능성 사항과 관련된 잠재적 재무적 효과. 이것은 다음을 포함합니다:\ni. 미래 사건의 발생 후 현금 흐름 생성 잠재력에 영향을 미칠 수 있는 잠재적 상황\nii. 회계 및 재무 보고 관점에서 자산으로 인식되지 않지만 재무 성과에 중요한 영향을 미치는 자본, 예를 들어 자연, 지적(조직), 인적, 사회 및 관계 자본\niii. 그러한 자본의 진화에 영향을 미칠 수 있는 가능한 미래 사건.",
+            "validation_rules": {
+                "section_type": "application_requirement",
+                "paragraph_reference": "ESRS 1 - Appendix A, AR 13-15",
+                "key_terms": [
+                    "financial materiality",
+                    "impacts and dependencies",
+                    "sources of risks or opportunities",
+                    "natural resources",
+                    "water",
+                    "quality availability and pricing",
+                    "negative impacts",
+                    "local communities",
+                    "government regulation",
+                    "reputational consequences",
+                    "brand",
+                    "recruitment costs",
+                    "business partners",
+                    "sustainability-related risks",
+                    "financial position",
+                    "financial performance",
+                    "cash flows",
+                    "access to finance",
+                    "cost of capital",
+                    "short- medium- or long-term",
+                    "dependencies on natural and social resources",
+                    "risks",
+                    "opportunities",
+                    "negative deviation",
+                    "positive deviation",
+                    "cash inflows",
+                    "cash outflows",
+                    "capitals not recognised in financial statements",
+                    "likelihood of occurrence",
+                    "potential magnitude of financial effects",
+                    "thresholds",
+                    "scenarios/forecasts",
+                    "more likely than not threshold",
+                    "assets/liabilities not reflected in financial statements",
+                    "cash flow generation potential",
+                    "natural capital",
+                    "intellectual capital",
+                    "organisational capital",
+                    "human capital",
+                    "social capital",
+                    "relationship capital"
+                ],
+                "related_concepts": [
+                    "financial materiality assessment",
+                    "risk and opportunity identification",
+                    "dependency analysis"
+                ],
+                "ar13_examples": [
+                    {
+                        "example": "a",
+                        "scenario": "기업의 사업 모델이 물과 같은 천연 자원에 의존하는 경우",
+                        "effect": "해당 자원의 품질, 가용성 및 가격 변화의 영향을 받을 가능성이 높음"
+                    },
+                    {
+                        "example": "b",
+                        "scenario": "기업의 활동이 지역 사회에 대한 부정적 영향을 초래하는 경우",
+                        "effects": [
+                            "활동이 더 엄격한 정부 규제의 대상이 될 수 있음",
+                            "영향이 평판적 성격의 결과를 유발할 수 있음",
+                            "기업의 브랜드에 부정적 영향을 미칠 수 있음",
+                            "더 높은 채용 비용이 발생할 수 있음"
+                        ]
+                    },
+                    {
+                        "example": "c",
+                        "scenario": "기업의 비즈니스 파트너가 중요한 지속가능성 관련 리스크에 직면하는 경우",
+                        "effect": "기업도 관련 결과에 노출될 수 있음"
+                    }
+                ],
+                "ar14_starting_point": {
+                    "description": "단기, 중기 또는 장기에 걸쳐 기업의 재무 상태, 재무 성과, 현금 흐름, 자금 조달 접근 또는 자본 비용에 영향을 미치거나 합리적으로 예상되는 리스크 및 기회를 식별하는 것은 재무 중요성 평가의 출발점",
+                    "considerations": [
+                        {
+                            "consideration": "a",
+                            "description": "재무적 효과의 원천으로서 자연 및 사회 자원에 대한 의존성의 존재",
+                            "reference": "제50단락 참조"
+                        },
+                        {
+                            "consideration": "b",
+                            "description": "다음의 원천으로서 분류",
+                            "classifications": [
+                                {
+                                    "type": "risks",
+                                    "description": "미래 예상 현금 유입의 부정적 편차에 기여하거나 미래 예상 현금 유출의 편차 증가 및/또는 재무제표에 인식되지 않은 자본의 예상 변화로부터의 부정적 편차"
+                                },
+                                {
+                                    "type": "opportunities",
+                                    "description": "미래 예상 현금 유입의 긍정적 편차에 기여하거나 미래 현금 유출의 편차 감소 및/또는 재무제표에 인식되지 않은 자본의 예상 변화로부터의 긍정적 편차"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "ar15_materiality_determination": {
+                    "basis": "(i) 발생 가능성과 (ii) 적절한 임계값을 기반으로 결정된 재무적 효과의 잠재적 규모의 조합",
+                    "time_horizons": "단기, 중기 및 장기에 걸쳐",
+                    "considerations": [
+                        {
+                            "consideration": "a",
+                            "description": "실현될 가능성이 높다고 간주되는 시나리오/예측"
+                        },
+                        {
+                            "consideration": "b",
+                            "description": "\"50%보다 높을 가능성\" 임계값 미만의 상황 또는 재무제표에 반영되지 않았거나 아직 반영되지 않은 자산/부채에서 파생되는 지속가능성 사항과 관련된 잠재적 재무적 효과",
+                            "includes": [
+                                "미래 사건의 발생 후 현금 흐름 생성 잠재력에 영향을 미칠 수 있는 잠재적 상황",
+                                "회계 및 재무 보고 관점에서 자산으로 인식되지 않지만 재무 성과에 중요한 영향을 미치는 자본, 예를 들어 자연, 지적(조직), 인적, 사회 및 관계 자본",
+                                "그러한 자본의 진화에 영향을 미칠 수 있는 가능한 미래 사건"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "Appendix A: Application Requirements - Double materiality - Sustainability matters to be included in the materiality assessment",
+            "section_content": "AR 16. 중요성 평가를 수행할 때, 기업은 주제별 ESRS에서 다루는 다음 지속가능성 사항 목록을 고려해야 합니다. 기업의 중요성 평가 결과(ESRS 2 IRO-1 참조)로 이 목록의 특정 지속가능성 사항이 중요하다고 평가되는 경우, 기업은 해당 주제별 ESRS의 해당 공시 요구사항에 따라 보고해야 합니다. 이 목록을 사용하는 것은 중요 사항을 결정하는 프로세스를 대체하는 것이 아닙니다. 이 목록은 기업의 중요성 평가를 지원하는 도구입니다. 기업은 여전히 중요 사항을 결정할 때 자체 특정 상황을 고려해야 합니다. 기업은 필요한 경우 본 기준서 제11단락에 설명된 대로 ESRS에서 다루지 않는 중요 영향, 리스크 및 기회에 대한 기업별 공시를 개발해야 합니다.",
+            "validation_rules": {
+                "section_type": "application_requirement",
+                "paragraph_reference": "ESRS 1 - Appendix A, AR 16",
+                "key_terms": [
+                    "materiality assessment",
+                    "sustainability matters",
+                    "topical ESRS",
+                    "list of sustainability matters",
+                    "ESRS 2 IRO-1",
+                    "Disclosure Requirements",
+                    "relevant topical ESRS",
+                    "process of determining material matters",
+                    "tool to support materiality assessment",
+                    "specific circumstances",
+                    "entity-specific disclosures",
+                    "material impacts risks and opportunities not covered by ESRS"
+                ],
+                "related_concepts": [
+                    "materiality assessment process",
+                    "sustainability matters list",
+                    "disclosure requirements mapping"
+                ],
+                "ar16_requirement": {
+                    "requirement": "중요성 평가를 수행할 때, 기업은 주제별 ESRS에서 다루는 다음 지속가능성 사항 목록을 고려해야 함",
+                    "when_material": "기업의 중요성 평가 결과(ESRS 2 IRO-1 참조)로 이 목록의 특정 지속가능성 사항이 중요하다고 평가되는 경우, 기업은 해당 주제별 ESRS의 해당 공시 요구사항에 따라 보고해야 함"
+                },
+                "ar16_clarifications": {
+                    "not_substitute": "이 목록을 사용하는 것은 중요 사항을 결정하는 프로세스를 대체하는 것이 아님",
+                    "purpose": "이 목록은 기업의 중요성 평가를 지원하는 도구",
+                    "still_required": "기업은 여전히 중요 사항을 결정할 때 자체 특정 상황을 고려해야 함",
+                    "entity_specific": "기업은 필요한 경우 본 기준서 제11단락에 설명된 대로 ESRS에서 다루지 않는 중요 영향, 리스크 및 기회에 대한 기업별 공시를 개발해야 함"
+                }
+            },
+            "related_dp_ids": [
+                "ESRS2-BP-2-p-a"
+            ]
+        },
+        {
+            "standard_id": "ESRS1",
+            "section_name": "Appendix B: Qualitative characteristics of information",
+            "section_content": "본 부록은 ESRS 1의 필수 구성 요소이며 기준서의 다른 부분과 동일한 권한을 가집니다. 본 부록은 ESRS에 따라 준비된 지속가능성 보고서에 제시된 정보가 충족해야 하는 정성적 특성을 정의합니다.\n\n관련성 (Relevance)\n\nQC 1. 지속가능성 정보는 이중 중요성 접근법(본 기준서 제3장 참조) 하에서 사용자의 결정에 차이를 만들 수 있을 때 관련성이 있습니다.\n\nQC 2. 일부 사용자가 이를 활용하지 않기로 선택하거나 이미 다른 출처에서 알고 있는 경우에도 정보는 결정에 차이를 만들 수 있습니다. 지속가능성 정보는 예측 가치, 확인 가치 또는 둘 다를 가진 경우 사용자의 결정에 영향을 미칠 수 있습니다. 정보는 사용자가 미래 결과를 예측하는 데 사용하는 프로세스에 대한 입력으로 사용될 수 있는 경우 예측 가치를 가집니다. 지속가능성 정보가 예측 가치를 갖기 위해 예측이나 예보일 필요는 없지만, 사용자가 자신의 예측을 만드는 데 사용되는 경우 예측 가치를 가집니다.\n\nQC 3. 정보는 이전 평가에 대한 피드백을 제공하는 경우(확인하거나 변경) 확인 가치를 가집니다.\n\nQC 4. 중요성은 기업의 지속가능성 보고 맥락에서 평가된 정보가 관련되는 항목의 성격 또는 규모, 또는 둘 다를 기반으로 한 관련성의 기업별 측면입니다(본 기준서 제3장 참조).\n\n충실한 표현 (Faithful representation)\n\nQC 5. 유용하려면 정보는 관련 현상을 표현할 뿐만 아니라 표현하려는 현상의 실질을 충실하게 표현해야 합니다. 충실한 표현은 정보가 (i) 완전하고, (ii) 중립적이며, (iii) 정확해야 합니다.\n\nQC 6. 영향, 리스크 또는 기회에 대한 완전한 묘사는 사용자가 해당 영향, 리스크 또는 기회를 이해하는 데 필요한 모든 중요 정보를 포함합니다. 여기에는 기업이 해당 영향, 리스크 또는 기회에 대응하여 전략, 리스크 관리 및 거버넌스를 어떻게 적응시켰는지, 그리고 목표를 설정하고 성과를 측정하기 위해 식별된 지표가 포함됩니다.\n\nQC 7. 중립적 묘사는 정보의 선택 또는 공시에서 편향이 없습니다. 정보는 사용자가 해당 정보를 유리하게 또는 불리하게 받을 가능성을 높이기 위해 기울어지거나, 가중되거나, 강조되거나, 약화되거나, 그렇지 않으면 조작되지 않는 경우 중립적입니다. 정보는 유리한/긍정적 측면과 불리한/부정적 측면을 다루도록 균형을 이루어야 합니다. 영향 중요성 관점에서의 부정적 및 긍정적 중요 영향과 재무 중요성 관점에서의 중요 리스크 및 기회는 동등한 관심을 받아야 합니다. 예를 들어 목표나 계획과 같은 포부적 지속가능성 정보는 중립적 묘사를 위해 포부와 기업이 이러한 포부를 달성하는 것을 방지할 수 있는 요인을 모두 다루어야 합니다.\n\nQC 8. 중립성은 신중함의 실행에 의해 지원되며, 이는 불확실성 조건에서 판단을 내릴 때 주의를 기울이는 것입니다. 정보는 중립적이기 위해 상쇄되거나 보상되어서는 안 됩니다. 신중함의 실행은 기회가 과대평가되지 않고 리스크가 과소평가되지 않음을 의미합니다. 마찬가지로 신중함의 실행은 기회의 과소평가나 리스크의 과대평가를 허용하지 않습니다. 기업은 그러한 제시가 관련 정보를 모호하게 하지 않고 상쇄의 효과와 상쇄의 이유에 대한 명확한 설명을 포함하는 경우 총액 외에 순액 정보를 제시할 수 있습니다.\n\nQC 9. 정보는 모든 측면에서 완벽하게 정확하지 않아도 정확할 수 있습니다. 정확한 정보는 기업이 중요 오류나 중요 오기진을 피하기 위해 적절한 프로세스와 내부 통제를 구현했음을 의미합니다. 따라서 추정은 가능한 한계 및 관련 불확실성에 대한 명확한 강조와 함께 제시되어야 합니다(본 기준서 제7.2절 참조). 필요한 정밀도와 달성 가능한 정밀도, 그리고 정보를 정확하게 만드는 요인은 정보의 성격과 다루는 사항의 성격에 따라 다릅니다. 예를 들어, 정확성은 다음을 요구합니다:\n(a) 사실 정보가 중요 오류로부터 자유로워야 함\n(b) 설명이 정확해야 함\n(c) 추정, 근사치 및 예보가 명확하게 식별되어야 함\n(d) 추정, 근사치 또는 예보를 개발하기 위한 적절한 프로세스를 선택하고 적용하는 데 중요 오류가 없어야 하며, 해당 프로세스에 대한 입력이 합리적이고 지지 가능해야 함\n(e) 주장이 합리적이고 충분한 품질과 양의 정보를 기반으로 해야 함\n(f) 미래에 대한 판단에 대한 정보가 해당 판단과 그들이 기반으로 하는 정보를 모두 충실하게 반영해야 함\n\n비교 가능성 (Comparability)\n\nQC 10. 지속가능성 정보는 기업이 이전 기간에 제공한 정보와 비교할 수 있고, 다른 기업, 특히 유사한 활동을 하거나 동일한 산업 내에서 운영하는 기업이 제공한 정보와 비교할 수 있을 때 비교 가능합니다. 비교를 위한 참조점은 목표, 기준선, 산업 벤치마크, 다른 기업 또는 국제적으로 인정받은 기관의 비교 가능한 정보 등일 수 있습니다.\n\nQC 11. 일관성은 비교 가능성과 관련이 있지만 동일하지는 않습니다. 일관성은 기업 및 다른 기업이 기간에 걸쳐 동일한 지속가능성 사항에 대해 동일한 접근 방식이나 방법을 사용하는 것을 의미합니다. 일관성은 비교 가능성의 목표를 달성하는 데 도움이 됩니다.\n\nQC 12. 비교 가능성은 통일성이 아닙니다. 정보가 비교 가능하려면 유사한 구성 요소는 유사하게 보이고 다른 구성 요소는 다르게 보여야 합니다. 지속가능성 정보의 비교 가능성은 유사하지 않은 것을 유사하게 보이게 만드는 것보다 더 향상되지 않으며, 유사한 것을 다르게 보이게 만드는 것보다 더 향상되지 않습니다.\n\n검증 가능성 (Verifiability)\n\nQC 13. 검증 가능성은 사용자에게 정보가 완전하고, 중립적이며, 정확하다는 신뢰를 제공하는 데 도움이 됩니다. 지속가능성 정보는 정보 자체 또는 이를 도출하는 데 사용된 입력을 입증할 수 있는 경우 검증 가능합니다.\n\nQC 14. 검증 가능성은 다양한 지식이 있고 독립적인 관찰자가 특정 묘사가 충실한 표현이라는 데 합의에 도달할 수 있음을 의미합니다(반드시 완전한 합의는 아님). 지속가능성 정보는 검증 가능성을 향상시키는 방식으로 제공되어야 하며, 예를 들어:\n(a) 사용자가 기업의 사업, 다른 사업 또는 외부 환경에 대해 사용 가능한 다른 정보와 비교하여 입증할 수 있는 정보를 포함\n(b) 추정 또는 근사치를 생성하는 데 사용된 입력 및 계산 방법에 대한 정보 제공\n(c) 행정, 경영 및 감독 기관 또는 그 위원회가 검토하고 동의한 정보 제공\n\nQC 15. 일부 지속가능성 정보는 설명이나 전향적 정보의 형태일 것입니다. 그러한 공시는 예를 들어 기업의 전략, 계획 및 리스크 분석을 사실 기반으로 충실하게 표현함으로써 지지될 수 있습니다. 사용자가 그러한 정보를 사용할지 여부를 결정하는 데 도움이 되도록, 기업은 기본 가정 및 정보를 생성하는 방법뿐만 아니라 기업이 만든 실제 계획이나 결정을 반영한다는 증거를 제공하는 기타 요인을 설명해야 합니다.\n\n이해 가능성 (Understandability)\n\nQC 16. 지속가능성 정보는 명확하고 간결할 때 이해 가능합니다. 이해 가능한 정보는 합리적으로 지식이 있는 사용자가 전달되는 정보를 쉽게 이해할 수 있도록 합니다.\n\nQC 17. 지속가능성 공시가 간결하려면 다음을 해야 합니다: (a) 기업에 특정되지 않은 일반적인 \"표준 문구\" 정보를 피함; (b) 재무제표에도 제공되는 정보를 포함하여 불필요한 정보 중복을 피함; (c) 명확한 언어와 잘 구조화된 문장 및 단락을 사용함. 간결한 공시는 중요 정보만 포함해야 합니다. 제113단락에 따라 제시된 보완 정보는 중요 정보를 모호하게 하지 않는 방식으로 제공되어야 합니다.\n\nQC 18. 명확성은 보고 기간의 발전에 대한 정보를 한 기간에서 다음 기간으로 상대적으로 변경되지 않는 \"상태\" 정보와 구별함으로써 향상될 수 있습니다. 이는 예를 들어 이전 보고 기간 이후 변경된 기업의 지속가능성 관련 거버넌스 및 리스크 관리 프로세스의 특징을 변경되지 않은 특징과 비교하여 별도로 설명함으로써 수행할 수 있습니다.\n\nQC 19. 지속가능성 공시의 완전성, 명확성 및 비교 가능성은 모두 정보가 일관된 전체로 제시되는 것에 의존합니다. 지속가능성 공시가 일관되려면 관련 정보 간의 맥락과 연결을 설명하는 방식으로 제시되어야 합니다. 일관성은 또한 기업이 사용자가 지속가능성 관련 영향, 리스크 및 기회에 대한 정보를 기업의 재무제표 정보와 관련시킬 수 있도록 정보를 제공하는 방식을 요구합니다.\n\nQC 20. 재무제표에서 논의된 지속가능성 관련 리스크 및 기회가 지속가능성 보고에 영향을 미치는 경우, 기업은 사용자가 그러한 영향을 평가하는 데 필요한 정보를 지속가능성 보고서에 포함하고 재무제표에 대한 적절한 연결을 제시해야 합니다(본 기준서 제9장 참조). 정보의 수준, 세분성 및 기술성은 사용자의 필요와 기대에 맞춰야 합니다. 약어는 피해야 하며 측정 단위는 정의되고 공시되어야 합니다.",
+            "validation_rules": {
+                "section_type": "application_requirement",
+                "paragraph_reference": "ESRS 1 - Appendix B, QC 1-20",
+                "key_terms": [
+                    "qualitative characteristics of information",
+                    "relevance",
+                    "predictive value",
+                    "confirmatory value",
+                    "materiality",
+                    "faithful representation",
+                    "complete",
+                    "neutral",
+                    "accurate",
+                    "completeness",
+                    "neutrality",
+                    "accuracy",
+                    "prudence",
+                    "estimates",
+                    "uncertainty",
+                    "comparability",
+                    "consistency",
+                    "uniformity",
+                    "verifiability",
+                    "corroboration",
+                    "understandability",
+                    "clarity",
+                    "conciseness",
+                    "coherence",
+                    "boilerplate information",
+                    "duplication",
+                    "clear language",
+                    "well-structured",
+                    "material information",
+                    "complementary information",
+                    "developments in reporting period",
+                    "standing information",
+                    "coherent whole",
+                    "context and connections",
+                    "financial statements",
+                    "level of information",
+                    "granularity",
+                    "technicality",
+                    "abbreviations",
+                    "units of measure"
+                ],
+                "related_concepts": [
+                    "information quality",
+                    "stakeholder decision-making",
+                    "double materiality",
+                    "information reliability"
+                ],
+                "relevance": {
+                    "qc1": {
+                        "definition": "지속가능성 정보는 이중 중요성 접근법(본 기준서 제3장 참조) 하에서 사용자의 결정에 차이를 만들 수 있을 때 관련성이 있음"
+                    },
+                    "qc2": {
+                        "predictive_value": "정보는 사용자가 미래 결과를 예측하는 데 사용하는 프로세스에 대한 입력으로 사용될 수 있는 경우 예측 가치를 가짐",
+                        "note": "지속가능성 정보가 예측 가치를 갖기 위해 예측이나 예보일 필요는 없지만, 사용자가 자신의 예측을 만드는 데 사용되는 경우 예측 가치를 가짐"
+                    },
+                    "qc3": {
+                        "confirmatory_value": "정보는 이전 평가에 대한 피드백을 제공하는 경우(확인하거나 변경) 확인 가치를 가짐"
+                    },
+                    "qc4": {
+                        "materiality": "중요성은 기업의 지속가능성 보고 맥락에서 평가된 정보가 관련되는 항목의 성격 또는 규모, 또는 둘 다를 기반으로 한 관련성의 기업별 측면",
+                        "reference": "본 기준서 제3장 참조"
+                    }
+                },
+                "faithful_representation": {
+                    "qc5": {
+                        "requirements": [
+                            "완전함 (complete)",
+                            "중립적임 (neutral)",
+                            "정확함 (accurate)"
+                        ]
+                    },
+                    "qc6": {
+                        "completeness": "영향, 리스크 또는 기회에 대한 완전한 묘사는 사용자가 해당 영향, 리스크 또는 기회를 이해하는 데 필요한 모든 중요 정보를 포함",
+                        "includes": [
+                            "기업이 해당 영향, 리스크 또는 기회에 대응하여 전략, 리스크 관리 및 거버넌스를 어떻게 적응시켰는지",
+                            "목표를 설정하고 성과를 측정하기 위해 식별된 지표"
+                        ]
+                    },
+                    "qc7": {
+                        "neutrality": "중립적 묘사는 정보의 선택 또는 공시에서 편향이 없음",
+                        "requirements": [
+                            "정보는 사용자가 해당 정보를 유리하게 또는 불리하게 받을 가능성을 높이기 위해 조작되지 않아야 함",
+                            "유리한/긍정적 측면과 불리한/부정적 측면을 다루도록 균형을 이루어야 함",
+                            "영향 중요성 관점에서의 부정적 및 긍정적 중요 영향과 재무 중요성 관점에서의 중요 리스크 및 기회는 동등한 관심을 받아야 함",
+                            "포부적 지속가능성 정보는 포부와 기업이 이러한 포부를 달성하는 것을 방지할 수 있는 요인을 모두 다루어야 함"
+                        ]
+                    },
+                    "qc8": {
+                        "prudence": "중립성은 신중함의 실행에 의해 지원되며, 이는 불확실성 조건에서 판단을 내릴 때 주의를 기울이는 것",
+                        "prohibitions": [
+                            "정보는 중립적이기 위해 상쇄되거나 보상되어서는 안 됨",
+                            "기회의 과소평가나 리스크의 과대평가를 허용하지 않음"
+                        ],
+                        "requirements": [
+                            "기회가 과대평가되지 않고 리스크가 과소평가되지 않아야 함",
+                            "순액 정보를 제시하는 경우, 그러한 제시가 관련 정보를 모호하게 하지 않고 상쇄의 효과와 상쇄의 이유에 대한 명확한 설명을 포함해야 함"
+                        ]
+                    },
+                    "qc9": {
+                        "accuracy": "정보는 모든 측면에서 완벽하게 정확하지 않아도 정확할 수 있음",
+                        "requirements": [
+                            "기업이 중요 오류나 중요 오기진을 피하기 위해 적절한 프로세스와 내부 통제를 구현해야 함",
+                            "추정은 가능한 한계 및 관련 불확실성에 대한 명확한 강조와 함께 제시되어야 함",
+                            "본 기준서 제7.2절 참조"
+                        ],
+                        "accuracy_requirements": [
+                            "사실 정보가 중요 오류로부터 자유로워야 함",
+                            "설명이 정확해야 함",
+                            "추정, 근사치 및 예보가 명확하게 식별되어야 함",
+                            "추정, 근사치 또는 예보를 개발하기 위한 적절한 프로세스를 선택하고 적용하는 데 중요 오류가 없어야 하며, 해당 프로세스에 대한 입력이 합리적이고 지지 가능해야 함",
+                            "주장이 합리적이고 충분한 품질과 양의 정보를 기반으로 해야 함",
+                            "미래에 대한 판단에 대한 정보가 해당 판단과 그들이 기반으로 하는 정보를 모두 충실하게 반영해야 함"
+                        ]
+                    }
+                },
+                "comparability": {
+                    "qc10": {
+                        "definition": "지속가능성 정보는 기업이 이전 기간에 제공한 정보와 비교할 수 있고, 다른 기업, 특히 유사한 활동을 하거나 동일한 산업 내에서 운영하는 기업이 제공한 정보와 비교할 수 있을 때 비교 가능",
+                        "reference_points": [
+                            "목표",
+                            "기준선",
+                            "산업 벤치마크",
+                            "다른 기업 또는 국제적으로 인정받은 기관의 비교 가능한 정보"
+                        ]
+                    },
+                    "qc11": {
+                        "consistency": "일관성은 비교 가능성과 관련이 있지만 동일하지는 않음",
+                        "definition": "기업 및 다른 기업이 기간에 걸쳐 동일한 지속가능성 사항에 대해 동일한 접근 방식이나 방법을 사용하는 것",
+                        "purpose": "비교 가능성의 목표를 달성하는 데 도움이 됨"
+                    },
+                    "qc12": {
+                        "not_uniformity": "비교 가능성은 통일성이 아님",
+                        "principle": "정보가 비교 가능하려면 유사한 구성 요소는 유사하게 보이고 다른 구성 요소는 다르게 보여야 함",
+                        "note": "지속가능성 정보의 비교 가능성은 유사하지 않은 것을 유사하게 보이게 만드는 것보다 더 향상되지 않으며, 유사한 것을 다르게 보이게 만드는 것보다 더 향상되지 않음"
+                    }
+                },
+                "verifiability": {
+                    "qc13": {
+                        "purpose": "검증 가능성은 사용자에게 정보가 완전하고, 중립적이며, 정확하다는 신뢰를 제공하는 데 도움이 됨",
+                        "definition": "지속가능성 정보는 정보 자체 또는 이를 도출하는 데 사용된 입력을 입증할 수 있는 경우 검증 가능"
+                    },
+                    "qc14": {
+                        "definition": "다양한 지식이 있고 독립적인 관찰자가 특정 묘사가 충실한 표현이라는 데 합의에 도달할 수 있음(반드시 완전한 합의는 아님)",
+                        "enhancement_methods": [
+                            "사용자가 기업의 사업, 다른 사업 또는 외부 환경에 대해 사용 가능한 다른 정보와 비교하여 입증할 수 있는 정보를 포함",
+                            "추정 또는 근사치를 생성하는 데 사용된 입력 및 계산 방법에 대한 정보 제공",
+                            "행정, 경영 및 감독 기관 또는 그 위원회가 검토하고 동의한 정보 제공"
+                        ]
+                    },
+                    "qc15": {
+                        "forward_looking_information": "일부 지속가능성 정보는 설명이나 전향적 정보의 형태일 수 있음",
+                        "supportability": "예를 들어 기업의 전략, 계획 및 리스크 분석을 사실 기반으로 충실하게 표현함으로써 지지될 수 있음",
+                        "requirements": "기업은 기본 가정 및 정보를 생성하는 방법뿐만 아니라 기업이 만든 실제 계획이나 결정을 반영한다는 증거를 제공하는 기타 요인을 설명해야 함"
+                    }
+                },
+                "understandability": {
+                    "qc16": {
+                        "definition": "지속가능성 정보는 명확하고 간결할 때 이해 가능",
+                        "requirement": "이해 가능한 정보는 합리적으로 지식이 있는 사용자가 전달되는 정보를 쉽게 이해할 수 있도록 함"
+                    },
+                    "qc17": {
+                        "conciseness_requirements": [
+                            "기업에 특정되지 않은 일반적인 \"표준 문구\" 정보를 피함",
+                            "재무제표에도 제공되는 정보를 포함하여 불필요한 정보 중복을 피함",
+                            "명확한 언어와 잘 구조화된 문장 및 단락을 사용함"
+                        ],
+                        "material_information": "간결한 공시는 중요 정보만 포함해야 함",
+                        "complementary_information": "제113단락에 따라 제시된 보완 정보는 중요 정보를 모호하게 하지 않는 방식으로 제공되어야 함"
+                    },
+                    "qc18": {
+                        "clarity_enhancement": "명확성은 보고 기간의 발전에 대한 정보를 한 기간에서 다음 기간으로 상대적으로 변경되지 않는 \"상태\" 정보와 구별함으로써 향상될 수 있음",
+                        "example": "이전 보고 기간 이후 변경된 기업의 지속가능성 관련 거버넌스 및 리스크 관리 프로세스의 특징을 변경되지 않은 특징과 비교하여 별도로 설명함으로써 수행할 수 있음"
+                    },
+                    "qc19": {
+                        "coherence": "지속가능성 공시의 완전성, 명확성 및 비교 가능성은 모두 정보가 일관된 전체로 제시되는 것에 의존",
+                        "requirements": [
+                            "지속가능성 공시가 일관되려면 관련 정보 간의 맥락과 연결을 설명하는 방식으로 제시되어야 함",
+                            "기업이 사용자가 지속가능성 관련 영향, 리스크 및 기회에 대한 정보를 기업의 재무제표 정보와 관련시킬 수 있도록 정보를 제공해야 함"
+                        ]
+                    },
+                    "qc20": {
+                        "financial_statements_linkage": "재무제표에서 논의된 지속가능성 관련 리스크 및 기회가 지속가능성 보고에 영향을 미치는 경우, 기업은 사용자가 그러한 영향을 평가하는 데 필요한 정보를 지속가능성 보고서에 포함하고 재무제표에 대한 적절한 연결을 제시해야 함",
+                        "reference": "본 기준서 제9장 참조",
+                        "requirements": [
+                            "정보의 수준, 세분성 및 기술성은 사용자의 필요와 기대에 맞춰야 함",
+                            "약어는 피해야 함",
+                            "측정 단위는 정의되고 공시되어야 함"
+                        ]
+                    }
+                }
+            },
+            "related_dp_ids": []
+        },
+        {
+            "standard_id": "ESRS E1",
+            "section_name": "Objective",
+            "section_content": "The objective of this Standard is to specify Disclosure Requirements which will enable users of sustainability statements to understand:\n(a) how the undertaking affects climate change, in terms of material positive and negative actual and potential impacts;\n(b) the undertaking's past, current, and future mitigation efforts in line with the Paris Agreement (or an updated international agreement on climate change) and compatible with limiting global warming to 1.5°C;\n(c) the plans and capacity of the undertaking to adapt its strategy and business model, in line with the transition to a sustainable economy and to contribute to limiting global warming to 1.5°C;\n(d) any other actions taken by the undertaking, and the result of such actions to prevent, mitigate or remediate actual or potential negative impacts, and to address risks and opportunities;\n(e) the nature, type and extent of the undertaking's material risks and opportunities arising from the undertaking's impacts and dependencies on climate change, and how the undertaking manages them; and\n(f) the financial effects on the undertaking over the short-, medium- and long-term of risks and opportunities arising from the undertaking's impacts and dependencies on climate change.\n\nThe Disclosure Requirements of this Standard take into account the requirements of related EU legislation and regulation (i.e., EU Climate Law, Climate Benchmark Standards Regulation, Sustainable Finance Disclosure Regulation (SFDR), EU Taxonomy, and EBA Pillar 3 disclosure requirements).\n\nThis Standard covers Disclosure Requirements related to the following sustainability matters: \"Climate change mitigation\" and \"Climate change adaptation\". It also covers energy-related matters, to the extent that they are relevant to climate change.\n\nClimate change mitigation relates to the undertaking's endeavours to the general process of limiting the increase in the global average temperature to 1,5 °C above pre-industrial levels in line with the Paris Agreement. This Standard covers disclosure requirements related but not limited to the seven Greenhouse gases (GHG) carbon dioxide (CO2), methane (CH4), nitrous oxide (N2O), hydrofluorocarbons (HFCs), perfluorocarbons (PFCs), sulphur hexafluoride (SF6) and nitrogen trifluoride (NF3). It also covers Disclosure Requirements on how the undertaking addresses its GHG emissions as well as the associated transition risks.\n\nClimate change adaptation relates to the undertaking's process of adjustment to actual and expected climate change. This Standard covers Disclosure Requirements regarding climate-related hazards that can lead to physical climate risks for the undertaking and its adaptation solutions to reduce these risks. It also covers transition risks arising from the needed adaptation to climate-related hazards.\n\nThe Disclosure Requirements related to \"Energy\" cover all types of energy production and consumption.",
+            "validation_rules": {
+                "section_type": "objective",
+                "paragraph_reference": "ESRS E1 - Objective (1-7)",
+                "key_terms": [
+                    "climate change",
+                    "Paris Agreement",
+                    "1.5°C",
+                    "climate change mitigation",
+                    "climate change adaptation",
+                    "GHG emissions",
+                    "transition risks",
+                    "physical risks",
+                    "energy",
+                    "greenhouse gases",
+                    "CO2",
+                    "CH4",
+                    "N2O",
+                    "HFCs",
+                    "PFCs",
+                    "SF6",
+                    "NF3"
+                ],
+                "related_concepts": [
+                    "sustainability statements",
+                    "material impacts",
+                    "mitigation efforts",
+                    "adaptation",
+                    "financial effects",
+                    "EU Climate Law",
+                    "SFDR",
+                    "EU Taxonomy",
+                    "EBA Pillar 3",
+                    "short-term",
+                    "medium-term",
+                    "long-term",
+                    "climate-related hazards",
+                    "energy production",
+                    "energy consumption"
+                ],
+                "sustainability_matters": [
+                    "Climate change mitigation",
+                    "Climate change adaptation",
+                    "Energy"
+                ],
+                "eu_legislation": [
+                    "EU Climate Law",
+                    "Climate Benchmark Standards Regulation",
+                    "Sustainable Finance Disclosure Regulation (SFDR)",
+                    "EU Taxonomy",
+                    "EBA Pillar 3 disclosure requirements"
+                ]
+            },
+            "related_dp_ids": []
+        }
+    ]
+}

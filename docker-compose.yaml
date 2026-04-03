@@ -1,0 +1,166 @@
+services:
+  # Eureka 서비스 제거됨 (SimpleDiscoveryClient 사용)
+  # config 서비스도 필요없다면 제거 가능 (현재는 유지)
+  
+  # ============================================================================
+  # [PRODUCTION 보안 설정 가이드]
+  # 
+  # 현재: 개발 환경 - 모든 서비스가 외부 포트 노출됨 (디버깅 용이)
+  # 목표: Gateway(8080)만 외부 노출, 나머지 서비스는 내부 네트워크에서만 접근
+  #
+  # 변경 대상 서비스:
+  #   - common:     ports: "8082:8082" → expose: - "8082"
+  #   - user:       ports: "8083:8083" → expose: - "8083"
+  #   - oauth:      ports: "8085:8085" → expose: - "8085"
+  #   - ifrs-agent: ports: "9002:9002" → expose: - "9002"
+  #
+  # 추가 보안 (선택): 네트워크 분리
+  #   networks:
+  #     public-network:
+  #       driver: bridge
+  #     internal-network:
+  #       driver: bridge
+  #       internal: true   # 외부 인터넷 접근 차단
+  #
+  #   Gateway → public-network + internal-network 둘 다 연결
+  #   나머지 → internal-network만 연결
+  # ============================================================================
+
+  gateway:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile
+    container_name: gateway-server
+    ports:
+      - "8080:8080"
+    networks:
+      - api-network
+    depends_on:
+      - user
+      - common
+      - oauth
+      - clawler-service
+      - agent-service
+      - ifrs-agent
+    restart: unless-stopped
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - USER_SERVICE_HOST=user-service
+      - USER_SERVICE_PORT=8083
+      - COMMON_SERVICE_HOST=common-service
+      - COMMON_SERVICE_PORT=8082
+      - OAUTH_SERVICE_HOST=oauth-service
+      - OAUTH_SERVICE_PORT=8085
+      - TREND_SERVICE_HOST=trendservice
+      - TREND_SERVICE_PORT=9004
+      - CRAWLER_SERVICE_HOST=clawler-service-app
+      - CRAWLER_SERVICE_PORT=9001
+      - AGENT_SERVICE_HOST=agent-service-app
+      - AGENT_SERVICE_PORT=9000
+      - IFRS_AGENT_SERVICE_HOST=ifrs-agent-app
+      - IFRS_AGENT_SERVICE_PORT=9002
+      - UPSTASH_REDIS_HOST=${UPSTASH_REDIS_HOST}
+      - UPSTASH_REDIS_PORT=${UPSTASH_REDIS_PORT}
+      - UPSTASH_REDIS_TOKEN=${UPSTASH_REDIS_TOKEN}
+
+  common:
+    build:
+      context: .
+      dockerfile: services/common/Dockerfile
+    container_name: common-service
+    # [PRODUCTION] ports 제거 후 아래로 변경:
+    # expose:
+    #   - "8082"
+    ports:
+      - "8082:8082"
+    networks:
+      - api-network
+    restart: unless-stopped
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - NEON_DATABASE_URL=${NEON_DATABASE_URL}
+      - NEON_DATABASE_USER=${NEON_DATABASE_USER}
+      - NEON_DATABASE_PASSWORD=${NEON_DATABASE_PASSWORD}
+
+  user:
+    build:
+      context: .
+      dockerfile: services/user/Dockerfile
+    container_name: user-service
+    # [PRODUCTION] ports 제거 후 아래로 변경:
+    # expose:
+    #   - "8083"
+    ports:
+      - "8083:8083"
+    networks:
+      - api-network
+    depends_on:
+      - common
+    restart: unless-stopped
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - NEON_DATABASE_URL=${NEON_DATABASE_URL}
+      - NEON_DATABASE_USER=${NEON_DATABASE_USER}
+      - NEON_DATABASE_PASSWORD=${NEON_DATABASE_PASSWORD}
+
+  oauth:
+    build:
+      context: .
+      dockerfile: services/oauth/Dockerfile
+    container_name: oauth-service
+    # [PRODUCTION] ports 제거 후 아래로 변경:
+    # expose:
+    #   - "8085"
+    ports:
+      - "8085:8085"
+    networks:
+      - api-network
+    depends_on:
+      - common
+    restart: unless-stopped
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - NEON_DATABASE_URL=${NEON_DATABASE_URL}
+      - NEON_DATABASE_USER=${NEON_DATABASE_USER}
+      - NEON_DATABASE_PASSWORD=${NEON_DATABASE_PASSWORD}
+      - KAKAO_CLIENT_ID=${KAKAO_CLIENT_ID}
+      - KAKAO_CLIENT_SECRET=${KAKAO_CLIENT_SECRET}
+      - KAKAO_REDIRECT_URI=${KAKAO_REDIRECT_URI}
+      - KAKAO_ADMIN_KEY=${KAKAO_ADMIN_KEY}
+      - NAVER_CLIENT_ID=${NAVER_CLIENT_ID}
+      - NAVER_CLIENT_SECRET=${NAVER_CLIENT_SECRET}
+      - NAVER_REDIRECT_URI=${NAVER_REDIRECT_URI}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
+      - JWT_SECRET=${JWT_SECRET}
+
+  # IFRS Agent - 지속가능성 공시 보고서 생성 에이전트
+  ifrs-agent:
+    build:
+      context: ./ai/ifrs_agent
+      dockerfile: Dockerfile
+    # [PRODUCTION] ports 제거 후 아래로 변경:
+    # expose:
+    #   - "9002"
+    ports:
+      - "9002:9002"
+    container_name: ifrs-agent-app
+    networks:
+      - api-network
+    restart: unless-stopped
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DART_API_KEY=${DART_API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+      - NEON_DATABASE_URL=${NEON_DATABASE_URL}
+      - NEON_DATABASE_USER=${NEON_DATABASE_USER}
+      - NEON_DATABASE_PASSWORD=${NEON_DATABASE_PASSWORD}
+    volumes:
+      - ./ai/ifrs_agent/data:/app/data:ro
+      - ./ai/ifrs_agent/logs:/app/logs
+
+networks:
+  api-network:
+    driver: bridge

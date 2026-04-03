@@ -1,0 +1,4 @@
+rootProject.name = 'esg-develops'
+
+// Gateway (Infrastructure)
+include ':gateway'

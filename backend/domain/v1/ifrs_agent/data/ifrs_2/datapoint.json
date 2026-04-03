@@ -1,0 +1,3806 @@
+{
+  "data_points": [
+    {
+      "dp_id": "IFRS2",
+      "dp_code": "IFRS_2_CLIMATE_RELATED_DISCLOSURES",
+      "name_ko": "IFRS 2: 기후 관련 공시",
+      "name_en": "IFRS 2: Climate-related Disclosures",
+      "description": "IFRS 기후 공시 기준의 지배구조 요구 중 문단 6(항목 a, b 및 하위 i~v, i~ii)에 대한 최소 공시 단위를 정의합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "기후 관련 지배구조",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2",
+        "S2-6"
+      ],
+      "parent_indicator": null,
+      "child_dps": [
+        "IFRS2-6",
+        "IFRS2-9",
+        "IFRS2-10",
+        "IFRS2-13",
+        "IFRS2-14",
+        "IFRS2-15",
+        "IFRS2-16",
+        "IFRS2-18",
+        "IFRS2-19",
+        "IFRS2-21",
+        "IFRS2-22",
+        "IFRS2-25",
+        "IFRS2-28",
+        "IFRS2-29",
+        "IFRS2-33",
+        "IFRS2-34",
+        "IFRS2-36"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 6의 a, b 및 하위 로마숫자 항목에 대한 구조적 공시 충족 여부 확인"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-6",
+      "dp_code": "IFRS_2_GOVERNANCE_REQUIREMENTS",
+      "name_ko": "문단 6: 지배구조 요구사항",
+      "name_en": "Paragraph 6: Governance requirements",
+      "description": "기업은 기후 관련 위험 및 기회를 감독하는 지배구조 기관 또는 개인, 그리고 모니터링·관리·감독 절차에서 경영진의 역할에 관한 정보를 공시해야 합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "기후 관련 지배구조 요구사항",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6"
+      ],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-6-a",
+        "IFRS2-6-b"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "지배구조 기관/개인 관련 (a) 및 경영진 역할 (b) 공시가 모두 존재해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-6-a",
+      "dp_code": "IFRS_2_GOVERNANCE_BODY_OR_INDIVIDUAL",
+      "name_ko": "문단 6(a): 지배구조 기관 또는 개인",
+      "name_en": "Paragraph 6(a): Governance body(s) or individual(s)",
+      "description": "기후 관련 위험 및 기회를 감독할 책임이 있는 지배구조 기관(이사회·위원회 등) 또는 개인을 식별하고, 그 감독 방식에 대한 하위 항목 정보를 공시합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "지배구조 기관 또는 개인",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a"
+      ],
+      "parent_indicator": "IFRS2-6",
+      "child_dps": [
+        "IFRS2-6-a-i",
+        "IFRS2-6-a-ii",
+        "IFRS2-6-a-iii",
+        "IFRS2-6-a-iv",
+        "IFRS2-6-a-v"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "(i)~(v) 하위 공시가 항목별로 추적 가능해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-6-a-i",
+      "dp_code": "IFRS_2_GOVERNANCE_RESPONSIBILITIES_REFLECTION",
+      "name_ko": "문단 6(a)(i): 책임 반영 방식",
+      "name_en": "Paragraph 6(a)(i): How responsibilities are reflected",
+      "description": "기후 관련 위험 및 기회에 대한 책임이 위임 규정, 권한 범위, 역할 설명, 기타 관련 정책에 어떻게 반영되는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "책임 반영",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a-i"
+      ],
+      "parent_indicator": "IFRS2-6-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "책임-정책-권한 간 연결 근거가 드러나야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-6-a-ii",
+      "dp_code": "IFRS_2_GOVERNANCE_SKILLS_AND_COMPETENCIES",
+      "name_ko": "문단 6(a)(ii): 기술 및 역량 판단 방식",
+      "name_en": "Paragraph 6(a)(ii): How skills and competencies are determined",
+      "description": "해당 지배구조 기관 또는 개인이 기후 대응 전략을 감독할 수 있도록 적절한 기술·역량이 현재 보유되었는지 또는 개발될 예정인지 판단하는 방법을 공시합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "기술 및 역량",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a-ii"
+      ],
+      "parent_indicator": "IFRS2-6-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기술/역량 확보 또는 개발 계획에 대한 판단 로직이 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-6-a-iii",
+      "dp_code": "IFRS_2_GOVERNANCE_INFORMATION_FLOW",
+      "name_ko": "문단 6(a)(iii): 정보 전달 방식 및 빈도",
+      "name_en": "Paragraph 6(a)(iii): How and how often informed",
+      "description": "지배구조 기관 또는 개인이 기후 관련 위험 및 기회 정보를 어떤 방식으로, 어느 빈도로 받는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "정보 전달 빈도",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a-iii"
+      ],
+      "parent_indicator": "IFRS2-6-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "전달 채널과 빈도(예: 분기/반기/수시) 중 최소 하나 이상 명시"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-6-a-iv",
+      "dp_code": "IFRS_2_GOVERNANCE_OVERSIGHT_CONSIDERATION",
+      "name_ko": "문단 6(a)(iv): 전략·거래·위험관리 감독 시 고려 방식",
+      "name_en": "Paragraph 6(a)(iv): How climate matters are considered in oversight",
+      "description": "지배구조 기관 또는 개인이 기업 전략, 주요 거래 의사결정, 위험관리 프로세스 및 관련 정책을 감독할 때 기후 관련 위험 및 기회를 어떻게 고려하는지와, 관련 트레이드오프 고려 여부를 공시합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "전략 감독 고려",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a-iv"
+      ],
+      "parent_indicator": "IFRS2-6-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "전략/주요거래/위험관리와 기후요소의 연결 설명이 포함되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-6-a-v",
+      "dp_code": "IFRS_2_GOVERNANCE_TARGET_OVERSIGHT",
+      "name_ko": "문단 6(a)(v): 목표 설정 및 진척 모니터링 감독",
+      "name_en": "Paragraph 6(a)(v): Oversight of targets and progress",
+      "description": "기후 관련 위험 및 기회에 대한 목표 설정과 진척 상황 모니터링을 어떻게 감독하는지 공시하며, 관련 성과지표가 보상 정책에 포함되는지와 그 방식(문단 29(g) 참조)을 함께 공시합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "목표 감독 및 보상 연계",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a-v"
+      ],
+      "parent_indicator": "IFRS2-6-a",
+      "child_dps": [],
+      "financial_linkages": [
+        "remuneration_policy"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "목표 설정 감독과 진척 모니터링 방식이 모두 언급되어야 함",
+        "보상 정책 연계 여부/방법이 명시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-6-b",
+      "dp_code": "IFRS_2_MANAGEMENT_ROLE_IN_GOVERNANCE",
+      "name_ko": "문단 6(b): 경영진의 역할",
+      "name_en": "Paragraph 6(b): Management's role",
+      "description": "기후 관련 위험 및 기회의 모니터링·관리·감독을 위한 지배구조 프로세스, 통제 및 절차에서 경영진이 수행하는 역할을 공시합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "경영진 역할",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-b"
+      ],
+      "parent_indicator": "IFRS2-6",
+      "child_dps": [
+        "IFRS2-6-b-i",
+        "IFRS2-6-b-ii"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "(i) 위임/감독 구조와 (ii) 통제/절차 통합 구조를 구분해 공시"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-6-b-i",
+      "dp_code": "IFRS_2_MANAGEMENT_DELEGATION_AND_OVERSIGHT",
+      "name_ko": "문단 6(b)(i): 위임 여부 및 감독 행사 방식",
+      "name_en": "Paragraph 6(b)(i): Delegation and oversight",
+      "description": "역할이 특정 경영 수준의 직위 또는 위원회에 위임되는지 여부와, 해당 직위 또는 위원회에 대한 감독이 어떻게 이루어지는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "위임 및 감독",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-b-i"
+      ],
+      "parent_indicator": "IFRS2-6-b",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "위임 대상(직위/위원회)과 감독 메커니즘이 함께 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-6-b-ii",
+      "dp_code": "IFRS_2_MANAGEMENT_CONTROLS_AND_PROCEDURES",
+      "name_ko": "문단 6(b)(ii): 통제·절차 사용 및 내부 기능 통합",
+      "name_en": "Paragraph 6(b)(ii): Controls/procedures and internal integration",
+      "description": "경영진이 기후 관련 위험 및 기회 감독을 지원하기 위해 통제 및 절차를 사용하는지 여부와, 사용하는 경우 해당 통제·절차가 다른 내부 기능과 어떻게 통합되는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "통제 및 절차 통합",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-b-ii"
+      ],
+      "parent_indicator": "IFRS2-6-b",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "통제/절차 사용 여부가 분명해야 하며, 사용 시 내부 기능 통합 설명 필요"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-9",
+      "dp_code": "IFRS_2_STRATEGY_REQUIREMENT_OVERVIEW",
+      "name_ko": "문단 9: 전략 관련 공시(개요)",
+      "name_en": "Paragraph 9: Strategy disclosures (overview)",
+      "description": "기업은 일반 목적 재무보고서 이용자가 기후 관련 위험 및 기회가 기업 전망에 미치는 영향을 이해할 수 있도록 전략 관련 정보를 공시해야 합니다. 하위 항목 (a)~(e)에 따라 공시 범위를 제시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "기후 관련 위험 및 기회",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-9"
+      ],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-9-a",
+        "IFRS2-9-b",
+        "IFRS2-9-c",
+        "IFRS2-9-d",
+        "IFRS2-9-e"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 9의 (a)~(e) 항목이 누락 없이 대응되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-9-a",
+      "dp_code": "IFRS_2_STRATEGY_CLIMATE_RESILIENCE",
+      "name_ko": "문단 9(a): 기후 회복력",
+      "name_en": "Paragraph 9(a): Climate resilience",
+      "description": "기업의 전략과 사업 모델이 기후 관련 변화·불확실성에 얼마나 회복력을 갖는지 공시합니다. 세부 설명은 문단 10(항목 a~d)과 연계됩니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "기후 회복력",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-9-a"
+      ],
+      "parent_indicator": "IFRS2-9",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "전략/사업모델의 기후 회복력 설명이 있어야 함",
+        "문단 10과의 연결 근거가 추적 가능해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-9-b",
+      "dp_code": "IFRS_2_STRATEGY_BUSINESS_MODEL_AND_VALUE_CHAIN_EFFECTS",
+      "name_ko": "문단 9(b): 사업 모델 및 가치 사슬 영향",
+      "name_en": "Paragraph 9(b): Effects on business model and value chain",
+      "description": "기후 관련 위험 및 기회의 현재 및 예상되는 영향이 기업의 사업 모델과 가치 사슬에 미치는 영향을 공시합니다. 세부 설명은 문단 13과 연계됩니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "사업 모델 및 가치 사슬",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-9-b"
+      ],
+      "parent_indicator": "IFRS2-9",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "현재 영향과 예상 영향이 모두 구분되어 제시되어야 함",
+        "문단 13과의 연결 근거가 추적 가능해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-9-c",
+      "dp_code": "IFRS_2_STRATEGY_DECISION_MAKING_EFFECTS",
+      "name_ko": "문단 9(c): 전략·의사결정 영향",
+      "name_en": "Paragraph 9(c): Effects on strategy and decision-making",
+      "description": "식별된 기후 관련 위험 및 기회가 기업의 전략 및 의사결정에 미치는 영향을 공시합니다(기후 전환 계획 관련 정보 포함).",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "의사결정 영향",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-9-c"
+      ],
+      "parent_indicator": "IFRS2-9",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "전략 또는 주요 의사결정에 대한 구체적 영향 설명 필요"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-9-d",
+      "dp_code": "IFRS_2_STRATEGY_FINANCIAL_POSITION_PERFORMANCE_CASHFLOWS",
+      "name_ko": "문단 9(d): 재무상태·성과·현금흐름 영향",
+      "name_en": "Paragraph 9(d): Effects on financial position, performance and cash flows",
+      "description": "보고기간 동안의 재무상태·재무성과·현금흐름에 대한 기후 관련 위험 및 기회의 영향과, 단기·중기·장기에 예상되는 영향을 공시합니다(문단 15~21 참조).",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "재무 영향",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-9-d"
+      ],
+      "parent_indicator": "IFRS2-9",
+      "child_dps": [],
+      "financial_linkages": [
+        "financial_position",
+        "financial_performance",
+        "cash_flows"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "당기 영향과 단·중·장기 예상 영향을 구분해 공시해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-9-e",
+      "dp_code": "IFRS_2_STRATEGY_RESILIENCE_CONSIDERING_UNCERTAINTY",
+      "name_ko": "문단 9(e): 기후 변화·발전·불확실성 고려 회복력",
+      "name_en": "Paragraph 9(e): Climate resilience considering uncertainty",
+      "description": "문단 22의 요건을 고려하여, 기후 관련 변화·발전·불확실성에 대한 기업 전략 및 사업 모델의 회복력을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "회복력",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-9-e"
+      ],
+      "parent_indicator": "IFRS2-9",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 불확실성을 고려한 회복력 설명이 포함되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-10",
+      "dp_code": "IFRS_2_CLIMATE_RELATED_RISKS_AND_OPPORTUNITIES",
+      "name_ko": "문단 10: 기후 관련 위험과 기회",
+      "name_en": "Paragraph 10: Climate-related risks and opportunities",
+      "description": "문단 9(a)의 구체화로, 기업의 전망에 영향을 미칠 수 있는 것으로 합리적으로 예상되는 기후 관련 위험과 기회를 설명합니다. 하위 항목 (a)~(d)에 따라 식별·유형·기간·기간정의 연계를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "기후 관련 위험 및 기회 식별",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-10"
+      ],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-10-a",
+        "IFRS2-10-b",
+        "IFRS2-10-c",
+        "IFRS2-10-d"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 10의 (a)~(d) 하위 항목이 누락 없이 대응되어야 함",
+        "문단 9(a)와 논리적으로 연결되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-10-a",
+      "dp_code": "IFRS_2_CLIMATE_RISK_OPPORTUNITY_DESCRIPTION",
+      "name_ko": "문단 10(a): 기후 관련 위험·기회 설명",
+      "name_en": "Paragraph 10(a): Description of climate-related risks and opportunities",
+      "description": "기업 전망에 영향을 미칠 수 있는 것으로 합리적으로 예상되는 기후 관련 위험과 기회를 설명합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "위험·기회 설명",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-10-a"
+      ],
+      "parent_indicator": "IFRS2-10",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "주요 위험·기회 항목이 식별되어 서술되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-10-b",
+      "dp_code": "IFRS_2_CLIMATE_RISK_CLASSIFICATION",
+      "name_ko": "문단 10(b): 물리적/전환 위험 구분",
+      "name_en": "Paragraph 10(b): Physical vs transition risk classification",
+      "description": "각 기후 관련 위험이 물리적 위험인지 전환 위험인지 설명합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "위험 분류",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-10-b"
+      ],
+      "parent_indicator": "IFRS2-10",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "위험별 물리적/전환 분류가 명시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-10-c",
+      "dp_code": "IFRS_2_TIME_HORIZON_FOR_CLIMATE_EFFECTS",
+      "name_ko": "문단 10(c): 영향 예상 기간(단·중·장기)",
+      "name_en": "Paragraph 10(c): Expected timing (short/medium/long term)",
+      "description": "식별된 각 위험 및 기회에 대해 영향이 나타날 것으로 합리적으로 예상되는 시점(단기·중기·장기)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "시간지평",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-10-c"
+      ],
+      "parent_indicator": "IFRS2-10",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "단기/중기/장기 구분 또는 동등한 시간지평 구분이 있어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-10-d",
+      "dp_code": "IFRS_2_DEFINITION_OF_TIME_HORIZONS",
+      "name_ko": "문단 10(d): 단·중·장기 정의 및 전략 연계",
+      "name_en": "Paragraph 10(d): Definition of horizons and strategic linkage",
+      "description": "기업이 단기·중기·장기를 어떻게 정의하는지와, 이러한 정의가 기업의 전략적 의사결정 기간과 어떻게 연결되는지 설명합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "시간지평 정의",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-10-d"
+      ],
+      "parent_indicator": "IFRS2-10",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기간 정의와 전략 의사결정 주기 연계가 함께 설명되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-13",
+      "dp_code": "IFRS_2_BUSINESS_MODEL_AND_VALUE_CHAIN",
+      "name_ko": "문단 13: 사업 모델 및 가치 사슬",
+      "name_en": "Paragraph 13: Business model and value chain",
+      "description": "문단 9(b)의 구체화로, 기후 관련 위험과 기회가 사업 모델 및 가치 사슬에 미치는 현재 및 예상되는 영향을 설명합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "사업 모델 및 가치 사슬",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-13"
+      ],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-13-a",
+        "IFRS2-13-b"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 13의 (a), (b) 항목이 누락 없이 대응되어야 함",
+        "문단 9(b)와 논리적으로 연결되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-13-a",
+      "dp_code": "IFRS_2_CURRENT_AND_ANTICIPATED_EFFECTS_EXPLANATION",
+      "name_ko": "문단 13(a): 현재 및 예상되는 영향 설명",
+      "name_en": "Paragraph 13(a): Current and anticipated effects explanation",
+      "description": "기후 관련 위험과 기회가 사업 모델 및 가치 사슬에 미치는 현재 및 예상되는 영향에 대해 설명합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "영향 설명",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-13-a"
+      ],
+      "parent_indicator": "IFRS2-13",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "현재 영향과 예상 영향이 모두 설명되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-13-b",
+      "dp_code": "IFRS_2_CONCENTRATION_OF_EFFECTS_IN_VALUE_CHAIN",
+      "name_ko": "문단 13(b): 가치 사슬 내 영향 집중 영역",
+      "name_en": "Paragraph 13(b): Concentration of effects in value chain",
+      "description": "기후 관련 위험 및 기회 영향이 사업 모델·가치 사슬 내에서 집중되는 부분(예: 지역, 시설, 자산 유형)을 설명합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "영향 집중 영역",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-13-b"
+      ],
+      "parent_indicator": "IFRS2-13",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "영향이 집중되는 가치 사슬 구간/자산/지역 중 최소 하나가 구체적으로 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-14",
+      "dp_code": "IFRS_2_STRATEGIC_AND_DECISION_EFFECTS",
+      "name_ko": "문단 14: 전략 및 의사결정",
+      "name_en": "Paragraph 14: Strategy and decision-making",
+      "description": "기업은 기후 관련 위험 및 기회가 전략과 의사결정에 미치는 영향에 대한 정보를 공시해야 하며, (a) 계획, (b) 자원배분, (c) 이전 기간 계획 진행상황을 포함합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "전략 및 의사결정",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-14"
+      ],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-14-a",
+        "IFRS2-14-b",
+        "IFRS2-14-c"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 14의 (a)~(c) 항목이 누락 없이 대응되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-14-a",
+      "dp_code": "IFRS_2_CLIMATE_RESPONSE_PLANS",
+      "name_ko": "문단 14(a): 기후 대응 계획",
+      "name_en": "Paragraph 14(a): Plans for responding to climate risks and opportunities",
+      "description": "전략 및 의사결정 과정에서 기후 관련 위험·기회에 어떻게 대응해왔고 향후 어떻게 대응할 계획인지 공시합니다. 기업의 기후 관련 목표 달성을 위한 계획을 포함합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "기후 대응 계획",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-14-a"
+      ],
+      "parent_indicator": "IFRS2-14",
+      "child_dps": [
+        "IFRS2-14-a-i",
+        "IFRS2-14-a-ii",
+        "IFRS2-14-a-iii",
+        "IFRS2-14-a-iv",
+        "IFRS2-14-a-v"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "(i)~(v) 하위 항목이 계획 관점에서 구체적으로 설명되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-14-a-i",
+      "dp_code": "IFRS_2_BUSINESS_MODEL_CHANGE_PLANS",
+      "name_ko": "문단 14(a)(i): 사업모델 변경 계획",
+      "name_en": "Paragraph 14(a)(i): Business model change plans",
+      "description": "기후 관련 위험·기회 대응을 위한 사업모델 변경 계획(예: 탄소집약 자원 대체, 자본 재배분, 추가 R&D 투자, M&A 또는 매각 등)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "사업모델 전환",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-14-a-i"
+      ],
+      "parent_indicator": "IFRS2-14-a",
+      "child_dps": [],
+      "financial_linkages": [
+        "capital_reallocation",
+        "r_and_d_investment",
+        "m_and_a"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "사업모델 변경 수단이 최소 1개 이상 구체적으로 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-14-a-ii",
+      "dp_code": "IFRS_2_DIRECT_MITIGATION_AND_ADAPTATION_EFFORTS",
+      "name_ko": "문단 14(a)(ii): 직접 완화·적응 노력",
+      "name_en": "Paragraph 14(a)(ii): Direct mitigation and adaptation efforts",
+      "description": "현재 및 예상되는 직접적 완화 및 적응 노력(예: 생산 공정·사업 변경, 시설 이전, 에너지 조달, 제품/서비스 변경 등)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "직접 완화·적응",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-14-a-ii"
+      ],
+      "parent_indicator": "IFRS2-14-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "직접적 완화/적응 노력의 유형 또는 실행 항목이 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-14-a-iii",
+      "dp_code": "IFRS_2_INDIRECT_MITIGATION_AND_ADAPTATION_EFFORTS",
+      "name_ko": "문단 14(a)(iii): 간접 완화·적응 노력",
+      "name_en": "Paragraph 14(a)(iii): Indirect mitigation and adaptation efforts",
+      "description": "현재 및 예상되는 간접적 완화 및 적응 노력(예: 고객·공급망 협력)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "간접 완화·적응",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-14-a-iii"
+      ],
+      "parent_indicator": "IFRS2-14-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "고객/공급망 등 외부 이해관계자 연계 활동이 식별되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-14-a-iv",
+      "dp_code": "IFRS_2_TRANSITION_PLAN_ASSUMPTIONS",
+      "name_ko": "문단 14(a)(iv): 전환계획 주요 가정",
+      "name_en": "Paragraph 14(a)(iv): Key assumptions of transition plan",
+      "description": "기업이 보유한 기후 관련 전환 계획(있다면) 수립에 사용된 주요 가정 및 해당 계획이 의존하는 사항을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "전환계획 가정",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-14-a-iv"
+      ],
+      "parent_indicator": "IFRS2-14-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "전환계획의 핵심 가정 또는 의존사항이 명시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-14-a-v",
+      "dp_code": "IFRS_2_PROGRESS_TOWARD_CLIMATE_TARGETS_PLANS",
+      "name_ko": "문단 14(a)(v): 기후 목표 달성 계획",
+      "name_en": "Paragraph 14(a)(v): Plans for achieving climate targets",
+      "description": "문단 33~36에 명시된 기후 관련 목표(온실가스 배출 목표 포함) 달성을 위해 기업이 어떻게 계획을 수립하는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "목표 달성 계획",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-14-a-v"
+      ],
+      "parent_indicator": "IFRS2-14-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 목표 달성 경로 또는 실행 계획이 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-14-b",
+      "dp_code": "IFRS_2_RESOURCE_ALLOCATION_PLANS",
+      "name_ko": "문단 14(b): 자원 배분 및 확보 계획",
+      "name_en": "Paragraph 14(b): Resource allocation and sourcing plans",
+      "description": "문단 14(a)에 따라 공시된 활동에 대해 현재 자원을 어떻게 확보하고 있으며 향후 어떻게 확보할 계획인지 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "자원 배분",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-14-b"
+      ],
+      "parent_indicator": "IFRS2-14",
+      "child_dps": [],
+      "financial_linkages": [
+        "capital_allocation",
+        "resource_planning"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "현재 자원 확보 방식과 향후 계획이 모두 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-14-c",
+      "dp_code": "IFRS_2_PROGRESS_REPORTING_ON_PREVIOUS_PLANS",
+      "name_ko": "문단 14(c): 이전 계획 진행상황 보고",
+      "name_en": "Paragraph 14(c): Progress on plans disclosed in prior period",
+      "description": "이전 보고기간에 문단 14(a)에 따라 공시한 계획의 진행 상황에 대한 정량적·정성적 정보를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "진행상황",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-14-c"
+      ],
+      "parent_indicator": "IFRS2-14",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "이전 기간 계획 대비 진행상태가 정성/정량 중 최소 한 형태로 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-15",
+      "dp_code": "IFRS_2_FINANCIAL_POSITION_PERFORMANCE_CASH_FLOWS",
+      "name_ko": "문단 15: 재무 상태·성과·현금 흐름",
+      "name_en": "Paragraph 15: Financial position, performance and cash flows",
+      "description": "기업은 일반 목적 재무보고서 이용자가 기후 관련 위험·기회가 재무 상태, 재무 성과 및 현금 흐름에 미치는 영향과 예상 영향을 이해할 수 있도록 정보를 공시해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "재무 상태·성과·현금흐름",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-15"
+      ],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-15-a",
+        "IFRS2-15-b"
+      ],
+      "financial_linkages": [
+        "financial_position",
+        "financial_performance",
+        "cash_flows"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 15(a), 15(b) 항목이 모두 대응되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-15-a",
+      "dp_code": "IFRS_2_CURRENT_PERIOD_FINANCIAL_EFFECTS",
+      "name_ko": "문단 15(a): 보고기간 중 재무영향",
+      "name_en": "Paragraph 15(a): Financial effects during reporting period",
+      "description": "기후 관련 위험 및 기회가 보고기간 동안 기업의 재무 상태, 재무 성과 및 현금 흐름에 미치는 영향을 공시합니다(문단 16(a) 상세 참조).",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "당기 영향",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-15-a"
+      ],
+      "parent_indicator": "IFRS2-15",
+      "child_dps": [],
+      "financial_linkages": [
+        "financial_position",
+        "financial_performance",
+        "cash_flows"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "보고기간 중 영향이 정량/정성 근거와 함께 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-15-b",
+      "dp_code": "IFRS_2_ANTICIPATED_FINANCIAL_EFFECTS",
+      "name_ko": "문단 15(b): 단·중·장기 예상 재무영향",
+      "name_en": "Paragraph 15(b): Anticipated financial effects over horizons",
+      "description": "단기·중기·장기적으로 기후 관련 위험·기회가 기업 재무 계획에 어떻게 반영되는지를 고려한 예상 영향을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "예상 영향",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-15-b"
+      ],
+      "parent_indicator": "IFRS2-15",
+      "child_dps": [],
+      "financial_linkages": [
+        "financial_planning",
+        "cash_flows"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "단/중/장기 구분과 재무계획 연계가 설명되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-16",
+      "dp_code": "IFRS_2_CURRENT_AND_EXPECTED_FINANCIAL_IMPACTS_DETAIL",
+      "name_ko": "문단 16: 재무영향 세부 공시",
+      "name_en": "Paragraph 16: Detailed current and expected financial impacts",
+      "description": "기업은 문단 15의 공시를 구체화하여 (a) 당기 영향, (b) 다음 회계연도 중대한 조정 위험, (c) 전략 고려 시 재무상태 변화 예상, (d) 전략 관련 재무성과 변화 예상 정보를 공시해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "세부 공시",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-16"
+      ],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-16-a",
+        "IFRS2-16-b",
+        "IFRS2-16-c",
+        "IFRS2-16-d"
+      ],
+      "financial_linkages": [
+        "financial_position",
+        "financial_performance",
+        "cash_flows"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 16의 (a)~(d) 항목이 누락 없이 대응되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-16-a",
+      "dp_code": "IFRS_2_CURRENT_IMPACTS_ON_FINANCIALS",
+      "name_ko": "문단 16(a): 당기 재무영향",
+      "name_en": "Paragraph 16(a): Current impacts on financials",
+      "description": "기후 관련 위험·기회가 보고기간 동안 기업의 재무상태, 재무성과 및 현금흐름에 미친 영향을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "당기 영향",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-16-a"
+      ],
+      "parent_indicator": "IFRS2-16",
+      "child_dps": [],
+      "financial_linkages": [
+        "financial_position",
+        "financial_performance",
+        "cash_flows"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "당기 영향에 대한 정성/정량 근거가 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-16-b",
+      "dp_code": "IFRS_2_NEXT_YEAR_ADJUSTMENT_RISK",
+      "name_ko": "문단 16(b): 다음 회계연도 중대한 조정 위험",
+      "name_en": "Paragraph 16(b): Significant adjustment risk in next financial year",
+      "description": "관련 자산·부채 장부금액에 대해 다음 회계연도 내 중대한 조정이 발생할 상당 위험이 있는 경우, 문단 16(a)의 위험 및 기회와 연계해 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "장부금액 조정 위험",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-16-b"
+      ],
+      "parent_indicator": "IFRS2-16",
+      "child_dps": [],
+      "financial_linkages": [
+        "balance_sheet_carrying_amounts"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "중대한 조정 위험의 존재 여부 및 연결 자산/부채가 식별되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-16-c",
+      "dp_code": "IFRS_2_EXPECTED_CHANGES_IN_FINANCIAL_POSITION",
+      "name_ko": "문단 16(c): 단·중·장기 재무상태 변화 예상",
+      "name_en": "Paragraph 16(c): Expected changes in financial position",
+      "description": "기후 관련 위험·기회에 대한 관리 전략을 고려할 때 단·중·장기적으로 재무상태가 어떻게 변화할 것으로 예상하는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "재무상태 변화 전망",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-16-c"
+      ],
+      "parent_indicator": "IFRS2-16",
+      "child_dps": [
+        "IFRS2-16-c-i",
+        "IFRS2-16-c-ii"
+      ],
+      "financial_linkages": [
+        "financial_position",
+        "investment_plan",
+        "financing_plan"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "(i) 투자/처분 계획, (ii) 자금조달 계획이 구분되어 설명되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-16-c-i",
+      "dp_code": "IFRS_2_INVESTMENT_AND_DISPOSAL_PLANS",
+      "name_ko": "문단 16(c)(i): 투자 및 처분 계획",
+      "name_en": "Paragraph 16(c)(i): Investment and disposal plans",
+      "description": "투자 및 처분 계획(자본지출, 주요 인수·매각, 합작 투자, 혁신, 신규 사업 분야, 자산 폐기 등)을 포함하여 예상 의무를 지지하는 계획을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "투자·처분 계획",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-16-c-i"
+      ],
+      "parent_indicator": "IFRS2-16-c",
+      "child_dps": [],
+      "financial_linkages": [
+        "capex",
+        "acquisitions_disposals"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "투자/처분 계획 요소가 최소 1개 이상 구체적으로 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-16-c-ii",
+      "dp_code": "IFRS_2_PLANNED_CAPITAL_SOURCES",
+      "name_ko": "문단 16(c)(ii): 계획된 자금 조달원",
+      "name_en": "Paragraph 16(c)(ii): Planned sources of capital",
+      "description": "전략 실행을 위해 계획된 자금 조달원(재원 출처)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "자금 조달원",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-16-c-ii"
+      ],
+      "parent_indicator": "IFRS2-16-c",
+      "child_dps": [],
+      "financial_linkages": [
+        "financing_sources"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "자금조달 계획의 출처 또는 방식이 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-16-d",
+      "dp_code": "IFRS_2_EXPECTED_CHANGES_IN_FINANCIAL_PERFORMANCE_AND_CASH_FLOWS",
+      "name_ko": "문단 16(d): 단·중·장기 재무성과 및 현금흐름 변화 예상",
+      "name_en": "Paragraph 16(d): Expected changes in financial performance and cash flows",
+      "description": "기후 관련 위험·기회 관리 전략에 따라 저탄소 경제 제품/서비스 매출 증가, 관련 비용 증가, 기타 사업 관련 변화 등을 고려했을 때 단·중·장기 재무성과 및 현금흐름의 변화 예상을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "성과·현금흐름 전망",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-16-d"
+      ],
+      "parent_indicator": "IFRS2-16",
+      "child_dps": [],
+      "financial_linkages": [
+        "revenue",
+        "costs",
+        "cash_flows"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "성과/현금흐름 변화에 대한 예상 방향 또는 근거가 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-18",
+      "dp_code": "IFRS_2_PREPARATION_OF_QUANTITATIVE_FINANCIAL_EFFECTS_DISCLOSURES",
+      "name_ko": "문단 18: 정량적 재무영향 공시 작성 원칙",
+      "name_en": "Paragraph 18: Preparation principles for quantitative financial effects disclosures",
+      "description": "기후 관련 위험 또는 기회의 예상 재무적 영향에 관한 공시를 작성할 때 합리적·검증가능한 정보 사용과 보고 시점에 가능한 기술·역량·자원에 상응하는 접근을 적용해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "작성 원칙",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-18-a",
+        "IFRS2-18-b"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 18(a), 18(b) 원칙이 방법론 설명에 반영되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-18-a",
+      "dp_code": "IFRS_2_REASONABLE_AND_SUPPORTABLE_INFORMATION",
+      "name_ko": "문단 18(a): 합리적·검증가능한 정보 사용",
+      "name_en": "Paragraph 18(a): Use of reasonable and supportable information",
+      "description": "보고 시점에 과도한 비용이나 노력 없이 이용 가능한 합리적이고 검증 가능한 정보를 활용해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "정보 품질",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-18",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "정보 원천의 합리성·검증가능성 기준이 설명되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-18-b",
+      "dp_code": "IFRS_2_APPROACH_COMMENSURATE_WITH_CAPABILITIES",
+      "name_ko": "문단 18(b): 역량·자원에 상응하는 접근",
+      "name_en": "Paragraph 18(b): Approach commensurate with capabilities and resources",
+      "description": "공시 작성에 활용 가능한 기술, 역량 및 자원에 상응하는 접근법을 사용해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "작성 접근",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-18",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "접근법이 조직의 현재 기술·역량·자원 수준과 정합해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-19",
+      "dp_code": "IFRS_2_CRITERIA_FOR_OMITTING_QUANTITATIVE_INFO",
+      "name_ko": "문단 19: 정량정보 생략 판단 기준",
+      "name_en": "Paragraph 19: Criteria for omitting quantitative information",
+      "description": "기업이 특정 상황을 판단하는 경우 현재 또는 예상 재무적 영향에 대한 정량 정보를 제공하지 않을 수 있습니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "정량정보 생략",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-19-a",
+        "IFRS2-19-b"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "조건부",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "정량정보 생략 시 19(a) 또는 19(b) 판단 근거가 필요함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-19-a",
+      "dp_code": "IFRS_2_EFFECT_NOT_SEPARATELY_IDENTIFIABLE",
+      "name_ko": "문단 19(a): 영향 별도 식별 불가 판단",
+      "name_en": "Paragraph 19(a): Effect not separately identifiable",
+      "description": "해당 영향이 별도로 식별될 수 없다고 판단하는 경우 정량 정보를 생략할 수 있습니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "식별 가능성",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-19",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "조건부",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "별도 식별 불가 판단 근거가 설명되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-19-b",
+      "dp_code": "IFRS_2_MEASUREMENT_UNCERTAINTY_TOO_HIGH",
+      "name_ko": "문단 19(b): 측정 불확실성 과도 판단",
+      "name_en": "Paragraph 19(b): Excessive measurement uncertainty",
+      "description": "해당 효과를 정량적으로 추정한 정보가 유용하지 않을 정도로 측정 불확실성이 높은 경우 정량 정보를 생략할 수 있습니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "측정 불확실성",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-19",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "조건부",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "측정 불확실성 수준과 유용성 저하 판단 근거가 필요함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-21",
+      "dp_code": "IFRS_2_ADDITIONAL_DISCLOSURES_WHEN_QUANTITATIVE_OMITTED",
+      "name_ko": "문단 21: 정량정보 미제공 시 추가 공시",
+      "name_en": "Paragraph 21: Additional disclosures when quantitative information is omitted",
+      "description": "기업이 정량 정보를 제공할 필요가 없다고 판단한 경우 그 이유를 설명하고 관련 재무적 영향에 대한 질적 정보를 제공해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "미제공 시 대체 공시",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-21-a",
+        "IFRS2-21-b",
+        "IFRS2-21-c"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "조건부",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "정량정보 미제공 시 문단 21(a)~(c) 공시 충족 여부 점검"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-21-a",
+      "dp_code": "IFRS_2_EXPLAIN_REASON_FOR_NO_QUANTITATIVE_INFO",
+      "name_ko": "문단 21(a): 정량정보 미제공 사유 설명",
+      "name_en": "Paragraph 21(a): Explain reason for no quantitative information",
+      "description": "정량적 정보를 제공하지 않은 이유를 설명합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "미제공 사유",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-21",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "조건부",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "사유 설명이 19(a) 또는 19(b) 판단과 논리적으로 연결되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-21-b",
+      "dp_code": "IFRS_2_QUALITATIVE_INFO_ON_AFFECTED_LINE_ITEMS",
+      "name_ko": "문단 21(b): 영향받는 재무제표 항목에 대한 질적 정보",
+      "name_en": "Paragraph 21(b): Qualitative information on affected financial statement line items",
+      "description": "영향을 받을 가능성이 있거나 이미 영향을 받은 관련 재무제표 항목을 가능한 범위에서 식별해 해당 재무적 영향에 대한 질적 정보를 제공합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "질적 영향 정보",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-21",
+      "child_dps": [],
+      "financial_linkages": [
+        "financial_statement_line_items"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "조건부",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "영향 관련 재무제표 항목 식별과 질적 설명이 함께 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-21-c",
+      "dp_code": "IFRS_2_QUALITATIVE_INFO_ON_COMBINED_EFFECTS",
+      "name_ko": "문단 21(c): 결합된 재무영향에 대한 질적 정보",
+      "name_en": "Paragraph 21(c): Qualitative information on combined financial effects",
+      "description": "기후 관련 위험 및 기회의 결합된 재무적 영향에 대한 질적 정보를 제공합니다. 다만 결합 정보가 유용하지 않다고 판단되는 경우는 제외됩니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "재무영향",
+      "subtopic": "결합 영향",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-21",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "조건부",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "결합 재무영향 질적 설명 또는 미제공 판단 근거가 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22",
+      "dp_code": "IFRS_2_CLIMATE_RESILIENCE",
+      "name_ko": "문단 22: 기후 회복력",
+      "name_en": "Paragraph 22: Climate resilience",
+      "description": "기업은 기후 관련 위험 및 기회 식별을 고려하여 전략 및 사업모델의 기후 회복력에 대한 정보를 공시해야 하며, 기후 관련 시나리오 분석을 활용합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "시나리오 분석",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-22"
+      ],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-22-a",
+        "IFRS2-22-b"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 22(a), 22(b) 항목과 하위 로마숫자 항목이 누락 없이 대응되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-a",
+      "dp_code": "IFRS_2_RESILIENCE_ASSESSMENT_RESULTS",
+      "name_ko": "문단 22(a): 기후 회복력 평가 결과",
+      "name_en": "Paragraph 22(a): Results of climate resilience assessment",
+      "description": "기후 회복력 평가 결과를 공시하며, (i) 전략·사업모델 영향, (ii) 주요 불확실성, (iii) 조정 역량과 관련 세부사항을 포함합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "평가 결과",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-22-a"
+      ],
+      "parent_indicator": "IFRS2-22",
+      "child_dps": [
+        "IFRS2-22-a-i",
+        "IFRS2-22-a-ii",
+        "IFRS2-22-a-iii"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "22(a)(i)~(iii) 항목이 모두 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-a-i",
+      "dp_code": "IFRS_2_IDENTIFIED_IMPACTS_ON_STRATEGY_AND_MODEL",
+      "name_ko": "문단 22(a)(i): 전략·사업모델에 미치는 영향",
+      "name_en": "Paragraph 22(a)(i): Identified impacts on strategy and business model",
+      "description": "시나리오 분석에서 확인된 영향이 전략 및 비즈니스 모델에 미치는 영향을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "전략 영향",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-22-a-i"
+      ],
+      "parent_indicator": "IFRS2-22-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "시나리오 분석 결과와 전략/사업모델 영향의 연결이 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-a-ii",
+      "dp_code": "IFRS_2_KEY_AREAS_OF_RESILIENCE_UNCERTAINTY",
+      "name_ko": "문단 22(a)(ii): 기후 회복력 고려 주요 불확실성",
+      "name_en": "Paragraph 22(a)(ii): Key areas of uncertainty in resilience",
+      "description": "기후 회복력 평가 시 고려된 주요 불확실성 영역을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "불확실성",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-22-a-ii"
+      ],
+      "parent_indicator": "IFRS2-22-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "주요 불확실성 요인이 식별 가능하게 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-a-iii",
+      "dp_code": "IFRS_2_ENTITY_ABILITY_TO_ADJUST_MODEL",
+      "name_ko": "문단 22(a)(iii): 전략·사업모델 조정 역량",
+      "name_en": "Paragraph 22(a)(iii): Entity ability to adjust strategy and business model",
+      "description": "단기·중기·장기적으로 기후 변화에 대응하여 전략 및 사업모델을 조정하는 기업의 역량을 공시하며, (1)~(3) 세부 항목을 포함합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "조정 역량",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-22-a-iii"
+      ],
+      "parent_indicator": "IFRS2-22-a",
+      "child_dps": [
+        "IFRS2-22-a-iii-1",
+        "IFRS2-22-a-iii-2",
+        "IFRS2-22-a-iii-3"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "22(a)(iii)의 (1)~(3) 세부 항목이 구조적으로 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-a-iii-1",
+      "dp_code": "IFRS_2_FLEXIBILITY_OF_EXISTING_FINANCIAL_RESOURCES",
+      "name_ko": "문단 22(a)(iii)(1): 기존 재무자원의 유연성",
+      "name_en": "Paragraph 22(a)(iii)(1): Flexibility of existing financial resources",
+      "description": "시나리오 분석에서 확인된 영향에 대응하기 위한 기존 재무자원의 가용성·유연성(기후 위험 대응 및 기후 관련 기회 활용 포함)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "재무자원 유연성",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-a-iii",
+      "child_dps": [],
+      "financial_linkages": [
+        "financial_resources"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "재무자원 유연성의 근거나 대응능력 설명이 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-a-iii-2",
+      "dp_code": "IFRS_2_REDEPLOYMENT_AND_REPURPOSING_CAPABILITIES",
+      "name_ko": "문단 22(a)(iii)(2): 자산 재배치·용도변경·대체 능력",
+      "name_en": "Paragraph 22(a)(iii)(2): Capability to redeploy/repurpose/replace assets",
+      "description": "기존 자산의 재배치, 용도 변경, 업그레이드 또는 교체 능력을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "자산 전환 능력",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-a-iii",
+      "child_dps": [],
+      "financial_linkages": [
+        "asset_management"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "자산 전환(재배치/용도변경/교체) 관련 실행 가능성이 설명되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-a-iii-3",
+      "dp_code": "IFRS_2_IMPACT_OF_CURRENT_AND_PLANNED_INVESTMENTS",
+      "name_ko": "문단 22(a)(iii)(3): 현재·계획 투자의 영향",
+      "name_en": "Paragraph 22(a)(iii)(3): Impact of current and planned investments",
+      "description": "기후 관련 완화·적응 및 기후 회복력 강화를 위한 현재 및 계획된 투자가 기업에 미치는 영향을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "투자 영향",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-a-iii",
+      "child_dps": [],
+      "financial_linkages": [
+        "investment_impact"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "현재/계획 투자의 회복력 기여 또는 영향이 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b",
+      "dp_code": "IFRS_2_METHOD_AND_ASSUMPTIONS_OF_SCENARIO_ANALYSIS",
+      "name_ko": "문단 22(b): 시나리오 분석 수행 방법 및 시기",
+      "name_en": "Paragraph 22(b): Method and timing of scenario analysis",
+      "description": "기후 관련 시나리오 분석 수행 방법 및 시기를 공시하며, (i) 입력값 정보, (ii) 주요 가정, (iii) 보고 기간을 포함합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "시나리오 분석 방법",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-22-b"
+      ],
+      "parent_indicator": "IFRS2-22",
+      "child_dps": [
+        "IFRS2-22-b-i",
+        "IFRS2-22-b-ii",
+        "IFRS2-22-b-iii"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "22(b)(i)~(iii) 항목이 모두 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-i",
+      "dp_code": "IFRS_2_INPUTS_USED_FOR_SCENARIO_ANALYSIS",
+      "name_ko": "문단 22(b)(i): 시나리오 분석 입력값",
+      "name_en": "Paragraph 22(b)(i): Inputs used for scenario analysis",
+      "description": "시나리오 분석에 사용한 입력값 정보를 공시하며 (1)~(7) 세부 항목을 포함합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "입력값",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-22-b-i"
+      ],
+      "parent_indicator": "IFRS2-22-b",
+      "child_dps": [
+        "IFRS2-22-b-i-1",
+        "IFRS2-22-b-i-2",
+        "IFRS2-22-b-i-3",
+        "IFRS2-22-b-i-4",
+        "IFRS2-22-b-i-5",
+        "IFRS2-22-b-i-6",
+        "IFRS2-22-b-i-7"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "22(b)(i)의 (1)~(7) 입력값 항목이 구조적으로 공시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-i-1",
+      "dp_code": "IFRS_2_SCENARIOS_AND_SOURCES",
+      "name_ko": "문단 22(b)(i)(1): 사용 시나리오 및 출처",
+      "name_en": "Paragraph 22(b)(i)(1): Scenarios used and sources",
+      "description": "분석에 사용된 기후 관련 시나리오와 해당 시나리오의 출처를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "시나리오 출처",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-i",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "시나리오명과 출처가 식별 가능해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-i-2",
+      "dp_code": "IFRS_2_RANGE_OF_SCENARIOS_INCLUDED",
+      "name_ko": "문단 22(b)(i)(2): 시나리오 범위 포함 여부",
+      "name_en": "Paragraph 22(b)(i)(2): Whether a range of scenarios was included",
+      "description": "분석에 다양한 범위의 기후 관련 시나리오가 포함되었는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "시나리오 범위",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-i",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "단일/복수 시나리오 사용 여부가 명확해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-i-3",
+      "dp_code": "IFRS_2_RELEVANCE_TO_TRANSITION_AND_PHYSICAL_RISKS",
+      "name_ko": "문단 22(b)(i)(3): 전환·물리적 위험 연관성",
+      "name_en": "Paragraph 22(b)(i)(3): Relevance to transition and physical risks",
+      "description": "사용 시나리오가 기후 관련 전환 위험 또는 물리적 위험과 연관되었는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "위험 연관성",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-i",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "전환/물리적 위험 중 어떤 위험군과 연계되는지 제시해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-i-4",
+      "dp_code": "IFRS_2_ALIGNMENT_WITH_LATEST_INTERNATIONAL_CONSENSUS",
+      "name_ko": "문단 22(b)(i)(4): 최신 국제 기후합의 정합성",
+      "name_en": "Paragraph 22(b)(i)(4): Alignment with latest international consensus",
+      "description": "사용 시나리오가 최신 국제 기후변화 합의에 부합하는지 여부를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "국제 합의 정합성",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-i",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "국제 합의 정합성 여부 또는 판단 근거가 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-i-5",
+      "dp_code": "IFRS_2_REASON_FOR_SCENARIO_SELECTION",
+      "name_ko": "문단 22(b)(i)(5): 시나리오 선택 이유",
+      "name_en": "Paragraph 22(b)(i)(5): Reason for selecting scenarios",
+      "description": "선택한 기후 관련 시나리오가 기후 관련 변화·발전·불확실성에 대한 기업의 회복력 평가와 관련 있다고 판단한 이유를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "선택 근거",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-i",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "시나리오 선택 사유가 회복력 평가 목적과 연결되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-i-6",
+      "dp_code": "IFRS_2_TIME_HORIZON_USED_IN_ANALYSIS",
+      "name_ko": "문단 22(b)(i)(6): 분석 시간 범위",
+      "name_en": "Paragraph 22(b)(i)(6): Time horizon used in analysis",
+      "description": "분석에서 사용된 시간 범위를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "분석 시간범위",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-i",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "시간 범위(단/중/장기 또는 기간)가 명시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-i-7",
+      "dp_code": "IFRS_2_OPERATING_SCOPE_USED_IN_ANALYSIS",
+      "name_ko": "문단 22(b)(i)(7): 분석 운영 범위",
+      "name_en": "Paragraph 22(b)(i)(7): Operating scope used in analysis",
+      "description": "분석에 포함된 운영 범위(예: 포함된 운영 지역 및 사업부)를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "운영 범위",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-i",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "분석 대상 운영 범위가 지역/사업 단위로 식별되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-ii",
+      "dp_code": "IFRS_2_KEY_ASSUMPTIONS_IN_ANALYSIS_PROCESS",
+      "name_ko": "문단 22(b)(ii): 분석 과정의 주요 가정",
+      "name_en": "Paragraph 22(b)(ii): Key assumptions in analysis process",
+      "description": "분석 과정에서 설정한 주요 가정(운영지역 정책, 거시경제 동향, 변수, 에너지 구성, 기술 발전 등)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "주요 가정",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-22-b-ii"
+      ],
+      "parent_indicator": "IFRS2-22-b",
+      "child_dps": [
+        "IFRS2-22-b-ii-1",
+        "IFRS2-22-b-ii-2",
+        "IFRS2-22-b-ii-3",
+        "IFRS2-22-b-ii-4",
+        "IFRS2-22-b-ii-5"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "22(b)(ii)의 (1)~(5) 가정 항목이 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-ii-1",
+      "dp_code": "IFRS_2_CLIMATE_POLICIES_IN_OPERATING_REGIONS",
+      "name_ko": "문단 22(b)(ii)(1): 운영지역 기후 정책",
+      "name_en": "Paragraph 22(b)(ii)(1): Climate policies in operating regions",
+      "description": "기업이 운영되는 관할 지역의 기후 관련 정책 가정을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "정책 가정",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-ii",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "관할 지역 정책 가정이 구체적으로 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-ii-2",
+      "dp_code": "IFRS_2_MACROECONOMIC_TRENDS_ASSUMPTIONS",
+      "name_ko": "문단 22(b)(ii)(2): 거시경제 동향 가정",
+      "name_en": "Paragraph 22(b)(ii)(2): Macroeconomic trends assumptions",
+      "description": "거시경제 동향에 관한 가정을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "거시경제 가정",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-ii",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "거시경제 관련 핵심 가정이 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-ii-3",
+      "dp_code": "IFRS_2_LOCATION_SPECIFIC_VARIABLES",
+      "name_ko": "문단 22(b)(ii)(3): 국가·지역 특수 변수",
+      "name_en": "Paragraph 22(b)(ii)(3): Country/region specific variables",
+      "description": "국가 또는 지역 수준의 변수(기상 패턴, 인구 통계, 토지 이용, 인프라 및 천연자원 가용성) 가정을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "지역 변수",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-ii",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "지역 특수 변수 중 주요 항목이 명시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-ii-4",
+      "dp_code": "IFRS_2_ENERGY_MIX_ASSUMPTIONS",
+      "name_ko": "문단 22(b)(ii)(4): 에너지 사용 및 구성 가정",
+      "name_en": "Paragraph 22(b)(ii)(4): Energy use and mix assumptions",
+      "description": "에너지 사용 및 구성 관련 가정을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "에너지 가정",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-ii",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "에너지 사용/믹스에 대한 핵심 가정이 포함되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-ii-5",
+      "dp_code": "IFRS_2_TECHNOLOGY_DEVELOPMENT_ASSUMPTIONS",
+      "name_ko": "문단 22(b)(ii)(5): 기술 발전 가정",
+      "name_en": "Paragraph 22(b)(ii)(5): Technology development assumptions",
+      "description": "기술 발전 관련 가정을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "기술 가정",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-22-b-ii",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기술 발전 가정이 시나리오 분석과 연계되어 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-22-b-iii",
+      "dp_code": "IFRS_2_REPORTING_PERIOD_FOR_SCENARIO_ANALYSIS",
+      "name_ko": "문단 22(b)(iii): 시나리오 분석 수행 보고 기간",
+      "name_en": "Paragraph 22(b)(iii): Reporting period of scenario analysis performed",
+      "description": "기후 관련 시나리오 분석이 수행된 보고 기간(문단 B18 참조)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "기후 회복력",
+      "subtopic": "분석 수행 시기",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-22-b-iii"
+      ],
+      "parent_indicator": "IFRS2-22-b",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "시나리오 분석 수행 시기 또는 보고 기간이 명시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-25",
+      "dp_code": "IFRS_2_25",
+      "name_ko": "문단 25: 기후 관련 위험 식별·평가·모니터링 절차",
+      "name_en": "Paragraph 25: Processes for identifying, assessing and monitoring climate-related risks",
+      "description": "기후 관련 위험을 식별·평가·우선순위화·모니터링하기 위해 기업이 사용하는 절차와 관련 정책을 공시해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "위험관리 프로세스",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-25-a",
+        "IFRS2-25-b",
+        "IFRS2-25-c"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 위험을 식별·평가·우선순위화·모니터링하기 위해 기업이 사용하는 절차와 관련 정책을 공시해야 합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-25-a",
+      "dp_code": "IFRS_2_25_A",
+      "name_ko": "문단 25(a): 위험 식별·평가·모니터링 절차",
+      "name_en": "Paragraph 25(a): Processes used for risk identification, assessment and monitoring",
+      "description": "기업이 사용하는 위험 식별·평가·우선순위화·모니터링 절차 및 정책을 공시하며, (i)~(vi) 항목을 포함합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "위험 식별·평가 절차",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-25",
+      "child_dps": [
+        "IFRS2-25-a-i",
+        "IFRS2-25-a-ii",
+        "IFRS2-25-a-iii",
+        "IFRS2-25-a-iv",
+        "IFRS2-25-a-v",
+        "IFRS2-25-a-vi"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기업이 사용하는 위험 식별·평가·우선순위화·모니터링 절차 및 정책을 공시하며, (i)~(vi) 항목을 포함합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-25-a-i",
+      "dp_code": "IFRS_2_25_A_I",
+      "name_ko": "문단 25(a)(i): 사용 데이터 출처",
+      "name_en": "Paragraph 25(a)(i): Inputs and data sources",
+      "description": "기업이 사용하는 입력값과 매개변수(예: 데이터 출처 및 프로세스 내 사용 범위)를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "위험 식별 입력정보",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-25-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기업이 사용하는 입력값과 매개변수(예: 데이터 출처 및 프로세스 내 사용 범위)를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-25-a-ii",
+      "dp_code": "IFRS_2_25_A_II",
+      "name_ko": "문단 25(a)(ii): 시나리오 분석 활용 여부",
+      "name_en": "Paragraph 25(a)(ii): Use of climate scenario analysis",
+      "description": "기후 관련 위험 식별에 기후 관련 시나리오 분석을 활용하는지 여부 및 활용 방식을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "시나리오 분석 활용",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-25-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 위험 식별에 기후 관련 시나리오 분석을 활용하는지 여부 및 활용 방식을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-25-a-iii",
+      "dp_code": "IFRS_2_25_A_III",
+      "name_ko": "문단 25(a)(iii): 영향 성격·가능성·규모 평가 기준",
+      "name_en": "Paragraph 25(a)(iii): Criteria to assess nature, likelihood and magnitude",
+      "description": "기후 관련 위험 영향의 성격, 발생 가능성 및 규모를 평가하는 기준(질적·양적 기준 포함)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "위험 영향 평가기준",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-25-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 위험 영향의 성격, 발생 가능성 및 규모를 평가하는 기준(질적·양적 기준 포함)을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-25-a-iv",
+      "dp_code": "IFRS_2_25_A_IV",
+      "name_ko": "문단 25(a)(iv): 우선순위 부여 여부·방법",
+      "name_en": "Paragraph 25(a)(iv): Prioritisation approach",
+      "description": "기후 관련 위험을 다른 위험과 비교해 우선순위를 부여하는지 여부 및 그 방법을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "위험 우선순위화",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-25-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 위험을 다른 위험과 비교해 우선순위를 부여하는지 여부 및 그 방법을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-25-a-v",
+      "dp_code": "IFRS_2_25_A_V",
+      "name_ko": "문단 25(a)(v): 위험 모니터링 방법",
+      "name_en": "Paragraph 25(a)(v): Monitoring processes",
+      "description": "기후 관련 위험을 모니터링하는 방법을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "위험 모니터링",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-25-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 위험을 모니터링하는 방법을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-25-a-vi",
+      "dp_code": "IFRS_2_25_A_VI",
+      "name_ko": "문단 25(a)(vi): 프로세스 변경 여부·방법",
+      "name_en": "Paragraph 25(a)(vi): Changes to processes",
+      "description": "이전 보고 기간 대비 사용 프로세스 변경 여부 및 변경 방법을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "프로세스 변경관리",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-25-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "이전 보고 기간 대비 사용 프로세스 변경 여부 및 변경 방법을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-25-b",
+      "dp_code": "IFRS_2_25_B",
+      "name_ko": "문단 25(b): 기후 기회 절차·정책 및 시나리오 활용",
+      "name_en": "Paragraph 25(b): Opportunity-related processes and use of scenario analysis",
+      "description": "기후 관련 기회를 식별·평가·우선순위화·모니터링하기 위한 절차·정책과 시나리오 분석 활용 여부·방법을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "기후 기회 관리절차",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-25",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 기회를 식별·평가·우선순위화·모니터링하기 위한 절차·정책과 시나리오 분석 활용 여부·방법을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-25-c",
+      "dp_code": "IFRS_2_25_C",
+      "name_ko": "문단 25(c): 전체 리스크 관리 통합 여부·방법",
+      "name_en": "Paragraph 25(c): Integration into overall risk management",
+      "description": "기후 관련 위험·기회 프로세스가 기업의 전반적 리스크 관리 프로세스에 통합되는지 여부 및 그 방법을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "전략",
+      "subtopic": "리스크 관리 통합",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-25",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 위험·기회 프로세스가 기업의 전반적 리스크 관리 프로세스에 통합되는지 여부 및 그 방법을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-28",
+      "dp_code": "IFRS_2_28",
+      "name_ko": "문단 28: 산업 간 지표 범주",
+      "name_en": "Paragraph 28: Industry-agnostic metrics categories",
+      "description": "기업은 산업 간 지표 범주 관련 정보를 공시해야 하며, (a)~(c) 항목을 포함합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "산업 간 지표",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-28-a",
+        "IFRS2-28-b",
+        "IFRS2-28-c"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기업은 산업 간 지표 범주 관련 정보를 공시해야 하며, (a)~(c) 항목을 포함합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-28-a",
+      "dp_code": "IFRS_2_28_A",
+      "name_ko": "문단 28(a): 산업 간 지표 범주 정보",
+      "name_en": "Paragraph 28(a): Information on cross-industry metric categories",
+      "description": "산업 간 지표 범주와 관련된 정보를 공시합니다(문단 29~31 참조).",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "산업 간 지표 범주",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-28",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "산업 간 지표 범주와 관련된 정보를 공시합니다(문단 29~31 참조)."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-28-b",
+      "dp_code": "IFRS_2_28_B",
+      "name_ko": "문단 28(b): 산업 기반 지표",
+      "name_en": "Paragraph 28(b): Industry-based metrics",
+      "description": "특정 비즈니스 모델·활동 특성을 반영하는 산업 기반 지표를 공시합니다(문단 32~37 참조).",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "산업 기반 지표",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-28",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "특정 비즈니스 모델·활동 특성을 반영하는 산업 기반 지표를 공시합니다(문단 32~37 참조)."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-28-c",
+      "dp_code": "IFRS_2_28_C",
+      "name_ko": "문단 28(c): 목표·법령 충족 진전 측정 지표",
+      "name_en": "Paragraph 28(c): Metrics to measure progress against targets or legal requirements",
+      "description": "위험 완화·적응·기회 활용을 위해 설정한 목표 및 법령상 충족 요구에 대한 진전 측정을 위해 사용하는 지표를 공시합니다(문단 33~37 참조).",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 진전 지표",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-28",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "위험 완화·적응·기회 활용을 위해 설정한 목표 및 법령상 충족 요구에 대한 진전 측정을 위해 사용하는 지표를 공시합니다(문단 33~37 참조)."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29",
+      "dp_code": "IFRS_2_29",
+      "name_ko": "문단 29: 기후 관련 지표",
+      "name_en": "Paragraph 29: Climate-related metrics",
+      "description": "기업은 산업 간 지표 범주 관련 공시로서 온실가스, 전환 위험, 물리적 위험, 기회, 자본 배분, 내부 탄소가격, 보수 연계 정보를 공시해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "기후 관련 지표",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-29-a",
+        "IFRS2-29-b",
+        "IFRS2-29-c",
+        "IFRS2-29-d",
+        "IFRS2-29-e",
+        "IFRS2-29-f",
+        "IFRS2-29-g"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기업은 산업 간 지표 범주 관련 공시로서 온실가스, 전환 위험, 물리적 위험, 기회, 자본 배분, 내부 탄소가격, 보수 연계 정보를 공시해야 합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a",
+      "dp_code": "IFRS_2_29_A",
+      "name_ko": "문단 29(a): 온실가스",
+      "name_en": "Paragraph 29(a): Greenhouse gases (GHG)",
+      "description": "기업은 보고 기간 동안의 온실가스 배출량 및 관련 측정 기준·범위 정보를 공시해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "온실가스 배출량",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29",
+      "child_dps": [
+        "IFRS2-29-a-i",
+        "IFRS2-29-a-ii",
+        "IFRS2-29-a-iii",
+        "IFRS2-29-a-iv",
+        "IFRS2-29-a-v",
+        "IFRS2-29-a-vi"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기업은 보고 기간 동안의 온실가스 배출량 및 관련 측정 기준·범위 정보를 공시해야 합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-i",
+      "dp_code": "IFRS_2_29_A_I",
+      "name_ko": "문단 29(a)(i): 범위별 배출량",
+      "name_en": "Paragraph 29(a)(i): Gross Scope 1, 2 and 3 emissions",
+      "description": "보고 기간 동안 발생한 절대 총 온실가스 배출량을 이산화탄소 환산톤으로 공시하고 범위 1·2·3으로 구분합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "배출량 범위 공시",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a",
+      "child_dps": [
+        "IFRS2-29-a-i-1",
+        "IFRS2-29-a-i-2",
+        "IFRS2-29-a-i-3"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "보고 기간 동안 발생한 절대 총 온실가스 배출량을 이산화탄소 환산톤으로 공시하고 범위 1·2·3으로 구분합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-i-1",
+      "dp_code": "IFRS_2_29_A_I_1",
+      "name_ko": "문단 29(a)(i)(1): 범위 1 배출량",
+      "name_en": "Paragraph 29(a)(i)(1): Scope 1 emissions",
+      "description": "범위 1 온실가스 배출량을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "범위 1 배출량",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a-i",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "범위 1 온실가스 배출량을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-i-2",
+      "dp_code": "IFRS_2_29_A_I_2",
+      "name_ko": "문단 29(a)(i)(2): 범위 2 배출량",
+      "name_en": "Paragraph 29(a)(i)(2): Scope 2 emissions",
+      "description": "범위 2 온실가스 배출량을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "범위 2 배출량",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a-i",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "범위 2 온실가스 배출량을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-i-3",
+      "dp_code": "IFRS_2_29_A_I_3",
+      "name_ko": "문단 29(a)(i)(3): 범위 3 배출량",
+      "name_en": "Paragraph 29(a)(i)(3): Scope 3 emissions",
+      "description": "범위 3 온실가스 배출량을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "범위 3 배출량",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a-i",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "범위 3 온실가스 배출량을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-ii",
+      "dp_code": "IFRS_2_29_A_II",
+      "name_ko": "문단 29(a)(ii): 범위 2 측정 방법",
+      "name_en": "Paragraph 29(a)(ii): Scope 2 measurement method",
+      "description": "상장 거래소 요건 등을 충족하기 위해 다른 방법을 사용하지 않는 한 온실가스 프로토콜 기반으로 범위 2 배출량을 측정하는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "측정 기준 적용",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "상장 거래소 요건 등을 충족하기 위해 다른 방법을 사용하지 않는 한 온실가스 프로토콜 기반으로 범위 2 배출량을 측정하는지 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-iii",
+      "dp_code": "IFRS_2_29_A_III",
+      "name_ko": "문단 29(a)(iii): 측정 접근법·입력값·가정",
+      "name_en": "Paragraph 29(a)(iii): Measurement approach, inputs and assumptions",
+      "description": "온실가스 배출량 측정 접근법에 관한 정보를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "측정 접근법 공시",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a",
+      "child_dps": [
+        "IFRS2-29-a-iii-1",
+        "IFRS2-29-a-iii-2",
+        "IFRS2-29-a-iii-3"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "온실가스 배출량 측정 접근법에 관한 정보를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-iii-1",
+      "dp_code": "IFRS_2_29_A_III_1",
+      "name_ko": "문단 29(a)(iii)(1): 측정 접근법·입력값·가정",
+      "name_en": "Paragraph 29(a)(iii)(1): Methods, inputs and assumptions",
+      "description": "온실가스 배출량 측정에 사용한 측정 방법, 입력값 및 가정을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "측정 방법",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a-iii",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "온실가스 배출량 측정에 사용한 측정 방법, 입력값 및 가정을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-iii-2",
+      "dp_code": "IFRS_2_29_A_III_2",
+      "name_ko": "문단 29(a)(iii)(2): 선택 이유",
+      "name_en": "Paragraph 29(a)(iii)(2): Rationale for method selection",
+      "description": "사용한 측정 방법·입력값·가정을 선택한 이유를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "방법 선택 근거",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a-iii",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "사용한 측정 방법·입력값·가정을 선택한 이유를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-iii-3",
+      "dp_code": "IFRS_2_29_A_III_3",
+      "name_ko": "문단 29(a)(iii)(3): 변경 사항 및 사유",
+      "name_en": "Paragraph 29(a)(iii)(3): Changes during reporting period",
+      "description": "보고 기간 중 측정 접근법·입력값·가정의 변경 사항 및 그 변경 사유를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "방법 변경관리",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a-iii",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "보고 기간 중 측정 접근법·입력값·가정의 변경 사항 및 그 변경 사유를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-iv",
+      "dp_code": "IFRS_2_29_A_IV",
+      "name_ko": "문단 29(a)(iv): 범위2(위치/시장기준) 및 범위3 투자 배출량 범위",
+      "name_en": "Paragraph 29(a)(iv): Scope boundaries for Scope 2 and financed emissions in Scope 3",
+      "description": "문단 29(a)(i)(1)~(2)에 따른 범위 1·2 배출량과 문단 29(a)(i)(2)에 따른 범위 2 배출량, 그리고 특정 범위 3 투자 배출량의 공개 범위를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "배출량 범위 정의",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a",
+      "child_dps": [
+        "IFRS2-29-a-iv-1",
+        "IFRS2-29-a-iv-2"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 29(a)(i)(1)~(2)에 따른 범위 1·2 배출량과 문단 29(a)(i)(2)에 따른 범위 2 배출량, 그리고 특정 범위 3 투자 배출량의 공개 범위를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-iv-1",
+      "dp_code": "IFRS_2_29_A_IV_1",
+      "name_ko": "문단 29(a)(iv)(1): 통합 회계 기준 적용 대상",
+      "name_en": "Paragraph 29(a)(iv)(1): Entities included under consolidation standards",
+      "description": "통합 회계 기준을 적용하는 기업의 경우 모회사 및 연결 자회사를 포함한 범위를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "통합 범위",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a-iv",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "통합 회계 기준을 적용하는 기업의 경우 모회사 및 연결 자회사를 포함한 범위를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-iv-2",
+      "dp_code": "IFRS_2_29_A_IV_2",
+      "name_ko": "문단 29(a)(iv)(2): 기타 투자 대상 기업 포함 여부",
+      "name_en": "Paragraph 29(a)(iv)(2): Other investees outside consolidation",
+      "description": "IFRS 기준상 관계기업·합작기업 및 미연결 자회사를 포함한 기타 투자 대상 기업 포함 여부를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "투자 대상 범위",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a-iv",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "IFRS 기준상 관계기업·합작기업 및 미연결 자회사를 포함한 기타 투자 대상 기업 포함 여부를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-v",
+      "dp_code": "IFRS_2_29_A_V",
+      "name_ko": "문단 29(a)(v): 범위2 계약수단 정보",
+      "name_en": "Paragraph 29(a)(v): Contractual instruments for Scope 2 emissions",
+      "description": "문단 29(a)(i)(2)에 따른 범위 2 배출량에 대해 위치 기반/시장 기반 정보를 공시하며, 범위 2 산정에 사용한 계약수단 관련 정보를 제공합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "범위2 계약수단",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 29(a)(i)(2)에 따른 범위 2 배출량에 대해 위치 기반/시장 기반 정보를 공시하며, 범위 2 산정에 사용한 계약수단 관련 정보를 제공합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-vi",
+      "dp_code": "IFRS_2_29_A_VI",
+      "name_ko": "문단 29(a)(vi): 범위3 범주별 공시",
+      "name_en": "Paragraph 29(a)(vi): Category-wise Scope 3 disclosures",
+      "description": "문단 29(a)(i)(3)에 따른 범위 3 배출량에 대해 범주별 정보를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "범위3 범주 공시",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a",
+      "child_dps": [
+        "IFRS2-29-a-vi-1",
+        "IFRS2-29-a-vi-2"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 29(a)(i)(3)에 따른 범위 3 배출량에 대해 범주별 정보를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-vi-1",
+      "dp_code": "IFRS_2_29_A_VI_1",
+      "name_ko": "문단 29(a)(vi)(1): 범주 및 포함 여부",
+      "name_en": "Paragraph 29(a)(vi)(1): Categories included and Scope 3 definition",
+      "description": "범위 3 측정 범위에 포함된 범주와 적용 정의를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "범주 포함 정보",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a-vi",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "범위 3 측정 범위에 포함된 범주와 적용 정의를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-a-vi-2",
+      "dp_code": "IFRS_2_29_A_VI_2",
+      "name_ko": "문단 29(a)(vi)(2): 투자 배출량 별도 정보",
+      "name_en": "Paragraph 29(a)(vi)(2): Additional detail for financed emissions",
+      "description": "금융업 관련 기업의 투자 배출량에 대해 별도 요구되는 정보를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "투자 배출량 상세",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-a-vi",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "금융업 관련 기업의 투자 배출량에 대해 별도 요구되는 정보를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-b",
+      "dp_code": "IFRS_2_29_B",
+      "name_ko": "문단 29(b): 전환 위험 취약 자산·사업 비율",
+      "name_en": "Paragraph 29(b): Assets/business exposed to transition risks",
+      "description": "기후 관련 전환 위험에 취약한 자산 또는 사업 활동의 금액 및 비율을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "전환 위험 노출",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 전환 위험에 취약한 자산 또는 사업 활동의 금액 및 비율을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-c",
+      "dp_code": "IFRS_2_29_C",
+      "name_ko": "문단 29(c): 물리적 위험 취약 자산·사업 비율",
+      "name_en": "Paragraph 29(c): Assets/business exposed to physical risks",
+      "description": "기후 관련 물리적 위험에 취약한 자산 또는 사업 활동의 금액 및 비율을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "물리적 위험 노출",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 물리적 위험에 취약한 자산 또는 사업 활동의 금액 및 비율을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-d",
+      "dp_code": "IFRS_2_29_D",
+      "name_ko": "문단 29(d): 기후 관련 기회 자산·사업 비율",
+      "name_en": "Paragraph 29(d): Assets/business aligned with climate-related opportunities",
+      "description": "기후 관련 기회에 부합하는 자산 또는 사업 활동의 규모 및 비율을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "기후 기회 노출",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 기회에 부합하는 자산 또는 사업 활동의 규모 및 비율을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-e",
+      "dp_code": "IFRS_2_29_E",
+      "name_ko": "문단 29(e): 자본 배분",
+      "name_en": "Paragraph 29(e): Capital deployment",
+      "description": "기후 관련 위험 및 기회에 배분된 자본 지출, 자금 조달 또는 투자 금액을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "자본 배분",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 위험 및 기회에 배분된 자본 지출, 자금 조달 또는 투자 금액을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-f",
+      "dp_code": "IFRS_2_29_F",
+      "name_ko": "문단 29(f): 내부 탄소 가격",
+      "name_en": "Paragraph 29(f): Internal carbon prices",
+      "description": "기업은 내부 탄소 가격 관련 정보를 공시해야 하며, (i)~(ii) 항목을 포함합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "내부 탄소가격",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29",
+      "child_dps": [
+        "IFRS2-29-f-i",
+        "IFRS2-29-f-ii"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기업은 내부 탄소 가격 관련 정보를 공시해야 하며, (i)~(ii) 항목을 포함합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-f-i",
+      "dp_code": "IFRS_2_29_F_I",
+      "name_ko": "문단 29(f)(i): 의사결정 적용 여부·방식",
+      "name_en": "Paragraph 29(f)(i): Application in decision-making",
+      "description": "투자 결정, 이전 가격 책정, 시나리오 분석 등 의사결정에 탄소 가격을 적용하는지 여부 및 적용 방식을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "탄소가격 활용",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-f",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "투자 결정, 이전 가격 책정, 시나리오 분석 등 의사결정에 탄소 가격을 적용하는지 여부 및 적용 방식을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-f-ii",
+      "dp_code": "IFRS_2_29_F_II",
+      "name_ko": "문단 29(f)(ii): 배출량 측정 단가",
+      "name_en": "Paragraph 29(f)(ii): Price per metric ton used for valuation",
+      "description": "온실가스 배출 비용 평가에 사용하는 온실가스 배출량 미터톤당 가격을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "탄소가격 단가",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-f",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "온실가스 배출 비용 평가에 사용하는 온실가스 배출량 미터톤당 가격을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-g",
+      "dp_code": "IFRS_2_29_G",
+      "name_ko": "문단 29(g): 보수 연계",
+      "name_en": "Paragraph 29(g): Remuneration linkages",
+      "description": "기업은 보수 체계와 기후 관련 고려사항의 연계 정보를 공시해야 하며, (i)~(ii) 항목을 포함합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "보수 연계",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29",
+      "child_dps": [
+        "IFRS2-29-g-i",
+        "IFRS2-29-g-ii"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기업은 보수 체계와 기후 관련 고려사항의 연계 정보를 공시해야 하며, (i)~(ii) 항목을 포함합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-g-i",
+      "dp_code": "IFRS_2_29_G_I",
+      "name_ko": "문단 29(g)(i): 임원 보수 반영 여부·방법",
+      "name_en": "Paragraph 29(g)(i): Whether and how climate considerations affect executive pay",
+      "description": "기후 관련 고려 사항이 임원 보수에 반영되는지 여부 및 반영 방법을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "보수 반영 방법",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-g",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후 관련 고려 사항이 임원 보수에 반영되는지 여부 및 반영 방법을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-29-g-ii",
+      "dp_code": "IFRS_2_29_G_II",
+      "name_ko": "문단 29(g)(ii): 인센티브 보수 연계 비율",
+      "name_en": "Paragraph 29(g)(ii): Percentage linked to climate considerations",
+      "description": "임원진 인센티브 보수 중 기후 관련 고려 사항과 연계된 비율을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "보수 연계 비율",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-29-g",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "임원진 인센티브 보수 중 기후 관련 고려 사항과 연계된 비율을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-33",
+      "dp_code": "IFRS_2_33",
+      "name_ko": "문단 33: 기후 관련 목표",
+      "name_en": "Paragraph 33: Climate-related targets",
+      "description": "기업은 전략적·정성적 기후 관련 목표와 법령상 준수해야 하는 목표(온실가스 배출 목표 포함)를 공시해야 하며 (a)~(h) 정보를 포함해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "기후 관련 목표",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-33-a",
+        "IFRS2-33-b",
+        "IFRS2-33-c",
+        "IFRS2-33-d",
+        "IFRS2-33-e",
+        "IFRS2-33-f",
+        "IFRS2-33-g",
+        "IFRS2-33-h"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기업은 전략적·정성적 기후 관련 목표와 법령상 준수해야 하는 목표(온실가스 배출 목표 포함)를 공시해야 하며 (a)~(h) 정보를 포함해야 합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-33-a",
+      "dp_code": "IFRS_2_33_A",
+      "name_ko": "문단 33(a): 목표 설정에 사용된 지표",
+      "name_en": "Paragraph 33(a): Metric used to set target",
+      "description": "목표 설정에 사용된 지표를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 지표",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-33",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "목표 설정에 사용된 지표를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-33-b",
+      "dp_code": "IFRS_2_33_B",
+      "name_ko": "문단 33(b): 목표 목적",
+      "name_en": "Paragraph 33(b): Objective of target",
+      "description": "목표의 목적(완화, 적응 또는 과학 기반 이니셔티브 준수 등)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 목적",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-33",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "목표의 목적(완화, 적응 또는 과학 기반 이니셔티브 준수 등)을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-33-c",
+      "dp_code": "IFRS_2_33_C",
+      "name_ko": "문단 33(c): 적용 범위",
+      "name_en": "Paragraph 33(c): Scope of application",
+      "description": "대상이 적용되는 법인 또는 사업부 등 목표 적용 범위를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 적용 범위",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-33",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "대상이 적용되는 법인 또는 사업부 등 목표 적용 범위를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-33-d",
+      "dp_code": "IFRS_2_33_D",
+      "name_ko": "문단 33(d): 목표 적용 기간",
+      "name_en": "Paragraph 33(d): Time horizon for target",
+      "description": "목표가 적용되는 기간을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 기간",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-33",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "목표가 적용되는 기간을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-33-e",
+      "dp_code": "IFRS_2_33_E",
+      "name_ko": "문단 33(e): 진척도 측정 기준 기간",
+      "name_en": "Paragraph 33(e): Base period for progress measurement",
+      "description": "진척도를 측정하는 기준 기간을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "기준 기간",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-33",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "진척도를 측정하는 기준 기간을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-33-f",
+      "dp_code": "IFRS_2_33_F",
+      "name_ko": "문단 33(f): 중간·단계별 목표",
+      "name_en": "Paragraph 33(f): Interim and milestone targets",
+      "description": "중간 목표 및 단계별 목표를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "중간 목표",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-33",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "중간 목표 및 단계별 목표를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-33-g",
+      "dp_code": "IFRS_2_33_G",
+      "name_ko": "문단 33(g): 정량 목표 여부 및 총량/강도 목표",
+      "name_en": "Paragraph 33(g): Quantitative target and gross/intensity basis",
+      "description": "목표가 정량적인지 여부와 절대 총량인지 강도 목표인지 여부를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "정량 목표 속성",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-33",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "목표가 정량적인지 여부와 절대 총량인지 강도 목표인지 여부를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-33-h",
+      "dp_code": "IFRS_2_33_H",
+      "name_ko": "문단 33(h): 국제 협정 관련 최신 동향 반영",
+      "name_en": "Paragraph 33(h): Reflection of latest international agreements",
+      "description": "기후변화 관련 최신 국제 협정(해당 법역 내 관련 법령 포함)이 목표 수립에 어떻게 반영되는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 설정 근거",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-33",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기후변화 관련 최신 국제 협정(해당 법역 내 관련 법령 포함)이 목표 수립에 어떻게 반영되는지 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-34",
+      "dp_code": "IFRS_2_34",
+      "name_ko": "문단 34: 목표 설정·검토·모니터링 방법",
+      "name_en": "Paragraph 34: How targets are set, reviewed and monitored",
+      "description": "기업은 각 목표 설정 및 검토 방식과 목표별 진척 상황 모니터링 방법에 관한 정보를 공시해야 하며 (a)~(d)를 포함해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 관리 프로세스",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-34-a",
+        "IFRS2-34-b",
+        "IFRS2-34-c",
+        "IFRS2-34-d"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기업은 각 목표 설정 및 검토 방식과 목표별 진척 상황 모니터링 방법에 관한 정보를 공시해야 하며 (a)~(d)를 포함해야 합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-34-a",
+      "dp_code": "IFRS_2_34_A",
+      "name_ko": "문단 34(a): 제3자 검증 여부",
+      "name_en": "Paragraph 34(a): Third-party validation of targets",
+      "description": "해당 목표 및 목표 설정 방법론이 제3자에 의해 검증되었는지 여부를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 검증",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-34",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "해당 목표 및 목표 설정 방법론이 제3자에 의해 검증되었는지 여부를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-34-b",
+      "dp_code": "IFRS_2_34_B",
+      "name_ko": "문단 34(b): 목표 검토 절차",
+      "name_en": "Paragraph 34(b): Process for reviewing target",
+      "description": "해당 목표를 검토하기 위한 기업의 절차를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 검토",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-34",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "해당 목표를 검토하기 위한 기업의 절차를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-34-c",
+      "dp_code": "IFRS_2_34_C",
+      "name_ko": "문단 34(c): 진척도 모니터링 지표",
+      "name_en": "Paragraph 34(c): Metrics used to monitor progress",
+      "description": "목표 달성을 위한 진척도 모니터링에 사용되는 지표를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "진척도 모니터링",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-34",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "목표 달성을 위한 진척도 모니터링에 사용되는 지표를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-34-d",
+      "dp_code": "IFRS_2_34_D",
+      "name_ko": "문단 34(d): 목표 수정 사항 및 사유",
+      "name_en": "Paragraph 34(d): Revisions to target and reasons",
+      "description": "목표에 대한 수정 사항 및 해당 수정 사유를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 변경관리",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-34",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "목표에 대한 수정 사항 및 해당 수정 사유를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-36",
+      "dp_code": "IFRS_2_36",
+      "name_ko": "문단 36: 온실가스 배출 목표 추가 공시",
+      "name_en": "Paragraph 36: Additional disclosures for GHG emission targets",
+      "description": "문단 33~35에 따른 온실가스 배출 목표에 대해 기업은 (a)~(e) 추가 정보를 공시해야 합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "배출 목표 세부공시",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2",
+      "child_dps": [
+        "IFRS2-36-a",
+        "IFRS2-36-b",
+        "IFRS2-36-c",
+        "IFRS2-36-d",
+        "IFRS2-36-e"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 33~35에 따른 온실가스 배출 목표에 대해 기업은 (a)~(e) 추가 정보를 공시해야 합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-36-a",
+      "dp_code": "IFRS_2_36_A",
+      "name_ko": "문단 36(a): 적용 온실가스 종류",
+      "name_en": "Paragraph 36(a): Types of GHG covered",
+      "description": "목표가 적용되는 온실가스의 종류를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "적용 가스 범위",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-36",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "목표가 적용되는 온실가스의 종류를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-36-b",
+      "dp_code": "IFRS_2_36_B",
+      "name_ko": "문단 36(b): 스코프 포함 여부",
+      "name_en": "Paragraph 36(b): Inclusion of Scope 1, 2 and 3",
+      "description": "해당 목표가 스코프 1, 스코프 2 또는 스코프 3 온실가스 배출량을 포함하는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "스코프 범위",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-36",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "해당 목표가 스코프 1, 스코프 2 또는 스코프 3 온실가스 배출량을 포함하는지 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-36-c",
+      "dp_code": "IFRS_2_36_C",
+      "name_ko": "문단 36(c): 총배출 목표/순배출 목표 구분",
+      "name_en": "Paragraph 36(c): Gross vs net emissions target",
+      "description": "목표가 총 온실가스 배출량 목표인지 순 온실가스 배출량 목표인지, 또는 순 목표인 경우 총 목표를 별도 공시하는지 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "목표 유형",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-36",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "목표가 총 온실가스 배출량 목표인지 순 온실가스 배출량 목표인지, 또는 순 목표인 경우 총 목표를 별도 공시하는지 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-36-d",
+      "dp_code": "IFRS_2_36_D",
+      "name_ko": "문단 36(d): 부분별 탄소상쇄 접근법",
+      "name_en": "Paragraph 36(d): Use of carbon offsets by component",
+      "description": "해당 목표가 부분별 탄소상쇄 접근법으로 도출되는지 여부를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "탄소상쇄 접근법",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-36",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "해당 목표가 부분별 탄소상쇄 접근법으로 도출되는지 여부를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-36-e",
+      "dp_code": "IFRS_2_36_E",
+      "name_ko": "문단 36(e): 탄소 크레딧 사용 계획 상세",
+      "name_en": "Paragraph 36(e): Planned use of carbon credits",
+      "description": "온실가스 배출 목표 달성을 위해 탄소 크레딧 사용을 설명하는 경우, (i)~(iv) 상세 정보를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "탄소크레딧 계획",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-36",
+      "child_dps": [
+        "IFRS2-36-e-i",
+        "IFRS2-36-e-ii",
+        "IFRS2-36-e-iii",
+        "IFRS2-36-e-iv"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "온실가스 배출 목표 달성을 위해 탄소 크레딧 사용을 설명하는 경우, (i)~(iv) 상세 정보를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-36-e-i",
+      "dp_code": "IFRS_2_36_E_I",
+      "name_ko": "문단 36(e)(i): 의존 정도와 의존 방식",
+      "name_en": "Paragraph 36(e)(i): Extent and manner of reliance",
+      "description": "탄소 크레딧을 목표 달성에 사용하려는 정도와 의존 방식을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "탄소크레딧 의존도",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-36-e",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "탄소 크레딧을 목표 달성에 사용하려는 정도와 의존 방식을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-36-e-ii",
+      "dp_code": "IFRS_2_36_E_II",
+      "name_ko": "문단 36(e)(ii): 검증/인증 제3자",
+      "name_en": "Paragraph 36(e)(ii): Third-party verification or certification scheme",
+      "description": "탄소 크레딧을 검증하거나 인증할 제3자 제도(들)를 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "탄소크레딧 인증",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-36-e",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "탄소 크레딧을 검증하거나 인증할 제3자 제도(들)를 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-36-e-iii",
+      "dp_code": "IFRS_2_36_E_III",
+      "name_ko": "문단 36(e)(iii): 탄소 크레딧 유형",
+      "name_en": "Paragraph 36(e)(iii): Type of carbon credits",
+      "description": "탄소 크레딧의 유형(탄소 상쇄가 자연 기반인지 기술적 제거인지 등)을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "탄소크레딧 유형",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-36-e",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "탄소 크레딧의 유형(탄소 상쇄가 자연 기반인지 기술적 제거인지 등)을 공시합니다."
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "IFRS2-36-e-iv",
+      "dp_code": "IFRS_2_36_E_IV",
+      "name_ko": "문단 36(e)(iv): 신뢰성·무결성 이해를 위한 요인",
+      "name_en": "Paragraph 36(e)(iv): Factors for understanding credibility and integrity",
+      "description": "일반 목적 재무보고서 사용자가 계획된 탄소 크레딧의 신뢰성과 무결성을 이해하는 데 필요한 주요 요인을 공시합니다.",
+      "standard": "IFRS",
+      "category": "E",
+      "topic": "지표와 목표",
+      "subtopic": "신뢰성 요인",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [],
+      "parent_indicator": "IFRS2-36-e",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "일반 목적 재무보고서 사용자가 계획된 탄소 크레딧의 신뢰성과 무결성을 이해하는 데 필요한 주요 요인을 공시합니다."
+      ],
+      "value_range": null
+    }
+  ]
+}

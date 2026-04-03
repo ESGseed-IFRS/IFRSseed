@@ -1,0 +1,2546 @@
+{
+    "rulebooks": [
+        {
+            "rulebook_id": "RULE_GRI303",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303",
+            "section_name": "GRI 303: 수자원 및 폐수",
+            "section_content": "GRI 303: Water — seed disclosures 303-3 to 303-5.",
+            "validation_rules": {
+                "section_type": "standard",
+                "paragraph_reference": "GRI 303",
+                "key_terms": [
+                    "water withdrawal",
+                    "discharge",
+                    "consumption",
+                    "megaliter"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "apply_gri303_seed",
+                        "description": "시드 범위"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_SEED",
+                        "description": "303-3~5",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303",
+                "GRI303-SEC-2",
+                "GRI303-3",
+                "GRI303-4",
+                "GRI303-5"
+            ],
+            "rulebook_title": "GRI 303 (seed)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_SEC_2",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-SEC-2",
+            "section_name": "섹션 2",
+            "section_content": "Section 2 topic disclosures (seed).",
+            "validation_rules": {
+                "section_type": "section",
+                "paragraph_reference": "GRI 303 Section 2",
+                "key_terms": [
+                    "303-3",
+                    "303-4",
+                    "303-5"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_sec2_303",
+                        "description": "303-3~5"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_SEC2_OK",
+                        "description": "sec2",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-SEC-2",
+                "GRI303-3",
+                "GRI303-4",
+                "GRI303-5"
+            ],
+            "rulebook_title": "GRI 303 Section 2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3",
+            "section_name": "공개 303-3",
+            "section_content": "Disclosure 303-3: Water withdrawal.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 303 Disclosure 303-3",
+                "key_terms": [
+                    "withdrawal",
+                    "water stress",
+                    "TDS"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_303_3",
+                        "description": "303-3 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_OK",
+                        "description": "303-3",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3",
+                "GRI303-3-a",
+                "GRI303-3-a-i",
+                "GRI303-3-a-ii",
+                "GRI303-3-a-iii",
+                "GRI303-3-a-iv",
+                "GRI303-3-a-v",
+                "GRI303-3-b",
+                "GRI303-3-b-i",
+                "GRI303-3-b-ii",
+                "GRI303-3-b-iii",
+                "GRI303-3-b-iv",
+                "GRI303-3-b-v",
+                "GRI303-3-c",
+                "GRI303-3-c-i",
+                "GRI303-3-c-ii",
+                "GRI303-3-d",
+                "GRI303-3-2-1",
+                "GRI303-3-2-2",
+                "GRI303-3-2-2-1",
+                "GRI303-3-2-2-2"
+            ],
+            "rulebook_title": "Disclosure 303-3",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_A",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-a",
+            "section_name": "303-3-a",
+            "section_content": "303-3-a all areas",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_a",
+                        "description": "303-3-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_A_OK",
+                        "description": "a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-a",
+                "GRI303-3-a-i",
+                "GRI303-3-a-ii",
+                "GRI303-3-a-iii",
+                "GRI303-3-a-iv",
+                "GRI303-3-a-v"
+            ],
+            "rulebook_title": "303-3-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_B",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-b",
+            "section_name": "303-3-b",
+            "section_content": "303-3-b stressed areas",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_b",
+                        "description": "303-3-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_B_OK",
+                        "description": "b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-b",
+                "GRI303-3-b-i",
+                "GRI303-3-b-ii",
+                "GRI303-3-b-iii",
+                "GRI303-3-b-iv",
+                "GRI303-3-b-v"
+            ],
+            "rulebook_title": "303-3-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_C",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-c",
+            "section_name": "303-3-c",
+            "section_content": "303-3-c quality breakdown",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-c",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_c",
+                        "description": "303-3-c"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_C_OK",
+                        "description": "c",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-c",
+                "GRI303-3-c-i",
+                "GRI303-3-c-ii"
+            ],
+            "rulebook_title": "303-3-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_D",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-d",
+            "section_name": "303-3-d",
+            "section_content": "303-3-d",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-d",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_d",
+                        "description": "303-3-d"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_D_OK",
+                        "description": "d",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-d"
+            ],
+            "rulebook_title": "303-3-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_2_1",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-2-1",
+            "section_name": "편성 2.1",
+            "section_content": "Compilation 2.1 water stress tools",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 303 — 2.1",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "compile_303_3_21",
+                        "description": "2.1"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_21_OK",
+                        "description": "2.1",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-2-1"
+            ],
+            "rulebook_title": "Compilation 2.1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_2_2",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-2-2",
+            "section_name": "권장 2.2",
+            "section_content": "Recommendation 2.2",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 — 2.2",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_303_3_22",
+                        "description": "2.2",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_22_REVIEW",
+                        "description": "2.2",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-2-2",
+                "GRI303-3-2-2-1",
+                "GRI303-3-2-2-2"
+            ],
+            "rulebook_title": "Recommendation 2.2",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_MAIN_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3",
+            "section_name": "지침: 공개 303-3(표1·용어)",
+            "section_content": "Disclosure 303-3: See Table 1 for presentation examples. Surface water includes collected/stored rainwater. Third-party water includes municipal networks and other suppliers.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-3 — Guidance",
+                "key_terms": [
+                    "rainwater",
+                    "third-party"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_3_main",
+                        "description": "303-3 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_MAIN_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3"
+            ],
+            "rulebook_title": "Guidance 303-3",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_B_STRESS_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-b",
+            "section_name": "지침: 물 스트레스·303-3-b·제3자 원천",
+            "section_content": "Water stress: ability to meet human and ecological demand (availability, quality, accessibility). Tools: WRI Aqueduct Water Risk Atlas, WWF Water Risk Filter. Indicators may include withdrawal-to-supply ratio (High 40–80%, Extremely High >80%) and water depletion metrics (monthly/seasonal/annual >75% thresholds). Assess at catchment level at minimum. 303-3-b-v: For third-party supply, seek original source split (i–iv) from supplier; may report supplier identity and volume.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-3-b — Water stress",
+                "key_terms": [
+                    "Aqueduct",
+                    "Water Risk Filter",
+                    "depletion"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_3_b_stress",
+                        "description": "스트레스·b 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_B_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-b",
+                "GRI303-3-b-v"
+            ],
+            "rulebook_title": "Guidance 303-3-b stress",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_B_V_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-b-v",
+            "section_name": "지침: 303-3-b-v 제3자 공급 세분",
+            "section_content": "Third-party withdrawal in stressed areas: request source split i–iv from supplier; may disclose supplier and volume.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-3-b-v",
+                "key_terms": [
+                    "supplier",
+                    "provenance"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_3_bv",
+                        "description": "b-v 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_BV_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-b-v"
+            ],
+            "rulebook_title": "Guidance 303-3-b-v",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_C_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-c",
+            "section_name": "지침: 303-3-c TDS·출처 매트릭스",
+            "section_content": "303-3-c: Break down each source from 303-3-a and 303-3-b into Freshwater (TDS≤1,000 mg/L) and Other water (TDS>1,000). If a source is entirely one category (e.g. seawater as Other), report zero for the other. May describe quality criteria.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-3-c",
+                "key_terms": [
+                    "TDS",
+                    "freshwater"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_3_c",
+                        "description": "303-3-c 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_C_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-c",
+                "GRI303-3-c-i",
+                "GRI303-3-c-ii"
+            ],
+            "rulebook_title": "Guidance 303-3-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_2_2_1_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-2-2-1",
+            "section_name": "지침: 권장 2.2.1",
+            "section_content": "2.2.1: (a) Identify facilities in water-stressed areas; (b) report total withdrawal by source for each. See Table 2.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 — 2.2.1",
+                "key_terms": [
+                    "facility",
+                    "Table 2"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_3_221",
+                        "description": "2.2.1",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_221_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-2-2-1"
+            ],
+            "rulebook_title": "Guidance 2.2.1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_2_2_2_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-2-2-2",
+            "section_name": "지침: 권장 2.2.2",
+            "section_content": "2.2.2: (a) Suppliers in stressed areas; (b) those with significant water impacts; (c) sum withdrawal per supplier; (d) report total. See Table 3.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 — 2.2.2",
+                "key_terms": [
+                    "supplier",
+                    "Table 3"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_3_222",
+                        "description": "2.2.2",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_222_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-2-2-2"
+            ],
+            "rulebook_title": "Guidance 2.2.2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_A_I",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-a-i",
+            "section_name": "303-3-a-i 지표수 취수",
+            "section_content": "공개 303-3-a i: 전 지역 총 취수량(메가리터) 중 지표수(withdrawal from surface water) 구간을 보고합니다. 지침: 수집·저류 빗물은 지표수에 포함합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-a-i",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_a_i",
+                        "description": "303-3-a-i 지표수(메가리터)"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_A_I_LEAF_OK",
+                        "description": "303-3-a-i 지표수 취수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-a",
+                "GRI303-3-a-i",
+                "GRI303-3"
+            ],
+            "rulebook_title": "303-3-a-i 지표수 취수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_A_II",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-a-ii",
+            "section_name": "303-3-a-ii 지하수 취수",
+            "section_content": "공개 303-3-a ii: 지하수(groundwater) 취수량(메가리터)을 보고합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-a-ii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_a_ii",
+                        "description": "303-3-a-ii 지하수"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_A_II_LEAF_OK",
+                        "description": "303-3-a-ii 지하수 취수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-a",
+                "GRI303-3-a-ii"
+            ],
+            "rulebook_title": "303-3-a-ii 지하수 취수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_A_III",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-a-iii",
+            "section_name": "303-3-a-iii 해수 취수",
+            "section_content": "공개 303-3-a iii: 해수(seawater) 취수량(메가리터)을 보고합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-a-iii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_a_iii",
+                        "description": "303-3-a-iii 해수"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_A_III_LEAF_OK",
+                        "description": "303-3-a-iii 해수 취수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-a",
+                "GRI303-3-a-iii"
+            ],
+            "rulebook_title": "303-3-a-iii 해수 취수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_A_IV",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-a-iv",
+            "section_name": "303-3-a-iv 생산수 취수",
+            "section_content": "공개 303-3-a iv: 생산수(produced water) 취수량(메가리터)을 보고합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-a-iv",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_a_iv",
+                        "description": "303-3-a-iv 생산수"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_A_IV_LEAF_OK",
+                        "description": "303-3-a-iv 생산수 취수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-a",
+                "GRI303-3-a-iv"
+            ],
+            "rulebook_title": "303-3-a-iv 생산수 취수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_A_V",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-a-v",
+            "section_name": "303-3-a-v 제3자 공급수 취수",
+            "section_content": "공개 303-3-a v: 제3자 공급수(third-party water) 취수량(메가리터)을 보고합니다. 지침: 상수도 등 타 조직·공급망에서 공급된 물이 포함됩니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-a-v",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_a_v",
+                        "description": "303-3-a-v 제3자 공급수"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_A_V_LEAF_OK",
+                        "description": "303-3-a-v 제3자 공급수 취수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-a",
+                "GRI303-3-a-v"
+            ],
+            "rulebook_title": "303-3-a-v 제3자 공급수 취수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_B_I",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-b-i",
+            "section_name": "303-3-b-i 수력 스트레스 지역 지표수",
+            "section_content": "공개 303-3-b i: 수자원 스트레스 구역에서의 지표수 취수(메가리터). 스트레스 평가는 공개 가능·신뢰할 수 있는 도구·방법(편성 2.1, RULE_GRI303_3_B_STRESS_GUIDANCE: Aqueduct, WWF 등)을 사용합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-b-i",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_b_i",
+                        "description": "303-3-b-i 스트레스 지역 지표수"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_B_I_LEAF_OK",
+                        "description": "303-3-b-i 수력 스트레스 지역 지표수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-b",
+                "GRI303-3-b-i",
+                "GRI303-3-2-1"
+            ],
+            "rulebook_title": "303-3-b-i 수력 스트레스 지역 지표수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_B_II",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-b-ii",
+            "section_name": "303-3-b-ii 수력 스트레스 지역 지하수",
+            "section_content": "공개 303-3-b ii: 스트레스 구역 지하수 취수(메가리터).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-b-ii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_b_ii",
+                        "description": "303-3-b-ii 스트레스 지역 지하수"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_B_II_LEAF_OK",
+                        "description": "303-3-b-ii 수력 스트레스 지역 지하수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-b",
+                "GRI303-3-b-ii"
+            ],
+            "rulebook_title": "303-3-b-ii 수력 스트레스 지역 지하수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_B_III",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-b-iii",
+            "section_name": "303-3-b-iii 수력 스트레스 지역 해수",
+            "section_content": "공개 303-3-b iii: 스트레스 구역 해수 취수(메가리터).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-b-iii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_b_iii",
+                        "description": "303-3-b-iii 스트레스 지역 해수"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_B_III_LEAF_OK",
+                        "description": "303-3-b-iii 수력 스트레스 지역 해수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-b",
+                "GRI303-3-b-iii"
+            ],
+            "rulebook_title": "303-3-b-iii 수력 스트레스 지역 해수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_B_IV",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-b-iv",
+            "section_name": "303-3-b-iv 수력 스트레스 지역 생산수",
+            "section_content": "공개 303-3-b iv: 스트레스 구역 생산수 취수(메가리터). 제3자 공급수(b-v)는 i~iv 원천으로 추가 분해 보고(RULE_GRI303_3_B_V_GUIDANCE).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-b-iv",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_b_iv",
+                        "description": "303-3-b-iv 스트레스 지역 생산수"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_B_IV_LEAF_OK",
+                        "description": "303-3-b-iv 수력 스트레스 지역 생산수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-b",
+                "GRI303-3-b-iv",
+                "GRI303-3-b-v"
+            ],
+            "rulebook_title": "303-3-b-iv 수력 스트레스 지역 생산수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_C_I",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-c-i",
+            "section_name": "303-3-c-i 담수(TDS≤1000mg/L)별 취수",
+            "section_content": "공개 303-3-c i: 303-3-a·b 각 원천별 총 취수를 담수(freshwater, TDS≤1,000 mg/L)로 세분(메가리터). 한 원천이 전량 한 범주이면 다른 범주는 0으로 보고 가능(RULE_GRI303_3_C_GUIDANCE).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-c-i",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_c_i",
+                        "description": "303-3-c-i 담수 구분"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_C_I_LEAF_OK",
+                        "description": "303-3-c-i 담수(TDS≤1000mg/L)별 취수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-c",
+                "GRI303-3-c-i",
+                "GRI303-3-a",
+                "GRI303-3-b"
+            ],
+            "rulebook_title": "303-3-c-i 담수(TDS≤1000mg/L)별 취수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_3_C_II",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-3-c-ii",
+            "section_name": "303-3-c-ii 기타 수질(TDS>1000mg/L)별 취수",
+            "section_content": "공개 303-3-c ii: 기타 수질(other water, TDS>1,000 mg/L)로 세분(메가리터). 품질 산정 방법은 303-3-d 및 지침으로 보완합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-3-c-ii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_3_c_ii",
+                        "description": "303-3-c-ii 기타 수질"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_3_C_II_LEAF_OK",
+                        "description": "303-3-c-ii 기타 수질(TDS>1000mg/L)별 취수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-3-c",
+                "GRI303-3-c-ii",
+                "GRI303-3-d"
+            ],
+            "rulebook_title": "303-3-c-ii 기타 수질(TDS>1000mg/L)별 취수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4",
+            "section_name": "공개 303-4",
+            "section_content": "Disclosure 303-4: Water discharge.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 303 Disclosure 303-4",
+                "key_terms": [
+                    "effluent",
+                    "TDS",
+                    "substances of concern"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_303_4",
+                        "description": "303-4 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_OK",
+                        "description": "303-4",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4",
+                "GRI303-4-a",
+                "GRI303-4-a-i",
+                "GRI303-4-a-ii",
+                "GRI303-4-a-iii",
+                "GRI303-4-a-iv",
+                "GRI303-4-b",
+                "GRI303-4-b-i",
+                "GRI303-4-b-ii",
+                "GRI303-4-c",
+                "GRI303-4-c-i",
+                "GRI303-4-c-ii",
+                "GRI303-4-d",
+                "GRI303-4-d-i",
+                "GRI303-4-d-ii",
+                "GRI303-4-d-iii",
+                "GRI303-4-e",
+                "GRI303-4-2-3",
+                "GRI303-4-2-4",
+                "GRI303-4-2-4-1",
+                "GRI303-4-2-4-2",
+                "GRI303-4-2-4-3"
+            ],
+            "rulebook_title": "Disclosure 303-4",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_A",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-a",
+            "section_name": "303-4-a",
+            "section_content": "303-4-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_a",
+                        "description": "303-4-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_A_OK",
+                        "description": "a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-a",
+                "GRI303-4-a-i",
+                "GRI303-4-a-ii",
+                "GRI303-4-a-iii",
+                "GRI303-4-a-iv"
+            ],
+            "rulebook_title": "303-4-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_B",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-b",
+            "section_name": "303-4-b",
+            "section_content": "303-4-b",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_b",
+                        "description": "303-4-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_B_OK",
+                        "description": "b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-b",
+                "GRI303-4-b-i",
+                "GRI303-4-b-ii"
+            ],
+            "rulebook_title": "303-4-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_C",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-c",
+            "section_name": "303-4-c",
+            "section_content": "303-4-c",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-c",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_c",
+                        "description": "303-4-c"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_C_OK",
+                        "description": "c",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-c",
+                "GRI303-4-c-i",
+                "GRI303-4-c-ii"
+            ],
+            "rulebook_title": "303-4-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_D",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-d",
+            "section_name": "303-4-d",
+            "section_content": "303-4-d",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-d",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_d",
+                        "description": "303-4-d"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_D_OK",
+                        "description": "d",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-d",
+                "GRI303-4-d-i",
+                "GRI303-4-d-ii",
+                "GRI303-4-d-iii"
+            ],
+            "rulebook_title": "303-4-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_E",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-e",
+            "section_name": "303-4-e",
+            "section_content": "303-4-e",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-e",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_e",
+                        "description": "303-4-e"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_E_OK",
+                        "description": "e",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-e"
+            ],
+            "rulebook_title": "303-4-e",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_2_3",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-2-3",
+            "section_name": "편성 2.3",
+            "section_content": "Compilation 2.3",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 303 — 2.3",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "compile_303_4_23",
+                        "description": "2.3"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_23_OK",
+                        "description": "2.3",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-2-3"
+            ],
+            "rulebook_title": "Compilation 2.3",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_2_4",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-2-4",
+            "section_name": "권장 2.4",
+            "section_content": "Recommendation 2.4",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 — 2.4",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_303_4_24",
+                        "description": "2.4",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_24_REVIEW",
+                        "description": "2.4",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-2-4",
+                "GRI303-4-2-4-1",
+                "GRI303-4-2-4-2",
+                "GRI303-4-2-4-3"
+            ],
+            "rulebook_title": "Recommendation 2.4",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_GEN_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4",
+            "section_name": "지침: 303-4 배경",
+            "section_content": "303-4 background: Discharge quantification helps assess negative impacts; relationship to impact is non-linear and depends on quality and receiving environment. Advanced treatment can be positive. May report per facility in stressed areas.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-4 — Background",
+                "key_terms": [
+                    "impact",
+                    "treatment"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_4_gen",
+                        "description": "303-4 배경",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_GEN_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4"
+            ],
+            "rulebook_title": "Guidance 303-4 background",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_MAIN_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4",
+            "section_name": "지침: 공개 303-4·표1·스트레스",
+            "section_content": "303-4: Table 1 examples. For water-stressed areas use methods per 303-3-b guidance.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-4 — General",
+                "key_terms": [
+                    "Table 1",
+                    "303-3-b"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_4_main",
+                        "description": "303-4 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_MAIN_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4"
+            ],
+            "rulebook_title": "Guidance 303-4 main",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_A_IV_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-a-iv",
+            "section_name": "지침: 303-4-a-iv 제3자 배출",
+            "section_content": "303-4-a-iv: Discharge to third parties includes sending water/wastewater to another organization for their use—report volume separately.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-4-a-iv",
+                "key_terms": [
+                    "third party",
+                    "transfer"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_4_a4",
+                        "description": "a-iv 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_A4_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-a-iv"
+            ],
+            "rulebook_title": "Guidance 303-4-a-iv",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_BC_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-b",
+            "section_name": "지침: 303-4-b·c 수질",
+            "section_content": "303-4-b/c: Freshwater TDS≤1,000 mg/L; Other TDS>1,000. At minimum report Other water discharge; may elaborate per 303-4-e. Include user value and physical/chemical criteria where relevant.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-4-b,c",
+                "key_terms": [
+                    "TDS",
+                    "freshwater"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_4_bc",
+                        "description": "b·c 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_BC_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-b",
+                "GRI303-4-b-i",
+                "GRI303-4-b-ii",
+                "GRI303-4-c",
+                "GRI303-4-c-i",
+                "GRI303-4-c-ii"
+            ],
+            "rulebook_title": "Guidance 303-4-b,c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_D_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-d",
+            "section_name": "지침: 303-4-d 우려 물질",
+            "section_content": "303-4-d: Substances of concern cause irreversible harm to water bodies, ecosystems, or health. Limits from regulation or internal factors; may report unauthorized exceedances of permits and reduction plans.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-4-d",
+                "key_terms": [
+                    "permit",
+                    "non-compliance"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_4_d",
+                        "description": "303-4-d 지침",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_D_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-d",
+                "GRI303-4-d-i",
+                "GRI303-4-d-ii",
+                "GRI303-4-d-iii"
+            ],
+            "rulebook_title": "Guidance 303-4-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_2_4_2_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-2-4-2",
+            "section_name": "지침: 권장 2.4.2 처리 수준",
+            "section_content": "2.4.2: Treatment levels—Primary (settleable/floating solids), Secondary (dissolved/colloidal), Tertiary (e.g. metals, N, P). Include on-site or third-party treatment; explain why level chosen. High-quality water may need no treatment.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 — 2.4.2 treatment",
+                "key_terms": [
+                    "primary",
+                    "secondary",
+                    "tertiary"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_4_242",
+                        "description": "2.4.2",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_242_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-2-4-2"
+            ],
+            "rulebook_title": "Guidance 2.4.2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_2_4_3_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-2-4-3",
+            "section_name": "지침: 권장 2.4.3 공급업체 최소 기준",
+            "section_content": "2.4.3: Minimum standards exceed regulatory minima for discharge quality; see Disclosure 303-2. Steps: count suppliers with significant discharge-related water impacts; count those with minimum discharge-quality standards; percentage = (latter/former)×100. Table 3 example.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 — 2.4.3",
+                "key_terms": [
+                    "303-2",
+                    "percentage"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_4_243",
+                        "description": "2.4.3",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_243_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": [
+                    "Cross-ref Disclosure 303-2"
+                ]
+            },
+            "related_dp_ids": [
+                "GRI303-4-2-4-3"
+            ],
+            "rulebook_title": "Guidance 2.4.3",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_2_4_1",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-2-4-1",
+            "section_name": "권장 2.4.1 방류 한도 초과 횟수",
+            "section_content": "권장 2.4.1: 설정한 방류 한도를 초과한 횟수를 보고합니다(지침: 303-4-d와 연계).",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-4 2.4.1",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "review_303_4_241",
+                        "description": "권장 2.4.1 초과 횟수 검토",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_241_LEAF_OK",
+                        "description": "권장 2.4.1 방류 한도 초과 횟수",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-2-4",
+                "GRI303-4-2-4-1",
+                "GRI303-4-d"
+            ],
+            "rulebook_title": "권장 2.4.1 방류 한도 초과 횟수",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_A_I",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-a-i",
+            "section_name": "303-4-a-i 지표수 방류",
+            "section_content": "공개 303-4-a i: 전 지역 총 방류(메가리터) 중 지표수 매체로의 방류를 보고합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-a-i",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_a_i",
+                        "description": "303-4-a-i 지표수 방류"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_A_I_LEAF_OK",
+                        "description": "303-4-a-i 지표수 방류",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-a",
+                "GRI303-4-a-i",
+                "GRI303-4"
+            ],
+            "rulebook_title": "303-4-a-i 지표수 방류",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_A_II",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-a-ii",
+            "section_name": "303-4-a-ii 지하수 방류",
+            "section_content": "공개 303-4-a ii: 지하수로의 방류(메가리터).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-a-ii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_a_ii",
+                        "description": "303-4-a-ii 지하수 방류"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_A_II_LEAF_OK",
+                        "description": "303-4-a-ii 지하수 방류",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-a",
+                "GRI303-4-a-ii"
+            ],
+            "rulebook_title": "303-4-a-ii 지하수 방류",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_A_III",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-a-iii",
+            "section_name": "303-4-a-iii 해수 방류",
+            "section_content": "공개 303-4-a iii: 해수로의 방류(메가리터). 제3자·타 조직 전용량은 303-4-a-iv 및 RULE_GRI303_4_A_IV_GUIDANCE 참고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-a-iii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_a_iii",
+                        "description": "303-4-a-iii 해수 방류"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_A_III_LEAF_OK",
+                        "description": "303-4-a-iii 해수 방류",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-a",
+                "GRI303-4-a-iii",
+                "GRI303-4-a-iv"
+            ],
+            "rulebook_title": "303-4-a-iii 해수 방류",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_B_I",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-b-i",
+            "section_name": "303-4-b-i 전역 담수 방류(TDS≤1000)",
+            "section_content": "공개 303-4-b i: 전 지역 총 방류를 담수(TDS≤1,000 mg/L)와 기타로 구분한 중 담수(메가리터).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-b-i",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_b_i",
+                        "description": "303-4-b-i 담수 방류"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_B_I_LEAF_OK",
+                        "description": "303-4-b-i 전역 담수 방류(TDS≤1000)",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-b",
+                "GRI303-4-b-i",
+                "GRI303-4-e"
+            ],
+            "rulebook_title": "303-4-b-i 전역 담수 방류(TDS≤1000)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_B_II",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-b-ii",
+            "section_name": "303-4-b-ii 전역 기타 수질 방류(TDS>1000)",
+            "section_content": "공개 303-4-b ii: TDS>1,000 mg/L인 기타 용수 방류(메가리터). 최소한 기타 수질 수치는 보고(RULE_GRI303_4_BC_GUIDANCE).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-b-ii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_b_ii",
+                        "description": "303-4-b-ii 기타 수질 방류"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_B_II_LEAF_OK",
+                        "description": "303-4-b-ii 전역 기타 수질 방류(TDS>1000)",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-b",
+                "GRI303-4-b-ii"
+            ],
+            "rulebook_title": "303-4-b-ii 전역 기타 수질 방류(TDS>1000)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_C_I",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-c-i",
+            "section_name": "303-4-c-i 스트레스 구역 담수 방류",
+            "section_content": "공개 303-4-c i: 수자원 스트레스 구역으로의 총 방류 중 담수(메가리터). 스트레스 평가는 편성 2.3·303-4와 동일 원칙.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-c-i",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_c_i",
+                        "description": "303-4-c-i 스트레스 담수 방류"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_C_I_LEAF_OK",
+                        "description": "303-4-c-i 스트레스 구역 담수 방류",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-c",
+                "GRI303-4-c-i",
+                "GRI303-4-2-3"
+            ],
+            "rulebook_title": "303-4-c-i 스트레스 구역 담수 방류",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_C_II",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-c-ii",
+            "section_name": "303-4-c-ii 스트레스 구역 기타 수질 방류",
+            "section_content": "공개 303-4-c ii: 스트레스 구역 기타 수질 방류(메가리터).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-c-ii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_c_ii",
+                        "description": "303-4-c-ii 스트레스 기타 방류"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_C_II_LEAF_OK",
+                        "description": "303-4-c-ii 스트레스 구역 기타 수질 방류",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-c",
+                "GRI303-4-c-ii"
+            ],
+            "rulebook_title": "303-4-c-ii 스트레스 구역 기타 수질 방류",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_D_I",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-d-i",
+            "section_name": "303-4-d-i 우려 물질 정의",
+            "section_content": "공개 303-4-d i: 처리 대상 우선 우려 물질(priority substances)을 어떻게 정의했는지(국제 기준·권위 목록 등) 보고합니다(RULE_GRI303_4_D_GUIDANCE).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-d-i",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_d_i",
+                        "description": "303-4-d-i 우려 물질 정의"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_D_I_LEAF_OK",
+                        "description": "303-4-d-i 우려 물질 정의",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-d",
+                "GRI303-4-d-i"
+            ],
+            "rulebook_title": "303-4-d-i 우려 물질 정의",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_D_II",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-d-ii",
+            "section_name": "303-4-d-ii 방류 한도 설정 접근",
+            "section_content": "공개 303-4-d ii: 해당 물질의 방류 한도 설정 접근(규제·내부 기준).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-d-ii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_d_ii",
+                        "description": "303-4-d-ii 한도 설정"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_D_II_LEAF_OK",
+                        "description": "303-4-d-ii 방류 한도 설정 접근",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-d",
+                "GRI303-4-d-ii"
+            ],
+            "rulebook_title": "303-4-d-ii 방류 한도 설정 접근",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_4_D_III",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-4-d-iii",
+            "section_name": "303-4-d-iii 한도 미준수 사건 수",
+            "section_content": "공개 303-4-d iii: 방류 한도 미준수 사건 건수를 보고합니다(무허가 방류·초과 배출 포함, 지침).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-4-d-iii",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_4_d_iii",
+                        "description": "303-4-d-iii 미준수 건수"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_4_D_III_LEAF_OK",
+                        "description": "303-4-d-iii 한도 미준수 사건 수",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-4-d",
+                "GRI303-4-d-iii"
+            ],
+            "rulebook_title": "303-4-d-iii 한도 미준수 사건 수",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_5",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-5",
+            "section_name": "공개 303-5",
+            "section_content": "Disclosure 303-5: Water consumption.",
+            "validation_rules": {
+                "section_type": "disclosure",
+                "paragraph_reference": "GRI 303 Disclosure 303-5",
+                "key_terms": [
+                    "consumption",
+                    "storage"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "report_303_5",
+                        "description": "303-5 패키지"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_5_OK",
+                        "description": "303-5",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-5",
+                "GRI303-5-a",
+                "GRI303-5-b",
+                "GRI303-5-c",
+                "GRI303-5-d",
+                "GRI303-5-2-5",
+                "GRI303-5-2-5-1",
+                "GRI303-5-2-5-2"
+            ],
+            "rulebook_title": "Disclosure 303-5",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_5_A",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-5-a",
+            "section_name": "303-5-a",
+            "section_content": "303-5-a",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-5-a",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_5_a",
+                        "description": "303-5-a"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_5_A_OK",
+                        "description": "a",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-5-a"
+            ],
+            "rulebook_title": "303-5-a",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_5_B",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-5-b",
+            "section_name": "303-5-b",
+            "section_content": "303-5-b",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-5-b",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_5_b",
+                        "description": "303-5-b"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_5_B_OK",
+                        "description": "b",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-5-b"
+            ],
+            "rulebook_title": "303-5-b",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_5_C",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-5-c",
+            "section_name": "303-5-c",
+            "section_content": "303-5-c",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-5-c",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_5_c",
+                        "description": "303-5-c"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_5_C_OK",
+                        "description": "c",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-5-c"
+            ],
+            "rulebook_title": "303-5-c",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_5_D",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-5-d",
+            "section_name": "303-5-d",
+            "section_content": "303-5-d",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "GRI 303 303-5-d",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "meet_303_5_d",
+                        "description": "303-5-d"
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_5_D_OK",
+                        "description": "d",
+                        "expected": "ok"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-5-d"
+            ],
+            "rulebook_title": "303-5-d",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_5_2_5",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-5-2-5",
+            "section_name": "권장 2.5",
+            "section_content": "Recommendation 2.5",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 — 2.5",
+                "key_terms": [],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "rec_303_5_25",
+                        "description": "2.5",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_5_25_REVIEW",
+                        "description": "2.5",
+                        "expected": "reviewed"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-5-2-5",
+                "GRI303-5-2-5-1",
+                "GRI303-5-2-5-2"
+            ],
+            "rulebook_title": "Recommendation 2.5",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_5_FORMULA_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-5-a",
+            "section_name": "지침: 소비·저수 산식·정의",
+            "section_content": "Water consumption: water used by the organization no longer available to ecosystems or communities in the period. Consumption ≈ Total water withdrawal − Total water discharge (consistent boundaries). Change in water storage = total storage at end of period − total at beginning (when storage is a material impact). See Table 1; water-stressed areas per 303-3-b guidance.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 303-5 — Formulas",
+                "key_terms": [
+                    "withdrawal minus discharge",
+                    "storage"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_5_formula",
+                        "description": "303-5 산식",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_5_FORM_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-5",
+                "GRI303-5-a",
+                "GRI303-5-b",
+                "GRI303-5-c"
+            ],
+            "rulebook_title": "Guidance 303-5 formulas",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_5_2_5_1_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-5-2-5-1",
+            "section_name": "지침: 권장 2.5.1",
+            "section_content": "2.5.1: Identify stressed-area facilities; report total consumption each. Table 2.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 — 2.5.1",
+                "key_terms": [
+                    "facility",
+                    "Table 2"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_5_251",
+                        "description": "2.5.1",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_5_251_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-5-2-5-1"
+            ],
+            "rulebook_title": "Guidance 2.5.1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_GRI303_5_2_5_2_GUIDANCE",
+            "standard_id": "GRI303",
+            "primary_dp_id": "GRI303-5-2-5-2",
+            "section_name": "지침: 권장 2.5.2",
+            "section_content": "2.5.2: Stressed-area suppliers → significant impacts → sum each supplier’s consumption → report total. Table 3.",
+            "validation_rules": {
+                "section_type": "guidance",
+                "paragraph_reference": "GRI 303 — 2.5.2",
+                "key_terms": [
+                    "supplier",
+                    "Table 3"
+                ],
+                "related_concepts": [],
+                "required_actions": [
+                    {
+                        "action": "interpret_303_5_252",
+                        "description": "2.5.2",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "GRI303_5_252_G_OK",
+                        "description": "지침",
+                        "expected": "coherent"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "GRI303-5-2-5-2"
+            ],
+            "rulebook_title": "Guidance 2.5.2",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2018-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        }
+    ]
+}

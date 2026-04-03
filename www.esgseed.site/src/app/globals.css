@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* IFRSseed Design System - Sustainable Seed Theme */
+/* Colors inspired by nature: white, lime green, forest green */
+/* All colors MUST be HSL. */
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    /* White */
+    --foreground: 80 60% 20%;
+    /* Dark green for text */
+
+    /* Card colors */
+    --card: 0 0% 100%;
+    --card-foreground: 80 60% 20%;
+
+    /* Popover colors */
+    --popover: 0 0% 100%;
+    --popover-foreground: 80 60% 20%;
+
+    /* Primary colors - Forest Green (#669900) */
+    --primary: 80 100% 30%;
+    /* #669900 */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 80 100% 40%;
+
+    /* Secondary colors - Medium Green (#99cc00) */
+    --secondary: 75 100% 40%;
+    /* #99cc00 */
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted colors */
+    --muted: 75 30% 95%;
+    --muted-foreground: 80 30% 40%;
+
+    /* Accent colors - Lime Green (#CCFF33) */
+    --accent: 72 100% 60%;
+    /* #CCFF33 */
+    --accent-foreground: 80 60% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border and input colors */
+    --border: 75 30% 85%;
+    --input: 75 30% 95%;
+    --ring: 80 100% 30%;
+
+    /* Seed theme specific colors */
+    --seed-light: 72 100% 90%;
+    /* Very light lime */
+    --seed-medium: 75 100% 70%;
+    /* Medium lime */
+    --seed-dark: 80 100% 25%;
+    /* Dark forest green */
+
+    /* Gradients removed - using solid colors instead */
+
+    /* Shadows */
+    --shadow-seed: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--accent) / 0.4);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+/* Seed theme animations */
+@keyframes seedGrow {
+  0% {
+    transform: scale(0.8) rotate(-5deg);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.1) rotate(2deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes leafSway {
+
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+.seed-grow {
+  animation: seedGrow 0.6s ease-out;
+}
+
+.leaf-sway {
+  animation: leafSway 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}

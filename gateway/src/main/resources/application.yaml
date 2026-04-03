@@ -1,0 +1,177 @@
+spring:
+  application:
+    name: gateway-server
+  
+  cloud:
+    gateway:
+      # Eureka 자동 라우팅 비활성화
+      discovery:
+        locator:
+          enabled: false
+      
+      # 수동 라우팅 설정 (Java 서비스 + AI 서비스)
+      routes:
+        # ----- Java 서비스 (services/) -----
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - StripPrefix=1
+
+        - id: oauth-service
+          uri: lb://oauth-service
+          predicates:
+            - Path=/api/oauth/**
+          filters:
+            - StripPrefix=1
+
+        # ----- AI 서비스 (ai/) -----
+        - id: ifrs-agent-service
+          uri: lb://ifrs-agent-service
+          predicates:
+            - Path=/api/ifrs-agent/**
+          filters:
+            - StripPrefix=1
+
+        - id: audit-trail-service
+          uri: lb://audit-trail-service
+          predicates:
+            - Path=/api/audit-trail/**
+          filters:
+            - StripPrefix=1
+
+        - id: dashboard-service
+          uri: lb://dashboard-service
+          predicates:
+            - Path=/api/dashboard/**
+          filters:
+            - StripPrefix=1
+
+        - id: data-integration-service
+          uri: lb://data-integration-service
+          predicates:
+            - Path=/api/data-integration/**
+          filters:
+            - StripPrefix=1
+
+        - id: disclosure-service
+          uri: lb://disclosure-service
+          predicates:
+            - Path=/api/disclosure/**
+          filters:
+            - StripPrefix=1
+
+        - id: esg-data-service
+          uri: lb://esg-data-service
+          predicates:
+            - Path=/api/esg-data/**
+          filters:
+            - StripPrefix=1
+
+        - id: ghg-calculation-service
+          uri: lb://ghg-calculation-service
+          predicates:
+            - Path=/api/ghg-calculation/**
+          filters:
+            - StripPrefix=1
+
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notification/**
+          filters:
+            - StripPrefix=1
+
+        - id: report-generation-service
+          uri: lb://report-generation-service
+          predicates:
+            - Path=/api/report-generation/**
+          filters:
+            - StripPrefix=1
+      
+      # 글로벌 CORS 설정
+      # 주의: allowCredentials: true일 때는 allowedOrigins에 "*"를 사용할 수 없음
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+    
+    # SimpleDiscoveryClient 설정 (Java + AI 서비스)
+    discovery:
+      client:
+        simple:
+          instances:
+            user-service:
+              - uri: http://${USER_SERVICE_HOST:user-service}:${USER_SERVICE_PORT:8083}
+                instance-id: user-service-1
+
+            oauth-service:
+              - uri: http://${OAUTH_SERVICE_HOST:oauth-service}:${OAUTH_SERVICE_PORT:8085}
+                instance-id: oauth-service-1
+
+            ifrs-agent-service:
+              - uri: http://${IFRS_AGENT_SERVICE_HOST:ifrs-agent-app}:${IFRS_AGENT_SERVICE_PORT:9002}
+                instance-id: ifrs-agent-service-1
+
+            audit-trail-service:
+              - uri: http://${AUDIT_TRAIL_SERVICE_HOST:audit-trail-app}:${AUDIT_TRAIL_SERVICE_PORT:9003}
+                instance-id: audit-trail-service-1
+
+            dashboard-service:
+              - uri: http://${DASHBOARD_SERVICE_HOST:dashboard-app}:${DASHBOARD_SERVICE_PORT:9004}
+                instance-id: dashboard-service-1
+
+            data-integration-service:
+              - uri: http://${DATA_INTEGRATION_SERVICE_HOST:data-integration-app}:${DATA_INTEGRATION_SERVICE_PORT:9005}
+                instance-id: data-integration-service-1
+
+            disclosure-service:
+              - uri: http://${DISCLOSURE_SERVICE_HOST:disclosure-app}:${DISCLOSURE_SERVICE_PORT:9006}
+                instance-id: disclosure-service-1
+
+            esg-data-service:
+              - uri: http://${ESG_DATA_SERVICE_HOST:esg-data-app}:${ESG_DATA_SERVICE_PORT:9007}
+                instance-id: esg-data-service-1
+
+            ghg-calculation-service:
+              - uri: http://${GHG_CALCULATION_SERVICE_HOST:ghg-calculation-app}:${GHG_CALCULATION_SERVICE_PORT:9008}
+                instance-id: ghg-calculation-service-1
+
+            notification-service:
+              - uri: http://${NOTIFICATION_SERVICE_HOST:notification-app}:${NOTIFICATION_SERVICE_PORT:9009}
+                instance-id: notification-service-1
+
+            report-generation-service:
+              - uri: http://${REPORT_GENERATION_SERVICE_HOST:report-generation-app}:${REPORT_GENERATION_SERVICE_PORT:9010}
+                instance-id: report-generation-service-1
+
+  data:
+    redis:
+      host: ${UPSTASH_REDIS_HOST:unified-gibbon-39731.upstash.io}
+      port: ${UPSTASH_REDIS_PORT:6379}
+      password: ${UPSTASH_REDIS_TOKEN:}
+      ssl: true
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+        shutdown-timeout: 100ms
+
+server:
+  port: 8080
+
+# Eureka 설정 제거됨 (SimpleDiscoveryClient 사용)

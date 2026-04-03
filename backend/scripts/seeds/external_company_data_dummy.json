@@ -1,0 +1,99 @@
+[
+  {
+    "anchor_company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "external_org_name": "한국그린에너지솔루션 주식회사",
+    "source_type": "dart_disclosure",
+    "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240315001234",
+    "report_year": 2024,
+    "as_of_date": "2024-03-15",
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "title": "사업보고서 (2023.12.31)",
+    "body_text": "온실가스 배출량 Scope2 위치기반 기준 전년 대비 8.2% 감축. 재생에너지 사용 비율 42% 달성.",
+    "body_embedding": null,
+    "structured_payload": {
+      "rcept_no": "20240315001234",
+      "report_nm": "사업보고서",
+      "currency": "KRW"
+    },
+    "related_dp_ids": ["DP-GHG-SCOPE2", "DP-ENV-RENEWABLE"],
+    "ingest_batch_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  },
+  {
+    "anchor_company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "external_org_name": "동아일보",
+    "source_type": "news",
+    "source_url": "https://example-news.co.kr/articles/esg/20241201-001",
+    "report_year": 2024,
+    "as_of_date": "2024-12-01",
+    "category": "기후 리스크",
+    "category_embedding": null,
+    "title": "동종 업계, TCFD 시나리오 분석 의무화 대비",
+    "body_text": "금융당국은 내년부터 상장사 대상 기후 스트레스 테스트 가이드라인을 시범 적용할 예정이라고 밝혔다.",
+    "body_embedding": null,
+    "structured_payload": {
+      "publisher": "동아일보",
+      "section": "경제",
+      "sentiment": "neutral"
+    },
+    "related_dp_ids": ["DP-GOV-CLIMATE-RISK"],
+    "ingest_batch_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  },
+  {
+    "anchor_company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "external_org_name": "글로벌서플라이체인 파트너스",
+    "source_type": "homepage",
+    "source_url": "https://www.example-gscp.com/sus![1775119758577](image/external_company_data_dummy/1775119758577.png)tainability",
+    "report_year": null,
+    "as_of_date": "2025-01-10",
+    "category": "공급망 인권",
+    "category_embedding": null,
+    "title": "지속가능경영 | 공급망 실사",
+    "body_text": "전 협력사 대상 RBA 기반 자가진단 설문을 연 1회 실시하며, 고위험 15개사는 현장 실사를 진행합니다.",
+    "body_embedding": null,
+    "structured_payload": {
+      "page_lang": "ko",
+      "last_crawled": "2025-01-10"
+    },
+    "related_dp_ids": ["DP-SOCIAL-SUPPLY-CHAIN", "DP-HR-DIVERSITY"],
+    "ingest_batch_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+  },
+  {
+    "anchor_company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "external_org_name": "환경부",
+    "source_type": "regulator",
+    "source_url": "https://www.me.go.kr/home/web/main.do",
+    "report_year": 2024,
+    "as_of_date": "2024-06-20",
+    "category": "환경 규제",
+    "category_embedding": null,
+    "title": "2024년 상반기 환경법 위반 과징금 현황 보도자료",
+    "body_text": "대기·수질 배출 기준 위반에 대한 과징금 부과 건수는 전년 동기 대비 소폭 감소한 것으로 집계되었다.",
+    "body_embedding": null,
+    "structured_payload": {
+      "agency_code": "ME",
+      "doc_type": "press_release"
+    },
+    "related_dp_ids": ["DP-ENV-COMPLIANCE"],
+    "ingest_batch_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+  },
+  {
+    "anchor_company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "external_org_name": "테크비전 반도체",
+    "source_type": "dart_disclosure",
+    "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240520009999",
+    "report_year": 2023,
+    "as_of_date": "2024-05-20",
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "title": "분기보고서 (2024.03.31) — 이사회 운영",
+    "body_text": "당분기 이사회 4회 개최, 사외이사 출석률 100%. ESG위원회 신설 안건 상정.",
+    "body_embedding": null,
+    "structured_payload": {
+      "rcept_no": "20240520009999",
+      "period_end": "2024-03-31"
+    },
+    "related_dp_ids": ["DP-GOV-BOARD", "DP-GOV-ESG-COMMITTEE"],
+    "ingest_batch_id": "c3d4e5f6-a7b8-9012-cdef-123456789012"
+  }
+]

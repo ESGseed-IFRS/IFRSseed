@@ -1,0 +1,5 @@
+record_id,year,committee_name,committee_type,chair,members,member_count,outside_director_ratio_pct,meeting_count,avg_attendance_rate_pct,key_agenda_2024,authority_level,source_system,created_at,updated_at,updated_by
+BCOM-2024-001,2024,감사위원회,감사,이상훈(위원장),이상훈·김현석·최지영·이영배,4,100.0,8,98.0,내부통제·재무감사·외부감사인 선임,의결,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BCOM-2024-002,2024,ESG위원회,ESG경영,박선영(위원장),박선영·최지영·황성우,3,100.0,6,97.0,탄소중립로드맵·이사회 ESG KPI·공급망ESG,심의·의결,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BCOM-2024-003,2024,보상위원회,보수,김현석(위원장),김현석·박선영·이재용,3,95.0,4,95.0,경영진 성과평가·보수체계 적정성,의결,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov
+BCOM-2024-004,2024,리스크관리위원회,리스크,James K.(위원장),James K.·이상훈·이영배·박정호,4,92.0,5,90.0,사이버보안·기후리스크·공급망리스크,심의,GOV,2024-03-31 09:00:00,2024-04-05 10:00:00,user_gov

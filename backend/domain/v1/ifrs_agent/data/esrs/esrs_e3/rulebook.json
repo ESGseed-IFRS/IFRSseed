@@ -1,0 +1,2346 @@
+{
+    "rulebooks": [
+        {
+            "rulebook_id": "RULE_ESRSE3",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3",
+            "section_name": "ESRS E3 물·해양(문단 8~33)",
+            "section_content": "ESRS E3 — IRO-1(8), E3-1~E3-5(9~33). datapoint.json과 동일.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - paras 8-33",
+                "key_terms": [
+                    "ESRS E3",
+                    "water",
+                    "marine",
+                    "IRO-1",
+                    "MDR-P",
+                    "MDR-A",
+                    "MDR-T",
+                    "water consumption",
+                    "water intensity",
+                    "anticipated financial effects"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_root",
+                        "description": "ESRS E3 총괄",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_ROOT",
+                        "description": "ESRS E3 총괄",
+                        "expected": "esrse3_root_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-IRO-1",
+                    "ESRS2-MDR-P",
+                    "ESRS2-MDR-A",
+                    "ESRS2-MDR-T",
+                    "ESRS2-SBM-3-48d",
+                    "ESRS1-Appendix-B"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3",
+                "ESRSE3-SEC-1",
+                "ESRSE3-IRO-1",
+                "ESRSE3-IRO-1-8-a",
+                "ESRSE3-IRO-1-8-b",
+                "ESRSE3-E3-1",
+                "ESRSE3-E3-1-09",
+                "ESRSE3-E3-1-10",
+                "ESRSE3-E3-1-11",
+                "ESRSE3-E3-1-12-a-i",
+                "ESRSE3-E3-1-12-a-ii",
+                "ESRSE3-E3-1-12-a-iii",
+                "ESRSE3-E3-1-12-b",
+                "ESRSE3-E3-1-12-c",
+                "ESRSE3-E3-1-13",
+                "ESRSE3-E3-1-14",
+                "ESRSE3-E3-2",
+                "ESRSE3-E3-2-15",
+                "ESRSE3-E3-2-16",
+                "ESRSE3-E3-2-17",
+                "ESRSE3-E3-2-18-a",
+                "ESRSE3-E3-2-18-b",
+                "ESRSE3-E3-2-18-c",
+                "ESRSE3-E3-2-18-d",
+                "ESRSE3-E3-2-19",
+                "ESRSE3-E3-3",
+                "ESRSE3-E3-3-20",
+                "ESRSE3-E3-3-21",
+                "ESRSE3-E3-3-22",
+                "ESRSE3-E3-3-23-a",
+                "ESRSE3-E3-3-23-b",
+                "ESRSE3-E3-3-23-c",
+                "ESRSE3-E3-3-24",
+                "ESRSE3-E3-3-24-a",
+                "ESRSE3-E3-3-24-b",
+                "ESRSE3-E3-3-24-c",
+                "ESRSE3-E3-3-25",
+                "ESRSE3-E3-4",
+                "ESRSE3-E3-4-26",
+                "ESRSE3-E3-4-27",
+                "ESRSE3-E3-4-28-a",
+                "ESRSE3-E3-4-28-b",
+                "ESRSE3-E3-4-28-c",
+                "ESRSE3-E3-4-28-d",
+                "ESRSE3-E3-4-28-e",
+                "ESRSE3-E3-4-29",
+                "ESRSE3-E3-5",
+                "ESRSE3-E3-5-30",
+                "ESRSE3-E3-5-31",
+                "ESRSE3-E3-5-32-a",
+                "ESRSE3-E3-5-32-b",
+                "ESRSE3-E3-5-33-a",
+                "ESRSE3-E3-5-33-b",
+                "ESRSE3-E3-5-33-c"
+            ],
+            "rulebook_title": "ESRS E3 총괄",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_SEC_1",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-SEC-1",
+            "section_name": "Section 1 물·해양 공시 묶음",
+            "section_content": "ESRS E3 Section 1 — IRO-1, E3-1~E3-3.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - Section 1",
+                "key_terms": [
+                    "ESRS E3",
+                    "water",
+                    "marine"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_sec1",
+                        "description": "E3 Section 1",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_SEC1",
+                        "description": "E3 Section 1",
+                        "expected": "esrse3_sec1_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-SEC-1",
+                "ESRSE3-IRO-1",
+                "ESRSE3-E3-1",
+                "ESRSE3-E3-2",
+                "ESRSE3-E3-3",
+                "ESRSE3-E3-4",
+                "ESRSE3-E3-5"
+            ],
+            "rulebook_title": "E3 Section 1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_IRO_1",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-IRO-1",
+            "section_name": "IRO-1 물·해양 IRO 식별·평가 프로세스(문단 8)",
+            "section_content": "ESRS 2 관련 공개 요건 IRO-1 – 물 및 해양 자원과 관련된 중대한 영향, 위험 및 기회를 식별하고 평가하는 프로세스. 문단 8: 절차 설명 및 (a)(b) 정보 제공.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - IRO-1 para 8",
+                "key_terms": [
+                    "IRO",
+                    "value chain",
+                    "affected communities"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_iro_1",
+                        "description": "E3 IRO-1",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_IRO_1",
+                        "description": "E3 IRO-1",
+                        "expected": "esrse3_iro_1_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-IRO-1"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3-IRO-1",
+                "ESRSE3-IRO-1-8-a",
+                "ESRSE3-IRO-1-8-b"
+            ],
+            "rulebook_title": "E3 IRO-1",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_IRO_1_8_A",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-IRO-1-8-a",
+            "section_name": "IRO-1 문단 8(a)",
+            "section_content": "8(a) 해당 기업이 자사 운영 및 상·하류 가치 사슬 내에서 실제 및 잠재적인 수자원·해양자원 관련 영향, 위험 및 기회를 식별하기 위해 자산을 검토했는지 여부 및 방법, 검토한 경우 사용된 방법론, 가정 및 도구.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - IRO-1 para 8(a)",
+                "key_terms": [
+                    "screening",
+                    "methodology"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_iro_1_8a",
+                        "description": "IRO-1 8(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_IRO_1_8A",
+                        "description": "IRO-1 8(a)",
+                        "expected": "esrse3_iro_1_8a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-IRO-1-8-a"
+            ],
+            "rulebook_title": "E3 IRO-1 8(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_IRO_1_8_B",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-IRO-1-8-b",
+            "section_name": "IRO-1 문단 8(b)",
+            "section_content": "8(b) 특히 영향을 받는 지역사회와의 협의 여부 및 방법.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - IRO-1 para 8(b)",
+                "key_terms": [
+                    "consultation",
+                    "affected communities"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_iro_1_8b",
+                        "description": "IRO-1 8(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_IRO_1_8B",
+                        "description": "IRO-1 8(b)",
+                        "expected": "esrse3_iro_1_8b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-IRO-1-8-b"
+            ],
+            "rulebook_title": "E3 IRO-1 8(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1",
+            "section_name": "E3-1 물·해양 정책(문단 9~14)",
+            "section_content": "공개 요건 E3-1 – 수자원 및 해양 자원 관련 정책. 문단 9~14 및 12 하위 로마항.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 paras 9-14",
+                "key_terms": [
+                    "MDR-P",
+                    "water stress",
+                    "sustainable oceans"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1",
+                        "description": "E3-1 policies",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1",
+                        "description": "E3-1",
+                        "expected": "esrse3_e3_1_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-P"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1",
+                "ESRSE3-E3-1-09",
+                "ESRSE3-E3-1-10",
+                "ESRSE3-E3-1-11",
+                "ESRSE3-E3-1-12-a-i",
+                "ESRSE3-E3-1-12-a-ii",
+                "ESRSE3-E3-1-12-a-iii",
+                "ESRSE3-E3-1-12-b",
+                "ESRSE3-E3-1-12-c",
+                "ESRSE3-E3-1-13",
+                "ESRSE3-E3-1-14"
+            ],
+            "rulebook_title": "E3-1 정책",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1_09",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1-09",
+            "section_name": "E3-1 문단 9",
+            "section_content": "9. 사업체는 수자원 및 해양 자원과 관련된 중대한 영향, 위험 및 기회를 관리하기 위해 채택한 정책을 설명해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 para 9",
+                "key_terms": [
+                    "policies"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1_09",
+                        "description": "E3-1 para 9",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1_09",
+                        "description": "E3-1 para 9",
+                        "expected": "esrse3_e3_1_09_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1-09"
+            ],
+            "rulebook_title": "E3-1 09",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1_10",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1-10",
+            "section_name": "E3-1 문단 10",
+            "section_content": "10. 본 공개 요건의 목적은 기업이 물 및 해양 자원 관련 중대한 영향, 위험 및 기회의 식별, 평가, 관리 및/또는 개선을 다루는 정책을 어느 정도 보유하고 있는지 이해할 수 있도록 하는 데 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 para 10",
+                "key_terms": [
+                    "objective"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1_10",
+                        "description": "E3-1 para 10",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1_10",
+                        "description": "E3-1 para 10",
+                        "expected": "esrse3_e3_1_10_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1-10"
+            ],
+            "rulebook_title": "E3-1 10",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1_11",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1-11",
+            "section_name": "E3-1 문단 11 MDR-P",
+            "section_content": "11. 제9항에 따른 공개에는 기업이 물 및 해양 자원과 관련된 중대한 영향, 위험 및 기회를 관리하기 위해 마련한 정책에 관한 정보가 포함되어야 하며, 이는 ESRS 2 MDR-P에 따라 수행되어야 한다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 para 11",
+                "key_terms": [
+                    "MDR-P"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1_11",
+                        "description": "E3-1 para 11",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1_11",
+                        "description": "E3-1 para 11",
+                        "expected": "esrse3_e3_1_11_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-P"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1-11"
+            ],
+            "rulebook_title": "E3-1 11",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1_12_A_I",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1-12-a-i",
+            "section_name": "E3-1 문단 12(a)i",
+            "section_content": "12. 중대할 경우 정책 대응 명시. (a) i. 자체 운영에서의 수자원 및 해양 자원 사용 및 조달.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 para 12(a)i",
+                "key_terms": [
+                    "water sourcing",
+                    "materiality"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1_12ai",
+                        "description": "E3-1 12(a)i",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1_12AI",
+                        "description": "E3-1 12(a)i",
+                        "expected": "esrse3_e3_1_12ai_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1-12-a-i"
+            ],
+            "rulebook_title": "E3-1 12(a)i",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1_12_A_II",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1-12-a-ii",
+            "section_name": "E3-1 문단 12(a)ii",
+            "section_content": "12(a) ii. 수자원 조달의 지속가능성 제고를 위한 수처리.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 para 12(a)ii",
+                "key_terms": [
+                    "water treatment"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1_12aii",
+                        "description": "E3-1 12(a)ii",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1_12AII",
+                        "description": "E3-1 12(a)ii",
+                        "expected": "esrse3_e3_1_12aii_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1-12-a-ii"
+            ],
+            "rulebook_title": "E3-1 12(a)ii",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1_12_A_III",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1-12-a-iii",
+            "section_name": "E3-1 문단 12(a)iii",
+            "section_content": "12(a) iii. 자사 활동으로 인한 수질 오염의 예방 및 저감.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 para 12(a)iii",
+                "key_terms": [
+                    "water pollution"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1_12aiii",
+                        "description": "E3-1 12(a)iii",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1_12AIII",
+                        "description": "E3-1 12(a)iii",
+                        "expected": "esrse3_e3_1_12aiii_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1-12-a-iii"
+            ],
+            "rulebook_title": "E3-1 12(a)iii",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1_12_B",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1-12-b",
+            "section_name": "E3-1 문단 12(b)",
+            "section_content": "12(b) 수자원 관련 문제 해결 및 해양 자원 보존을 고려한 제품 및 서비스 설계.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 para 12(b)",
+                "key_terms": [
+                    "ecodesign"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1_12b",
+                        "description": "E3-1 12(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1_12B",
+                        "description": "E3-1 12(b)",
+                        "expected": "esrse3_e3_1_12b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1-12-b"
+            ],
+            "rulebook_title": "E3-1 12(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1_12_C",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1-12-c",
+            "section_name": "E3-1 문단 12(c)",
+            "section_content": "12(c) 자체 운영 및 상·하류 가치 사슬 전반에 걸쳐 물 위험 지역에 대한 물 소비량 감축을 위한 노력.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 para 12(c)",
+                "key_terms": [
+                    "water risk",
+                    "value chain"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1_12c",
+                        "description": "E3-1 12(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1_12C",
+                        "description": "E3-1 12(c)",
+                        "expected": "esrse3_e3_1_12c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1-12-c"
+            ],
+            "rulebook_title": "E3-1 12(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1_13",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1-13",
+            "section_name": "E3-1 문단 13 고수자원 스트레스",
+            "section_content": "13. 사업장의 최소 한 곳이 고수자원 스트레스 지역에 위치하고 해당 정책이 적용되지 않는 경우, 사업체는 해당 사실을 명시하고 정책을 채택하지 않은 사유를 제시해야 한다. 정책 채택 목표 시한을 공개할 수 있다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 para 13",
+                "key_terms": [
+                    "water stress",
+                    "comply or explain"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1_13",
+                        "description": "E3-1 para 13",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1_13",
+                        "description": "E3-1 para 13",
+                        "expected": "esrse3_e3_1_13_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1-13"
+            ],
+            "rulebook_title": "E3-1 13",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_1_14",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-1-14",
+            "section_name": "E3-1 문단 14",
+            "section_content": "14. 사업체는 지속 가능한 해양 및 바다와 관련된 정책이나 관행을 채택했는지 여부를 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-1 para 14",
+                "key_terms": [
+                    "sustainable oceans"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_1_14",
+                        "description": "E3-1 para 14",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_1_14",
+                        "description": "E3-1 para 14",
+                        "expected": "esrse3_e3_1_14_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-1-14"
+            ],
+            "rulebook_title": "E3-1 14",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_2",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-2",
+            "section_name": "E3-2 조치·자원(문단 15~19)",
+            "section_content": "공개 요건 E3-2 – 물 및 해양 자원 관련 조치 및 자원. 15~17 MDR-A·완화 계층, 18 자원 배분 유형, 고수자원 스트레스 포함 물 위험 지역 19.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-2 paras 15-19",
+                "key_terms": [
+                    "MDR-A",
+                    "mitigation hierarchy",
+                    "water risk"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_2",
+                        "description": "E3-2",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_2",
+                        "description": "E3-2",
+                        "expected": "esrse3_e3_2_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-A"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-2",
+                "ESRSE3-E3-2-15",
+                "ESRSE3-E3-2-16",
+                "ESRSE3-E3-2-17",
+                "ESRSE3-E3-2-18-a",
+                "ESRSE3-E3-2-18-b",
+                "ESRSE3-E3-2-18-c",
+                "ESRSE3-E3-2-18-d",
+                "ESRSE3-E3-2-19"
+            ],
+            "rulebook_title": "E3-2 조치",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_2_15",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-2-15",
+            "section_name": "E3-2 문단 15",
+            "section_content": "15. 해당 사업체는 수자원 및 해양자원 관련 조치와 그 이행에 할당된 자원을 공개해야 한다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-2 para 15",
+                "key_terms": [
+                    "actions",
+                    "resources"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_2_15",
+                        "description": "E3-2 para 15",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_2_15",
+                        "description": "E3-2 para 15",
+                        "expected": "esrse3_e3_2_15_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-2-15"
+            ],
+            "rulebook_title": "E3-2 15",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_2_16",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-2-16",
+            "section_name": "E3-2 문단 16",
+            "section_content": "16. 본 공개 요건의 목적은 수자원 및 해양 자원 관련 정책목표와 목표 달성을 위해 수행 및 계획된 주요 조치를 이해할 수 있도록 하는 것이다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-2 para 16",
+                "key_terms": [
+                    "objective"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_2_16",
+                        "description": "E3-2 para 16",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_2_16",
+                        "description": "E3-2 para 16",
+                        "expected": "esrse3_e3_2_16_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-2-16"
+            ],
+            "rulebook_title": "E3-2 16",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_2_17",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-2-17",
+            "section_name": "E3-2 문단 17 MDR-A",
+            "section_content": "17. 조치 및 자원에 대한 설명은 ESRS 2 MDR-A에 정의된 원칙을 따라야 합니다. ESRS 2 MDR-A 외에도, 기업은 조치 및 자원이 완화 계층 구조의 어느 단계에 해당하는지 명시할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-2 para 17",
+                "key_terms": [
+                    "MDR-A",
+                    "mitigation hierarchy"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_2_17",
+                        "description": "E3-2 para 17",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_2_17",
+                        "description": "E3-2 para 17",
+                        "expected": "esrse3_e3_2_17_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-A"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-2-17"
+            ],
+            "rulebook_title": "E3-2 17",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_2_18_A",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-2-18-a",
+            "section_name": "E3-2 문단 18(a)",
+            "section_content": "18. 자원은 다음에 할당될 수 있습니다: (a) 수자원 및 해양 자원의 사용을 피하고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-2 para 18(a)",
+                "key_terms": [
+                    "avoidance"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_2_18a",
+                        "description": "E3-2 18(a) optional layer",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_2_18A",
+                        "description": "E3-2 18(a)",
+                        "expected": "esrse3_e3_2_18a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-2-18-a"
+            ],
+            "rulebook_title": "E3-2 18(a)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_2_18_B",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-2-18-b",
+            "section_name": "E3-2 문단 18(b)",
+            "section_content": "18(b) 효율성 제고 등을 통해 수자원 및 해양 자원 사용을 줄이고.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-2 para 18(b)",
+                "key_terms": [
+                    "efficiency"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_2_18b",
+                        "description": "E3-2 18(b) optional layer",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_2_18B",
+                        "description": "E3-2 18(b)",
+                        "expected": "esrse3_e3_2_18b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-2-18-b"
+            ],
+            "rulebook_title": "E3-2 18(b)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_2_18_C",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-2-18-c",
+            "section_name": "E3-2 문단 18(c)",
+            "section_content": "18(c) 수자원 회수 및 재이용; 또는.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-2 para 18(c)",
+                "key_terms": [
+                    "reuse"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_2_18c",
+                        "description": "E3-2 18(c) optional layer",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_2_18C",
+                        "description": "E3-2 18(c)",
+                        "expected": "esrse3_e3_2_18c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-2-18-c"
+            ],
+            "rulebook_title": "E3-2 18(c)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_2_18_D",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-2-18-d",
+            "section_name": "E3-2 문단 18(d)",
+            "section_content": "18(d) 수생 생태계 및 수역의 복원 및 재생.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-2 para 18(d)",
+                "key_terms": [
+                    "restoration"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_2_18d",
+                        "description": "E3-2 18(d) optional layer",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_2_18D",
+                        "description": "E3-2 18(d)",
+                        "expected": "esrse3_e3_2_18d_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-2-18-d"
+            ],
+            "rulebook_title": "E3-2 18(d)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_2_19",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-2-19",
+            "section_name": "E3-2 문단 19",
+            "section_content": "19. 사업자는 물 스트레스가 높은 지역을 포함한 물 위험 지역에 대한 조치 및 자원을 명시해야 한다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-2 para 19",
+                "key_terms": [
+                    "water stress",
+                    "water risk"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_2_19",
+                        "description": "E3-2 para 19",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_2_19",
+                        "description": "E3-2 para 19",
+                        "expected": "esrse3_e3_2_19_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-2-19"
+            ],
+            "rulebook_title": "E3-2 19",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3",
+            "section_name": "E3-3 목표(문단 20~25)",
+            "section_content": "공개 요건 E3-3 – 물 및 해양 자원 관련 목표. MDR-T, 목표 연계 23항, 선택적 생태 역치 24항, 25 의무·자발.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 paras 20-25",
+                "key_terms": [
+                    "MDR-T",
+                    "targets",
+                    "ecological thresholds"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3",
+                        "description": "E3-3",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3",
+                        "description": "E3-3",
+                        "expected": "esrse3_e3_3_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3",
+                "ESRSE3-E3-3-20",
+                "ESRSE3-E3-3-21",
+                "ESRSE3-E3-3-22",
+                "ESRSE3-E3-3-23-a",
+                "ESRSE3-E3-3-23-b",
+                "ESRSE3-E3-3-23-c",
+                "ESRSE3-E3-3-24",
+                "ESRSE3-E3-3-24-a",
+                "ESRSE3-E3-3-24-b",
+                "ESRSE3-E3-3-24-c",
+                "ESRSE3-E3-3-25"
+            ],
+            "rulebook_title": "E3-3 목표",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_20",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-20",
+            "section_name": "E3-3 문단 20",
+            "section_content": "20. 해당 기업은 수자원 및 해양자원 관련 목표를 설정하였음을 공개하여야 한다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 20",
+                "key_terms": [
+                    "targets"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_20",
+                        "description": "E3-3 para 20",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_20",
+                        "description": "E3-3 para 20",
+                        "expected": "esrse3_e3_3_20_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-20"
+            ],
+            "rulebook_title": "E3-3 20",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_21",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-21",
+            "section_name": "E3-3 문단 21",
+            "section_content": "21. 본 공개 요건의 목적은 기업이 수자원 및 해양 자원 관련 정책을 지원하고, 수자원 및 해양 자원 관련 중대한 영향, 위험 및 기회에 대응하기 위해 채택한 목표를 이해할 수 있도록 하는 데 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 21",
+                "key_terms": [
+                    "objective"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_21",
+                        "description": "E3-3 para 21",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_21",
+                        "description": "E3-3 para 21",
+                        "expected": "esrse3_e3_3_21_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-21"
+            ],
+            "rulebook_title": "E3-3 21",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_22",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-22",
+            "section_name": "E3-3 문단 22 MDR-T",
+            "section_content": "22. 목표에 대한 설명에는 ESRS 2 MDR-T 「목표를 통한 정책 및 조치의 효과 추적」에 정의된 정보 요구 사항이 포함되어야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 22",
+                "key_terms": [
+                    "MDR-T"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_22",
+                        "description": "E3-3 para 22",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_22",
+                        "description": "E3-3 para 22",
+                        "expected": "esrse3_e3_3_22_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-MDR-T"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-22"
+            ],
+            "rulebook_title": "E3-3 22",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_23_A",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-23-a",
+            "section_name": "E3-3 문단 23(a)",
+            "section_content": "23(a) 제20항에 따른 공개는 목표가 수질 개선을 포함한 수자원 위험 지역과 관련된 중대한 영향, 위험 및 기회의 관리와 관련이 있는지 여부 및 그 관련 방식을 명시.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 23(a)",
+                "key_terms": [
+                    "water risk",
+                    "water quality"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_23a",
+                        "description": "E3-3 23(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_23A",
+                        "description": "E3-3 23(a)",
+                        "expected": "esrse3_e3_3_23a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-23-a"
+            ],
+            "rulebook_title": "E3-3 23(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_23_B",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-23-b",
+            "section_name": "E3-3 문단 23(b)",
+            "section_content": "23(b) 기업이 사용하는 해양 자원 관련 상품(자갈, 심해 광물, 해산물 등)의 성격 및 양을 포함한 해양 자원 영향, 위험 및 기회의 책임 있는 관리와의 연관을 명시.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 23(b)",
+                "key_terms": [
+                    "marine resources"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_23b",
+                        "description": "E3-3 23(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_23B",
+                        "description": "E3-3 23(b)",
+                        "expected": "esrse3_e3_3_23b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-23-b"
+            ],
+            "rulebook_title": "E3-3 23(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_23_C",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-23-c",
+            "section_name": "E3-3 문단 23(c)",
+            "section_content": "23(c) 물 소비량 감축(해당 목표가 물 위험 지역, 특히 고수자원 스트레스 지역과 어떻게 연관되는지 설명 포함)과의 연관을 명시.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 23(c)",
+                "key_terms": [
+                    "water consumption",
+                    "water stress"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_23c",
+                        "description": "E3-3 23(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_23C",
+                        "description": "E3-3 23(c)",
+                        "expected": "esrse3_e3_3_23c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-23-c"
+            ],
+            "rulebook_title": "E3-3 23(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_24",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-24",
+            "section_name": "E3-3 문단 24(선택)",
+            "section_content": "24. ESRS 2 MDR-T 외에도 목표 설정 시 생태학적 한계치 및 기업별 할당량을 고려했는지 명시할 수 있습니다. 고려한 경우 (a)~(c)를 추가 명시할 수 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 24",
+                "key_terms": [
+                    "ecological thresholds"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_24",
+                        "description": "E3-3 para 24 optional",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_24",
+                        "description": "E3-3 para 24",
+                        "expected": "esrse3_e3_3_24_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-24"
+            ],
+            "rulebook_title": "E3-3 24",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_24_A",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-24-a",
+            "section_name": "E3-3 문단 24(a)(선택)",
+            "section_content": "24(a) 확인된 생태학적 한계치 및 해당 한계치 확인에 사용된 방법론.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 24(a)",
+                "key_terms": [
+                    "methodology"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_24a",
+                        "description": "E3-3 24(a) optional",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_24A",
+                        "description": "E3-3 24(a)",
+                        "expected": "esrse3_e3_3_24a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-24-a"
+            ],
+            "rulebook_title": "E3-3 24(a)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_24_B",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-24-b",
+            "section_name": "E3-3 문단 24(b)(선택)",
+            "section_content": "24(b) 해당 역치들이 특정 기업에 적용되는 것인지 여부, 적용되는 경우 그 결정 방식.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 24(b)",
+                "key_terms": [
+                    "entity-specific"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_24b",
+                        "description": "E3-3 24(b) optional",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_24B",
+                        "description": "E3-3 24(b)",
+                        "expected": "esrse3_e3_3_24b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-24-b"
+            ],
+            "rulebook_title": "E3-3 24(b)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_24_C",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-24-c",
+            "section_name": "E3-3 문단 24(c)(선택)",
+            "section_content": "24(c) 확인된 생태적 한계치 준수에 대한 책임이 사업체 내에서 어떻게 배분되는지.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 24(c)",
+                "key_terms": [
+                    "governance"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_24c",
+                        "description": "E3-3 24(c) optional",
+                        "mandatory": false
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_24C",
+                        "description": "E3-3 24(c)",
+                        "expected": "esrse3_e3_3_24c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-24-c"
+            ],
+            "rulebook_title": "E3-3 24(c)",
+            "disclosure_requirement": "권고",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_3_25",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-3-25",
+            "section_name": "E3-3 문단 25",
+            "section_content": "25. 사업체는 설정 및 제시한 목표가 의무적인지(법률에 의해 요구되는지) 자발적인지 여부를 배경 정보의 일부로 명시해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-3 para 25",
+                "key_terms": [
+                    "mandatory",
+                    "voluntary"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_3_25",
+                        "description": "E3-3 para 25",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_3_25",
+                        "description": "E3-3 para 25",
+                        "expected": "esrse3_e3_3_25_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-3-25"
+            ],
+            "rulebook_title": "E3-3 25",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_4",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-4",
+            "section_name": "E3-4 물 소비량(문단 26~29)",
+            "section_content": "공개 요건 E3-4 – 물 소비량. 성과(26), 목적(27), 자체 운영 28(a)~(e), 물 집약도 29.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-4 paras 26-29",
+                "key_terms": [
+                    "water consumption",
+                    "m3",
+                    "water intensity"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_4",
+                        "description": "E3-4 water consumption",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_4",
+                        "description": "E3-4",
+                        "expected": "esrse3_e3_4_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-4",
+                "ESRSE3-E3-4-26",
+                "ESRSE3-E3-4-27",
+                "ESRSE3-E3-4-28-a",
+                "ESRSE3-E3-4-28-b",
+                "ESRSE3-E3-4-28-c",
+                "ESRSE3-E3-4-28-d",
+                "ESRSE3-E3-4-28-e",
+                "ESRSE3-E3-4-29"
+            ],
+            "rulebook_title": "E3-4 물 소비",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_4_26",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-4-26",
+            "section_name": "E3-4 문단 26",
+            "section_content": "26. 사업체는 중대한 영향, 위험 및 기회와 관련된 물 소비 성과에 대한 정보를 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-4 para 26",
+                "key_terms": [
+                    "performance"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_4_26",
+                        "description": "E3-4 para 26",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_4_26",
+                        "description": "E3-4 para 26",
+                        "expected": "esrse3_e3_4_26_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-4-26"
+            ],
+            "rulebook_title": "E3-4 26",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_4_27",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-4-27",
+            "section_name": "E3-4 문단 27",
+            "section_content": "27. 이 공개 요건의 목적은 기업의 물 소비량과 목표와 관련된 기업의 진전 상황을 이해시키는 데 있습니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-4 para 27",
+                "key_terms": [
+                    "objective",
+                    "targets"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_4_27",
+                        "description": "E3-4 para 27",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_4_27",
+                        "description": "E3-4 para 27",
+                        "expected": "esrse3_e3_4_27_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-4-27"
+            ],
+            "rulebook_title": "E3-4 27",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_4_28_A",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-4-28-a",
+            "section_name": "E3-4 문단 28(a)",
+            "section_content": "28. 제26항 공개는 자체 운영과 관련되어야 하며 다음을 포함. (a) 총 물 소비량(m³).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-4 para 28(a)",
+                "key_terms": [
+                    "m3",
+                    "own operations"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_4_28a",
+                        "description": "E3-4 28(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_4_28A",
+                        "description": "E3-4 28(a)",
+                        "expected": "esrse3_e3_4_28a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-4-28-a"
+            ],
+            "rulebook_title": "E3-4 28(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_4_28_B",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-4-28-b",
+            "section_name": "E3-4 문단 28(b)",
+            "section_content": "28(b) 물 위험 지역(물 스트레스가 높은 지역 포함)에서의 총 물 소비량(m³).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-4 para 28(b)",
+                "key_terms": [
+                    "water risk",
+                    "water stress"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_4_28b",
+                        "description": "E3-4 28(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_4_28B",
+                        "description": "E3-4 28(b)",
+                        "expected": "esrse3_e3_4_28b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-4-28-b"
+            ],
+            "rulebook_title": "E3-4 28(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_4_28_C",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-4-28-c",
+            "section_name": "E3-4 문단 28(c)",
+            "section_content": "28(c) 재활용 및 재사용된 총 물 사용량(m³).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-4 para 28(c)",
+                "key_terms": [
+                    "recycling",
+                    "reuse"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_4_28c",
+                        "description": "E3-4 28(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_4_28C",
+                        "description": "E3-4 28(c)",
+                        "expected": "esrse3_e3_4_28c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-4-28-c"
+            ],
+            "rulebook_title": "E3-4 28(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_4_28_D",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-4-28-d",
+            "section_name": "E3-4 문단 28(d)",
+            "section_content": "28(d) 저장된 총 물량 및 저장량 변화(m³).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-4 para 28(d)",
+                "key_terms": [
+                    "storage"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_4_28d",
+                        "description": "E3-4 28(d)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_4_28D",
+                        "description": "E3-4 28(d)",
+                        "expected": "esrse3_e3_4_28d_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-4-28-d"
+            ],
+            "rulebook_title": "E3-4 28(d)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_4_28_E",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-4-28-e",
+            "section_name": "E3-4 문단 28(e)",
+            "section_content": "28(e) (a)~(d)에 관한 필요한 모든 배경 정보(수질·수량, 데이터 수집 방법, 계산·추정·모델링·직접 측정 여부, 접근 방식 등).",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-4 para 28(e)",
+                "key_terms": [
+                    "methodology",
+                    "assumptions"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_4_28e",
+                        "description": "E3-4 28(e)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_4_28E",
+                        "description": "E3-4 28(e)",
+                        "expected": "esrse3_e3_4_28e_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-4-28-e"
+            ],
+            "rulebook_title": "E3-4 28(e)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_4_29",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-4-29",
+            "section_name": "E3-4 문단 29 물 집약도",
+            "section_content": "29. 해당 기업은 자체 운영에서의 총 물 소비량(순매출 100만 유로당 m³)에 대한 물 집약도 정보를 제공해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-4 para 29",
+                "key_terms": [
+                    "water intensity",
+                    "net revenue"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_4_29",
+                        "description": "E3-4 para 29",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_4_29",
+                        "description": "E3-4 para 29",
+                        "expected": "esrse3_e3_4_29_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-4-29"
+            ],
+            "rulebook_title": "E3-4 29",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_5",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-5",
+            "section_name": "E3-5 예상 재무적 영향(문단 30~33)",
+            "section_content": "공개 요건 E3-5 – 물 및 해양 자원 관련 주요 위험과 기회에 따른 예상 재무적 영향. 30~31 SBM-3, 32 목적, 33 세부.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-5 paras 30-33",
+                "key_terms": [
+                    "anticipated financial effects",
+                    "SBM-3"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_5",
+                        "description": "E3-5",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_5",
+                        "description": "E3-5",
+                        "expected": "esrse3_e3_5_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3-48d",
+                    "ESRS1-Appendix-B"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-5",
+                "ESRSE3-E3-5-30",
+                "ESRSE3-E3-5-31",
+                "ESRSE3-E3-5-32-a",
+                "ESRSE3-E3-5-32-b",
+                "ESRSE3-E3-5-33-a",
+                "ESRSE3-E3-5-33-b",
+                "ESRSE3-E3-5-33-c"
+            ],
+            "rulebook_title": "E3-5 재무영향",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_5_30",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-5-30",
+            "section_name": "E3-5 문단 30",
+            "section_content": "30. 기업은 물 및 해양 자원 관련 중대한 위험과 기회에 따른 예상 재정적 영향을 공개해야 합니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-5 para 30",
+                "key_terms": [
+                    "material",
+                    "risks",
+                    "opportunities"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_5_30",
+                        "description": "E3-5 para 30",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_5_30",
+                        "description": "E3-5 para 30",
+                        "expected": "esrse3_e3_5_30_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-5-30"
+            ],
+            "rulebook_title": "E3-5 30",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_5_31",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-5-31",
+            "section_name": "E3-5 문단 31 SBM-3",
+            "section_content": "31. 제30항 정보는 ESRS 2 SBM-3 제48항(d)에 따른 현재 재무적 영향 정보에 추가됩니다.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-5 para 31",
+                "key_terms": [
+                    "SBM-3"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_5_31",
+                        "description": "E3-5 para 31",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_5_31",
+                        "description": "E3-5 para 31",
+                        "expected": "esrse3_e3_5_31_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS2-SBM-3-48d"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-5-31"
+            ],
+            "rulebook_title": "E3-5 31",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_5_32_A",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-5-32-a",
+            "section_name": "E3-5 문단 32(a)",
+            "section_content": "32. 본 공시 요건의 목적. (a) 수자원·해양자원 관련 영향·의존성 위험의 예상 재무적 영향 및 단기·중기·장기 재무상태·성과·현금흐름에 대한 합리적 가능성.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-5 para 32(a)",
+                "key_terms": [
+                    "dependencies",
+                    "time horizons"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_5_32a",
+                        "description": "E3-5 32(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_5_32A",
+                        "description": "E3-5 32(a)",
+                        "expected": "esrse3_e3_5_32a_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-5-32-a"
+            ],
+            "rulebook_title": "E3-5 32(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_5_32_B",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-5-32-b",
+            "section_name": "E3-5 문단 32(b)",
+            "section_content": "32(b) 수자원 및 해양 자원과 관련된 중대한 기회에 따른 예상 재무적 영향.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-5 para 32(b)",
+                "key_terms": [
+                    "opportunities"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_5_32b",
+                        "description": "E3-5 32(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_5_32B",
+                        "description": "E3-5 32(b)",
+                        "expected": "esrse3_e3_5_32b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-5-32-b"
+            ],
+            "rulebook_title": "E3-5 32(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_5_33_A",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-5-33-a",
+            "section_name": "E3-5 문단 33(a)",
+            "section_content": "33. 공개 내용에 포함. (a) 조치 고려 전 재정 효과 금전 정량화, 과도 비용·노력 시 정성, 기회는 ESRS 1 부속서 B에 따라 정량 면제 가능.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-5 para 33(a)",
+                "key_terms": [
+                    "quantification",
+                    "undue cost"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_5_33a",
+                        "description": "E3-5 33(a)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_5_33A",
+                        "description": "E3-5 33(a)",
+                        "expected": "esrse3_e3_5_33a_traceable"
+                    }
+                ],
+                "cross_references": [
+                    "ESRS1-Appendix-B"
+                ]
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-5-33-a"
+            ],
+            "rulebook_title": "E3-5 33(a)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_5_33_B",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-5-33-b",
+            "section_name": "E3-5 문단 33(b)",
+            "section_content": "33(b) 고려된 영향, 해당 영향이 관련된 영향 및 의존성, 영향이 실현될 가능성이 있는 시간 범위에 대한 설명.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-5 para 33(b)",
+                "key_terms": [
+                    "impacts",
+                    "dependencies"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_5_33b",
+                        "description": "E3-5 33(b)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_5_33B",
+                        "description": "E3-5 33(b)",
+                        "expected": "esrse3_e3_5_33b_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-5-33-b"
+            ],
+            "rulebook_title": "E3-5 33(b)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        },
+        {
+            "rulebook_id": "RULE_ESRSE3_E3_5_33_C",
+            "standard_id": "ESRSE3",
+            "primary_dp_id": "ESRSE3-E3-5-33-c",
+            "section_name": "E3-5 문단 33(c)",
+            "section_content": "33(c) 예상 재무적 효과 정량화에 사용된 핵심 가정과 출처 및 불확실성 수준.",
+            "validation_rules": {
+                "section_type": "disclosure_requirement",
+                "paragraph_reference": "ESRS E3 - E3-5 para 33(c)",
+                "key_terms": [
+                    "assumptions",
+                    "uncertainty"
+                ],
+                "required_actions": [
+                    {
+                        "action": "disclose_esrse3_e3_5_33c",
+                        "description": "E3-5 33(c)",
+                        "mandatory": true
+                    }
+                ],
+                "verification_checks": [
+                    {
+                        "check_id": "ESRSE3_E3_5_33C",
+                        "description": "E3-5 33(c)",
+                        "expected": "esrse3_e3_5_33c_traceable"
+                    }
+                ],
+                "cross_references": []
+            },
+            "related_dp_ids": [
+                "ESRSE3-E3-5-33-c"
+            ],
+            "rulebook_title": "E3-5 33(c)",
+            "disclosure_requirement": "필수",
+            "version": "1.0",
+            "is_active": true,
+            "is_primary": false,
+            "effective_date": "2024-01-01",
+            "mapping_notes": null,
+            "conflicts_with": []
+        }
+    ]
+}
+
+
+
+

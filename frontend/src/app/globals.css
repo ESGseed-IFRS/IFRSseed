@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* IFRSseed Design System - Corporate Navy/Blue Theme */
+/* Inspired by modern Korean enterprise sites: clean white, navy headings, blue CTAs */
+/* All colors MUST be HSL. */
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    /* Deep navy for text */
+
+    /* Card colors */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    /* Popover colors */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary colors - Corporate Navy */
+    --primary: 214 86% 24%;
+    /* approx #0B3A6B */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 214 86% 34%;
+
+    /* Secondary colors - Brand Blue */
+    --secondary: 208 100% 45%;
+    /* approx #0077E6 */
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted colors (cool gray/blue) */
+    --muted: 214 45% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Accent colors - Sky Blue */
+    --accent: 198 100% 55%;
+    /* approx #1FA9FF */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border and input colors */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 214 86% 24%;
+
+    /* Legacy seed variables (repurposed to blue-tints for compatibility) */
+    --seed-light: 214 100% 97%;
+    /* Very light blue */
+    --seed-medium: 214 100% 90%;
+    /* Light blue */
+    --seed-dark: 214 86% 18%;
+    /* Deep navy */
+
+    /* Gradients removed - using solid colors instead */
+
+    /* Shadows */
+    --shadow-seed: 0 10px 30px -10px hsl(var(--primary) / 0.25);
+    --shadow-glow: 0 0 40px hsl(var(--accent) / 0.25);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+/* Seed theme animations */
+@keyframes seedGrow {
+  0% {
+    transform: scale(0.8) rotate(-5deg);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.1) rotate(2deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes leafSway {
+
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+.seed-grow {
+  animation: seedGrow 0.6s ease-out;
+}
+
+.leaf-sway {
+  animation: leafSway 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+
+/* Auth (login/register) — matches md reference animations */
+@keyframes authFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes authSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes authSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Auth: 50/50 split — stack below 900px (inline flex wins otherwise; override here) */
+@media (max-width: 900px) {
+  .auth-split-root {
+    flex-direction: column;
+  }
+
+  .auth-split-left {
+    flex: 0 0 auto !important;
+  }
+
+  .auth-split-leftContent {
+    min-height: auto !important;
+    padding: 40px 28px 32px !important;
+  }
+
+  .auth-split-right {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    padding: 24px 20px 40px !important;
+  }
+}

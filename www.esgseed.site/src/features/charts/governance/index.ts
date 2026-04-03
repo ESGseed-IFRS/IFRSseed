@@ -1,0 +1,1 @@
+export { GovernanceChartsPage } from './GovernanceChartsPage';

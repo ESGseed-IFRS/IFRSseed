@@ -1,0 +1,4 @@
+record_id,year,taxonomy_activity_code,activity_name,eligibility,alignment_status,revenue_m,revenue_ratio_pct,capex_m,capex_ratio_pct,opex_m,opex_ratio_pct,dnsh_passed_yn,minimum_social_safeguards_yn,verification_yn,third_party_verifier,source_system,created_at,updated_at,updated_by
+EU-TAX-2024-001,2024,CCM8.1,"Data processing, hosting, and related activities",Eligible,평가중,1303900,9.4,199400,42.1,1112800,8.6,Y,Y,Y,딜로이트 안진,ERP,2024-03-31 09:00:00,2024-04-05 10:00:00,user_fin
+EU-TAX-2024-002,2024,CCM8.2,Data-driven solutions for GHG emission reductions,Eligible,평가중,1239000,9.0,2100,0.4,1201300,9.3,Y,Y,Y,딜로이트 안진,ERP,2024-03-31 09:00:00,2024-04-05 10:00:00,user_fin
+EU-TAX-2024-003,2024,기타,Non-taxonomy eligible activities,Non-eligible,해당없음,11285332,81.6,272800,57.5,10813900,82.1,N/A,N/A,N,해당없음,ERP,2024-03-31 09:00:00,2024-04-05 10:00:00,user_fin

@@ -1,0 +1,308 @@
+{
+  "data_points": [
+    {
+      "dp_id": "ISSB2",
+      "dp_code": "ISSB_2_CLIMATE_RELATED_DISCLOSURES",
+      "name_ko": "ISSB 2: 기후 관련 공시",
+      "name_en": "ISSB 2: Climate-related Disclosures",
+      "description": "ISSB 기후 공시 기준의 지배구조 요구 중 문단 6(항목 a, b 및 하위 i~v, i~ii)에 대한 최소 공시 단위를 정의합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "기후 관련 지배구조",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2",
+        "S2-6"
+      ],
+      "parent_indicator": null,
+      "child_dps": [
+        "ISSB2-6"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "문단 6의 a, b 및 하위 로마숫자 항목에 대한 구조적 공시 충족 여부 확인"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "ISSB2-6",
+      "dp_code": "ISSB_2_GOVERNANCE_REQUIREMENTS",
+      "name_ko": "문단 6: 지배구조 요구사항",
+      "name_en": "Paragraph 6: Governance requirements",
+      "description": "기업은 기후 관련 위험 및 기회를 감독하는 지배구조 기관 또는 개인, 그리고 모니터링·관리·감독 절차에서 경영진의 역할에 관한 정보를 공시해야 합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "기후 관련 지배구조 요구사항",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6"
+      ],
+      "parent_indicator": "ISSB2",
+      "child_dps": [
+        "ISSB2-6-a",
+        "ISSB2-6-b"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "지배구조 기관/개인 관련 (a) 및 경영진 역할 (b) 공시가 모두 존재해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "ISSB2-6-a",
+      "dp_code": "ISSB_2_GOVERNANCE_BODY_OR_INDIVIDUAL",
+      "name_ko": "문단 6(a): 지배구조 기관 또는 개인",
+      "name_en": "Paragraph 6(a): Governance body(s) or individual(s)",
+      "description": "기후 관련 위험 및 기회를 감독할 책임이 있는 지배구조 기관(이사회·위원회 등) 또는 개인을 식별하고, 그 감독 방식에 대한 하위 항목 정보를 공시합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "지배구조 기관 또는 개인",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a"
+      ],
+      "parent_indicator": "ISSB2-6",
+      "child_dps": [
+        "ISSB2-6-a-i",
+        "ISSB2-6-a-ii",
+        "ISSB2-6-a-iii",
+        "ISSB2-6-a-iv",
+        "ISSB2-6-a-v"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "(i)~(v) 하위 공시가 항목별로 추적 가능해야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "ISSB2-6-a-i",
+      "dp_code": "ISSB_2_GOVERNANCE_RESPONSIBILITIES_REFLECTION",
+      "name_ko": "문단 6(a)(i): 책임 반영 방식",
+      "name_en": "Paragraph 6(a)(i): How responsibilities are reflected",
+      "description": "기후 관련 위험 및 기회에 대한 책임이 위임 규정, 권한 범위, 역할 설명, 기타 관련 정책에 어떻게 반영되는지 공시합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "책임 반영",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a-i"
+      ],
+      "parent_indicator": "ISSB2-6-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "책임-정책-권한 간 연결 근거가 드러나야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "ISSB2-6-a-ii",
+      "dp_code": "ISSB_2_GOVERNANCE_SKILLS_AND_COMPETENCIES",
+      "name_ko": "문단 6(a)(ii): 기술 및 역량 판단 방식",
+      "name_en": "Paragraph 6(a)(ii): How skills and competencies are determined",
+      "description": "해당 지배구조 기관 또는 개인이 기후 대응 전략을 감독할 수 있도록 적절한 기술·역량이 현재 보유되었는지 또는 개발될 예정인지 판단하는 방법을 공시합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "기술 및 역량",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a-ii"
+      ],
+      "parent_indicator": "ISSB2-6-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "기술/역량 확보 또는 개발 계획에 대한 판단 로직이 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "ISSB2-6-a-iii",
+      "dp_code": "ISSB_2_GOVERNANCE_INFORMATION_FLOW",
+      "name_ko": "문단 6(a)(iii): 정보 전달 방식 및 빈도",
+      "name_en": "Paragraph 6(a)(iii): How and how often informed",
+      "description": "지배구조 기관 또는 개인이 기후 관련 위험 및 기회 정보를 어떤 방식으로, 어느 빈도로 받는지 공시합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "정보 전달 빈도",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a-iii"
+      ],
+      "parent_indicator": "ISSB2-6-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "전달 채널과 빈도(예: 분기/반기/수시) 중 최소 하나 이상 명시"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "ISSB2-6-a-iv",
+      "dp_code": "ISSB_2_GOVERNANCE_OVERSIGHT_CONSIDERATION",
+      "name_ko": "문단 6(a)(iv): 전략·거래·위험관리 감독 시 고려 방식",
+      "name_en": "Paragraph 6(a)(iv): How climate matters are considered in oversight",
+      "description": "지배구조 기관 또는 개인이 기업 전략, 주요 거래 의사결정, 위험관리 프로세스 및 관련 정책을 감독할 때 기후 관련 위험 및 기회를 어떻게 고려하는지와, 관련 트레이드오프 고려 여부를 공시합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "전략 감독 고려",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a-iv"
+      ],
+      "parent_indicator": "ISSB2-6-a",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "전략/주요거래/위험관리와 기후요소의 연결 설명이 포함되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "ISSB2-6-a-v",
+      "dp_code": "ISSB_2_GOVERNANCE_TARGET_OVERSIGHT",
+      "name_ko": "문단 6(a)(v): 목표 설정 및 진척 모니터링 감독",
+      "name_en": "Paragraph 6(a)(v): Oversight of targets and progress",
+      "description": "기후 관련 위험 및 기회에 대한 목표 설정과 진척 상황 모니터링을 어떻게 감독하는지 공시하며, 관련 성과지표가 보상 정책에 포함되는지와 그 방식(문단 29(g) 참조)을 함께 공시합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "목표 감독 및 보상 연계",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-a-v"
+      ],
+      "parent_indicator": "ISSB2-6-a",
+      "child_dps": [],
+      "financial_linkages": [
+        "remuneration_policy"
+      ],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "목표 설정 감독과 진척 모니터링 방식이 모두 언급되어야 함",
+        "보상 정책 연계 여부/방법이 명시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "ISSB2-6-b",
+      "dp_code": "ISSB_2_MANAGEMENT_ROLE_IN_GOVERNANCE",
+      "name_ko": "문단 6(b): 경영진의 역할",
+      "name_en": "Paragraph 6(b): Management's role",
+      "description": "기후 관련 위험 및 기회의 모니터링·관리·감독을 위한 지배구조 프로세스, 통제 및 절차에서 경영진이 수행하는 역할을 공시합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "경영진 역할",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-b"
+      ],
+      "parent_indicator": "ISSB2-6",
+      "child_dps": [
+        "ISSB2-6-b-i",
+        "ISSB2-6-b-ii"
+      ],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "(i) 위임/감독 구조와 (ii) 통제/절차 통합 구조를 구분해 공시"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "ISSB2-6-b-i",
+      "dp_code": "ISSB_2_MANAGEMENT_DELEGATION_AND_OVERSIGHT",
+      "name_ko": "문단 6(b)(i): 위임 여부 및 감독 행사 방식",
+      "name_en": "Paragraph 6(b)(i): Delegation and oversight",
+      "description": "역할이 특정 경영 수준의 직위 또는 위원회에 위임되는지 여부와, 해당 직위 또는 위원회에 대한 감독이 어떻게 이루어지는지 공시합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "위임 및 감독",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-b-i"
+      ],
+      "parent_indicator": "ISSB2-6-b",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "위임 대상(직위/위원회)과 감독 메커니즘이 함께 제시되어야 함"
+      ],
+      "value_range": null
+    },
+    {
+      "dp_id": "ISSB2-6-b-ii",
+      "dp_code": "ISSB_2_MANAGEMENT_CONTROLS_AND_PROCEDURES",
+      "name_ko": "문단 6(b)(ii): 통제·절차 사용 및 내부 기능 통합",
+      "name_en": "Paragraph 6(b)(ii): Controls/procedures and internal integration",
+      "description": "경영진이 기후 관련 위험 및 기회 감독을 지원하기 위해 통제 및 절차를 사용하는지 여부와, 사용하는 경우 해당 통제·절차가 다른 내부 기능과 어떻게 통합되는지 공시합니다.",
+      "standard": "ISSB",
+      "category": "G",
+      "topic": "지배구조",
+      "subtopic": "통제 및 절차 통합",
+      "dp_type": "narrative",
+      "unit": null,
+      "equivalent_dps": [
+        "S2-6-b-ii"
+      ],
+      "parent_indicator": "ISSB2-6-b",
+      "child_dps": [],
+      "financial_linkages": [],
+      "financial_impact_type": null,
+      "disclosure_requirement": "필수",
+      "reporting_frequency": "연간",
+      "validation_rules": [
+        "통제/절차 사용 여부가 분명해야 하며, 사용 시 내부 기능 통합 설명 필요"
+      ],
+      "value_range": null
+    }
+  ]
+}

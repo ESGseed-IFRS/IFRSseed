@@ -1,0 +1,6 @@
+supplier_id,supplier_name,supplier_type,energy_type,supply_region,contract_type,contract_start,contract_end,annual_supply_amount,annual_supply_unit,emission_factor,ef_unit,ef_basis,ef_year,residual_mix_factor,renewable_certificate_type,kepco_customer_no,billing_cycle,contact_dept,active_yn,created_at,updated_at,updated_by
+SUP-EN-001,한국전력공사(KEPCO),전력공급사,전력,전국,수전계약,2020-01-01,2025-12-31,724888889,kWh,0.4596,kgCO2e/kWh,온실가스종합정보센터 2023,2023,0.42,없음,KE-SDS-2020-0891,월별,인프라운영팀,Y,2024-01-01 09:00:00,2024-01-15 09:00:00,admin_001
+SUP-EN-002,한국지역난방공사,열에너지공급사,열(지역난방),서울·경기,열공급계약,2018-03-01,2026-02-28,15800,GJ,0.072,tCO2e/GJ,환경부 2023,2023,,없음,,월별,시설관리팀,Y,2024-01-01 09:00:00,2024-01-15 09:00:00,admin_001
+SUP-EN-003,한국가스공사(코가스),도시가스공급사,LNG(도시가스),전국,가스공급계약,2019-06-01,2024-12-31,185000,Nm³,2.165,tCO2e/TJ,환경부 2023,2023,,없음,,월별,시설관리팀,Y,2024-01-01 09:00:00,2024-01-15 09:00:00,admin_001
+SUP-EN-004,한국에너지공단(REC),재생에너지인증기관,재생에너지(REC),전국,REC구매계약,2023-01-01,2025-12-31,12500,MWh,0.0,kgCO2e/kWh,재생에너지 — 배출 제로,2023,0.0,REC(국내),,연간,ESG경영팀,Y,2024-01-01 09:00:00,2024-01-15 09:00:00,admin_001
+SUP-EN-005,(주)SK E&S,LPG공급사,LPG,경기,LPG공급계약,2021-04-01,2024-12-31,8500,kg,3.01,tCO2e/TJ,환경부 2023,2023,,없음,,월별,시설관리팀,Y,2024-01-01 09:00:00,2024-01-15 09:00:00,admin_001
