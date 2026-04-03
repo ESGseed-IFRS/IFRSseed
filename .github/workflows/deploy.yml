@@ -112,7 +112,17 @@ jobs:
           script: |
             set -euo pipefail
             cd "${{ env.EC2_DEPLOY_PATH_TR }}"
-            if [ ! -d .venv ]; then python3 -m venv .venv; fi
+            # Ubuntu minimal AMI에는 python3-venv 없음 → python3 -m venv 가 ensurepip 오류로 실패
+            if command -v apt-get >/dev/null 2>&1 && ! dpkg -s python3-venv >/dev/null 2>&1; then
+              sudo apt-get update -qq
+              sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-venv
+            fi
+            if [ -d .venv ] && [ ! -x .venv/bin/python3 ]; then
+              rm -rf .venv
+            fi
+            if [ ! -d .venv ]; then
+              python3 -m venv .venv
+            fi
             . .venv/bin/activate
             pip install -U pip wheel
             pip install -r backend/requirement.txt
