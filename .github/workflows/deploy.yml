@@ -46,18 +46,23 @@ jobs:
           set -euo pipefail
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          HOST=$(echo -n "${{ secrets.EC2_HOST }}" | tr -d '\r' | xargs)
-          USER=$(echo -n "${{ secrets.EC2_USER }}" | tr -d '\r' | xargs)
-          PORT=$(echo -n "${{ secrets.EC2_SSH_PORT }}" | tr -d '\r' | xargs)
-          if [ -z "$HOST" ] || [ -z "$USER" ]; then
+          # USER/HOST 는 러너 환경변수와 충돌할 수 있어 전용 이름 사용
+          EC2_HOST_VAL=$(echo -n "${{ secrets.EC2_HOST }}" | tr -d '\r' | xargs)
+          EC2_USER_VAL=$(echo -n "${{ secrets.EC2_USER }}" | tr -d '\r' | xargs)
+          SSH_PORT_VAL=$(echo -n "${{ secrets.EC2_SSH_PORT }}" | tr -d '\r' | xargs)
+          if [ -z "$EC2_HOST_VAL" ] || [ -z "$EC2_USER_VAL" ]; then
             echo "::error::EC2_HOST 또는 EC2_USER 시크릿이 비어 있거나 공백만 있습니다."
             exit 1
           fi
-          if [ -z "$PORT" ]; then PORT=22; fi
-          echo "SSH_PORT=$PORT" >> "$GITHUB_ENV"
-          echo "EC2_HOST_TR=$HOST" >> "$GITHUB_ENV"
-          echo "EC2_USER_TR=$USER" >> "$GITHUB_ENV"
-          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts
+          if [ -z "$SSH_PORT_VAL" ]; then SSH_PORT_VAL=22; fi
+          echo "SSH_PORT=$SSH_PORT_VAL" >> "$GITHUB_ENV"
+          echo "EC2_HOST_TR=$EC2_HOST_VAL" >> "$GITHUB_ENV"
+          echo "EC2_USER_TR=$EC2_USER_VAL" >> "$GITHUB_ENV"
+          if ! timeout 25 ssh-keyscan -p "$SSH_PORT_VAL" -H "$EC2_HOST_VAL" >> ~/.ssh/known_hosts 2>/tmp/keyscan.err; then
+            echo "::error::ssh-keyscan 실패 — EC2 퍼블릭 DNS/IP, 보안그룹 SSH 인바운드, 인스턴스 running 여부를 확인하세요."
+            head -20 /tmp/keyscan.err >&2 || true
+            exit 1
+          fi
           echo "=== 로드된 키 지문 (민감정보 아님). AWS EC2 키 페어 지문과 종류가 맞는지 확인 ==="
           ssh-add -l || true
 
