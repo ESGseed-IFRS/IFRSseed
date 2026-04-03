@@ -6,6 +6,10 @@
 # EC2_DEPLOY_PATH: 서버에서 backend 디렉터리의 부모 (예: /home/ubuntu/app)
 #   → 코드는 $EC2_DEPLOY_PATH/backend/ 에 배치됩니다.
 #
+# SSH 실패 시: (1) 시크릿은 해당 인스턴스 authorized_keys와 짝인 "개인키" 전체
+# (2) EC2_USER는 ubuntu / ec2-user 등 실제 로그인 사용자 (3) 포트·보안그룹
+# (4) 암호가 걸린 PEM은 비대화식이라 실패 → 암호 없는 키 사용
+#
 name: Deploy to EC2
 
 on:
@@ -32,15 +36,39 @@ jobs:
         env:
           EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
         run: |
+          set -euo pipefail
+          if [ -z "${EC2_SSH_KEY//[$'\t\r\n ']/}" ]; then
+            echo "::error::EC2_SSH_KEY 시크릿이 비어 있습니다. 저장소 Settings → Secrets → Actions를 확인하세요."
+            exit 1
+          fi
           mkdir -p ~/.ssh
-          # 시크릿을 env로 받아 따옴표/개행 깨짐 방지; Windows에서 복사한 CRLF 제거
-          printf '%s\n' "$EC2_SSH_KEY" | tr -d '\r' > ~/.ssh/ec2_deploy
-          chmod 600 ~/.ssh/ec2_deploy
+          # 셸 printf/echo로 PEM 개행이 깨지는 경우 방지: Python으로 그대로 기록
+          python3 - <<'PY'
+          import os, pathlib, stat
+          key = os.environ["EC2_SSH_KEY"].replace("\r\n", "\n").replace("\r", "\n").strip()
+          if not key.startswith("-----BEGIN") or "PRIVATE KEY" not in key:
+              raise SystemExit("EC2_SSH_KEY가 OpenSSH PEM 형식이 아닙니다. -----BEGIN ... PRIVATE KEY----- 로 시작하는지 확인하세요.")
+          path = pathlib.Path.home() / ".ssh" / "ec2_deploy"
+          path.write_text(key + ("\n" if not key.endswith("\n") else ""))
+          path.chmod(stat.S_IRUSR | stat.S_IWUSR)
+          PY
           HOST="${{ secrets.EC2_HOST }}"
           PORT="${{ secrets.EC2_SSH_PORT }}"
           if [ -z "$PORT" ]; then PORT=22; fi
           echo "SSH_PORT=$PORT" >> "$GITHUB_ENV"
           ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts
+
+      - name: SSH 연결 확인 (rsync 전)
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/ec2_deploy \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o ConnectTimeout=20 \
+            -p "${SSH_PORT}" \
+            "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}" \
+            "echo 'ssh ok'"
 
       - name: Rsync to EC2 (→ .../backend/)
         env:
@@ -54,7 +82,7 @@ jobs:
             --exclude '.env' \
             --exclude '*.pem' \
             --exclude '**/llamaparse_md/' \
-            -e "ssh -i ~/.ssh/ec2_deploy -o StrictHostKeyChecking=yes -p ${SSH_PORT}" \
+            -e "ssh -i ~/.ssh/ec2_deploy -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -p ${SSH_PORT}" \
             ./backend/ "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${DEPLOY_PATH}/backend/"
 
       - name: Install dependencies and restart service
