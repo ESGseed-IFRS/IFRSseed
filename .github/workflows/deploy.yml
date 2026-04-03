@@ -7,6 +7,7 @@
 #   → 코드는 $EC2_DEPLOY_PATH/backend/ 에 배치됩니다.
 #   미설정 시 자동으로 /home/<EC2_USER>/app 을 사용합니다.
 #   rsync 전에 원격에 $EC2_DEPLOY_PATH/backend 가 없으면 mkdir -p 로 생성합니다.
+#   pip: CPU 전용 torch 선설치 + 캐시 끔. 그래도 No space left 이면 EBS 볼륨 확장 또는 requirement 축소.
 #
 # SSH 실패 시: (1) 시크릿은 해당 인스턴스 authorized_keys와 짝인 "개인키" 전체
 # (2) EC2_USER는 ubuntu / ec2-user 등 실제 로그인 사용자 (3) 포트·보안그룹
@@ -123,8 +124,14 @@ jobs:
               python3 -m venv .venv
             fi
             . .venv/bin/activate
-            pip install -U pip wheel
-            pip install -r backend/requirement.txt
+            export PIP_NO_CACHE_DIR=1
+            sudo apt-get clean || true
+            rm -rf "${HOME}/.cache/pip" 2>/dev/null || true
+            df -h
+            pip install --no-cache-dir -U pip wheel
+            # Linux 기본 PyPI torch 는 CUDA/NVIDIA 휠(수 GB) → 작은 EC2 디스크 고갈. CPU 빌드만 선설치
+            pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
+            pip install --no-cache-dir --upgrade-strategy only-if-needed -r backend/requirement.txt
             if [ -n "${{ secrets.EC2_SERVICE_NAME }}" ]; then
               sudo systemctl restart "${{ secrets.EC2_SERVICE_NAME }}"
             fi
