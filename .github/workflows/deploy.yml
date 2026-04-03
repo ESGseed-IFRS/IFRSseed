@@ -6,6 +6,7 @@
 # EC2_DEPLOY_PATH: 서버에서 backend 디렉터리의 부모 (예: /home/ubuntu/app)
 #   → 코드는 $EC2_DEPLOY_PATH/backend/ 에 배치됩니다.
 #   미설정 시 자동으로 /home/<EC2_USER>/app 을 사용합니다.
+#   rsync 전에 원격에 $EC2_DEPLOY_PATH/backend 가 없으면 mkdir -p 로 생성합니다.
 #
 # SSH 실패 시: (1) 시크릿은 해당 인스턴스 authorized_keys와 짝인 "개인키" 전체
 # (2) EC2_USER는 ubuntu / ec2-user 등 실제 로그인 사용자 (3) 포트·보안그룹
@@ -76,6 +77,16 @@ jobs:
             -p "${SSH_PORT}" \
             "${EC2_USER_TR}@${EC2_HOST_TR}" \
             "echo 'ssh ok'"
+
+      - name: 원격 배포 경로 생성 (mkdir -p)
+        run: |
+          set -euo pipefail
+          ssh -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o ConnectTimeout=25 \
+            -p "${SSH_PORT}" \
+            "${EC2_USER_TR}@${EC2_HOST_TR}" \
+            "mkdir -p '${EC2_DEPLOY_PATH_TR}/backend'"
 
       - name: Rsync to EC2 (→ .../backend/)
         run: |
