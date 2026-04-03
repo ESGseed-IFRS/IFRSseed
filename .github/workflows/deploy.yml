@@ -1,10 +1,11 @@
 # 모노레포: backend 변경 시만 실행 → AWS EC2 (SSH + rsync)
 #
-# Secrets: EC2_HOST, EC2_USER, EC2_SSH_KEY, EC2_DEPLOY_PATH
-# 선택: EC2_SSH_PORT, EC2_SERVICE_NAME
+# Secrets: EC2_HOST, EC2_USER, EC2_SSH_KEY
+# 선택: EC2_DEPLOY_PATH, EC2_SSH_PORT, EC2_SERVICE_NAME
 #
 # EC2_DEPLOY_PATH: 서버에서 backend 디렉터리의 부모 (예: /home/ubuntu/app)
 #   → 코드는 $EC2_DEPLOY_PATH/backend/ 에 배치됩니다.
+#   미설정 시 자동으로 /home/<EC2_USER>/app 을 사용합니다.
 #
 # SSH 실패 시: (1) 시크릿은 해당 인스턴스 authorized_keys와 짝인 "개인키" 전체
 # (2) EC2_USER는 ubuntu / ec2-user 등 실제 로그인 사용자 (3) 포트·보안그룹
@@ -62,10 +63,10 @@ jobs:
           DEPLOY_PATH_RAW: ${{ secrets.EC2_DEPLOY_PATH }}
         run: |
           set -euo pipefail
-          DEPLOY_PATH=$(echo -n "$DEPLOY_PATH_RAW" | tr -d '\r' | xargs)
+          DEPLOY_PATH=$(echo -n "${DEPLOY_PATH_RAW:-}" | tr -d '\r' | xargs)
           if [ -z "$DEPLOY_PATH" ]; then
-            echo "::error::EC2_DEPLOY_PATH 시크릿이 비어 있습니다."
-            exit 1
+            DEPLOY_PATH="/home/${EC2_USER_TR}/app"
+            echo "::notice::EC2_DEPLOY_PATH 시크릿이 없어 기본값을 사용합니다: $DEPLOY_PATH (다르면 시크릿으로 지정하세요)"
           fi
           echo "EC2_DEPLOY_PATH_TR=$DEPLOY_PATH" >> "$GITHUB_ENV"
           # IdentitiesOnly=yes 는 에이전트 키를 막을 수 있어 기본(에이전트 사용)으로 접속
