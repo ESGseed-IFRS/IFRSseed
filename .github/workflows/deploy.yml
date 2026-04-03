@@ -29,9 +29,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure SSH (rsync)
+        env:
+          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
         run: |
           mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ec2_deploy
+          # 시크릿을 env로 받아 따옴표/개행 깨짐 방지; Windows에서 복사한 CRLF 제거
+          printf '%s\n' "$EC2_SSH_KEY" | tr -d '\r' > ~/.ssh/ec2_deploy
           chmod 600 ~/.ssh/ec2_deploy
           HOST="${{ secrets.EC2_HOST }}"
           PORT="${{ secrets.EC2_SSH_PORT }}"
