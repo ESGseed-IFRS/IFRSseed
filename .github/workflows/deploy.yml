@@ -117,10 +117,9 @@ jobs:
               sudo apt-get update -qq
               sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-venv
             fi
-            if [ -d .venv ] && [ ! -x .venv/bin/python3 ]; then
+            # 이전 실패로 .venv만 있고 activate 없는 경우가 있어, 완전할 때만 유지
+            if [ ! -f .venv/bin/activate ] || [ ! -x .venv/bin/python3 ]; then
               rm -rf .venv
-            fi
-            if [ ! -d .venv ]; then
               python3 -m venv .venv
             fi
             . .venv/bin/activate
