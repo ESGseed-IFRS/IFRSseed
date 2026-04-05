@@ -13,10 +13,7 @@ from typing import Any, Dict, List, Optional
 from loguru import logger
 
 # DB
-try:
-    from ifrs_agent.database.base import get_session
-except ImportError:
-    from backend.domain.v1.ifrs_agent.database.base import get_session
+from backend.core.db import get_session
 
 from sqlalchemy import select
 

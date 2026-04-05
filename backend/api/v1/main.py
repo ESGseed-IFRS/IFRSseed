@@ -34,6 +34,9 @@ from backend.api.v1.esg_data.ucm_router import ucm_router
 from backend.api.v1.ghg_calculation.raw_data_router import raw_data_router
 from backend.api.v1.ghg_calculation.scope_calculation_router import scope_calculation_router
 
+# --- IFRS Agent (개별 라우터 → /ifrs-agent/...)
+from backend.api.v1.ifrs_agent.router import router as ifrs_agent_router
+
 app = FastAPI(
     title="Backend API",
     description="통합 Backend API (Data Integration 등)",
@@ -63,6 +66,9 @@ app.include_router(environmental_router, prefix="/esg-data")
 # GHG Calculation: raw-data, scope
 app.include_router(raw_data_router, prefix="/ghg-calculation")
 app.include_router(scope_calculation_router, prefix="/ghg-calculation")
+
+# IFRS Agent: 워크플로우
+app.include_router(ifrs_agent_router)
 
 
 def run(host: str = "0.0.0.0", port: int = 9001) -> None:

@@ -30,6 +30,14 @@ class Settings:
     # Common
     embedding_model: str = "BAAI/bge-m3"
     database_url: str = ""
+    # True면 asyncpg 연결 시 SSL 관련 쿼리 파라미터 제거 + ssl=False (Windows 비ASCII sslrootcert 경로 등)
+    asyncpg_ssl_disable: bool = False
+    # True면 DATABASE_URL의 ssl* 쿼리를 제거하고 시스템 기본 CA로만 연결(errno 42 1회 실패·경고 방지, Neon 등). 기본 True.
+    asyncpg_force_default_ssl: bool = True
+    # ifrs_agent InfraLayer call_agent/call_tool 기본 타임아웃(초). 임베딩·원격 DB 시 30은 부족할 수 있음.
+    ifrs_infra_timeout_sec: int = 120
+    # c_rag·dp_rag 등 연도 루프·LLM 포함 작업용(오케스트레이터에서만 사용)
+    ifrs_infra_heavy_timeout_sec: int = 300
     groq_api_key: str = ""
     mcp_sr_index_tools_url: str = ""
     groq_temperature: float = 0.2
@@ -39,6 +47,10 @@ class Settings:
     # Domain defaults (ifrs_agent 등)
     rag_model: str = "llama-3.3-70b-versatile"
     supervisor_model: str = "llama-3.3-70b-versatile"
+    # c_rag: 벡터 후보 LLM 재선택용 (OpenAI Chat). .env: IFRS_C_RAG_LLM_MODEL
+    c_rag_llm_model: str = "gpt-5-mini"
+    # dp_rag: 물리 테이블·컬럼 매핑용 Gemini 모델 ID. .env: DP_RAG_GEMINI_MODEL
+    dp_rag_gemini_model: str = "gemini-2.5-flash"
     dart_api_key: str = ""
     tavily_api_key: str = ""
 
@@ -54,6 +66,8 @@ class Settings:
 
     # data_integration — LLM / 파싱
     openai_api_key: str = ""
+    # Google Gemini (ifrs_agent 오케스트레이터 등). .env: GEMINI_API_KEY (구 GOOGLE_AI_API_KEY 폴백)
+    gemini_api_key: str = ""
     llama_cloud_api_key: str = ""
 
     # data_integration — SR 이미지
@@ -104,6 +118,10 @@ def _s3_bucket_resolved() -> str:
     return (os.getenv("SR_S3_BUCKET") or os.getenv("AWS_S3_BUCKET") or "").strip()
 
 
+def _gemini_api_key_resolved() -> str:
+    return (os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_AI_API_KEY") or "").strip()
+
+
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
     _load_env()
@@ -117,6 +135,14 @@ def get_settings() -> Settings:
     return Settings(
         embedding_model=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3"),
         database_url=os.getenv("DATABASE_URL", ""),
+        asyncpg_ssl_disable=_env_flag_false_by_default("ASYNCPG_SSL_DISABLE"),
+        asyncpg_force_default_ssl=_env_flag_default_true(
+            "ASYNCPG_FORCE_DEFAULT_SSL", default=True
+        ),
+        ifrs_infra_timeout_sec=max(30, int(os.getenv("IFRS_INFRA_TIMEOUT_SEC", "120"))),
+        ifrs_infra_heavy_timeout_sec=max(
+            60, int(os.getenv("IFRS_INFRA_HEAVY_TIMEOUT_SEC", "300"))
+        ),
         groq_api_key=os.getenv("GROQ_API_KEY", ""),
         mcp_sr_index_tools_url=os.getenv("MCP_SR_INDEX_TOOLS_URL", ""),
         groq_temperature=float(os.getenv("GROQ_TEMPERATURE", "0.2")),
@@ -124,6 +150,14 @@ def get_settings() -> Settings:
         max_retries=int(os.getenv("MAX_RETRIES", "3")),
         rag_model=os.getenv("RAG_MODEL", "llama-3.3-70b-versatile"),
         supervisor_model=os.getenv("SUPERVISOR_MODEL", "llama-3.3-70b-versatile"),
+        c_rag_llm_model=(
+            os.getenv("IFRS_C_RAG_LLM_MODEL") or os.getenv("C_RAG_LLM_MODEL") or "gpt-5-mini"
+        ).strip()
+        or "gpt-5-mini",
+        dp_rag_gemini_model=(
+            os.getenv("DP_RAG_GEMINI_MODEL") or "gemini-2.5-flash"
+        ).strip()
+        or "gemini-2.5-flash",
         dart_api_key=os.getenv("DART_API_KEY", ""),
         tavily_api_key=os.getenv("TAVILY_API_KEY", ""),
         mcp_internal_transport=os.getenv("MCP_INTERNAL_TRANSPORT", "inprocess").strip() or "inprocess",
@@ -135,6 +169,7 @@ def get_settings() -> Settings:
         mcp_http_port=http_port,
         mcp_http_path=http_path,
         openai_api_key=os.getenv("OPENAI_API_KEY", ""),
+        gemini_api_key=_gemini_api_key_resolved(),
         llama_cloud_api_key=os.getenv("LLAMA_CLOUD_API_KEY", ""),
         sr_image_storage=(os.getenv("SR_IMAGE_STORAGE", "memory").strip().lower() or "memory"),
         sr_image_output_dir=os.getenv("SR_IMAGE_OUTPUT_DIR", "").strip(),

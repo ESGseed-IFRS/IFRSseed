@@ -7,10 +7,7 @@ from typing import Any
 from loguru import logger
 from sqlalchemy import text
 
-try:
-    from ifrs_agent.database.base import get_session
-except ImportError:
-    from backend.domain.v1.ifrs_agent.database.base import get_session
+from backend.core.db import get_session
 
 
 class EmissionFactorService:

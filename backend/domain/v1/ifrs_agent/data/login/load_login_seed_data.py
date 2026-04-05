@@ -5,8 +5,8 @@
   - company_info.json → company_info
   - user.json       → users
 
-DB 스키마는 Alembic 마이그레이션(019~024) 기준 열만 채웁니다. JSON에만 있고 아직
-마이그레이션에 없는 컬럼은 자동으로 생략됩니다. companies 테이블에 `name`만 있고
+DB 스키마는 Alembic 마이그레이션(최신 company_info 스키마) 기준 열만 채웁니다. JSON에만 있고
+아직 DB에 없는 컬럼은 자동으로 생략됩니다. companies 테이블에 `name`만 있고
 `company_name_ko`가 없으면 JSON의 company_name_ko를 name에 넣습니다.
 
 users.created_by 는 다른 사용자를 참조하므로, 1차 upsert 시 NULL로 넣은 뒤

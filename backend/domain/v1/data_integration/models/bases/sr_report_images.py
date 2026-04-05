@@ -7,10 +7,7 @@ from sqlalchemy.dialects.postgresql import UUID, JSONB, NUMERIC
 from sqlalchemy.sql import func
 from sqlalchemy.types import TIMESTAMP
 
-try:
-    from ifrs_agent.database.base import Base
-except ImportError:
-    from backend.domain.v1.ifrs_agent.database.base import Base
+from backend.core.db import Base
 
 from backend.domain.v1.esg_data.models.bases._embedding import vector_column
 

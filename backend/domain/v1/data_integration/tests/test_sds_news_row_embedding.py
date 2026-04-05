@@ -63,7 +63,7 @@ def test_enrich_fills_category_and_body_embeddings() -> None:
         "backend.domain.v1.data_integration.hub.services.external_company.sds_news_row_embedding.get_settings",
         return_value=_settings_mock(embed=True),
     ), patch(
-        "backend.domain.v1.ifrs_agent.service.embedding_service.EmbeddingService",
+        "backend.domain.shared.tool.sr_report.images.sr_image_caption_embedding.EmbeddingService",
         return_value=FakeEmb(),
     ):
         enrich_external_company_rows_with_embeddings(rows)
@@ -95,7 +95,7 @@ def test_title_empty_uses_category_for_category_embedding() -> None:
         "backend.domain.v1.data_integration.hub.services.external_company.sds_news_row_embedding.get_settings",
         return_value=_settings_mock(embed=True),
     ), patch(
-        "backend.domain.v1.ifrs_agent.service.embedding_service.EmbeddingService",
+        "backend.domain.shared.tool.sr_report.images.sr_image_caption_embedding.EmbeddingService",
         return_value=FakeEmb(),
     ):
         enrich_external_company_rows_with_embeddings(rows)

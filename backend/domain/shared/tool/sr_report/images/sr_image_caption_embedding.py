@@ -1,11 +1,56 @@
-"""sr_report_images 행의 caption_text를 BGE-M3로 임베딩해 image_embedding에 반영."""
+"""sr_report_images 행의 caption_text를 BGE-M3로 임베딩해 image_embedding에 반영.
+
+동기 BGE 임베딩(`EmbeddingService`)은 SR 본문 메타·SDS 뉴스 등에서도 동일 모델을 쓰기 위해
+이 모듈에서 제공합니다(embedding_tool 비의존).
+"""
 
 from __future__ import annotations
 
 import os
+from functools import lru_cache
 from typing import Any, Dict, List, Optional
 
 from loguru import logger
+
+
+@lru_cache(maxsize=8)
+def _get_bge_model(model_name: str = "BAAI/bge-m3") -> Any:
+    from sentence_transformers import SentenceTransformer
+
+    logger.info("[SR_BGE] Loading embedding model: {}", model_name)
+    return SentenceTransformer(model_name)
+
+
+def _default_embedding_model_name() -> str:
+    try:
+        from backend.core.config.settings import settings
+
+        return getattr(settings, "embedding_model", None) or "BAAI/bge-m3"
+    except Exception:
+        return "BAAI/bge-m3"
+
+
+class EmbeddingService:
+    """BGE-M3 동기 임베딩(캡션·본문 메타·external 뉴스 등 공용)."""
+
+    def __init__(self, model_name: Optional[str] = None) -> None:
+        self._model_name = model_name or _default_embedding_model_name()
+
+    def generate_embedding(self, text: str, normalize: bool = True):
+        model = _get_bge_model(self._model_name)
+        return model.encode(
+            text,
+            normalize_embeddings=normalize,
+            show_progress_bar=False,
+        )
+
+    def generate_embeddings(self, texts: List[str], normalize: bool = True):
+        model = _get_bge_model(self._model_name)
+        return model.encode(
+            texts,
+            normalize_embeddings=normalize,
+            show_progress_bar=False,
+        )
 
 
 def _caption_embed_enabled() -> bool:
@@ -50,8 +95,6 @@ def enrich_image_rows_with_caption_embeddings(rows: List[Dict[str, Any]]) -> Non
         return
 
     try:
-        from backend.domain.v1.ifrs_agent.service.embedding_service import EmbeddingService
-
         svc = EmbeddingService()
         batch = _embed_batch_size()
         for off in range(0, len(pending), batch):
@@ -85,8 +128,6 @@ def embed_caption_on_orm_row(row: Any) -> None:
     if not text:
         return
     try:
-        from backend.domain.v1.ifrs_agent.service.embedding_service import EmbeddingService
-
         vec = EmbeddingService().generate_embedding(text, normalize=True)
         row.image_embedding = vec.tolist()
         row.image_embedding_text = text

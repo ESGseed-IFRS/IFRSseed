@@ -516,7 +516,7 @@ class UnifiedColumnMapping(Base):
 
 **`unified_embedding`** (vector(1024))
 - 통합 컬럼의 벡터 임베딩
-- BGE-M3 모델 사용 (1024차원)
+- **BGE-M3** 모델 사용 (1024차원, **현행 운영** 임베딩)
 - 벡터 검색에 사용
 - 임베딩 생성 텍스트: `column_name_ko` + `column_name_en` + `column_category` + `column_topic` + `column_type` + `unit` + `mapped_dp_ids` (DP 이름들)
 

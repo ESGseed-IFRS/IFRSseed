@@ -324,7 +324,7 @@ BGE-M3로 임베딩 생성 → 각 테이블 embedding 컬럼 저장
 [B] 원천계 연동 → 전처리·검증 → 기업 실데이터 DB (unified_data 등)
 [C] 전년도 SR 파싱 → Index/본문/이미지 DB
 [D] 뉴스·공시 수집 → 벤치마킹 DB
-[E] 기업별 LoRA 학습 (DART PDF → JSONL → EXAONE LoRA)
+[E] (선택) 기업별 LoRA 학습 — 레거시·온프레 경로 (EXAONE 등, [§4.2](#42-사전-준비-단계-상세) 참고)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   실시간 단계 (사용자 트리거 → 페이지 생성)
@@ -350,7 +350,7 @@ GRI Standards  ──→ LlamaParse ──→ 지표 추출 ──→ unified_co
 SASB/TCFD/ESRS ──→ LlamaParse ──→ 매핑 생성 ──→ (동일 의미 DP 통합)
                                       │
                                       ▼
-                               BGE-M3 임베딩 생성
+                               BGE-M3(현행) 임베딩 생성
                                → 각 테이블 embedding 컬럼
 ```
 
@@ -389,14 +389,16 @@ Docling 파싱
     └── 이미지 추출 → sr_report_images (캡션, 차트 데이터)
 ```
 
-#### [E] 기업별 LoRA 학습
+#### [E] (선택) 기업별 LoRA 학습 — 레거시 참고
+
+런타임 생성은 [REVISED_WORKFLOW.md](./REVISED_WORKFLOW.md) §3.1 기준 **GPT-5 mini**를 사용한다. 온프레미스에서 문체를 추가로 맞출 때만 아래 파이프라인을 검토한다.
 
 ```
 DART → 전년도 SR PDF
     → LlamaParse 파싱
     → 섹션별 추출 + DP 매핑
     → JSONL 학습 데이터
-    → Unsloth + QLoRA (EXAONE 3.0 7.8B)
+    → Unsloth + QLoRA (예: EXAONE 3.0 7.8B)
     → 기업별 LoRA 모델 저장
 ```
 
@@ -418,7 +420,7 @@ DART → 전년도 SR PDF
 
 ━━━ STEP 2: Supervisor 요청 분석 ━━━━━━━━━━━━━━━━━━━━━
 
-Supervisor (Llama 3.3 70B, Groq)
+Supervisor (Gemini 3.1 Pro)
     │
     ├── 1. unified_column_id 수신 → unified_column_mappings 조회
     │       disclosure_requirement, financial_linkages, value_range 등 확보
@@ -440,7 +442,7 @@ Supervisor (Llama 3.3 70B, Groq)
 
 ━━━ STEP 3: RAG Node 데이터 수집 ━━━━━━━━━━━━━━━━━━━━━
 
-RAG Node (Llama 3.1 70B Tool-Use, Groq)
+RAG Node (Gemini 2.5 Pro, Tool/함수 호출)
     │  입력: Supervisor가 넘긴 reference_mode, reference_company_ids (참고할 SR 대상)
     │
     ├── [1순위] 구조화 데이터: DB 직접 조회
@@ -449,7 +451,7 @@ RAG Node (Llama 3.1 70B Tool-Use, Groq)
     │       AND period_year = ? AND included_in_final_report = TRUE
     │     → 값, 단위, 출처, 신뢰도 추출
     │
-    ├── [2순위] 비구조화 데이터: 벡터 검색 (BGE-M3 + BM25 하이브리드)
+    ├── [2순위] 비구조화 데이터: 벡터 검색 (**BGE-M3** 현행 + BM25 하이브리드)
     │     ├── 참고 SR 보고서 문단 (Supervisor가 정한 참고 대상 기준)
     │     │     reference_company_ids + report_year로 historical_sr_reports 식별
     │     │     sr_report_index ↔ sr_report_body JOIN (해당 report_id; mapped_dp_ids로 dp_id 사용)
@@ -488,7 +490,7 @@ RAG Node → FactSheet 조립
 
 ━━━ STEP 5: Gen Node 문단 생성 ━━━━━━━━━━━━━━━━━━━━━━
 
-Gen Node (EXAONE 3.0 7.8B + 기업별 LoRA)
+Gen Node (GPT-5 mini)
     │
     │  입력:
     │  ├── FactSheet (구조화 + 비구조화 + 지정 DP 요구사항 포함)
@@ -600,10 +602,10 @@ Supervisor 검증 실패 시:
 
 | 구성 요소 | 모델 | 학습 여부 | 주요 역할 |
 |----------|------|----------|----------|
-| **Supervisor** | Llama 3.3 70B (Groq) | X | 감사관 페르소나, 워크플로우 제어, 검증·감사 |
-| **RAG Node** | Llama 3.1 70B Tool-Use (Groq) | X | 데이터 수집(DB+벡터), 팩트시트 생성 |
-| **Gen Node** | EXAONE 3.0 7.8B | LoRA 학습 | IFRS 문체 문단 생성 |
-| **Embedding** | BGE-M3 | Contrastive 학습 | ESG 전문 벡터 검색 |
+| **Supervisor** | Gemini 3.1 Pro | X | 감사관 페르소나, 워크플로우 제어, 검증·감사 |
+| **RAG Node** | Gemini 2.5 Pro (Tool) | X | 데이터 수집(DB+벡터), 팩트시트 생성 |
+| **Gen Node** | GPT-5 mini | X | IFRS 문체 문단 생성 (고빈도·비용 최적화) |
+| **Embedding** | BGE-M3 (현행) | Contrastive 학습 | ESG 전문 벡터 검색 (1024차원) |
 
 ### 노드 간 통신
 
@@ -618,7 +620,7 @@ Supervisor 검증 실패 시:
     │
     ▼
 ┌──────────────────────────────────────────────┐
-│              Supervisor (Llama 3.3 70B)       │
+│              Supervisor (Gemini 3.1 Pro)     │
 │   감사관 페르소나 · 워크플로우 제어 · 검증/감사   │
 │                                              │
 │  1. 요청 분석 → 통합 컬럼(unified_column_id) 식별 │
@@ -710,8 +712,8 @@ Supervisor 검증 실패 시:
 
 ### 모델
 
-- **Llama 3.1 70B Tool-Use** (Groq API)
-- Tool Calling 성능이 3.3보다 우수 (함수 호출 정확도 높음)
+- **Gemini 2.5 Pro** (Tool/함수 호출)
+- 상세 노드 분해는 [REVISED_WORKFLOW.md](./REVISED_WORKFLOW.md) §3.1 참고 (`c_rag`·`dp_rag`·`aggregation_node`)
 
 ### 데이터 수집 전략 (2계층)
 
@@ -773,11 +775,10 @@ Supervisor 검증 실패 시:
 
 ### 모델
 
-- **EXAONE 3.0 7.8B Instruct** + **LoRA 파인튜닝**
-- 한국어 문체 최적화
-- 기업별 전년도 SR 보고서로 LoRA 학습 → 문체 일관성
+- **현행**: **GPT-5 mini** — 호출 빈도·비용·지연 완화, IFRS 문체는 프롬프트·스타일 가이드로 보정 ([REVISED_WORKFLOW.md](./REVISED_WORKFLOW.md) §3.2.5)
+- **(선택·레거시)** EXAONE 3.0 7.8B + LoRA — 온프레미스 문체 파인튜닝 시 아래 파이프라인 참고
 
-### 기업별 LoRA 학습 파이프라인
+### 기업별 LoRA 학습 파이프라인 (선택·레거시)
 
 ```
 DART API → SR 보고서 PDF 다운로드
@@ -983,10 +984,10 @@ Phase 1                Phase 2              Phase 3
 
 | 용도 | 기술 | 비고 |
 |------|------|------|
-| Supervisor | Llama 3.3 70B (Groq) | 오케스트레이션, 검증·감사 |
-| RAG Node | Llama 3.1 70B Tool-Use (Groq) | Tool Calling 최적화, 데이터 수집 |
-| Gen Node | EXAONE 3.0 7.8B + LoRA | 한국어 IFRS 문체, 기업별 학습 |
-| 임베딩 | BGE-M3 (Contrastive) | ESG 전문 벡터 검색 (1024차원) |
+| Supervisor | Gemini 3.1 Pro | 오케스트레이션, 검증·감사 |
+| RAG Node | Gemini 2.5 Pro (Tool) | Tool Calling, 데이터 수집 |
+| Gen Node | GPT-5 mini | 한·영 IFRS 문체 (프롬프트 보정) |
+| 임베딩 | BGE-M3 (Contrastive, **현행**) | ESG 전문 벡터 검색 (1024차원) |
 | 이미지 캡션 | BLIP / BLIP-2 / GPT-4o Vision | 차트 데이터 추출 포함 |
 | 이상 탐지 | Isolation Forest / LSTM + LLM | ERP 데이터 검증 |
 

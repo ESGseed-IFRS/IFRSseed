@@ -1,5 +1,10 @@
 # ESG 데이터 통합 관리 서비스 설계
 
+## LLM·온보딩 브리프
+
+에이전트 프롬프트·비개발자 설명용 **요약·부록 패키지**: [`ESG_DATA_LLM_BRIEF.md`](./ESG_DATA_LLM_BRIEF.md).  
+본 설계서와 [`architecture.md`](./architecture.md)를 **대체하지 않으며**, 세 축(온톨로지·UCM / 도메인 API / 통합 사실 테이블 설계)과 실제 `/esg-data` 마운트를 짧게 묶어 준다. UCM 단계별 설명은 [`UCM/UCM_POLICY_PIPELINE_LLM_BRIEF.md`](./UCM/UCM_POLICY_PIPELINE_LLM_BRIEF.md)를 병행한다.
+
 ## 1. 목적
 
 `esg_data` 서비스는 아래 두 가지를 하나의 파이프라인으로 수행한다.

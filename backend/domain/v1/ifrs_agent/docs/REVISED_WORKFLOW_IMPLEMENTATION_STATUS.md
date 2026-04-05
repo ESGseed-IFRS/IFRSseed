@@ -1,7 +1,7 @@
 # REVISED_WORKFLOW 구현 현황
 
 > **작성일**: 2026-04-02  
-> **최종 반영**: 2026-04-02 — `social_data` 스테이징→적재 경로 구현 반영; `external_company_data`/`subsidiary_data_contributions`는 **Alembic 037**·설계(삼성SDS 뉴스 배치 크롤) 문서 정합성 반영  
+> **최종 반영**: 2026-04-04 — [REVISED_WORKFLOW.md](./REVISED_WORKFLOW.md) §3.1·§3.1.1 **노드별 LLM**(Gemini 3.1 Pro / 2.5 Pro / GPT-5 mini)·**임베딩 BGE-M3(현행)** 문서 반영. (에이전트 코드 연동은 별도.) 이전: 2026-04-02 `social_data`·037 테이블 등  
 > **기준 문서**: [REVISED_WORKFLOW.md](./REVISED_WORKFLOW.md)  
 > **데이터 구조 참고**: [DATABASE_TABLES_STRUCTURE.md](./DATABASE_TABLES_STRUCTURE.md)  
 > **목적**: 설계 대비 **저장소·코드**에서 무엇이 갖춰졌는지, 무엇이 비어 있는지 한곳에 정리한다.
@@ -79,6 +79,8 @@
 
 **마이그레이션**: `backend/alembic/versions/019_sr_unified_core.py` 에 위 테이블(및 `company_info`, `unmapped_data_points` 등) 생성 로직이 포함되어 있다.
 
+**시드/더미 (`governance_data`)**: `backend/scripts/seeds/governance_data_dummy.sql`, `governance_data_dummy.json` — **120건**(`companies.json` 전 법인 × `data_type` board/compliance/ethics/risk × 2023–2024). 재생성: `python backend/scripts/seeds/generate_governance_data_dummy.py`. (ORM·적재 파이프라인은 여전히 미구현.)
+
 ### 3.1 REVISED_WORKFLOW에만 있고 코드에 없는 것
 
 | 항목 | 설명 |
@@ -93,7 +95,7 @@
 |------|------|
 | **DB 테이블** | `backend/alembic/versions/037_subsidiary_external_company_tables.py` (`revision`: `037_subs_ext_company_data`) |
 | **배치 크롤 대상** | 단일 진입 URL + DOM: [언론보도 index](https://www.samsungsds.com/kr/news/index.html) — `#bThumbs`(보도자료 메인), `#sThumbs`(언론이 본 삼성SDS). (선택) **준실시간**: 백그라운드 고빈도 폴링·변경 감지·RSS. 상세는 REVISED_WORKFLOW §2.2·§3.2.7 및 [data_integration/docs/Crawling/EXTERNAL_COMPANY_DATA_SAMSUNG_SDS_NEWS.md](../../data_integration/docs/Crawling/EXTERNAL_COMPANY_DATA_SAMSUNG_SDS_NEWS.md) §5.1. |
-| **시드/더미 (수동 검증용)** | `backend/scripts/seeds/external_company_data_dummy.sql`, `external_company_data_dummy.json` — 운영 크롤과 무관한 샘플. |
+| **시드/더미 (수동 검증용)** | `external_company_data`: `backend/scripts/seeds/external_company_data_dummy.sql`, `external_company_data_dummy.json` — 운영 크롤과 무관한 샘플. **`subsidiary_data_contributions`**: `subsidiary_data_contributions_dummy.sql`, `subsidiary_data_contributions_dummy.json` (**100건**, `company_id`=지주사·`subsidiary_name`/`contributor_company_id`=산하 법인 — `data/login/companies.json` 정합). 재생성: `python backend/scripts/seeds/generate_subsidiary_data_contributions_dummy_100.py` |
 | **앱 레이어** | 적재 서비스, 스케줄러, `aggregation_node`, `select_external_company_data` 등 **미구현**. |
 
 ---

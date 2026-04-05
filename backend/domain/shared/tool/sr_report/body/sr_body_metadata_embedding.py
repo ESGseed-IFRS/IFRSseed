@@ -76,7 +76,9 @@ def enrich_bodies_with_toc_subtitle_embeddings(bodies: List[Dict[str, Any]]) -> 
         return
 
     try:
-        from backend.domain.v1.ifrs_agent.service.embedding_service import EmbeddingService
+        from backend.domain.shared.tool.sr_report.images.sr_image_caption_embedding import (
+            EmbeddingService,
+        )
 
         svc = EmbeddingService()
         batch = _embed_batch_size()

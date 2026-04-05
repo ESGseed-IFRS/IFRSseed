@@ -18,10 +18,7 @@ from backend.domain.v1.data_integration.models.bases import SrReportImage
 from backend.domain.v1.data_integration.spokes.infra.sr_image_vlm_client import vlm_describe_image
 from backend.domain.shared.tool.sr_report.images.sr_image_caption_embedding import embed_caption_on_orm_row
 
-try:
-    from ifrs_agent.database.base import get_session
-except ImportError:
-    from backend.domain.v1.ifrs_agent.database.base import get_session
+from backend.core.db import get_session
 
 
 def _mime_from_extracted_data(ed: Any) -> str:

@@ -1,9 +1,9 @@
 # 수정된 에이전트 워크플로우 설계
 
 > **작성일**: 2026-03-31  
-> **최종 수정**: 2026-04-02 (`aggregation_node` 분리, `external_company_data` 삼성SDS 공식 뉴스 배치 크롤링 전략 반영)  
+> **최종 수정**: 2026-04-04 (노드별 LLM: Gemini 3.1 Pro / Gemini 2.5 Pro / GPT-5 mini, 임베딩 BGE-M3 현행 기준 반영, **orchestrator → infra → agent** 아키텍처 명시)  
 > **목적**: DB 테이블 기반 전년도 참조 SR 보고서 자동 생성 워크플로우  
-> **핵심 변경**: PDF 파싱 제거, 전년/전전년 본문+이미지 동시 참조, 변화 패턴 학습, **계열사/자회사 상세는 `aggregation_node`에서 집계**, **`external_company_data`는 삼성SDS [언론보도](https://www.samsungsds.com/kr/news/index.html)의 `#bThumbs`·`#sThumbs`(또는 RSS)를 **배치 또는 준실시간 백그라운드 폴링**으로 적재하고, SR 생성 시에는 DB 조회만**
+> **핵심 변경**: PDF 파싱 제거, 전년/전전년 본문+이미지 동시 참조, 변화 패턴 학습, **계열사/자회사 상세는 `aggregation_node`에서 집계**, **`external_company_data`는 삼성SDS [언론보도](https://www.samsungsds.com/kr/news/index.html)의 `#bThumbs`·`#sThumbs`(또는 RSS)를 **배치 또는 준실시간 백그라운드 폴링**으로 적재하고, SR 생성 시에는 DB 조회만**, **오케스트레이터·에이전트 간 통신은 `spokes/infra/` 인프라 레이어(in-process MCP) 경유**
 
 ---
 
@@ -254,12 +254,119 @@ CREATE INDEX idx_ext_company_category_emb
 
 | 노드명 | 역할 | 입력 | 출력 | 모델 |
 |-------|------|------|------|------|
-| **`orchestrator`** | 중앙 제어, 데이터 흐름 관리, 재시도 루프 | 사용자 입력 | 최종 보고서 | Llama 3.3 70B |
-| **`c_rag`** | 카테고리 기반 **SR** 참조 데이터 수집 | 카테고리 | SR 본문, 이미지(연도별) | Llama 3.1 70B Tool-Use |
-| **`dp_rag`** | DP 기반 최신 팩트 데이터 수집 | DP ID | 실데이터 테이블 값 | Llama 3.1 70B Tool-Use |
-| **`aggregation_node`** | 계열사/자회사·외부 기업 데이터 **집계·조회** | 카테고리, DP(선택), 기업 ID | 연도별 계열사 상세 + `external_company_data` 매칭분 | Llama 3.1 70B Tool-Use |
-| **`gen_node`** | IFRS 문체 문단 생성 | 병합된 수집 데이터 | 생성된 본문 | EXAONE 3.0 7.8B (LoRA) |
-| **`validator_node`** | 검증 및 품질 관리 | 생성 결과 | 검증 결과 | Llama 3.3 70B |
+| **`orchestrator`** | 중앙 제어, 데이터 흐름 관리, 재시도 루프 | 사용자 입력 | 최종 보고서 | Gemini 3.1 Pro |
+| **`c_rag`** | 카테고리 기반 **SR** 참조 데이터 수집 | 카테고리 | SR 본문, 이미지(연도별) | Gemini 2.5 Pro (Tool/함수 호출) |
+| **`dp_rag`** | DP 기반 최신 팩트 데이터 수집 | DP ID | 실데이터 테이블 값 | Gemini 2.5 Flash (`gemini-2.5-flash`, 매핑용 generateContent) |
+| **`aggregation_node`** | 계열사/자회사·외부 기업 데이터 **집계·조회** | 카테고리, DP(선택), 기업 ID | 연도별 계열사 상세 + `external_company_data` 매칭분 | Gemini 2.5 Pro (Tool/함수 호출) |
+| **`gen_node`** | IFRS 문체 문단 생성 | 병합된 수집 데이터 | 생성된 본문 | GPT-5 mini |
+| **`validator_node`** | 검증 및 품질 관리 | 생성 결과 | 검증 결과 | Gemini 3.1 Pro |
+
+### 3.1.1 LLM·임베딩 운영 기준 (현행)
+
+**LLM**은 위 표와 같이 배치한다. 실제 호출은 **Google AI(Gemini)**·**OpenAI(GPT)** 등 배포 환경의 API 키·엔드포인트에 매핑하면 되며, 동일 역할군에 대체 모델을 쓸 경우에도 **도구 호출 가능 여부**(RAG 3노드)·**추론 안정성**(오케스트레이터·검증)을 우선한다.
+
+| 구분 | 모델 | 담당 노드 | 선택 이유 (요약) |
+|------|------|-----------|------------------|
+| 고역량 추론·판정 | **Gemini 3.1 Pro** | `orchestrator`, `validator_node` | 분기·재시도·그린워싱·데이터 일관성 등 판단 품질 |
+| 도구·RAG | **Gemini 2.5 Pro** | `c_rag`, `dp_rag`, `aggregation_node` | SQL/검색 도구 연계, 구조화 출력 |
+| 고빈도 생성 | **GPT-5 mini** | `gen_node` | 초안·재생성·refine 반복에 따른 비용·지연 완화 |
+
+**임베딩**은 **BGE-M3**를 **현행 운영 모델**로 사용한다. DB 스키마의 `VECTOR(1024)` 컬럼(`sr_report_body` 본문 임베딩, `subsidiary_data_contributions`·`external_company_data`의 category/body 임베딩 등)과 차원을 맞춘다. RAG·유사도 검색용 **쿼리 벡터**(`embed_text` 등)도 동일 **BGE-M3**로 생성해 분포 드리프트를 줄인다. (하이브리드 검색 시 BM25 등 키워드 층은 기존 설계와 병용 가능.)
+
+### 3.1.2 구현 아키텍처: orchestrator → infra → agent
+
+**물리 계층**은 오케스트레이터가 에이전트를 **infra(in-process MCP 추상)** 를 경유해 호출하는 방식으로 구성한다. 이는 **Star Topology 논리 구조**를 유지하면서 **프로토콜·툴 레지스트리·로깅을 단일 레이어(infra)로 통일**하기 위함이다.
+
+| 레이어 | 위치 (예상 경로) | 역할 |
+|--------|------------------|------|
+| **Orchestrator** | `hub/orchestrator/` | 워크플로 제어: 사용자 요청 분석 → Phase 병렬 수집 → 생성·검증 루프 → 최종 반환. **LLM 기반 분기·재시도** 결정(Gemini 3.1 Pro). |
+| **Infra** | `spokes/infra/` | **in-process MCP 추상**: 에이전트·툴 레지스트리, `call_agent(name, action, payload)` / `call_tool(...)` 직렬화, 타임아웃·로깅·권한. **오케스트레이터·에이전트 모두 infra만 의존**. |
+| **Agent (c_rag 등)** | `spokes/agents/c_rag/` | 전문 작업 수행: `collect(company_id, category, years)` 진입점, 내부에서 DB/검색 **툴**이 필요하면 다시 `infra.call_tool`로 호출. **오케스트레이터를 직접 import하지 않음**. |
+
+**호출 흐름 예시**:
+
+```python
+# hub/orchestrator/orchestrator.py
+c_rag_result = await self.infra.call_agent(
+    agent_name="c_rag",
+    action="collect",
+    payload={"company_id": "...", "category": "재생에너지", "years": [2023, 2024]}
+)
+
+# → spokes/infra/agent_dispatcher.py (in-process MCP 세션)
+registry["c_rag"].collect(payload)  # 에이전트 진입점
+
+# → spokes/agents/c_rag/agent.py
+def collect(self, payload):
+    # SR 본문 검색 툴 호출
+    body = await self.infra.call_tool("query_sr_body", {"category": ...})
+    # 이미지 툴 호출
+    images = await self.infra.call_tool("query_sr_images", {"report_id": ...})
+    return {"2024": {"sr_body": body, "sr_images": images}, ...}
+```
+
+**의존성 방향 (단방향 보장)**:
+
+```
+orchestrator → infra
+agent        → infra
+(routing 독립 모듈 제거 — 오케스트레이터 내부 _route 메서드로 단순화)
+```
+
+**LangGraph 통합**: 오케스트레이터를 **단일 LangGraph 노드**(`orchestrator_node`)로 등록하고, 내부에서 `infra` 경유·병렬/순차 제어를 **Python 로직**으로 직접 구현한다. LangGraph는 상태 관리·재실행만 담당. (상세는 [§3.1.3](#313-langgraph-환경-구성) 참고.)
+
+### 3.1.3 LangGraph 환경 구성
+
+**방침**: LangGraph는 **최소 관여**(상태 컨테이너·체크포인팅만)하고, 실제 분기·노드 선택은 **오케스트레이터 Python 로직**이 담당한다.
+
+```python
+from langgraph.graph import StateGraph
+from typing import TypedDict
+
+class WorkflowState(TypedDict):
+    user_input: dict
+    ref_data: dict
+    fact_data: dict
+    generated_text: str
+    validation: dict
+    status: str
+    attempt: int
+
+def build_workflow():
+    workflow = StateGraph(WorkflowState)
+    
+    # 단일 노드: orchestrator_node (핵심)
+    workflow.add_node("orchestrator_node", orchestrator_run)
+    
+    # 진입점
+    workflow.set_entry_point("orchestrator_node")
+    
+    # 조건부 간선 (오케스트레이터가 "재시도" 신호 시 자기 자신 다시 호출)
+    def should_retry(state: WorkflowState) -> str:
+        if state.get("status") == "retry":
+            return "orchestrator_node"
+        return "__end__"
+    
+    workflow.add_conditional_edges("orchestrator_node", should_retry, {
+        "orchestrator_node": "orchestrator_node",
+        "__end__": "__end__"
+    })
+    
+    return workflow.compile()
+
+async def orchestrator_run(state: WorkflowState) -> WorkflowState:
+    """LangGraph 노드 — 오케스트레이터 진입점"""
+    orchestrator = Orchestrator(infra=get_infra_instance())
+    result = await orchestrator.orchestrate(state["user_input"])
+    
+    state["generated_text"] = result["generated_text"]
+    state["validation"] = result["validation"]
+    state["status"] = result["metadata"]["status"]
+    state["attempt"] = result["metadata"]["attempts"]
+    return state
+```
+
+**핵심**: LangGraph 그래프는 **`orchestrator_node` 하나**만 두고, 내부에서 오케스트레이터가 `infra → c_rag/dp_rag/aggregation/gen/validator` 모두를 **직접·병렬·순차 제어**한다. 상태 재시도가 필요하면 조건부 간선으로 **동일 노드**를 다시 호출한다. 이렇게 하면 **LangGraph는 상태 관리 컨테이너**에 가깝고, **에이전틱 루프는 오케스트레이터가 담당**한다.
 
 ### 3.2 노드별 상세 설명
 
@@ -281,9 +388,9 @@ class Orchestrator:
         # 4. 최종 반환
 ```
 
-**모델**: Llama 3.3 70B (Groq)
-- 복잡한 의사결정 능력
-- 검증 로직 내장 (그린워싱 탐지, IFRS 준수 검사)
+**모델**: **Gemini 3.1 Pro**
+- 복잡한 의사결정·상태 전이(재시도·경로 선택)
+- (필요 시) 경량 규칙과 병행해 LLM 기반 분기만 사용하는 구성도 가능
 
 ---
 
@@ -312,8 +419,8 @@ class Orchestrator:
 }
 ```
 
-**모델**: Llama 3.1 70B Tool-Use (Groq)
-- Tool Calling 최적화 (벡터 검색, SQL 쿼리 생성)
+**모델**: **Gemini 2.5 Pro** (Tool/함수 호출)
+- 벡터 검색·SQL·DB 조회 도구를 안정적으로 호출
 
 ---
 
@@ -341,7 +448,7 @@ class Orchestrator:
 }
 ```
 
-**모델**: Llama 3.1 70B Tool-Use (Groq)
+**모델**: **Gemini 2.5 Pro** (Tool/함수 호출)
 
 ---
 
@@ -371,7 +478,7 @@ class Orchestrator:
 }
 ```
 
-**모델**: Llama 3.1 70B Tool-Use (Groq)
+**모델**: **Gemini 2.5 Pro** (Tool/함수 호출)
 
 ---
 
@@ -443,9 +550,9 @@ Block 5: 수정 지시 (핵심 변경)
 }
 ```
 
-**모델**: EXAONE 3.0 7.8B (LoRA 학습)
-- 한국어 ESG 문체 특화
-- IFRS 용어 학습
+**모델**: **GPT-5 mini**
+- 초안·validator 재시도·`refine_mode` 등 **호출 빈도**가 높아 비용·지연을 완화
+- IFRS 문체·용어는 **프롬프트·스타일 가이드**로 보정 (필요 시 소형 검증 패스 추가)
 
 ---
 
@@ -480,9 +587,9 @@ Block 5: 수정 지시 (핵심 변경)
 }
 ```
 
-**모델**: Llama 3.3 70B (Groq)
-- 그린워싱 탐지 정확도 높음
-- IFRS 준수 검사 신뢰도 높음
+**모델**: **Gemini 3.1 Pro**
+- 그린워싱·과장 표현, 텍스트·팩트 불일치 등 **LLM 검증** 항목의 판정 품질
+- 규칙 기반 항목(`dp_compliance` 등)과 병행
 
 ---
 
@@ -1171,7 +1278,7 @@ class Orchestrator:
 ```python
 class GenNode:
     def __init__(self):
-        self.llm = EXAONE_3_0_7_8B  # LoRA 학습된 모델
+        self.llm = GPT_5_MINI  # 문단 생성 전용 (고빈도 호출)
     
     async def generate(
         self,
@@ -2741,7 +2848,14 @@ log_workflow_step(
 
 ---
 
-**문서 버전**: 2.1  
-**최종 수정**: 2026-04-02 (`aggregation_node`, `external_company_data` 삼성SDS 뉴스 배치 크롤 위치 `#bThumbs`/`#sThumbs` 반영, 요청 경로 실시간 크롤링 없음)  
+**문서 버전**: 3.0  
+**최종 수정**: 2026-04-04 (§3.1 LLM: Gemini 3.1 Pro / 2.5 Pro / GPT-5 mini, §3.1.1 임베딩 BGE-M3 현행, §3.1.2 **orchestrator → infra → agent** 아키텍처 명시, LangGraph 통합 방침)  
 **작성자**: AI Assistant  
 **검토 필요**: Orchestrator 병합 로직, `aggregation_node`·뉴스 배치/준실시간 폴링 인제스션·수동 보완, 반복 루프 테스트
+
+**주요 참조 문서**:
+- `orchestrator.md`: 오케스트레이터 구현 상세 (LangGraph 통합 포함)
+- `c_rag.md`: c_rag 에이전트 구현 상세
+- `DATABASE_TABLES_STRUCTURE.md`: DB 스키마
+- `DATA_ONTOLOGY.md`: DP·임베딩 구조
+

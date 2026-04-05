@@ -6,10 +6,7 @@ from typing import Any, Dict, List, Literal, Optional
 
 from loguru import logger
 
-try:
-    from ifrs_agent.database.base import get_session
-except ImportError:
-    from backend.domain.v1.ifrs_agent.database.base import get_session
+from backend.core.db import get_session
 
 from backend.domain.v1.data_integration.models.bases import STAGING_MODEL_MAP
 

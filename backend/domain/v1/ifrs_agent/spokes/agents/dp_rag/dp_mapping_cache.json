@@ -1,0 +1,23 @@
+{
+  "_comment": "DP ID → 물리 테이블·컬럼 고정 매핑 (관리자 검증)",
+  "_schema": {
+    "dp_id": {
+      "table": "social_data | environmental_data | governance_data",
+      "column": "컬럼명",
+      "data_type": "workforce | safety | ... (social/governance만)",
+      "confidence": 1.0,
+      "verified": true,
+      "cached_at": "ISO 8601"
+    }
+  },
+  "_examples": {
+    "EXAMPLE_DP_S_001": {
+      "table": "social_data",
+      "column": "total_employees",
+      "data_type": "workforce",
+      "confidence": 1.0,
+      "verified": true,
+      "cached_at": "2026-04-04T12:00:00Z"
+    }
+  }
+}

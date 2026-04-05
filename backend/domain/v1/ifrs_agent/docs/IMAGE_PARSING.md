@@ -217,7 +217,7 @@ chunks = parser.split_into_chunks(
 
 ### 4.2 BGE-M3 모델
 
-현재 시스템은 **BGE-M3** 모델을 사용합니다:
+**현행 운영** 임베딩으로 **BGE-M3**를 사용합니다([REVISED_WORKFLOW.md](./REVISED_WORKFLOW.md) §3.1.1과 동일 기준):
 
 - **차원**: 1024차원
 - **특징**: 다국어 지원 (한국어 포함), Contrastive Learning 튜닝

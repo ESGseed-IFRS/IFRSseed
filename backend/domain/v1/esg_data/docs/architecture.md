@@ -9,6 +9,8 @@
 - 소스 데이터(`environmental_data`, `social_data` 등)를 `sr_report_unified_data`로 통합
 - 매핑 정합성 및 데이터 품질 검증
 
+**LLM·온보딩**: 서비스 전반을 SR의 `SR_*_PARSING_LLM_BRIEF`와 같은 형식으로 압축한 [`ESG_DATA_LLM_BRIEF.md`](./ESG_DATA_LLM_BRIEF.md) — [`esg_data.md`](./esg_data.md)와 본 아키텍처 문서를 **대체하지 않음**. UCM 파이프라인 단계 설명은 [`UCM/UCM_POLICY_PIPELINE_LLM_BRIEF.md`](./UCM/UCM_POLICY_PIPELINE_LLM_BRIEF.md).
+
 ---
 
 ## 2. 아키텍처 패턴
@@ -804,8 +806,10 @@ ucm_creation_duration = Histogram(
 ## 15. 참고 자료
 
 - [ESG 데이터 서비스 설계](./esg_data.md)
-- [UCM 결정/정책 모듈 설계](./UCM_DECISION_POLICY_DESIGN.md)
-- [UCM 정책 파이프라인 5단계·레거시 배치](./UCM_POLICY_PIPELINE_AND_LEGACY_BATCH.md)
+- [ESG 데이터 LLM 브리프](./ESG_DATA_LLM_BRIEF.md)
+- [UCM 정책 파이프라인 LLM 브리프](./UCM/UCM_POLICY_PIPELINE_LLM_BRIEF.md)
+- [UCM 결정/정책 모듈 설계](./UCM/UCM_DECISION_POLICY_DESIGN.md)
+- [UCM 정책 파이프라인 5단계·레거시 배치](./UCM/UCM_POLICY_PIPELINE_AND_LEGACY_BATCH.md)
 - [DATABASE_TABLES_STRUCTURE.md](../../ifrs_agent/docs/DATABASE_TABLES_STRUCTURE.md)
 - [DATA_ONTOLOGY.md](../../ifrs_agent/docs/DATA_ONTOLOGY.md)
 - [data_integration 구조](../../data_integration/)

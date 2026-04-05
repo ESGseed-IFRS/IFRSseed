@@ -17,6 +17,7 @@ from backend.domain.v1.esg_data.models.bases.glossary import Glossary, SynonymGl
 from backend.domain.v1.esg_data.models.bases.social_data import SocialData
 from backend.domain.v1.esg_data.models.bases.ghg_activity_data import GhgActivityData
 from backend.domain.v1.esg_data.models.bases.environmental_data import EnvironmentalData
+from backend.domain.v1.esg_data.models.bases.governance_data import GovernanceData
 from backend.domain.v1.esg_data.models.bases.ghg_emission_results import GhgEmissionResults
 
 __all__ = [
@@ -34,5 +35,6 @@ __all__ = [
     "SocialData",
     "GhgActivityData",
     "EnvironmentalData",
+    "GovernanceData",
     "GhgEmissionResults",
 ]

@@ -25,6 +25,9 @@ except ImportError:
 from ..infra.mcp_client import MCPClient
 from ..infra.tool_utils import ToolUtils
 
+# 삼성에스디에스 SR 수집 테스트용: 검색 결과 필터·download_pdf_bytes 도메인 가드를 이 코어로 고정
+_SR_AGENT_FIXED_ALLOW_DOMAINS: frozenset[str] = frozenset({"samsungsds"})
+
 
 class SRAgent:
     """
@@ -170,7 +173,7 @@ download_pdf_bytes가 success이면 끝낸다. 실패하면 "보고서를 찾을
     ) -> Dict[str, Any]:
         """에이전트 메인 루프 (bytes 모드)"""
         profile = self.tool_utils.build_company_search_profile(company, company_id)
-        allowed_domains: Set[str] = set(profile.get("allowed_domains") or set())
+        allowed_domains: Set[str] = set(_SR_AGENT_FIXED_ALLOW_DOMAINS)
         query_terms: List[str] = list(profile.get("query_terms") or [])
         system_prompt = self.build_system_prompt(
             company,
@@ -262,7 +265,6 @@ download_pdf_bytes가 success이면 끝낸다. 실패하면 "보고서를 찾을
                         tool_result,
                         company,
                         tool_map,
-                        allowed_domains=allowed_domains,
                         query_terms=query_terms,
                     )
                 else:
@@ -290,19 +292,20 @@ download_pdf_bytes가 success이면 끝낸다. 실패하면 "보고서를 찾을
         tool_result: dict,
         company: str,
         tool_map: Dict[str, BaseTool],
-        allowed_domains: Optional[Set[str]] = None,
+        *,
         query_terms: Optional[List[str]] = None,
     ) -> tuple[dict, str]:
-        """검색 결과 후처리 (도메인 필터링, URL 정렬, PDF 링크 추출)"""
+        """검색 결과 후처리 (도메인 필터링, URL 정렬, PDF 링크 추출).
+
+        허용 도메인은 `_SR_AGENT_FIXED_ALLOW_DOMAINS`(현재 samsungsds)로 고정한다.
+        """
+        fixed = set(_SR_AGENT_FIXED_ALLOW_DOMAINS)
+        domains_for_message = set(fixed)
+
         if isinstance(tool_result, dict):
-            # DB/프로필 기반 허용 도메인이 있으면 우선 적용
-            if allowed_domains:
-                tool_result = self.tool_utils.filter_search_results_by_domains(tool_result, allowed_domains)
-            else:
-                # 호환: 기존 단일 도메인 필터
-                effective_domain = self.tool_utils.company_to_domain_filter(company)
-                if effective_domain:
-                    tool_result = self.tool_utils.filter_search_results_by_domain(tool_result, effective_domain)
+            tool_result = self.tool_utils.filter_search_results_by_domains(
+                tool_result, fixed
+            )
         
         # URL 추출 및 정렬
         urls, raw_content = self.tool_utils.extract_search_urls(tool_result)
@@ -321,9 +324,9 @@ download_pdf_bytes가 success이면 끝낸다. 실패하면 "보고서를 찾을
         content = f"검색 결과:\n" + "\n".join(f"{i+1}. {u}" for i, u in enumerate(urls_to_show))
         if query_terms:
             content += f"\n\n회사 식별 키워드: {', '.join(query_terms[:6])}"
-        if allowed_domains:
-            content += f"\n허용 도메인: {', '.join(sorted(allowed_domains))}"
-        content += f"\n\n→ 첫 번째 URL을 확인하고 PDF를 다운로드하세요.\n\n--- 원본 ---\n{raw_content}"
+        if domains_for_message:
+            content += f"\n허용 도메인: {', '.join(sorted(domains_for_message))}"
+        content += f"\n\n→ 허용 도메인의 PDF만 download_pdf_bytes로 받는다. 위 목록에서 해당 URL의 직접 PDF 링크를 고른다.\n\n--- 원본 ---\n{raw_content}"
         
         return tool_result, content
     

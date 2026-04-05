@@ -849,7 +849,7 @@ async def extract_and_save_images_agentic(req: ExtractAndSaveImagesAgenticReques
 async def enrich_images_vlm(req: EnrichImagesVlmRequest) -> EnrichImagesVlmResponse:
     """
     `sr_report_images` 행에 대해 VLM으로 `image_type`, `caption_text`, `caption_confidence` 를 채웁니다.
-    이미지 바이트는 `image_blob` 또는 S3(`extracted_data`)에서 로드합니다. [SR_IMAGES_VLM_ENRICHMENT.md]
+    이미지 바이트는 `image_blob` 또는 S3(`extracted_data`)에서 로드합니다. [docs/images/SR_IMAGES_VLM_ENRICHMENT.md]
 
     모델은 코드 상수 `gpt-5-mini` 고정. `OPENAI_API_KEY` 필요.
     """
@@ -875,3 +875,361 @@ async def enrich_images_vlm(req: EnrichImagesVlmRequest) -> EnrichImagesVlmRespo
         skipped=int(result.get("skipped", 0) or 0),
         errors=err_list,
     )
+
+
+# --- 통합 병렬 저장 엔드포인트 ---
+
+class ExtractAndSaveAllParallelRequest(BaseModel):
+    """통합 요청: 메타 + 3개 테이블(index/body/images) 병렬 저장"""
+    company_id: str = Field(..., description="companies.id (필수)")
+    company: str = Field(..., description="회사명 (예: 삼성에스디에스)")
+    year: int = Field(..., ge=2015, le=2030, description="연도 (예: 2024)")
+    image_output_dir: Optional[str] = Field(
+        default=None,
+        description="SR_IMAGE_STORAGE=disk 일 때만 필요 (이미지 파일 저장 경로)",
+    )
+    enable_vlm_enrichment: bool = Field(
+        default=False,
+        description="True면 이미지 저장 후 자동 VLM 보강 실행 (OPENAI_API_KEY 필요)",
+    )
+
+
+class ExtractAndSaveAllParallelResponse(BaseModel):
+    """통합 응답: 메타 + 3개 테이블 저장 결과"""
+    success: bool
+    message: str
+    report_id: Optional[str] = None
+    
+    # PDF 다운로드 단계
+    fetch_success: bool = False
+    fetch_message: Optional[str] = None
+    
+    # 메타데이터
+    historical_sr_reports: Optional[dict] = None
+    
+    # 각 테이블 저장 결과
+    index_saved_count: int = 0
+    body_saved_count: int = 0
+    images_saved_count: int = 0
+    
+    # 각 에이전트 성공 여부
+    index_agent_success: Optional[bool] = None
+    body_agent_success: Optional[bool] = None
+    images_agent_success: Optional[bool] = None
+    
+    # 에러 목록
+    index_errors: List[dict] = Field(default_factory=list)
+    body_errors: List[dict] = Field(default_factory=list)
+    images_errors: List[dict] = Field(default_factory=list)
+    
+    # VLM 보강 결과 (선택)
+    images_vlm_auto_success: Optional[bool] = None
+    images_vlm_auto_message: Optional[str] = None
+    images_vlm_auto_updated: Optional[int] = None
+    images_vlm_auto_skipped: Optional[int] = None
+
+
+@sr_agent_router.post("/extract-and-save/all-parallel", response_model=ExtractAndSaveAllParallelResponse)
+async def extract_and_save_all_parallel(
+    req: ExtractAndSaveAllParallelRequest
+) -> ExtractAndSaveAllParallelResponse:
+    """
+    통합 병렬 저장 엔드포인트: 1회 PDF 다운로드 → 메타 저장 → body/index/images 병렬 저장
+    
+    워크플로우:
+    1. SRAgent로 PDF bytes 획득 (웹 검색 + 다운로드)
+    2. 메타데이터 파싱 → LLM 검토 → DB 저장 (report_id 획득)
+    3. asyncio.gather로 병렬 실행:
+       - SRIndexAgent: 인덱스 파싱(sr_report_index 행 생성) → 이어서 `save_sr_report_index_batch`로 DB 저장
+       - SRBodyAgent: sr_report_body 저장
+       - SRImagesAgent: sr_report_images 저장 (+ 선택적 VLM 보강)
+    
+    Args:
+        req: company_id, company, year, image_output_dir(선택), enable_vlm_enrichment(선택)
+    
+    Returns:
+        - success: 모든 단계 성공 여부
+        - report_id: historical_sr_reports.id
+        - index/body/images_saved_count: 각 테이블에 저장된 행 수
+        - 각 에이전트별 에러 목록
+    """
+    logger.info(
+        f"[API] 통합 병렬 저장 시작: company={req.company}, year={req.year}, company_id={req.company_id}"
+    )
+    
+    try:
+        # ===== 1단계: PDF 획득 =====
+        from backend.domain.v1.data_integration.hub.routing.agent_router import AgentRouter
+        router = AgentRouter()
+        
+        logger.info("[API] 1단계: SRAgent로 PDF 다운로드 중...")
+        fetch_result = await router.route_to(
+            agent_name="sr_agent",
+            company=req.company,
+            year=req.year,
+            company_id=req.company_id,
+        )
+        
+        if not fetch_result.get("success"):
+            fetch_msg = fetch_result.get("message", "PDF 다운로드 실패")
+            logger.error(f"[API] PDF 다운로드 실패: {fetch_msg}")
+            return ExtractAndSaveAllParallelResponse(
+                success=False,
+                message=f"PDF 다운로드 실패: {fetch_msg}",
+                fetch_success=False,
+                fetch_message=fetch_msg,
+            )
+        
+        pdf_bytes = fetch_result.get("pdf_bytes")
+        if not pdf_bytes:
+            logger.error("[API] PDF bytes가 None입니다.")
+            return ExtractAndSaveAllParallelResponse(
+                success=False,
+                message="PDF bytes를 가져오지 못했습니다.",
+                fetch_success=False,
+                fetch_message="PDF bytes 없음",
+            )
+        
+        fetch_msg = fetch_result.get("message", "PDF 다운로드 완료")
+        logger.info(f"[API] PDF 다운로드 성공: {len(pdf_bytes)} bytes")
+        
+        # ===== 2단계: 메타데이터 저장 (report_id 획득) =====
+        logger.info("[API] 2단계: 메타데이터 파싱 및 저장 중...")
+        from backend.domain.shared.tool.parsing.pdf_metadata import parse_sr_report_metadata
+        from backend.domain.shared.tool.sr_report.save.sr_save_tools import (
+            save_historical_sr_report,
+            save_sr_report_index_batch,
+        )
+        from backend.domain.shared.data_integration.index.review.sr_llm_review import review_sr_metadata_with_llm
+        
+        meta_result = await asyncio.to_thread(
+            parse_sr_report_metadata, pdf_bytes, req.company, req.year, req.company_id
+        )
+        
+        if "error" in meta_result:
+            error_msg = f"메타데이터 파싱 실패: {meta_result['error']}"
+            logger.error(f"[API] {error_msg}")
+            return ExtractAndSaveAllParallelResponse(
+                success=False,
+                message=error_msg,
+                fetch_success=True,
+                fetch_message=fetch_msg,
+            )
+        
+        meta = meta_result["historical_sr_reports"]
+        
+        # LLM 검토/보정
+        logger.info("[API] 메타데이터 LLM 검토 중...")
+        meta = await review_sr_metadata_with_llm(meta, req.company, req.year)
+        
+        # DB 저장
+        logger.info("[API] 메타데이터 DB 저장 중...")
+        report_id = await asyncio.to_thread(
+            save_historical_sr_report.invoke,
+            {
+                "company_id": meta.get("company_id"),
+                "report_year": meta["report_year"],
+                "report_name": meta["report_name"],
+                "source": meta["source"],
+                "total_pages": meta.get("total_pages", 0),
+                "index_page_numbers": meta.get("index_page_numbers", []),
+            },
+        )
+        
+        index_page_numbers = meta.get("index_page_numbers", [])
+        logger.info(
+            f"[API] 메타데이터 저장 완료: report_id={report_id}, index_pages={len(index_page_numbers)}개"
+        )
+        
+        # ===== 3단계: body/index/images 병렬 저장 =====
+        logger.info("[API] 3단계: index/body/images 병렬 저장 시작...")
+        
+        index_result, body_result, images_result = await asyncio.gather(
+            # 인덱스
+            router.route_to(
+                agent_name="sr_index_agent",
+                pdf_bytes=pdf_bytes,
+                company=req.company,
+                year=req.year,
+                report_id=report_id,
+            ),
+            # 본문
+            router.route_to(
+                agent_name="sr_body_agent",
+                pdf_bytes=pdf_bytes,
+                report_id=report_id,
+                index_page_numbers=index_page_numbers,
+            ),
+            # 이미지
+            router.route_to(
+                agent_name="sr_images_agent",
+                pdf_bytes=pdf_bytes,
+                report_id=report_id,
+                index_page_numbers=index_page_numbers,
+                image_output_dir=req.image_output_dir,
+            ),
+            return_exceptions=True,  # 하나 실패해도 나머지 계속 실행
+        )
+        
+        # 예외 처리
+        if isinstance(index_result, Exception):
+            logger.error(f"[API] 인덱스 에이전트 예외: {index_result}")
+            index_result = {"success": False, "message": str(index_result), "saved_count": 0, "errors": []}
+        
+        if isinstance(body_result, Exception):
+            logger.error(f"[API] 본문 에이전트 예외: {body_result}")
+            body_result = {"success": False, "message": str(body_result), "saved_count": 0, "errors": []}
+        
+        if isinstance(images_result, Exception):
+            logger.error(f"[API] 이미지 에이전트 예외: {images_result}")
+            images_result = {"success": False, "message": str(images_result), "saved_count": 0, "errors": []}
+        
+        # 결과 추출 (인덱스 에이전트는 B안: 파싱만 하고 saved_count는 항상 0 → 배치 저장은 여기서 수행)
+        index_agent_success = bool(index_result.get("success"))
+        body_success = bool(body_result.get("success"))
+        images_success = bool(images_result.get("success"))
+        
+        body_saved = int(body_result.get("saved_count", 0) or 0)
+        images_saved = int(images_result.get("saved_count", 0) or 0)
+        
+        sr_report_index_rows: List[dict] = []
+        if isinstance(index_result, dict):
+            raw_idx = index_result.get("sr_report_index")
+            if isinstance(raw_idx, list):
+                sr_report_index_rows = [r for r in raw_idx if isinstance(r, dict)]
+        
+        index_saved = 0
+
+        if index_agent_success and sr_report_index_rows:
+            save_idx_result = await asyncio.to_thread(
+                save_sr_report_index_batch.invoke,
+                {"report_id": report_id, "indices": sr_report_index_rows},
+            )
+            if isinstance(save_idx_result, dict):
+                index_saved = int(save_idx_result.get("saved_count", 0) or 0)
+                idx_save_errs = save_idx_result.get("errors")
+                if isinstance(idx_save_errs, list):
+                    for e in idx_save_errs:
+                        if isinstance(e, dict):
+                            index_result.setdefault("errors", []).append(
+                                {"stage": "save_sr_report_index_batch", **e}
+                            )
+                if not save_idx_result.get("success", True):
+                    index_result.setdefault("errors", []).append(
+                        {
+                            "stage": "save_sr_report_index_batch",
+                            "error": "배치 저장 실패",
+                        }
+                    )
+            else:
+                index_result.setdefault("errors", []).append(
+                    {
+                        "stage": "save_sr_report_index_batch",
+                        "error": "예상치 못한 저장 결과",
+                    }
+                )
+        
+        # 인덱스: 파싱 성공 + (저장할 행이 없음 | DB에 1건 이상 저장)
+        index_pipeline_ok = index_agent_success and (
+            not sr_report_index_rows or index_saved > 0
+        )
+        
+        logger.info(
+            f"[API] 병렬 저장 완료: index 파싱={len(sr_report_index_rows)}건 DB저장={index_saved}건(pipeline_ok={index_pipeline_ok}), "
+            f"body={body_saved}건({body_success}), images={images_saved}건({images_success})"
+        )
+        
+        # 에러 목록 정리
+        def extract_errors(result: dict) -> List[dict]:
+            errs = result.get("errors")
+            if isinstance(errs, list):
+                return [e for e in errs if isinstance(e, dict)]
+            return []
+        
+        index_errors = extract_errors(index_result)
+        body_errors = extract_errors(body_result)
+        images_errors = extract_errors(images_result)
+        
+        # ===== 4단계: VLM 보강 (선택적) =====
+        vlm_success: Optional[bool] = None
+        vlm_msg: Optional[str] = None
+        vlm_updated: Optional[int] = None
+        vlm_skipped: Optional[int] = None
+        
+        if req.enable_vlm_enrichment and images_success and images_saved > 0:
+            logger.info("[API] 4단계: VLM 자동 보강 시작...")
+            from backend.domain.v1.data_integration.spokes.infra.sr_image_vlm_enrichment import (
+                maybe_auto_enrich_after_image_save,
+            )
+            
+            vlm_result = await asyncio.to_thread(maybe_auto_enrich_after_image_save, report_id)
+            if vlm_result is not None:
+                vlm_success = bool(vlm_result.get("success"))
+                vlm_msg = str(vlm_result.get("message", "")) or None
+                vlm_updated = int(vlm_result.get("updated", 0) or 0)
+                vlm_skipped = int(vlm_result.get("skipped", 0) or 0)
+                logger.info(f"[API] VLM 보강 완료: updated={vlm_updated}, skipped={vlm_skipped}")
+        
+        # 응답용 메타: DB에 저장된 report_id와 동일한 id를 노출
+        historical_out = dict(meta)
+        historical_out["id"] = report_id
+
+        # ===== 최종 결과 =====
+        all_success = index_pipeline_ok and body_success and images_success
+        
+        summary_parts = []
+        if all_success:
+            summary_parts.append(f"모든 테이블 저장 완료")
+        else:
+            if not index_pipeline_ok:
+                if not index_agent_success:
+                    summary_parts.append(f"인덱스 파싱 실패({index_result.get('message', '')})")
+                elif sr_report_index_rows and index_saved == 0:
+                    summary_parts.append(
+                        "인덱스 DB 저장 실패(파싱 행은 있으나 save_sr_report_index_batch 결과 0건)"
+                    )
+                else:
+                    summary_parts.append(f"인덱스 실패({index_result.get('message', '')})")
+            if not body_success:
+                summary_parts.append(f"본문 실패({body_result.get('message', '')})")
+            if not images_success:
+                summary_parts.append(f"이미지 실패({images_result.get('message', '')})")
+        
+        summary_parts.append(
+            f"report_id={report_id}, index={index_saved}건, body={body_saved}건, images={images_saved}건"
+        )
+        
+        if vlm_msg:
+            summary_parts.append(f"VLM: {vlm_msg}")
+        
+        message = " | ".join(summary_parts)
+        
+        logger.info(f"[API] 통합 병렬 저장 완료: success={all_success}, {message}")
+        
+        return ExtractAndSaveAllParallelResponse(
+            success=all_success,
+            message=message,
+            report_id=report_id,
+            fetch_success=True,
+            fetch_message=fetch_msg,
+            historical_sr_reports=historical_out,
+            index_saved_count=index_saved,
+            body_saved_count=body_saved,
+            images_saved_count=images_saved,
+            index_agent_success=index_agent_success,
+            body_agent_success=body_success,
+            images_agent_success=images_success,
+            index_errors=index_errors,
+            body_errors=body_errors,
+            images_errors=images_errors,
+            images_vlm_auto_success=vlm_success,
+            images_vlm_auto_message=vlm_msg,
+            images_vlm_auto_updated=vlm_updated,
+            images_vlm_auto_skipped=vlm_skipped,
+        )
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"[API] 통합 병렬 저장 실패: {e}")
+        raise HTTPException(status_code=500, detail=str(e)) from e

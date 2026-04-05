@@ -62,7 +62,9 @@ def enrich_external_company_rows_with_embeddings(rows: list[dict[str, Any]]) -> 
         return
 
     try:
-        from backend.domain.v1.ifrs_agent.service.embedding_service import EmbeddingService
+        from backend.domain.shared.tool.sr_report.images.sr_image_caption_embedding import (
+            EmbeddingService,
+        )
 
         svc = EmbeddingService()
 

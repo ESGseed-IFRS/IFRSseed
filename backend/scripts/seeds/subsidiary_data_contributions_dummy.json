@@ -1,0 +1,2323 @@
+[
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000001",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440014",
+    "subsidiary_name": "동탄 데이터센터",
+    "facility_name": "동탄 데이터센터 옥상 발전 설비",
+    "report_year": 2024,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "동탄 데이터센터는 준공 시 전용 옥상에 태양광 발전설비를 구축하였습니다. 2024년 7월 동탄 데이터센터 옥상 내 추가장에 태양광 발전설비 374kW를 추가 증설하여 재생에너지 비중을 확대하고 재생에너지 사용 확대 노력을 지속하고 있습니다. 이를 통해 2024년 한 해 동안 당사 동탄 데이터센터 사업장에서는 6개월간 172,497kWh를 발전하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 172497,
+      "설비용량_kW": 374,
+      "발전기간_개월": 6,
+      "CO2_감축량_tCO2eq": 38.5
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "동탄DC ESG담당 / 친환경인프라팀",
+    "submission_date": "2024-11-15"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000002",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440014",
+    "subsidiary_name": "동탄 데이터센터",
+    "facility_name": "동탄 데이터센터 옥상 발전 설비",
+    "report_year": 2023,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "2023년 동탄 데이터센터 옥상 태양광 설비 초기 구축 완료. 연간 발전 실적 및 설비 용량을 모회사 SR 작성용으로 집계 제출.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 95000,
+      "설비용량_kW": 200
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "동탄DC ESG담당",
+    "submission_date": "2023-12-01"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000003",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440002",
+    "subsidiary_name": "미라콤아이앤씨 주식회사",
+    "facility_name": "미라콤아이앤씨 주식회사 판교 사옥",
+    "report_year": 2024,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "판교 사옥 옥상 태양광 발전설비로 자가소비 전력 일부를 충당하고, 잔여 전력은 그리드 이월 정책에 따라 보고합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 45000,
+      "설비용량_kW": 150
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "판교시설관리팀",
+    "submission_date": "2024-10-20"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000004",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440006",
+    "subsidiary_name": "엠로 주식회사",
+    "facility_name": "엠로 주식회사 본사 (SRM 거점)",
+    "report_year": 2024,
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "description": "1차 협력사 150개사 대상 ESG 자가진단 설문 및 고위험 22개사 현장 실사를 완료하였으며, 개선 과제 이행률 87%를 기록하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SUPPLY_CHAIN_ESG_001",
+      "DP-SOCIAL-SUPPLY-CHAIN"
+    ],
+    "quantitative_data": {
+      "평가대상_협력사_수": 150,
+      "현장실사_고위험_수": 22,
+      "개선과제_이행률_퍼센트": 87
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "공급망지속가능팀",
+    "submission_date": "2024-11-30"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000005",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440012",
+    "subsidiary_name": "수원 데이터센터",
+    "facility_name": "수원 데이터센터",
+    "report_year": 2024,
+    "category": "온실가스",
+    "category_embedding": null,
+    "description": "데이터센터 단위 에너지 효율 개선(냉방·냉각 최적화, LED 전면 교체)로 Scope2 위치기반 배출 전년 대비 6.1% 감축.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_GHG_REDUCTION_002",
+      "DP-GHG-SCOPE2"
+    ],
+    "quantitative_data": {
+      "Scope2_위치기반_tCO2eq": 1240.5,
+      "전년대비_감축률_퍼센트": 6.1,
+      "절감전력_MWh": 320
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "EHS 데이터관리",
+    "submission_date": "2024-12-05"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000006",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440005",
+    "subsidiary_name": "멀티캠퍼스 주식회사",
+    "facility_name": "멀티캠퍼스 주식회사 역삼 캠퍼스",
+    "report_year": 2023,
+    "category": "인권·다양성",
+    "category_embedding": null,
+    "description": "전 임직원 대상 인권·다양성 필수 교육 이수율 99.2%, 장애인 고용 목표 대비 달성률 103%.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-HR-DIVERSITY",
+      "SOC_HR_TRAINING_001"
+    ],
+    "quantitative_data": {
+      "필수교육_이수율_퍼센트": 99.2,
+      "장애인고용_목표대비_퍼센트": 103,
+      "교육시간_합계_시간": 18500
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "HR담당",
+    "submission_date": "2023-12-18"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000007",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440008",
+    "subsidiary_name": "판교 IT캠퍼스",
+    "facility_name": "판교 IT캠퍼스 ESG 거점 #007",
+    "report_year": 2024,
+    "category": "에너지 효율",
+    "category_embedding": null,
+    "description": "판교 IT캠퍼스 ESG 거점 #007는 냉방·전력 모니터링으로 PUE·에너지 집약도를 개선하였으며, 2024년 실적을 포함합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_EFF_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "PUE_목표대비": 1.43,
+      "절감전력_MWh": 74
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "ESG데이터담당 / 담당자-007",
+    "submission_date": "2024-08-08"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000008",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440009",
+    "subsidiary_name": "판교 물류 캠퍼스",
+    "facility_name": "판교 물류 캠퍼스 ESG 거점 #008",
+    "report_year": 2024,
+    "category": "사이버·정보보호",
+    "category_embedding": null,
+    "description": "2024년 침해사고 대응 훈련 및 취약점 점검 결과를 집계하여 본 기여 데이터로 등록합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "GOV_CYBER_001",
+      "DP-DATA-PRIVACY"
+    ],
+    "quantitative_data": {
+      "보안점검_건수": 13,
+      "취약점_조치율_퍼센트": 97
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "친환경인프라팀 / 담당자-008",
+    "submission_date": "2024-09-09"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000009",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440010",
+    "subsidiary_name": "서울 R&D 캠퍼스",
+    "facility_name": "서울 R&D 캠퍼스 ESG 거점 #009",
+    "report_year": 2023,
+    "category": "지역사회 공헌",
+    "category_embedding": null,
+    "description": "서울 R&D 캠퍼스는 서울 R&D 캠퍼스 ESG 거점 #009 인근 지역사회 프로그램(봉사·교육)을 운영하고 2023년 정량 실적을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_COMMUNITY_001",
+      "DP-SOCIAL-COMMUNITY"
+    ],
+    "quantitative_data": {
+      "봉사시간_합계_시간": 1210,
+      "기부금_및_물품_천원": 59900
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "공급망지속가능팀 / 담당자-009",
+    "submission_date": "2023-10-10"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000000a",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440011",
+    "subsidiary_name": "상암데이터 센터",
+    "facility_name": "상암데이터 센터 ESG 거점 #010",
+    "report_year": 2024,
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "description": "2024년 거버넌스 운영(이사회·위원회) 현황을 자회사 관점에서 요약 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-GOV-BOARD",
+      "DP-GOV-ESG-COMMITTEE"
+    ],
+    "quantitative_data": {
+      "이사회_개최_횟수": 7,
+      "사외이사_비율_퍼센트": 51
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "EHS 데이터관리 / 담당자-010",
+    "submission_date": "2024-11-11"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000000b",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440012",
+    "subsidiary_name": "수원 데이터센터",
+    "facility_name": "수원 데이터센터 ESG 거점 #011",
+    "report_year": 2024,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "2024년 수원 데이터센터 ESG 거점 #011에서 태양광·ESS 연계 등 재생에너지 도입을 확대하였으며, 모회사 SR 집계를 위해 발전량·설비용량을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 13644,
+      "설비용량_kW": 182
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "HR담당 / 담당자-011",
+    "submission_date": "2024-12-12"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000000c",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440013",
+    "subsidiary_name": "춘천 데이터센터",
+    "facility_name": "춘천 데이터센터 ESG 거점 #012",
+    "report_year": 2023,
+    "category": "온실가스",
+    "category_embedding": null,
+    "description": "춘천 데이터센터 ESG 거점 #012는 에너지 절감 과제 이행으로 2023년 온실가스 배출 강도를 관리하였고, 검증 가능한 수치를 본 항목에 기재합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_GHG_REDUCTION_002",
+      "DP-GHG-SCOPE2"
+    ],
+    "quantitative_data": {
+      "Scope2_위치기반_tCO2eq": 969,
+      "전년대비_감축률_퍼센트": 2.5
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "시설관리팀 / 담당자-012",
+    "submission_date": "2023-01-13"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000000d",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440014",
+    "subsidiary_name": "동탄 데이터센터",
+    "facility_name": "동탄 데이터센터 ESG 거점 #013",
+    "report_year": 2024,
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "description": "동탄 데이터센터는 2024년 협력사 ESG 평가·실사 체계를 운영하였으며, 고위험사 개선 추적을 완료하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SUPPLY_CHAIN_ESG_001",
+      "DP-SOCIAL-SUPPLY-CHAIN"
+    ],
+    "quantitative_data": {
+      "평가대상_협력사_수": 94,
+      "현장실사_고위험_수": 19,
+      "개선과제_이행률_퍼센트": 84
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "정보보호실 / 담당자-013",
+    "submission_date": "2024-02-14"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000000e",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440015",
+    "subsidiary_name": "구미 데이터센터",
+    "facility_name": "구미 데이터센터 ESG 거점 #014",
+    "report_year": 2024,
+    "category": "인권·다양성",
+    "category_embedding": null,
+    "description": "2024년 구미 데이터센터 ESG 거점 #014 임직원 대상 인권·다양성 교육 및 고충 처리 채널 운영 실적을 집계 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-HR-DIVERSITY",
+      "SOC_HR_TRAINING_001"
+    ],
+    "quantitative_data": {
+      "필수교육_이수율_퍼센트": 96.5,
+      "교육시간_합계_시간": 6905
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "지역사회협력팀 / 담당자-014",
+    "submission_date": "2024-03-15"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000000f",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440002",
+    "subsidiary_name": "미라콤아이앤씨 주식회사",
+    "facility_name": "미라콤아이앤씨 주식회사 ESG 거점 #015",
+    "report_year": 2023,
+    "category": "안전보건",
+    "category_embedding": null,
+    "description": "미라콤아이앤씨 주식회사 ESG 거점 #015는 2023년 산업안전보건 교육·점검을 정기 실시하였고, 재해 예방 KPI 달성 여부를 보고합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SAFETY_001",
+      "EHS_INCIDENT_001"
+    ],
+    "quantitative_data": {
+      "재해건수_건": 1,
+      "안전교육_이수율_퍼센트": 96,
+      "근로시간_대비_교육시간_시간": 0.46
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "ESG데이터담당 / 담당자-015",
+    "submission_date": "2023-04-16"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000010",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440003",
+    "subsidiary_name": "시큐아이 주식회사",
+    "facility_name": "시큐아이 주식회사 ESG 거점 #016",
+    "report_year": 2024,
+    "category": "수자원·폐기물",
+    "category_embedding": null,
+    "description": "2024년 용수 사용·폐기물 분리배출 실적을 사업장 단위로 산정하여 제출하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_WATER_001",
+      "ENV_WASTE_001"
+    ],
+    "quantitative_data": {
+      "용수_재이용률_퍼센트": 32,
+      "폐기물_재활용률_퍼센트": 72
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "친환경인프라팀 / 담당자-016",
+    "submission_date": "2024-05-17"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000011",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440004",
+    "subsidiary_name": "에스코어 주식회사",
+    "facility_name": "에스코어 주식회사 ESG 거점 #017",
+    "report_year": 2024,
+    "category": "에너지 효율",
+    "category_embedding": null,
+    "description": "에스코어 주식회사 ESG 거점 #017는 냉방·전력 모니터링으로 PUE·에너지 집약도를 개선하였으며, 2024년 실적을 포함합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_EFF_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "PUE_목표대비": 1.53,
+      "절감전력_MWh": 104
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "공급망지속가능팀 / 담당자-017",
+    "submission_date": "2024-06-18"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000012",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440005",
+    "subsidiary_name": "멀티캠퍼스 주식회사",
+    "facility_name": "멀티캠퍼스 주식회사 ESG 거점 #018",
+    "report_year": 2023,
+    "category": "사이버·정보보호",
+    "category_embedding": null,
+    "description": "2023년 침해사고 대응 훈련 및 취약점 점검 결과를 집계하여 본 기여 데이터로 등록합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "GOV_CYBER_001",
+      "DP-DATA-PRIVACY"
+    ],
+    "quantitative_data": {
+      "보안점검_건수": 23,
+      "취약점_조치율_퍼센트": 95
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "EHS 데이터관리 / 담당자-018",
+    "submission_date": "2023-07-19"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000013",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440006",
+    "subsidiary_name": "엠로 주식회사",
+    "facility_name": "엠로 주식회사 ESG 거점 #019",
+    "report_year": 2024,
+    "category": "지역사회 공헌",
+    "category_embedding": null,
+    "description": "엠로 주식회사는 엠로 주식회사 ESG 거점 #019 인근 지역사회 프로그램(봉사·교육)을 운영하고 2024년 정량 실적을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_COMMUNITY_001",
+      "DP-SOCIAL-COMMUNITY"
+    ],
+    "quantitative_data": {
+      "봉사시간_합계_시간": 1620,
+      "기부금_및_물품_천원": 69800
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "HR담당 / 담당자-019",
+    "submission_date": "2024-08-20"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000014",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440007",
+    "subsidiary_name": "오픈핸즈 주식회사",
+    "facility_name": "오픈핸즈 주식회사 ESG 거점 #020",
+    "report_year": 2024,
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "description": "2024년 거버넌스 운영(이사회·위원회) 현황을 자회사 관점에서 요약 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-GOV-BOARD",
+      "DP-GOV-ESG-COMMITTEE"
+    ],
+    "quantitative_data": {
+      "이사회_개최_횟수": 9,
+      "사외이사_비율_퍼센트": 41
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "시설관리팀 / 담당자-020",
+    "submission_date": "2024-09-21"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000015",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440008",
+    "subsidiary_name": "판교 IT캠퍼스",
+    "facility_name": "판교 IT캠퍼스 ESG 거점 #021",
+    "report_year": 2023,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "2023년 판교 IT캠퍼스 ESG 거점 #021에서 태양광·ESS 연계 등 재생에너지 도입을 확대하였으며, 모회사 SR 집계를 위해 발전량·설비용량을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 15014,
+      "설비용량_kW": 292
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "정보보호실 / 담당자-021",
+    "submission_date": "2023-10-22"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000016",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440009",
+    "subsidiary_name": "판교 물류 캠퍼스",
+    "facility_name": "판교 물류 캠퍼스 ESG 거점 #022",
+    "report_year": 2024,
+    "category": "온실가스",
+    "category_embedding": null,
+    "description": "판교 물류 캠퍼스 ESG 거점 #022는 에너지 절감 과제 이행으로 2024년 온실가스 배출 강도를 관리하였고, 검증 가능한 수치를 본 항목에 기재합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_GHG_REDUCTION_002",
+      "DP-GHG-SCOPE2"
+    ],
+    "quantitative_data": {
+      "Scope2_위치기반_tCO2eq": 1099,
+      "전년대비_감축률_퍼센트": 7.5
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "지역사회협력팀 / 담당자-022",
+    "submission_date": "2024-11-23"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000017",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440010",
+    "subsidiary_name": "서울 R&D 캠퍼스",
+    "facility_name": "서울 R&D 캠퍼스 ESG 거점 #023",
+    "report_year": 2024,
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "description": "서울 R&D 캠퍼스는 2024년 협력사 ESG 평가·실사 체계를 운영하였으며, 고위험사 개선 추적을 완료하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SUPPLY_CHAIN_ESG_001",
+      "DP-SOCIAL-SUPPLY-CHAIN"
+    ],
+    "quantitative_data": {
+      "평가대상_협력사_수": 104,
+      "현장실사_고위험_수": 29,
+      "개선과제_이행률_퍼센트": 94
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "ESG데이터담당 / 담당자-023",
+    "submission_date": "2024-12-24"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000018",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440011",
+    "subsidiary_name": "상암데이터 센터",
+    "facility_name": "상암데이터 센터 ESG 거점 #024",
+    "report_year": 2023,
+    "category": "인권·다양성",
+    "category_embedding": null,
+    "description": "2023년 상암데이터 센터 ESG 거점 #024 임직원 대상 인권·다양성 교육 및 고충 처리 채널 운영 실적을 집계 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-HR-DIVERSITY",
+      "SOC_HR_TRAINING_001"
+    ],
+    "quantitative_data": {
+      "필수교육_이수율_퍼센트": 97.5,
+      "교육시간_합계_시간": 8175
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "친환경인프라팀 / 담당자-024",
+    "submission_date": "2023-01-25"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000019",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440012",
+    "subsidiary_name": "수원 데이터센터",
+    "facility_name": "수원 데이터센터 ESG 거점 #025",
+    "report_year": 2024,
+    "category": "안전보건",
+    "category_embedding": null,
+    "description": "수원 데이터센터 ESG 거점 #025는 2024년 산업안전보건 교육·점검을 정기 실시하였고, 재해 예방 KPI 달성 여부를 보고합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SAFETY_001",
+      "EHS_INCIDENT_001"
+    ],
+    "quantitative_data": {
+      "재해건수_건": 1,
+      "안전교육_이수율_퍼센트": 98,
+      "근로시간_대비_교육시간_시간": 0.36
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "공급망지속가능팀 / 담당자-025",
+    "submission_date": "2024-02-26"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000001a",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440013",
+    "subsidiary_name": "춘천 데이터센터",
+    "facility_name": "춘천 데이터센터 ESG 거점 #026",
+    "report_year": 2024,
+    "category": "수자원·폐기물",
+    "category_embedding": null,
+    "description": "2024년 용수 사용·폐기물 분리배출 실적을 사업장 단위로 산정하여 제출하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_WATER_001",
+      "ENV_WASTE_001"
+    ],
+    "quantitative_data": {
+      "용수_재이용률_퍼센트": 42,
+      "폐기물_재활용률_퍼센트": 82
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "EHS 데이터관리 / 담당자-026",
+    "submission_date": "2024-03-27"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000001b",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440014",
+    "subsidiary_name": "동탄 데이터센터",
+    "facility_name": "동탄 데이터센터 ESG 거점 #027",
+    "report_year": 2023,
+    "category": "에너지 효율",
+    "category_embedding": null,
+    "description": "동탄 데이터센터 ESG 거점 #027는 냉방·전력 모니터링으로 PUE·에너지 집약도를 개선하였으며, 2023년 실적을 포함합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_EFF_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "PUE_목표대비": 1.38,
+      "절감전력_MWh": 134
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "HR담당 / 담당자-027",
+    "submission_date": "2023-04-28"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000001c",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440015",
+    "subsidiary_name": "구미 데이터센터",
+    "facility_name": "구미 데이터센터 ESG 거점 #028",
+    "report_year": 2024,
+    "category": "사이버·정보보호",
+    "category_embedding": null,
+    "description": "2024년 침해사고 대응 훈련 및 취약점 점검 결과를 집계하여 본 기여 데이터로 등록합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "GOV_CYBER_001",
+      "DP-DATA-PRIVACY"
+    ],
+    "quantitative_data": {
+      "보안점검_건수": 13,
+      "취약점_조치율_퍼센트": 93
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "시설관리팀 / 담당자-028",
+    "submission_date": "2024-05-01"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000001d",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440002",
+    "subsidiary_name": "미라콤아이앤씨 주식회사",
+    "facility_name": "미라콤아이앤씨 주식회사 ESG 거점 #029",
+    "report_year": 2024,
+    "category": "지역사회 공헌",
+    "category_embedding": null,
+    "description": "미라콤아이앤씨 주식회사는 미라콤아이앤씨 주식회사 ESG 거점 #029 인근 지역사회 프로그램(봉사·교육)을 운영하고 2024년 정량 실적을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_COMMUNITY_001",
+      "DP-SOCIAL-COMMUNITY"
+    ],
+    "quantitative_data": {
+      "봉사시간_합계_시간": 2030,
+      "기부금_및_물품_천원": 79700
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "정보보호실 / 담당자-029",
+    "submission_date": "2024-06-02"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000001e",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440003",
+    "subsidiary_name": "시큐아이 주식회사",
+    "facility_name": "시큐아이 주식회사 ESG 거점 #030",
+    "report_year": 2023,
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "description": "2023년 거버넌스 운영(이사회·위원회) 현황을 자회사 관점에서 요약 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-GOV-BOARD",
+      "DP-GOV-ESG-COMMITTEE"
+    ],
+    "quantitative_data": {
+      "이사회_개최_횟수": 11,
+      "사외이사_비율_퍼센트": 51
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "지역사회협력팀 / 담당자-030",
+    "submission_date": "2023-07-03"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000001f",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440004",
+    "subsidiary_name": "에스코어 주식회사",
+    "facility_name": "에스코어 주식회사 ESG 거점 #031",
+    "report_year": 2024,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "2024년 에스코어 주식회사 ESG 거점 #031에서 태양광·ESS 연계 등 재생에너지 도입을 확대하였으며, 모회사 SR 집계를 위해 발전량·설비용량을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 16384,
+      "설비용량_kW": 402
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "ESG데이터담당 / 담당자-031",
+    "submission_date": "2024-08-04"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000020",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440005",
+    "subsidiary_name": "멀티캠퍼스 주식회사",
+    "facility_name": "멀티캠퍼스 주식회사 ESG 거점 #032",
+    "report_year": 2024,
+    "category": "온실가스",
+    "category_embedding": null,
+    "description": "멀티캠퍼스 주식회사 ESG 거점 #032는 에너지 절감 과제 이행으로 2024년 온실가스 배출 강도를 관리하였고, 검증 가능한 수치를 본 항목에 기재합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_GHG_REDUCTION_002",
+      "DP-GHG-SCOPE2"
+    ],
+    "quantitative_data": {
+      "Scope2_위치기반_tCO2eq": 1229,
+      "전년대비_감축률_퍼센트": 6.5
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "친환경인프라팀 / 담당자-032",
+    "submission_date": "2024-09-05"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000021",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440006",
+    "subsidiary_name": "엠로 주식회사",
+    "facility_name": "엠로 주식회사 ESG 거점 #033",
+    "report_year": 2023,
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "description": "엠로 주식회사는 2023년 협력사 ESG 평가·실사 체계를 운영하였으며, 고위험사 개선 추적을 완료하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SUPPLY_CHAIN_ESG_001",
+      "DP-SOCIAL-SUPPLY-CHAIN"
+    ],
+    "quantitative_data": {
+      "평가대상_협력사_수": 114,
+      "현장실사_고위험_수": 39,
+      "개선과제_이행률_퍼센트": 76
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "공급망지속가능팀 / 담당자-033",
+    "submission_date": "2023-10-06"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000022",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440007",
+    "subsidiary_name": "오픈핸즈 주식회사",
+    "facility_name": "오픈핸즈 주식회사 ESG 거점 #034",
+    "report_year": 2024,
+    "category": "인권·다양성",
+    "category_embedding": null,
+    "description": "2024년 오픈핸즈 주식회사 ESG 거점 #034 임직원 대상 인권·다양성 교육 및 고충 처리 채널 운영 실적을 집계 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-HR-DIVERSITY",
+      "SOC_HR_TRAINING_001"
+    ],
+    "quantitative_data": {
+      "필수교육_이수율_퍼센트": 98.5,
+      "교육시간_합계_시간": 9445
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "EHS 데이터관리 / 담당자-034",
+    "submission_date": "2024-11-07"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000023",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440008",
+    "subsidiary_name": "판교 IT캠퍼스",
+    "facility_name": "판교 IT캠퍼스 ESG 거점 #035",
+    "report_year": 2024,
+    "category": "안전보건",
+    "category_embedding": null,
+    "description": "판교 IT캠퍼스 ESG 거점 #035는 2024년 산업안전보건 교육·점검을 정기 실시하였고, 재해 예방 KPI 달성 여부를 보고합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SAFETY_001",
+      "EHS_INCIDENT_001"
+    ],
+    "quantitative_data": {
+      "재해건수_건": 1,
+      "안전교육_이수율_퍼센트": 96,
+      "근로시간_대비_교육시간_시간": 0.46
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "HR담당 / 담당자-035",
+    "submission_date": "2024-12-08"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000024",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440009",
+    "subsidiary_name": "판교 물류 캠퍼스",
+    "facility_name": "판교 물류 캠퍼스 ESG 거점 #036",
+    "report_year": 2023,
+    "category": "수자원·폐기물",
+    "category_embedding": null,
+    "description": "2023년 용수 사용·폐기물 분리배출 실적을 사업장 단위로 산정하여 제출하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_WATER_001",
+      "ENV_WASTE_001"
+    ],
+    "quantitative_data": {
+      "용수_재이용률_퍼센트": 52,
+      "폐기물_재활용률_퍼센트": 57
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "시설관리팀 / 담당자-036",
+    "submission_date": "2023-01-09"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000025",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440010",
+    "subsidiary_name": "서울 R&D 캠퍼스",
+    "facility_name": "서울 R&D 캠퍼스 ESG 거점 #037",
+    "report_year": 2024,
+    "category": "에너지 효율",
+    "category_embedding": null,
+    "description": "서울 R&D 캠퍼스 ESG 거점 #037는 냉방·전력 모니터링으로 PUE·에너지 집약도를 개선하였으며, 2024년 실적을 포함합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_EFF_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "PUE_목표대비": 1.48,
+      "절감전력_MWh": 164
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "정보보호실 / 담당자-037",
+    "submission_date": "2024-02-10"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000026",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440011",
+    "subsidiary_name": "상암데이터 센터",
+    "facility_name": "상암데이터 센터 ESG 거점 #038",
+    "report_year": 2024,
+    "category": "사이버·정보보호",
+    "category_embedding": null,
+    "description": "2024년 침해사고 대응 훈련 및 취약점 점검 결과를 집계하여 본 기여 데이터로 등록합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "GOV_CYBER_001",
+      "DP-DATA-PRIVACY"
+    ],
+    "quantitative_data": {
+      "보안점검_건수": 23,
+      "취약점_조치율_퍼센트": 91
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "지역사회협력팀 / 담당자-038",
+    "submission_date": "2024-03-11"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000027",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440012",
+    "subsidiary_name": "수원 데이터센터",
+    "facility_name": "수원 데이터센터 ESG 거점 #039",
+    "report_year": 2023,
+    "category": "지역사회 공헌",
+    "category_embedding": null,
+    "description": "수원 데이터센터는 수원 데이터센터 ESG 거점 #039 인근 지역사회 프로그램(봉사·교육)을 운영하고 2023년 정량 실적을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_COMMUNITY_001",
+      "DP-SOCIAL-COMMUNITY"
+    ],
+    "quantitative_data": {
+      "봉사시간_합계_시간": 2440,
+      "기부금_및_물품_천원": 89600
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "ESG데이터담당 / 담당자-039",
+    "submission_date": "2023-04-12"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000028",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440013",
+    "subsidiary_name": "춘천 데이터센터",
+    "facility_name": "춘천 데이터센터 ESG 거점 #040",
+    "report_year": 2024,
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "description": "2024년 거버넌스 운영(이사회·위원회) 현황을 자회사 관점에서 요약 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-GOV-BOARD",
+      "DP-GOV-ESG-COMMITTEE"
+    ],
+    "quantitative_data": {
+      "이사회_개최_횟수": 5,
+      "사외이사_비율_퍼센트": 41
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "친환경인프라팀 / 담당자-040",
+    "submission_date": "2024-05-13"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000029",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440014",
+    "subsidiary_name": "동탄 데이터센터",
+    "facility_name": "동탄 데이터센터 ESG 거점 #041",
+    "report_year": 2024,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "2024년 동탄 데이터센터 ESG 거점 #041에서 태양광·ESS 연계 등 재생에너지 도입을 확대하였으며, 모회사 SR 집계를 위해 발전량·설비용량을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 17754,
+      "설비용량_kW": 512
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "공급망지속가능팀 / 담당자-041",
+    "submission_date": "2024-06-14"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000002a",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440015",
+    "subsidiary_name": "구미 데이터센터",
+    "facility_name": "구미 데이터센터 ESG 거점 #042",
+    "report_year": 2023,
+    "category": "온실가스",
+    "category_embedding": null,
+    "description": "구미 데이터센터 ESG 거점 #042는 에너지 절감 과제 이행으로 2023년 온실가스 배출 강도를 관리하였고, 검증 가능한 수치를 본 항목에 기재합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_GHG_REDUCTION_002",
+      "DP-GHG-SCOPE2"
+    ],
+    "quantitative_data": {
+      "Scope2_위치기반_tCO2eq": 1359,
+      "전년대비_감축률_퍼센트": 5.5
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "EHS 데이터관리 / 담당자-042",
+    "submission_date": "2023-07-15"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000002b",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440002",
+    "subsidiary_name": "미라콤아이앤씨 주식회사",
+    "facility_name": "미라콤아이앤씨 주식회사 ESG 거점 #043",
+    "report_year": 2024,
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "description": "미라콤아이앤씨 주식회사는 2024년 협력사 ESG 평가·실사 체계를 운영하였으며, 고위험사 개선 추적을 완료하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SUPPLY_CHAIN_ESG_001",
+      "DP-SOCIAL-SUPPLY-CHAIN"
+    ],
+    "quantitative_data": {
+      "평가대상_협력사_수": 124,
+      "현장실사_고위험_수": 14,
+      "개선과제_이행률_퍼센트": 86
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "HR담당 / 담당자-043",
+    "submission_date": "2024-08-16"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000002c",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440003",
+    "subsidiary_name": "시큐아이 주식회사",
+    "facility_name": "시큐아이 주식회사 ESG 거점 #044",
+    "report_year": 2024,
+    "category": "인권·다양성",
+    "category_embedding": null,
+    "description": "2024년 시큐아이 주식회사 ESG 거점 #044 임직원 대상 인권·다양성 교육 및 고충 처리 채널 운영 실적을 집계 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-HR-DIVERSITY",
+      "SOC_HR_TRAINING_001"
+    ],
+    "quantitative_data": {
+      "필수교육_이수율_퍼센트": 99.5,
+      "교육시간_합계_시간": 10715
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "시설관리팀 / 담당자-044",
+    "submission_date": "2024-09-17"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000002d",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440004",
+    "subsidiary_name": "에스코어 주식회사",
+    "facility_name": "에스코어 주식회사 ESG 거점 #045",
+    "report_year": 2023,
+    "category": "안전보건",
+    "category_embedding": null,
+    "description": "에스코어 주식회사 ESG 거점 #045는 2023년 산업안전보건 교육·점검을 정기 실시하였고, 재해 예방 KPI 달성 여부를 보고합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SAFETY_001",
+      "EHS_INCIDENT_001"
+    ],
+    "quantitative_data": {
+      "재해건수_건": 1,
+      "안전교육_이수율_퍼센트": 98,
+      "근로시간_대비_교육시간_시간": 0.36
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "정보보호실 / 담당자-045",
+    "submission_date": "2023-10-18"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000002e",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440005",
+    "subsidiary_name": "멀티캠퍼스 주식회사",
+    "facility_name": "멀티캠퍼스 주식회사 ESG 거점 #046",
+    "report_year": 2024,
+    "category": "수자원·폐기물",
+    "category_embedding": null,
+    "description": "2024년 용수 사용·폐기물 분리배출 실적을 사업장 단위로 산정하여 제출하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_WATER_001",
+      "ENV_WASTE_001"
+    ],
+    "quantitative_data": {
+      "용수_재이용률_퍼센트": 22,
+      "폐기물_재활용률_퍼센트": 67
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "지역사회협력팀 / 담당자-046",
+    "submission_date": "2024-11-19"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000002f",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440006",
+    "subsidiary_name": "엠로 주식회사",
+    "facility_name": "엠로 주식회사 ESG 거점 #047",
+    "report_year": 2024,
+    "category": "에너지 효율",
+    "category_embedding": null,
+    "description": "엠로 주식회사 ESG 거점 #047는 냉방·전력 모니터링으로 PUE·에너지 집약도를 개선하였으며, 2024년 실적을 포함합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_EFF_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "PUE_목표대비": 1.58,
+      "절감전력_MWh": 194
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "ESG데이터담당 / 담당자-047",
+    "submission_date": "2024-12-20"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000030",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440007",
+    "subsidiary_name": "오픈핸즈 주식회사",
+    "facility_name": "오픈핸즈 주식회사 ESG 거점 #048",
+    "report_year": 2023,
+    "category": "사이버·정보보호",
+    "category_embedding": null,
+    "description": "2023년 침해사고 대응 훈련 및 취약점 점검 결과를 집계하여 본 기여 데이터로 등록합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "GOV_CYBER_001",
+      "DP-DATA-PRIVACY"
+    ],
+    "quantitative_data": {
+      "보안점검_건수": 13,
+      "취약점_조치율_퍼센트": 89
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "친환경인프라팀 / 담당자-048",
+    "submission_date": "2023-01-21"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000031",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440008",
+    "subsidiary_name": "판교 IT캠퍼스",
+    "facility_name": "판교 IT캠퍼스 ESG 거점 #049",
+    "report_year": 2024,
+    "category": "지역사회 공헌",
+    "category_embedding": null,
+    "description": "판교 IT캠퍼스는 판교 IT캠퍼스 ESG 거점 #049 인근 지역사회 프로그램(봉사·교육)을 운영하고 2024년 정량 실적을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_COMMUNITY_001",
+      "DP-SOCIAL-COMMUNITY"
+    ],
+    "quantitative_data": {
+      "봉사시간_합계_시간": 2850,
+      "기부금_및_물품_천원": 99500
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "공급망지속가능팀 / 담당자-049",
+    "submission_date": "2024-02-22"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000032",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440009",
+    "subsidiary_name": "판교 물류 캠퍼스",
+    "facility_name": "판교 물류 캠퍼스 ESG 거점 #050",
+    "report_year": 2024,
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "description": "2024년 거버넌스 운영(이사회·위원회) 현황을 자회사 관점에서 요약 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-GOV-BOARD",
+      "DP-GOV-ESG-COMMITTEE"
+    ],
+    "quantitative_data": {
+      "이사회_개최_횟수": 7,
+      "사외이사_비율_퍼센트": 51
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "EHS 데이터관리 / 담당자-050",
+    "submission_date": "2024-03-23"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000033",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440010",
+    "subsidiary_name": "서울 R&D 캠퍼스",
+    "facility_name": "서울 R&D 캠퍼스 ESG 거점 #051",
+    "report_year": 2023,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "2023년 서울 R&D 캠퍼스 ESG 거점 #051에서 태양광·ESS 연계 등 재생에너지 도입을 확대하였으며, 모회사 SR 집계를 위해 발전량·설비용량을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 19124,
+      "설비용량_kW": 122
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "HR담당 / 담당자-051",
+    "submission_date": "2023-04-24"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000034",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440011",
+    "subsidiary_name": "상암데이터 센터",
+    "facility_name": "상암데이터 센터 ESG 거점 #052",
+    "report_year": 2024,
+    "category": "온실가스",
+    "category_embedding": null,
+    "description": "상암데이터 센터 ESG 거점 #052는 에너지 절감 과제 이행으로 2024년 온실가스 배출 강도를 관리하였고, 검증 가능한 수치를 본 항목에 기재합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_GHG_REDUCTION_002",
+      "DP-GHG-SCOPE2"
+    ],
+    "quantitative_data": {
+      "Scope2_위치기반_tCO2eq": 1489,
+      "전년대비_감축률_퍼센트": 4.5
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "시설관리팀 / 담당자-052",
+    "submission_date": "2024-05-25"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000035",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440012",
+    "subsidiary_name": "수원 데이터센터",
+    "facility_name": "수원 데이터센터 ESG 거점 #053",
+    "report_year": 2024,
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "description": "수원 데이터센터는 2024년 협력사 ESG 평가·실사 체계를 운영하였으며, 고위험사 개선 추적을 완료하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SUPPLY_CHAIN_ESG_001",
+      "DP-SOCIAL-SUPPLY-CHAIN"
+    ],
+    "quantitative_data": {
+      "평가대상_협력사_수": 134,
+      "현장실사_고위험_수": 24,
+      "개선과제_이행률_퍼센트": 96
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "정보보호실 / 담당자-053",
+    "submission_date": "2024-06-26"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000036",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440013",
+    "subsidiary_name": "춘천 데이터센터",
+    "facility_name": "춘천 데이터센터 ESG 거점 #054",
+    "report_year": 2023,
+    "category": "인권·다양성",
+    "category_embedding": null,
+    "description": "2023년 춘천 데이터센터 ESG 거점 #054 임직원 대상 인권·다양성 교육 및 고충 처리 채널 운영 실적을 집계 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-HR-DIVERSITY",
+      "SOC_HR_TRAINING_001"
+    ],
+    "quantitative_data": {
+      "필수교육_이수율_퍼센트": 95.5,
+      "교육시간_합계_시간": 11985
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "지역사회협력팀 / 담당자-054",
+    "submission_date": "2023-07-27"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000037",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440014",
+    "subsidiary_name": "동탄 데이터센터",
+    "facility_name": "동탄 데이터센터 ESG 거점 #055",
+    "report_year": 2024,
+    "category": "안전보건",
+    "category_embedding": null,
+    "description": "동탄 데이터센터 ESG 거점 #055는 2024년 산업안전보건 교육·점검을 정기 실시하였고, 재해 예방 KPI 달성 여부를 보고합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SAFETY_001",
+      "EHS_INCIDENT_001"
+    ],
+    "quantitative_data": {
+      "재해건수_건": 1,
+      "안전교육_이수율_퍼센트": 96,
+      "근로시간_대비_교육시간_시간": 0.46
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "ESG데이터담당 / 담당자-055",
+    "submission_date": "2024-08-28"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000038",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440015",
+    "subsidiary_name": "구미 데이터센터",
+    "facility_name": "구미 데이터센터 ESG 거점 #056",
+    "report_year": 2024,
+    "category": "수자원·폐기물",
+    "category_embedding": null,
+    "description": "2024년 용수 사용·폐기물 분리배출 실적을 사업장 단위로 산정하여 제출하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_WATER_001",
+      "ENV_WASTE_001"
+    ],
+    "quantitative_data": {
+      "용수_재이용률_퍼센트": 32,
+      "폐기물_재활용률_퍼센트": 77
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "친환경인프라팀 / 담당자-056",
+    "submission_date": "2024-09-01"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000039",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440002",
+    "subsidiary_name": "미라콤아이앤씨 주식회사",
+    "facility_name": "미라콤아이앤씨 주식회사 ESG 거점 #057",
+    "report_year": 2023,
+    "category": "에너지 효율",
+    "category_embedding": null,
+    "description": "미라콤아이앤씨 주식회사 ESG 거점 #057는 냉방·전력 모니터링으로 PUE·에너지 집약도를 개선하였으며, 2023년 실적을 포함합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_EFF_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "PUE_목표대비": 1.43,
+      "절감전력_MWh": 224
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "공급망지속가능팀 / 담당자-057",
+    "submission_date": "2023-10-02"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000003a",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440003",
+    "subsidiary_name": "시큐아이 주식회사",
+    "facility_name": "시큐아이 주식회사 ESG 거점 #058",
+    "report_year": 2024,
+    "category": "사이버·정보보호",
+    "category_embedding": null,
+    "description": "2024년 침해사고 대응 훈련 및 취약점 점검 결과를 집계하여 본 기여 데이터로 등록합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "GOV_CYBER_001",
+      "DP-DATA-PRIVACY"
+    ],
+    "quantitative_data": {
+      "보안점검_건수": 23,
+      "취약점_조치율_퍼센트": 99
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "EHS 데이터관리 / 담당자-058",
+    "submission_date": "2024-11-03"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000003b",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440004",
+    "subsidiary_name": "에스코어 주식회사",
+    "facility_name": "에스코어 주식회사 ESG 거점 #059",
+    "report_year": 2024,
+    "category": "지역사회 공헌",
+    "category_embedding": null,
+    "description": "에스코어 주식회사는 에스코어 주식회사 ESG 거점 #059 인근 지역사회 프로그램(봉사·교육)을 운영하고 2024년 정량 실적을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_COMMUNITY_001",
+      "DP-SOCIAL-COMMUNITY"
+    ],
+    "quantitative_data": {
+      "봉사시간_합계_시간": 3260,
+      "기부금_및_물품_천원": 109400
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "HR담당 / 담당자-059",
+    "submission_date": "2024-12-04"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000003c",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440005",
+    "subsidiary_name": "멀티캠퍼스 주식회사",
+    "facility_name": "멀티캠퍼스 주식회사 ESG 거점 #060",
+    "report_year": 2023,
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "description": "2023년 거버넌스 운영(이사회·위원회) 현황을 자회사 관점에서 요약 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-GOV-BOARD",
+      "DP-GOV-ESG-COMMITTEE"
+    ],
+    "quantitative_data": {
+      "이사회_개최_횟수": 9,
+      "사외이사_비율_퍼센트": 41
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "시설관리팀 / 담당자-060",
+    "submission_date": "2023-01-05"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000003d",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440006",
+    "subsidiary_name": "엠로 주식회사",
+    "facility_name": "엠로 주식회사 ESG 거점 #061",
+    "report_year": 2024,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "2024년 엠로 주식회사 ESG 거점 #061에서 태양광·ESS 연계 등 재생에너지 도입을 확대하였으며, 모회사 SR 집계를 위해 발전량·설비용량을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 20494,
+      "설비용량_kW": 232
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "정보보호실 / 담당자-061",
+    "submission_date": "2024-02-06"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000003e",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440007",
+    "subsidiary_name": "오픈핸즈 주식회사",
+    "facility_name": "오픈핸즈 주식회사 ESG 거점 #062",
+    "report_year": 2024,
+    "category": "온실가스",
+    "category_embedding": null,
+    "description": "오픈핸즈 주식회사 ESG 거점 #062는 에너지 절감 과제 이행으로 2024년 온실가스 배출 강도를 관리하였고, 검증 가능한 수치를 본 항목에 기재합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_GHG_REDUCTION_002",
+      "DP-GHG-SCOPE2"
+    ],
+    "quantitative_data": {
+      "Scope2_위치기반_tCO2eq": 1619,
+      "전년대비_감축률_퍼센트": 3.5
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "지역사회협력팀 / 담당자-062",
+    "submission_date": "2024-03-07"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000003f",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440008",
+    "subsidiary_name": "판교 IT캠퍼스",
+    "facility_name": "판교 IT캠퍼스 ESG 거점 #063",
+    "report_year": 2023,
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "description": "판교 IT캠퍼스는 2023년 협력사 ESG 평가·실사 체계를 운영하였으며, 고위험사 개선 추적을 완료하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SUPPLY_CHAIN_ESG_001",
+      "DP-SOCIAL-SUPPLY-CHAIN"
+    ],
+    "quantitative_data": {
+      "평가대상_협력사_수": 144,
+      "현장실사_고위험_수": 34,
+      "개선과제_이행률_퍼센트": 78
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "ESG데이터담당 / 담당자-063",
+    "submission_date": "2023-04-08"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000040",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440009",
+    "subsidiary_name": "판교 물류 캠퍼스",
+    "facility_name": "판교 물류 캠퍼스 ESG 거점 #064",
+    "report_year": 2024,
+    "category": "인권·다양성",
+    "category_embedding": null,
+    "description": "2024년 판교 물류 캠퍼스 ESG 거점 #064 임직원 대상 인권·다양성 교육 및 고충 처리 채널 운영 실적을 집계 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-HR-DIVERSITY",
+      "SOC_HR_TRAINING_001"
+    ],
+    "quantitative_data": {
+      "필수교육_이수율_퍼센트": 96.5,
+      "교육시간_합계_시간": 13255
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "친환경인프라팀 / 담당자-064",
+    "submission_date": "2024-05-09"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000041",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440010",
+    "subsidiary_name": "서울 R&D 캠퍼스",
+    "facility_name": "서울 R&D 캠퍼스 ESG 거점 #065",
+    "report_year": 2024,
+    "category": "안전보건",
+    "category_embedding": null,
+    "description": "서울 R&D 캠퍼스 ESG 거점 #065는 2024년 산업안전보건 교육·점검을 정기 실시하였고, 재해 예방 KPI 달성 여부를 보고합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SAFETY_001",
+      "EHS_INCIDENT_001"
+    ],
+    "quantitative_data": {
+      "재해건수_건": 1,
+      "안전교육_이수율_퍼센트": 98,
+      "근로시간_대비_교육시간_시간": 0.36
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "공급망지속가능팀 / 담당자-065",
+    "submission_date": "2024-06-10"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000042",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440011",
+    "subsidiary_name": "상암데이터 센터",
+    "facility_name": "상암데이터 센터 ESG 거점 #066",
+    "report_year": 2023,
+    "category": "수자원·폐기물",
+    "category_embedding": null,
+    "description": "2023년 용수 사용·폐기물 분리배출 실적을 사업장 단위로 산정하여 제출하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_WATER_001",
+      "ENV_WASTE_001"
+    ],
+    "quantitative_data": {
+      "용수_재이용률_퍼센트": 42,
+      "폐기물_재활용률_퍼센트": 87
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "EHS 데이터관리 / 담당자-066",
+    "submission_date": "2023-07-11"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000043",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440012",
+    "subsidiary_name": "수원 데이터센터",
+    "facility_name": "수원 데이터센터 ESG 거점 #067",
+    "report_year": 2024,
+    "category": "에너지 효율",
+    "category_embedding": null,
+    "description": "수원 데이터센터 ESG 거점 #067는 냉방·전력 모니터링으로 PUE·에너지 집약도를 개선하였으며, 2024년 실적을 포함합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_EFF_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "PUE_목표대비": 1.53,
+      "절감전력_MWh": 254
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "HR담당 / 담당자-067",
+    "submission_date": "2024-08-12"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000044",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440013",
+    "subsidiary_name": "춘천 데이터센터",
+    "facility_name": "춘천 데이터센터 ESG 거점 #068",
+    "report_year": 2024,
+    "category": "사이버·정보보호",
+    "category_embedding": null,
+    "description": "2024년 침해사고 대응 훈련 및 취약점 점검 결과를 집계하여 본 기여 데이터로 등록합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "GOV_CYBER_001",
+      "DP-DATA-PRIVACY"
+    ],
+    "quantitative_data": {
+      "보안점검_건수": 13,
+      "취약점_조치율_퍼센트": 97
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "시설관리팀 / 담당자-068",
+    "submission_date": "2024-09-13"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000045",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440014",
+    "subsidiary_name": "동탄 데이터센터",
+    "facility_name": "동탄 데이터센터 ESG 거점 #069",
+    "report_year": 2023,
+    "category": "지역사회 공헌",
+    "category_embedding": null,
+    "description": "동탄 데이터센터는 동탄 데이터센터 ESG 거점 #069 인근 지역사회 프로그램(봉사·교육)을 운영하고 2023년 정량 실적을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_COMMUNITY_001",
+      "DP-SOCIAL-COMMUNITY"
+    ],
+    "quantitative_data": {
+      "봉사시간_합계_시간": 3670,
+      "기부금_및_물품_천원": 119300
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "정보보호실 / 담당자-069",
+    "submission_date": "2023-10-14"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000046",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440015",
+    "subsidiary_name": "구미 데이터센터",
+    "facility_name": "구미 데이터센터 ESG 거점 #070",
+    "report_year": 2024,
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "description": "2024년 거버넌스 운영(이사회·위원회) 현황을 자회사 관점에서 요약 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-GOV-BOARD",
+      "DP-GOV-ESG-COMMITTEE"
+    ],
+    "quantitative_data": {
+      "이사회_개최_횟수": 11,
+      "사외이사_비율_퍼센트": 51
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "지역사회협력팀 / 담당자-070",
+    "submission_date": "2024-11-15"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000047",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440002",
+    "subsidiary_name": "미라콤아이앤씨 주식회사",
+    "facility_name": "미라콤아이앤씨 주식회사 ESG 거점 #071",
+    "report_year": 2024,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "2024년 미라콤아이앤씨 주식회사 ESG 거점 #071에서 태양광·ESS 연계 등 재생에너지 도입을 확대하였으며, 모회사 SR 집계를 위해 발전량·설비용량을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 21864,
+      "설비용량_kW": 342
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "ESG데이터담당 / 담당자-071",
+    "submission_date": "2024-12-16"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000048",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440003",
+    "subsidiary_name": "시큐아이 주식회사",
+    "facility_name": "시큐아이 주식회사 ESG 거점 #072",
+    "report_year": 2023,
+    "category": "온실가스",
+    "category_embedding": null,
+    "description": "시큐아이 주식회사 ESG 거점 #072는 에너지 절감 과제 이행으로 2023년 온실가스 배출 강도를 관리하였고, 검증 가능한 수치를 본 항목에 기재합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_GHG_REDUCTION_002",
+      "DP-GHG-SCOPE2"
+    ],
+    "quantitative_data": {
+      "Scope2_위치기반_tCO2eq": 1749,
+      "전년대비_감축률_퍼센트": 2.5
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "친환경인프라팀 / 담당자-072",
+    "submission_date": "2023-01-17"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000049",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440004",
+    "subsidiary_name": "에스코어 주식회사",
+    "facility_name": "에스코어 주식회사 ESG 거점 #073",
+    "report_year": 2024,
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "description": "에스코어 주식회사는 2024년 협력사 ESG 평가·실사 체계를 운영하였으며, 고위험사 개선 추적을 완료하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SUPPLY_CHAIN_ESG_001",
+      "DP-SOCIAL-SUPPLY-CHAIN"
+    ],
+    "quantitative_data": {
+      "평가대상_협력사_수": 154,
+      "현장실사_고위험_수": 9,
+      "개선과제_이행률_퍼센트": 88
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "공급망지속가능팀 / 담당자-073",
+    "submission_date": "2024-02-18"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000004a",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440005",
+    "subsidiary_name": "멀티캠퍼스 주식회사",
+    "facility_name": "멀티캠퍼스 주식회사 ESG 거점 #074",
+    "report_year": 2024,
+    "category": "인권·다양성",
+    "category_embedding": null,
+    "description": "2024년 멀티캠퍼스 주식회사 ESG 거점 #074 임직원 대상 인권·다양성 교육 및 고충 처리 채널 운영 실적을 집계 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-HR-DIVERSITY",
+      "SOC_HR_TRAINING_001"
+    ],
+    "quantitative_data": {
+      "필수교육_이수율_퍼센트": 97.5,
+      "교육시간_합계_시간": 14525
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "EHS 데이터관리 / 담당자-074",
+    "submission_date": "2024-03-19"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000004b",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440006",
+    "subsidiary_name": "엠로 주식회사",
+    "facility_name": "엠로 주식회사 ESG 거점 #075",
+    "report_year": 2023,
+    "category": "안전보건",
+    "category_embedding": null,
+    "description": "엠로 주식회사 ESG 거점 #075는 2023년 산업안전보건 교육·점검을 정기 실시하였고, 재해 예방 KPI 달성 여부를 보고합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SAFETY_001",
+      "EHS_INCIDENT_001"
+    ],
+    "quantitative_data": {
+      "재해건수_건": 1,
+      "안전교육_이수율_퍼센트": 96,
+      "근로시간_대비_교육시간_시간": 0.46
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "HR담당 / 담당자-075",
+    "submission_date": "2023-04-20"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000004c",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440007",
+    "subsidiary_name": "오픈핸즈 주식회사",
+    "facility_name": "오픈핸즈 주식회사 ESG 거점 #076",
+    "report_year": 2024,
+    "category": "수자원·폐기물",
+    "category_embedding": null,
+    "description": "2024년 용수 사용·폐기물 분리배출 실적을 사업장 단위로 산정하여 제출하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_WATER_001",
+      "ENV_WASTE_001"
+    ],
+    "quantitative_data": {
+      "용수_재이용률_퍼센트": 52,
+      "폐기물_재활용률_퍼센트": 62
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "시설관리팀 / 담당자-076",
+    "submission_date": "2024-05-21"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000004d",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440008",
+    "subsidiary_name": "판교 IT캠퍼스",
+    "facility_name": "판교 IT캠퍼스 ESG 거점 #077",
+    "report_year": 2024,
+    "category": "에너지 효율",
+    "category_embedding": null,
+    "description": "판교 IT캠퍼스 ESG 거점 #077는 냉방·전력 모니터링으로 PUE·에너지 집약도를 개선하였으며, 2024년 실적을 포함합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_EFF_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "PUE_목표대비": 1.38,
+      "절감전력_MWh": 284
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "정보보호실 / 담당자-077",
+    "submission_date": "2024-06-22"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000004e",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440009",
+    "subsidiary_name": "판교 물류 캠퍼스",
+    "facility_name": "판교 물류 캠퍼스 ESG 거점 #078",
+    "report_year": 2023,
+    "category": "사이버·정보보호",
+    "category_embedding": null,
+    "description": "2023년 침해사고 대응 훈련 및 취약점 점검 결과를 집계하여 본 기여 데이터로 등록합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "GOV_CYBER_001",
+      "DP-DATA-PRIVACY"
+    ],
+    "quantitative_data": {
+      "보안점검_건수": 23,
+      "취약점_조치율_퍼센트": 95
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "지역사회협력팀 / 담당자-078",
+    "submission_date": "2023-07-23"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000004f",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440010",
+    "subsidiary_name": "서울 R&D 캠퍼스",
+    "facility_name": "서울 R&D 캠퍼스 ESG 거점 #079",
+    "report_year": 2024,
+    "category": "지역사회 공헌",
+    "category_embedding": null,
+    "description": "서울 R&D 캠퍼스는 서울 R&D 캠퍼스 ESG 거점 #079 인근 지역사회 프로그램(봉사·교육)을 운영하고 2024년 정량 실적을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_COMMUNITY_001",
+      "DP-SOCIAL-COMMUNITY"
+    ],
+    "quantitative_data": {
+      "봉사시간_합계_시간": 4080,
+      "기부금_및_물품_천원": 129200
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "ESG데이터담당 / 담당자-079",
+    "submission_date": "2024-08-24"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000050",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440011",
+    "subsidiary_name": "상암데이터 센터",
+    "facility_name": "상암데이터 센터 ESG 거점 #080",
+    "report_year": 2024,
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "description": "2024년 거버넌스 운영(이사회·위원회) 현황을 자회사 관점에서 요약 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-GOV-BOARD",
+      "DP-GOV-ESG-COMMITTEE"
+    ],
+    "quantitative_data": {
+      "이사회_개최_횟수": 5,
+      "사외이사_비율_퍼센트": 41
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "친환경인프라팀 / 담당자-080",
+    "submission_date": "2024-09-25"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000051",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440012",
+    "subsidiary_name": "수원 데이터센터",
+    "facility_name": "수원 데이터센터 ESG 거점 #081",
+    "report_year": 2023,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "2023년 수원 데이터센터 ESG 거점 #081에서 태양광·ESS 연계 등 재생에너지 도입을 확대하였으며, 모회사 SR 집계를 위해 발전량·설비용량을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 23234,
+      "설비용량_kW": 452
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "공급망지속가능팀 / 담당자-081",
+    "submission_date": "2023-10-26"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000052",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440013",
+    "subsidiary_name": "춘천 데이터센터",
+    "facility_name": "춘천 데이터센터 ESG 거점 #082",
+    "report_year": 2024,
+    "category": "온실가스",
+    "category_embedding": null,
+    "description": "춘천 데이터센터 ESG 거점 #082는 에너지 절감 과제 이행으로 2024년 온실가스 배출 강도를 관리하였고, 검증 가능한 수치를 본 항목에 기재합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_GHG_REDUCTION_002",
+      "DP-GHG-SCOPE2"
+    ],
+    "quantitative_data": {
+      "Scope2_위치기반_tCO2eq": 1879,
+      "전년대비_감축률_퍼센트": 7.5
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "EHS 데이터관리 / 담당자-082",
+    "submission_date": "2024-11-27"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000053",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440014",
+    "subsidiary_name": "동탄 데이터센터",
+    "facility_name": "동탄 데이터센터 ESG 거점 #083",
+    "report_year": 2024,
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "description": "동탄 데이터센터는 2024년 협력사 ESG 평가·실사 체계를 운영하였으며, 고위험사 개선 추적을 완료하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SUPPLY_CHAIN_ESG_001",
+      "DP-SOCIAL-SUPPLY-CHAIN"
+    ],
+    "quantitative_data": {
+      "평가대상_협력사_수": 164,
+      "현장실사_고위험_수": 19,
+      "개선과제_이행률_퍼센트": 70
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "HR담당 / 담당자-083",
+    "submission_date": "2024-12-28"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000054",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440015",
+    "subsidiary_name": "구미 데이터센터",
+    "facility_name": "구미 데이터센터 ESG 거점 #084",
+    "report_year": 2023,
+    "category": "인권·다양성",
+    "category_embedding": null,
+    "description": "2023년 구미 데이터센터 ESG 거점 #084 임직원 대상 인권·다양성 교육 및 고충 처리 채널 운영 실적을 집계 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-HR-DIVERSITY",
+      "SOC_HR_TRAINING_001"
+    ],
+    "quantitative_data": {
+      "필수교육_이수율_퍼센트": 98.5,
+      "교육시간_합계_시간": 15795
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "시설관리팀 / 담당자-084",
+    "submission_date": "2023-01-01"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000055",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440002",
+    "subsidiary_name": "미라콤아이앤씨 주식회사",
+    "facility_name": "미라콤아이앤씨 주식회사 ESG 거점 #085",
+    "report_year": 2024,
+    "category": "안전보건",
+    "category_embedding": null,
+    "description": "미라콤아이앤씨 주식회사 ESG 거점 #085는 2024년 산업안전보건 교육·점검을 정기 실시하였고, 재해 예방 KPI 달성 여부를 보고합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SAFETY_001",
+      "EHS_INCIDENT_001"
+    ],
+    "quantitative_data": {
+      "재해건수_건": 1,
+      "안전교육_이수율_퍼센트": 98,
+      "근로시간_대비_교육시간_시간": 0.36
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "정보보호실 / 담당자-085",
+    "submission_date": "2024-02-02"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000056",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440003",
+    "subsidiary_name": "시큐아이 주식회사",
+    "facility_name": "시큐아이 주식회사 ESG 거점 #086",
+    "report_year": 2024,
+    "category": "수자원·폐기물",
+    "category_embedding": null,
+    "description": "2024년 용수 사용·폐기물 분리배출 실적을 사업장 단위로 산정하여 제출하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_WATER_001",
+      "ENV_WASTE_001"
+    ],
+    "quantitative_data": {
+      "용수_재이용률_퍼센트": 22,
+      "폐기물_재활용률_퍼센트": 72
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "지역사회협력팀 / 담당자-086",
+    "submission_date": "2024-03-03"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000057",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440004",
+    "subsidiary_name": "에스코어 주식회사",
+    "facility_name": "에스코어 주식회사 ESG 거점 #087",
+    "report_year": 2023,
+    "category": "에너지 효율",
+    "category_embedding": null,
+    "description": "에스코어 주식회사 ESG 거점 #087는 냉방·전력 모니터링으로 PUE·에너지 집약도를 개선하였으며, 2023년 실적을 포함합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_EFF_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "PUE_목표대비": 1.48,
+      "절감전력_MWh": 314
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "ESG데이터담당 / 담당자-087",
+    "submission_date": "2023-04-04"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000058",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440005",
+    "subsidiary_name": "멀티캠퍼스 주식회사",
+    "facility_name": "멀티캠퍼스 주식회사 ESG 거점 #088",
+    "report_year": 2024,
+    "category": "사이버·정보보호",
+    "category_embedding": null,
+    "description": "2024년 침해사고 대응 훈련 및 취약점 점검 결과를 집계하여 본 기여 데이터로 등록합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "GOV_CYBER_001",
+      "DP-DATA-PRIVACY"
+    ],
+    "quantitative_data": {
+      "보안점검_건수": 13,
+      "취약점_조치율_퍼센트": 93
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "친환경인프라팀 / 담당자-088",
+    "submission_date": "2024-05-05"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000059",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440006",
+    "subsidiary_name": "엠로 주식회사",
+    "facility_name": "엠로 주식회사 ESG 거점 #089",
+    "report_year": 2024,
+    "category": "지역사회 공헌",
+    "category_embedding": null,
+    "description": "엠로 주식회사는 엠로 주식회사 ESG 거점 #089 인근 지역사회 프로그램(봉사·교육)을 운영하고 2024년 정량 실적을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_COMMUNITY_001",
+      "DP-SOCIAL-COMMUNITY"
+    ],
+    "quantitative_data": {
+      "봉사시간_합계_시간": 4490,
+      "기부금_및_물품_천원": 139100
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "공급망지속가능팀 / 담당자-089",
+    "submission_date": "2024-06-06"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000005a",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440007",
+    "subsidiary_name": "오픈핸즈 주식회사",
+    "facility_name": "오픈핸즈 주식회사 ESG 거점 #090",
+    "report_year": 2023,
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "description": "2023년 거버넌스 운영(이사회·위원회) 현황을 자회사 관점에서 요약 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-GOV-BOARD",
+      "DP-GOV-ESG-COMMITTEE"
+    ],
+    "quantitative_data": {
+      "이사회_개최_횟수": 7,
+      "사외이사_비율_퍼센트": 51
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "EHS 데이터관리 / 담당자-090",
+    "submission_date": "2023-07-07"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000005b",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440008",
+    "subsidiary_name": "판교 IT캠퍼스",
+    "facility_name": "판교 IT캠퍼스 ESG 거점 #091",
+    "report_year": 2024,
+    "category": "재생에너지",
+    "category_embedding": null,
+    "description": "2024년 판교 IT캠퍼스 ESG 거점 #091에서 태양광·ESS 연계 등 재생에너지 도입을 확대하였으며, 모회사 SR 집계를 위해 발전량·설비용량을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_SOLAR_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "태양광_발전량_kWh": 24604,
+      "설비용량_kW": 62
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "HR담당 / 담당자-091",
+    "submission_date": "2024-08-08"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000005c",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440009",
+    "subsidiary_name": "판교 물류 캠퍼스",
+    "facility_name": "판교 물류 캠퍼스 ESG 거점 #092",
+    "report_year": 2024,
+    "category": "온실가스",
+    "category_embedding": null,
+    "description": "판교 물류 캠퍼스 ESG 거점 #092는 에너지 절감 과제 이행으로 2024년 온실가스 배출 강도를 관리하였고, 검증 가능한 수치를 본 항목에 기재합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_GHG_REDUCTION_002",
+      "DP-GHG-SCOPE2"
+    ],
+    "quantitative_data": {
+      "Scope2_위치기반_tCO2eq": 2009,
+      "전년대비_감축률_퍼센트": 6.5
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "시설관리팀 / 담당자-092",
+    "submission_date": "2024-09-09"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000005d",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440010",
+    "subsidiary_name": "서울 R&D 캠퍼스",
+    "facility_name": "서울 R&D 캠퍼스 ESG 거점 #093",
+    "report_year": 2023,
+    "category": "협력회사 ESG 관리",
+    "category_embedding": null,
+    "description": "서울 R&D 캠퍼스는 2023년 협력사 ESG 평가·실사 체계를 운영하였으며, 고위험사 개선 추적을 완료하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SUPPLY_CHAIN_ESG_001",
+      "DP-SOCIAL-SUPPLY-CHAIN"
+    ],
+    "quantitative_data": {
+      "평가대상_협력사_수": 174,
+      "현장실사_고위험_수": 29,
+      "개선과제_이행률_퍼센트": 80
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "정보보호실 / 담당자-093",
+    "submission_date": "2023-10-10"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000005e",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440011",
+    "subsidiary_name": "상암데이터 센터",
+    "facility_name": "상암데이터 센터 ESG 거점 #094",
+    "report_year": 2024,
+    "category": "인권·다양성",
+    "category_embedding": null,
+    "description": "2024년 상암데이터 센터 ESG 거점 #094 임직원 대상 인권·다양성 교육 및 고충 처리 채널 운영 실적을 집계 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-HR-DIVERSITY",
+      "SOC_HR_TRAINING_001"
+    ],
+    "quantitative_data": {
+      "필수교육_이수율_퍼센트": 99.5,
+      "교육시간_합계_시간": 17065
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "지역사회협력팀 / 담당자-094",
+    "submission_date": "2024-11-11"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-00000000005f",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440012",
+    "subsidiary_name": "수원 데이터센터",
+    "facility_name": "수원 데이터센터 ESG 거점 #095",
+    "report_year": 2024,
+    "category": "안전보건",
+    "category_embedding": null,
+    "description": "수원 데이터센터 ESG 거점 #095는 2024년 산업안전보건 교육·점검을 정기 실시하였고, 재해 예방 KPI 달성 여부를 보고합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_SAFETY_001",
+      "EHS_INCIDENT_001"
+    ],
+    "quantitative_data": {
+      "재해건수_건": 1,
+      "안전교육_이수율_퍼센트": 96,
+      "근로시간_대비_교육시간_시간": 0.46
+    },
+    "data_source": "내부 웹폼",
+    "submitted_by": "ESG데이터담당 / 담당자-095",
+    "submission_date": "2024-12-12"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000060",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440013",
+    "subsidiary_name": "춘천 데이터센터",
+    "facility_name": "춘천 데이터센터 ESG 거점 #096",
+    "report_year": 2023,
+    "category": "수자원·폐기물",
+    "category_embedding": null,
+    "description": "2023년 용수 사용·폐기물 분리배출 실적을 사업장 단위로 산정하여 제출하였습니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_WATER_001",
+      "ENV_WASTE_001"
+    ],
+    "quantitative_data": {
+      "용수_재이용률_퍼센트": 32,
+      "폐기물_재활용률_퍼센트": 82
+    },
+    "data_source": "자회사 제출",
+    "submitted_by": "친환경인프라팀 / 담당자-096",
+    "submission_date": "2023-01-13"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000061",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440014",
+    "subsidiary_name": "동탄 데이터센터",
+    "facility_name": "동탄 데이터센터 ESG 거점 #097",
+    "report_year": 2024,
+    "category": "에너지 효율",
+    "category_embedding": null,
+    "description": "동탄 데이터센터 ESG 거점 #097는 냉방·전력 모니터링으로 PUE·에너지 집약도를 개선하였으며, 2024년 실적을 포함합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "ENV_ENERGY_EFF_001",
+      "ENV_GHG_REDUCTION_002"
+    ],
+    "quantitative_data": {
+      "PUE_목표대비": 1.58,
+      "절감전력_MWh": 344
+    },
+    "data_source": "EMS 연동",
+    "submitted_by": "공급망지속가능팀 / 담당자-097",
+    "submission_date": "2024-02-14"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000062",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440015",
+    "subsidiary_name": "구미 데이터센터",
+    "facility_name": "구미 데이터센터 ESG 거점 #098",
+    "report_year": 2024,
+    "category": "사이버·정보보호",
+    "category_embedding": null,
+    "description": "2024년 침해사고 대응 훈련 및 취약점 점검 결과를 집계하여 본 기여 데이터로 등록합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "GOV_CYBER_001",
+      "DP-DATA-PRIVACY"
+    ],
+    "quantitative_data": {
+      "보안점검_건수": 23,
+      "취약점_조치율_퍼센트": 91
+    },
+    "data_source": "SRM 포털 집계",
+    "submitted_by": "EHS 데이터관리 / 담당자-098",
+    "submission_date": "2024-03-15"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000063",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440002",
+    "subsidiary_name": "미라콤아이앤씨 주식회사",
+    "facility_name": "미라콤아이앤씨 주식회사 ESG 거점 #099",
+    "report_year": 2023,
+    "category": "지역사회 공헌",
+    "category_embedding": null,
+    "description": "미라콤아이앤씨 주식회사는 미라콤아이앤씨 주식회사 ESG 거점 #099 인근 지역사회 프로그램(봉사·교육)을 운영하고 2023년 정량 실적을 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "SOC_COMMUNITY_001",
+      "DP-SOCIAL-COMMUNITY"
+    ],
+    "quantitative_data": {
+      "봉사시간_합계_시간": 4900,
+      "기부금_및_물품_천원": 149000
+    },
+    "data_source": "HR 시스템",
+    "submitted_by": "HR담당 / 담당자-099",
+    "submission_date": "2023-04-16"
+  },
+  {
+    "id": "f0e0d0c0-b0a1-4002-8003-000000000064",
+    "company_id": "550e8400-e29b-41d4-a716-446655440001",
+    "contributor_company_id": "550e8400-e29b-41d4-a716-446655440003",
+    "subsidiary_name": "시큐아이 주식회사",
+    "facility_name": "시큐아이 주식회사 ESG 거점 #100",
+    "report_year": 2024,
+    "category": "이사회·지배구조",
+    "category_embedding": null,
+    "description": "2024년 거버넌스 운영(이사회·위원회) 현황을 자회사 관점에서 요약 제출합니다.",
+    "description_embedding": null,
+    "related_dp_ids": [
+      "DP-GOV-BOARD",
+      "DP-GOV-ESG-COMMITTEE"
+    ],
+    "quantitative_data": {
+      "이사회_개최_횟수": 9,
+      "사외이사_비율_퍼센트": 41
+    },
+    "data_source": "EHS 데이터관리",
+    "submitted_by": "시설관리팀 / 담당자-100",
+    "submission_date": "2024-05-17"
+  }
+]

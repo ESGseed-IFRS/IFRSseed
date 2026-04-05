@@ -5,10 +5,7 @@ import uuid
 from dataclasses import dataclass
 from typing import Any, Sequence
 
-try:
-    from ifrs_agent.database.base import get_session
-except ImportError:
-    from backend.domain.v1.ifrs_agent.database.base import get_session
+from backend.core.db import get_session
 
 from backend.domain.v1.ghg_calculation.models.bases import STAGING_MODEL_MAP
 

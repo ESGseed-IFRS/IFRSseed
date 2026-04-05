@@ -124,7 +124,7 @@ async def _save_metadata_node(state: SRWorkflowState) -> Dict[str, Any]:
 
 def _load_index_page_numbers_from_db(report_id: str) -> list:
     """report_id로 DB에서 index_page_numbers 조회 (only_step 호출 시 사용)."""
-    from backend.domain.v1.ifrs_agent.database.base import get_session
+    from backend.core.db import get_session
     from backend.domain.v1.data_integration.models.bases import HistoricalSRReport
 
     session = get_session()

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import re
+from collections import Counter
 from typing import Any, Dict, List, Optional, Set, Tuple
 from urllib.parse import urlparse
 from loguru import logger
@@ -13,6 +14,39 @@ class ToolUtils:
     
     # 서브도메인 제외 목록
     SUB_DROP = frozenset(("www", "admin", "api", "m", "app", "cdn", "static", "mail", "support"))
+
+    # Tavily 상위 결과에 섞이는 검색·포털·SNS 등(코어 도메인) — 회사 사이트 후보에서 제외
+    _AGGREGATOR_CORES = frozenset(
+        {
+            "google",
+            "gstatic",
+            "googleusercontent",
+            "googleapis",
+            "youtube",
+            "youtu",
+            "naver",
+            "daum",
+            "kakao",
+            "bing",
+            "microsoft",
+            "facebook",
+            "instagram",
+            "linkedin",
+            "twitter",
+            "wikipedia",
+            "wikimedia",
+            "medium",
+            "github",
+            "tavily",
+            "duckduckgo",
+            "yahoo",
+            "reddit",
+            "pinterest",
+            "tistory",
+            "blogspot",
+            "wordpress",
+        }
+    )
 
     # 회사명 정규화 시 제거할 접미어
     _KO_CORP_SUFFIXES = ("주식회사", "(주)", "㈜")
@@ -71,6 +105,93 @@ class ToolUtils:
         
         return preferred + rest
     
+    @classmethod
+    def infer_allowed_domains_from_tavily_results(
+        cls,
+        tool_result: dict,
+        *,
+        max_results: int = 10,
+    ) -> Set[str]:
+        """
+        DB `website`가 없을 때: Tavily organic 결과 URL에서 가장 많이 등장하는 등록상 코어 도메인을
+        '회사 공식 사이트'로 보고, 해당 코어에 속한 호스트·코어 문자열을 허용 집합으로 반환한다.
+
+        - 상위 max_results개 URL만 사용
+        - 검색/포털/SNS 도메인(_AGGREGATOR_CORES)은 후보에서 제외
+        - 동률이면 검색 순위가 더 빠른(먼저 나온) 코어를 선택
+        """
+        if not isinstance(tool_result, dict):
+            return set()
+
+        results: Optional[List[Any]] = tool_result.get("results")
+        if results is None and "result" in tool_result:
+            raw = tool_result["result"]
+            if isinstance(raw, str):
+                try:
+                    inner = json.loads(raw)
+                except Exception:
+                    inner = None
+                results = inner.get("results") if isinstance(inner, dict) else None
+            elif isinstance(raw, dict):
+                results = raw.get("results")
+
+        if not isinstance(results, list):
+            return set()
+
+        urls_ordered: List[str] = []
+        for r in results:
+            if isinstance(r, dict) and r.get("url"):
+                urls_ordered.append(str(r["url"]).strip())
+            if len(urls_ordered) >= max_results:
+                break
+
+        if not urls_ordered:
+            return set()
+
+        # (순서, 코어) — 집계용 노이즈 제외
+        cores_in_order: List[Tuple[int, str]] = []
+        for i, u in enumerate(urls_ordered):
+            try:
+                host = cls.normalize_host(urlparse(u).netloc or "")
+                core = cls.normalize_core_domain(host)
+                if not core or core in cls._AGGREGATOR_CORES:
+                    continue
+                cores_in_order.append((i, core))
+            except Exception:
+                continue
+
+        if not cores_in_order:
+            return set()
+
+        counts = Counter(c for _, c in cores_in_order)
+        best_count = max(counts.values())
+        candidates = [c for c, n in counts.items() if n == best_count]
+        # 동률: 가장 먼저 등장한 코어
+        winner_core = ""
+        for _, c in cores_in_order:
+            if c in candidates:
+                winner_core = c
+                break
+        if not winner_core:
+            return set()
+
+        allowed: Set[str] = {winner_core}
+        for u in urls_ordered:
+            try:
+                host = cls.normalize_host(urlparse(u).netloc or "")
+                core = cls.normalize_core_domain(host)
+                if core == winner_core and host:
+                    allowed.add(host)
+            except Exception:
+                continue
+
+        logger.info(
+            "[ToolUtils] Tavily 결과 기반 허용 도메인 추정: winner_core={} hosts/cores={}",
+            winner_core,
+            sorted(allowed),
+        )
+        return allowed
+
     @classmethod
     def normalize_core_domain(cls, host: str) -> str:
         """서브도메인·TLD를 제외한 코어 도메인만 반환"""

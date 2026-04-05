@@ -45,7 +45,7 @@ def test_enrich_fills_when_mocked(monkeypatch: pytest.MonkeyPatch) -> None:
         return np.ones((n, 1024), dtype=np.float32)
 
     monkeypatch.setattr(
-        "backend.domain.v1.ifrs_agent.service.embedding_service.EmbeddingService.generate_embeddings",
+        "backend.domain.shared.tool.sr_report.images.sr_image_caption_embedding.EmbeddingService.generate_embeddings",
         fake_generate,
     )
     bodies = [

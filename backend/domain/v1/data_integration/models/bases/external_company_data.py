@@ -10,10 +10,7 @@ from sqlalchemy.sql import func
 
 from backend.domain.v1.esg_data.models.bases._embedding import vector_column
 
-try:
-    from ifrs_agent.database.base import Base
-except ImportError:
-    from backend.domain.v1.ifrs_agent.database.base import Base
+from backend.core.db import Base
 
 
 class ExternalCompanyData(Base):

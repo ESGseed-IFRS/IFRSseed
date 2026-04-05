@@ -3,6 +3,7 @@
 ## 📚 관련 문서
 
 이 문서를 읽기 전/후에 다음 문서를 함께 참고하세요:
+- [REVISED_WORKFLOW.md](./REVISED_WORKFLOW.md) - **노드별 LLM·임베딩(BGE-M3) 운영 기준** (§3.1–§3.1.1)
 - [ARCHITECTURE.md](./ARCHITECTURE.md) - 시스템 아키텍처 및 워크플로우 이해
 - [DATA_ONTOLOGY.md](./DATA_ONTOLOGY.md) - Data Point 구조 및 온톨로지 설계
 - [DATA_COLLECTION.md](./DATA_COLLECTION.md) - 데이터 수집 및 파싱 방법
@@ -14,25 +15,25 @@
 
 | 구성 요소 | 모델 | 학습 여부 | 주요 역할 |
 |----------|------|----------|----------|
-| **Supervisor** | Llama 3.3 70B (Groq) | ❌ | 감사관 페르소나, 워크플로우 제어, 검증 및 감사 통합 |
-| **RAG Node** | **Llama 3.1 70B Tool-Use** (Groq) | ❌ | 데이터 추출 및 검색 (Tool Calling 최적화) |
-| **Gen Node** | EXAONE 3.0 7.8B | ✅ LoRA | IFRS 문체 문단 생성 |
-| **Design Node** | Llama 3.3 70B (Groq) | ❌ | 시각화 디자인 추천 (핵심 노드) |
-| **Embedding Model** | BGE-M3 | ✅ Contrastive | ESG 전문 검색 |
+| **Supervisor** | Gemini 3.1 Pro | ❌ | 감사관 페르소나, 워크플로우 제어, 검증 및 감사 통합 |
+| **RAG Node** | Gemini 2.5 Pro (Tool/함수 호출) | ❌ | 데이터 추출 및 검색 (Tool Calling) |
+| **Gen Node** | GPT-5 mini | ❌ | IFRS 문체 문단 생성 (고빈도 호출·비용 최적화) |
+| **Design Node** | Gemini 2.5 Pro | ❌ | 시각화 디자인 추천 (핵심 노드) |
+| **Embedding Model** | BGE-M3 (현행 운영) | ✅ Contrastive | ESG 전문 검색, pgvector 1024차원 정합 |
 
 ### 1.1 모델 선택 전략
 
 | 노드 | 권장 모델 | 대안 | 선택 기준 |
 |------|----------|------|----------|
-| **Supervisor** | Llama 3.3 70B (Groq) | Claude 3.5 Sonnet | 복잡한 의사결정, 감사 및 검증 통합 |
-| **RAG Node** | **Llama 3.1 70B Tool-Use** | Llama 3.3 70B | Tool Calling 성능 우수, 비용 효율적 |
-| **Gen Node** | EXAONE 3.0 7.8B (LoRA) | Llama 3.1 8B | 한국어 문체 최적화 |
-| **Design Node** | Llama 3.3 70B (Groq) | GPT-4o | 창의적 디자인 추천 |
+| **Supervisor** | Gemini 3.1 Pro | 동급 추론 모델 | 복잡한 의사결정, 감사 및 검증 통합 |
+| **RAG Node** | Gemini 2.5 Pro | 동일 제품군 Tool 지원 모델 | Tool Calling·구조화 출력 |
+| **Gen Node** | GPT-5 mini | 동급 소형 생성 모델 | 호출 빈도·비용·지연 |
+| **Design Node** | Gemini 2.5 Pro | 멀티모달 Pro급 | 창의적 디자인 추천 |
 
 **RAG Node 모델 선택 이유:**
-- **Llama 3.1 70B Tool-Use 버전 권장**: Tool Calling 성능이 3.3보다 우수 (함수 호출 정확도 ↑)
+- **Gemini 2.5 Pro**: 함수/도구 호출과 긴 컨텍스트 활용에 유리
 - 검색 쿼리 최적화, DP 추출 시 구조화된 출력에 유리
-- 비용: Groq 기준 동일 (무료 티어 활용 가능)
+- 상세 노드 분해·배치는 [REVISED_WORKFLOW.md §3.1](./REVISED_WORKFLOW.md#31-노드-구성-개요) (`c_rag`·`dp_rag`·`aggregation_node`와 동일 계열)
 
 ---
 
@@ -42,7 +43,7 @@
 
 Supervisor는 **감사관(Auditor)** 페르소나로 동작하며, 전체 워크플로우를 중앙에서 제어합니다. **노드를 직접 호출하고 제어하는 진정한 오케스트레이터** 역할을 수행합니다.
 
-**모델**: Llama 3.3 70B Versatile (Groq API)
+**모델**: Gemini 3.1 Pro (Google AI API 등 배포 환경에 매핑)
 
 **역할**:
 - 사용자 요청 분석 및 필요 DP 식별
@@ -437,7 +438,7 @@ IFRS_RULEBOOK = {
 
 RAG Node는 **데이터 추출가** 페르소나로 동작하며, **구조화된 데이터와 비구조화된 데이터를 모두 수집**하여 DP 단위로 구조화합니다.
 
-**모델**: **Llama 3.1 70B Tool-Use** (Groq API) - Tool Calling 성능 최적화
+**모델**: **Gemini 2.5 Pro** (Tool/함수 호출) — [REVISED_WORKFLOW.md](./REVISED_WORKFLOW.md)의 `c_rag`·`dp_rag`·`aggregation_node`와 동일 계열
 
 **역할**:
 - **구조화된 데이터 수집**: DB에서 직접 조회 (ghg_emission_results, environmental_data 등)
@@ -1340,7 +1341,7 @@ class FactSheetGenerator:
 
 Gen Node는 **전문 작가** 페르소나로 동작하며, IFRS 문체로 보고서 문단을 생성합니다.
 
-**모델**: EXAONE 3.0 7.8B Instruct (LoRA 학습)
+**모델**: **GPT-5 mini** — 초안·재시도 등 호출 빈도가 높아 비용·지연 완화 (문체·용어는 프롬프트·스타일 가이드로 보정)
 
 **역할**:
 - IFRS 전문 문체 적용
@@ -2026,9 +2027,9 @@ class YearlyDataRecommender:
 - **코드 레벨**: 검증 로직과 감사 로직을 메서드 단위로 분리하여 모듈화 유지
 - **Star Topology 완성**: 모든 노드가 Supervisor를 통해서만 통신
 
-**모델**: 
-- **Llama 3.3 70B (Groq API) 하나로 통일** - 감사 및 검증 모두 수행
-- 정확도 향상을 위해 고성능 모델 사용 (그린워싱 탐지 정확도 중요)
+**모델**:
+- **Gemini 3.1 Pro** — 감사·검증 판정 품질(그린워싱·일관성 등). [REVISED_WORKFLOW.md](./REVISED_WORKFLOW.md)의 `validator_node`와 동급 역할 시 동일 선택
+- (구현 변형) Supervisor에 검증이 통합된 경우에도 동일 고역량 모델 권장
 
 **역할**:
 - 입력 데이터 범위 검증
@@ -2284,7 +2285,7 @@ class DisclosureComparator:
 
 Design Node는 **브랜드 디자이너** 페르소나로 동작하며, 기업 BI/CI를 반영한 시각화 가이드를 제공합니다.
 
-**모델**: Llama 3.3 70B (Groq API)
+**모델**: Gemini 2.5 Pro
 
 **역할**:
 - 기업 BI 컬러/스타일 분석
@@ -2492,9 +2493,9 @@ design_recommendation = {{
 
 ### 6.1 개요
 
-BGE-M3는 ESG 전문 용어에 최적화된 임베딩 모델입니다.
+BGE-M3는 ESG 전문 용어에 최적화된 임베딩 모델이며, **현행 운영**에서 Dense 벡터 생성에 사용한다.
 
-**모델**: BAAI/bge-m3 (Contrastive Learning 튜닝)
+**모델**: BAAI/bge-m3 (Contrastive Learning 튜닝, **현행** · pgvector `VECTOR(1024)` 정합)
 
 **역할**:
 - RAG 하이브리드 검색의 Dense 벡터 생성
