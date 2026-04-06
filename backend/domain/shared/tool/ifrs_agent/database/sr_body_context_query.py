@@ -176,25 +176,40 @@ async def query_sr_body_by_context(
         return None
 
 
-async def query_sr_body_by_page(
-    company_id: str,
-    year: int,
-    page_number: int
-) -> Optional[Dict[str, Any]]:
+async def query_sr_body_by_page(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     """
-    페이지 번호로 SR 본문 조회 (보조 함수).
-    
+    페이지 번호로 SR 본문 조회 (Infra 툴 — params dict).
+
     Args:
-        company_id: 회사 UUID
-        year: 보고 연도
-        page_number: 페이지 번호
-    
+        params: company_id (str), year (int), page_number (int)
+
     Returns:
-        SR 본문 데이터 또는 None
+        {
+            "body": str (content_text),
+            "page_number": int,
+            "report_id": str,
+            "subtitle": ...,
+            "toc_path": ...,
+            ... 기타 컬럼
+        }
+        또는 None
     """
+    company_id = params.get("company_id")
+    year = params.get("year")
+    page_number = params.get("page_number")
+    if company_id is None or year is None or page_number is None:
+        logger.warning("query_sr_body_by_page: 필수 파라미터 누락")
+        return None
+    try:
+        y = int(year)
+        pn = int(page_number)
+    except (TypeError, ValueError):
+        logger.warning("query_sr_body_by_page: year/page_number 정수 변환 실패")
+        return None
+
     try:
         conn = await connect_ifrs_asyncpg()
-        
+
         query = """
             SELECT 
                 b.id,
@@ -212,13 +227,21 @@ async def query_sr_body_by_page(
               AND b.page_number = $3
             LIMIT 1
         """
-        row = await conn.fetchrow(query, company_id, year, page_number)
+        row = await conn.fetchrow(query, company_id, y, pn)
         await conn.close()
-        
-        if row:
-            return dict(row)
-        return None
-    
+
+        if not row:
+            return None
+
+        d = dict(row)
+        rid = d.get("report_id")
+        if rid is not None and hasattr(rid, "hex"):
+            d["report_id"] = str(rid)
+        # c_rag 벡터 결과와 동일하게 body 키 제공
+        if "content_text" in d:
+            d["body"] = d["content_text"]
+        return d
+
     except Exception as e:
         logger.error("query_sr_body_by_page failed: %s", e, exc_info=True)
         return None

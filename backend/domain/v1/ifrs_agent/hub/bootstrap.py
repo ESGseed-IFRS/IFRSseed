@@ -11,7 +11,8 @@ from backend.domain.v1.ifrs_agent.spokes.infra import InfraLayer
 from backend.domain.v1.ifrs_agent.spokes.agents.c_rag import make_c_rag_handler
 from backend.domain.v1.ifrs_agent.spokes.agents.dp_rag import make_dp_rag_handler
 from backend.domain.v1.ifrs_agent.spokes.agents.aggregation_node import make_aggregation_node_handler
-from backend.domain.v1.ifrs_agent.spokes.agents.stubs import gen_node_stub, validator_node_stub
+from backend.domain.v1.ifrs_agent.spokes.agents.gen_node import make_gen_node_handler
+from backend.domain.v1.ifrs_agent.spokes.agents.stubs import validator_node_stub
 
 logger = logging.getLogger("ifrs_agent.bootstrap")
 
@@ -54,8 +55,10 @@ def register_agents(infra: InfraLayer) -> None:
     # AGGREGATION_NODE 에이전트 등록
     infra.agent_registry.register("aggregation_node", make_aggregation_node_handler(infra))
 
-    # 임시 스텁: 전체 create 플로우·Postman 검증용 (실제 노드 구현 시 교체)
-    infra.agent_registry.register("gen_node", gen_node_stub)
+    # Gen Node (실제 구현)
+    infra.agent_registry.register("gen_node", make_gen_node_handler(infra))
+    
+    # Validator Node (임시 스텁)
     infra.agent_registry.register("validator_node", validator_node_stub)
     
     logger.info(f"Agents registered: {infra.agent_registry.list_agents()}")
@@ -80,6 +83,7 @@ def register_tools(infra: InfraLayer) -> None:
         query_ucm_by_dp,
         query_ucm_direct,
         query_rulebook,
+        query_rulebook_by_primary_dp_id,
         query_unmapped_dp,
         query_dp_real_data,
         query_company_info,
@@ -115,6 +119,9 @@ def register_tools(infra: InfraLayer) -> None:
     infra.tool_registry.register("query_ucm_by_dp", query_ucm_by_dp)
     infra.tool_registry.register("query_ucm_direct", query_ucm_direct)  # UCM ID로 직접 조회
     infra.tool_registry.register("query_rulebook", query_rulebook)
+    infra.tool_registry.register(
+        "query_rulebook_by_primary_dp_id", query_rulebook_by_primary_dp_id
+    )
     infra.tool_registry.register("query_unmapped_dp", query_unmapped_dp)
     infra.tool_registry.register("query_dp_real_data", query_dp_real_data)
     infra.tool_registry.register("query_company_info", query_company_info)

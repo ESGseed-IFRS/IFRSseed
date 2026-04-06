@@ -20,6 +20,8 @@ class AgentRuntimeConfig(TypedDict, total=False):
     supervisor_model: str
     c_rag_llm_model: str
     dp_rag_gemini_model: str
+    dp_rag_narrative_enrichment: bool
+    gen_node_model: str
     openai_api_key: str
     gemini_api_key: str
 
@@ -33,6 +35,8 @@ def agent_runtime_config_from_settings(settings: Settings) -> AgentRuntimeConfig
         "supervisor_model": settings.supervisor_model,
         "c_rag_llm_model": settings.c_rag_llm_model,
         "dp_rag_gemini_model": settings.dp_rag_gemini_model,
+        "dp_rag_narrative_enrichment": settings.dp_rag_narrative_enrichment,
+        "gen_node_model": settings.gen_node_model,
         "openai_api_key": settings.openai_api_key,
         "gemini_api_key": settings.gemini_api_key,
     }

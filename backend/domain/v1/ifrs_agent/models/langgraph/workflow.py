@@ -69,9 +69,13 @@ def build_workflow(infra: InfraLayer):
                 attempt=result.get("metadata", {}).get("attempts", 0) - 1,  # 0부터 시작하도록 조정
                 ref_data=refs.get("sr_data", {}),
                 fact_data=refs.get("fact_data", {}),
+                fact_data_by_dp=refs.get("fact_data_by_dp", {}),
                 agg_data=result.get("agg_data", refs.get("agg_data", {})),
                 mode=result.get("metadata", {}).get("mode", "draft"),
                 error=result.get("error"),
+                gen_input=result.get("gen_input") or {},
+                data_selection=result.get("data_selection") or {},
+                prompt_interpretation=result.get("prompt_interpretation") or {},
             )
             
             logger.info(

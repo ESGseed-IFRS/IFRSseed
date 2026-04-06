@@ -32,6 +32,8 @@ async def query_dp_metadata(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
             "dp_type": str,  # 'quantitative', 'qualitative', 'narrative', 'binary'
             "unit": str,
             "validation_rules": dict,
+            "child_dps": list,  # Phase 1.5: 하위 DP 목록
+            "parent_indicator": str,  # Phase 1.5: 상위 DP ID
         }
     """
     dp_id = params["dp_id"]
@@ -52,7 +54,9 @@ async def query_dp_metadata(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                 category,
                 dp_type,
                 unit::text as unit,
-                validation_rules
+                validation_rules,
+                child_dps,
+                parent_indicator
             FROM data_points
             WHERE dp_id = $1
             LIMIT 1
@@ -257,6 +261,75 @@ async def query_rulebook(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
 
     except Exception as e:
         logger.error("query_rulebook failed: %s", e, exc_info=True)
+        raise
+
+
+async def query_rulebook_by_primary_dp_id(
+    params: Dict[str, Any],
+) -> Optional[Dict[str, Any]]:
+    """
+    rulebooks 테이블에서 primary_dp_id로 조회 (UCM에 primary_rulebook_id가 없을 때 fallback).
+
+    동일 DP에 여러 rulebook이 있으면 is_primary 우선, 그다음 version, rulebook_id 순으로 1건 선택.
+
+    Args:
+        params: {"dp_id": str} — data_points.dp_id와 rulebooks.primary_dp_id가 일치하는 행
+
+    Returns:
+        query_rulebook과 동일 스키마의 dict, 없으면 None.
+    """
+    dp_id = (params.get("dp_id") or "").strip()
+    if not dp_id:
+        return None
+
+    logger.info("query_rulebook_by_primary_dp_id: dp_id=%s", dp_id)
+
+    try:
+        conn = await connect_ifrs_asyncpg()
+
+        query = """
+            SELECT
+                rulebook_id,
+                standard_id,
+                section_name,
+                rulebook_title,
+                rulebook_content,
+                paragraph_reference,
+                disclosure_requirement::text AS disclosure_requirement,
+                validation_rules,
+                conflicts_with,
+                mapping_notes,
+                key_terms,
+                related_concepts,
+                primary_dp_id,
+                related_dp_ids,
+                version,
+                effective_date,
+                is_primary
+            FROM rulebooks
+            WHERE primary_dp_id = $1
+              AND COALESCE(is_active, true) = true
+            ORDER BY
+                is_primary DESC NULLS LAST,
+                version DESC NULLS LAST,
+                rulebook_id
+            LIMIT 1
+        """
+
+        row = await conn.fetchrow(query, dp_id)
+        await conn.close()
+
+        if not row:
+            return None
+
+        out = dict(row)
+        ed = out.get("effective_date")
+        if ed is not None and hasattr(ed, "isoformat"):
+            out["effective_date"] = ed.isoformat()
+        return out
+
+    except Exception as e:
+        logger.error("query_rulebook_by_primary_dp_id failed: %s", e, exc_info=True)
         raise
 
 

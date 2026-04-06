@@ -31,6 +31,7 @@ def _build_create_references(final_state: Dict[str, Any]) -> Dict[str, Any]:
         "sr_pages": sr_pages,
         "sr_data": ref if isinstance(ref, dict) else {},
         "fact_data": final_state.get("fact_data", {}),
+        "fact_data_by_dp": final_state.get("fact_data_by_dp", {}),
         "agg_data": final_state.get("agg_data", {}),
     }
 
@@ -41,7 +42,19 @@ class CreateReportRequest(BaseModel):
     """SR 초안 생성 요청"""
     company_id: str = Field(..., description="기업 ID")
     category: str = Field(..., description="카테고리 (예: '재생에너지')")
-    dp_id: Optional[str] = Field(None, description="Data Point ID (선택)")
+    dp_id: Optional[str] = Field(None, description="Data Point ID (선택, 단일)")
+    dp_ids: Optional[List[str]] = Field(
+        None,
+        description="Data Point ID 목록(1개 이상, Phase 3 예정 — 현재는 첫 항목이 dp_id로 전달)",
+    )
+    prompt: Optional[str] = Field(
+        None,
+        description="자유 프롬프트(Phase 0: 검색 의도·초점 해석, 전년/전전년 페이지 정규식 추출)",
+    )
+    ref_pages: Optional[Dict[str, Optional[int]]] = Field(
+        None,
+        description='직접 참조할 SR 페이지 (예: {"2024": 89, "2023": 75})',
+    )
     max_retries: int = Field(3, ge=1, le=5, description="최대 재시도 횟수")
 
 
@@ -58,9 +71,25 @@ class WorkflowResponse(BaseModel):
     status: str = Field(..., description="상태 (success, failed, max_retries_exceeded)")
     generated_text: str = Field("", description="생성된 SR 본문")
     validation: Dict[str, Any] = Field(default_factory=dict, description="검증 결과")
-    references: Dict[str, Any] = Field(default_factory=dict, description="참조 데이터")
+    references: Dict[str, Any] = Field(default_factory=dict, description="참조 데이터 (노드 원본)")
     metadata: Dict[str, Any] = Field(default_factory=dict, description="메타데이터")
     error: Optional[str] = Field(None, description="에러 메시지")
+    gen_input: Optional[Dict[str, Any]] = Field(
+        None,
+        description="Phase 2 필터링 후 gen_node에 전달된 입력 (정제본)",
+    )
+    data_selection: Optional[Dict[str, Any]] = Field(
+        None,
+        description="데이터 선택 결과 (include_* 플래그, rationale 등)",
+    )
+    prompt_interpretation: Optional[Dict[str, Any]] = Field(
+        None,
+        description="Phase 0 프롬프트 해석 (search_intent, content_focus, ref_pages 등)",
+    )
+    dp_selection_required: Optional[List[Dict[str, Any]]] = Field(
+        None,
+        description="Phase 1.5 DP 계층 검증 실패 시 하위 선택지 제시",
+    )
 
 
 class WorkflowStatusResponse(BaseModel):
@@ -137,13 +166,22 @@ async def create_report(request: CreateReportRequest = Body(...)):
         # Infra 레이어 초기화
         infra = get_infra()
         
-        # 사용자 입력 구성
+        dp_id = request.dp_id
+        dp_ids = list(request.dp_ids) if request.dp_ids else []
+        if dp_ids and not dp_id:
+            dp_id = dp_ids[0]
+        elif dp_id and not dp_ids:
+            dp_ids = [dp_id]
+
         user_input = {
             "action": "create",
             "company_id": request.company_id,
             "category": request.category,
-            "dp_id": request.dp_id,
-            "max_retries": request.max_retries
+            "dp_id": dp_id,
+            "dp_ids": dp_ids,
+            "prompt": request.prompt,
+            "ref_pages": request.ref_pages,
+            "max_retries": request.max_retries,
         }
         
         # 워크플로우 실행
@@ -154,6 +192,10 @@ async def create_report(request: CreateReportRequest = Body(...)):
         )
         
         # 응답 구성
+        _gi = final_state.get("gen_input")
+        _ds = final_state.get("data_selection")
+        _pi = final_state.get("prompt_interpretation")
+        _dp_sel = final_state.get("dp_selection_required")
         response = WorkflowResponse(
             workflow_id=workflow_id,
             status=final_state.get("status", "failed"),
@@ -165,9 +207,14 @@ async def create_report(request: CreateReportRequest = Body(...)):
                 "max_retries": final_state.get("max_retries", 3),
                 "mode": final_state.get("mode", "draft"),
                 "created_at": str(final_state.get("created_at", "")),
-                "updated_at": str(final_state.get("updated_at", ""))
+                "updated_at": str(final_state.get("updated_at", "")),
+                "prompt_interpretation": _pi if _pi else None,
             },
-            error=final_state.get("error")
+            error=final_state.get("error"),
+            gen_input=_gi if _gi else None,
+            data_selection=_ds if _ds else None,
+            prompt_interpretation=_pi if _pi else None,
+            dp_selection_required=_dp_sel if _dp_sel else None,
         )
         
         logger.info(
@@ -243,7 +290,9 @@ async def refine_report(request: RefineReportRequest = Body(...)):
                 "created_at": str(final_state.get("created_at", "")),
                 "updated_at": str(final_state.get("updated_at", ""))
             },
-            error=final_state.get("error")
+            error=final_state.get("error"),
+            gen_input=None,
+            data_selection=None,
         )
         
         logger.info(

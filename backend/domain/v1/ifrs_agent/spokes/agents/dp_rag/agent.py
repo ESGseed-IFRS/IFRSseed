@@ -8,11 +8,12 @@ from __future__ import annotations
 import json
 import logging
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from backend.domain.v1.ifrs_agent.models.runtime_config import AgentRuntimeConfig
 from backend.domain.v1.ifrs_agent.spokes.agents.dp_rag.allowlist import (
     get_allowlist_for_category,
+    resolve_esg_category,
     validate_selection,
 )
 from backend.domain.v1.ifrs_agent.spokes.agents.dp_rag.cache import get_cache
@@ -21,6 +22,9 @@ logger = logging.getLogger("ifrs_agent.dp_rag")
 
 # Google AI generateContent 모델 ID (설정: DP_RAG_GEMINI_MODEL / runtime_config.dp_rag_gemini_model)
 _DEFAULT_DP_RAG_GEMINI_MODEL = "gemini-2.5-flash"
+
+# narrative DP 보조 실데이터: LLM이 고르는 컬럼 수 상한
+_MAX_NARRATIVE_SUPPLEMENTS = 3
 
 # UCM 정성적 키워드 (UCM 전용 DP에서 dp_meta=None일 때 정성 판단용)
 _UCM_QUALITATIVE_KEYWORDS = [
@@ -31,6 +35,55 @@ _UCM_QUALITATIVE_KEYWORDS = [
     "whether", "how", "describe", "disclose", "report", "policy",
     "procedure", "process", "structure", "governance", "strategy"
 ]
+
+
+def _narrative_supplement_category_hints(category: str) -> str:
+    """
+    narrative 보조 지표 LLM 선정 시 E/S/G별로 느슨한 키워드 연상(예: 부패=이해상충)을 줄이기 위한 정책 문구.
+    """
+    if category == "G":
+        return """Governance (G) — selection policy:
+- PRIORITIZE fields that DIRECTLY match the disclosure: board composition, chair/oversight, independence, meetings, attendance, committee leadership, names where relevant.
+- STRONGLY PREFER data_type "board". Include BOTH: (1) numeric — total_board_members, female_board_members, independent_board_members, board_meetings, board_attendance_rate, board_compensation; (2) text/name — board_chairman_name, ceo_name, audit_committee_chairman, esg_committee_chairman when the rulebook or DP asks who chairs the board, who is CEO, or committee chair identity (SR·공시 스냅샷).
+- Pick "compliance" or "ethics" (corruption_cases, corruption_reports, legal_sanctions) ONLY if the rulebook or DP text explicitly mentions anti-corruption, ethics violations, whistleblowing, or legal sanctions — NOT as a vague proxy for conflict-of-interest management.
+- Pick "risk" (security_incidents, data_breaches, security_fines) ONLY if the disclosure explicitly concerns cybersecurity or information-security governance."""
+
+    if category == "S":
+        return """Social (S) — selection policy:
+- Match data_type to the DP/rulebook theme: "workforce" for employment, diversity, equity; "safety" for occupational health and safety; "supply_chain" for suppliers and value-chain ESG; "community" for social contribution and volunteering.
+- PRIORITIZE columns that the rulebook or DP would reasonably need as numeric support; avoid unrelated sub-themes (e.g. do not pick community metrics for a pure workforce disclosure, or vice versa).
+- Prefer at most one metric per sub-theme unless the rulebook clearly requires multiple angles."""
+
+    if category == "E":
+        return """Environmental (E) — selection policy:
+- PRIORITIZE columns that DIRECTLY match the disclosure: GHG/scope columns for climate; energy columns for energy; water_* for water; waste_* for waste.
+- Air-quality columns (nox_emission, sox_emission, voc_emission, dust_emission) ONLY if the rulebook or DP concerns air emissions or those pollutants specifically.
+- Do not mix unrelated pillars (e.g. waste metrics alone for a pure GHG-focused disclosure) unless the rulebook spans multiple environmental topics."""
+
+    return ""
+
+
+def _parse_supplements_response(text: str) -> List[Dict[str, Any]]:
+    """LLM JSON — supplements 배열만 추출."""
+    t = text.strip()
+    if t.startswith("```"):
+        t = re.sub(r"^```(?:json)?\s*", "", t, flags=re.IGNORECASE)
+        t = re.sub(r"\s*```\s*$", "", t)
+    try:
+        obj = json.loads(t)
+        if isinstance(obj, dict) and "supplements" in obj:
+            sup = obj["supplements"]
+            if isinstance(sup, list):
+                return [
+                    x
+                    for x in sup
+                    if isinstance(x, dict)
+                    and x.get("table")
+                    and x.get("column")
+                ]
+    except (json.JSONDecodeError, ValueError, TypeError):
+        pass
+    return []
 
 
 def _parse_llm_response(text: str) -> Optional[Dict[str, Any]]:
@@ -58,6 +111,33 @@ def _resolve_unit(
     if ucm_info and ucm_info.get("unit") is not None:
         return ucm_info.get("unit")
     return None
+
+
+def _dp_metadata_for_response(
+    dp_meta: Optional[Dict[str, Any]],
+    *,
+    dp_type: Optional[str] = None,
+) -> Optional[Dict[str, Any]]:
+    """
+    query_dp_metadata 전체 행을 그대로 노출하지 않고, API·gen_node에 필요한 필드만 전달.
+    child_dps / parent_indicator / unit / validation_rules 포함 (Phase 1.5·검증용).
+    """
+    if not dp_meta:
+        return None
+    resolved_type = dp_type if dp_type is not None else dp_meta.get("dp_type")
+    return {
+        "name_ko": dp_meta.get("name_ko"),
+        "name_en": dp_meta.get("name_en"),
+        "description": dp_meta.get("description"),
+        "topic": dp_meta.get("topic"),
+        "subtopic": dp_meta.get("subtopic"),
+        "category": dp_meta.get("category"),
+        "dp_type": resolved_type,
+        "unit": dp_meta.get("unit"),
+        "validation_rules": dp_meta.get("validation_rules"),
+        "child_dps": dp_meta.get("child_dps"),
+        "parent_indicator": dp_meta.get("parent_indicator"),
+    }
 
 
 def _resolve_validation_rules(
@@ -235,8 +315,8 @@ class DpRagAgent:
                 # DP가 있으면 UCM도 조회 시도 (mapped_dp_ids로)
                 ucm_info = await self._query_ucm_by_dp(dp_id)
 
-            # UCM에 연결된 rulebook (문단 생성·근거용)
-            rulebook_payload = await self._fetch_rulebook_for_ucm(ucm_info)
+            # UCM primary_rulebook_id → rulebook; 없으면 rulebooks.primary_dp_id = dp_id fallback
+            rulebook_payload = await self._resolve_rulebook(dp_id, ucm_info)
 
             # 제안 A: rulebook·UCM 기반 정량 적합성 체크 (보조 안전장치)
             suitability_warning = self._check_quantitative_suitability(
@@ -259,27 +339,15 @@ class DpRagAgent:
                     )
             
             if is_qualitative:
-                # 정성 DP: 실데이터 없음, description + rulebook만 반환
-                logger.info("dp_rag: Qualitative DP detected (dp_type=%s), skipping real data query", dp_type)
-                return {
+                # 정성 DP: 단일 DP value는 없음. rulebook·DP 맥락으로 보조 실데이터(선택) 조회
+                logger.info("dp_rag: Qualitative DP detected (dp_type=%s), skipping primary real data query", dp_type)
+                result: Dict[str, Any] = {
                     "dp_id": dp_id,
                     "value": None,
                     "unit": _resolve_unit(dp_meta, ucm_info),
                     "year": year,
                     "company_profile": company_profile,
-                    "dp_metadata": (
-                        {
-                            "name_ko": dp_meta.get("name_ko"),
-                            "name_en": dp_meta.get("name_en"),
-                            "description": dp_meta.get("description"),
-                            "topic": dp_meta.get("topic"),
-                            "subtopic": dp_meta.get("subtopic"),
-                            "category": dp_meta.get("category"),
-                            "dp_type": dp_type,
-                        }
-                        if dp_meta
-                        else None
-                    ),
+                    "dp_metadata": _dp_metadata_for_response(dp_meta, dp_type=dp_type),
                     "ucm": _ucm_for_response(ucm_info),
                     "rulebook": rulebook_payload,
                     "source": None,
@@ -287,12 +355,23 @@ class DpRagAgent:
                     "column": None,
                     "data_type": None,
                     "is_outdated": False,
-                    "confidence": 1.0,  # 정성 DP는 매핑 불필요
+                    "confidence": 1.0,
                     "validation_passed": True,
                     "validation_error": None,
                     "suitability_warning": suitability_warning if suitability_warning else None,
                     "error": None,
                 }
+                supplementary = await self._fetch_narrative_supplementary_real_data(
+                    company_id,
+                    year,
+                    dp_id,
+                    dp_meta,
+                    ucm_info,
+                    rulebook_payload,
+                )
+                if supplementary:
+                    result["supplementary_real_data"] = supplementary
+                return result
             
             # 정량 DP: 물리 위치 결정 (캐시 → LLM)
             mapping = await self._resolve_physical_location(dp_id, dp_meta, ucm_info)
@@ -303,19 +382,7 @@ class DpRagAgent:
                     "unit": _resolve_unit(dp_meta, ucm_info),
                     "year": year,
                     "company_profile": company_profile,
-                    "dp_metadata": (
-                        {
-                            "name_ko": dp_meta.get("name_ko"),
-                            "name_en": dp_meta.get("name_en"),
-                            "description": dp_meta.get("description"),
-                            "topic": dp_meta.get("topic"),
-                            "subtopic": dp_meta.get("subtopic"),
-                            "category": dp_meta.get("category"),
-                            "dp_type": dp_meta.get("dp_type"),
-                        }
-                        if dp_meta
-                        else None
-                    ),
+                    "dp_metadata": _dp_metadata_for_response(dp_meta),
                     "ucm": _ucm_for_response(ucm_info),
                     "rulebook": rulebook_payload,
                     "source": None,
@@ -375,19 +442,7 @@ class DpRagAgent:
                 "data_type": mapping.get("data_type"),
                 
                 # DP 메타데이터 (UCM ID만 넘긴 경우 None)
-                "dp_metadata": (
-                    {
-                        "name_ko": dp_meta.get("name_ko"),
-                        "name_en": dp_meta.get("name_en"),
-                        "description": dp_meta.get("description"),
-                        "topic": dp_meta.get("topic"),
-                        "subtopic": dp_meta.get("subtopic"),
-                        "category": dp_meta.get("category"),
-                        "dp_type": dp_meta.get("dp_type"),
-                    }
-                    if dp_meta
-                    else None
-                ),
+                "dp_metadata": _dp_metadata_for_response(dp_meta),
                 
                 # UCM 정보
                 "ucm": _ucm_for_response(ucm_info),
@@ -520,6 +575,20 @@ class DpRagAgent:
             logger.warning("query_ucm_by_dp failed: %s", e)
             return None
 
+    async def _resolve_rulebook(
+        self,
+        dp_id: str,
+        ucm_info: Optional[Dict[str, Any]],
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Rulebook 로드: (1) UCM.primary_rulebook_id → rulebooks,
+        (2) 없으면 rulebooks.primary_dp_id = dp_id (시드/직접 연결 fallback).
+        """
+        rb = await self._fetch_rulebook_for_ucm(ucm_info)
+        if rb:
+            return rb
+        return await self._fetch_rulebook_by_primary_dp_id(dp_id)
+
     async def _fetch_rulebook_for_ucm(
         self, ucm_info: Optional[Dict[str, Any]]
     ) -> Optional[Dict[str, Any]]:
@@ -543,6 +612,33 @@ class DpRagAgent:
             return rb if isinstance(rb, dict) else None
         except Exception as e:
             logger.warning("dp_rag: query_rulebook failed for id=%s: %s", rid_str, e)
+            return None
+
+    async def _fetch_rulebook_by_primary_dp_id(
+        self, dp_id: str
+    ) -> Optional[Dict[str, Any]]:
+        """rulebooks.primary_dp_id = dp_id 로 1건 조회 (UCM에 rulebook_id가 없을 때)."""
+        dpid = (dp_id or "").strip()
+        if not dpid:
+            return None
+        try:
+            rb = await self.infra.call_tool(
+                "query_rulebook_by_primary_dp_id",
+                {"dp_id": dpid},
+            )
+            if isinstance(rb, dict) and rb:
+                logger.info(
+                    "dp_rag: rulebook resolved via primary_dp_id=%s (rulebook_id=%s)",
+                    dpid,
+                    rb.get("rulebook_id"),
+                )
+            return rb if isinstance(rb, dict) else None
+        except Exception as e:
+            logger.warning(
+                "dp_rag: query_rulebook_by_primary_dp_id failed for dp_id=%s: %s",
+                dpid,
+                e,
+            )
             return None
 
     async def _resolve_physical_location(
@@ -788,6 +884,194 @@ Select the best match."""
         except Exception as e:
             logger.error("query_dp_real_data failed: %s", e, exc_info=True)
             return {"error": str(e)}
+
+    def _narrative_enrichment_enabled(self) -> bool:
+        rc = self.runtime_config or {}
+        if "dp_rag_narrative_enrichment" in rc:
+            return bool(rc["dp_rag_narrative_enrichment"])
+        from backend.core.config.settings import get_settings
+
+        return get_settings().dp_rag_narrative_enrichment
+
+    async def _llm_select_narrative_supplements(
+        self,
+        dp_id: str,
+        dp_meta: Optional[Dict[str, Any]],
+        ucm_info: Optional[Dict[str, Any]],
+        rulebook_payload: Optional[Dict[str, Any]],
+        category: str,
+        allowlist: List[Dict[str, Any]],
+    ) -> List[Dict[str, Any]]:
+        """
+        정성 DP + rulebook을 보고 보조로 참고할 실데이터 컬럼 0~N개 선택 (수치·건수·문자 이름 등 allowlist 정의).
+        화이트리스트 내 조합만 반환.
+        """
+        rc = self.runtime_config or {}
+        api_key = (rc.get("gemini_api_key") or "").strip()
+        model_id = (rc.get("dp_rag_gemini_model") or "").strip() or _DEFAULT_DP_RAG_GEMINI_MODEL
+        if not api_key:
+            logger.warning("dp_rag: narrative enrichment skipped — no GEMINI_API_KEY")
+            return []
+
+        rb_title = (rulebook_payload or {}).get("rulebook_title") or ""
+        rb_content = (rulebook_payload or {}).get("rulebook_content") or ""
+        if len(rb_content) > 4000:
+            rb_content = rb_content[:4000] + "\n... (truncated)"
+
+        if dp_meta:
+            dp_info = f"""dp_id: {dp_id}
+name_ko: {dp_meta.get('name_ko', '')}
+name_en: {dp_meta.get('name_en', '')}
+description: {dp_meta.get('description', '')}
+topic: {dp_meta.get('topic', '')}
+subtopic: {dp_meta.get('subtopic', '')}"""
+        elif ucm_info:
+            dp_info = f"""ucm_id: {dp_id}
+column_name_ko: {ucm_info.get('column_name_ko', '')}
+column_description: {ucm_info.get('column_description', '')}"""
+        else:
+            dp_info = f"dp_id: {dp_id}"
+
+        domain_hints = _narrative_supplement_category_hints(category)
+
+        system_msg = f"""You help select supplementary fields from an allowlisted ESG schema (numbers, counts, percentages, and — for governance — text such as person names or titles where listed in the allowlist).
+The disclosure is NARRATIVE (prose); chosen values support facts in the draft and must come only from the allowlist.
+
+Output ONLY valid JSON (no markdown code fences):
+{{
+  "supplements": [
+    {{
+      "table": "social_data" | "environmental_data" | "governance_data",
+      "column": "<exact column name from allowlist>",
+      "data_type": "<required for social_data and governance_data, or null for environmental_data>",
+      "rationale": "one short sentence in Korean why this field helps"
+    }}
+  ]
+}}
+
+Rules:
+1. Return 0 to {_MAX_NARRATIVE_SUPPLEMENTS} items. Empty array is valid if nothing fits.
+2. Every (table, column, data_type) MUST match one row in the allowlist below.
+3. category filter: {category} (E=environment, S=social, G=governance) — only pick from the allowlist for this domain.
+4. Do not invent columns or tables.
+5. Apply the domain-specific policy below strictly when choosing fields and writing rationale.
+
+{domain_hints}
+"""
+
+        user_msg = f"""Disclosure context:
+{dp_info}
+
+Rulebook (GRI / reporting requirement):
+Title: {rb_title}
+{rb_content}
+
+Allowed columns (category={category}):
+{json.dumps(allowlist, ensure_ascii=False, indent=2)}
+
+Select up to {_MAX_NARRATIVE_SUPPLEMENTS} supplementary fields. Follow the domain policy in the system message: prefer directly relevant columns (including governance name fields when the disclosure is about roles or identity); do not use weak proxies (e.g. corruption counts for chair/independence disclosures unless the rulebook explicitly asks). If nothing fits well, return an empty supplements array."""
+
+        try:
+            import google.generativeai as genai
+        except ImportError as e:
+            logger.warning("dp_rag: google-generativeai missing for narrative enrichment: %s", e)
+            return []
+
+        try:
+            genai.configure(api_key=api_key)
+            model = genai.GenerativeModel(model_id)
+            response = model.generate_content(
+                [system_msg, user_msg],
+                generation_config=genai.GenerationConfig(temperature=0.15),
+            )
+            text = response.text.strip()
+            parsed = _parse_supplements_response(text)
+            logger.info(
+                "dp_rag: narrative supplements LLM returned %d candidate(s)",
+                len(parsed),
+            )
+            return parsed[:_MAX_NARRATIVE_SUPPLEMENTS]
+        except Exception as e:
+            logger.warning("dp_rag: narrative supplements LLM failed: %s", e, exc_info=True)
+            return []
+
+    async def _fetch_narrative_supplementary_real_data(
+        self,
+        company_id: str,
+        year: int,
+        dp_id: str,
+        dp_meta: Optional[Dict[str, Any]],
+        ucm_info: Optional[Dict[str, Any]],
+        rulebook_payload: Optional[Dict[str, Any]],
+    ) -> List[Dict[str, Any]]:
+        if not self._narrative_enrichment_enabled():
+            return []
+
+        category = resolve_esg_category(dp_meta, ucm_info)
+        if not category:
+            logger.info(
+                "dp_rag: narrative enrichment skipped — no E/S/G category (dp_id=%s)",
+                dp_id,
+            )
+            return []
+
+        allowlist = get_allowlist_for_category(category)
+        if not allowlist:
+            return []
+
+        suggestions = await self._llm_select_narrative_supplements(
+            dp_id,
+            dp_meta,
+            ucm_info,
+            rulebook_payload,
+            category,
+            allowlist,
+        )
+        if not suggestions:
+            return []
+
+        out: List[Dict[str, Any]] = []
+        seen: Set[Tuple[str, str, Optional[str]]] = set()
+
+        for s in suggestions:
+            table = s.get("table")
+            column = s.get("column")
+            data_type = s.get("data_type")
+            rationale = s.get("rationale") or ""
+
+            if table == "environmental_data":
+                data_type = None
+
+            if not validate_selection(table, column, data_type):
+                logger.warning(
+                    "dp_rag: supplement failed allowlist: %s %s %s",
+                    table,
+                    column,
+                    data_type,
+                )
+                continue
+
+            key = (table, column, data_type)
+            if key in seen:
+                continue
+            seen.add(key)
+
+            rd = await self._query_real_data(company_id, year, table, column, data_type)
+            err = rd.get("error") if isinstance(rd, dict) else None
+            row: Dict[str, Any] = {
+                "table": table,
+                "column": column,
+                "data_type": data_type,
+                "rationale": rationale,
+                "value": rd.get("value") if isinstance(rd, dict) else None,
+                "period_year": rd.get("period_year") if isinstance(rd, dict) else None,
+                "status": rd.get("status") if isinstance(rd, dict) else None,
+            }
+            if err:
+                row["error"] = err
+            out.append(row)
+
+        return out
 
     def _check_outdated(self, data: Dict[str, Any], current_year: int) -> bool:
         """데이터가 오래되었는지 체크 (1년 초과)."""

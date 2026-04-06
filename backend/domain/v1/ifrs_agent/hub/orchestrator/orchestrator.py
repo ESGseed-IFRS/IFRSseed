@@ -5,12 +5,19 @@ LangGraph 통합 및 워크플로우 조율
 """
 import logging
 import asyncio
-from typing import Dict, Any
+import json
+from typing import Dict, Any, Optional, List, Tuple
 
 from backend.core.config.settings import get_settings
 from backend.domain.v1.ifrs_agent.models.runtime_config import (
     agent_runtime_config_from_settings,
     with_runtime_config,
+)
+from backend.domain.v1.ifrs_agent.hub.orchestrator.prompt_interpretation import (
+    extract_ref_pages_from_text,
+    merge_ref_pages,
+    interpret_prompt_with_gemini,
+    heuristic_interpretation,
 )
 
 logger = logging.getLogger("ifrs_agent.orchestrator")
@@ -36,11 +43,24 @@ class Orchestrator:
 
         self.infra: InfraLayer = infra
         self.settings = get_settings()
+        self._gemini_client = None
 
         if not (self.settings.gemini_api_key or "").strip():
             logger.warning(
                 "GEMINI_API_KEY empty — orchestrator LLM 연동 시 설정 필요 (.env / Settings)"
             )
+        else:
+            # Gemini 클라이언트 초기화 (Phase 2 데이터 선택용)
+            try:
+                from google import genai
+                client = genai.Client(api_key=self.settings.gemini_api_key)
+                # Gemini 모델 사용 (오케스트레이터 Phase 2 데이터 선택용)
+                model_id = getattr(self.settings, "orchestrator_gemini_model", "gemini-2.5-pro")
+                self._gemini_client = client
+                self._gemini_model_id = model_id
+                logger.info(f"Gemini {model_id} initialized for orchestrator data selection (google.genai)")
+            except Exception as e:
+                logger.warning(f"Gemini client initialization failed: {e}")
 
         logger.info("Orchestrator initialized (shared Settings via get_settings())")
 
@@ -90,23 +110,41 @@ class Orchestrator:
         Phase 3: 생성-검증 반복 루프
         Phase 4: 최종 반환
         """
+        logger.info("Phase 0: User prompt interpretation")
+        phase0 = await self._interpret_user_prompt(user_input)
+        user_input = {**user_input, **phase0}
+
         logger.info("Phase 1: Parallel data collection started")
-        
+
         # Phase 1: 병렬 데이터 수집
         data = await self._parallel_collect(user_input)
-        
+        fdb = data["fact_data_by_dp"]
         state = {
             "ref_data": data["ref_data"],
-            "fact_data": data["fact_data"],
+            "fact_data_by_dp": fdb,
+            "fact_data": self._representative_fact_data(user_input, fdb),
             "agg_data": data["agg_data"],
             "user_input": user_input,
             "feedback": None
         }
         
-        logger.info("Phase 2: Data merging started")
+        # Phase 1.5: DP 계층 검증 (선택적)
+        if user_input.get("dp_validation_needed") or user_input.get("dp_ids"):
+            logger.info("Phase 1.5: DP hierarchy validation")
+            dp_validation = await self._validate_dp_hierarchy(state["fact_data_by_dp"])
+            if dp_validation.get("needs_user_selection"):
+                logger.warning("DP hierarchy validation failed - needs user selection")
+                return {
+                    "status": "needs_dp_selection",
+                    "dp_selection_required": dp_validation.get("problematic_dps", []),
+                    "error": "상위 DP가 감지되었습니다. 하위 DP를 선택해주세요.",
+                    "prompt_interpretation": phase0,
+                }
         
-        # Phase 2: 데이터 병합
-        state = self._merge_data(state)
+        logger.info("Phase 2: Data merging and filtering started")
+        
+        # Phase 2: 데이터 병합 및 필터링 (LLM 기반 동적 선택)
+        state = await self._merge_and_filter_data(state)
         
         logger.info("Phase 3: Generation-validation loop started")
         
@@ -114,13 +152,25 @@ class Orchestrator:
         state = await self._generation_validation_loop(state, max_retries=3)
         
         logger.info(f"Phase 4: Final return (status={state.get('status', 'unknown')})")
-        
+
+        _pi = {
+            "search_intent": (state.get("user_input") or {}).get("search_intent", ""),
+            "content_focus": (state.get("user_input") or {}).get("content_focus", ""),
+            "ref_pages": (state.get("user_input") or {}).get("ref_pages"),
+            "dp_validation_needed": (state.get("user_input") or {}).get(
+                "dp_validation_needed", False
+            ),
+        }
+
         # Phase 4: 최종 결과 반환
         return {
             "generated_text": state.get("generated_text", ""),
             "validation": state.get("validation", {}),
             "error": state.get("error"),
             "agg_data": state.get("agg_data", {}),
+            "gen_input": state.get("gen_input"),
+            "data_selection": state.get("data_selection"),
+            "prompt_interpretation": _pi,
             "references": {
                 "sr_pages": [
                     state["ref_data"].get("2024", {}).get("page_number"),
@@ -129,7 +179,8 @@ class Orchestrator:
                 "sr_data": state["ref_data"],
                 "agg_data": state.get("agg_data", {}),
                 "subsidiary_data": state.get("agg_data", {}).get("subsidiary_data", []),
-                "fact_data": state["fact_data"],
+                "fact_data": state.get("fact_data", {}),
+                "fact_data_by_dp": state.get("fact_data_by_dp", {}),
             },
             "metadata": {
                 "attempts": state.get("attempt", 0) + 1,
@@ -137,10 +188,89 @@ class Orchestrator:
                     state.get("agg_data", {}).get("external_company_data")
                 ),
                 "status": state.get("status", "failed"),
-                "mode": "draft"
-            }
+                "mode": "draft",
+                "prompt_interpretation": _pi,
+            },
         }
-    
+
+    async def _interpret_user_prompt(
+        self, user_input: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """
+        Phase 0: 자유 프롬프트·참조 페이지 해석 → c_rag 등에 전달할 필드 생성.
+
+        Returns:
+            user_input 에 병합할 키만 포함:
+            search_intent, content_focus, ref_pages, dp_validation_needed
+        """
+        category = (user_input.get("category") or "").strip()
+        prompt = (user_input.get("prompt") or "").strip()
+        api_ref = user_input.get("ref_pages")
+
+        extracted = extract_ref_pages_from_text(prompt) if prompt else {
+            "2024": None,
+            "2023": None,
+        }
+        merged_pages = merge_ref_pages(
+            api_ref if isinstance(api_ref, dict) else None,
+            extracted,
+        )
+
+        llm_part: Dict[str, Any]
+        if prompt and self._gemini_client:
+            try:
+                llm_part = interpret_prompt_with_gemini(
+                    self._gemini_client,
+                    self._gemini_model_id,
+                    category,
+                    prompt,
+                    merged_pages,
+                )
+            except Exception as e:
+                logger.warning(
+                    "Phase 0 Gemini interpretation failed, using heuristic: %s",
+                    e,
+                    exc_info=True,
+                )
+                llm_part = heuristic_interpretation(category, prompt)
+        else:
+            llm_part = heuristic_interpretation(category, prompt)
+
+        out = {
+            "search_intent": llm_part.get("search_intent", ""),
+            "content_focus": llm_part.get("content_focus", ""),
+            "ref_pages": merged_pages,
+            "dp_validation_needed": bool(llm_part.get("dp_validation_needed", False)),
+        }
+        logger.info(
+            "Phase 0: search_intent=%r content_focus=%r ref_pages=%s",
+            out["search_intent"][:80] if out["search_intent"] else "",
+            out["content_focus"][:80] if out["content_focus"] else "",
+            merged_pages,
+        )
+        return out
+
+    @staticmethod
+    def _representative_fact_data(
+        user_input: Dict[str, Any],
+        fact_data_by_dp: Dict[str, Dict[str, Any]],
+    ) -> Dict[str, Any]:
+        """
+        validator·API references용 단일 fact_data.
+        user_input의 dp_ids 순서 중 첫 성공 항목, 없으면 fact_data_by_dp 임의 첫 값.
+        """
+        if not fact_data_by_dp:
+            return {}
+        dp_ids = list(user_input.get("dp_ids") or [])
+        if user_input.get("dp_id") and not dp_ids:
+            dp_ids = [user_input["dp_id"]]
+        for did in dp_ids:
+            if did and did in fact_data_by_dp:
+                fd = fact_data_by_dp[did]
+                return fd if isinstance(fd, dict) else {}
+        first = next(iter(fact_data_by_dp.values()), None)
+        return first if isinstance(first, dict) else {}
+
     async def _parallel_collect(self, user_input: Dict[str, Any]) -> Dict[str, Any]:
         """
         Phase 1: c_rag, dp_rag, aggregation_node 병렬 호출
@@ -158,37 +288,48 @@ class Orchestrator:
         heavy_timeout = get_settings().ifrs_infra_heavy_timeout_sec
 
         # 병렬 호출 (infra 경유) — c_rag는 연도·임베딩·LLM 병행이라 긴 타임아웃
+        c_rag_payload: Dict[str, Any] = {
+            "company_id": company_id,
+            "category": category,
+            "years": years,
+            "search_intent": (user_input.get("search_intent") or "").strip(),
+            "content_focus": (user_input.get("content_focus") or "").strip(),
+            "ref_pages": user_input.get("ref_pages"),
+        }
         c_rag_task = self.infra.call_agent(
             "c_rag",
             "collect",
-            self._agent_payload(
-                {"company_id": company_id, "category": category, "years": years}
-            ),
+            self._agent_payload(c_rag_payload),
             timeout=heavy_timeout,
         )
 
-        # dp_rag: DP 기반 실데이터 (보고서 기준 연도 — SR과 맞춤: 최신 공시 연도 2024)
-        # user_input에 dp_id가 있을 때만 호출
         # dp_rag: DP 기반 실데이터 (정량) 또는 기준·설명 (정성)
-        dp_rag_task = None
+        # Phase 1: 다중 DP 병렬 호출
+        dp_ids = user_input.get("dp_ids") or []
+        if user_input.get("dp_id") and not dp_ids:
+            dp_ids = [user_input["dp_id"]]
         
-        if user_input.get("dp_id"):
+        dp_rag_tasks: List[Tuple[str, Any]] = []
+        if dp_ids:
             logger.info(
-                "orchestrator: DP %s detected — routing to dp_rag (handles both quantitative and qualitative)",
-                user_input["dp_id"]
+                "orchestrator: %d DP(s) detected — routing to dp_rag (handles both quantitative and qualitative): %s",
+                len(dp_ids),
+                dp_ids
             )
-            dp_rag_task = self.infra.call_agent(
-                "dp_rag",
-                "collect",
-                self._agent_payload(
-                    {
-                        "company_id": company_id,
-                        "dp_id": user_input["dp_id"],
-                        "year": 2024,
-                    }
-                ),
-                timeout=heavy_timeout,
-            )
+            for dp_id in dp_ids:
+                task = self.infra.call_agent(
+                    "dp_rag",
+                    "collect",
+                    self._agent_payload(
+                        {
+                            "company_id": company_id,
+                            "dp_id": dp_id,
+                            "year": 2024,
+                        }
+                    ),
+                    timeout=heavy_timeout,
+                )
+                dp_rag_tasks.append((dp_id, task))
 
         # aggregation_node: 계열사·외부 기업 데이터
         aggregation_task = None
@@ -220,36 +361,31 @@ class Orchestrator:
         
         # 대기 (예외 처리 포함)
         try:
-            if dp_rag_task and aggregation_task:
-                c_rag_result, dp_rag_result, agg_result = await asyncio.gather(
-                    c_rag_task, dp_rag_task, aggregation_task,
-                    return_exceptions=True
-                )
-            elif dp_rag_task:
-                c_rag_result, dp_rag_result = await asyncio.gather(
-                    c_rag_task, dp_rag_task,
-                    return_exceptions=True
-                )
-                agg_result = {}
-            elif aggregation_task:
-                c_rag_result, agg_result = await asyncio.gather(
-                    c_rag_task, aggregation_task,
-                    return_exceptions=True
-                )
-                dp_rag_result = {}
-            else:
-                c_rag_result = await c_rag_task
-                dp_rag_result = {}
-                agg_result = {}
+            all_tasks = [c_rag_task]
+            all_tasks.extend([task for _, task in dp_rag_tasks])
+            if aggregation_task:
+                all_tasks.append(aggregation_task)
+            
+            results = await asyncio.gather(*all_tasks, return_exceptions=True)
+            
+            c_rag_result = results[0]
+            dp_rag_results = results[1:1+len(dp_rag_tasks)]
+            agg_result = results[-1] if aggregation_task else {}
             
             # 예외 체크
             if isinstance(c_rag_result, Exception):
                 logger.error("c_rag failed: %s", c_rag_result)
                 c_rag_result = {}
             
-            if isinstance(dp_rag_result, Exception):
-                logger.error("dp_rag failed: %s", dp_rag_result)
-                dp_rag_result = {}
+            # dp_rag 결과를 fact_data_by_dp로 병합
+            fact_data_by_dp: Dict[str, Dict] = {}
+            for i, result in enumerate(dp_rag_results):
+                dp_id = dp_rag_tasks[i][0]
+                if isinstance(result, Exception):
+                    logger.error("dp_rag failed for %s: %s", dp_id, result)
+                    fact_data_by_dp[dp_id] = {"error": str(result)}
+                else:
+                    fact_data_by_dp[dp_id] = result
             
             if isinstance(agg_result, Exception):
                 logger.error("aggregation_node failed: %s", agg_result)
@@ -257,7 +393,7 @@ class Orchestrator:
             
             return {
                 "ref_data": c_rag_result,
-                "fact_data": dp_rag_result,
+                "fact_data_by_dp": fact_data_by_dp,
                 "agg_data": agg_result
             }
         
@@ -346,21 +482,407 @@ class Orchestrator:
                 "reason": f"Error during check: {e}"
             }
     
-    def _merge_data(self, state: Dict[str, Any]) -> Dict[str, Any]:
+    async def _merge_and_filter_data(self, state: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Phase 2: ref_data + fact_data + agg_data 병합
+        Phase 2: ref_data + fact_data_by_dp + agg_data 병합 및 필터링
         
-        gen_node 입력용 통합 데이터 생성
+        LLM(Gemini 2.5 Pro)이 카테고리·DP·SR 본문을 분석하여
+        gen_node에 필요한 데이터만 동적으로 선택
         """
-        merged = {
-            "ref_data": state["ref_data"],
-            "fact_data": state["fact_data"],
-            "agg_data": state["agg_data"],
-            "user_input": state["user_input"]
+        ref_data = state.get("ref_data") or {}
+        fact_data_by_dp = state.get("fact_data_by_dp") or {}
+        agg_data = state.get("agg_data") or {}
+        user_input = state["user_input"]
+        
+        # 다중 DP 처리: 첫 번째 DP를 대표로 선택 (LLM 호출용)
+        dp_ids = list(fact_data_by_dp.keys())
+        representative_dp_id = dp_ids[0] if dp_ids else user_input.get("dp_id", "")
+        representative_fact_data = fact_data_by_dp.get(representative_dp_id, {}) if dp_ids else {}
+        
+        # 1. LLM 기반 데이터 선택
+        selection = await self._select_data_for_gen(
+            category=user_input.get("category", ""),
+            dp_id=representative_dp_id,
+            fact_data=representative_fact_data,
+            ref_data=ref_data
+        )
+        if not isinstance(selection, dict):
+            logger.warning(
+                "Data selection was not a dict (%r), using rule-based fallback",
+                type(selection).__name__,
+            )
+            selection = self._rule_based_selection(
+                user_input.get("category", "") or "",
+                (representative_fact_data.get("dp_metadata") or {}).get("dp_type"),
+            )
+        
+        logger.info(f"Data selection result: {(selection or {}).get('rationale', 'N/A')}")
+        
+        # 2. 선택 결과에 따라 gen_node 입력 구성
+        gen_input = self._build_gen_input(
+            ref_data=ref_data,
+            fact_data_by_dp=fact_data_by_dp,
+            agg_data=agg_data,
+            user_input=user_input,
+            selection=selection
+        )
+        
+        state["gen_input"] = gen_input
+        state["data_selection"] = selection
+        return state
+    
+    async def _select_data_for_gen(
+        self,
+        category: str,
+        dp_id: str,
+        fact_data: dict,
+        ref_data: dict
+    ) -> Dict[str, Any]:
+        """
+        LLM(Gemini 2.5 Pro)으로 gen_node에 필요한 데이터 선택
+        
+        Args:
+            category: 사용자 카테고리
+            dp_id: DP ID (선택)
+            fact_data: dp_rag 결과
+            ref_data: c_rag 결과
+        
+        Returns:
+            {
+                "include_company_profile": bool,
+                "include_dp_metadata": bool,
+                "include_ucm": bool,
+                "include_rulebook": bool,
+                "include_subsidiary_data": bool,
+                "include_external_data": bool,
+                "rationale": str
+            }
+        """
+        fact_data = fact_data or {}
+        ref_data = ref_data or {}
+        category = category or ""
+
+        # 폴백: 규칙 기반 선택
+        if not self._gemini_client:
+            logger.warning("Gemini client not available, using rule-based selection")
+            return self._rule_based_selection(
+                category,
+                (fact_data.get("dp_metadata") or {}).get("dp_type"),
+            )
+        
+        # SR 본문 미리보기
+        sr_body_preview = (ref_data.get("2024") or {}).get("sr_body", "")[:500]
+        
+        # DP 메타데이터
+        dp_meta = fact_data.get("dp_metadata") or {}
+        dp_description = dp_meta.get("description", "")
+        dp_name = dp_meta.get("name_ko", "")
+        dp_type = dp_meta.get("dp_type", "")
+        
+        # LLM 프롬프트
+        prompt = f"""당신은 IFRS SR 보고서 생성을 위한 데이터 선택 전문가입니다.
+
+## 사용자 요청
+- **카테고리**: {category}
+- **DP ID**: {dp_id or "없음"}
+- **DP 명칭**: {dp_name or "없음"}
+- **DP 설명**: {dp_description or "없음"}
+- **DP 유형**: {dp_type or "없음"}
+
+## SR 본문 미리보기 (2024년)
+{sr_body_preview}...
+
+## 사용 가능한 데이터
+1. **company_profile**: 회사명, 산업, 미션/비전, 임직원 수, 이사회 구성 등
+2. **dp_metadata**: DP 상세 정보 (이름, 설명, 단위, 유형)
+3. **ucm**: 통합 컬럼 매핑 (검증 규칙, 재무 연결성)
+4. **rulebook**: 기준서 요구사항 (필수 공시 항목, 검증 체크)
+5. **subsidiary_data**: 계열사/사업장별 상세 데이터
+6. **external_company_data**: 언론 보도/뉴스
+
+## 판단 기준
+- **"회사 소개", "기업 개요", "회사 정보"** → company_profile 필수
+- **"이사회 구성", "거버넌스", "지배구조"** → company_profile (이사회 정보) 필요
+- **"재생에너지", "GHG 배출", "환경"** → subsidiary_data (사업장별 상세) 유용
+- **"ESG 평가", "협력회사", "공급망"** → external_company_data (언론 보도) 참고 가능
+- **정성 DP (narrative/qualitative)** → rulebook (기준서 요구사항) 필수
+- **정량 DP (quantitative)** → dp_metadata만으로 충분
+
+## 출력 형식 (JSON만 반환, 다른 텍스트 없이)
+{{
+    "include_company_profile": true,
+    "include_dp_metadata": true,
+    "include_ucm": false,
+    "include_rulebook": true,
+    "include_subsidiary_data": false,
+    "include_external_data": false,
+    "rationale": "선택 이유를 1-2문장으로"
+}}"""
+        
+        try:
+            response = self._gemini_client.models.generate_content(
+                model=self._gemini_model_id,
+                contents=prompt,
+                config={
+                    "temperature": 0.1,
+                    "response_mime_type": "application/json"
+                }
+            )
+            raw = getattr(response, "text", None) or ""
+            if not str(raw).strip():
+                raise ValueError("empty Gemini response text")
+            result = json.loads(raw)
+            if not isinstance(result, dict):
+                raise ValueError(f"expected JSON object, got {type(result).__name__}")
+            logger.info(f"LLM data selection: {result.get('rationale')}")
+            return result
+            
+        except Exception as e:
+            logger.error(f"LLM data selection failed: {e}, using rule-based fallback")
+            return self._rule_based_selection(category, dp_type)
+    
+    def _rule_based_selection(self, category: str, dp_type: Optional[str]) -> Dict[str, Any]:
+        """
+        규칙 기반 데이터 선택 (LLM 폴백용)
+        
+        카테고리·DP 타입 키워드로 간단 판단
+        """
+        category_lower = category.lower()
+        
+        # 회사 소개 관련
+        if any(kw in category_lower for kw in ["회사", "기업", "소개", "개요", "정보"]):
+            return {
+                "include_company_profile": True,
+                "include_dp_metadata": True,
+                "include_ucm": False,
+                "include_rulebook": False,
+                "include_subsidiary_data": False,
+                "include_external_data": False,
+                "rationale": "회사 소개 섹션 - company_profile 필요 (규칙 기반)"
+            }
+        
+        # 정성 DP
+        if dp_type in ["narrative", "qualitative"]:
+            return {
+                "include_company_profile": False,
+                "include_dp_metadata": True,
+                "include_ucm": True,
+                "include_rulebook": True,
+                "include_subsidiary_data": False,
+                "include_external_data": False,
+                "rationale": "정성 DP - rulebook/ucm 필요 (규칙 기반)"
+            }
+        
+        # 환경 관련
+        if any(kw in category_lower for kw in ["재생", "에너지", "ghg", "배출", "환경"]):
+            return {
+                "include_company_profile": False,
+                "include_dp_metadata": True,
+                "include_ucm": False,
+                "include_rulebook": False,
+                "include_subsidiary_data": True,
+                "include_external_data": True,
+                "rationale": "환경 섹션 - 사업장 상세/언론 보도 유용 (규칙 기반)"
+            }
+        
+        # 거버넌스 관련
+        if any(kw in category_lower for kw in ["이사회", "거버넌스", "지배구조"]):
+            return {
+                "include_company_profile": True,
+                "include_dp_metadata": True,
+                "include_ucm": False,
+                "include_rulebook": False,
+                "include_subsidiary_data": False,
+                "include_external_data": False,
+                "rationale": "거버넌스 섹션 - company_profile (이사회 정보) 필요 (규칙 기반)"
+            }
+        
+        # 기본값: 모두 포함
+        return {
+            "include_company_profile": True,
+            "include_dp_metadata": True,
+            "include_ucm": True,
+            "include_rulebook": True,
+            "include_subsidiary_data": True,
+            "include_external_data": True,
+            "rationale": "기본값 - 모든 데이터 포함 (규칙 기반)"
+        }
+    
+    def _build_gen_input(
+        self,
+        ref_data: dict,
+        fact_data_by_dp: dict,
+        agg_data: dict,
+        user_input: dict,
+        selection: dict
+    ) -> dict:
+        """
+        LLM 선택 결과에 따라 gen_node 입력 구성 (다중 DP 지원)
+        
+        불필요한 필드를 제거하고 핵심 정보만 추출
+        """
+        ref_data = ref_data or {}
+        fact_data_by_dp = fact_data_by_dp or {}
+        agg_data = agg_data or {}
+        user_input = user_input or {}
+        selection = selection or {}
+        
+        result = {
+            "category": user_input.get("category"),
+            "report_year": 2025,
+            "ref_2024": self._extract_sr_essentials((ref_data.get("2024") or {})),
+            "ref_2023": self._extract_sr_essentials((ref_data.get("2023") or {})),
         }
         
-        state["merged_data"] = merged
-        return state
+        # 다중 DP 처리: dp_data_list 구성
+        dp_data_list = []
+        for dp_id, fact_data in fact_data_by_dp.items():
+            if not fact_data or fact_data.get("error"):
+                logger.warning(f"Skipping DP {dp_id} due to error: {fact_data.get('error')}")
+                continue
+            
+            dp_data = {
+                "dp_id": fact_data.get("dp_id") or dp_id,
+                "latest_value": fact_data.get("value"),
+                "unit": fact_data.get("unit"),
+                "year": fact_data.get("year"),
+                "suitability_warning": fact_data.get("suitability_warning"),
+            }
+            if fact_data.get("supplementary_real_data"):
+                dp_data["supplementary_real_data"] = fact_data["supplementary_real_data"]
+            
+            # 선택적 필드 추가
+            if selection.get("include_dp_metadata"):
+                dp_meta = fact_data.get("dp_metadata") or {}
+                dp_data.update({
+                    "dp_name_ko": dp_meta.get("name_ko"),
+                    "dp_name_en": dp_meta.get("name_en"),
+                    "description": dp_meta.get("description"),
+                    "dp_type": dp_meta.get("dp_type"),
+                    "topic": dp_meta.get("topic"),
+                    "subtopic": dp_meta.get("subtopic"),
+                    "child_dps": dp_meta.get("child_dps"),
+                    "parent_indicator": dp_meta.get("parent_indicator"),
+                })
+            
+            if selection.get("include_company_profile"):
+                profile = fact_data.get("company_profile") or {}
+                _cp_keys = (
+                    "company_name_ko",
+                    "company_name_en",
+                    "industry",
+                    "mission",
+                    "vision",
+                    "total_employees",
+                )
+                dp_data["company_profile"] = {k: profile.get(k) for k in _cp_keys}
+            
+            if selection.get("include_ucm"):
+                ucm = fact_data.get("ucm") or {}
+                dp_data["ucm"] = {
+                    "column_name_ko": ucm.get("column_name_ko"),
+                    "column_description": ucm.get("column_description"),
+                    "validation_rules": ucm.get("validation_rules"),
+                    "disclosure_requirement": ucm.get("disclosure_requirement")
+                }
+            
+            if selection.get("include_rulebook"):
+                rulebook = fact_data.get("rulebook") or {}
+                dp_data["rulebook"] = {
+                    "rulebook_title": rulebook.get("rulebook_title"),
+                    "rulebook_content": rulebook.get("rulebook_content"),
+                    "key_terms": rulebook.get("key_terms"),
+                    "disclosure_requirement": rulebook.get("disclosure_requirement")
+                }
+            
+            dp_data_list.append(dp_data)
+        
+        result["dp_data_list"] = dp_data_list
+        
+        # aggregation 데이터
+        if selection.get("include_subsidiary_data") or selection.get("include_external_data"):
+            result["agg_data"] = self._extract_agg_essentials(
+                agg_data,
+                include_subsidiary=selection.get("include_subsidiary_data", False),
+                include_external=selection.get("include_external_data", False)
+            )
+        
+        return result
+    
+    def _extract_sr_essentials(self, year_data: dict) -> dict:
+        """SR 데이터에서 gen_node에 필요한 필드만 추출"""
+        if not year_data or not isinstance(year_data, dict):
+            return {}
+        
+        sr_images = year_data.get("sr_images")
+        if not isinstance(sr_images, list):
+            sr_images = []
+        
+        return {
+            "page_number": year_data.get("page_number"),
+            "body_text": year_data.get("sr_body", ""),
+            "images": [
+                {
+                    "image_type": (img or {}).get("image_type"),
+                    "caption": (img or {}).get("caption"),
+                    "image_url": (img or {}).get("image_url")
+                }
+                for img in sr_images
+                if isinstance(img, dict)
+            ]
+        }
+    
+    def _extract_agg_essentials(
+        self,
+        agg_data: dict,
+        include_subsidiary: bool = True,
+        include_external: bool = True
+    ) -> dict:
+        """aggregation 데이터에서 gen_node에 필요한 필드만 추출"""
+        if not agg_data or not isinstance(agg_data, dict):
+            return {}
+        
+        result = {}
+        for year, year_data in agg_data.items():
+            if not isinstance(year_data, dict):
+                continue
+            
+            year_result = {}
+            
+            if include_subsidiary:
+                sub_list = year_data.get("subsidiary_data")
+                if not isinstance(sub_list, list):
+                    sub_list = []
+                year_result["subsidiary_data"] = [
+                    {
+                        "subsidiary_name": (sub or {}).get("subsidiary_name"),
+                        "facility_name": (sub or {}).get("facility_name"),
+                        "description": (sub or {}).get("description"),
+                        "quantitative_data": (sub or {}).get("quantitative_data"),
+                        "category": (sub or {}).get("category")
+                    }
+                    for sub in sub_list
+                    if isinstance(sub, dict)
+                ]
+            
+            if include_external:
+                ext_list = year_data.get("external_company_data")
+                if not isinstance(ext_list, list):
+                    ext_list = []
+                year_result["external_company_data"] = [
+                    {
+                        "title": (ext or {}).get("title"),
+                        "body_text": (ext or {}).get("body_text"),
+                        "source_url": (ext or {}).get("source_url"),
+                        "published_date": (ext or {}).get("published_date")
+                    }
+                    for ext in ext_list
+                    if isinstance(ext, dict)
+                ]
+            
+            result[year] = year_result
+        
+        return result
     
     async def _generation_validation_loop(
         self,
@@ -378,22 +900,27 @@ class Orchestrator:
             
             logger.info(f"Generation-validation loop: attempt={attempt+1}/{max_retries}")
             
-            # gen_node 호출 (draft_mode)
+            # gen_node 호출 (정제된 gen_input 사용)
             try:
                 gen_result = await self.infra.call_agent(
                     "gen_node",
                     "generate",
                     self._agent_payload(
                         {
-                            "ref_data": state["ref_data"],
-                            "fact_data": state["fact_data"],
-                            "agg_data": state["agg_data"],
+                            "gen_input": state.get("gen_input") or {},
                             "feedback": state.get("feedback"),
                             "mode": "draft",
                         }
                     ),
                 )
                 state["generated_text"] = gen_result.get("text", "")
+                if gen_result.get("error") and not (state.get("generated_text") or "").strip():
+                    err = gen_result.get("error")
+                    logger.warning("gen_node returned error (no text): %s", err)
+                    state["error"] = err
+                    state["validation"] = {"is_valid": False, "errors": [err]}
+                    state["status"] = "failed"
+                    break
             
             except Exception as e:
                 logger.error(f"gen_node failed: {e}", exc_info=True)
@@ -411,7 +938,8 @@ class Orchestrator:
                     self._agent_payload(
                         {
                             "generated_text": state["generated_text"],
-                            "fact_data": state["fact_data"],
+                            "fact_data": state.get("fact_data", {}),
+                            "fact_data_by_dp": state.get("fact_data_by_dp", {}),
                             "category": state["user_input"]["category"],
                         }
                     ),
@@ -507,6 +1035,83 @@ class Orchestrator:
             "user_instruction": user_input["user_instruction"],
             "mode": "refine",
             "warnings": validation.get("warnings", []) if not validation.get("is_valid", False) else []
+        }
+    
+    async def _validate_dp_hierarchy(self, fact_data_by_dp: Dict[str, Dict]) -> Dict[str, Any]:
+        """
+        Phase 1.5: DP 계층 검증
+        
+        상위 DP(child_dps가 있는 DP)를 감지하여 사용자에게 하위 선택을 요청
+        
+        Args:
+            fact_data_by_dp: {dp_id: fact_data}
+        
+        Returns:
+            {
+                "needs_user_selection": bool,
+                "problematic_dps": [
+                    {
+                        "dp_id": str,
+                        "name_ko": str,
+                        "description": str,
+                        "child_dps": list,
+                        "parent_indicator": str,
+                        "reason": str
+                    }
+                ]
+            }
+        """
+        problematic_dps = []
+        
+        for dp_id, fact_data in fact_data_by_dp.items():
+            if not fact_data or fact_data.get("error"):
+                continue
+            
+            dp_meta = fact_data.get("dp_metadata") or {}
+            child_dps = dp_meta.get("child_dps") or []
+            parent_indicator = dp_meta.get("parent_indicator")
+            description = dp_meta.get("description", "")
+            
+            # UCM은 제외 (별도 계층 구조)
+            if dp_id.upper().startswith("UCM"):
+                continue
+            
+            # 상위 DP 판단 기준:
+            # 1. child_dps가 비어있지 않음
+            # 2. parent_indicator가 None (최상위)
+            # 3. description에 하위 항목 언급
+            is_parent = False
+            reason = ""
+            
+            if child_dps and len(child_dps) > 0:
+                is_parent = True
+                reason = f"하위 DP {len(child_dps)}개 존재"
+            
+            if is_parent and parent_indicator is None:
+                # 하위 항목 언급 키워드 체크
+                hierarchy_keywords = ["하위", "문단", "항목", "세부", "구성"]
+                if any(kw in description for kw in hierarchy_keywords):
+                    reason += " (description에 하위 항목 언급)"
+                
+                problematic_dps.append({
+                    "dp_id": dp_id,
+                    "name_ko": dp_meta.get("name_ko", dp_id),
+                    "description": description[:200] if description else "",
+                    "child_dps": child_dps,
+                    "parent_indicator": parent_indicator,
+                    "reason": reason
+                })
+        
+        if problematic_dps:
+            logger.warning(
+                "DP hierarchy validation: %d problematic DP(s) found: %s",
+                len(problematic_dps),
+                [dp["dp_id"] for dp in problematic_dps]
+            )
+        
+        return {
+            "needs_user_selection": len(problematic_dps) > 0,
+            "problematic_dps": problematic_dps
         }
     
     def _load_from_db(self, report_id: str, page_number: int) -> Dict[str, Any]:

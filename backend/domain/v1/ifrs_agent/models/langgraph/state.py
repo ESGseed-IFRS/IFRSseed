@@ -16,11 +16,14 @@ class WorkflowState(TypedDict, total=False):
     
     # Phase 1: 데이터 수집 결과
     ref_data: Dict[str, Any]  # c_rag 결과 (SR 본문·이미지)
-    fact_data: Dict[str, Any]  # dp_rag 결과 (정량: 실데이터, 정성: DP 기준·설명)
+    fact_data: Dict[str, Any]  # dp_rag 결과 (정량: 실데이터, 정성: DP 기준·설명) — 레거시, 단일 DP
+    fact_data_by_dp: Dict[str, Dict[str, Any]]  # Phase 1: 다중 DP 결과 {dp_id: fact_data}
     agg_data: Dict[str, Any]  # aggregation_node 결과 (계열사·외부 기업)
     
     # Phase 2: 병합된 데이터
-    merged_data: Dict[str, Any]  # gen_node 입력용 통합 데이터
+    merged_data: Dict[str, Any]  # gen_node 입력용 통합 데이터 (레거시)
+    gen_input: Dict[str, Any]  # Phase 2 필터링 후 gen_node에 전달된 페이로드 (dp_data_list 포함)
+    data_selection: Dict[str, Any]  # LLM/규칙 기반 데이터 선택 결과 (include_* 플래그, rationale)
     
     # Phase 3: 생성·검증
     generated_text: str  # gen_node 출력 (생성된 SR 본문)
@@ -32,6 +35,9 @@ class WorkflowState(TypedDict, total=False):
     attempt: int  # 현재 재시도 횟수 (0부터 시작)
     max_retries: int  # 최대 재시도 횟수 (기본 3)
     
+    # Phase 0 (프롬프트 해석)
+    prompt_interpretation: Dict[str, Any]  # search_intent, content_focus, ref_pages 등
+
     # 메타데이터
     workflow_id: str  # 워크플로우 실행 ID
     created_at: datetime  # 워크플로우 시작 시각
@@ -89,14 +95,18 @@ def create_initial_state(
         user_input=user_input,
         ref_data={},
         fact_data={},
+        fact_data_by_dp={},
         agg_data={},
         merged_data={},
+        gen_input={},
+        data_selection={},
         generated_text="",
         validation={},
         feedback=None,
         status="pending",
         attempt=0,
         max_retries=max_retries,
+        prompt_interpretation={},
         workflow_id=workflow_id,
         created_at=now,
         updated_at=now,

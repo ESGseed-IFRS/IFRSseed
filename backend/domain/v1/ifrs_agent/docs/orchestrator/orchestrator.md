@@ -1,7 +1,7 @@
 # orchestrator.md
 
-**최종 수정**: 2026-04-05  
-**문서 버전**: 1.1 (in-process MCP + DP 유형 라우팅)
+**최종 수정**: 2026-04-06  
+**문서 버전**: 1.2 (in-process MCP + DP 유형 라우팅 + Phase 2 동적 데이터 선택)
 
 ---
 
@@ -12,9 +12,9 @@
 | 항목 | 내용 |
 |------|------|
 | **위치** | `backend/domain/v1/ifrs_agent/hub/orchestrator/` |
-| **LLM** | Gemini 3.1 Pro (분기·재시도 판단) |
+| **LLM** | Gemini 3.1 Pro (분기·재시도 판단), **Gemini 2.5 Pro (Phase 2 데이터 선택)** |
 | **의존성** | `spokes/infra/` (에이전트·툴 호출 추상) |
-| **외부 의존** | LangGraph (상태 관리·체크포인팅만) |
+| **외부 의존** | LangGraph (상태 관리·체크포인팅만), `google.generativeai` (Gemini) |
 
 ---
 
@@ -24,7 +24,7 @@
 
 | 경로 | `action` | 설명 | 종료 조건 |
 |------|----------|------|-----------|
-| **경로 1** | `"create"` | **Phase 1**(병렬 데이터 수집) → **Phase 2**(병합) → **Phase 3**(생성·검증 루프, 최대 3회) → **Phase 4**(최종 반환) | validator 통과 or 최대 재시도 소진 |
+| **경로 1** | `"create"` | **Phase 1**(병렬 데이터 수집) → **Phase 2**(LLM 기반 동적 데이터 선택 및 필터링) → **Phase 3**(생성·검증 루프, 최대 3회) → **Phase 4**(최종 반환) | validator 통과 or 최대 재시도 소진 |
 | **경로 2** | `"retry"` | 경로 1의 **Phase 3** 내부에서 재진입 (validator 피드백 반영) | validator 통과 or 최대 재시도 소진 |
 | **경로 3** | `"refine"` | 사용자 수동 수정: 기존 페이지 로드 → gen_node(refine_mode) → validator(선택적) → 반환 | 사용자 만족 (validator는 참고용) |
 
@@ -149,7 +149,59 @@ async def _create_new_report(self, user_input: dict) -> dict:
 
 ---
 
-### 4.3 `_parallel_collect` (Phase 1) — DP 유형 라우팅 포함 ✨
+### 4.3 Phase 2: `_merge_and_filter_data` — LLM 기반 동적 데이터 선택 ✨ NEW
+
+**2026-04-06 추가**: Phase 2에서 **Gemini 2.5 Pro**가 카테고리·DP·SR 본문을 분석하여 gen_node에 필요한 데이터만 선택합니다.
+
+```python
+async def _merge_and_filter_data(self, state: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Phase 2: ref_data + fact_data + agg_data 병합 및 필터링
+    
+    LLM(Gemini 2.5 Pro)이 카테고리·DP·SR 본문을 분석하여
+    gen_node에 필요한 데이터만 동적으로 선택
+    """
+    ref_data = state["ref_data"]
+    fact_data = state["fact_data"]
+    agg_data = state["agg_data"]
+    user_input = state["user_input"]
+    
+    # 1. LLM 기반 데이터 선택
+    selection = await self._select_data_for_gen(
+        category=user_input.get("category", ""),
+        dp_id=user_input.get("dp_id", ""),
+        fact_data=fact_data,
+        ref_data=ref_data
+    )
+    
+    logger.info(f"Data selection result: {selection.get('rationale', 'N/A')}")
+    
+    # 2. 선택 결과에 따라 gen_node 입력 구성
+    gen_input = self._build_gen_input(
+        ref_data=ref_data,
+        fact_data=fact_data,
+        agg_data=agg_data,
+        user_input=user_input,
+        selection=selection
+    )
+    
+    state["gen_input"] = gen_input
+    state["data_selection"] = selection
+    return state
+```
+
+**상세 문서**: `docs/orchestrator/PHASE2_DATA_SELECTION.md`
+
+**주요 메서드**:
+- `_select_data_for_gen`: LLM 프롬프트로 필요 데이터 판단
+- `_rule_based_selection`: LLM 실패 시 규칙 기반 폴백
+- `_build_gen_input`: 선택 결과에 따라 gen_input 구성
+- `_extract_sr_essentials`: SR 데이터 핵심 필드만 추출
+- `_extract_agg_essentials`: aggregation 데이터 핵심 필드만 추출
+
+---
+
+### 4.4 `_parallel_collect` (Phase 1) — DP 유형 라우팅 포함 ✨
 
 ```python
 async def _parallel_collect(self, user_input):
@@ -222,7 +274,7 @@ async def _parallel_collect(self, user_input):
     }
 ```
 
-#### 4.3.1 `_check_dp_type_for_routing` (제안 B)
+#### 4.4.1 `_check_dp_type_for_routing` (제안 B)
 
 ```python
 async def _check_dp_type_for_routing(self, dp_id: str) -> Dict[str, Any]:

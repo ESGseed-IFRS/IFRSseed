@@ -30,7 +30,12 @@ class GovernanceData(Base):
     data_type = Column(Text, nullable=False)
     period_year = Column(Integer, nullable=False)
 
-    # Board (이사회)
+    # Board (이사회) — 수치 + SR용 연도별 인명/사외이사 수
+    board_chairman_name = Column(Text, nullable=True)
+    ceo_name = Column(Text, nullable=True)
+    independent_board_members = Column(Integer, nullable=True)
+    audit_committee_chairman = Column(Text, nullable=True)
+    esg_committee_chairman = Column(Text, nullable=True)
     total_board_members = Column(Integer, nullable=True)
     female_board_members = Column(Integer, nullable=True)
     board_meetings = Column(Integer, nullable=True)

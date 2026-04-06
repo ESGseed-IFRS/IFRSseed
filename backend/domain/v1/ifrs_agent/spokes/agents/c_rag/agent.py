@@ -12,6 +12,9 @@ from decimal import Decimal
 from typing import Any, Dict, List, Optional
 
 from backend.domain.v1.ifrs_agent.models.runtime_config import AgentRuntimeConfig
+from backend.domain.v1.ifrs_agent.hub.orchestrator.prompt_interpretation import (
+    ref_pages_for_direct_mode,
+)
 
 logger = logging.getLogger("ifrs_agent.c_rag")
 
@@ -86,6 +89,9 @@ class CRagAgent:
                 "company_id": str,
                 "category": str,
                 "years": List[int],  # [2024, 2023]
+                "search_intent": str (optional, Phase 0),
+                "content_focus": str (optional, Phase 0),
+                "ref_pages": {"2024": int|None, "2023": int|None} (optional, 다이렉트 페이지),
                 "runtime_config": AgentRuntimeConfig  # 오케스트레이터가 주입 (선택)
             }
 
@@ -112,14 +118,34 @@ class CRagAgent:
                 sorted(self.runtime_config.keys()),
             )
 
-        logger.info("c_rag.collect started: category=%s, years=%s", category, years)
+        search_intent = (payload.get("search_intent") or "").strip()
+        content_focus = (payload.get("content_focus") or "").strip()
+        ref_pages_raw = payload.get("ref_pages")
+        direct_pages = ref_pages_for_direct_mode(ref_pages_raw or {})
+
+        logger.info(
+            "c_rag.collect started: category=%s, years=%s direct_pages=%s",
+            category,
+            years,
+            direct_pages,
+        )
 
         result = {}
         for year in years:
             try:
-                body_data = await self._query_sr_body(
-                    company_id, category, year
-                )
+                yk = str(year)
+                if direct_pages and yk in direct_pages:
+                    body_data = await self._query_sr_body_by_page(
+                        company_id, year, direct_pages[yk]
+                    )
+                else:
+                    body_data = await self._query_sr_body(
+                        company_id,
+                        category,
+                        year,
+                        search_intent=search_intent,
+                        content_focus=content_focus,
+                    )
 
                 images = await self._query_sr_images(
                     report_id=body_data["report_id"],
@@ -152,8 +178,40 @@ class CRagAgent:
 
         return result
 
+    async def _query_sr_body_by_page(
+        self,
+        company_id: str,
+        year: int,
+        page_number: int,
+    ) -> Dict[str, Any]:
+        """지정 페이지 SR 본문 (벡터 검색 생략)."""
+        row = await self.infra.call_tool(
+            "query_sr_body_by_page",
+            {
+                "company_id": company_id,
+                "year": year,
+                "page_number": page_number,
+            },
+        )
+        if not row:
+            raise ValueError(
+                f"No SR body for company_id={company_id} year={year} page={page_number}"
+            )
+        body = row.get("body") or row.get("content_text") or ""
+        rid = row.get("report_id")
+        if rid is not None and hasattr(rid, "hex"):
+            rid = str(rid)
+        return {
+            "body": body,
+            "page_number": row.get("page_number", page_number),
+            "report_id": rid,
+        }
+
     async def _llm_pick_body_candidate(
-        self, category: str, candidates: List[Dict[str, Any]]
+        self,
+        category: str,
+        candidates: List[Dict[str, Any]],
+        content_focus: str = "",
     ) -> int:
         n = len(candidates)
         if n == 0:
@@ -181,8 +239,15 @@ class CRagAgent:
                 f"body_preview: {body_prev}\n"
             )
 
+        focus_line = ""
+        if (content_focus or "").strip():
+            focus_line = (
+                f"\n사용자가 초안에서 특히 다루고 싶은 내용: «{content_focus.strip()}»\n"
+                "이 초점과 본문 미리보기가 가장 잘 맞는 후보를 우선하세요.\n"
+            )
         user_msg = (
-            f"사용자가 찾는 주제(카테고리): «{category}»\n\n"
+            f"사용자가 찾는 주제(카테고리): «{category}»"
+            f"{focus_line}\n"
             "아래는 동일 연도 SR 보고서 본문 후보입니다. 인덱스는 0부터 시작합니다.\n"
             "주제와 **가장 잘 맞는 단 하나**의 후보만 고르세요.\n\n"
             + "\n---\n".join(blocks)
@@ -231,17 +296,19 @@ class CRagAgent:
         self,
         company_id: str,
         category: str,
-        year: int
+        year: int,
+        search_intent: str = "",
+        content_focus: str = "",
     ) -> Dict[str, Any]:
         """
-        SR 본문: 카테고리 임베딩으로 유사 상위 N건을 뽑은 뒤,
+        SR 본문: 카테고리(+ Phase 0 search_intent) 임베딩으로 유사 상위 N건을 뽑은 뒤,
         LLM이 subtitle·toc_path·본문 미리보기로 최종 1건 선택.
 
         Returns:
             {"body", "page_number", "report_id"}
         """
-        search_text = category
-        
+        search_text = f"{category} {search_intent}".strip() or category
+
         embed_params: Dict[str, Any] = {"text": search_text}
         if self.runtime_config and self.runtime_config.get("embedding_model"):
             embed_params["embedding_model"] = self.runtime_config["embedding_model"]
@@ -261,7 +328,9 @@ class CRagAgent:
         if not vector_rows:
             raise ValueError(f"No SR body found for category={category}, year={year}")
 
-        idx = await self._llm_pick_body_candidate(category, vector_rows)
+        idx = await self._llm_pick_body_candidate(
+            category, vector_rows, content_focus=content_focus
+        )
         chosen = vector_rows[idx]
 
         return {

@@ -1,8 +1,8 @@
 """governance_data_dummy.json → PostgreSQL governance_data 일회 적재.
 
-스키마: alembic 019_sr_unified_core. JSON의 company_name_ko 는 감사 추적용 필드로 DB 컬럼 없음.
+스키마: governance_data(019) + 공시 텍스트 컬럼(041). JSON의 company_name_ko 는 감사 추적용 필드로 DB 컬럼 없음.
 
-사전 조건: DATABASE_URL, companies 에 JSON 내 company_id 존재, 마이그레이션 019 적용.
+사전 조건: DATABASE_URL, companies 에 JSON 내 company_id 존재, 마이그레이션 041(이사회·위원회 텍스트 컬럼) 적용 권장.
 
 실행 예:
     python backend/scripts/seeds/load_governance_data_dummy.py
@@ -42,6 +42,11 @@ INSERT INTO governance_data (
     company_id,
     data_type,
     period_year,
+    board_chairman_name,
+    ceo_name,
+    independent_board_members,
+    audit_committee_chairman,
+    esg_committee_chairman,
     total_board_members,
     female_board_members,
     board_meetings,
@@ -76,12 +81,22 @@ INSERT INTO governance_data (
     %s,
     %s,
     %s,
+    %s,
+    %s,
+    %s,
+    %s,
+    %s,
     %s
 )
 ON CONFLICT (id) DO UPDATE SET
     company_id = EXCLUDED.company_id,
     data_type = EXCLUDED.data_type,
     period_year = EXCLUDED.period_year,
+    board_chairman_name = EXCLUDED.board_chairman_name,
+    ceo_name = EXCLUDED.ceo_name,
+    independent_board_members = EXCLUDED.independent_board_members,
+    audit_committee_chairman = EXCLUDED.audit_committee_chairman,
+    esg_committee_chairman = EXCLUDED.esg_committee_chairman,
     total_board_members = EXCLUDED.total_board_members,
     female_board_members = EXCLUDED.female_board_members,
     board_meetings = EXCLUDED.board_meetings,
@@ -122,6 +137,11 @@ def row_to_tuple(row: dict[str, Any]) -> tuple[Any, ...]:
         row["company_id"],
         row["data_type"],
         int(row["period_year"]),
+        row.get("board_chairman_name"),
+        row.get("ceo_name"),
+        row.get("independent_board_members"),
+        row.get("audit_committee_chairman"),
+        row.get("esg_committee_chairman"),
         row.get("total_board_members"),
         row.get("female_board_members"),
         row.get("board_meetings"),

@@ -254,11 +254,11 @@ CREATE INDEX idx_ext_company_category_emb
 
 | 노드명 | 역할 | 입력 | 출력 | 모델 |
 |-------|------|------|------|------|
-| **`orchestrator`** | 중앙 제어, 데이터 흐름 관리, 재시도 루프 | 사용자 입력 | 최종 보고서 | Gemini 3.1 Pro |
+| **`orchestrator`** | 중앙 제어, 데이터 흐름 관리, **Phase 2 동적 데이터 선택**, 재시도 루프 | 사용자 입력 | 최종 보고서 | Gemini 3.1 Pro (분기·재시도), **Gemini 2.5 Pro (Phase 2 데이터 선택)** |
 | **`c_rag`** | 카테고리 기반 **SR** 참조 데이터 수집 | 카테고리 | SR 본문, 이미지(연도별) | Gemini 2.5 Pro (Tool/함수 호출) |
 | **`dp_rag`** | DP 기반 최신 팩트 데이터 수집 | DP ID | 실데이터 테이블 값 | Gemini 2.5 Flash (`gemini-2.5-flash`, 매핑용 generateContent) |
 | **`aggregation_node`** | 계열사/자회사·외부 기업 데이터 **집계·조회** | 카테고리, DP(선택), 기업 ID | 연도별 계열사 상세 + `external_company_data` 매칭분 | Gemini 2.5 Pro (Tool/함수 호출) |
-| **`gen_node`** | IFRS 문체 문단 생성 | 병합된 수집 데이터 | 생성된 본문 | GPT-5 mini |
+| **`gen_node`** | IFRS 문체 문단 생성 | **정제된 gen_input** (Phase 2 필터링 결과) | 생성된 본문 | GPT-5 mini |
 | **`validator_node`** | 검증 및 품질 관리 | 생성 결과 | 검증 결과 | Gemini 3.1 Pro |
 
 ### 3.1.1 LLM·임베딩 운영 기준 (현행)
@@ -267,8 +267,9 @@ CREATE INDEX idx_ext_company_category_emb
 
 | 구분 | 모델 | 담당 노드 | 선택 이유 (요약) |
 |------|------|-----------|------------------|
-| 고역량 추론·판정 | **Gemini 3.1 Pro** | `orchestrator`, `validator_node` | 분기·재시도·그린워싱·데이터 일관성 등 판단 품질 |
-| 도구·RAG | **Gemini 2.5 Pro** | `c_rag`, `dp_rag`, `aggregation_node` | SQL/검색 도구 연계, 구조화 출력 |
+| 고역량 추론·판정 | **Gemini 3.1 Pro** | `orchestrator` (분기·재시도), `validator_node` | 분기·재시도·그린워싱·데이터 일관성 등 판단 품질 |
+| **컨텍스트 분석·선택** | **Gemini 2.5 Pro** | `orchestrator` (Phase 2 데이터 선택), `c_rag`, `aggregation_node` | **카테고리·DP 분석하여 필요 데이터 동적 선택**, SQL/검색 도구 연계 |
+| 경량 매핑 | **Gemini 2.5 Flash** | `dp_rag` | 물리 테이블·컬럼 매핑 (빠른 응답) |
 | 고빈도 생성 | **GPT-5 mini** | `gen_node` | 초안·재생성·refine 반복에 따른 비용·지연 완화 |
 
 **임베딩**은 **BGE-M3**를 **현행 운영 모델**로 사용한다. DB 스키마의 `VECTOR(1024)` 컬럼(`sr_report_body` 본문 임베딩, `subsidiary_data_contributions`·`external_company_data`의 category/body 임베딩 등)과 차원을 맞춘다. RAG·유사도 검색용 **쿼리 벡터**(`embed_text` 등)도 동일 **BGE-M3**로 생성해 분포 드리프트를 줄인다. (하이브리드 검색 시 BM25 등 키워드 층은 기존 설계와 병용 가능.)
@@ -279,7 +280,7 @@ CREATE INDEX idx_ext_company_category_emb
 
 | 레이어 | 위치 (예상 경로) | 역할 |
 |--------|------------------|------|
-| **Orchestrator** | `hub/orchestrator/` | 워크플로 제어: 사용자 요청 분석 → Phase 병렬 수집 → 생성·검증 루프 → 최종 반환. **LLM 기반 분기·재시도** 결정(Gemini 3.1 Pro). |
+| **Orchestrator** | `hub/orchestrator/` | 워크플로 제어: 사용자 요청 분석 → Phase 1 병렬 수집 → **Phase 2 동적 데이터 선택(Gemini 2.5 Pro)** → Phase 3 생성·검증 루프 → 최종 반환. **LLM 기반 분기·재시도** 결정(Gemini 3.1 Pro). |
 | **Infra** | `spokes/infra/` | **in-process MCP 추상**: 에이전트·툴 레지스트리, `call_agent(name, action, payload)` / `call_tool(...)` 직렬화, 타임아웃·로깅·권한. **오케스트레이터·에이전트 모두 infra만 의존**. |
 | **Agent (c_rag 등)** | `spokes/agents/c_rag/` | 전문 작업 수행: `collect(company_id, category, years)` 진입점, 내부에서 DB/검색 **툴**이 필요하면 다시 `infra.call_tool`로 호출. **오케스트레이터를 직접 import하지 않음**. |
 
@@ -783,11 +784,18 @@ feedback = [
                      │
                      ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  Phase 2: 데이터 통합 및 필터링                              │
+│  Phase 2: 데이터 통합 및 필터링 (LLM 기반 동적 선택)         │
 │                                                             │
-│  - SR 본문·이미지 (2024, 2023) — c_rag                      │
-│  - 계열사 + external_company_data (2024, 2023) — aggregation │
-│  - 최신 DP 값 (2025) — dp_rag                               │
+│  1. LLM 분석 (Gemini 2.5 Pro)                               │
+│     - 카테고리·DP·SR 본문 분석                               │
+│     - 필요한 데이터 선택 결정                                │
+│                                                             │
+│  2. gen_input 구성 (필터링된 데이터만)                       │
+│     - SR 본문·이미지 (2024, 2023) — c_rag                   │
+│     - 계열사 + external_company_data — aggregation (선택적)  │
+│     - 최신 DP 값 + company_profile — dp_rag (선택적)        │
+│                                                             │
+│  상세: docs/orchestrator/PHASE2_DATA_SELECTION.md           │
 └────────────────────┬────────────────────────────────────────┘
                      │
                      ▼

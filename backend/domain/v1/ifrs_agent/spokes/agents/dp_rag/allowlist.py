@@ -3,7 +3,9 @@ dp_rag용 테이블·컬럼 화이트리스트
 
 LLM이 선택 가능한 (table, column, data_type) 조합만 정의
 """
-from typing import Dict, List, TypedDict
+from __future__ import annotations
+
+from typing import Any, Dict, List, Optional, TypedDict
 
 
 class ColumnSpec(TypedDict):
@@ -77,6 +79,11 @@ ENVIRONMENTAL_DATA_COLUMNS: List[ColumnSpec] = [
 
 GOVERNANCE_DATA_COLUMNS: Dict[str, List[ColumnSpec]] = {
     "board": [
+        {"column": "board_chairman_name", "desc": "이사회 의장 성명", "unit": ""},
+        {"column": "ceo_name", "desc": "대표이사(경영진) 성명", "unit": ""},
+        {"column": "independent_board_members", "desc": "사외이사 수", "unit": "명"},
+        {"column": "audit_committee_chairman", "desc": "감사위원회 위원장 성명", "unit": ""},
+        {"column": "esg_committee_chairman", "desc": "ESG위원회 위원장 성명", "unit": ""},
         {"column": "total_board_members", "desc": "이사회 구성원 수", "unit": "명"},
         {"column": "female_board_members", "desc": "여성 이사 수", "unit": "명"},
         {"column": "board_meetings", "desc": "이사회 개최 횟수", "unit": "회"},
@@ -100,7 +107,7 @@ GOVERNANCE_DATA_COLUMNS: Dict[str, List[ColumnSpec]] = {
 }
 
 
-def get_allowlist_for_category(category: str) -> List[Dict[str, any]]:
+def get_allowlist_for_category(category: str) -> List[Dict[str, Any]]:
     """
     column_category (E/S/G)에 맞는 후보만 반환.
     
@@ -142,6 +149,25 @@ def get_allowlist_for_category(category: str) -> List[Dict[str, any]]:
                 })
     
     return result
+
+
+def resolve_esg_category(
+    dp_meta: Optional[Dict[str, Any]],
+    ucm_info: Optional[Dict[str, Any]],
+) -> Optional[str]:
+    """
+    E/S/G allowlist 필터용 카테고리.
+    UCM column_category 우선, 없으면 data_points.category.
+    """
+    if ucm_info:
+        cat = ucm_info.get("column_category")
+        if cat in ("E", "S", "G"):
+            return cat
+    if dp_meta:
+        c = dp_meta.get("category")
+        if c in ("E", "S", "G"):
+            return c
+    return None
 
 
 def validate_selection(table: str, column: str, data_type: str | None) -> bool:

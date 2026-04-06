@@ -51,6 +51,12 @@ class Settings:
     c_rag_llm_model: str = "gpt-5-mini"
     # dp_rag: 물리 테이블·컬럼 매핑용 Gemini 모델 ID. .env: DP_RAG_GEMINI_MODEL
     dp_rag_gemini_model: str = "gemini-2.5-flash"
+    # narrative DP일 때 rulebook·DP 설명 기준으로 보조 실데이터(social/env/gov) 조회. .env: DP_RAG_NARRATIVE_ENRICHMENT
+    dp_rag_narrative_enrichment: bool = True
+    # orchestrator: Phase 2 데이터 선택용 Gemini 모델 ID. .env: ORCHESTRATOR_GEMINI_MODEL
+    orchestrator_gemini_model: str = "gemini-2.5-pro"
+    # gen_node: SR 문단 생성용 모델 (Gemini 우선, OpenAI 대안). .env: GEN_NODE_MODEL
+    gen_node_model: str = "gemini-2.5-pro"
     dart_api_key: str = ""
     tavily_api_key: str = ""
 
@@ -66,7 +72,7 @@ class Settings:
 
     # data_integration — LLM / 파싱
     openai_api_key: str = ""
-    # Google Gemini (ifrs_agent 오케스트레이터 등). .env: GEMINI_API_KEY (구 GOOGLE_AI_API_KEY 폴백)
+    # Google Gemini (ifrs_agent 오케스트레이터·dp_rag 등). .env: GEMINI_API_KEY (구 GOOGLE_AI_API_KEY 폴백)
     gemini_api_key: str = ""
     llama_cloud_api_key: str = ""
 
@@ -158,6 +164,17 @@ def get_settings() -> Settings:
             os.getenv("DP_RAG_GEMINI_MODEL") or "gemini-2.5-flash"
         ).strip()
         or "gemini-2.5-flash",
+        dp_rag_narrative_enrichment=_env_flag_default_true(
+            "DP_RAG_NARRATIVE_ENRICHMENT", default=True
+        ),
+        orchestrator_gemini_model=(
+            os.getenv("ORCHESTRATOR_GEMINI_MODEL") or "gemini-2.5-pro"
+        ).strip()
+        or "gemini-2.5-pro",
+        gen_node_model=(
+            os.getenv("GEN_NODE_MODEL") or "gemini-2.5-pro"
+        ).strip()
+        or "gemini-2.5-pro",
         dart_api_key=os.getenv("DART_API_KEY", ""),
         tavily_api_key=os.getenv("TAVILY_API_KEY", ""),
         mcp_internal_transport=os.getenv("MCP_INTERNAL_TRANSPORT", "inprocess").strip() or "inprocess",
