@@ -140,6 +140,70 @@ async def test_parallel_collect_with_qualitative_dp(orchestrator):
 
 
 @pytest.mark.asyncio
+async def test_validate_dp_hierarchy_non_leaf_with_parent_indicator(orchestrator):
+    """
+    Phase 1.5: child_dps가 있으면 parent_indicator 유무와 관계없이 비-leaf로 차단한다.
+    (예: ESRS2-MDR-A — parent_indicator=ESRS2-MDR 이어도 하위 목록이 있으면 재선택 요청)
+    """
+    fact_data_by_dp = {
+        "ESRS2-MDR-A": {
+            "dp_metadata": {
+                "name_ko": "최소 공시 요건 MDR-A",
+                "description": "문단 66~69를 하위 DP로 둡니다.",
+                "child_dps": ["ESRS2-MDR-A-66", "ESRS2-MDR-A-67"],
+                "parent_indicator": "ESRS2-MDR",
+            }
+        }
+    }
+    r = await orchestrator._validate_dp_hierarchy(fact_data_by_dp)
+    assert r["needs_user_selection"] is True
+    assert len(r["problematic_dps"]) == 1
+    assert r["problematic_dps"][0]["dp_id"] == "ESRS2-MDR-A"
+    assert r["problematic_dps"][0]["child_dps"] == ["ESRS2-MDR-A-66", "ESRS2-MDR-A-67"]
+
+
+@pytest.mark.asyncio
+async def test_enrich_child_dps_metadata(orchestrator):
+    """
+    _enrich_child_dps_metadata가 child_dps ID를 메타데이터로 확장하는지 확인
+    """
+    problematic_dps = [
+        {
+            "dp_id": "ESRS2-MDR-A",
+            "name_ko": "MDR-A",
+            "child_dps": ["ESRS2-MDR-A-66", "ESRS2-MDR-A-67"],
+            "reason": "테스트"
+        }
+    ]
+    enriched = await orchestrator._enrich_child_dps_metadata(problematic_dps)
+    assert len(enriched) == 1
+    assert "child_dp_options" in enriched[0]
+    # child_dp_options에 name_ko, description 등이 있어야 함
+    options = enriched[0]["child_dp_options"]
+    assert len(options) == 2
+    assert all("dp_id" in opt and "name_ko" in opt for opt in options)
+
+
+@pytest.mark.asyncio
+async def test_validate_dp_hierarchy_skips_ucm(orchestrator):
+    """UCM 계열은 계층 검증에서 제외한다."""
+    r = await orchestrator._validate_dp_hierarchy({
+        "UCM_X": {"dp_metadata": {"child_dps": ["child"]}}
+    })
+    assert r["needs_user_selection"] is False
+    assert r["problematic_dps"] == []
+
+
+@pytest.mark.asyncio
+async def test_validate_dp_hierarchy_leaf_ok(orchestrator):
+    """child_dps가 비어 있으면 leaf로 통과한다."""
+    r = await orchestrator._validate_dp_hierarchy({
+        "ESRS2-E1-6": {"dp_metadata": {"child_dps": [], "parent_indicator": None}}
+    })
+    assert r["needs_user_selection"] is False
+
+
+@pytest.mark.asyncio
 async def test_gen_node_with_fact_data(orchestrator):
     """
     시나리오 6: gen_node 스텁 — fact_data 처리

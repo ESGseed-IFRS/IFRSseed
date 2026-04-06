@@ -48,6 +48,9 @@ class WorkflowState(TypedDict, total=False):
     error: Optional[str]  # 에러 메시지
     error_stack: Optional[str]  # 에러 스택 트레이스
 
+    # Phase 1.5 (상위 DP → 하위 선택 유도)
+    dp_selection_required: Optional[List[Dict[str, Any]]]
+
 
 class AgentResponse(TypedDict, total=False):
     """

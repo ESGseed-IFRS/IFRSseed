@@ -61,6 +61,10 @@ class Orchestrator:
                 logger.info(f"Gemini {model_id} initialized for orchestrator data selection (google.genai)")
             except Exception as e:
                 logger.warning(f"Gemini client initialization failed: {e}")
+        
+        # Phase 1.5 DP 적합성 판단용 모델 ID
+        p15_model = getattr(self.settings, "orchestrator_phase15_model", "")
+        self._phase15_model_id = p15_model.strip() if p15_model else self._gemini_model_id
 
         logger.info("Orchestrator initialized (shared Settings via get_settings())")
 
@@ -128,17 +132,47 @@ class Orchestrator:
             "feedback": None
         }
         
-        # Phase 1.5: DP 계층 검증 (선택적)
-        if user_input.get("dp_validation_needed") or user_input.get("dp_ids"):
+        # Phase 1.5: DP 계층 검증 (dp_id 또는 dp_ids가 있으면 실행)
+        has_dp = user_input.get("dp_id") or user_input.get("dp_ids")
+        if user_input.get("dp_validation_needed") or has_dp:
             logger.info("Phase 1.5: DP hierarchy validation")
-            dp_validation = await self._validate_dp_hierarchy(state["fact_data_by_dp"])
+            dp_validation = await self._validate_dp_hierarchy(state["fact_data_by_dp"], user_input)
             if dp_validation.get("needs_user_selection"):
                 logger.warning("DP hierarchy validation failed - needs user selection")
+                # child_dps 메타데이터 enrich
+                enriched = await self._enrich_child_dps_metadata(dp_validation.get("problematic_dps", []))
+                _pi = {
+                    "search_intent": (state["user_input"] or {}).get("search_intent", ""),
+                    "content_focus": (state["user_input"] or {}).get("content_focus", ""),
+                    "ref_pages": (state["user_input"] or {}).get("ref_pages"),
+                    "dp_validation_needed": (state["user_input"] or {}).get(
+                        "dp_validation_needed", False
+                    ),
+                }
                 return {
                     "status": "needs_dp_selection",
-                    "dp_selection_required": dp_validation.get("problematic_dps", []),
+                    "generated_text": "",
+                    "validation": {},
+                    "dp_selection_required": enriched,
                     "error": "상위 DP가 감지되었습니다. 하위 DP를 선택해주세요.",
-                    "prompt_interpretation": phase0,
+                    "prompt_interpretation": _pi,
+                    "references": {
+                        "sr_pages": [
+                            state["ref_data"].get("2024", {}).get("page_number"),
+                            state["ref_data"].get("2023", {}).get("page_number"),
+                        ],
+                        "sr_data": state["ref_data"],
+                        "agg_data": state.get("agg_data", {}),
+                        "subsidiary_data": state.get("agg_data", {}).get("subsidiary_data", []),
+                        "fact_data": state.get("fact_data", {}),
+                        "fact_data_by_dp": state.get("fact_data_by_dp", {}),
+                    },
+                    "metadata": {
+                        "attempts": 0,
+                        "status": "needs_dp_selection",
+                        "mode": "draft",
+                        "prompt_interpretation": _pi,
+                    },
                 }
         
         logger.info("Phase 2: Data merging and filtering started")
@@ -1037,82 +1071,230 @@ class Orchestrator:
             "warnings": validation.get("warnings", []) if not validation.get("is_valid", False) else []
         }
     
-    async def _validate_dp_hierarchy(self, fact_data_by_dp: Dict[str, Dict]) -> Dict[str, Any]:
+    async def _validate_dp_hierarchy(
+        self,
+        fact_data_by_dp: Dict[str, Dict],
+        user_input: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
-        Phase 1.5: DP 계층 검증
-        
-        상위 DP(child_dps가 있는 DP)를 감지하여 사용자에게 하위 선택을 요청
-        
+        Phase 1.5: DP 계층 검증 (하이브리드 LLM + 규칙)
+
+        1. 가드레일: child_dps 유무로 1차 필터 (UCM 제외)
+        2. LLM 판단 (활성화 시): description·validation_rules·사용자 의도 종합 분석
+        3. 강제 규칙 (strict 모드): child_dps 있으면 LLM이 proceed라도 재선택 강제
+
         Args:
             fact_data_by_dp: {dp_id: fact_data}
+            user_input: 사용자 요청 (category, prompt 등)
+
+        Returns:
+            { "needs_user_selection": bool, "problematic_dps": [...] }
+        """
+        use_llm = getattr(self.settings, "orchestrator_phase15_use_llm", True)
+        strict_child_dps = getattr(self.settings, "orchestrator_phase15_strict_child_dps", True)
+
+        # 1. 규칙 기반 1차 필터
+        rule_result = self._validate_dp_hierarchy_rules(fact_data_by_dp)
+        
+        # 2. LLM 판단 (활성화 시)
+        llm_decisions = None
+        if use_llm and self._gemini_client:
+            user_context = {
+                "category": user_input.get("category", ""),
+                "prompt": user_input.get("prompt", ""),
+                "search_intent": user_input.get("search_intent", ""),
+                "content_focus": user_input.get("content_focus", ""),
+            }
+            try:
+                from backend.domain.v1.ifrs_agent.hub.orchestrator.dp_hierarchy_llm import (
+                    classify_dp_suitability_with_gemini,
+                )
+                llm_decisions = await classify_dp_suitability_with_gemini(
+                    client=self._gemini_client,
+                    model_id=self._phase15_model_id,
+                    fact_data_by_dp=fact_data_by_dp,
+                    user_context=user_context,
+                )
+                if llm_decisions:
+                    logger.info("Phase 1.5 LLM: %d decision(s) returned", len(llm_decisions))
+            except Exception as e:
+                logger.warning("Phase 1.5 LLM classification failed: %s", e, exc_info=True)
+        
+        # 3. 병합 (LLM + 규칙)
+        merged = self._merge_phase15_dp_hierarchy(
+            rule_result=rule_result,
+            llm_decisions=llm_decisions,
+            fact_data_by_dp=fact_data_by_dp,
+            strict_child_dps=strict_child_dps,
+        )
+        
+        if merged["problematic_dps"]:
+            logger.warning(
+                "Phase 1.5 final: %d problematic DP(s): %s",
+                len(merged["problematic_dps"]),
+                [dp["dp_id"] for dp in merged["problematic_dps"]],
+            )
+        
+        return merged
+
+    def _validate_dp_hierarchy_rules(self, fact_data_by_dp: Dict[str, Dict]) -> Dict[str, Any]:
+        """
+        규칙 기반 DP 계층 검증 (가드레일).
+        
+        child_dps가 있으면 상위 DP로 판단 (UCM 제외).
         
         Returns:
-            {
-                "needs_user_selection": bool,
-                "problematic_dps": [
-                    {
-                        "dp_id": str,
-                        "name_ko": str,
-                        "description": str,
-                        "child_dps": list,
-                        "parent_indicator": str,
-                        "reason": str
-                    }
-                ]
-            }
+            { "needs_user_selection": bool, "problematic_dps": [...] }
         """
-        problematic_dps = []
-        
+        problematic_dps: List[Dict[str, Any]] = []
+
         for dp_id, fact_data in fact_data_by_dp.items():
             if not fact_data or fact_data.get("error"):
                 continue
-            
+
             dp_meta = fact_data.get("dp_metadata") or {}
             child_dps = dp_meta.get("child_dps") or []
             parent_indicator = dp_meta.get("parent_indicator")
             description = dp_meta.get("description", "")
-            
-            # UCM은 제외 (별도 계층 구조)
+
             if dp_id.upper().startswith("UCM"):
                 continue
-            
-            # 상위 DP 판단 기준:
-            # 1. child_dps가 비어있지 않음
-            # 2. parent_indicator가 None (최상위)
-            # 3. description에 하위 항목 언급
-            is_parent = False
-            reason = ""
-            
-            if child_dps and len(child_dps) > 0:
-                is_parent = True
-                reason = f"하위 DP {len(child_dps)}개 존재"
-            
-            if is_parent and parent_indicator is None:
-                # 하위 항목 언급 키워드 체크
-                hierarchy_keywords = ["하위", "문단", "항목", "세부", "구성"]
-                if any(kw in description for kw in hierarchy_keywords):
-                    reason += " (description에 하위 항목 언급)"
-                
-                problematic_dps.append({
+
+            if not child_dps:
+                continue
+
+            reason = f"상위 DP — 하위 DP {len(child_dps)}개가 있습니다. 필요한 항목(leaf)을 선택해주세요."
+            if parent_indicator:
+                reason += f" (parent_indicator: {parent_indicator})"
+
+            problematic_dps.append(
+                {
                     "dp_id": dp_id,
                     "name_ko": dp_meta.get("name_ko", dp_id),
                     "description": description[:200] if description else "",
                     "child_dps": child_dps,
                     "parent_indicator": parent_indicator,
-                    "reason": reason
-                })
-        
-        if problematic_dps:
-            logger.warning(
-                "DP hierarchy validation: %d problematic DP(s) found: %s",
-                len(problematic_dps),
-                [dp["dp_id"] for dp in problematic_dps]
+                    "reason": reason,
+                    "source": "rule",
+                }
             )
-        
+
         return {
             "needs_user_selection": len(problematic_dps) > 0,
-            "problematic_dps": problematic_dps
+            "problematic_dps": problematic_dps,
         }
+
+    def _merge_phase15_dp_hierarchy(
+        self,
+        rule_result: Dict[str, Any],
+        llm_decisions: Optional[List[Dict[str, Any]]],
+        fact_data_by_dp: Dict[str, Dict],
+        strict_child_dps: bool,
+    ) -> Dict[str, Any]:
+        """
+        규칙 기반 결과와 LLM 판단을 병합.
+        
+        로직:
+        1. 규칙에서 problematic으로 판단된 DP 목록을 기준으로
+        2. LLM이 proceed라고 해도, strict_child_dps=True면 재선택 강제
+        3. LLM이 needs_user_selection=True면 reason_ko를 우선 사용
+        
+        Args:
+            rule_result: _validate_dp_hierarchy_rules 반환값
+            llm_decisions: LLM 판단 결과 (None이면 규칙만)
+            fact_data_by_dp: DP 메타데이터
+            strict_child_dps: True면 child_dps 있을 때 LLM이 proceed라도 강제 차단
+        
+        Returns:
+            { "needs_user_selection": bool, "problematic_dps": [...] }
+        """
+        rule_problematic = {dp["dp_id"]: dp for dp in rule_result.get("problematic_dps", [])}
+        
+        if not llm_decisions:
+            return rule_result
+        
+        llm_by_id = {d["dp_id"]: d for d in llm_decisions}
+        
+        final_problematic: List[Dict[str, Any]] = []
+        
+        for dp_id, rule_item in rule_problematic.items():
+            llm_dec = llm_by_id.get(dp_id)
+            
+            if llm_dec:
+                needs_sel = llm_dec.get("needs_user_selection", False)
+                reason_ko = llm_dec.get("reason_ko", "").strip()
+                
+                if strict_child_dps:
+                    final_problematic.append({
+                        **rule_item,
+                        "reason": reason_ko or rule_item["reason"],
+                        "source": "llm+strict",
+                        "llm_rationale": llm_dec.get("rationale", ""),
+                    })
+                elif needs_sel:
+                    final_problematic.append({
+                        **rule_item,
+                        "reason": reason_ko or rule_item["reason"],
+                        "source": "llm",
+                        "llm_rationale": llm_dec.get("rationale", ""),
+                    })
+                else:
+                    logger.info(
+                        "Phase 1.5: DP %s has child_dps but LLM says proceed (strict=False) → allow",
+                        dp_id,
+                    )
+            else:
+                final_problematic.append(rule_item)
+        
+        return {
+            "needs_user_selection": len(final_problematic) > 0,
+            "problematic_dps": final_problematic,
+        }
+
+    async def _enrich_child_dps_metadata(self, problematic_dps: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """
+        problematic_dps의 각 child_dps ID 배열을 메타데이터(name_ko, description 등)로 enrich한다.
+        
+        Args:
+            problematic_dps: _validate_dp_hierarchy 반환값의 problematic_dps
+        
+        Returns:
+            enriched problematic_dps with child_dp_options: [{"dp_id", "name_ko", "description", ...}]
+        """
+        enriched = []
+        for item in problematic_dps:
+            child_dp_ids = item.get("child_dps") or []
+            child_options = []
+            
+            for child_id in child_dp_ids:
+                try:
+                    # dp_query 툴로 메타 조회
+                    meta = await self.infra.call_tool(
+                        "query_dp_metadata",
+                        {"dp_id": child_id}
+                    )
+                    if meta:
+                        child_options.append({
+                            "dp_id": child_id,
+                            "name_ko": meta.get("name_ko", child_id),
+                            "name_en": meta.get("name_en", ""),
+                            "description": meta.get("description", "")[:150],  # 150자 제한
+                            "dp_type": meta.get("dp_type"),
+                            "unit": meta.get("unit"),
+                        })
+                    else:
+                        # 메타 조회 실패 시 ID만
+                        child_options.append({"dp_id": child_id, "name_ko": child_id})
+                except Exception as e:
+                    logger.warning(f"Failed to fetch metadata for child DP {child_id}: {e}")
+                    child_options.append({"dp_id": child_id, "name_ko": child_id})
+            
+            enriched.append({
+                **item,
+                "child_dp_options": child_options,  # UI용 메타데이터
+            })
+        
+        return enriched
     
     def _load_from_db(self, report_id: str, page_number: int) -> Dict[str, Any]:
         """

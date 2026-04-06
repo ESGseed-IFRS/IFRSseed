@@ -258,33 +258,72 @@ SELECT dp_id, name_ko, name_en, description,
 FROM data_points WHERE dp_id = $1
 ```
 
-#### 3.5.2 검증 로직 (오케스트레이터)
+#### 3.5.2 검증 로직 (오케스트레이터) — ✅ 하이브리드 LLM + 규칙 구현 완료
+
+**구현 기준 (2026-04-06 업데이트):**
+
+Phase 1.5 DP 적합성 판단은 **3단계 하이브리드 구조**로 작동합니다:
+
+1. **가드레일 (규칙 기반)**: `child_dps`가 비어 있지 않으면 1차 필터 (UCM 제외)
+2. **LLM 판단 (Gemini)**: `description`, `validation_rules`, 사용자 의도(`category`, `prompt`, `search_intent`, `content_focus`)를 종합하여 각 DP가 gen_node에 전달하기 적합한지 동적 분석
+3. **강제 규칙 (strict 모드)**: `orchestrator_phase15_strict_child_dps=True`이면 `child_dps`가 있을 때 LLM이 proceed라고 해도 재선택 강제
+
+**설정 (settings.py / .env):**
+
+- `ORCHESTRATOR_PHASE15_MODEL`: Phase 1.5용 Gemini 모델 (미설정 시 `orchestrator_gemini_model` 사용)
+- `ORCHESTRATOR_PHASE15_USE_LLM`: LLM 판단 활성화 (기본 `True`)
+- `ORCHESTRATOR_PHASE15_STRICT_CHILDDPS`: `child_dps` 있을 때 강제 차단 (기본 `True`)
+
+**LLM 프롬프트 구조:**
+
+```python
+# dp_hierarchy_llm.py
+def build_phase15_prompt(fact_data_by_dp, user_context) -> str:
+    """
+    - 사용자 맥락: category, prompt, search_intent, content_focus
+    - DP 메타: name_ko, description, validation_rules, child_dps, topic, subtopic, dp_type
+    - 판단 기준:
+      1. 계층 구조 (child_dps → 보통 하위 선택 필요, 예외: 총괄 요약 요청)
+      2. description·validation_rules 분석 ("하위 DP로 둡니다", "하위 문단·항목 공시" 등)
+      3. 사용자 의도와 DP 주제 일치 (예: "학술연수" vs "거버넌스·IRO 관리" → 불일치)
+      4. DP 유형 (narrative vs quantitative)
+    
+    출력: JSON { "decisions": [{"dp_id", "needs_user_selection", "reason_ko", "rationale"}] }
+    """
+```
+
+**병합 로직 (`_merge_phase15_dp_hierarchy`):**
+
+- 규칙에서 problematic으로 판단된 DP를 기준으로
+- LLM이 `needs_user_selection=False` (proceed)라도 `strict_child_dps=True`면 재선택 강제
+- LLM이 `needs_user_selection=True`면 `reason_ko`를 우선 사용 (사용자에게 맥락 있는 설명 제공)
+
+**검증 흐름:**
 
 Phase 1 후, dp_rag 결과를 받으면:
 
 ```python
-async def _validate_dp_hierarchy(self, dp_results: List[Dict]) -> Dict:
+async def _validate_dp_hierarchy(
+    self,
+    fact_data_by_dp: Dict[str, Dict],
+    user_input: Dict[str, Any],
+) -> Dict[str, Any]:
     """
-    상위 DP 감지 시 사용자에게 하위 선택을 요청하는 응답을 만든다.
-
-    판단 기준:
-    1. child_dps 가 비어있지 않음
-    2. description / validation_rules 에 하위 항목 공시 지시 문구 포함
-       예: "문단 63(적용)·64(목적)·65(a)~(f)를 하위 DP로 둡니다."
-    3. parent_indicator 가 None (즉 자신이 최상위)
-
+    하이브리드 LLM + 규칙 기반 DP 적합성 판단
+    
     Returns:
         {
-          "needs_user_selection": True,
+          "needs_user_selection": bool,
           "problematic_dps": [
             {
-              "dp_id": "ESRS2-MDR-P",
-              "name_ko": "MDR-P: 정책",
-              "description": "문단 63~65 하위 DP 포함 ...",
-              "validation_rules": [...],
-              "child_dps": ["ESRS2-MDR-P-63", "ESRS2-MDR-P-64", ...],
-              "parent_indicator": null,
-              "reason": "상위 DP — 하위 문단·항목을 선택해주세요"
+              "dp_id": str,
+              "name_ko": str,
+              "description": str (200자 제한),
+              "child_dps": List[str],
+              "parent_indicator": str | None,
+              "reason": str,  # LLM reason_ko 또는 규칙 기반 reason
+              "source": "rule" | "llm" | "llm+strict",
+              "llm_rationale": str (선택)
             }
           ]
         }
@@ -293,21 +332,44 @@ async def _validate_dp_hierarchy(self, dp_results: List[Dict]) -> Dict:
 
 검증에서 **"부적합"** 판정된 DP가 있으면:
 
-1. **즉시 gen_node 로 가지 않고**
-2. 사용자에게 **`status: "needs_dp_selection"`** 응답 반환
-3. 응답에 `child_dps` + `parent_indicator` + `description` 을 포함
-4. 사용자가 하위 DP를 다시 선택하여 재요청
+1. **즉시 gen_node로 가지 않고**
+2. `_enrich_child_dps_metadata`로 각 `child_dps` ID에 대해 `name_ko`, `description` 등 메타 조회
+3. 사용자에게 **`status: "needs_dp_selection"`** 응답 반환
+4. 응답에 `child_dp_options: [{"dp_id", "name_ko", "description", ...}]` 포함 (UI 편의)
+5. 사용자가 하위 DP를 다시 선택하여 재요청
 
-**UCM 은 이 검증에서 제외** (UCM은 자체 hierarchy가 다르므로).
+**UCM은 이 검증에서 제외** (UCM은 자체 hierarchy가 다르므로).
 
-#### 3.5.3 API 응답 확장
+#### 3.5.3 API 응답 확장 — ✅ 구현 완료
 
 ```python
-# WorkflowResponse 에 신규 필드
-class WorkflowResponse(BaseModel):
-    ...
-    dp_selection_required: Optional[List[Dict[str, Any]]] = None
-    # DP 계층 검증 실패 시 하위 선택지 제시
+# orchestrator 반환 (needs_dp_selection 시)
+{
+    "status": "needs_dp_selection",
+    "dp_selection_required": [
+        {
+            "dp_id": "ESRS2-MDR-A",
+            "name_ko": "최소 공시 요건 MDR-A",
+            "description": "문단 66~69를 하위 DP로 둡니다.",
+            "child_dps": ["ESRS2-MDR-A-66", "ESRS2-MDR-A-67", ...],
+            "parent_indicator": "ESRS2-MDR",
+            "reason": "상위 DP — 하위 DP 10개가 있습니다. 필요한 항목(leaf)을 선택해주세요.",
+            "child_dp_options": [  # ← 신규: UI용 메타데이터
+                {
+                    "dp_id": "ESRS2-MDR-A-66",
+                    "name_ko": "문단 66: 적용",
+                    "name_en": "...",
+                    "description": "...",
+                    "dp_type": "narrative",
+                    "unit": null
+                },
+                ...
+            ]
+        }
+    ],
+    "error": "상위 DP가 감지되었습니다. 하위 DP를 선택해주세요.",
+    "prompt_interpretation": {...}
+}
 ```
 
 ---
@@ -458,17 +520,19 @@ class WorkflowResponse(BaseModel):
 
 ## 7. 구현 순서 (권장)
 
-| 순서 | 작업 | 의존 |
+| 순서 | 작업 | 상태 |
 |------|------|------|
-| 1 | `dp_query.py`: `child_dps`, `parent_indicator` SELECT 추가 | 없음 |
-| 2 | `router.py`: `CreateReportRequest` 확장 (`dp_ids`, `prompt`, `ref_pages`) | 없음 |
-| 3 | 오케스트레이터 `_interpret_user_prompt` (Phase 0) | 2 |
-| 4 | c_rag: `_query_sr_by_page` + `search_text` 보강 + LLM `content_focus` | 3, `query_sr_body_by_page` 툴 |
-| 5 | 오케스트레이터: 다중 DP 루프 (`dp_ids`) | 2 |
-| 6 | 오케스트레이터: `_validate_dp_hierarchy` (Phase 1.5) | 1, 5 |
-| 7 | `_build_gen_input`: `dp_data_list` 구조 | 5 |
-| 8 | `gen_node/prompts.py`: 다중 DP 프롬프트 | 7 |
-| 9 | 통합 테스트 | 전체 |
+| 1 | `dp_query.py`: `child_dps`, `parent_indicator` SELECT 추가 | ✅ 완료 |
+| 2 | `router.py`: `CreateReportRequest` 확장 (`dp_ids`, `prompt`, `ref_pages`) | ✅ 완료 |
+| 3 | 오케스트레이터 `_interpret_user_prompt` (Phase 0) | ✅ 완료 |
+| 4 | c_rag: `_query_sr_by_page` + `search_text` 보강 + LLM `content_focus` | ✅ 완료 |
+| 5 | 오케스트레이터: 다중 DP 루프 (`dp_ids`) | ✅ 완료 |
+| 6 | 오케스트레이터: `_validate_dp_hierarchy` (Phase 1.5) | ✅ 완료 (2026-04-06 수정) |
+| 6.1 | 오케스트레이터: `_enrich_child_dps_metadata` (UI 편의) | ✅ 완료 (2026-04-06 추가) |
+| 6.2 | Phase 1.5 조건문 수정 (`dp_id` 단수형 지원) | ✅ 완료 (2026-04-06 수정) |
+| 7 | `_build_gen_input`: `dp_data_list` 구조 | ✅ 완료 |
+| 8 | `gen_node/prompts.py`: 다중 DP 프롬프트 | ✅ 완료 |
+| 9 | 통합 테스트 | ✅ 완료 (hierarchy 단위 테스트 추가) |
 
 ---
 
@@ -488,5 +552,8 @@ class WorkflowResponse(BaseModel):
 | gen_input 빌드 | `backend/.../orchestrator/orchestrator.py` | ✅ `_build_gen_input` dp_data_list 지원 |
 | gen_node 프롬프트 | `backend/.../gen_node/prompts.py` | ✅ `_build_latest_data_section` 다중 DP 루프 |
 | state | `backend/.../models/langgraph/state.py` | ✅ `fact_data_by_dp`, `prompt_interpretation` 추가 |
-| Phase 1.5 검증 | `backend/.../orchestrator/orchestrator.py` | ✅ `_validate_dp_hierarchy` 구현 |
+| Phase 1.5 검증 | `backend/.../orchestrator/orchestrator.py` | ✅ `_validate_dp_hierarchy` 구현 (2026-04-06 수정) |
+| Phase 1.5 enrich | `backend/.../orchestrator/orchestrator.py` | ✅ `_enrich_child_dps_metadata` 추가 (2026-04-06) |
+| Phase 1.5 조건 | `backend/.../orchestrator/orchestrator.py` | ✅ `dp_id` 단수형 지원 수정 (2026-04-06) |
 | API 응답 | `backend/api/v1/ifrs_agent/router.py` | ✅ `dp_selection_required` 필드 추가 |
+| 단위 테스트 | `backend/.../tests/test_orchestrator_dp_routing_integration.py` | ✅ hierarchy 테스트 3개 추가 (2026-04-06) |

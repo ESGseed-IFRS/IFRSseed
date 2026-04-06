@@ -61,21 +61,26 @@ def build_workflow(infra: InfraLayer):
             
             # 상태 업데이트
             refs = result.get("references") or {}
+            _meta = result.get("metadata") or {}
+            # 오케스트레이터는 성공/실패 시 status를 metadata에 두고,
+            # needs_dp_selection 등 조기 반환은 최상위 result["status"]에 둔다.
+            resolved_status = result.get("status") or _meta.get("status", "failed")
             state = update_state(
                 state,
                 generated_text=result.get("generated_text", ""),
                 validation=result.get("validation", {}),
-                status=result.get("metadata", {}).get("status", "failed"),
-                attempt=result.get("metadata", {}).get("attempts", 0) - 1,  # 0부터 시작하도록 조정
+                status=resolved_status,
+                attempt=_meta.get("attempts", 0) - 1,  # 0부터 시작하도록 조정
                 ref_data=refs.get("sr_data", {}),
                 fact_data=refs.get("fact_data", {}),
                 fact_data_by_dp=refs.get("fact_data_by_dp", {}),
                 agg_data=result.get("agg_data", refs.get("agg_data", {})),
-                mode=result.get("metadata", {}).get("mode", "draft"),
+                mode=_meta.get("mode", "draft"),
                 error=result.get("error"),
                 gen_input=result.get("gen_input") or {},
                 data_selection=result.get("data_selection") or {},
                 prompt_interpretation=result.get("prompt_interpretation") or {},
+                dp_selection_required=result.get("dp_selection_required"),
             )
             
             logger.info(

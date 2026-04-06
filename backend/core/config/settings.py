@@ -55,6 +55,12 @@ class Settings:
     dp_rag_narrative_enrichment: bool = True
     # orchestrator: Phase 2 데이터 선택용 Gemini 모델 ID. .env: ORCHESTRATOR_GEMINI_MODEL
     orchestrator_gemini_model: str = "gemini-2.5-pro"
+    # orchestrator: Phase 1.5 DP 적합성 판단용 Gemini 모델 (미설정 시 orchestrator_gemini_model 사용). .env: ORCHESTRATOR_PHASE15_MODEL
+    orchestrator_phase15_model: str = ""
+    # Phase 1.5에서 Gemini로 DP 적합성 판단 활성화 (기본 true). .env: ORCHESTRATOR_PHASE15_USE_LLM
+    orchestrator_phase15_use_llm: bool = True
+    # True면 child_dps 있을 때 LLM이 proceed라도 재선택 강제 (기본 true). .env: ORCHESTRATOR_PHASE15_STRICT_CHILDDPS
+    orchestrator_phase15_strict_child_dps: bool = True
     # gen_node: SR 문단 생성용 모델 (Gemini 우선, OpenAI 대안). .env: GEN_NODE_MODEL
     gen_node_model: str = "gemini-2.5-pro"
     dart_api_key: str = ""
@@ -171,6 +177,15 @@ def get_settings() -> Settings:
             os.getenv("ORCHESTRATOR_GEMINI_MODEL") or "gemini-2.5-pro"
         ).strip()
         or "gemini-2.5-pro",
+        orchestrator_phase15_model=(
+            os.getenv("ORCHESTRATOR_PHASE15_MODEL") or ""
+        ).strip(),
+        orchestrator_phase15_use_llm=_env_flag_default_true(
+            "ORCHESTRATOR_PHASE15_USE_LLM", default=True
+        ),
+        orchestrator_phase15_strict_child_dps=_env_flag_default_true(
+            "ORCHESTRATOR_PHASE15_STRICT_CHILDDPS", default=True
+        ),
         gen_node_model=(
             os.getenv("GEN_NODE_MODEL") or "gemini-2.5-pro"
         ).strip()
