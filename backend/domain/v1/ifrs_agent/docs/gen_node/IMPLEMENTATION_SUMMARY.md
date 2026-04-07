@@ -307,6 +307,8 @@ from backend.domain.v1.ifrs_agent.spokes.agents.gen_node import (
 
 ## 📚 참고 문서
 
+- [IMAGE_LAYOUT_RECOMMENDATION_DESIGN.md](./IMAGE_LAYOUT_RECOMMENDATION_DESIGN.md) - 전년·전전년 이미지 기반 배치·표 추천(설계)
+- [HOLDING_EDITOR_REPORTS_CREATE_INTEGRATION_SPEC.md](./HOLDING_EDITOR_REPORTS_CREATE_INTEGRATION_SPEC.md) - HoldingPageByPageEditor API 연동/응답 렌더 확정 명세
 - [GEN_NODE_IMPLEMENTATION_STRATEGY.md](./GEN_NODE_IMPLEMENTATION_STRATEGY.md) - 구현 전략
 - [REVISED_WORKFLOW.md](../REVISED_WORKFLOW.md) - 전체 워크플로우
 - [orchestrator/PHASE2_DATA_SELECTION.md](../orchestrator/PHASE2_DATA_SELECTION.md) - Phase 2 데이터 필터링

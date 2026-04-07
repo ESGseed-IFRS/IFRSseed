@@ -12,7 +12,7 @@ from backend.domain.v1.ifrs_agent.spokes.agents.c_rag import make_c_rag_handler
 from backend.domain.v1.ifrs_agent.spokes.agents.dp_rag import make_dp_rag_handler
 from backend.domain.v1.ifrs_agent.spokes.agents.aggregation_node import make_aggregation_node_handler
 from backend.domain.v1.ifrs_agent.spokes.agents.gen_node import make_gen_node_handler
-from backend.domain.v1.ifrs_agent.spokes.agents.stubs import validator_node_stub
+from backend.domain.v1.ifrs_agent.spokes.agents.validator_node import make_validator_node_handler
 
 logger = logging.getLogger("ifrs_agent.bootstrap")
 
@@ -58,8 +58,8 @@ def register_agents(infra: InfraLayer) -> None:
     # Gen Node (실제 구현)
     infra.agent_registry.register("gen_node", make_gen_node_handler(infra))
     
-    # Validator Node (임시 스텁)
-    infra.agent_registry.register("validator_node", validator_node_stub)
+    # Validator Node (규칙 + 선택 Gemini)
+    infra.agent_registry.register("validator_node", make_validator_node_handler(infra))
     
     logger.info(f"Agents registered: {infra.agent_registry.list_agents()}")
 
@@ -91,6 +91,7 @@ def register_tools(infra: InfraLayer) -> None:
     from backend.domain.shared.tool.ifrs_agent.database.aggregation_query import (
         query_subsidiary_data,
         query_external_company_data,
+        query_external_by_prompt,
     )
     from backend.domain.shared.tool.ifrs_agent.database.aggregation_relevance import (
         query_subsidiary_data_relevant,
@@ -130,7 +131,10 @@ def register_tools(infra: InfraLayer) -> None:
     infra.tool_registry.register("query_subsidiary_data", query_subsidiary_data)
     infra.tool_registry.register("query_external_company_data", query_external_company_data)
     
-    # 계열사·외부 기업 툴 (관련성 기반)
+    # 계열사·외부 기업 툴 (프롬프트 기반 - 신규)
+    infra.tool_registry.register("query_external_by_prompt", query_external_by_prompt)
+    
+    # 계열사·외부 기업 툴 (관련성 기반 - 사용 안 함)
     infra.tool_registry.register("query_subsidiary_data_relevant", query_subsidiary_data_relevant)
     infra.tool_registry.register("query_external_data_relevant", query_external_data_relevant)
     

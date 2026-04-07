@@ -5,7 +5,7 @@ aggregation_node용 계열사·외부 기업 데이터 조회 툴
 - query_external_company_data: external_company_data 검색 (카테고리 + 벡터)
 """
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 from backend.domain.shared.tool.ifrs_agent.database.asyncpg_connect import connect_ifrs_asyncpg
 from backend.domain.shared.tool.ifrs_agent.database.embedding_tool import embed_text
@@ -20,17 +20,17 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     subsidiary_data_contributions 테이블에서 계열사/자회사 데이터 조회.
     
-    검색 전략:
+    검색 전략 (category_embedding 기반):
     1. 정확 매칭: category 문자열 일치
-    2. 벡터 유사도: category_embedding 코사인 유사도 (정확 매칭 실패 시)
-    3. DP 필터: related_dp_ids 교차 (선택적)
+    2. 벡터 유사도: category_embedding (정확 매칭 실패 시)
+    
+    더미 데이터 기준으로 related_dp_ids는 검색에 사용하지 않음.
     
     Args:
         params: {
             "company_id": str (UUID),
             "year": int,
             "category": str,
-            "dp_id": str (선택),
             "limit": int (기본 5)
         }
     
@@ -49,16 +49,11 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
     company_id = params["company_id"]
     year = params["year"]
     category = params["category"]
-    dp_id = params.get("dp_id")
-    # UCM ID는 related_dp_ids에 직접 저장되지 않아 필터 적용 시 0건이 된다.
-    # (예: UCM_ESRSE1_GOV_3_13__IFRS2_29_g_i)
-    if isinstance(dp_id, str) and dp_id.upper().startswith("UCM_"):
-        dp_id = None
     limit = params.get("limit", 5)
     
     logger.info(
-        "query_subsidiary_data: company_id=%s, year=%s, category=%s, dp_id=%s",
-        company_id, year, category, dp_id
+        "query_subsidiary_data: company_id=%s, year=%s, category=%s",
+        company_id, year, category,
     )
     
     try:
@@ -80,15 +75,8 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
               AND report_year = $2
               AND category = $3
         """
-        
-        # DP 필터 추가 (선택적)
-        if dp_id:
-            exact_query += " AND $4::text = ANY(related_dp_ids)"
-            exact_query += f" ORDER BY report_year DESC LIMIT {limit}"
-            rows = await conn.fetch(exact_query, company_id, year, category, dp_id)
-        else:
-            exact_query += f" ORDER BY report_year DESC LIMIT {limit}"
-            rows = await conn.fetch(exact_query, company_id, year, category)
+        exact_query += f" ORDER BY report_year DESC LIMIT {limit}"
+        rows = await conn.fetch(exact_query, company_id, year, category)
         
         if rows:
             await conn.close()
@@ -118,18 +106,12 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
               AND category_embedding IS NOT NULL
         """
         
-        if dp_id:
-            vector_query += " AND $4::text = ANY(related_dp_ids)"
-        
         vector_query += f"""
             ORDER BY similarity
             LIMIT {limit}
         """
 
-        if dp_id:
-            rows = await conn.fetch(vector_query, company_id, year, category_embedding, dp_id)
-        else:
-            rows = await conn.fetch(vector_query, company_id, year, category_embedding)
+        rows = await conn.fetch(vector_query, company_id, year, category_embedding)
         
         if rows:
             await conn.close()
@@ -154,13 +136,8 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
             WHERE company_id = $1::uuid
               AND report_year = $2
         """
-        if dp_id:
-            fallback_query += " AND $3::text = ANY(related_dp_ids)"
-            fallback_query += f" ORDER BY report_year DESC LIMIT {limit}"
-            rows = await conn.fetch(fallback_query, company_id, year, dp_id)
-        else:
-            fallback_query += f" ORDER BY report_year DESC LIMIT {limit}"
-            rows = await conn.fetch(fallback_query, company_id, year)
+        fallback_query += f" ORDER BY report_year DESC LIMIT {limit}"
+        rows = await conn.fetch(fallback_query, company_id, year)
         
         await conn.close()
         
@@ -179,15 +156,15 @@ async def query_external_company_data(params: Dict[str, Any]) -> List[Dict[str, 
     
     검색 전략:
     1. 기본 필터: anchor_company_id, report_year, source_type
-    2. 벡터 유사도: content_embedding 코사인 유사도 (title + body_text)
-    3. DP 필터: related_dp_ids 교차 (선택적)
+    2. 벡터 유사도: category 임베딩 vs body_embedding
+    
+    더미/일반 운영 기준으로 related_dp_ids는 검색 필터에 사용하지 않음.
     
     Args:
         params: {
             "company_id": str (UUID),
             "year": int,
             "category": str,
-            "dp_id": str (선택),
             "limit": int (기본 3)
         }
     
@@ -205,14 +182,11 @@ async def query_external_company_data(params: Dict[str, Any]) -> List[Dict[str, 
     company_id = params["company_id"]
     year = params["year"]
     category = params["category"]
-    dp_id = params.get("dp_id")
-    if isinstance(dp_id, str) and dp_id.upper().startswith("UCM_"):
-        dp_id = None
     limit = params.get("limit", 3)
     
     logger.info(
-        "query_external_company_data: company_id=%s, year=%s, category=%s, dp_id=%s",
-        company_id, year, category, dp_id
+        "query_external_company_data: company_id=%s, year=%s, category=%s",
+        company_id, year, category,
     )
     
     try:
@@ -223,7 +197,6 @@ async def query_external_company_data(params: Dict[str, Any]) -> List[Dict[str, 
         
         # 벡터 유사도 검색 (body_embedding)
         # $3: category_embedding (vector)
-        # $4: dp_id (text, 선택적)
         query = """
             SELECT 
                 title,
@@ -241,19 +214,12 @@ async def query_external_company_data(params: Dict[str, Any]) -> List[Dict[str, 
               AND body_embedding IS NOT NULL
         """
         
-        # DP 필터 추가 (선택적)
-        if dp_id:
-            query += " AND $4::text = ANY(related_dp_ids)"
-        
         query += f"""
             ORDER BY similarity
             LIMIT {limit}
         """
 
-        if dp_id:
-            rows = await conn.fetch(query, company_id, year, category_embedding, dp_id)
-        else:
-            rows = await conn.fetch(query, company_id, year, category_embedding)
+        rows = await conn.fetch(query, company_id, year, category_embedding)
         
         if rows:
             await conn.close()
@@ -278,13 +244,8 @@ async def query_external_company_data(params: Dict[str, Any]) -> List[Dict[str, 
               AND report_year = $2
               AND source_type IN ('press', 'news')
         """
-        if dp_id:
-            fallback_query += " AND $3::text = ANY(related_dp_ids)"
-            fallback_query += f" ORDER BY fetched_at DESC LIMIT {limit}"
-            rows = await conn.fetch(fallback_query, company_id, year, dp_id)
-        else:
-            fallback_query += f" ORDER BY fetched_at DESC LIMIT {limit}"
-            rows = await conn.fetch(fallback_query, company_id, year)
+        fallback_query += f" ORDER BY fetched_at DESC LIMIT {limit}"
+        rows = await conn.fetch(fallback_query, company_id, year)
         
         await conn.close()
         
@@ -294,4 +255,114 @@ async def query_external_company_data(params: Dict[str, Any]) -> List[Dict[str, 
     
     except Exception as e:
         logger.error("query_external_company_data failed: %s", e, exc_info=True)
+        return []
+
+
+async def query_external_by_prompt(params: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    프롬프트 기반 external_company_data 검색 (신규).
+    
+    검색 전략:
+    1. (category + query_text)를 한 덩어리로 임베딩한 뒤 body_embedding과 유사도 비교
+    2. keywords로 title/body_text 키워드 매칭 (보조)
+    
+    Args:
+        params: {
+            "company_id": str (UUID),
+            "year": int,
+            "query_text": str (프롬프트 또는 검색 쿼리),
+            "category": str (선택, DP/주제 카테고리 — query_text와 함께 임베딩),
+            "keywords": List[str] (선택, 키워드 부스팅용),
+            "limit": int (기본 3)
+        }
+    
+    Returns:
+        List of {
+            "title": str,
+            "body_text": str,
+            "source_url": str,
+            "source_type": str,
+            "fetched_at": datetime,
+            "report_year": int,
+            "related_dp_ids": list
+        }
+    """
+    company_id = params["company_id"]
+    year = params["year"]
+    query_text = (params.get("query_text") or "").strip()
+    category = (params.get("category") or "").strip()
+    keywords = params.get("keywords", [])
+    limit = params.get("limit", 3)
+    
+    logger.info(
+        "query_external_by_prompt: company_id=%s, year=%s, category=%s, query_text=%s, keywords=%s",
+        company_id, year, category[:40] if category else "",
+        query_text[:50] if query_text else "", keywords
+    )
+    
+    if not query_text and not category:
+        logger.warning("query_external_by_prompt: query_text와 category 모두 비어있음")
+        return []
+    
+    try:
+        conn = await connect_ifrs_asyncpg()
+        
+        # 카테고리 + 프롬프트를 한 문자열로 묶어 단일 임베딩 (body_embedding과 동일 공간에서 비교)
+        embed_parts: List[str] = []
+        if category:
+            embed_parts.append(category)
+        if query_text:
+            embed_parts.append(query_text)
+        combined_for_embed = "\n".join(embed_parts)
+        emb_list = await embed_text({"text": combined_for_embed})
+        query_embedding = _embedding_to_pgvector_literal(emb_list)
+        
+        # 벡터 검색 쿼리
+        query = """
+            SELECT 
+                title,
+                body_text,
+                source_url,
+                source_type,
+                fetched_at,
+                report_year,
+                related_dp_ids,
+                (body_embedding <-> $3::vector) as similarity
+            FROM external_company_data
+            WHERE anchor_company_id = $1::uuid
+              AND report_year = $2
+              AND source_type IN ('press', 'news')
+              AND body_embedding IS NOT NULL
+        """
+        
+        # 키워드 필터 추가 (선택적)
+        if keywords:
+            # SQL injection 방지를 위해 ILIKE 패턴 이스케이프
+            keyword_conditions = []
+            for kw in keywords:
+                # 단순 문자열 포함 검사 (ILIKE는 % 와일드카드 자동 처리)
+                safe_kw = str(kw).replace("'", "''")  # 작은따옴표 이스케이프
+                keyword_conditions.append(
+                    f"(title ILIKE '%{safe_kw}%' OR body_text ILIKE '%{safe_kw}%')"
+                )
+            if keyword_conditions:
+                query += " AND (" + " OR ".join(keyword_conditions) + ")"
+        
+        query += f"""
+            ORDER BY similarity
+            LIMIT {limit}
+        """
+        
+        rows = await conn.fetch(query, company_id, year, query_embedding)
+        await conn.close()
+        
+        result = [dict(row) for row in rows]
+        for item in result:
+            item.pop("similarity", None)
+        
+        logger.info("query_external_by_prompt: %d건", len(result))
+        return result
+    
+    except Exception as e:
+        logger.error("query_external_by_prompt failed: %s", e, exc_info=True)
         return []

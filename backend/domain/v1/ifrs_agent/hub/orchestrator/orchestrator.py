@@ -378,13 +378,11 @@ class Orchestrator:
             if user_input.get("dp_id"):
                 aggregation_payload["dp_id"] = user_input["dp_id"]
             
-            # 관련성 기반 검색을 위한 메타데이터 전달
-            # (c_rag, dp_rag 완료 후 결과 사용 불가 → 병렬 실행 제약)
-            # 대신 user_input에서 직접 전달 가능한 정보 사용
-            if user_input.get("dp_metadata"):
-                aggregation_payload["dp_metadata"] = user_input["dp_metadata"]
-            if user_input.get("sr_context"):
-                aggregation_payload["sr_context"] = user_input["sr_context"]
+            # 프롬프트 해석 결과 전달 (신규)
+            prompt_interpretation = user_input.get("prompt_interpretation", {})
+            aggregation_payload["include_external"] = prompt_interpretation.get("needs_external_data", True)
+            aggregation_payload["external_query"] = prompt_interpretation.get("external_search_query", "")
+            aggregation_payload["external_keywords"] = prompt_interpretation.get("external_keywords", [])
             
             aggregation_task = self.infra.call_agent(
                 "aggregation_node",

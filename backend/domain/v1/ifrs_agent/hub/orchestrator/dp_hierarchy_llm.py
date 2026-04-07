@@ -95,7 +95,7 @@ def build_phase15_prompt(
 ### 1. 계층 구조 (child_dps)
 - **child_dps가 비어 있지 않으면** 보통 "상위(비-leaf) DP"입니다.
 - 상위 DP는 **하위 DP를 선택해야** 구체적인 공시 항목이 됩니다.
-- 예외: 사용자가 **총괄 수준 요약**을 원하면 상위 DP도 적합할 수 있음 (드물음).
+- 예외: 사용자가 **총괄 수준 요약**을 원하면 상위 DP도 적합할 수 있음
 
 ### 2. description·validation_rules 분석
 - **"하위 DP로 둡니다"**, **"하위 문단·항목 공시"**, **"문단 XX(a)~(f)"** 같은 표현 → 하위 선택 필요
@@ -110,8 +110,7 @@ def build_phase15_prompt(
   - 사용자: "협력회사 ESG" / DP: "S2: 가치사슬 근로자" → **적합 가능**
 
 ### 4. DP 유형 (dp_type)
-- **narrative/qualitative**: 서술형 → child_dps가 있어도 총괄 설명이 필요한 경우 있음 (드물음)
-- **quantitative**: 정량 → child_dps가 있으면 보통 하위 선택 필요
+- **narrative/qualitative**: 서술형 → child_dps가 있어도 총괄 설명이 필요한 경우 있음 
 
 ## 출력 형식 (JSON만, 다른 텍스트 없이)
 

@@ -2512,7 +2512,7 @@ total_2024 = aggregate_subsidiary_quantitative_data(
 # → {"태양광_발전량_kWh": 217497, "설비용량_kW": 524}
 ```
 
-### 8.9 데이터 수집 전략
+### 8.9 데이터 수집 전략 (업데이트: 2026-04-07)
 
 #### 8.9.1 계열사·외부 데이터 출처
 
@@ -2522,6 +2522,33 @@ total_2024 = aggregate_subsidiary_quantitative_data(
 | **EMS 시스템 연동** | API 자동 수집 | "데이터센터 전력 관리 시스템에서 실시간 수집" |
 | **사업장 보고서 파싱** | PDF/이미지 OCR | "자회사 SR 보고서에서 텍스트 추출" |
 | **보도·언론 스냅샷** | **배치·(선택) 준실시간 폴링** — [삼성SDS 언론보도](https://www.samsungsds.com/kr/news/index.html)의 **`#bThumbs`·`#sThumbs`** 또는 **RSS** → `external_company_data` | "일/주 또는 분 단위 백그라운드 적재 후 생성 시 조회만"; (선택) 폼/API 수동 보완 |
+
+#### 8.9.2 검색 전략 (신규: 프롬프트 기반)
+
+**Subsidiary 검색**:
+- **컬럼**: `category_embedding` (변경됨)
+- **쿼리**: 사용자 카테고리 텍스트 임베딩
+- **전략**: 정확 매칭 → 벡터 검색
+
+**External 검색**:
+- **조건부 실행**: Phase 0 프롬프트 해석 결과에 따라
+- **컬럼**: `body_embedding`
+- **쿼리**: 프롬프트 텍스트 임베딩 (예: "대학생 알고리즘 대회 IT 인재")
+- **부스팅**: 키워드 필터링 (ILIKE)
+
+**예시**:
+```python
+# 프롬프트: "대학생 알고리즘 대회와 IT 우수인재 확보"
+# → needs_external_data: True
+# → external_search_query: "대학생 알고리즘 대회 IT 인재 채용"
+# → external_keywords: ["알고리즘대회", "IT인재"]
+
+# External 검색
+query_external_by_prompt(
+    query_text="대학생 알고리즘 대회 IT 인재 채용",
+    keywords=["알고리즘대회", "IT인재"]
+)
+```
 
 #### 8.9.2 DP 자동 연결
 

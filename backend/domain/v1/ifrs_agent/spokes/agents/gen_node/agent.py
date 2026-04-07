@@ -10,7 +10,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from .prompts import SYSTEM_PROMPT, build_user_prompt
 from .utils import (
@@ -108,11 +108,25 @@ def validate_gen_input(gen_input: Dict[str, Any]) -> Tuple[bool, Optional[str]]:
     return True, None
 
 
+def _normalize_validator_feedback(raw: Any) -> Optional[List[str]]:
+    if raw is None:
+        return None
+    if not isinstance(raw, list):
+        return None
+    out: List[str] = []
+    for x in raw:
+        s = str(x).strip()
+        if s:
+            out.append(s)
+    return out if out else None
+
+
 async def generate_text_gemini(
     gen_input: Dict[str, Any],
     gemini_api_key: str,
     model: str = GEMINI_MODEL_ID,
     timeout: int = 120,
+    validator_feedback: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
     """Gemini로 SR 문단 생성 (`model` 인자로 모델 ID 지정)."""
     try:
@@ -125,7 +139,7 @@ async def generate_text_gemini(
     client = genai.Client(api_key=gemini_api_key)
 
     system_prompt = SYSTEM_PROMPT
-    user_prompt = build_user_prompt(gen_input)
+    user_prompt = build_user_prompt(gen_input, validator_feedback=validator_feedback)
 
     user_prompt, was_truncated = truncate_if_needed(
         user_prompt, max_tokens=DEFAULT_MAX_PROMPT_TOKENS
@@ -208,6 +222,13 @@ class GenNodeAgent:
             model = (runtime_config.get("gen_node_model") or "").strip() or GEMINI_MODEL_ID
             logger.info("gen_node LLM: model=%s", model)
 
+            feedback_norm = _normalize_validator_feedback(payload.get("feedback"))
+            if feedback_norm:
+                logger.info(
+                    "gen_node: validator feedback %d건 반영 (프롬프트에 포함)",
+                    len(feedback_norm),
+                )
+
             max_retries = 2
             last_error = None
 
@@ -217,6 +238,7 @@ class GenNodeAgent:
                         gen_input=gen_input,
                         gemini_api_key=gemini_api_key,
                         model=model,
+                        validator_feedback=feedback_norm,
                     )
 
                     result["text"] = postprocess_generated_text(result["text"])

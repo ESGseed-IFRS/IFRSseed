@@ -102,7 +102,7 @@ def interpret_prompt_with_gemini(
     ref_pages_hint: Dict[str, Optional[int]],
 ) -> Dict[str, Any]:
     """
-    Gemini로 search_intent·content_focus·dp_validation_needed 추출.
+    Gemini로 search_intent·content_focus·dp_validation_needed·needs_external_data 추출.
 
     client: google.genai Client (models.generate_content)
     """
@@ -117,12 +117,28 @@ def interpret_prompt_with_gemini(
 {{
   "search_intent": "SR 본문 벡터 검색에 쓸 짧은 한국어 키워드 문구(카테고리와 합쳐 검색). 불필요하면 빈 문자열.",
   "content_focus": "사용자가 초안에서 특히 다루고 싶은 주제·요구를 한 문장 한국어로.",
-  "dp_validation_needed": false
+  "dp_validation_needed": false,
+  "needs_external_data": false,
+  "external_search_query": "",
+  "external_keywords": []
 }}
 
 - search_intent: 예) '고객 VoC 채널 처리 절차'
 - content_focus: 예) '고객 VoC 채널과 처리 절차·프로세스를 설명할 것'
 - dp_validation_needed: 사용자가 DP/지표 선택이 모호하다고 하면 true (기본 false)
+- needs_external_data: 외부 보도자료/뉴스가 필요한지 판단 (기본 false)
+- external_search_query: needs_external_data=true일 때 검색 쿼리 (한국어)
+- external_keywords: needs_external_data=true일 때 핵심 키워드 배열
+
+## External 데이터 필요 판단 기준 (needs_external_data = true)
+
+다음 패턴이 프롬프트에 있으면 외부 보도자료가 필요합니다:
+- 대회/행사: "알고리즘 대회", "해커톤", "컨퍼런스", "박람회"
+- 수상/인증: "수상", "인증 획득", "장관상", "대통령상", "어워드"
+- 협약/제휴: "MOU", "업무협약", "파트너십", "협력"
+- 외부 평가: "외부 기관", "제3자 검증", "평가 기관"
+- 언론 보도: "보도자료", "뉴스", "기사", "언론"
+- 채용/인재: "우수인재", "인재확보", "채용", "리크루팅" (외부 활동 맥락)
 
 프롬프트가 비어 있으면 search_intent는 빈 문자열, content_focus는 카테고리만 반영해도 됩니다.
 """
@@ -151,18 +167,46 @@ def interpret_prompt_with_gemini(
     data = json.loads(raw)
     if not isinstance(data, dict):
         raise ValueError("interpretation JSON must be an object")
+    
+    # 기본값 처리
+    needs_external = bool(data.get("needs_external_data", False))
+    external_query = str(data.get("external_search_query", "") or "").strip() if needs_external else ""
+    external_keywords = data.get("external_keywords", []) if needs_external else []
+    if not isinstance(external_keywords, list):
+        external_keywords = []
+    
     return {
         "search_intent": str(data.get("search_intent", "") or "").strip(),
         "content_focus": str(data.get("content_focus", "") or "").strip(),
         "dp_validation_needed": bool(data.get("dp_validation_needed", False)),
+        "needs_external_data": needs_external,
+        "external_search_query": external_query,
+        "external_keywords": [str(k).strip() for k in external_keywords if k],
     }
 
 
 def heuristic_interpretation(category: str, user_prompt: str) -> Dict[str, Any]:
     """Gemini 없을 때 폴백."""
     p = (user_prompt or "").strip()
+    
+    # 간단한 패턴 매칭으로 external 필요 여부 판단
+    needs_external = False
+    external_keywords = []
+    if p:
+        external_patterns = [
+            "대회", "해커톤", "컨퍼런스", "수상", "인증", "장관상",
+            "MOU", "협약", "파트너십", "외부", "보도", "뉴스", "기사"
+        ]
+        for pattern in external_patterns:
+            if pattern in p:
+                needs_external = True
+                external_keywords.append(pattern)
+    
     return {
         "search_intent": p,
         "content_focus": p or (category or "").strip(),
         "dp_validation_needed": False,
+        "needs_external_data": needs_external,
+        "external_search_query": p if needs_external else "",
+        "external_keywords": external_keywords,
     }

@@ -1,7 +1,7 @@
 """
 Gen Node 프롬프트 템플릿 및 구성 함수
 """
-from typing import Dict, Any
+from typing import Any, Dict, List, Optional
 import logging
 
 logger = logging.getLogger("ifrs_agent.gen_node.prompts")
@@ -34,45 +34,77 @@ SYSTEM_PROMPT = """당신은 IFRS S1/S2, GRI, ESRS 기준서에 정통한 지속
 """
 
 
-def build_user_prompt(gen_input: Dict[str, Any]) -> str:
+def build_user_prompt(
+    gen_input: Dict[str, Any],
+    validator_feedback: Optional[List[Any]] = None,
+) -> str:
     """
     gen_input을 기반으로 사용자 프롬프트 구성
-    
+
     Args:
         gen_input: Phase 2 필터링된 입력 데이터
-    
+        validator_feedback: Phase 3 재시도 시 validator_node가 반환한 errors 목록(있으면 반영 지시)
+
     Returns:
         완성된 사용자 프롬프트
     """
     sections = []
-    
+
     # 1. 작성 요청
     sections.append(_build_task_section(gen_input))
-    
+
     # 2. 참조 데이터 (전년도, 전전년도 SR 본문)
     ref_section = _build_reference_section(gen_input)
     if ref_section:
         sections.append(ref_section)
-    
+
     # 3. 최신 데이터 (DP 값, 회사 정보 등)
     data_section = _build_latest_data_section(gen_input)
     if data_section:
         sections.append(data_section)
-    
+
     # 4. 기준서 요구사항 (rulebook, UCM)
     req_section = _build_requirements_section(gen_input)
     if req_section:
         sections.append(req_section)
-    
+
     # 5. 계열사/외부 데이터
     agg_section = _build_aggregation_section(gen_input)
     if agg_section:
         sections.append(agg_section)
-    
-    # 6. 작성 지시
+
+    # 6. 이전 검증 피드백 (validator 재시도 루프)
+    fb_section = _build_validator_feedback_section(validator_feedback)
+    if fb_section:
+        sections.append(fb_section)
+
+    # 7. 작성 지시
     sections.append(_build_instruction_section(gen_input))
-    
+
     return "\n\n".join(sections)
+
+
+def _build_validator_feedback_section(feedback: Optional[List[Any]]) -> str:
+    """validator_node `errors` → 재작성 지시 섹션."""
+    if not feedback:
+        return ""
+    items: List[str] = []
+    for x in feedback:
+        s = str(x).strip()
+        if s:
+            items.append(s[:2000])
+    if not items:
+        return ""
+    items = items[:20]
+    lines = [
+        "# 이전 검증 피드백 (validator)",
+        "",
+        "아래 지적을 **반드시 반영**하여 문단을 수정·보완하세요. 동일한 오류를 반복하지 마세요.",
+        "",
+    ]
+    for i, it in enumerate(items, 1):
+        lines.append(f"{i}. {it}")
+    return "\n".join(lines)
 
 
 def _build_task_section(gen_input: Dict[str, Any]) -> str:
