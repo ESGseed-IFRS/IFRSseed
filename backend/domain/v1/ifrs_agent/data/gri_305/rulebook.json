@@ -260,7 +260,7 @@
                 "GRI305-SEC-1-R1"
             ],
             "rulebook_title": "GRI 305 Section 1 recommendation: regulations",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -305,7 +305,7 @@
                 "GRI305-SEC-1-R2"
             ],
             "rulebook_title": "GRI 305 Section 1 recommendation: costs",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -1040,7 +1040,7 @@
                 "GRI305-1-2-5-4"
             ],
             "rulebook_title": "305-1 recommendations 2.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -1084,7 +1084,7 @@
                 "GRI305-1-e"
             ],
             "rulebook_title": "305-1 recommendation 2.2.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -1128,7 +1128,7 @@
                 "GRI305-1-e"
             ],
             "rulebook_title": "305-1 recommendation 2.2.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -1175,7 +1175,7 @@
                 "GRI305-1-f"
             ],
             "rulebook_title": "305-1 recommendation 2.2.3",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -1219,7 +1219,7 @@
                 "GRI305-1-g"
             ],
             "rulebook_title": "305-1 recommendation 2.2.4",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -1266,7 +1266,7 @@
                 "GRI305-1-a"
             ],
             "rulebook_title": "305-1 recommendation 2.2.5",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -1308,7 +1308,7 @@
                 "GRI305-1-2-5-1"
             ],
             "rulebook_title": "305-1 recommendation 2.2.5.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -1349,7 +1349,7 @@
                 "GRI305-1-2-5-2"
             ],
             "rulebook_title": "305-1 recommendation 2.2.5.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -1392,7 +1392,7 @@
                 "GRI305-1-2-5-3"
             ],
             "rulebook_title": "305-1 recommendation 2.2.5.3",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -1433,74 +1433,12 @@
                 "GRI305-1-2-5-4"
             ],
             "rulebook_title": "305-1 recommendation 2.2.5.4",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
             "effective_date": "2016-01-01",
             "mapping_notes": null,
-            "conflicts_with": []
-        },
-        {
-            "rulebook_id": "RULE_GRI305_1_G_GUIDANCE",
-            "standard_id": "GRI305",
-            "primary_dp_id": "GRI305-1",
-            "section_name": "지침: 공개 305-1",
-            "section_content": "Guidance for Disclosure 305-1\n\nScope 1 emissions include emissions from fuel use reported under GRI 302: Energy 2016, Disclosure 302-1, among other sources.\n\nTypical Scope 1 sources (owned or controlled): stationary combustion (electricity, heat, cooling, steam generation, flaring); physical/chemical processes and waste treatment; mobile combustion for transport of materials, products, waste, employees, passengers; fugitive releases (equipment leaks, coal mine methane, HFC from refrigeration, gas transport leaks).\n\nMethod approaches may include: direct measurement of fuels converted to CO2e; mass balance; site-specific data; published factors and GWP; direct GHG measurement (e.g., CEMS); estimation with disclosed basis.\n\nGWP: Kyoto Protocol uses IPCC SAR values where applicable; organizations may use latest IPCC assessment report values consistent with local requirements. Recalculation of prior years may follow GHG Protocol Corporate Standard.\n\nDisclosure can be combined with 305-2 and 305-3 for total GHG picture.",
-            "validation_rules": {
-                "section_type": "guidance",
-                "paragraph_reference": "GRI 305 Disclosure 305-1 - Guidance",
-                "key_terms": [
-                    "stationary combustion",
-                    "fugitive",
-                    "mass balance",
-                    "CEMS",
-                    "IPCC GWP",
-                    "GHG Protocol"
-                ],
-                "related_concepts": [
-                    "energy linkage",
-                    "estimation transparency"
-                ],
-                "required_actions": [
-                    {
-                        "action": "interpret_scope1_boundary",
-                        "description": "지침을 참고하여 Scope 1 경계·방법론을 일관되게 해석(지침 자체는 별도 필수 DP 없음)",
-                        "mandatory": false
-                    }
-                ],
-                "verification_checks": [
-                    {
-                        "check_id": "GRI305_1_G_SCOPE1_COHERENT",
-                        "description": "서술된 배출원이 Scope 1 정의(소유·통제)와 모순되지 않는지 점검",
-                        "expected": "scope1_coherent"
-                    }
-                ],
-                "cross_references": [
-                    "GRI 302-1",
-                    "GHG Protocol Corporate Standard",
-                    "IPCC assessment reports"
-                ]
-            },
-            "related_dp_ids": [
-                "GRI305-1",
-                "GRI305-1-a",
-                "GRI305-1-g",
-                "GRI305-1-e",
-                "GRI305-1-1",
-                "GRI305-1-2",
-                "GRI305-2",
-                "GRI305-3",
-                "GRI305-2-a",
-                "GRI305-3-a"
-            ],
-            "rulebook_title": "Guidance to Disclosure 305-1",
-            "disclosure_requirement": "필수",
-            "version": "1.0",
-            "is_active": true,
-            "is_primary": false,
-            "effective_date": "2016-01-01",
-            "mapping_notes": "지침; Scope 2·3는 RULE_GRI305_2_G_GUIDANCE·RULE_GRI305_3_G_GUIDANCE 참조.",
             "conflicts_with": []
         },
         {
@@ -2232,7 +2170,7 @@
                 "GRI305-2-4-5-4"
             ],
             "rulebook_title": "305-2 recommendations 2.4",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -2273,7 +2211,7 @@
                 "GRI305-2-4-1"
             ],
             "rulebook_title": "2.4.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -2314,7 +2252,7 @@
                 "GRI305-2-4-2"
             ],
             "rulebook_title": "2.4.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -2355,7 +2293,7 @@
                 "GRI305-2-4-3"
             ],
             "rulebook_title": "2.4.3",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -2396,7 +2334,7 @@
                 "GRI305-2-4-4"
             ],
             "rulebook_title": "2.4.4",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -2441,7 +2379,7 @@
                 "GRI305-2-4-5-4"
             ],
             "rulebook_title": "2.4.5",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -2482,7 +2420,7 @@
                 "GRI305-2-4-5-1"
             ],
             "rulebook_title": "2.4.5.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -2523,7 +2461,7 @@
                 "GRI305-2-4-5-2"
             ],
             "rulebook_title": "2.4.5.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -2564,7 +2502,7 @@
                 "GRI305-2-4-5-3"
             ],
             "rulebook_title": "2.4.5.3",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -2605,66 +2543,12 @@
                 "GRI305-2-4-5-4"
             ],
             "rulebook_title": "2.4.5.4",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
             "effective_date": "2016-01-01",
             "mapping_notes": null,
-            "conflicts_with": []
-        },
-        {
-            "rulebook_id": "RULE_GRI305_2_G_GUIDANCE",
-            "standard_id": "GRI305",
-            "primary_dp_id": "GRI305-2",
-            "section_name": "지침: 공개 305-2",
-            "section_content": "Guidance for Disclosure 305-2 (summary)\n\nScope 2 includes GHG emissions from purchased/acquired electricity, heating, cooling, and steam consumed; not limited to CO2. Link to GRI 302: Energy 2016, Disclosure 302-1.\n\nGHG Protocol Scope 2 Guidance requires two distinct Scope 2 figures where applicable: location-based (grid average intensity where consumption occurs) and market-based (contractual instruments, residual mix when specific factors unavailable; grid average as proxy if residual mix unavailable — figures may coincide).\n\nApply quality criteria for contractual instruments to avoid double counting. Base-year recalculation may follow GHG Protocol Corporate Standard. GWP: IPCC SAR under Kyoto Protocol or latest IPCC where permitted. May combine 305-1, 305-2, 305-3 for total GHG.\n",
-            "validation_rules": {
-                "section_type": "guidance",
-                "paragraph_reference": "GRI 305 Disclosure 305-2 - Guidance",
-                "key_terms": [
-                    "location-based",
-                    "market-based",
-                    "residual mix",
-                    "contractual instruments"
-                ],
-                "related_concepts": [
-                    "dual reporting"
-                ],
-                "required_actions": [
-                    {
-                        "action": "apply_scope2_guidance",
-                        "description": "위치·시장 기반 이중 보고 및 잔여믹스 해석",
-                        "mandatory": false
-                    }
-                ],
-                "verification_checks": [
-                    {
-                        "check_id": "GRI305_2_G_DUAL",
-                        "description": "이중 보고 요건과 서술 정합",
-                        "expected": "coherent"
-                    }
-                ],
-                "cross_references": [
-                    "GRI 302-1",
-                    "GHG Protocol Scope 2 Guidance",
-                    "GHG Protocol Corporate Standard"
-                ]
-            },
-            "related_dp_ids": [
-                "GRI305-2",
-                "GRI305-2-a",
-                "GRI305-2-b",
-                "GRI305-2-3-4",
-                "GRI305-2-e"
-            ],
-            "rulebook_title": "Guidance to Disclosure 305-2",
-            "disclosure_requirement": "필수",
-            "version": "1.0",
-            "is_active": true,
-            "is_primary": false,
-            "effective_date": "2016-01-01",
-            "mapping_notes": "지침 전용; 별도 지침용 dp_id 없음.",
             "conflicts_with": []
         },
         {
@@ -3350,7 +3234,7 @@
                 "GRI305-3-6-5-4"
             ],
             "rulebook_title": "305-3 recommendations 2.6",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -3391,7 +3275,7 @@
                 "GRI305-3-6-1"
             ],
             "rulebook_title": "2.6.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -3432,7 +3316,7 @@
                 "GRI305-3-6-2"
             ],
             "rulebook_title": "2.6.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -3473,7 +3357,7 @@
                 "GRI305-3-6-3"
             ],
             "rulebook_title": "2.6.3",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -3514,7 +3398,7 @@
                 "GRI305-3-6-4"
             ],
             "rulebook_title": "2.6.4",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -3559,7 +3443,7 @@
                 "GRI305-3-6-5-4"
             ],
             "rulebook_title": "2.6.5",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -3600,7 +3484,7 @@
                 "GRI305-3-6-5-1"
             ],
             "rulebook_title": "2.6.5.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -3641,7 +3525,7 @@
                 "GRI305-3-6-5-2"
             ],
             "rulebook_title": "2.6.5.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -3682,7 +3566,7 @@
                 "GRI305-3-6-5-3"
             ],
             "rulebook_title": "2.6.5.3",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -3723,62 +3607,12 @@
                 "GRI305-3-6-5-4"
             ],
             "rulebook_title": "2.6.5.4",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
             "effective_date": "2016-01-01",
             "mapping_notes": null,
-            "conflicts_with": []
-        },
-        {
-            "rulebook_id": "RULE_GRI305_3_G_GUIDANCE",
-            "standard_id": "GRI305",
-            "primary_dp_id": "GRI305-3",
-            "section_name": "지침: 공개 305-3",
-            "section_content": "15 Scope 3 categories (GHG Protocol Corporate Value Chain Standard):\nUpstream: (1) Purchased goods and services, (2) Capital goods, (3) Fuel and energy-related activities (not in Scope 1 or 2), (4) Upstream transportation and distribution, (5) Waste generated in operations, (6) Business travel, (7) Employee commuting, (8) Upstream leased assets.\nDownstream: (9) Downstream transportation and distribution, (10) Processing of sold products, (11) Use of sold products, (12) End-of-life treatment of sold products, (13) Downstream leased assets, (14) Franchises, (15) Investments.\n\nScope 3 are indirect emissions in the value chain not owned/controlled by the organization. Identify significant categories by size, influence, risk, stakeholders, outsourcing, sector norms. Report CO2e per category or explain exclusions. Recalculation may follow GHG Protocol Corporate Value Chain Standard. GWP: IPCC SAR / Kyoto or latest IPCC if allowed. Combine 305-1+305-2+305-3 for total GHG.",
-            "validation_rules": {
-                "section_type": "guidance",
-                "paragraph_reference": "GRI 305 Disclosure 305-3 - Guidance",
-                "key_terms": [
-                    "Scope 3",
-                    "value chain",
-                    "categories"
-                ],
-                "related_concepts": [
-                    "significance assessment"
-                ],
-                "required_actions": [
-                    {
-                        "action": "interpret_scope3",
-                        "description": "15개 범주·중요성 평가 반영",
-                        "mandatory": false
-                    }
-                ],
-                "verification_checks": [
-                    {
-                        "check_id": "GRI305_3_G_CATEGORIES",
-                        "description": "범주·제외 설명 정합",
-                        "expected": "coherent"
-                    }
-                ],
-                "cross_references": [
-                    "GHG Protocol Scope 3 Standard",
-                    "IPCC"
-                ]
-            },
-            "related_dp_ids": [
-                "GRI305-3",
-                "GRI305-3-d",
-                "GRI305-3-a"
-            ],
-            "rulebook_title": "Guidance to Disclosure 305-3",
-            "disclosure_requirement": "필수",
-            "version": "1.0",
-            "is_active": true,
-            "is_primary": false,
-            "effective_date": "2016-01-01",
-            "mapping_notes": "요구 d는 단일 DP; 15개 범주는 지침·validation으로 보강.",
             "conflicts_with": []
         },
         {
@@ -4165,7 +3999,7 @@
                 "GRI305-4-8-4"
             ],
             "rulebook_title": "305-4 recommendations 2.8",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -4204,7 +4038,7 @@
                 "GRI305-4-8-1"
             ],
             "rulebook_title": "2.8.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -4243,7 +4077,7 @@
                 "GRI305-4-8-2"
             ],
             "rulebook_title": "2.8.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -4282,7 +4116,7 @@
                 "GRI305-4-8-3"
             ],
             "rulebook_title": "2.8.3",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -4321,61 +4155,12 @@
                 "GRI305-4-8-4"
             ],
             "rulebook_title": "2.8.4",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
             "effective_date": "2016-01-01",
             "mapping_notes": null,
-            "conflicts_with": []
-        },
-        {
-            "rulebook_id": "RULE_GRI305_4_G_GUIDANCE",
-            "standard_id": "GRI305",
-            "primary_dp_id": "GRI305-4",
-            "section_name": "지침: 공개 305-4",
-            "section_content": "Guidance for Disclosure 305-4: Intensity ratios may be expressed per product, service, or sales volume; denominators may include production (t, L, MWh), floor area, headcount, or currency (revenue/sales). Organizations may use 305-1 and 305-2 figures for combined Scope 1+2 intensity. Intensity metrics contextualize environmental performance and comparability across organizations.",
-            "validation_rules": {
-                "section_type": "guidance",
-                "paragraph_reference": "GRI 305 Disclosure 305-4 — Guidance",
-                "key_terms": [
-                    "intensity ratio",
-                    "normalization"
-                ],
-                "related_concepts": [],
-                "required_actions": [
-                    {
-                        "action": "interpret_intensity",
-                        "description": "집약도·분모 예시 반영",
-                        "mandatory": false
-                    }
-                ],
-                "verification_checks": [
-                    {
-                        "check_id": "GRI305_4_G_COHERENT",
-                        "description": "집약도 서술 정합",
-                        "expected": "coherent"
-                    }
-                ],
-                "cross_references": [
-                    "Disclosure 305-1",
-                    "Disclosure 305-2"
-                ]
-            },
-            "related_dp_ids": [
-                "GRI305-4",
-                "GRI305-4-a",
-                "GRI305-4-b",
-                "GRI305-1-a",
-                "GRI305-2-a"
-            ],
-            "rulebook_title": "Guidance 305-4",
-            "disclosure_requirement": "필수",
-            "version": "1.0",
-            "is_active": true,
-            "is_primary": false,
-            "effective_date": "2016-01-01",
-            "mapping_notes": "지침 전용.",
             "conflicts_with": []
         },
         {
@@ -4903,60 +4688,12 @@
                 "GRI305-5-10"
             ],
             "rulebook_title": "305-5 recommendation 2.10",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
             "effective_date": "2016-01-01",
             "mapping_notes": null,
-            "conflicts_with": []
-        },
-        {
-            "rulebook_id": "RULE_GRI305_5_G_GUIDANCE",
-            "standard_id": "GRI305",
-            "primary_dp_id": "GRI305-5",
-            "section_name": "지침: 공개 305-5",
-            "section_content": "Guidance for 305-5: Organizations may prioritize initiatives in the reporting period with significant reduction potential; may describe initiatives and targets in the management approach. Initiatives may include process redesign, equipment retrofit, fuel switching, behavior change, and offsets. Reductions may be broken down by initiative or group. Use with 305-1–305-3 to track progress vs targets or regulations. Clause 2.9.2: inventory-based approach compares to a base year; project-based compares to a baseline (see protocol references). Clause 2.9.3: primary effects are intended reductions; significant secondary effects may include e.g. carbon storage elements.",
-            "validation_rules": {
-                "section_type": "guidance",
-                "paragraph_reference": "GRI 305 Disclosure 305-5 — Guidance",
-                "key_terms": [
-                    "reduction initiatives",
-                    "inventory vs project",
-                    "primary effect"
-                ],
-                "related_concepts": [],
-                "required_actions": [
-                    {
-                        "action": "interpret_reduction",
-                        "description": "감축 지침·2.9.2·2.9.3 해석",
-                        "mandatory": false
-                    }
-                ],
-                "verification_checks": [
-                    {
-                        "check_id": "GRI305_5_G_OK",
-                        "description": "지침 정합",
-                        "expected": "coherent"
-                    }
-                ],
-                "cross_references": []
-            },
-            "related_dp_ids": [
-                "GRI305-5",
-                "GRI305-5-9-2",
-                "GRI305-5-9-3",
-                "GRI305-1",
-                "GRI305-2",
-                "GRI305-3"
-            ],
-            "rulebook_title": "Guidance 305-5",
-            "disclosure_requirement": "필수",
-            "version": "1.0",
-            "is_active": true,
-            "is_primary": false,
-            "effective_date": "2016-01-01",
-            "mapping_notes": "지침 전용.",
             "conflicts_with": []
         },
         {
@@ -5333,7 +5070,7 @@
                 "GRI305-6-12-2-4"
             ],
             "rulebook_title": "305-6 recommendations 2.12",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -5372,7 +5109,7 @@
                 "GRI305-6-12-1"
             ],
             "rulebook_title": "2.12.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -5415,7 +5152,7 @@
                 "GRI305-6-12-2-4"
             ],
             "rulebook_title": "2.12.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -5454,7 +5191,7 @@
                 "GRI305-6-12-2-1"
             ],
             "rulebook_title": "2.12.2.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -5493,7 +5230,7 @@
                 "GRI305-6-12-2-2"
             ],
             "rulebook_title": "2.12.2.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -5532,7 +5269,7 @@
                 "GRI305-6-12-2-3"
             ],
             "rulebook_title": "2.12.2.3",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -5571,55 +5308,12 @@
                 "GRI305-6-12-2-4"
             ],
             "rulebook_title": "2.12.2.4",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
             "effective_date": "2016-01-01",
             "mapping_notes": null,
-            "conflicts_with": []
-        },
-        {
-            "rulebook_id": "RULE_GRI305_6_G_GUIDANCE",
-            "standard_id": "GRI305",
-            "primary_dp_id": "GRI305-6",
-            "section_name": "지침: 공개 305-6",
-            "section_content": "Guidance for 305-6: The organization may report individual or aggregate data for substances included. ODS metrics support regulatory compliance (e.g. phase-out obligations) and market positioning under ODS regimes.",
-            "validation_rules": {
-                "section_type": "guidance",
-                "paragraph_reference": "GRI 305 Disclosure 305-6 — Guidance",
-                "key_terms": [
-                    "ODS disclosure",
-                    "aggregate vs substance-level"
-                ],
-                "related_concepts": [],
-                "required_actions": [
-                    {
-                        "action": "interpret_ods",
-                        "description": "ODS 지침",
-                        "mandatory": false
-                    }
-                ],
-                "verification_checks": [
-                    {
-                        "check_id": "GRI305_6_G_OK",
-                        "description": "지침 정합",
-                        "expected": "coherent"
-                    }
-                ],
-                "cross_references": []
-            },
-            "related_dp_ids": [
-                "GRI305-6",
-                "GRI305-6-b"
-            ],
-            "rulebook_title": "Guidance 305-6",
-            "disclosure_requirement": "필수",
-            "version": "1.0",
-            "is_active": true,
-            "is_primary": false,
-            "effective_date": "2016-01-01",
-            "mapping_notes": "지침 전용.",
             "conflicts_with": []
         },
         {
@@ -6312,7 +6006,7 @@
                 "GRI305-7-14-2-4"
             ],
             "rulebook_title": "305-7 recommendations 2.14",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -6351,7 +6045,7 @@
                 "GRI305-7-14-1"
             ],
             "rulebook_title": "2.14.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -6394,7 +6088,7 @@
                 "GRI305-7-14-2-4"
             ],
             "rulebook_title": "2.14.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -6433,7 +6127,7 @@
                 "GRI305-7-14-2-1"
             ],
             "rulebook_title": "2.14.2.1",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -6472,7 +6166,7 @@
                 "GRI305-7-14-2-2"
             ],
             "rulebook_title": "2.14.2.2",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -6511,7 +6205,7 @@
                 "GRI305-7-14-2-3"
             ],
             "rulebook_title": "2.14.2.3",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
@@ -6550,58 +6244,12 @@
                 "GRI305-7-14-2-4"
             ],
             "rulebook_title": "2.14.2.4",
-            "disclosure_requirement": "권고",
+            "disclosure_requirement": "권장",
             "version": "1.0",
             "is_active": true,
             "is_primary": false,
             "effective_date": "2016-01-01",
             "mapping_notes": null,
-            "conflicts_with": []
-        },
-        {
-            "rulebook_id": "RULE_GRI305_7_G_GUIDANCE",
-            "standard_id": "GRI305",
-            "primary_dp_id": "GRI305-7",
-            "section_name": "지침: 공개 305-7",
-            "section_content": "Guidance for Disclosure 305-7: Organizations should determine which air emissions are significant in context (e.g. regulatory thresholds, materiality, stakeholder concerns). References in the standard may include [3], [4], [5], [6], [10] for methodologies and pollutant definitions. Report in kilograms or multiples thereof; ensure consistency with the approach selected under compilation 2.13.",
-            "validation_rules": {
-                "section_type": "guidance",
-                "paragraph_reference": "GRI 305 Disclosure 305-7 — Guidance",
-                "key_terms": [
-                    "significant air emissions",
-                    "materiality"
-                ],
-                "related_concepts": [],
-                "required_actions": [
-                    {
-                        "action": "interpret_air_emissions",
-                        "description": "유의성·단위·참고문헌 맥락",
-                        "mandatory": false
-                    }
-                ],
-                "verification_checks": [
-                    {
-                        "check_id": "GRI305_7_G_OK",
-                        "description": "지침 정합",
-                        "expected": "coherent"
-                    }
-                ],
-                "cross_references": [
-                    "GRI 305 standard references [3],[4],[5],[6],[10]"
-                ]
-            },
-            "related_dp_ids": [
-                "GRI305-7",
-                "GRI305-7-a",
-                "GRI305-7-13"
-            ],
-            "rulebook_title": "Guidance 305-7",
-            "disclosure_requirement": "필수",
-            "version": "1.0",
-            "is_active": true,
-            "is_primary": false,
-            "effective_date": "2016-01-01",
-            "mapping_notes": "지침 전용; 원문 지침 전체는 표준 PDF 참조.",
             "conflicts_with": []
         }
     ]

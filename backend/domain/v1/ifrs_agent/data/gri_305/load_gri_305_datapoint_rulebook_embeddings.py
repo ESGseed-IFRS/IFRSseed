@@ -107,6 +107,8 @@ def map_unit(unit_str: Optional[str]) -> Optional[str]:
         "currency_krw": "currency_krw",
         "currency_usd": "currency_usd",
         "tco2e": "tco2e",
+        "tcfc11e": "tcfc11e",
+        "kg": "kg",
         "mwh": "mwh",
         "cubic_meter": "cubic_meter",
         "text": "text",
@@ -120,6 +122,7 @@ def map_disclosure_requirement(req_str: Optional[str]) -> Optional[str]:
     mapping = {
         "필수": "필수",
         "권장": "권장",
+        "권고": "권장",
         "선택": "선택",
         "조건부": "조건부",
         "required": "필수",

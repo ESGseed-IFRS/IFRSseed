@@ -8,7 +8,7 @@ from decimal import Decimal
 from typing import Any, Dict, Optional
 from uuid import UUID
 
-from backend.domain.shared.tool.ifrs_agent.database.asyncpg_connect import connect_ifrs_asyncpg
+from backend.domain.shared.tool.ifrs_agent.database.asyncpg_connect import get_or_create_pool
 
 logger = logging.getLogger("ifrs_agent.tools.dp_query")
 
@@ -41,34 +41,33 @@ async def query_dp_metadata(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     logger.info("query_dp_metadata: dp_id=%s", dp_id)
     
     try:
-        conn = await connect_ifrs_asyncpg()
-        
-        query = """
-            SELECT 
-                dp_id,
-                name_ko,
-                name_en,
-                description,
-                topic,
-                subtopic,
-                category,
-                dp_type,
-                unit::text as unit,
-                validation_rules,
-                child_dps,
-                parent_indicator
-            FROM data_points
-            WHERE dp_id = $1
-            LIMIT 1
-        """
-        
-        row = await conn.fetchrow(query, dp_id)
-        await conn.close()
-        
-        if row:
-            return dict(row)
-        
-        return None
+        pool = await get_or_create_pool()
+        async with pool.acquire() as conn:
+            query = """
+                SELECT 
+                    dp_id,
+                    name_ko,
+                    name_en,
+                    description,
+                    topic,
+                    subtopic,
+                    category,
+                    dp_type,
+                    unit::text as unit,
+                    validation_rules,
+                    child_dps,
+                    parent_indicator
+                FROM data_points
+                WHERE dp_id = $1
+                LIMIT 1
+            """
+            
+            row = await conn.fetchrow(query, dp_id)
+            
+            if row:
+                return dict(row)
+            
+            return None
     
     except Exception as e:
         logger.error("query_dp_metadata failed: %s", e, exc_info=True)
@@ -102,36 +101,35 @@ async def query_ucm_by_dp(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     logger.info("query_ucm_by_dp: dp_id=%s", dp_id)
     
     try:
-        conn = await connect_ifrs_asyncpg()
-        
-        query = """
-            SELECT 
-                unified_column_id,
-                column_name_ko,
-                column_name_en,
-                column_category,
-                column_topic,
-                column_subtopic,
-                column_description,
-                unit,
-                validation_rules,
-                disclosure_requirement,
-                financial_linkages,
-                primary_rulebook_id,
-                rulebook_conflicts,
-                standard_metadata
-            FROM unified_column_mappings
-            WHERE $1 = ANY(mapped_dp_ids)
-            LIMIT 1
-        """
-        
-        row = await conn.fetchrow(query, dp_id)
-        await conn.close()
-        
-        if row:
-            return dict(row)
-        
-        return None
+        pool = await get_or_create_pool()
+        async with pool.acquire() as conn:
+            query = """
+                SELECT 
+                    unified_column_id,
+                    column_name_ko,
+                    column_name_en,
+                    column_category,
+                    column_topic,
+                    column_subtopic,
+                    column_description,
+                    unit,
+                    validation_rules,
+                    disclosure_requirement,
+                    financial_linkages,
+                    primary_rulebook_id,
+                    rulebook_conflicts,
+                    standard_metadata
+                FROM unified_column_mappings
+                WHERE $1 = ANY(mapped_dp_ids)
+                LIMIT 1
+            """
+            
+            row = await conn.fetchrow(query, dp_id)
+            
+            if row:
+                return dict(row)
+            
+            return None
     
     except Exception as e:
         logger.error("query_ucm_by_dp failed: %s", e, exc_info=True)
@@ -166,37 +164,36 @@ async def query_ucm_direct(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     logger.info("query_ucm_direct: ucm_id=%s", ucm_id)
     
     try:
-        conn = await connect_ifrs_asyncpg()
-        
-        query = """
-            SELECT 
-                unified_column_id,
-                column_name_ko,
-                column_name_en,
-                column_category,
-                column_topic,
-                column_subtopic,
-                column_description,
-                unit,
-                validation_rules,
-                disclosure_requirement,
-                financial_linkages,
-                mapped_dp_ids,
-                primary_rulebook_id,
-                rulebook_conflicts,
-                standard_metadata
-            FROM unified_column_mappings
-            WHERE unified_column_id = $1
-            LIMIT 1
-        """
-        
-        row = await conn.fetchrow(query, ucm_id)
-        await conn.close()
-        
-        if row:
-            return dict(row)
-        
-        return None
+        pool = await get_or_create_pool()
+        async with pool.acquire() as conn:
+            query = """
+                SELECT 
+                    unified_column_id,
+                    column_name_ko,
+                    column_name_en,
+                    column_category,
+                    column_topic,
+                    column_subtopic,
+                    column_description,
+                    unit,
+                    validation_rules,
+                    disclosure_requirement,
+                    financial_linkages,
+                    mapped_dp_ids,
+                    primary_rulebook_id,
+                    rulebook_conflicts,
+                    standard_metadata
+                FROM unified_column_mappings
+                WHERE unified_column_id = $1
+                LIMIT 1
+            """
+            
+            row = await conn.fetchrow(query, ucm_id)
+            
+            if row:
+                return dict(row)
+            
+            return None
     
     except Exception as e:
         logger.error("query_ucm_direct failed: %s", e, exc_info=True)
@@ -220,44 +217,43 @@ async def query_rulebook(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     logger.info("query_rulebook: rulebook_id=%s", rulebook_id)
 
     try:
-        conn = await connect_ifrs_asyncpg()
+        pool = await get_or_create_pool()
+        async with pool.acquire() as conn:
+            query = """
+                SELECT
+                    rulebook_id,
+                    standard_id,
+                    section_name,
+                    rulebook_title,
+                    rulebook_content,
+                    paragraph_reference,
+                    disclosure_requirement::text AS disclosure_requirement,
+                    validation_rules,
+                    conflicts_with,
+                    mapping_notes,
+                    key_terms,
+                    related_concepts,
+                    primary_dp_id,
+                    related_dp_ids,
+                    version,
+                    effective_date,
+                    is_primary
+                FROM rulebooks
+                WHERE rulebook_id = $1
+                  AND COALESCE(is_active, true) = true
+                LIMIT 1
+            """
 
-        query = """
-            SELECT
-                rulebook_id,
-                standard_id,
-                section_name,
-                rulebook_title,
-                rulebook_content,
-                paragraph_reference,
-                disclosure_requirement::text AS disclosure_requirement,
-                validation_rules,
-                conflicts_with,
-                mapping_notes,
-                key_terms,
-                related_concepts,
-                primary_dp_id,
-                related_dp_ids,
-                version,
-                effective_date,
-                is_primary
-            FROM rulebooks
-            WHERE rulebook_id = $1
-              AND COALESCE(is_active, true) = true
-            LIMIT 1
-        """
+            row = await conn.fetchrow(query, rulebook_id)
 
-        row = await conn.fetchrow(query, rulebook_id)
-        await conn.close()
+            if not row:
+                return None
 
-        if not row:
-            return None
-
-        out = dict(row)
-        ed = out.get("effective_date")
-        if ed is not None and hasattr(ed, "isoformat"):
-            out["effective_date"] = ed.isoformat()
-        return out
+            out = dict(row)
+            ed = out.get("effective_date")
+            if ed is not None and hasattr(ed, "isoformat"):
+                out["effective_date"] = ed.isoformat()
+            return out
 
     except Exception as e:
         logger.error("query_rulebook failed: %s", e, exc_info=True)
@@ -285,48 +281,47 @@ async def query_rulebook_by_primary_dp_id(
     logger.info("query_rulebook_by_primary_dp_id: dp_id=%s", dp_id)
 
     try:
-        conn = await connect_ifrs_asyncpg()
+        pool = await get_or_create_pool()
+        async with pool.acquire() as conn:
+            query = """
+                SELECT
+                    rulebook_id,
+                    standard_id,
+                    section_name,
+                    rulebook_title,
+                    rulebook_content,
+                    paragraph_reference,
+                    disclosure_requirement::text AS disclosure_requirement,
+                    validation_rules,
+                    conflicts_with,
+                    mapping_notes,
+                    key_terms,
+                    related_concepts,
+                    primary_dp_id,
+                    related_dp_ids,
+                    version,
+                    effective_date,
+                    is_primary
+                FROM rulebooks
+                WHERE primary_dp_id = $1
+                  AND COALESCE(is_active, true) = true
+                ORDER BY
+                    is_primary DESC NULLS LAST,
+                    version DESC NULLS LAST,
+                    rulebook_id
+                LIMIT 1
+            """
 
-        query = """
-            SELECT
-                rulebook_id,
-                standard_id,
-                section_name,
-                rulebook_title,
-                rulebook_content,
-                paragraph_reference,
-                disclosure_requirement::text AS disclosure_requirement,
-                validation_rules,
-                conflicts_with,
-                mapping_notes,
-                key_terms,
-                related_concepts,
-                primary_dp_id,
-                related_dp_ids,
-                version,
-                effective_date,
-                is_primary
-            FROM rulebooks
-            WHERE primary_dp_id = $1
-              AND COALESCE(is_active, true) = true
-            ORDER BY
-                is_primary DESC NULLS LAST,
-                version DESC NULLS LAST,
-                rulebook_id
-            LIMIT 1
-        """
+            row = await conn.fetchrow(query, dp_id)
 
-        row = await conn.fetchrow(query, dp_id)
-        await conn.close()
+            if not row:
+                return None
 
-        if not row:
-            return None
-
-        out = dict(row)
-        ed = out.get("effective_date")
-        if ed is not None and hasattr(ed, "isoformat"):
-            out["effective_date"] = ed.isoformat()
-        return out
+            out = dict(row)
+            ed = out.get("effective_date")
+            if ed is not None and hasattr(ed, "isoformat"):
+                out["effective_date"] = ed.isoformat()
+            return out
 
     except Exception as e:
         logger.error("query_rulebook_by_primary_dp_id failed: %s", e, exc_info=True)
@@ -357,34 +352,33 @@ async def query_unmapped_dp(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     logger.info("query_unmapped_dp: dp_id=%s", dp_id)
     
     try:
-        conn = await connect_ifrs_asyncpg()
-        
-        query = """
-            SELECT 
-                id,
-                dp_id,
-                name_ko,
-                name_en,
-                category,
-                unit,
-                validation_rules,
-                mapping_status
-            FROM unmapped_data_points
-            WHERE dp_id = $1
-              AND is_active = true
-            LIMIT 1
-        """
-        
-        row = await conn.fetchrow(query, dp_id)
-        await conn.close()
-        
-        if row:
-            result = dict(row)
-            if isinstance(result.get("id"), UUID):
-                result["id"] = str(result["id"])
-            return result
-        
-        return None
+        pool = await get_or_create_pool()
+        async with pool.acquire() as conn:
+            query = """
+                SELECT 
+                    id,
+                    dp_id,
+                    name_ko,
+                    name_en,
+                    category,
+                    unit,
+                    validation_rules,
+                    mapping_status
+                FROM unmapped_data_points
+                WHERE dp_id = $1
+                  AND is_active = true
+                LIMIT 1
+            """
+            
+            row = await conn.fetchrow(query, dp_id)
+            
+            if row:
+                result = dict(row)
+                if isinstance(result.get("id"), UUID):
+                    result["id"] = str(result["id"])
+                return result
+            
+            return None
     
     except Exception as e:
         logger.error("query_unmapped_dp failed: %s", e, exc_info=True)
@@ -433,60 +427,57 @@ async def query_dp_real_data(params: Dict[str, Any]) -> Dict[str, Any]:
         return {"error": f"Invalid table: {table}"}
     
     try:
-        conn = await connect_ifrs_asyncpg()
-        
-        # 동적 쿼리 (psycopg2.sql.Identifier 대신 문자열 검증 후 삽입)
-        # column은 이미 화이트리스트 검증됨
-        
-        if table in ("social_data", "governance_data"):
-            if not data_type:
-                await conn.close()
-                return {"error": f"{table} requires data_type"}
+        pool = await get_or_create_pool()
+        async with pool.acquire() as conn:
+            # 동적 쿼리 (psycopg2.sql.Identifier 대신 문자열 검증 후 삽입)
+            # column은 이미 화이트리스트 검증됨
             
-            query = f"""
-                SELECT 
-                    {column} as value,
-                    period_year,
-                    status,
-                    updated_at
-                FROM {table}
-                WHERE company_id = $1::uuid
-                  AND period_year = $2
-                  AND data_type = $3
-                ORDER BY updated_at DESC
-                LIMIT 1
-            """
-            row = await conn.fetchrow(query, company_id, year, data_type)
-        
-        else:  # environmental_data
-            query = f"""
-                SELECT 
-                    {column} as value,
-                    period_year,
-                    status,
-                    updated_at
-                FROM {table}
-                WHERE company_id = $1::uuid
-                  AND period_year = $2
-                ORDER BY updated_at DESC
-                LIMIT 1
-            """
-            row = await conn.fetchrow(query, company_id, year)
-        
-        await conn.close()
-        
-        if row:
-            result = dict(row)
-            # Decimal/UUID 등 JSON 직렬화 가능하게 변환
-            if isinstance(result.get("value"), Decimal):
-                result["value"] = float(result["value"])
-            if isinstance(result.get("value"), UUID):
-                result["value"] = str(result["value"])
-            if result.get("updated_at"):
-                result["updated_at"] = result["updated_at"].isoformat()
-            return result
-        
-        return {"error": f"No data found for {table}.{column} (year={year})"}
+            if table in ("social_data", "governance_data"):
+                if not data_type:
+                    return {"error": f"{table} requires data_type"}
+                
+                query = f"""
+                    SELECT 
+                        {column} as value,
+                        period_year,
+                        status,
+                        updated_at
+                    FROM {table}
+                    WHERE company_id = $1::uuid
+                      AND period_year = $2
+                      AND data_type = $3
+                    ORDER BY updated_at DESC
+                    LIMIT 1
+                """
+                row = await conn.fetchrow(query, company_id, year, data_type)
+            
+            else:  # environmental_data
+                query = f"""
+                    SELECT 
+                        {column} as value,
+                        period_year,
+                        status,
+                        updated_at
+                    FROM {table}
+                    WHERE company_id = $1::uuid
+                      AND period_year = $2
+                    ORDER BY updated_at DESC
+                    LIMIT 1
+                """
+                row = await conn.fetchrow(query, company_id, year)
+            
+            if row:
+                result = dict(row)
+                # Decimal/UUID 등 JSON 직렬화 가능하게 변환
+                if isinstance(result.get("value"), Decimal):
+                    result["value"] = float(result["value"])
+                if isinstance(result.get("value"), UUID):
+                    result["value"] = str(result["value"])
+                if result.get("updated_at"):
+                    result["updated_at"] = result["updated_at"].isoformat()
+                return result
+            
+            return {"error": f"No data found for {table}.{column} (year={year})"}
     
     except Exception as e:
         logger.error("query_dp_real_data failed: %s", e, exc_info=True)
@@ -514,72 +505,71 @@ async def query_company_info(params: Dict[str, Any]) -> Optional[Dict[str, Any]]
     logger.info("query_company_info: company_id=%s", company_id)
 
     try:
-        conn = await connect_ifrs_asyncpg()
+        pool = await get_or_create_pool()
+        async with pool.acquire() as conn:
+            query = """
+                SELECT
+                    company_id::text AS company_id,
+                    company_name_ko,
+                    company_name_en,
+                    business_registration_number,
+                    representative_name,
+                    industry,
+                    website,
+                    mission,
+                    vision,
+                    esg_goals,
+                    carbon_neutral_target_year,
+                    total_employees,
+                    major_shareholders,
+                    stakeholders,
+                    submitted_to_final_report,
+                    board_chairman_name,
+                    board_total_members,
+                    board_independent_members,
+                    board_female_members,
+                    audit_committee_chairman,
+                    esg_committee_exists,
+                    esg_committee_chairman,
+                    cfo_name,
+                    cso_name,
+                    fiscal_year_end,
+                    stock_code,
+                    listing_market,
+                    total_revenue_krw,
+                    total_assets_krw,
+                    headquarters_address,
+                    headquarters_city,
+                    female_employees,
+                    female_ratio_percent,
+                    permanent_employees,
+                    contract_employees,
+                    sustainability_report_published,
+                    sustainability_report_year,
+                    gri_standards_version,
+                    tcfd_aligned,
+                    cdp_participant,
+                    iso14001_certified,
+                    iso45001_certified,
+                    updated_at
+                FROM company_info
+                WHERE company_id = $1::uuid
+                LIMIT 1
+            """
 
-        query = """
-            SELECT
-                company_id::text AS company_id,
-                company_name_ko,
-                company_name_en,
-                business_registration_number,
-                representative_name,
-                industry,
-                website,
-                mission,
-                vision,
-                esg_goals,
-                carbon_neutral_target_year,
-                total_employees,
-                major_shareholders,
-                stakeholders,
-                submitted_to_final_report,
-                board_chairman_name,
-                board_total_members,
-                board_independent_members,
-                board_female_members,
-                audit_committee_chairman,
-                esg_committee_exists,
-                esg_committee_chairman,
-                cfo_name,
-                cso_name,
-                fiscal_year_end,
-                stock_code,
-                listing_market,
-                total_revenue_krw,
-                total_assets_krw,
-                headquarters_address,
-                headquarters_city,
-                female_employees,
-                female_ratio_percent,
-                permanent_employees,
-                contract_employees,
-                sustainability_report_published,
-                sustainability_report_year,
-                gri_standards_version,
-                tcfd_aligned,
-                cdp_participant,
-                iso14001_certified,
-                iso45001_certified,
-                updated_at
-            FROM company_info
-            WHERE company_id = $1::uuid
-            LIMIT 1
-        """
+            row = await conn.fetchrow(query, company_id)
 
-        row = await conn.fetchrow(query, company_id)
-        await conn.close()
+            if not row:
+                return None
 
-        if not row:
-            return None
-
-        out: Dict[str, Any] = dict(row)
-        fr = out.get("female_ratio_percent")
-        if isinstance(fr, Decimal):
-            out["female_ratio_percent"] = float(fr)
-        ua = out.get("updated_at")
-        if ua is not None and hasattr(ua, "isoformat"):
-            out["updated_at"] = ua.isoformat()
-        return out
+            out: Dict[str, Any] = dict(row)
+            fr = out.get("female_ratio_percent")
+            if isinstance(fr, Decimal):
+                out["female_ratio_percent"] = float(fr)
+            ua = out.get("updated_at")
+            if ua is not None and hasattr(ua, "isoformat"):
+                out["updated_at"] = ua.isoformat()
+            return out
 
     except Exception as e:
         logger.error("query_company_info failed: %s", e, exc_info=True)
