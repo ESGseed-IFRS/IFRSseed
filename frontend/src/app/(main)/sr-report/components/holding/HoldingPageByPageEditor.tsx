@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Check, GripVertical, Loader2, Pencil, Plus, Trash2, X } from 'lucide-react';
+import { Check, ChevronDown, GripVertical, Loader2, Pencil, Plus, Trash2, X } from 'lucide-react';
 import {
   DndContext,
   PointerSensor,
@@ -17,7 +17,11 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { fetchWithAuthJson, useAuthSessionStore } from '@/store/authSessionStore';
+import {
+  fetchWithAuthJson,
+  mergeAuthIntoRequestBody,
+  useAuthSessionStore,
+} from '@/store/authSessionStore';
 import {
   HOLDING_SR_PAGE_DATA,
   getInfographicSuggestions,
@@ -277,7 +281,7 @@ function SortablePageItem({
 }
 
 export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsumed }: Props) {
-  const apiBase = process.env.NEXT_PUBLIC_IFRS_AGENT_BASE ?? 'http://localhost:9005';
+  const apiBase = process.env.NEXT_PUBLIC_IFRS_AGENT_BASE ?? 'http://localhost:9001';
   const companyId = useAuthSessionStore((s) => s.user?.company_id?.trim() ?? '');
   const [selectedPage, setSelectedPage] = useState<HoldingSrPageRow | null>(null);
   const [search, setSearch] = useState('');
@@ -289,6 +293,8 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
   const [blocks, setBlocks] = useState<Record<string, PageContentBlock[]>>({});
   const [activeTab, setActiveTab] = useState<'content' | 'chart' | 'table' | 'infographic'>('content');
   const [generating, setGenerating] = useState(false);
+  /** 페이지별 에이전트 진행 단계(SSE 이벤트 메시지 누적) */
+  const [generationSteps, setGenerationSteps] = useState<Record<string, string[]>>({});
   const [requestError, setRequestError] = useState<string | null>(null);
   const [editingTitlePage, setEditingTitlePage] = useState<number | null>(null);
   const [editingTitleValue, setEditingTitleValue] = useState('');
@@ -330,6 +336,7 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
   const currentPrompt = pageKey ? pagePrompts[pageKey] || '' : '';
   const currentReply = pageKey ? agentReplies[pageKey] || '' : '';
   const currentLayoutBlocks = pageKey ? agentLayouts[pageKey] || [] : [];
+  const currentGenerationSteps = pageKey ? generationSteps[pageKey] || [] : [];
   const currentBlocks = pageKey ? blocks[pageKey] || [] : [];
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }));
   const visibleSections = useMemo(
@@ -534,6 +541,7 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
 
   async function generateText() {
     if (!selectedPage || !pageKey) return;
+    const pk = pageKey;
     if (!companyId) {
       setRequestError('로그인된 회사 ID가 없습니다. 다시 로그인해 주세요.');
       return;
@@ -558,31 +566,32 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
 
     setGenerating(true);
     setRequestError(null);
-    try {
-      const res = await fetchWithAuthJson(`${apiBase.replace(/\/$/, '')}/ifrs-agent/reports/create`, {
-        method: 'POST',
-        jsonBody: {
-          company_id: companyId,
-          category: resolvedCategory,
-          prompt: resolvedPrompt,
-          dp_ids: dpIds,
-          ref_pages: {},
-          max_retries: 3,
-        },
-      });
-      if (!res.ok) {
-        const t = await res.text();
-        throw new Error(t || res.statusText || '요청 실패');
-      }
+    setGenerationSteps((prev) => ({ ...prev, [pk]: [] }));
 
-      const body = (await res.json()) as CreateReportResponse;
+    const jsonBody = {
+      company_id: companyId,
+      category: resolvedCategory,
+      prompt: resolvedPrompt,
+      dp_ids: dpIds,
+      ref_pages: {},
+      max_retries: 3,
+    };
+
+    const baseUrl = `${apiBase.replace(/\/$/, '')}/ifrs-agent/reports`;
+
+    function appendStep(line: string) {
+      setGenerationSteps((prev) => ({
+        ...prev,
+        [pk]: [...(prev[pk] || []), line],
+      }));
+    }
+
+    function applyCreateResult(body: CreateReportResponse) {
       if (body.error) throw new Error(body.error);
-
       const generated = (body.generated_text || '').trim();
       if (generated) {
-        setPageTexts((prev) => ({ ...prev, [pageKey]: generated }));
+        setPageTexts((prev) => ({ ...prev, [pk]: generated }));
       }
-
       const layoutBlocks: LayoutBlock[] = Array.isArray(body.layout?.blocks)
         ? body.layout?.blocks || []
         : Array.isArray(body.image_recommendations)
@@ -594,8 +603,7 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
               rationale_ko: r.rationale_ko,
             }))
           : [];
-      setAgentLayouts((prev) => ({ ...prev, [pageKey]: layoutBlocks }));
-
+      setAgentLayouts((prev) => ({ ...prev, [pk]: layoutBlocks }));
       const replyLines = [
         `workflow_id: ${body.workflow_id ?? '-'}`,
         `status: ${body.status ?? '-'}`,
@@ -604,11 +612,81 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
         generated ? `generated_text: ${generated.slice(0, 220)}${generated.length > 220 ? '…' : ''}` : 'generated_text: -',
         layoutBlocks.length ? `layout_blocks: ${layoutBlocks.length}` : 'layout_blocks: 0',
       ];
-      setAgentReplies((prev) => ({ ...prev, [pageKey]: replyLines.join('\n') }));
+      setAgentReplies((prev) => ({ ...prev, [pk]: replyLines.join('\n') }));
+    }
+
+    try {
+      let body: CreateReportResponse | null = null;
+
+      const merged = mergeAuthIntoRequestBody(jsonBody);
+      const streamRes = await fetch(`${baseUrl}/create/stream`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'text/event-stream',
+        },
+        body: JSON.stringify(merged),
+      });
+
+      if (streamRes.ok && streamRes.body) {
+        const reader = streamRes.body.getReader();
+        const dec = new TextDecoder();
+        let buf = '';
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          buf += dec.decode(value, { stream: true });
+          const parts = buf.split('\n\n');
+          buf = parts.pop() ?? '';
+          for (const block of parts) {
+            for (const line of block.split('\n')) {
+              if (!line.startsWith('data:')) continue;
+              const raw = line.slice(5).trim();
+              if (!raw) continue;
+              let ev: Record<string, unknown>;
+              try {
+                ev = JSON.parse(raw) as Record<string, unknown>;
+              } catch {
+                continue;
+              }
+              const detail = ev.detail as { message_ko?: string } | undefined;
+              const step = ev.step as string | undefined;
+              const lineMsg =
+                detail?.message_ko ||
+                [ev.phase, ev.step].filter(Boolean).join(' · ') ||
+                '이벤트';
+              appendStep(lineMsg);
+              if (step === 'stream_error') {
+                throw new Error(detail?.message_ko || 'stream_error');
+              }
+              if (step === 'workflow_finished') {
+                const resObj = (detail as { result?: CreateReportResponse } | undefined)?.result;
+                if (resObj) body = resObj;
+              }
+            }
+          }
+        }
+      }
+
+      if (!body) {
+        const res = await fetchWithAuthJson(`${baseUrl}/create`, {
+          method: 'POST',
+          jsonBody,
+        });
+        if (!res.ok) {
+          const t = await res.text();
+          throw new Error(t || res.statusText || '요청 실패');
+        }
+        body = (await res.json()) as CreateReportResponse;
+        appendStep('(스트림 미사용) 동기 응답 수신');
+      }
+
+      applyCreateResult(body);
     } catch (e) {
       const msg = e instanceof Error ? e.message : '요청에 실패했습니다.';
       setRequestError(msg);
-      setAgentReplies((prev) => ({ ...prev, [pageKey]: `요청 실패\n${msg}` }));
+      setAgentReplies((prev) => ({ ...prev, [pk]: `요청 실패\n${msg}` }));
     } finally {
       setGenerating(false);
     }
@@ -881,8 +959,8 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
                 </div>
               </div>
 
-              <div className="flex flex-1 min-h-0 overflow-hidden">
-                <div className="flex-1 overflow-y-auto px-6 py-5 flex flex-col gap-4">
+              <div className="flex min-h-0 flex-1 overflow-hidden">
+                <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-4 overflow-y-auto px-6 py-5">
                   {activeTab === 'content' && (
                     <>
                       <textarea
@@ -894,10 +972,61 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
                         placeholder="생성 프롬프트를 입력하세요. (예: 위 카테고리를 기준으로 인재상/채용절차/대학생 알고리즘 특강 중심으로 작성)"
                         className="w-full min-h-[120px] border border-[#dde1e7] rounded-[10px] py-3 px-4 text-[12px] leading-[1.8] resize-y outline-none text-[#333] bg-[#fffdf9] box-border"
                       />
-                      <div className="bg-[#f7fbf8] border border-[#dbe9df] rounded-[10px] p-3.5">
+                      <div className="min-w-0 bg-[#f7fbf8] border border-[#dbe9df] rounded-[10px] p-3.5">
                         <div className="text-[11px] font-bold text-[#2d6a4f] tracking-wide mb-2">
                           문단생성 에이전트 응답
                         </div>
+                        {(generating || currentGenerationSteps.length > 0) && (
+                          <details
+                            className="mb-2 min-w-0 max-w-full rounded-lg border border-[#cfe2d7] bg-white/80 px-2.5 py-2"
+                            open={generating}
+                          >
+                            <summary className="flex cursor-pointer list-none items-center gap-1.5 text-[11px] font-semibold text-[#2d6a4f] [&::-webkit-details-marker]:hidden">
+                              <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#4a90d9] to-[#2d6a4f] text-[10px] text-white">
+                                ✦
+                              </span>
+                              <span className="min-w-0 flex-1 break-words">
+                                {generating
+                                  ? currentGenerationSteps[currentGenerationSteps.length - 1] ||
+                                    '에이전트 처리 중…'
+                                  : '진행 로그'}
+                              </span>
+                              <ChevronDown className="h-3.5 w-3.5 shrink-0 text-[#888] [[details[open]_&]]:rotate-180 transition-transform" />
+                            </summary>
+                            <ol className="mt-2 max-h-[160px] min-w-0 overflow-x-hidden overflow-y-auto border-t border-[#e8efe9] pt-2 text-[10px] leading-relaxed text-[#555]">
+                              {currentGenerationSteps.map((s, i) => {
+                                const isActive =
+                                  generating && i === currentGenerationSteps.length - 1;
+                                return (
+                                  <li
+                                    key={`${i}-${s.slice(0, 24)}`}
+                                    className="mb-1.5 flex min-w-0 items-start gap-1.5 pl-0.5"
+                                  >
+                                    <span className="min-w-0 flex-1 break-words pr-1">
+                                      <span className="text-[#aaa]">{i + 1}. </span>
+                                      {s}
+                                    </span>
+                                    <span
+                                      className="mt-px flex h-3 w-3 shrink-0 items-center justify-center self-start"
+                                      aria-hidden
+                                      title={isActive ? '진행 중' : '완료'}
+                                    >
+                                      {isActive ? (
+                                        <span className="box-border inline-block h-2.5 w-2.5 rounded-full border-2 border-[#e8eef3] border-t-[#4a90d9] animate-spin" />
+                                      ) : (
+                                        <Check
+                                          className="h-2.5 w-2.5 text-[#2d6a4f]"
+                                          strokeWidth={3}
+                                          aria-hidden
+                                        />
+                                      )}
+                                    </span>
+                                  </li>
+                                );
+                              })}
+                            </ol>
+                          </details>
+                        )}
                         <textarea
                           value={currentReply}
                           readOnly

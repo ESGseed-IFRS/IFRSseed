@@ -186,7 +186,7 @@ function CategoryTable({ categories }: { categories: ScopeCalcCategory[] }) {
 
 export function ScopeCalculation() {
   const { session } = useGhgSession();
-  const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? 'http://localhost:9004';
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? 'http://localhost:9001';
   const companyId = useAuthSessionStore((s) => s.user?.company_id?.trim() ?? '');
   const [activeScope, setActiveScope] = useState<ScopeTab>('scope1');
   const [selectedYear, setSelectedYear] = useState('2026');

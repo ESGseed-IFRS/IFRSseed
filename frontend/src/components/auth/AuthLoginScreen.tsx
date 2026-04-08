@@ -228,7 +228,7 @@ export function AuthLoginScreen() {
   const [forgotStep, setForgotStep] = useState(1);
   const [forgotForm, setForgotForm] = useState({ loginId: '', email: '' });
   const [forgotMsg, setForgotMsg] = useState('');
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:9006';
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:9001';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

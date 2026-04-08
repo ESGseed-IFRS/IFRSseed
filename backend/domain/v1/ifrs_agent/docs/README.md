@@ -135,6 +135,7 @@ result = workflow.run(
 | [DATA_COLLECTION.md](./DATA_COLLECTION.md) | 데이터 수집 전략 및 출처 |
 | [IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md) | 구현 가이드 및 단계별 계획 |
 | [IMAGE_PARSING.md](./IMAGE_PARSING.md) | 이미지 파싱 및 처리 가이드 |
+| [STREAMING_WORKFLOW_EVENTS.md](./STREAMING_WORKFLOW_EVENTS.md) | 실시간 단계 이벤트(SSE) 설계·구현 순서 |
 
 ---
 

@@ -70,7 +70,7 @@ export function GHGCalcLayout({
   }, [menuOpen]);
 
   const authUser = typeof window !== 'undefined' ? readAuthUserFromStorage() : null;
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:9006';
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:9001';
 
   const handleLogout = async () => {
     setMenuOpen(false);

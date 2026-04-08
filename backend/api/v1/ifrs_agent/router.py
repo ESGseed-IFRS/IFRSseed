@@ -3,14 +3,18 @@ IFRS Agent API 라우터
 
 IFRS 지속가능성 보고서 생성 워크플로우 API
 """
+import asyncio
+import json
 import logging
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional, List, AsyncIterator
 from uuid import uuid4
 
-from fastapi import APIRouter, HTTPException, Query, Body
+from fastapi import APIRouter, HTTPException, Body
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from backend.domain.v1.ifrs_agent.hub.bootstrap import get_infra
+from backend.domain.v1.ifrs_agent.hub.orchestrator.workflow_events import QueueWorkflowEventSink
 from backend.domain.v1.ifrs_agent.models.langgraph import run_workflow
 
 logger = logging.getLogger("ifrs_agent.api")
@@ -34,6 +38,36 @@ def _build_create_references(final_state: Dict[str, Any]) -> Dict[str, Any]:
         "fact_data_by_dp": final_state.get("fact_data_by_dp", {}),
         "agg_data": final_state.get("agg_data", {}),
     }
+
+
+def _workflow_response_from_final_state(
+    workflow_id: str, final_state: Dict[str, Any]
+) -> "WorkflowResponse":
+    """`run_workflow` 결과 상태 → API 응답 모델 (create/stream 공통)."""
+    _gi = final_state.get("gen_input")
+    _ds = final_state.get("data_selection")
+    _pi = final_state.get("prompt_interpretation")
+    _dp_sel = final_state.get("dp_selection_required")
+    return WorkflowResponse(
+        workflow_id=workflow_id,
+        status=final_state.get("status", "failed"),
+        generated_text=final_state.get("generated_text", ""),
+        validation=final_state.get("validation", {}),
+        references=_build_create_references(final_state),
+        metadata={
+            "attempts": final_state.get("attempt", 0) + 1,
+            "max_retries": final_state.get("max_retries", 3),
+            "mode": final_state.get("mode", "draft"),
+            "created_at": str(final_state.get("created_at", "")),
+            "updated_at": str(final_state.get("updated_at", "")),
+            "prompt_interpretation": _pi if _pi else None,
+        },
+        error=final_state.get("error"),
+        gen_input=_gi if _gi else None,
+        data_selection=_ds if _ds else None,
+        prompt_interpretation=_pi if _pi else None,
+        dp_selection_required=_dp_sel if _dp_sel else None,
+    )
 
 
 # ===== Request/Response Models =====
@@ -165,24 +199,7 @@ async def create_report(request: CreateReportRequest = Body(...)):
     try:
         # Infra 레이어 초기화
         infra = get_infra()
-        
-        dp_id = request.dp_id
-        dp_ids = list(request.dp_ids) if request.dp_ids else []
-        if dp_ids and not dp_id:
-            dp_id = dp_ids[0]
-        elif dp_id and not dp_ids:
-            dp_ids = [dp_id]
-
-        user_input = {
-            "action": "create",
-            "company_id": request.company_id,
-            "category": request.category,
-            "dp_id": dp_id,
-            "dp_ids": dp_ids,
-            "prompt": request.prompt,
-            "ref_pages": request.ref_pages,
-            "max_retries": request.max_retries,
-        }
+        user_input = _create_user_input_from_request(request)
         
         # 워크플로우 실행
         final_state = await run_workflow(
@@ -190,32 +207,8 @@ async def create_report(request: CreateReportRequest = Body(...)):
             infra=infra,
             workflow_id=workflow_id
         )
-        
-        # 응답 구성
-        _gi = final_state.get("gen_input")
-        _ds = final_state.get("data_selection")
-        _pi = final_state.get("prompt_interpretation")
-        _dp_sel = final_state.get("dp_selection_required")
-        response = WorkflowResponse(
-            workflow_id=workflow_id,
-            status=final_state.get("status", "failed"),
-            generated_text=final_state.get("generated_text", ""),
-            validation=final_state.get("validation", {}),
-            references=_build_create_references(final_state),
-            metadata={
-                "attempts": final_state.get("attempt", 0) + 1,
-                "max_retries": final_state.get("max_retries", 3),
-                "mode": final_state.get("mode", "draft"),
-                "created_at": str(final_state.get("created_at", "")),
-                "updated_at": str(final_state.get("updated_at", "")),
-                "prompt_interpretation": _pi if _pi else None,
-            },
-            error=final_state.get("error"),
-            gen_input=_gi if _gi else None,
-            data_selection=_ds if _ds else None,
-            prompt_interpretation=_pi if _pi else None,
-            dp_selection_required=_dp_sel if _dp_sel else None,
-        )
+
+        response = _workflow_response_from_final_state(workflow_id, final_state)
         
         logger.info(
             f"Create report completed: workflow_id={workflow_id}, status={response.status}, attempts={response.metadata['attempts']}"
@@ -226,6 +219,101 @@ async def create_report(request: CreateReportRequest = Body(...)):
     except Exception as e:
         logger.error(f"Create report failed: workflow_id={workflow_id}, error={e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
+
+
+def _create_user_input_from_request(request: CreateReportRequest) -> Dict[str, Any]:
+    dp_id = request.dp_id
+    dp_ids = list(request.dp_ids) if request.dp_ids else []
+    if dp_ids and not dp_id:
+        dp_id = dp_ids[0]
+    elif dp_id and not dp_ids:
+        dp_ids = [dp_id]
+    return {
+        "action": "create",
+        "company_id": request.company_id,
+        "category": request.category,
+        "dp_id": dp_id,
+        "dp_ids": dp_ids,
+        "prompt": request.prompt,
+        "ref_pages": request.ref_pages,
+        "max_retries": request.max_retries,
+    }
+
+
+@router.post("/reports/create/stream", summary="SR 초안 생성 (SSE 진행 이벤트 + 최종 결과)")
+async def create_report_stream(request: CreateReportRequest = Body(...)):
+    """
+    `POST /reports/create` 와 동일하게 **워크플로를 1회** 실행하되,
+    진행 단계는 `text/event-stream`(SSE)으로 실시간 전달한다.
+
+    마지막 비즈니스 이벤트: `step: workflow_finished`, `detail.result`에 WorkflowResponse(JSON).
+    이후 큐 센티넬로 스트림 종료.
+    """
+    workflow_id = str(uuid4())
+    q: asyncio.Queue = asyncio.Queue()
+    sink = QueueWorkflowEventSink(q, workflow_id)
+
+    async def run_workflow_task() -> None:
+        try:
+            infra = get_infra()
+            user_input = _create_user_input_from_request(request)
+            final_state = await run_workflow(
+                user_input=user_input,
+                infra=infra,
+                workflow_id=workflow_id,
+                event_sink=sink,
+            )
+            wr = _workflow_response_from_final_state(workflow_id, final_state)
+            await sink.emit(
+                {
+                    "phase": "system",
+                    "step": "workflow_finished",
+                    "status": "completed",
+                    "detail": {
+                        "message_ko": "생성 완료",
+                        "result": wr.model_dump(mode="json"),
+                    },
+                }
+            )
+        except Exception as e:
+            logger.error(
+                f"Create report stream workflow failed: workflow_id={workflow_id}, error={e}",
+                exc_info=True,
+            )
+            await sink.emit(
+                {
+                    "phase": "system",
+                    "step": "stream_error",
+                    "status": "failed",
+                    "detail": {
+                        "message_ko": str(e)[:500],
+                        "code": "WORKFLOW_FAILED",
+                    },
+                }
+            )
+        finally:
+            await q.put(None)
+
+    async def event_iter() -> AsyncIterator[str]:
+        task = asyncio.create_task(run_workflow_task())
+        try:
+            while True:
+                item = await q.get()
+                if item is None:
+                    break
+                yield f"data: {json.dumps(item, ensure_ascii=False)}\n\n"
+        finally:
+            await task
+
+    return StreamingResponse(
+        event_iter(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
+    )
 
 
 @router.post("/reports/refine", response_model=WorkflowResponse, summary="SR 수정")

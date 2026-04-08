@@ -4,7 +4,7 @@ LangGraph 워크플로우 빌더
 오케스트레이터를 LangGraph 노드로 래핑하고 그래프 구성
 """
 import logging
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from uuid import uuid4
 
 from langgraph.graph import StateGraph
@@ -15,12 +15,13 @@ from backend.domain.v1.ifrs_agent.models.langgraph import (
     update_state
 )
 from backend.domain.v1.ifrs_agent.hub.orchestrator import Orchestrator
+from backend.domain.v1.ifrs_agent.hub.orchestrator.workflow_events import WorkflowEventSink
 from backend.domain.v1.ifrs_agent.spokes.infra import InfraLayer
 
 logger = logging.getLogger("ifrs_agent.workflow")
 
 
-def build_workflow(infra: InfraLayer):
+def build_workflow(infra: InfraLayer, event_sink: Optional[WorkflowEventSink] = None):
     """
     LangGraph 워크플로우 빌드
     
@@ -33,7 +34,7 @@ def build_workflow(infra: InfraLayer):
     workflow = StateGraph(WorkflowState)
     
     # 오케스트레이터 인스턴스 생성
-    orchestrator = Orchestrator(infra)
+    orchestrator = Orchestrator(infra, event_sink=event_sink)
     
     # 단일 노드: orchestrator_node (핵심)
     async def orchestrator_run(state: WorkflowState) -> WorkflowState:
@@ -153,7 +154,8 @@ def build_workflow(infra: InfraLayer):
 async def run_workflow(
     user_input: Dict[str, Any],
     infra: InfraLayer,
-    workflow_id: str = None
+    workflow_id: str = None,
+    event_sink: Optional[WorkflowEventSink] = None,
 ) -> Dict[str, Any]:
     """
     워크플로우 실행 헬퍼
@@ -176,7 +178,7 @@ async def run_workflow(
     )
     
     # 워크플로우 빌드
-    app = build_workflow(infra)
+    app = build_workflow(infra, event_sink=event_sink)
     
     # 실행
     logger.info(f"Workflow started: workflow_id={workflow_id}")

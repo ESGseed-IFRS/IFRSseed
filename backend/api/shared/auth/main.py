@@ -14,6 +14,13 @@ _project_root = Path(__file__).resolve().parents[4]
 if str(_project_root) not in sys.path:
     sys.path.insert(0, str(_project_root))
 
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv(_project_root / ".env")
+except ImportError:
+    pass
+
 from backend.api.shared.auth.router import router as auth_router
 
 logging.basicConfig(
@@ -28,12 +35,10 @@ app = FastAPI(
     version="0.1.0",
 )
 
+_cors = os.getenv("FRONT_URL", "http://localhost:3000,http://127.0.0.1:3000")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
+    allow_origins=[o.strip() for o in _cors.split(",") if o.strip()],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -19,6 +19,9 @@ from backend.domain.v1.ifrs_agent.hub.orchestrator.prompt_interpretation import 
     interpret_prompt_with_gemini,
     heuristic_interpretation,
 )
+from backend.domain.v1.ifrs_agent.hub.orchestrator.workflow_events import (
+    WorkflowEventSink,
+)
 
 logger = logging.getLogger("ifrs_agent.orchestrator")
 
@@ -34,14 +37,16 @@ class Orchestrator:
     - Phase 4: 최종 반환
     """
     
-    def __init__(self, infra):
+    def __init__(self, infra, event_sink: Optional[WorkflowEventSink] = None):
         """
         Args:
             infra: InfraLayer 인스턴스
+            event_sink: SSE 등 진행 이벤트 수신기(없으면 emit 무시)
         """
         from backend.domain.v1.ifrs_agent.spokes.infra import InfraLayer
 
         self.infra: InfraLayer = infra
+        self._event_sink: Optional[WorkflowEventSink] = event_sink
         self.settings = get_settings()
         self._gemini_client = None
 
@@ -67,6 +72,38 @@ class Orchestrator:
         self._phase15_model_id = p15_model.strip() if p15_model else self._gemini_model_id
 
         logger.info("Orchestrator initialized (shared Settings via get_settings())")
+
+    @staticmethod
+    def _truncate(text: Optional[str], max_len: int = 80) -> str:
+        if not text:
+            return ""
+        s = str(text).strip()
+        return s if len(s) <= max_len else s[: max_len - 1] + "…"
+
+    async def _emit(
+        self,
+        *,
+        phase: str,
+        step: str,
+        status: str,
+        attempt: int = 0,
+        message_ko: str = "",
+        safe_summary: Optional[Dict[str, Any]] = None,
+    ) -> None:
+        if self._event_sink is None:
+            return
+        await self._event_sink.emit(
+            {
+                "phase": phase,
+                "step": step,
+                "status": status,
+                "attempt": attempt,
+                "detail": {
+                    "message_ko": message_ko,
+                    "safe_summary": safe_summary or {},
+                },
+            }
+        )
 
     def _agent_runtime(self):
         """에이전트에 넘길 Settings 슬라이스 (매 호출 시 최신 get_settings() 반영)."""
@@ -115,14 +152,49 @@ class Orchestrator:
         Phase 4: 최종 반환
         """
         logger.info("Phase 0: User prompt interpretation")
+        await self._emit(
+            phase="phase0",
+            step="phase0_start",
+            status="started",
+            message_ko="프롬프트·검색 의도 해석 중",
+            safe_summary={"category_preview": self._truncate(user_input.get("category"))},
+        )
         phase0 = await self._interpret_user_prompt(user_input)
         user_input = {**user_input, **phase0}
+        await self._emit(
+            phase="phase0",
+            step="phase0_done",
+            status="completed",
+            message_ko="프롬프트 해석 완료",
+            safe_summary={
+                "search_intent_preview": self._truncate(user_input.get("search_intent")),
+                "content_focus_preview": self._truncate(user_input.get("content_focus")),
+            },
+        )
 
         logger.info("Phase 1: Parallel data collection started")
+        await self._emit(
+            phase="phase1",
+            step="phase1_start",
+            status="started",
+            message_ko="SR 참조·팩트·집계 데이터 수집",
+        )
 
         # Phase 1: 병렬 데이터 수집
         data = await self._parallel_collect(user_input)
+        ref = data.get("ref_data") or {}
         fdb = data["fact_data_by_dp"]
+        await self._emit(
+            phase="phase1",
+            step="phase1_done",
+            status="completed",
+            message_ko="병렬 수집 완료",
+            safe_summary={
+                "has_ref_2024": bool(isinstance(ref.get("2024"), dict) and ref.get("2024")),
+                "has_ref_2023": bool(isinstance(ref.get("2023"), dict) and ref.get("2023")),
+                "dp_count": len(fdb) if isinstance(fdb, dict) else 0,
+            },
+        )
         state = {
             "ref_data": data["ref_data"],
             "fact_data_by_dp": fdb,
@@ -136,11 +208,26 @@ class Orchestrator:
         has_dp = user_input.get("dp_id") or user_input.get("dp_ids")
         if user_input.get("dp_validation_needed") or has_dp:
             logger.info("Phase 1.5: DP hierarchy validation")
+            await self._emit(
+                phase="phase1_5",
+                step="phase1_5_start",
+                status="started",
+                message_ko="DP 계층 적합성 검사",
+            )
             dp_validation = await self._validate_dp_hierarchy(state["fact_data_by_dp"], user_input)
             if dp_validation.get("needs_user_selection"):
                 logger.warning("DP hierarchy validation failed - needs user selection")
                 # child_dps 메타데이터 enrich
                 enriched = await self._enrich_child_dps_metadata(dp_validation.get("problematic_dps", []))
+                await self._emit(
+                    phase="phase1_5",
+                    step="needs_dp_selection",
+                    status="completed",
+                    message_ko="하위 DP 선택이 필요합니다",
+                    safe_summary={
+                        "problematic_count": len(dp_validation.get("problematic_dps") or []),
+                    },
+                )
                 _pi = {
                     "search_intent": (state["user_input"] or {}).get("search_intent", ""),
                     "content_focus": (state["user_input"] or {}).get("content_focus", ""),
@@ -174,18 +261,54 @@ class Orchestrator:
                         "prompt_interpretation": _pi,
                     },
                 }
+            await self._emit(
+                phase="phase1_5",
+                step="phase1_5_done",
+                status="completed",
+                message_ko="DP 계층 검사 통과",
+            )
         
         logger.info("Phase 2: Data merging and filtering started")
-        
+        await self._emit(
+            phase="phase2",
+            step="phase2_start",
+            status="started",
+            message_ko="데이터 병합·선택(생성 입력 구성)",
+        )
+
         # Phase 2: 데이터 병합 및 필터링 (LLM 기반 동적 선택)
         state = await self._merge_and_filter_data(state)
-        
+        await self._emit(
+            phase="phase2",
+            step="phase2_done",
+            status="completed",
+            message_ko="생성 입력 준비 완료",
+            safe_summary={
+                "has_gen_input": bool(state.get("gen_input")),
+                "has_data_selection": bool(state.get("data_selection")),
+            },
+        )
+
         logger.info("Phase 3: Generation-validation loop started")
-        
+        await self._emit(
+            phase="phase3",
+            step="phase3_start",
+            status="started",
+            message_ko="본문 생성·검증 루프",
+        )
+
         # Phase 3: 생성-검증 반복 루프
-        state = await self._generation_validation_loop(state, max_retries=3)
-        
+        _mr = int(user_input.get("max_retries") or 3)
+        state = await self._generation_validation_loop(state, max_retries=_mr)
+
         logger.info(f"Phase 4: Final return (status={state.get('status', 'unknown')})")
+        await self._emit(
+            phase="phase4",
+            step="phase4_done",
+            status="completed",
+            message_ko="최종 결과 정리",
+            safe_summary={"result_status": str(state.get("status", "") or "")},
+        )
 
         _pi = {
             "search_intent": (state.get("user_input") or {}).get("search_intent", ""),
@@ -931,7 +1054,14 @@ class Orchestrator:
             state["attempt"] = attempt
             
             logger.info(f"Generation-validation loop: attempt={attempt+1}/{max_retries}")
-            
+            await self._emit(
+                phase="phase3",
+                step="gen_start",
+                status="started",
+                attempt=attempt,
+                message_ko=f"본문 초안 생성 (시도 {attempt + 1}/{max_retries})",
+            )
+
             # gen_node 호출 (정제된 gen_input 사용)
             try:
                 gen_result = await self.infra.call_agent(
@@ -952,7 +1082,25 @@ class Orchestrator:
                     state["error"] = err
                     state["validation"] = {"is_valid": False, "errors": [err]}
                     state["status"] = "failed"
+                    await self._emit(
+                        phase="phase3",
+                        step="gen_failed",
+                        status="failed",
+                        attempt=attempt,
+                        message_ko="생성 노드 오류",
+                        safe_summary={"error_preview": self._truncate(str(err), 120)},
+                    )
                     break
+                await self._emit(
+                    phase="phase3",
+                    step="gen_done",
+                    status="completed",
+                    attempt=attempt,
+                    message_ko="생성 모델 응답 수신",
+                    safe_summary={
+                        "text_len": len((state.get("generated_text") or "")),
+                    },
+                )
             
             except Exception as e:
                 logger.error(f"gen_node failed: {e}", exc_info=True)
@@ -960,10 +1108,25 @@ class Orchestrator:
                 state["validation"] = {"is_valid": False, "errors": [str(e)]}
                 state["status"] = "failed"
                 state["error"] = str(e)
+                await self._emit(
+                    phase="phase3",
+                    step="gen_failed",
+                    status="failed",
+                    attempt=attempt,
+                    message_ko="생성 단계 예외",
+                    safe_summary={"error_preview": self._truncate(str(e), 120)},
+                )
                 break
             
             # validator_node 호출
             try:
+                await self._emit(
+                    phase="phase3",
+                    step="validator_start",
+                    status="started",
+                    attempt=attempt,
+                    message_ko="검증 노드 실행",
+                )
                 validation = await self.infra.call_agent(
                     "validator_node",
                     "validate",
@@ -977,7 +1140,17 @@ class Orchestrator:
                     ),
                 )
                 state["validation"] = validation
-                
+                await self._emit(
+                    phase="phase3",
+                    step="validator_done",
+                    status="completed",
+                    attempt=attempt,
+                    message_ko="검증 통과"
+                    if validation.get("is_valid", False)
+                    else "검증 미통과 — 재생성",
+                    safe_summary={"is_valid": bool(validation.get("is_valid", False))},
+                )
+
                 if validation.get("is_valid", False):
                     state["status"] = "success"
                     logger.info(f"Validation passed at attempt={attempt+1}")
@@ -993,6 +1166,14 @@ class Orchestrator:
                 state["validation"] = {"is_valid": False, "errors": [str(e)]}
                 state["status"] = "failed"
                 state["error"] = str(e)
+                await self._emit(
+                    phase="phase3",
+                    step="validator_failed",
+                    status="failed",
+                    attempt=attempt,
+                    message_ko="검증 단계 예외",
+                    safe_summary={"error_preview": self._truncate(str(e), 120)},
+                )
                 break
         else:
             # 최대 재시도 소진

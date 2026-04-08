@@ -252,162 +252,14 @@ CREATE INDEX idx_ext_company_category_emb
 
 본 시스템은 **Star Topology** 구조로, Orchestrator를 중심으로 **실행 경로상 6개** 노드(오케스트레이터 + 전문 노드 5개)가 동작합니다. `external_company_data`는 **실행 경로 밖의 배치·(선택) 준실시간 워커**가 삼성SDS [언론보도 페이지](https://www.samsungsds.com/kr/news/index.html)의 **`#bThumbs`·`#sThumbs`**(또는 RSS)에서 수집·적재하고, (선택) **수동 주입**으로 보완합니다. SR 생성 요청 시에는 **크롤 없이 DB 조회**만 한다.
 
-#### 3.1.1 노드 간 데이터 흐름 다이어그램
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    Orchestrator (Phase 제어)                            │
-│                                                                         │
-│  Phase 0: 프롬프트 해석 (Gemini 2.5 Flash)                              │
-│    ↓ search_intent, content_focus, needs_external_data, keywords       │
-│                                                                         │
-│  Phase 1: 병렬 데이터 수집 (asyncio.gather)                             │
-│    ├─→ c_rag: SR 본문 + 이미지 (벡터 검색 → LLM 재선택)                │
-│    ├─→ dp_rag: 최신 DP 값 (LLM 물리 위치 결정 → 템플릿 쿼리)           │
-│    └─→ aggregation_node: 계열사·외부 데이터 (조건부 실행)              │
-│                                                                         │
-│  Phase 1.5: DP 계층 검증 (멀티 DP 전용)                                 │
-│    ↓ 부모-자식 DP 일관성 체크                                           │
-│                                                                         │
-│  Phase 2: 데이터 선택 및 필터링 (Gemini 2.5 Flash, JSON mode)          │
-│    ↓ company_profile, dp_metadata, ucm, rulebook 등 선택               │
-│                                                                         │
-│  Phase 3: 생성-검증 루프 (최대 3회)                                     │
-│    ├─→ gen_node: 문단 생성 (GPT-5 mini)                                │
-│    ├─→ validator_node: 품질 검증 (규칙 + Gemini 2.5 Flash)             │
-│    └─→ 재시도 (validator 피드백 → gen_node)                            │
-│                                                                         │
-│  Phase 4: 최종 결과 통합                                                │
-└─────────────────────────────────────────────────────────────────────────┘
-
-┌──────────────────────┐  ┌──────────────────────┐  ┌──────────────────────┐
-│      c_rag           │  │      dp_rag          │  │  aggregation_node    │
-│                      │  │                      │  │                      │
-│ 데이터 소스:         │  │ 데이터 소스:         │  │ 데이터 소스:         │
-│ • sr_report_body     │  │ • data_points        │  │ • subsidiary_data_   │
-│ • sr_report_images   │  │ • unified_column_    │  │   contributions      │
-│ • historical_sr_     │  │   mappings           │  │ • external_company_  │
-│   reports            │  │ • social_data        │  │   data               │
-│                      │  │ • environmental_data │  │                      │
-│ 검색 방식:           │  │ • governance_data    │  │ 검색 방식:           │
-│ 1. 벡터 유사도       │  │ • company_info       │  │ A. Subsidiary        │
-│    (BGE-M3, top_k=4) │  │                      │  │    • category_       │
-│ 2. LLM 재선택        │  │ 검색 방식:           │  │      embedding       │
-│    (OpenAI Chat)     │  │ 1. DP ID 정확 매칭   │  │    • 정확 매칭 →     │
-│ 3. 페이지 직접 지정  │  │ 2. 화이트리스트 생성 │  │      벡터 유사도     │
-│    (ref_pages 있을 때│  │    (column_category) │  │    • 임계값: 0.5     │
-│     벡터·LLM 생략)   │  │ 3. LLM 물리 위치     │  │                      │
-│                      │  │    결정 (Gemini)     │  │ B. External (조건부) │
-│ 출력:                │  │ 4. 템플릿 쿼리 실행  │  │    • body_embedding  │
-│ • SR 본문 (연도별)   │  │ 5. 정량 적합성 체크  │  │    • 프롬프트 기반   │
-│ • 이미지 메타        │  │                      │  │    • 키워드 부스팅   │
-│   (최대 5개)         │  │ 출력:                │  │                      │
-│ • page_number        │  │ • 최신 DP 값         │  │ 출력:                │
-│ • report_id          │  │ • suitability_warning│  │ • 사업장별 상세      │
-│                      │  │ • is_outdated        │  │ • 언론보도 스냅샷    │
-│                      │  │ • source             │  │   (연도별 묶음)      │
-└──────────────────────┘  └──────────────────────┘  └──────────────────────┘
-         │                         │                         │
-         └─────────────────────────┼─────────────────────────┘
-                                   │
-                    ┌──────────────▼──────────────────────────┐
-                    │     Phase 2: 데이터 선택 및 필터링      │
-                    │                                         │
-                    │  LLM 프롬프트:                          │
-                    │  • 카테고리, DP 명칭, DP 유형           │
-                    │  • SR 본문 미리보기 (500자)             │
-                    │  • 사용 가능한 데이터 목록              │
-                    │                                         │
-                    │  LLM 출력 (JSON):                       │
-                    │  {                                      │
-                    │    "include_company_profile": true,     │
-                    │    "include_dp_metadata": true,         │
-                    │    "include_ucm": false,                │
-                    │    "include_rulebook": true,            │
-                    │    "include_subsidiary_data": false,    │
-                    │    "include_external_data": false,      │
-                    │    "rationale": "선택 이유"             │
-                    │  }                                      │
-                    └──────────────┬──────────────────────────┘
-                                   │
-                        ┌──────────▼──────────────┐
-                        │      gen_node           │
-                        │                         │
-                        │ 입력 (gen_input):       │
-                        │ • ref_2024 / ref_2023   │
-                        │   (SR 본문 + 이미지)    │
-                        │ • fact_data (최신 DP)   │
-                        │ • agg_data (계열사·외부)│
-                        │ • Phase 2 선택 데이터   │
-                        │ • validator_feedback    │
-                        │   (재시도 시)           │
-                        │                         │
-                        │ 프롬프트 구조 (4 Block):│
-                        │ 1. 페르소나             │
-                        │ 2. 참조 데이터 (2년치)  │
-                        │ 3. DP 데이터            │
-                        │ 4. 생성 지시            │
-                        │                         │
-                        │ 출력:                   │
-                        │ • generated_text        │
-                        │ • recommended_images    │
-                        │ • references            │
-                        │ • rationale             │
-                        └──────────┬──────────────┘
-                                   │
-                        ┌──────────▼──────────────┐
-                        │   validator_node        │
-                        │                         │
-                        │ 검증 파이프라인:        │
-                        │ 1. 규칙 기반 검증       │
-                        │    • DP 수치 체크       │
-                        │      (정규표현식)       │
-                        │    • 금지 키워드        │
-                        │      (그린워싱)         │
-                        │    • 길이 체크          │
-                        │      (100~1000자)       │
-                        │                         │
-                        │ 2. LLM 기반 검증        │
-                        │    (Gemini 2.5 Flash)   │
-                        │    • DP 규칙 준수       │
-                        │    • 형식 일관성        │
-                        │    • 논리적 일관성      │
-                        │                         │
-                        │ 출력:                   │
-                        │ • is_valid (bool)       │
-                        │ • errors (list, 한국어) │
-                        │ • warnings (선택적)     │
-                        └─────────────────────────┘
-                                   │
-                                   ▼
-                        ┌─────────────────────────┐
-                        │  Phase 3: 재시도 판단   │
-                        │                         │
-                        │  if is_valid:           │
-                        │    → Phase 4 (종료)     │
-                        │  else:                  │
-                        │    → gen_node (재시도)  │
-                        │       with feedback     │
-                        │                         │
-                        │  최대 3회 시도          │
-                        └─────────────────────────┘
-```
-
-**핵심 특징**:
-1. **Star Topology**: Orchestrator가 모든 노드를 직접 호출 (노드 간 직접 통신 없음)
-2. **병렬 처리**: Phase 1에서 `c_rag`, `dp_rag`, `aggregation_node` 동시 실행 (`asyncio.gather`)
-3. **데이터 흐름**: 수집 → 선택 (LLM 필터링) → 생성 → 검증 → 재시도 (필요 시)
-4. **인프라 레이어**: `spokes/infra/` (in-process MCP)를 통한 툴·에이전트 호출
-5. **조건부 실행**: `needs_external_data` 기반 External 검색, `ref_pages` 기반 벡터 검색 생략
-
-| 노드명 | 역할 | 데이터 소스 | 검색 기준 | 출력 | 모델 |
-|-------|------|------------|----------|------|------|
-| **`orchestrator`** | 중앙 제어, 데이터 흐름 관리, **Phase 0 프롬프트 해석**, **Phase 2 동적 데이터 선택**, 재시도 루프 | 사용자 입력, Phase 1 수집 결과 | LLM 기반 분기·재시도 결정 | 최종 보고서 | Gemini 2.5 Flash (Phase 0, 2), Gemini 3.1 Pro (분기·재시도) |
-| **`c_rag`** | 카테고리 기반 **SR** 참조 데이터 수집 | `sr_report_body`, `sr_report_images`, `historical_sr_reports` | 벡터 유사도 (BGE-M3, top_k=4) → LLM 재선택 (OpenAI) OR 페이지 직접 지정 | SR 본문, 이미지(연도별, 최대 5개), page_number, report_id | OpenAI Chat (재선택), BGE-M3 (임베딩) |
-| **`dp_rag`** | DP 기반 최신 팩트 데이터 수집 | `data_points`, `unified_column_mappings`, `social_data`, `environmental_data`, `governance_data`, `company_info` | DP ID 정확 매칭 → LLM 물리 위치 결정 (화이트리스트) → 템플릿 쿼리 | 최신 DP 값, suitability_warning, is_outdated, source | Gemini 2.5 Flash (물리 위치 결정) |
-| **`aggregation_node`** | 계열사/자회사·외부 기업 데이터 **집계·조회** | `subsidiary_data_contributions`, `external_company_data` | **Subsidiary**: category_embedding (정확 매칭 → 벡터, 임계값 0.5) / **External**: body_embedding (프롬프트 기반, 조건부) | 연도별 사업장 상세 + 언론보도 스냅샷 | BGE-M3 (임베딩), 규칙 기반 패턴 감지 |
-| **`gen_node`** | IFRS 문체 문단 생성 | **정제된 gen_input** (Phase 2 필터링 결과: ref_2024/2023, fact_data, agg_data, Phase 2 선택 데이터) | 프롬프트 구조 (4 Block): 페르소나, 참조 데이터, DP 데이터, 생성 지시 | generated_text (300~500자), recommended_images, references, rationale | GPT-5 mini |
-| **`validator_node`** | 검증 및 품질 관리 | generated_text, fact_data, fact_data_by_dp, category | **규칙 기반**: DP 수치 체크, 금지 키워드, 길이 체크 / **LLM 기반**: DP 규칙 준수, 형식 일관성, 논리적 일관성 | is_valid (bool), errors (list, 한국어), warnings (선택적) | Gemini 2.5 Flash (LLM 검증) |
+| 노드명 | 역할 | 입력 | 출력 | 모델 |
+|-------|------|------|------|------|
+| **`orchestrator`** | 중앙 제어, 데이터 흐름 관리, **Phase 2 동적 데이터 선택**, 재시도 루프 | 사용자 입력 | 최종 보고서 | Gemini 3.1 Pro (분기·재시도), **Gemini 2.5 Pro (Phase 2 데이터 선택)** |
+| **`c_rag`** | 카테고리 기반 **SR** 참조 데이터 수집 | 카테고리 | SR 본문, 이미지(연도별) | Gemini 2.5 Pro (Tool/함수 호출) |
+| **`dp_rag`** | DP 기반 최신 팩트 데이터 수집 | DP ID | 실데이터 테이블 값 | Gemini 2.5 Flash (`gemini-2.5-flash`, 매핑용 generateContent) |
+| **`aggregation_node`** | 계열사/자회사·외부 기업 데이터 **집계·조회** | 카테고리, DP(선택), 기업 ID | 연도별 계열사 상세 + `external_company_data` 매칭분 | Gemini 2.5 Pro (Tool/함수 호출) |
+| **`gen_node`** | IFRS 문체 문단 생성 | **정제된 gen_input** (Phase 2 필터링 결과) | 생성된 본문 | GPT-5 mini |
+| **`validator_node`** | 검증 및 품질 관리 | 생성 결과 | 검증 결과 | Gemini 3.1 Pro |
 
 ### 3.1.1 LLM·임베딩 운영 기준 (현행)
 
@@ -523,230 +375,23 @@ async def orchestrator_run(state: WorkflowState) -> WorkflowState:
 
 **역할**:
 - 전체 워크플로우 제어 및 노드 호출 순서 결정
-- **Phase 0**: 프롬프트 해석 (사용자 의도 분석)
-- **Phase 1**: `c_rag`, `dp_rag`, `aggregation_node` **병렬** 호출
-- **Phase 1.5**: DP 계층 검증 (멀티 DP 정합성 체크)
-- **Phase 2**: 데이터 선택 및 필터링 (LLM 기반 `gen_input` 구성)
-- **Phase 3**: 생성-검증 반복 루프 (최대 3회)
-- **Phase 4**: 최종 결과 통합 및 반환
-
-**데이터 수집 소스**:
-- **사용자 입력**: `category`, `dp_id`, `prompt`, `ref_pages` (선택적)
-- **Phase 1 수집 결과**: `c_rag`, `dp_rag`, `aggregation_node` 출력
-- **런타임 설정**: `runtime_config` (API 키, 모델명 등)
-
-**처리 흐름 (6단계 파이프라인)**:
-
-##### **Phase 0: 프롬프트 해석** (PHASE3_FLEXIBLE_INPUT_DESIGN)
-
-**목적**: 사용자 자유 입력을 구조화된 검색 쿼리로 변환
-
-**입력**:
-- `prompt` (자유 텍스트, 예: "재생에너지 투자 확대 내용")
-- `category` (선택적)
-- `ref_pages` (선택적, 예: `{"2024": 12, "2023": 15}`)
-
-**LLM 호출** (Gemini 2.5 Flash):
-```python
-{
-    "search_intent": "재생에너지 투자 확대",
-    "content_focus": "투자 규모, 설비 증설, 발전량 증가",
-    "needs_external_data": false,
-    "keywords": ["재생에너지", "투자", "태양광", "발전량"],
-    "ref_pages": {"2024": 12, "2023": 15}  # 사용자 지정 시
-}
-```
-
-**출력 활용**:
-- `search_intent` → `c_rag` 벡터 검색 쿼리
-- `content_focus` → `c_rag` LLM 재선택 프롬프트
-- `needs_external_data` → `aggregation_node` External 조건부 실행
-- `keywords` → `aggregation_node` External 키워드 부스팅
-- `ref_pages` → `c_rag` 페이지 직접 지정 모드
-
-##### **Phase 1: 병렬 데이터 수집**
-
-**병렬 호출** (`asyncio.gather`):
-1. **`c_rag`**: Phase 0의 `search_intent` / `content_focus` / `ref_pages` 전달
-2. **`dp_rag`**: `dp_id` 기준 최신 값 조회
-3. **`aggregation_node`**: Phase 0의 `needs_external_data` / `keywords` 전달
-
-**출력**:
-```python
-{
-    "ref_data": {
-        "2024": {"sr_body": "...", "sr_images": [...], "page_number": 12},
-        "2023": {"sr_body": "...", "sr_images": [...], "page_number": 15}
-    },
-    "fact_data": {
-        "dp_id": "...",
-        "value": 200,
-        "unit": "개사",
-        "suitability_warning": None
-    },
-    "agg_data": {
-        "2024": {
-            "subsidiary_data": [...],
-            "external_company_data": [...]  # 조건부
-        },
-        "2023": {...}
-    }
-}
-```
-
-##### **Phase 1.5: DP 계층 검증** (멀티 DP 전용)
-
-**트리거**: `dp_id`가 **리스트**이고 2개 이상일 때
-
-**검증 항목**:
-1. **계층 관계 체크**: 부모-자식 DP 간 논리적 일관성
-2. **합계 검증**: 자식 DP 합 = 부모 DP 값
-3. **단위 일치**: 동일 계층 DP 단위 통일
-
-**실패 시**: 경고 메시지 추가, 계속 진행
-
-##### **Phase 2: 데이터 선택 및 필터링** (LLM 기반)
-
-**목적**: Phase 1 수집 데이터 중 **gen_node에 필요한 데이터만 선택**
-
-**LLM 호출** (Gemini 2.5 Flash, JSON mode):
-```python
-prompt = f"""당신은 IFRS SR 보고서 생성을 위한 데이터 선택 전문가입니다.
-
-## 사용자 요청
-- 카테고리: {category}
-- DP ID: {dp_id}
-- DP 명칭: {dp_name}
-- DP 유형: {dp_type}
-
-## SR 본문 미리보기 (2024년)
-{sr_body_preview[:500]}...
-
-## 사용 가능한 데이터
-1. company_profile: 회사명, 산업, 미션/비전, 임직원 수, 이사회 구성
-2. dp_metadata: DP 상세 정보 (이름, 설명, 단위, 유형)
-3. ucm: 통합 컬럼 매핑 (검증 규칙, 재무 연결성)
-4. rulebook: 기준서 요구사항 (필수 공시 항목)
-5. subsidiary_data: 계열사/사업장별 상세 데이터
-6. external_company_data: 언론 보도/뉴스
-
-## 판단 기준
-- "회사 소개", "기업 개요" → company_profile 필수
-- "재생에너지", "GHG 배출" → subsidiary_data 유용
-- "ESG 평가", "협력회사" → external_company_data 참고
-- 정성 DP → rulebook 필수
-- 정량 DP → dp_metadata만으로 충분
-
-## 출력 (JSON만)
-{{
-    "include_company_profile": true,
-    "include_dp_metadata": true,
-    "include_ucm": false,
-    "include_rulebook": true,
-    "include_subsidiary_data": false,
-    "include_external_data": false,
-    "rationale": "선택 이유 1-2문장"
-}}"""
-```
-
-**출력 활용**:
-- `gen_input` 구성 시 선택된 데이터만 포함
-- 불필요한 데이터 제거 → 컨텍스트 효율 향상
-
-**규칙 기반 폴백** (LLM 실패 시):
-```python
-rules = {
-    "회사 소개": {"company_profile": True},
-    "재생에너지": {"subsidiary_data": True},
-    "ESG 평가": {"external_data": True}
-}
-```
-
-##### **Phase 3: 생성-검증 반복 루프**
-
-**최대 3회 시도**:
-```python
-for attempt in range(1, 4):
-    # 1. gen_node 호출 (draft_mode)
-    gen_result = await self._call_gen_node(gen_input, validator_feedback)
-    
-    # 2. validator_node 호출
-    validation = await self._call_validator_node(gen_result, fact_data_by_dp)
-    
-    # 3. 검증 통과 시 종료
-    if validation["is_valid"]:
-        return gen_result
-    
-    # 4. 실패 시 피드백 추가, 재시도
-    validator_feedback = validation["errors"]
-```
-
-**피드백 전달**:
-- validator의 `errors` → gen_node 프롬프트에 추가
-- "DP 값 200개사가 본문에 포함되지 않았습니다." 등 구체적 수정 요청
-
-##### **Phase 4: 최종 결과 통합**
-
-**출력 구조**:
-```python
-{
-    "generated_text": "최종 생성 본문",
-    "validation": {
-        "is_valid": True,
-        "errors": []
-    },
-    "metadata": {
-        "status": "success",
-        "attempts": 2,
-        "references": ["2024년 12페이지", "2023년 15페이지"],
-        "recommended_images": [...]
-    }
-}
-```
+- **Phase 1**에서 `c_rag`, `dp_rag`, `aggregation_node` **병렬** 호출 후 `ref_data`와 `agg_data` 병합
+- 생성-검증 반복 루프 관리 (최대 3회)
+- 최종 결과 통합 및 반환
 
 **핵심 기능**:
 ```python
 class Orchestrator:
     async def orchestrate(self, user_input: dict) -> dict:
-        # Phase 0: 프롬프트 해석
-        interpreted = await self._interpret_prompt(user_input)
-        
-        # Phase 1: 병렬 데이터 수집
-        ref_data, fact_data, agg_data = await asyncio.gather(
-            self._call_c_rag(interpreted),
-            self._call_dp_rag(user_input),
-            self._call_aggregation_node(interpreted)
-        )
-        
-        # Phase 1.5: DP 계층 검증 (멀티 DP 시)
-        if len(user_input.get("dp_id", [])) > 1:
-            await self._validate_dp_hierarchy(fact_data)
-        
-        # Phase 2: 데이터 선택 및 필터링
-        gen_input = await self._merge_and_filter_data(
-            ref_data, fact_data, agg_data, user_input
-        )
-        
-        # Phase 3: 생성-검증 반복 루프
-        for attempt in range(1, 4):
-            gen_result = await self._call_gen_node(gen_input)
-            validation = await self._call_validator_node(gen_result)
-            if validation["is_valid"]:
-                break
-            gen_input["validator_feedback"] = validation["errors"]
-        
-        # Phase 4: 최종 반환
-        return self._build_final_result(gen_result, validation)
+        # 1. 병렬 데이터 수집 (c_rag, dp_rag, aggregation_node)
+        # 2. ref_data + agg_data 병합 → gen_node 입력 준비
+        # 3. 생성-검증 반복 루프 (최대 3회)
+        # 4. 최종 반환
 ```
 
-**모델**: 
-- **Phase 0**: Gemini 2.5 Flash (프롬프트 해석)
-- **Phase 2**: Gemini 2.5 Flash (데이터 선택)
-- **Phase 3**: 규칙 기반 루프 제어 (LLM 없음)
-
-**관련 문서**: 
-- `docs/orchestrator/PHASE2_DATA_SELECTION.md`
-- `docs/PHASE3_FLEXIBLE_INPUT_DESIGN.md`
+**모델**: **Gemini 3.1 Pro**
+- 복잡한 의사결정·상태 전이(재시도·경로 선택)
+- (필요 시) 경량 규칙과 병행해 LLM 기반 분기만 사용하는 구성도 가능
 
 ---
 
@@ -756,264 +401,76 @@ class Orchestrator:
 - 사용자 선택 카테고리로 전년/전전년도 **SR 보고서**만 검색
 - 각 연도별 **본문 + 이미지** 추출 (계열사/외부 기업 데이터는 **`aggregation_node`로 분리**)
 
-**데이터 수집 소스**:
-- **DB 테이블**: `sr_report_body` (본문), `sr_report_images` (이미지 메타), `historical_sr_reports` (연도 조인)
-- **임베딩**: `content_embedding` (pgvector, BGE-M3 1024차원)
-
-**검색 기준 (2단계 전략)**:
-
-1. **벡터 유사도 검색** (정확 매칭은 사용 안 함):
-   - `category` + `search_intent`(Phase 0 해석) → `embed_text` → 쿼리 벡터
-   - `sr_report_body.content_embedding <=> 쿼리벡터` 코사인 유사도
-   - **상위 4건** 후보 추출 (`top_k=4` 고정)
-
-2. **LLM 최종 선택** (OpenAI Chat Completions):
-   - 후보 4건의 `subtitle`, `toc_path`, 본문 미리보기(450자)를 프롬프트에 제공
-   - `content_focus`(Phase 0) 반영 — "사용자가 특히 관심 있는 내용: {content_focus}"
-   - 응답: `{"chosen_index": 0~3}` JSON
-   - **폴백**: API 키 없음/파싱 실패 → 벡터 1순위(인덱스 0)
-
-**페이지 직접 지정 모드** (Phase 3 확장):
-- `ref_pages`가 있으면 벡터·LLM 생략, `query_sr_body_by_page` 툴로 직접 조회
-
 **처리 흐름**:
-1. Phase 0의 `search_intent` / `content_focus` / `ref_pages` 수신
-2. **`ref_pages` 있음** → 각 연도별 페이지 직접 조회 (`query_sr_body_by_page`)
-3. **`ref_pages` 없음** → 벡터 검색(4건) → OpenAI 재선택(1건)
-4. 선택된 `report_id` + `page_number`로 `query_sr_images` 호출
-5. 연도별 `{sr_body, sr_images, page_number, report_id}` 반환
+1. `sr_report_body` 테이블에서 카테고리 검색 (정확 매칭 → 벡터 검색)
+2. 각 연도별 최상위 유사도 페이지 1개 선택
+3. `sr_report_images` JOIN으로 이미지 추출
 
 **출력 구조**:
 ```python
 {
     "2024": {
         "sr_body": "본문...",
-        "sr_images": [
-            {
-                "image_url": "...",
-                "caption": "...",
-                "image_type": "bar_chart",
-                "image_width": 800,
-                "image_height": 600
-            }
-        ],
-        "page_number": 12,
-        "report_id": "uuid"
+        "sr_images": [...],
     },
     "2023": {
         "sr_body": "본문...",
         "sr_images": [...],
-        "page_number": 15,
-        "report_id": "uuid"
     }
 }
 ```
 
-**취합 방식**:
-- 연도별 독립 처리 (한 연도 실패 시 해당 연도만 `error` 필드 포함, 다른 연도는 계속)
-- 이미지는 **최대 5개**까지 프롬프트에 포함 (gen_node 컨텍스트 관리)
-
-**모델**: 
-- **벡터 검색**: BGE-M3 임베딩
-- **LLM 재선택**: OpenAI Chat Completions (`gpt-5-mini` 기본, 환경변수 `C_RAG_LLM_MODEL`로 변경 가능)
-
-**관련 문서**: `docs/c_rag/c_rag.md`, `docs/PHASE3_FLEXIBLE_INPUT_DESIGN.md`
+**모델**: **Gemini 2.5 Pro** (Tool/함수 호출)
+- 벡터 검색·SQL·DB 조회 도구를 안정적으로 호출
 
 ---
 
 #### 3.2.3 dp_rag (DP 기반 팩트 데이터 수집 노드)
 
 **역할**:
-- 사용자 선택 DP(Data Point)의 **최신 정량 값** 추출
-- `unified_column_mappings`(UCM)로 **물리 테이블·컬럼 매핑** 자동 결정
-- 실데이터 테이블(`social_data`, `environmental_data`, `governance_data`)에서 조회
-- **정량 적합성 사전 검증** (정성/서술 DP 경고)
-
-**데이터 수집 소스**:
-- **DB 테이블**: 
-  - `data_points` (DP 메타데이터: 이름, 설명, 단위, 유형)
-  - `unified_column_mappings` (UCM: DP → 물리 컬럼 매핑, 검증 규칙)
-  - `social_data` / `environmental_data` / `governance_data` (실제 수치)
-  - `company_info` (회사 프로필, DP와 무관)
-
-**검색 기준 (3단계 처리)**:
-
-1. **DP 메타 조회** (`data_points`):
-   - `dp_id` 기준 정확 매칭
-   - 추출: `name_ko`, `description`, `topic`, `subtopic`, `unit`, `dp_type`
-
-2. **물리 위치 결정** (LLM 기반, 화이트리스트 검증):
-   - **화이트리스트 생성**: UCM에서 `column_category`(E/S/G)로 1차 필터
-   - **Gemini 2.5 Flash 호출**: DP 메타 + 화이트리스트 후보 → `{"table": "social_data", "column": "total_employees", "data_type": "workforce"}` JSON
-   - **검증**: 화이트리스트 내 존재 여부 확인 (SQL 인젝션 방지)
-   - **폴백**: LLM 실패 시 규칙 기반 매칭 (DP 설명 키워드 → 컬럼명)
-
-3. **실데이터 조회** (템플릿 쿼리):
-   - `WHERE company_id = ? AND period_year = ?`
-   - `social_data`는 추가 `data_type` 필터 (workforce/safety/supply_chain 등)
-   - **최신 값 우선** (`period_year DESC LIMIT 1`)
-
-**정량 적합성 체크** (사전 경고):
-- **트리거**: `dp_type` IN (`qualitative`, `narrative`, `binary`) OR UCM description에 "서술", "정성" 키워드
-- **출력**: `suitability_warning` 필드에 경고 메시지
-- **예시**: "이 DP는 정성 지표로, 수치 데이터가 아닌 서술 형태로 작성해야 합니다."
-
-**데이터 유효성 검사**:
-- **누락**: 해당 연도 데이터 없음 → `error` 필드
-- **오래됨**: `period_year < report_year - 1` → `is_outdated: true`
-- **단위 불일치**: DP 단위 ≠ UCM 단위 → 경고
+- 사용자 선택 DP의 최신 값 추출
+- `unified_column_mappings`로 소스 테이블·컬럼 매핑
+- 실데이터 테이블(`social_data`, `environmental_data` 등)에서 조회
 
 **처리 흐름**:
-1. `company_info` 조회 (DP와 무관, 회사 프로필)
-2. `data_points` 조회 → DP 메타데이터
-3. 정량 적합성 체크 → `suitability_warning` 생성
-4. `unified_column_mappings` 조회 → 화이트리스트 생성
-5. Gemini LLM 호출 → 물리 테이블·컬럼 결정
-6. 템플릿 쿼리 실행 → 실데이터 추출
-7. 유효성 검사 → `is_outdated`, `error` 판단
+1. `unified_column_mappings` 조회 → DP → 테이블·컬럼 매핑
+2. `data_points` 조회 → DP 메타데이터 (단위, 검증 규칙)
+3. 동적 쿼리 생성 → 실데이터 테이블에서 최신 값 추출
+4. 데이터 유효성 검사 (오래됨 여부, 누락 여부)
 
 **출력 구조**:
 ```python
 {
     "dp_id": "UCM_ESRS2_BP_2_17_e__IFRS1_51_a",
-    "dp_metadata": {
-        "name_ko": "ESG 평가 협력회사 수",
-        "description": "당해 연도 ESG 평가를 받은 협력회사 수",
-        "unit": "개사",
-        "dp_type": "quantitative"
-    },
-    "value": 200,
-    "unit": "개사",
-    "period_year": 2025,
+    "dp_meta": {...},
+    "latest_value": 200,
     "is_outdated": False,
-    "source": "social_data.esg_evaluated_suppliers",
-    "suitability_warning": None  # 또는 "정성 DP 경고 메시지"
+    "source": "social_data.supplier_esg_evaluation_count"
 }
 ```
 
-**취합 방식**:
-- 단일 DP 기준 처리 (멀티 DP는 Orchestrator Phase 1에서 병렬 호출)
-- 실패 시 `error` 필드 포함, 다른 노드 계속 실행
-
-**모델**: 
-- **물리 위치 결정**: Gemini 2.5 Flash (JSON mode)
-- **벡터 검색 없음** (DP ID 정확 매칭)
-
-**관련 문서**: `docs/dp_rag/dp_rag.md`, `docs/dp_rag/SUITABILITY_CHECK_DESIGN.md`
+**모델**: **Gemini 2.5 Pro** (Tool/함수 호출)
 
 ---
 
 #### 3.2.4 aggregation_node (계열사·외부 기업 데이터 집계 노드)
 
 **역할**:
-- **`subsidiary_data_contributions`**: 계열사/자회사 **사업장별 상세 데이터** (정량+서술) 검색·정렬
-- **`external_company_data`**: 배치 크롤(삼성SDS 뉴스 `#bThumbs`/`#sThumbs`)·수동 보완으로 적재된 **언론보도/뉴스 스냅샷** 조회
+- **`subsidiary_data_contributions`**: 계열사/자회사 **회사명·사업장·카테고리·본문(description)·정량값** 등 사업장별 상세 검색·정렬
+- **`external_company_data`**: 배치 크롤(삼성SDS 뉴스 `#bThumbs`/`#sThumbs`)·수동 보완으로 적재된 보도·언론 스냅샷을 카테고리/DP/연도 기준으로 조회
 - 연도별(전년·전전년)로 묶어 Orchestrator가 `ref_data`와 병합하기 쉬운 형태로 반환
 
-**데이터 수집 소스**:
-- **DB 테이블**: 
-  - `subsidiary_data_contributions` (계열사 사업장별 데이터)
-  - `external_company_data` (언론보도/뉴스)
-- **임베딩**: 
-  - `category_embedding` (Subsidiary용, 1024차원)
-  - `body_embedding` (External용, 1024차원)
-
-**검색 기준 (2개 독립 파이프라인)**:
-
-##### **A. Subsidiary 검색** (항상 실행)
-
-1. **정확 매칭** (1차):
-   - `category` 문자열 완전 일치
-   - `WHERE company_id = ? AND report_year = ? AND category = ?`
-
-2. **벡터 유사도** (2차, 정확 매칭 실패 시):
-   - **`category_embedding` 기반** (2026-04-07 변경)
-   - `category` → `embed_text` → 쿼리 벡터
-   - `category_embedding <=> 쿼리벡터` 코사인 유사도
-   - **임계값**: 0.5 (관련성 필터)
-
-3. **DP 필터** (선택적):
-   - `related_dp_ids` 배열과 사용자 DP 교차
-   - 교차 없으면 스킵
-
-4. **정렬 및 제한**:
-   - 유사도 내림차순 → 상위 5건
-
-**출력 예시**:
-```python
-[
-    {
-        "subsidiary_name": "동탄 데이터센터",
-        "facility_name": "태양광 발전설비",
-        "description": "2024년 태양광 발전량 172,497kWh 달성...",
-        "quantitative_data": {"태양광_발전량_kWh": 172497},
-        "category": "재생에너지",
-        "report_year": 2024,
-        "related_dp_ids": ["ESRS2-E1-6"],
-        "data_source": "자회사 제출"
-    }
-]
-```
-
-##### **B. External 검색** (조건부 실행)
-
-**트리거**: Phase 0에서 `needs_external_data: true` 판단 시만 실행
-
-1. **프롬프트 기반 검색** (2026-04-07 신규):
-   - Phase 0의 `search_intent` / `content_focus` → 쿼리 텍스트
-   - `query_text` → `embed_text` → 쿼리 벡터
-   - `body_embedding <=> 쿼리벡터` 코사인 유사도
-
-2. **키워드 부스팅** (선택적):
-   - Phase 0의 `keywords` 추출
-   - `WHERE (title ILIKE '%keyword%' OR body_text ILIKE '%keyword%')`
-
-3. **기본 필터**:
-   - `anchor_company_id = ?`
-   - `report_year = ?`
-   - `source_type IN ('press', 'news')`
-
-4. **정렬 및 제한**:
-   - 유사도 내림차순 → 상위 3건
-
-**출력 예시**:
-```python
-[
-    {
-        "title": "삼성SDS, 대학생 알고리즘 경진대회 개최",
-        "body_text": "...",
-        "source_url": "https://...",
-        "source_type": "press",
-        "fetched_at": "2024-03-15",
-        "report_year": 2024,
-        "related_dp_ids": []
-    }
-]
-```
-
-**관련성 분석 (2026-04-05 추가)**:
-
-- **전년도 SR 본문 분석**: `query_sr_body_by_context` 툴로 `toc_path` + `subtitle` 기준 조회
-- **패턴 감지**: 
-  - 뉴스 패턴 (인증, 수상, 언론 보도) → External 필요
-  - 계열사 패턴 (데이터센터, 사업장, kWh, tCO2eq) → Subsidiary 우선
-- **복합 임베딩**: DP 메타 + SR 컨텍스트 결합 → 더 정확한 관련성 검색
-
 **처리 흐름**:
-1. Phase 0의 `needs_external_data` 확인
-2. **Subsidiary 검색** (항상):
-   - 정확 매칭 → 벡터 유사도 → DP 필터
-3. **External 검색** (조건부):
-   - `needs_external_data: true` → 프롬프트 기반 검색
-   - `needs_external_data: false` → 스킵
-4. 연도별 묶기 (`{2024: {...}, 2023: {...}}`)
+1. `subsidiary_data_contributions`에 대해 기존 문서의 계열사 검색 로직(정확 매칭 → 벡터) 실행
+2. 동일 `company_id`·대상 연도·카테고리(및 임베딩)로 `external_company_data` 상위 N건 조회
+3. (선택) `related_dp_ids`와 사용자 DP 교차 필터로 노이즈 감소
 
 **출력 구조**:
 ```python
 {
     "2024": {
-        "subsidiary_data": [...],       # 사업장별 상세
-        "external_company_data": [...], # 언론보도 (조건부)
+        "subsidiary_data": [...],       # 사업장별 상세 (기존 스키마와 동일 계열)
+        "external_company_data": [...], # 배치 크롤·수동 보완 스냅샷 행 목록
     },
     "2023": {
         "subsidiary_data": [...],
@@ -1022,43 +479,15 @@ class Orchestrator:
 }
 ```
 
-**취합 방식**:
-- 연도별 독립 처리 (한 연도 실패 시 해당 연도만 `error` 필드)
-- Subsidiary/External 독립 실행 (한쪽 실패해도 다른 쪽 계속)
-- 관련성 없으면 **빈 리스트 반환** (폴백 없음)
-
-**모델**: 
-- **벡터 검색**: BGE-M3 임베딩
-- **패턴 감지**: 규칙 기반 (정규표현식)
-- **LLM 없음** (검색만 수행)
-
-**관련 문서**: 
-- `docs/aggregation_node/AGGREGATION_RELEVANCE_IMPLEMENTATION.md`
-- `docs/aggregation_node/AGGREGATION_NODE_IMPLEMENTATION.md`
-- `docs/aggregation_node/PROMPT_BASED_AGGREGATION_DESIGN.md`
+**모델**: **Gemini 2.5 Pro** (Tool/함수 호출)
 
 ---
 
 #### 3.2.5 gen_node (문단 생성 노드)
 
 **역할**:
-- 수집된 모든 데이터를 기반으로 **IFRS/GRI/ESRS 기준서 스타일의 SR 보고서 문단** 생성
+- 수집된 모든 데이터를 기반으로 IFRS 문체 문단 생성
 - **2가지 모드 지원**: draft_mode (초안 생성), refine_mode (사용자 수정)
-
-**데이터 수집 소스**:
-- **Phase 2 필터링 결과** (`gen_input`):
-  - `ref_2024` / `ref_2023` (SR 본문 + 이미지, `c_rag` 출처)
-  - `fact_data` (최신 DP 값, `dp_rag` 출처)
-  - `agg_data` (계열사·외부 기업 데이터, `aggregation_node` 출처)
-  - `company_profile`, `dp_metadata`, `ucm`, `rulebook` (Phase 2 선택적 포함)
-
-**생성 기준 (핵심 원칙)**:
-
-1. **형식 일관성**: 전년도 SR 본문의 문체·구조·톤 유지
-2. **데이터 최신성**: 최신 DP 값으로 업데이트
-3. **기준서 준수**: IFRS/GRI/ESRS 요구사항 반영
-4. **컨텍스트 효율**: Phase 2에서 필터링된 핵심 데이터만 사용
-5. **정성/정량 통합**: 정량 DP(수치), 정성 DP(서술), 카테고리 전용(SR 본문만) 모두 처리
 
 **2가지 동작 모드**:
 
@@ -1068,29 +497,11 @@ class Orchestrator:
 
 **입력 데이터**:
 - SR 본문 (2년치, `c_rag`)
-- SR 이미지 (2년치, `c_rag`, 최대 5개까지 프롬프트 포함)
+- SR 이미지 (2년치, `c_rag`)
 - 계열사·외부 기업 데이터 (2년치, `aggregation_node` 병합분)
 - 최신 DP 값 (`dp_rag`)
-- DP 메타데이터 (선택적, Phase 2 판단)
-- (선택적) validator 피드백 (재시도 시)
-
-**프롬프트 구조** (4 Block):
-```
-Block 1: 페르소나 (IFRS SR 보고서 작성 전문가)
-Block 2: 참조 데이터 (ref_2024, ref_2023)
-  - 본문 미리보기 (각 1500자)
-  - 이미지 메타 (타입, 캡션, 최대 5개)
-  - 계열사 데이터 (사업장별 상세)
-  - 외부 데이터 (언론보도, 조건부)
-Block 3: DP 데이터 (최신 값)
-  - dp_id, name_ko, value, unit
-  - suitability_warning (정성 DP 경고)
-Block 4: 생성 지시
-  - 2023→2024 변화 패턴 학습
-  - 2024년 문체·구조 유지
-  - 데이터만 2025년 값으로 업데이트
-  - 300~500자 분량
-```
+- DP 메타데이터
+- (선택적) validator 피드백
 
 **생성 지시**:
 1. 2023→2024 변화 패턴 학습
@@ -1104,13 +515,7 @@ Block 4: 생성 지시
     "generated_text": "생성된 본문 (300~500자)",
     "mode": "draft",
     "rationale": "생성 근거",
-    "recommended_images": [
-        {
-            "image_ref": "sr-image:uuid",
-            "role": "알고리즘 특강 홍보 배너",
-            "placement_hint": "해당 절의 서술 직후"
-        }
-    ],
+    "recommended_images": [...],
     "references": ["2023년 15페이지", "2024년 12페이지"],
     "has_feedback": False  # validator 피드백 반영 여부
 }
@@ -1129,10 +534,7 @@ Block 4: 생성 지시
 **5 Block 구조 프롬프트**:
 ```
 Block 1: 스타일 가이드 (고정)
-  - IFRS 문체 규칙
-  - 금지 표현 (과장, 그린워싱)
 Block 2: 수치 레지스트리 (동적)
-  - 사용 가능한 최신 DP 값
 Block 3: 이전 생성 문단 (기존 페이지)
 Block 4: 사용자 수정 요청 (자유 텍스트)
 Block 5: 수정 지시 (핵심 변경)
@@ -1149,160 +551,22 @@ Block 5: 수정 지시 (핵심 변경)
 }
 ```
 
-**이미지·레이아웃 추천** (확장 기능):
-
-- **전년·전전년 이미지 메타 활용**: 캡션, 타입, 크기, 페이지 내 좌표
-- **추천 내용**: 표 사용 여부, 이미지 삽입 위치, 유사 역할 이미지
-- **출력 형식**: 구조화 JSON (`layout` 필드, 선택적)
-- **역할 분리**: 백엔드는 추천만, 프론트엔드가 시각적 배치 렌더링
-
-**취합 방식**:
-- Phase 2에서 필터링된 데이터만 프롬프트에 포함 (컨텍스트 효율)
-- validator 피드백 있으면 프롬프트에 추가 (재시도 시)
-- 이미지는 최대 5개까지 (컨텍스트 관리)
-
 **모델**: **GPT-5 mini**
 - 초안·validator 재시도·`refine_mode` 등 **호출 빈도**가 높아 비용·지연을 완화
 - IFRS 문체·용어는 **프롬프트·스타일 가이드**로 보정 (필요 시 소형 검증 패스 추가)
-- 대안: Gemini 2.5 Flash (더 빠른 응답), Claude 3.5 Haiku (균형)
-
-**관련 문서**: 
-- `docs/gen_node/GEN_NODE_IMPLEMENTATION_STRATEGY.md`
-- `docs/gen_node/IMAGE_LAYOUT_RECOMMENDATION_DESIGN.md`
 
 ---
 
 #### 3.2.6 validator_node (검증 노드)
 
 **역할**:
-- 생성된 문단의 **품질 검증**
+- 생성된 문단의 품질 검증
 - DP 규칙 준수, 형식 일관성, 그린워싱 탐지
-- **2가지 모드 지원**: Create (초안 검증), Refine (사용자 수정 검증)
-
-**데이터 수집 소스**:
-- **입력 페이로드**:
-  - `generated_text` (검증 대상 본문)
-  - `category` (사용자 주제)
-  - `fact_data` (대표 단일 DP 요약)
-  - `fact_data_by_dp` (멀티 DP 맵, Create 경로에서 주로 채워짐)
-  - `runtime_config` (Gemini API 키, 모델명 등)
-
-**검증 기준 (2단계 파이프라인)**:
-
-##### **A. 규칙 기반 검증** (LLM 없음, 빠른 체크)
-
-1. **DP 수치 검증**:
-   - `fact_data`의 `value` + `unit` 존재 여부
-   - `generated_text`에 해당 수치 포함 여부 (정규표현식)
-   - **실패 시**: "DP 값 {value} {unit}이 본문에 포함되지 않았습니다."
-
-2. **금지 키워드 탐지** (그린워싱):
-   - 금지 목록: "세계 최고", "업계 1위", "혁신적", "획기적" 등
-   - **실패 시**: "과장 표현 '{keyword}'를 제거해주세요."
-
-3. **길이 체크**:
-   - 최소 100자, 최대 1000자
-   - **실패 시**: "본문이 너무 짧습니다/깁니다."
-
-4. **정성 DP 경고**:
-   - `suitability_warning` 필드 있으면 경고 맥락 추가
-   - **예시**: "이 DP는 정성 지표로, 수치보다 서술 형태가 적합합니다."
-
-##### **B. LLM 기반 검증** (Gemini, 심층 체크)
-
-**트리거**: 규칙 검증 통과 후 실행
-
-**프롬프트 구조**:
-```
-Block 1: 페르소나 (IFRS SR 보고서 검증 전문가)
-Block 2: 검증 대상 본문
-Block 3: DP 데이터 (fact_data_by_dp)
-  - 각 DP의 value, unit, name_ko
-Block 4: 검증 기준
-  - DP 규칙 준수
-  - 형식 일관성
-  - 그린워싱 탐지
-  - 논리적 일관성
-Block 5: 출력 지시 (JSON)
-  - {"is_valid": true/false, "errors": [...]}
-```
 
 **검증 항목**:
 
 | 항목 | 설명 | 방법 |
 |------|------|------|
-| **DP 규칙 준수** | DP 값·단위 정확성 | LLM 분석 + 규칙 |
-| **형식 일관성** | IFRS 문체·구조 | LLM 분석 |
-| **그린워싱 탐지** | 과장·미화 표현 | 금지 키워드 + LLM |
-| **논리적 일관성** | 문장 간 모순 | LLM 분석 |
-| **길이 적정성** | 300~500자 권장 | 규칙 체크 |
-
-**모드 판별** (`payload.py`):
-
-```python
-class ValidationMode(str, Enum):
-    CREATE = "create"
-    REFINE = "refine"
-
-def resolve_validation_mode(payload: dict) -> ValidationMode:
-    if payload.get("mode") == "refine":
-        return ValidationMode.REFINE
-    fdb = payload.get("fact_data_by_dp")
-    if not fdb or not isinstance(fdb, dict) or len(fdb) == 0:
-        return ValidationMode.REFINE
-    return ValidationMode.CREATE
-```
-
-**처리 흐름**:
-1. 페이로드 정규화 (`payload.py`)
-2. 모드 판별 (Create/Refine)
-3. **규칙 검증** 실행 (`rules.py`)
-   - DP 수치 체크
-   - 금지 키워드 체크
-   - 길이 체크
-4. 규칙 실패 시 즉시 반환 (`is_valid: false`)
-5. 규칙 통과 시 **LLM 검증** 실행 (`llm_validate.py`)
-   - Gemini 2.5 Flash 호출 (JSON mode)
-   - 응답 파싱 → `{"is_valid": ..., "errors": [...]}`
-6. 최종 결과 반환
-
-**출력 구조**:
-```python
-# 성공 (통과)
-{
-    "is_valid": True,
-    "errors": []
-}
-
-# 실패 (재시도 유도)
-{
-    "is_valid": False,
-    "errors": [
-        "DP 값 200개사가 본문에 포함되지 않았습니다.",
-        "과장 표현 '세계 최고'를 제거해주세요."
-    ]
-}
-
-# 선택 (Refine·디버깅)
-{
-    "is_valid": True,
-    "errors": [],
-    "warnings": ["길이가 권장 범위를 초과했습니다."]
-}
-```
-
-**취합 방식**:
-- 규칙 실패 시 LLM 생략 (빠른 피드백)
-- `errors`는 한국어 구체적 수정 요청 (gen_node 피드백용)
-- `warnings`는 Refine 응답에서 사용 가능 (선택적)
-
-**모델**: 
-- **규칙 검증**: 정규표현식, 키워드 매칭 (LLM 없음)
-- **LLM 검증**: Gemini 2.5 Flash (JSON mode, 빠른 응답)
-
-**관련 문서**: 
-- `docs/validator_node/LOGIC_SPEC.md`
-- `docs/validator_node/IMPLEMENTATION_GUIDE.md`
 | **dp_compliance** | DP 검증 규칙 준수 (범위, 타입) | 규칙 기반 |
 | **format_check** | 전년도 대비 형식 유사도 | 코사인 유사도 |
 | **greenwashing_check** | 과장 표현 탐지 | LLM 기반 |
@@ -3610,198 +2874,17 @@ log_workflow_step(
 | **external_company_data** | 삼성SDS 뉴스 **`#bThumbs`/`#sThumbs`**(또는 RSS) **배치·선택적 준실시간 폴링**·수동 보완으로 채운 보도·언론 스냅샷 테이블 (**SR 요청 시** 크롤 없음) |
 | **사업장별 데이터** | 각 계열사/자회사가 제공하는 실측 데이터 및 설명 |
 
-### 12.2 노드별 상세 설명 요약
-
-각 노드의 구체적인 데이터 수집·검색·취합 방식은 다음과 같습니다:
-
-#### **c_rag (카테고리 기반 참조 데이터 수집)**
-
-**데이터 수집**:
-- `sr_report_body` 테이블에서 `content_embedding` 벡터 검색
-- `sr_report_images` 테이블 JOIN으로 이미지 메타 추출
-- `historical_sr_reports` 테이블로 연도별 조인
-
-**검색 기준**:
-1. Phase 0의 `search_intent` + `category` → BGE-M3 임베딩 → 쿼리 벡터
-2. 벡터 유사도 검색 (top_k=4)
-3. OpenAI Chat Completions로 최종 1건 선택 (후보 4건 중)
-4. `ref_pages` 있으면 벡터·LLM 생략, 페이지 직접 조회
-
-**취합 방식**:
-- 연도별 독립 처리 (2024, 2023)
-- 이미지 최대 5개까지 포함
-- 한 연도 실패 시 해당 연도만 `error` 필드
-
-**관련 문서**: `docs/c_rag/c_rag.md`
-
----
-
-#### **dp_rag (DP 기반 팩트 데이터 수집)**
-
-**데이터 수집**:
-- `data_points` 테이블에서 DP 메타 조회 (정확 매칭)
-- `unified_column_mappings` 테이블에서 물리 컬럼 매핑
-- `social_data` / `environmental_data` / `governance_data` 테이블에서 실데이터 조회
-- `company_info` 테이블에서 회사 프로필 조회 (DP와 무관)
-
-**검색 기준**:
-1. DP ID 정확 매칭 → DP 메타 추출
-2. UCM에서 `column_category` (E/S/G) 기준 화이트리스트 생성
-3. Gemini 2.5 Flash로 물리 위치 결정 (JSON mode)
-4. 화이트리스트 검증 (SQL 인젝션 방지)
-5. 템플릿 쿼리 실행 (`WHERE company_id, period_year`)
-
-**취합 방식**:
-- 단일 DP 기준 처리
-- 정량 적합성 사전 체크 (`suitability_warning`)
-- 데이터 유효성 검사 (`is_outdated`, `error`)
-
-**관련 문서**: `docs/dp_rag/dp_rag.md`
-
----
-
-#### **aggregation_node (계열사·외부 기업 데이터 집계)**
-
-**데이터 수집**:
-- `subsidiary_data_contributions` 테이블 (계열사 사업장별 데이터)
-- `external_company_data` 테이블 (언론보도/뉴스 스냅샷)
-
-**검색 기준**:
-
-**A. Subsidiary (항상 실행)**:
-1. 정확 매칭: `category` 문자열 완전 일치
-2. 벡터 유사도: `category_embedding` 기반 (임계값 0.5)
-3. DP 필터: `related_dp_ids` 교차 (선택적)
-
-**B. External (조건부 실행)**:
-1. 트리거: Phase 0의 `needs_external_data: true`
-2. 프롬프트 기반 검색: `body_embedding` vs Phase 0의 `search_intent`
-3. 키워드 부스팅: Phase 0의 `keywords` 활용
-4. 기본 필터: `source_type IN ('press', 'news')`
-
-**취합 방식**:
-- 연도별 독립 처리 (2024, 2023)
-- Subsidiary/External 독립 실행
-- 관련성 없으면 빈 리스트 반환 (폴백 없음)
-
-**관련 문서**: `docs/aggregation_node/AGGREGATION_RELEVANCE_IMPLEMENTATION.md`, `docs/aggregation_node/PROMPT_BASED_AGGREGATION_DESIGN.md`
-
----
-
-#### **gen_node (문단 생성)**
-
-**데이터 수집**:
-- Phase 2 필터링 결과 (`gen_input`):
-  - `ref_2024` / `ref_2023` (SR 본문 + 이미지)
-  - `fact_data` (최신 DP 값)
-  - `agg_data` (계열사·외부 데이터)
-  - Phase 2 선택 데이터 (`company_profile`, `dp_metadata`, `ucm`, `rulebook` 등)
-
-**생성 기준**:
-1. 프롬프트 구조 (4 Block):
-   - Block 1: 페르소나 (IFRS SR 보고서 작성 전문가)
-   - Block 2: 참조 데이터 (2년치, 본문 미리보기 1500자, 이미지 최대 5개)
-   - Block 3: DP 데이터 (최신 값, 적합성 경고)
-   - Block 4: 생성 지시 (2023→2024 패턴 학습, 2025년 값으로 업데이트)
-2. 형식 일관성: 전년도 문체·구조 유지
-3. 데이터 최신성: 최신 DP 값으로 교체
-4. 정성/정량 통합: 모든 DP 유형 처리
-
-**취합 방식**:
-- Phase 2에서 필터링된 데이터만 프롬프트에 포함
-- validator 피드백 있으면 추가 (재시도 시)
-- 300~500자 분량 생성
-
-**관련 문서**: `docs/gen_node/GEN_NODE_IMPLEMENTATION_STRATEGY.md`, `docs/gen_node/IMAGE_LAYOUT_RECOMMENDATION_DESIGN.md`
-
----
-
-#### **validator_node (검증)**
-
-**데이터 수집**:
-- `generated_text` (검증 대상 본문)
-- `fact_data` (대표 단일 DP 요약)
-- `fact_data_by_dp` (멀티 DP 맵, Create 경로)
-- `category` (사용자 주제)
-
-**검증 기준**:
-
-**1. 규칙 기반 검증** (LLM 없음):
-- DP 수치 체크: 정규표현식으로 `value` + `unit` 포함 여부
-- 금지 키워드: "세계 최고", "업계 1위" 등 그린워싱 표현
-- 길이 체크: 100~1000자
-
-**2. LLM 기반 검증** (Gemini 2.5 Flash):
-- DP 규칙 준수
-- 형식 일관성 (IFRS 문체)
-- 논리적 일관성 (문장 간 모순)
-
-**취합 방식**:
-- 규칙 실패 시 LLM 생략 (빠른 피드백)
-- `errors`는 한국어 구체적 수정 요청 (gen_node 피드백용)
-- `warnings`는 Refine 응답에서 사용 (선택적)
-
-**관련 문서**: `docs/validator_node/LOGIC_SPEC.md`, `docs/validator_node/IMPLEMENTATION_GUIDE.md`
-
----
-
-#### **Orchestrator (중앙 제어)**
-
-**데이터 수집**:
-- 사용자 입력 (`category`, `dp_id`, `prompt`, `ref_pages`)
-- Phase 1 수집 결과 (`c_rag`, `dp_rag`, `aggregation_node`)
-
-**처리 흐름**:
-
-**Phase 0: 프롬프트 해석**
-- Gemini 2.5 Flash로 자유 입력 → 구조화 쿼리
-- 출력: `search_intent`, `content_focus`, `needs_external_data`, `keywords`, `ref_pages`
-
-**Phase 1: 병렬 데이터 수집**
-- `asyncio.gather`로 3개 노드 동시 실행
-- Phase 0 출력을 각 노드에 전달
-
-**Phase 1.5: DP 계층 검증**
-- 멀티 DP 전용 (2개 이상)
-- 부모-자식 DP 일관성 체크
-
-**Phase 2: 데이터 선택 및 필터링**
-- Gemini 2.5 Flash로 필요 데이터만 선택
-- 출력: `include_company_profile`, `include_dp_metadata`, `include_ucm`, `include_rulebook`, `include_subsidiary_data`, `include_external_data`
-
-**Phase 3: 생성-검증 루프**
-- 최대 3회 시도
-- gen_node → validator_node → 재시도 (필요 시)
-
-**Phase 4: 최종 결과 통합**
-- 최종 보고서 반환
-
-**취합 방식**:
-- 각 Phase 출력을 다음 Phase 입력으로 전달
-- 실패 시 폴백 (규칙 기반 선택 등)
-
-**관련 문서**: `docs/orchestrator/PHASE2_DATA_SELECTION.md`, `docs/PHASE3_FLEXIBLE_INPUT_DESIGN.md`
-
----
-
-### 12.3 참조 문서
+### 12.2 참조 문서
 
 - 기존 워크플로우: `ARCHITECTURE.md`, `NODES.md`
 - 데이터 온톨로지: `DATA_ONTOLOGY.md`
 - DB 구조: `DATABASE_TABLES_STRUCTURE.md`
 - 전년도 파싱: `HISTORICAL_REPORT_PARSING.md`
-- 노드별 상세 문서:
-  - `docs/c_rag/c_rag.md`
-  - `docs/dp_rag/dp_rag.md`
-  - `docs/aggregation_node/AGGREGATION_RELEVANCE_IMPLEMENTATION.md`
-  - `docs/gen_node/GEN_NODE_IMPLEMENTATION_STRATEGY.md`
-  - `docs/validator_node/LOGIC_SPEC.md`
-  - `docs/orchestrator/PHASE2_DATA_SELECTION.md`
 
 ---
 
-**문서 버전**: 3.1  
-**최종 수정**: 2026-04-08 (노드별 데이터 수집·검색·취합 방식 구체화, 다이어그램 추가)  
+**문서 버전**: 3.0  
+**최종 수정**: 2026-04-04 (§3.1 LLM: Gemini 3.1 Pro / 2.5 Pro / GPT-5 mini, §3.1.1 임베딩 BGE-M3 현행, §3.1.2 **orchestrator → infra → agent** 아키텍처 명시, LangGraph 통합 방침)  
 **작성자**: AI Assistant  
 **검토 필요**: Orchestrator 병합 로직, `aggregation_node`·뉴스 배치/준실시간 폴링 인제스션·수동 보완, 반복 루프 테스트
 

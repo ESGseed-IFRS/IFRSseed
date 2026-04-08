@@ -19,22 +19,19 @@ except ImportError:
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# --- Data Integration (개별 라우터 → /data-integration/...)
-from backend.api.v1.data_integration.external_company_router import external_company_router
-from backend.api.v1.data_integration.sr_agent_router import sr_agent_router
-from backend.api.v1.data_integration.staging_router import staging_router
+# --- Shared/Auth
+from backend.api.shared.auth.router import router as auth_router
 
-# --- ESG Data (개별 라우터 → /esg-data/...)
-from backend.api.v1.esg_data.environmental_router import environmental_router
-from backend.api.v1.esg_data.ghg_router import ghg_router
-from backend.api.v1.esg_data.social_router import social_router
-from backend.api.v1.esg_data.ucm_router import ucm_router
+# --- Data Integration
+from backend.api.v1.data_integration.routes import router as data_integration_router
 
-# --- GHG Calculation (개별 라우터 → /ghg-calculation/...)
-from backend.api.v1.ghg_calculation.raw_data_router import raw_data_router
-from backend.api.v1.ghg_calculation.scope_calculation_router import scope_calculation_router
+# --- ESG Data
+from backend.api.v1.esg_data.routes import router as esg_data_router
 
-# --- IFRS Agent (개별 라우터 → /ifrs-agent/...)
+# --- GHG Calculation
+from backend.api.v1.ghg_calculation.routes import router as ghg_calculation_router
+
+# --- IFRS Agent
 from backend.api.v1.ifrs_agent.router import router as ifrs_agent_router
 
 app = FastAPI(
@@ -43,7 +40,7 @@ app = FastAPI(
     version="0.1.0",
 )
 
-_cors = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
+_cors = os.getenv("FRONT_URL", "http://localhost:3000,http://127.0.0.1:3000")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[o.strip() for o in _cors.split(",") if o.strip()],
@@ -52,22 +49,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Data Integration: sr-agent, staging, external-company
-app.include_router(sr_agent_router, prefix="/data-integration")
-app.include_router(staging_router, prefix="/data-integration")
-app.include_router(external_company_router, prefix="/data-integration")
+# Shared/Auth
+app.include_router(auth_router)
 
-# ESG Data: ucm, social, ghg, environmental (기존 routes.py 등록 순서와 동일)
-app.include_router(ucm_router, prefix="/esg-data")
-app.include_router(social_router, prefix="/esg-data")
-app.include_router(ghg_router, prefix="/esg-data")
-app.include_router(environmental_router, prefix="/esg-data")
-
-# GHG Calculation: raw-data, scope
-app.include_router(raw_data_router, prefix="/ghg-calculation")
-app.include_router(scope_calculation_router, prefix="/ghg-calculation")
-
-# IFRS Agent: 워크플로우
+# Data Integration / ESG Data / GHG Calculation / IFRS Agent
+app.include_router(data_integration_router)
+app.include_router(esg_data_router)
+app.include_router(ghg_calculation_router)
 app.include_router(ifrs_agent_router)
 
 

@@ -152,7 +152,7 @@ export function AnomalyDetection() {
   const [anomalies, setAnomalies] = useState<Anomaly[]>([]);
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:9004";
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:9001";
   const companyId = useAuthSessionStore((s) => s.user?.company_id?.trim() ?? "");
 
   useEffect(() => {
