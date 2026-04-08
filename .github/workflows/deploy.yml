@@ -265,80 +265,79 @@ jobs:
             pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cu124
             pip install --no-cache-dir --upgrade-strategy only-if-needed -r backend/requirement.txt
             echo "=== pip install -r backend/requirement.txt exit: $? ==="
-            # Nginx/certbot: set +e 만으로는 부모의 set -u(미설정 변수)가 상속되어 서브셸이 조용히 실패할 수 있음 → +u, pipefail 끔
-            echo "=== nginx/certbot 서브셸 시작 ==="
-            (
-              set +e
-              set +u
-              set +o pipefail
-              if ! command -v nginx >/dev/null 2>&1; then
-                sudo apt-get update -qq
-                sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nginx || echo "::warning::nginx 패키지 설치 실패"
-              fi
-              sudo systemctl unmask nginx 2>/dev/null || true
-              sudo systemctl reset-failed nginx 2>/dev/null || true
-              sudo systemctl daemon-reload 2>/dev/null || true
-              if ! sudo systemctl start nginx 2>/dev/null; then
-                echo "::warning::nginx start 실패 — journal / nginx -t 를 EC2에서 확인하세요. API 재시작은 계속합니다."
-                sudo nginx -t 2>&1 || true
-                sudo journalctl -u nginx -n 30 --no-pager 2>&1 || true
-              fi
-              API_DOMAIN=$(echo -n "${{ secrets.EC2_API_DOMAIN }}" | tr -d '\r' | xargs)
-              SSL_EMAIL=$(echo -n "${{ secrets.EC2_SSL_EMAIL }}" | tr -d '\r' | xargs)
-              if [ -n "$API_DOMAIN" ]; then
-                LE_CHAIN="/etc/letsencrypt/live/${API_DOMAIN}/fullchain.pem"
-                if [ -f "$LE_CHAIN" ]; then
-                  echo "::notice::Let's Encrypt 인증서가 있어 Nginx 사이트(ifrs-api.conf) 덮어쓰기를 건너뜁니다."
-                  if sudo nginx -t 2>&1; then
-                    sudo systemctl reload nginx || echo "::warning::nginx reload 실패"
-                  else
-                    echo "::warning::nginx -t 실패 — 설정 수동 확인"
-                  fi
-                  if command -v certbot >/dev/null 2>&1; then
-                    sudo certbot renew --quiet || true
-                  fi
+            # Nginx/certbot: drone-ssh 등에서 ( ) 서브셸이 첫 줄에서 깨지는 사례가 있어, set 으로만 완화 후 다시 -euo 복구
+            echo "=== nginx/certbot 단계 시작 (일시 set +e +u, pipefail off) ==="
+            set +e
+            set +u
+            set +o pipefail 2>/dev/null || true
+            if ! command -v nginx >/dev/null 2>&1; then
+              sudo apt-get update -qq
+              sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nginx || echo "::warning::nginx 패키지 설치 실패"
+            fi
+            sudo systemctl unmask nginx 2>/dev/null || true
+            sudo systemctl reset-failed nginx 2>/dev/null || true
+            sudo systemctl daemon-reload 2>/dev/null || true
+            if ! sudo systemctl start nginx 2>/dev/null; then
+              echo "::warning::nginx start 실패 — journal / nginx -t 를 EC2에서 확인하세요. API 재시작은 계속합니다."
+              sudo nginx -t 2>&1 || true
+              sudo journalctl -u nginx -n 30 --no-pager 2>&1 || true
+            fi
+            API_DOMAIN=$(echo -n "${{ secrets.EC2_API_DOMAIN }}" | tr -d '\r' | xargs)
+            SSL_EMAIL=$(echo -n "${{ secrets.EC2_SSL_EMAIL }}" | tr -d '\r' | xargs)
+            if [ -n "$API_DOMAIN" ]; then
+              LE_CHAIN="/etc/letsencrypt/live/${API_DOMAIN}/fullchain.pem"
+              if [ -f "$LE_CHAIN" ]; then
+                echo "::notice::Let's Encrypt 인증서가 있어 Nginx 사이트(ifrs-api.conf) 덮어쓰기를 건너뜁니다."
+                if sudo nginx -t 2>&1; then
+                  sudo systemctl reload nginx || echo "::warning::nginx reload 실패"
                 else
-                  {
-                    printf '%s\n' 'server {'
-                    printf '%s\n' '    listen 80;'
-                    printf '    server_name %s;\n' "$API_DOMAIN"
-                    printf '%s\n' '    client_max_body_size 50m;'
-                    printf '%s\n' '    location / {'
-                    printf '%s\n' '        proxy_pass http://127.0.0.1:9001;'
-                    printf '%s\n' '        proxy_http_version 1.1;'
-                    printf '%s\n' '        proxy_set_header Host $host;'
-                    printf '%s\n' '        proxy_set_header X-Real-IP $remote_addr;'
-                    printf '%s\n' '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;'
-                    printf '%s\n' '        proxy_set_header X-Forwarded-Proto $scheme;'
-                    printf '%s\n' '        proxy_set_header Upgrade $http_upgrade;'
-                    printf '%s\n' '        proxy_set_header Connection "upgrade";'
-                    printf '%s\n' '    }'
-                    printf '%s\n' '}'
-                  } | sudo tee /etc/nginx/sites-available/ifrs-api.conf > /dev/null
-                  sudo ln -sf /etc/nginx/sites-available/ifrs-api.conf /etc/nginx/sites-enabled/ifrs-api.conf
-                  if [ -f /etc/nginx/sites-enabled/default ]; then
-                    sudo rm -f /etc/nginx/sites-enabled/default
+                  echo "::warning::nginx -t 실패 — 설정 수동 확인"
+                fi
+                if command -v certbot >/dev/null 2>&1; then
+                  sudo certbot renew --quiet || true
+                fi
+              else
+                {
+                  printf '%s\n' 'server {'
+                  printf '%s\n' '    listen 80;'
+                  printf '    server_name %s;\n' "$API_DOMAIN"
+                  printf '%s\n' '    client_max_body_size 50m;'
+                  printf '%s\n' '    location / {'
+                  printf '%s\n' '        proxy_pass http://127.0.0.1:9001;'
+                  printf '%s\n' '        proxy_http_version 1.1;'
+                  printf '%s\n' '        proxy_set_header Host $host;'
+                  printf '%s\n' '        proxy_set_header X-Real-IP $remote_addr;'
+                  printf '%s\n' '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;'
+                  printf '%s\n' '        proxy_set_header X-Forwarded-Proto $scheme;'
+                  printf '%s\n' '        proxy_set_header Upgrade $http_upgrade;'
+                  printf '%s\n' '        proxy_set_header Connection "upgrade";'
+                  printf '%s\n' '    }'
+                  printf '%s\n' '}'
+                } | sudo tee /etc/nginx/sites-available/ifrs-api.conf > /dev/null
+                sudo ln -sf /etc/nginx/sites-available/ifrs-api.conf /etc/nginx/sites-enabled/ifrs-api.conf
+                if [ -f /etc/nginx/sites-enabled/default ]; then
+                  sudo rm -f /etc/nginx/sites-enabled/default
+                fi
+                if sudo nginx -t 2>&1; then
+                  sudo systemctl reload nginx || echo "::warning::nginx reload 실패"
+                else
+                  echo "::warning::nginx -t 실패 — ifrs-api.conf 수동 확인"
+                fi
+                if [ -n "$SSL_EMAIL" ]; then
+                  if ! command -v certbot >/dev/null 2>&1; then
+                    sudo apt-get update -qq
+                    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y certbot python3-certbot-nginx || echo "::warning::certbot 패키지 설치 실패"
                   fi
-                  if sudo nginx -t 2>&1; then
-                    sudo systemctl reload nginx || echo "::warning::nginx reload 실패"
-                  else
-                    echo "::warning::nginx -t 실패 — ifrs-api.conf 수동 확인"
-                  fi
-                  if [ -n "$SSL_EMAIL" ]; then
-                    if ! command -v certbot >/dev/null 2>&1; then
-                      sudo apt-get update -qq
-                      sudo DEBIAN_FRONTEND=noninteractive apt-get install -y certbot python3-certbot-nginx || echo "::warning::certbot 패키지 설치 실패"
-                    fi
-                    sudo certbot --nginx -d "$API_DOMAIN" --non-interactive --agree-tos -m "$SSL_EMAIL" --redirect || echo "::warning::certbot 실패 — DNS/80·443·도메인을 확인하세요."
-                  else
-                    echo "::notice::EC2_SSL_EMAIL 없음 — HTTPS 인증서 발급은 생략합니다(HTTP 프록시만)."
-                  fi
+                  sudo certbot --nginx -d "$API_DOMAIN" --non-interactive --agree-tos -m "$SSL_EMAIL" --redirect || echo "::warning::certbot 실패 — DNS/80·443·도메인을 확인하세요."
+                else
+                  echo "::notice::EC2_SSL_EMAIL 없음 — HTTPS 인증서 발급은 생략합니다(HTTP 프록시만)."
                 fi
               fi
-              exit 0
-            )
-            echo "=== nginx/certbot 서브셸 정상 종료 ==="
-            echo "=== nginx/certbot 블록 종료, 서비스 재시작 단계 ==="
+            fi
+            set -e
+            set -u
+            set -o pipefail
+            echo "=== nginx/certbot 단계 종료, 서비스 재시작 단계 ==="
             SERVICE_NAME=$(echo -n "${{ secrets.EC2_SERVICE_NAME }}" | tr -d '\r' | xargs)
             if [ -z "$SERVICE_NAME" ]; then
               echo "::warning::EC2_SERVICE_NAME 시크릿이 없어 서비스 재시작을 건너뜁니다."
