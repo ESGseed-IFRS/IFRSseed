@@ -391,7 +391,7 @@ export function RawDataUpload({ category }: RawDataUploadProps) {
   const [consignmentRows, setConsignmentRows] = useState<ConsignmentData[]>(consignmentData);
 
   const categoryLabel = CATEGORY_LABELS[category];
-  const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:9001";
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:9001";
   const companyIdForUpload = useAuthSessionStore((s) => s.user?.company_id?.trim() ?? "");
 
   const handleSave = () => {

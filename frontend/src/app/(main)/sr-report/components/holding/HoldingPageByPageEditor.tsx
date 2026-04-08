@@ -281,7 +281,7 @@ function SortablePageItem({
 }
 
 export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsumed }: Props) {
-  const apiBase = process.env.NEXT_PUBLIC_IFRS_AGENT_BASE ?? 'http://localhost:9001';
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:9001';
   const companyId = useAuthSessionStore((s) => s.user?.company_id?.trim() ?? '');
   const [selectedPage, setSelectedPage] = useState<HoldingSrPageRow | null>(null);
   const [search, setSearch] = useState('');
