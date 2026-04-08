@@ -3,6 +3,7 @@
 #
 # Secrets: EC2_HOST, EC2_USER, EC2_SSH_KEY
 # 선택: EC2_DEPLOY_PATH, EC2_SSH_PORT, EC2_SERVICE_NAME
+# 선택(Nginx HTTPS): EC2_API_DOMAIN (예: api.esgseed.site), EC2_SSL_EMAIL (Let's Encrypt)
 #
 # EC2_DEPLOY_PATH: 서버에서 backend 디렉터리의 부모 (예: /home/ubuntu/app)
 #   → 코드는 $EC2_DEPLOY_PATH/backend/ 에 배치됩니다.
@@ -188,6 +189,53 @@ jobs:
             pip uninstall -y torch torchvision torchaudio 2>/dev/null || true
             pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cu124
             pip install --no-cache-dir --upgrade-strategy only-if-needed -r backend/requirement.txt
+            # Nginx는 최초 1회만 설치하고, 이후 배포에서는 상태만 보장
+            if ! command -v nginx >/dev/null 2>&1; then
+              sudo apt-get update -qq
+              sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nginx
+            fi
+            sudo systemctl enable --now nginx
+            # 선택: 공개 도메인 → 80에서 백엔드(9001)로 프록시 + Let's Encrypt (시크릿 있을 때만)
+            API_DOMAIN=$(echo -n "${{ secrets.EC2_API_DOMAIN }}" | tr -d '\r' | xargs)
+            SSL_EMAIL=$(echo -n "${{ secrets.EC2_SSL_EMAIL }}" | tr -d '\r' | xargs)
+            if [ -n "$API_DOMAIN" ]; then
+              {
+                printf '%s\n' 'server {'
+                printf '%s\n' '    listen 80;'
+                printf '    server_name %s;\n' "$API_DOMAIN"
+                printf '%s\n' '    client_max_body_size 50m;'
+                printf '%s\n' '    location / {'
+                printf '%s\n' '        proxy_pass http://127.0.0.1:9001;'
+                printf '%s\n' '        proxy_http_version 1.1;'
+                printf '%s\n' '        proxy_set_header Host $host;'
+                printf '%s\n' '        proxy_set_header X-Real-IP $remote_addr;'
+                printf '%s\n' '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;'
+                printf '%s\n' '        proxy_set_header X-Forwarded-Proto $scheme;'
+                printf '%s\n' '        proxy_set_header Upgrade $http_upgrade;'
+                printf '%s\n' '        proxy_set_header Connection "upgrade";'
+                printf '%s\n' '    }'
+                printf '%s\n' '}'
+              } | sudo tee /etc/nginx/sites-available/ifrs-api.conf > /dev/null
+              sudo ln -sf /etc/nginx/sites-available/ifrs-api.conf /etc/nginx/sites-enabled/ifrs-api.conf
+              if [ -f /etc/nginx/sites-enabled/default ]; then
+                sudo rm -f /etc/nginx/sites-enabled/default
+              fi
+              sudo nginx -t
+              sudo systemctl reload nginx
+              if [ -n "$SSL_EMAIL" ]; then
+                if ! command -v certbot >/dev/null 2>&1; then
+                  sudo apt-get update -qq
+                  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y certbot python3-certbot-nginx
+                fi
+                if [ ! -d "/etc/letsencrypt/live/${API_DOMAIN}" ]; then
+                  sudo certbot --nginx -d "$API_DOMAIN" --non-interactive --agree-tos -m "$SSL_EMAIL" --redirect || echo "::warning::certbot 실패 — DNS/80·443·도메인을 확인하세요."
+                else
+                  sudo certbot renew --quiet || true
+                fi
+              else
+                echo "::notice::EC2_SSL_EMAIL 없음 — HTTPS 인증서 발급은 생략합니다(HTTP 프록시만)."
+              fi
+            fi
             SERVICE_NAME=$(echo -n "${{ secrets.EC2_SERVICE_NAME }}" | tr -d '\r' | xargs)
             if [ -z "$SERVICE_NAME" ]; then
               echo "::warning::EC2_SERVICE_NAME 시크릿이 없어 서비스 재시작을 건너뜁니다."
