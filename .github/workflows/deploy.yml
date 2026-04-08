@@ -162,7 +162,8 @@ jobs:
             -e "ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -p ${SSH_PORT}" \
             ./backend/ "${EC2_USER_TR}@${EC2_HOST_TR}:${EC2_DEPLOY_PATH_TR}/backend/"
 
-      # backend/api/v1/main.py 의 load_dotenv 는 배포 루트(…/app/.env)를 읽습니다. rsync 는 .env 를 제외하므로 여기서 시크릿을 기록합니다.
+      # backend/api/v1/main.py 의 load_dotenv 는 배포 루트(…/app/.env)를 읽고, systemd ifrs-backend 의 EnvironmentFile 은 …/backend/.env 를 쓰는 경우가 있어 동일 내용을 둘 다 둡니다.
+      # rsync 는 .env 를 제외하므로 여기서 시크릿을 기록합니다.
       - name: EC2 .env 작성 및 전송 (GitHub Secrets)
         env:
           EC2_DEPLOY_PATH_TR: ${{ env.EC2_DEPLOY_PATH_TR }}
@@ -227,7 +228,7 @@ jobs:
             -o ConnectTimeout=25 \
             -p "${SSH_PORT}" \
             "${EC2_USER_TR}@${EC2_HOST_TR}" \
-            "chmod 600 '${EC2_DEPLOY_PATH_TR}/.env'"
+            "set -euo pipefail; chmod 600 \"${EC2_DEPLOY_PATH_TR}/.env\"; cp -f \"${EC2_DEPLOY_PATH_TR}/.env\" \"${EC2_DEPLOY_PATH_TR}/backend/.env\"; chmod 600 \"${EC2_DEPLOY_PATH_TR}/backend/.env\""
           rm -f /tmp/ec2-deploy.env
 
       - name: Install dependencies and restart service
