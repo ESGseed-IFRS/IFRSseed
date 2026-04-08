@@ -265,9 +265,12 @@ jobs:
             pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cu124
             pip install --no-cache-dir --upgrade-strategy only-if-needed -r backend/requirement.txt
             echo "=== pip install -r backend/requirement.txt exit: $? ==="
-            # Nginx/certbot: apt/nginx -t/certbot 실패해도 백엔드 재시작까지 진행 (set -e 는 서브셸 밖에서만)
+            # Nginx/certbot: set +e 만으로는 부모의 set -u(미설정 변수)가 상속되어 서브셸이 조용히 실패할 수 있음 → +u, pipefail 끔
+            echo "=== nginx/certbot 서브셸 시작 ==="
             (
               set +e
+              set +u
+              set +o pipefail
               if ! command -v nginx >/dev/null 2>&1; then
                 sudo apt-get update -qq
                 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nginx || echo "::warning::nginx 패키지 설치 실패"
@@ -334,13 +337,15 @@ jobs:
               fi
               exit 0
             )
+            echo "=== nginx/certbot 서브셸 정상 종료 ==="
             echo "=== nginx/certbot 블록 종료, 서비스 재시작 단계 ==="
             SERVICE_NAME=$(echo -n "${{ secrets.EC2_SERVICE_NAME }}" | tr -d '\r' | xargs)
             if [ -z "$SERVICE_NAME" ]; then
               echo "::warning::EC2_SERVICE_NAME 시크릿이 없어 서비스 재시작을 건너뜁니다."
               exit 0
             fi
-            if ! systemctl list-unit-files --type=service --no-pager | grep -Fq "${SERVICE_NAME}.service"; then
+            # list-unit-files|grep 은 pipefail·grep 미매칭 시 스크립트 전체를 깨뜨릴 수 있어 cat 으로 확인
+            if ! systemctl cat "${SERVICE_NAME}.service" >/dev/null 2>&1; then
               echo "::warning::${SERVICE_NAME}.service 유닛을 찾지 못해 서비스 재시작을 건너뜁니다."
               exit 0
             fi
