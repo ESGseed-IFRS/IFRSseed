@@ -550,8 +550,15 @@ class Orchestrator:
                 logger.error("aggregation_node failed: %s", agg_result)
                 agg_result = {}
             
+            # 하위 테스트/호출부 호환성: 단일 fact_data 키도 함께 제공
+            representative_fact_data: Dict[str, Any] = {}
+            if dp_rag_tasks:
+                first_dp_id = dp_rag_tasks[0][0]
+                representative_fact_data = fact_data_by_dp.get(first_dp_id, {}) or {}
+
             return {
                 "ref_data": c_rag_result,
+                "fact_data": representative_fact_data,
                 "fact_data_by_dp": fact_data_by_dp,
                 "agg_data": agg_result
             }
@@ -637,8 +644,8 @@ class Orchestrator:
             # 실패 시 안전하게 정량으로 가정 (기존 동작 유지)
             return {
                 "is_quantitative": True,
-                "dp_type": None,
-                "reason": f"Error during check: {e}"
+                "dp_type": "quantitative",
+                "reason": f"Error during check (fallback to quantitative): {e}"
             }
     
     async def _merge_and_filter_data(self, state: Dict[str, Any]) -> Dict[str, Any]:
@@ -1257,7 +1264,7 @@ class Orchestrator:
     async def _validate_dp_hierarchy(
         self,
         fact_data_by_dp: Dict[str, Dict],
-        user_input: Dict[str, Any],
+        user_input: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """
         Phase 1.5: DP 계층 검증 (하이브리드 LLM + 규칙)
@@ -1273,6 +1280,7 @@ class Orchestrator:
         Returns:
             { "needs_user_selection": bool, "problematic_dps": [...] }
         """
+        user_input = user_input or {}
         use_llm = getattr(self.settings, "orchestrator_phase15_use_llm", True)
         strict_child_dps = getattr(self.settings, "orchestrator_phase15_strict_child_dps", True)
 
