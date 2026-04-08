@@ -266,7 +266,16 @@ jobs:
               sudo apt-get update -qq
               sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nginx
             fi
-            sudo systemctl enable --now nginx
+            # enable --now 는 start 실패 시 전체 배포가 실패하므로 분리 + 실패 시 로그
+            sudo systemctl unmask nginx 2>/dev/null || true
+            sudo systemctl reset-failed nginx 2>/dev/null || true
+            sudo systemctl enable nginx
+            if ! sudo systemctl start nginx; then
+              echo "::error::nginx start 실패 — 아래 journal / nginx -t 를 확인하세요."
+              sudo nginx -t 2>&1 || true
+              sudo journalctl -u nginx -n 40 --no-pager 2>&1 || true
+              exit 1
+            fi
             # 선택: 공개 도메인 → 80에서 백엔드(9001)로 프록시 + Let's Encrypt (시크릿 있을 때만)
             # TLS가 이미 있으면 ifrs-api.conf 를 덮어쓰지 않음(certbot 이 넣은 443·ssl 설정 유지)
             API_DOMAIN=$(echo -n "${{ secrets.EC2_API_DOMAIN }}" | tr -d '\r' | xargs)
