@@ -3,7 +3,8 @@
 #
 # Secrets (SSH·배포): EC2_HOST, EC2_USER, EC2_SSH_KEY
 # 선택: EC2_DEPLOY_PATH, EC2_SSH_PORT, EC2_SERVICE_NAME
-# 선택(Nginx HTTPS): EC2_API_DOMAIN (예: api.example.com), EC2_SSL_EMAIL (Let's Encrypt)
+# 선택(Nginx HTTPS): EC2_API_DOMAIN, EC2_SSL_EMAIL — 최초엔 HTTP 프록시 후 certbot.
+#   서버에 /etc/letsencrypt/live/<도메인>/fullchain.pem 이 있으면 배포 시 ifrs-api.conf 를 덮어쓰지 않음.
 #
 # Secrets (EC2 $DEPLOY_ROOT/.env — 배포 시 원격에 기록, rsync 의 .env 제외와 별개):
 #   REPO_ROOT (비우면 배포 경로와 동일하게 기록)
@@ -267,44 +268,51 @@ jobs:
             fi
             sudo systemctl enable --now nginx
             # 선택: 공개 도메인 → 80에서 백엔드(9001)로 프록시 + Let's Encrypt (시크릿 있을 때만)
+            # TLS가 이미 있으면 ifrs-api.conf 를 덮어쓰지 않음(certbot 이 넣은 443·ssl 설정 유지)
             API_DOMAIN=$(echo -n "${{ secrets.EC2_API_DOMAIN }}" | tr -d '\r' | xargs)
             SSL_EMAIL=$(echo -n "${{ secrets.EC2_SSL_EMAIL }}" | tr -d '\r' | xargs)
             if [ -n "$API_DOMAIN" ]; then
-              {
-                printf '%s\n' 'server {'
-                printf '%s\n' '    listen 80;'
-                printf '    server_name %s;\n' "$API_DOMAIN"
-                printf '%s\n' '    client_max_body_size 50m;'
-                printf '%s\n' '    location / {'
-                printf '%s\n' '        proxy_pass http://127.0.0.1:9001;'
-                printf '%s\n' '        proxy_http_version 1.1;'
-                printf '%s\n' '        proxy_set_header Host $host;'
-                printf '%s\n' '        proxy_set_header X-Real-IP $remote_addr;'
-                printf '%s\n' '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;'
-                printf '%s\n' '        proxy_set_header X-Forwarded-Proto $scheme;'
-                printf '%s\n' '        proxy_set_header Upgrade $http_upgrade;'
-                printf '%s\n' '        proxy_set_header Connection "upgrade";'
-                printf '%s\n' '    }'
-                printf '%s\n' '}'
-              } | sudo tee /etc/nginx/sites-available/ifrs-api.conf > /dev/null
-              sudo ln -sf /etc/nginx/sites-available/ifrs-api.conf /etc/nginx/sites-enabled/ifrs-api.conf
-              if [ -f /etc/nginx/sites-enabled/default ]; then
-                sudo rm -f /etc/nginx/sites-enabled/default
-              fi
-              sudo nginx -t
-              sudo systemctl reload nginx
-              if [ -n "$SSL_EMAIL" ]; then
-                if ! command -v certbot >/dev/null 2>&1; then
-                  sudo apt-get update -qq
-                  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y certbot python3-certbot-nginx
-                fi
-                if [ ! -d "/etc/letsencrypt/live/${API_DOMAIN}" ]; then
-                  sudo certbot --nginx -d "$API_DOMAIN" --non-interactive --agree-tos -m "$SSL_EMAIL" --redirect || echo "::warning::certbot 실패 — DNS/80·443·도메인을 확인하세요."
-                else
+              LE_CHAIN="/etc/letsencrypt/live/${API_DOMAIN}/fullchain.pem"
+              if [ -f "$LE_CHAIN" ]; then
+                echo "::notice::Let's Encrypt 인증서가 있어 Nginx 사이트(ifrs-api.conf) 덮어쓰기를 건너뜁니다."
+                sudo nginx -t
+                sudo systemctl reload nginx
+                if command -v certbot >/dev/null 2>&1; then
                   sudo certbot renew --quiet || true
                 fi
               else
-                echo "::notice::EC2_SSL_EMAIL 없음 — HTTPS 인증서 발급은 생략합니다(HTTP 프록시만)."
+                {
+                  printf '%s\n' 'server {'
+                  printf '%s\n' '    listen 80;'
+                  printf '    server_name %s;\n' "$API_DOMAIN"
+                  printf '%s\n' '    client_max_body_size 50m;'
+                  printf '%s\n' '    location / {'
+                  printf '%s\n' '        proxy_pass http://127.0.0.1:9001;'
+                  printf '%s\n' '        proxy_http_version 1.1;'
+                  printf '%s\n' '        proxy_set_header Host $host;'
+                  printf '%s\n' '        proxy_set_header X-Real-IP $remote_addr;'
+                  printf '%s\n' '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;'
+                  printf '%s\n' '        proxy_set_header X-Forwarded-Proto $scheme;'
+                  printf '%s\n' '        proxy_set_header Upgrade $http_upgrade;'
+                  printf '%s\n' '        proxy_set_header Connection "upgrade";'
+                  printf '%s\n' '    }'
+                  printf '%s\n' '}'
+                } | sudo tee /etc/nginx/sites-available/ifrs-api.conf > /dev/null
+                sudo ln -sf /etc/nginx/sites-available/ifrs-api.conf /etc/nginx/sites-enabled/ifrs-api.conf
+                if [ -f /etc/nginx/sites-enabled/default ]; then
+                  sudo rm -f /etc/nginx/sites-enabled/default
+                fi
+                sudo nginx -t
+                sudo systemctl reload nginx
+                if [ -n "$SSL_EMAIL" ]; then
+                  if ! command -v certbot >/dev/null 2>&1; then
+                    sudo apt-get update -qq
+                    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y certbot python3-certbot-nginx
+                  fi
+                  sudo certbot --nginx -d "$API_DOMAIN" --non-interactive --agree-tos -m "$SSL_EMAIL" --redirect || echo "::warning::certbot 실패 — DNS/80·443·도메인을 확인하세요."
+                else
+                  echo "::notice::EC2_SSL_EMAIL 없음 — HTTPS 인증서 발급은 생략합니다(HTTP 프록시만)."
+                fi
               fi
             fi
             SERVICE_NAME=$(echo -n "${{ secrets.EC2_SERVICE_NAME }}" | tr -d '\r' | xargs)
