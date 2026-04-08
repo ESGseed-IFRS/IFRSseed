@@ -97,11 +97,14 @@ def detect_data_source_patterns(body_text: str) -> Dict[str, Any]:
             "matched_subsidiary_patterns": []
         }
     
+    # 조사(을/를)로 끊기는 표현을 단순 정규화해 기존 패턴 매칭 회귀를 방지한다.
+    normalized_text = re.sub(r"(인증)(?:을|를)\s*", r"\1 ", body_text, flags=re.IGNORECASE)
+
     # 뉴스 패턴 매칭
     news_matches = []
     news_score = 0.0
     for pattern, weight in NEWS_PATTERNS.items():
-        if re.search(pattern, body_text, re.IGNORECASE):
+        if re.search(pattern, normalized_text, re.IGNORECASE):
             news_matches.append(pattern)
             news_score += weight
     
@@ -109,7 +112,7 @@ def detect_data_source_patterns(body_text: str) -> Dict[str, Any]:
     subsidiary_matches = []
     subsidiary_score = 0.0
     for pattern, weight in SUBSIDIARY_PATTERNS.items():
-        if re.search(pattern, body_text, re.IGNORECASE):
+        if re.search(pattern, normalized_text, re.IGNORECASE):
             subsidiary_matches.append(pattern)
             subsidiary_score += weight
     

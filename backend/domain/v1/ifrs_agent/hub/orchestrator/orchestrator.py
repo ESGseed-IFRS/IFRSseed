@@ -49,6 +49,10 @@ class Orchestrator:
         self._event_sink: Optional[WorkflowEventSink] = event_sink
         self.settings = get_settings()
         self._gemini_client = None
+        # 기본 모델 ID를 먼저 설정해, 클라이언트 초기화 실패/미설정 시에도 안전하게 참조 가능
+        self._gemini_model_id = getattr(
+            self.settings, "orchestrator_gemini_model", "gemini-2.5-pro"
+        )
 
         if not (self.settings.gemini_api_key or "").strip():
             logger.warning(
@@ -60,7 +64,7 @@ class Orchestrator:
                 from google import genai
                 client = genai.Client(api_key=self.settings.gemini_api_key)
                 # Gemini 모델 사용 (오케스트레이터 Phase 2 데이터 선택용)
-                model_id = getattr(self.settings, "orchestrator_gemini_model", "gemini-2.5-pro")
+                model_id = self._gemini_model_id
                 self._gemini_client = client
                 self._gemini_model_id = model_id
                 logger.info(f"Gemini {model_id} initialized for orchestrator data selection (google.genai)")
