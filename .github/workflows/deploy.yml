@@ -268,9 +268,11 @@ jobs:
               sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nginx
             fi
             # enable --now 는 start 실패 시 전체 배포가 실패하므로 분리 + 실패 시 로그
+            # 일부 Ubuntu 에서 SysV/systemd 연동 시 `systemctl enable nginx` 만 exit 1 (배포 전체 실패 방지: || true)
             sudo systemctl unmask nginx 2>/dev/null || true
             sudo systemctl reset-failed nginx 2>/dev/null || true
-            sudo systemctl enable nginx
+            sudo systemctl daemon-reload 2>/dev/null || true
+            sudo systemctl enable nginx || true
             if ! sudo systemctl start nginx; then
               echo "::error::nginx start 실패 — 아래 journal / nginx -t 를 확인하세요."
               sudo nginx -t 2>&1 || true
