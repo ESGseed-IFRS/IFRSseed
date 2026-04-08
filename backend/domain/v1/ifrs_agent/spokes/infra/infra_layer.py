@@ -27,7 +27,7 @@ class InfraLayer:
         self,
         agent_registry: Optional[AgentRegistry] = None,
         tool_registry: Optional[ToolRegistry] = None,
-        default_timeout: int = 30,
+        default_timeout: int = 210,
         max_retries: int = 3
     ):
         """

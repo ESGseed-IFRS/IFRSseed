@@ -35,9 +35,9 @@ class Settings:
     # True면 DATABASE_URL의 ssl* 쿼리를 제거하고 시스템 기본 CA로만 연결(errno 42 1회 실패·경고 방지, Neon 등). 기본 True.
     asyncpg_force_default_ssl: bool = True
     # ifrs_agent InfraLayer call_agent/call_tool 기본 타임아웃(초). 임베딩·원격 DB 시 30은 부족할 수 있음.
-    ifrs_infra_timeout_sec: int = 120
+    ifrs_infra_timeout_sec: int = 210
     # c_rag·dp_rag 등 연도 루프·LLM 포함 작업용(오케스트레이터에서만 사용)
-    ifrs_infra_heavy_timeout_sec: int = 300
+    ifrs_infra_heavy_timeout_sec: int = 390
     groq_api_key: str = ""
     mcp_sr_index_tools_url: str = ""
     groq_temperature: float = 0.2
@@ -151,9 +151,9 @@ def get_settings() -> Settings:
         asyncpg_force_default_ssl=_env_flag_default_true(
             "ASYNCPG_FORCE_DEFAULT_SSL", default=True
         ),
-        ifrs_infra_timeout_sec=max(30, int(os.getenv("IFRS_INFRA_TIMEOUT_SEC", "120"))),
+        ifrs_infra_timeout_sec=max(30, int(os.getenv("IFRS_INFRA_TIMEOUT_SEC", "210"))),
         ifrs_infra_heavy_timeout_sec=max(
-            60, int(os.getenv("IFRS_INFRA_HEAVY_TIMEOUT_SEC", "300"))
+            60, int(os.getenv("IFRS_INFRA_HEAVY_TIMEOUT_SEC", "390"))
         ),
         groq_api_key=os.getenv("GROQ_API_KEY", ""),
         mcp_sr_index_tools_url=os.getenv("MCP_SR_INDEX_TOOLS_URL", ""),

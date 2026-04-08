@@ -77,8 +77,8 @@ async def get_or_create_pool() -> asyncpg.Pool:
     연결 풀 설정:
     - min_size=5: 최소 유지 연결 수
     - max_size=20: 최대 연결 수 (Neon 등 제한 고려)
-    - timeout=30: 풀에서 연결 획득 타임아웃 (초)
-    - command_timeout=60: 쿼리 실행 타임아웃 (초)
+    - timeout=120: 풀에서 연결 획득 타임아웃 (초)
+    - command_timeout=150: 쿼리 실행 타임아웃 (초)
     """
     global _pool
     
@@ -103,7 +103,7 @@ async def get_or_create_pool() -> asyncpg.Pool:
             clean = _dsn_without_ssl_query(dsn)
             ssl_context = ssl.create_default_context()
         
-        logger.info("Creating asyncpg connection pool (min=5, max=20)")
+        logger.info("Creating asyncpg connection pool (min=5, max=20, acquire_timeout=120s)")
         
         try:
             _pool = await asyncpg.create_pool(
@@ -111,8 +111,8 @@ async def get_or_create_pool() -> asyncpg.Pool:
                 ssl=ssl_context,
                 min_size=5,
                 max_size=20,
-                timeout=30,
-                command_timeout=60,
+                timeout=120,
+                command_timeout=150,
             )
             logger.info("Connection pool created successfully")
             return _pool
@@ -130,8 +130,8 @@ async def get_or_create_pool() -> asyncpg.Pool:
                     ssl=ctx,
                     min_size=5,
                     max_size=20,
-                    timeout=30,
-                    command_timeout=60,
+                    timeout=120,
+                    command_timeout=150,
                 )
                 logger.info("Connection pool created successfully (after SSL retry)")
                 return _pool
