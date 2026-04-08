@@ -238,6 +238,8 @@ jobs:
           username: ${{ env.EC2_USER_TR }}
           key: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
+          # torch + requirement.txt + apt 가 길 수 있음
+          command_timeout: 45m
           script_stop: true
           script: |
             set -euo pipefail
@@ -262,6 +264,7 @@ jobs:
             pip uninstall -y torch torchvision torchaudio 2>/dev/null || true
             pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cu124
             pip install --no-cache-dir --upgrade-strategy only-if-needed -r backend/requirement.txt
+            echo "=== pip install -r backend/requirement.txt exit: $? ==="
             # Nginx: 프록시 실패 시에도 백엔드 재시작은 진행(set -e 로 전체 배포가 죽는 것 방지)
             if ! command -v nginx >/dev/null 2>&1; then
               sudo apt-get update -qq
@@ -327,6 +330,7 @@ jobs:
                 fi
               fi
             fi
+            echo "=== nginx/certbot 블록 종료, 서비스 재시작 단계 ==="
             SERVICE_NAME=$(echo -n "${{ secrets.EC2_SERVICE_NAME }}" | tr -d '\r' | xargs)
             if [ -z "$SERVICE_NAME" ]; then
               echo "::warning::EC2_SERVICE_NAME 시크릿이 없어 서비스 재시작을 건너뜁니다."
@@ -336,4 +340,17 @@ jobs:
               echo "::warning::${SERVICE_NAME}.service 유닛을 찾지 못해 서비스 재시작을 건너뜁니다."
               exit 0
             fi
-            sudo systemctl restart "$SERVICE_NAME"
+            echo "=== systemctl restart ${SERVICE_NAME} ==="
+            if ! sudo systemctl restart "$SERVICE_NAME"; then
+              echo "::error::systemctl restart 실패 — 아래 status / journal 확인"
+              sudo systemctl status "$SERVICE_NAME" --no-pager -l || true
+              sudo journalctl -u "$SERVICE_NAME" -n 120 --no-pager || true
+              exit 1
+            fi
+            if ! systemctl is-active --quiet "$SERVICE_NAME"; then
+              echo "::error::재시작 후 서비스가 active 가 아님"
+              sudo systemctl status "$SERVICE_NAME" --no-pager -l || true
+              sudo journalctl -u "$SERVICE_NAME" -n 120 --no-pager || true
+              exit 1
+            fi
+            echo "=== 배포 스크립트 정상 종료 (${SERVICE_NAME} active) ==="
