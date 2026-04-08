@@ -240,7 +240,8 @@ jobs:
           port: ${{ env.SSH_PORT }}
           # torch + requirement.txt + apt 가 길 수 있음
           command_timeout: 45m
-          script_stop: true
+          # script_stop: true 는 줄마다 exit 체크를 끼워 넣어 다줄 if/{ 블록과 충돌할 수 있음 → 한 덩어리로 실행
+          script_stop: false
           script: |
             set -euo pipefail
             cd "${{ env.EC2_DEPLOY_PATH_TR }}"
