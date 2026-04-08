@@ -1,5 +1,5 @@
-# CI: PR·main 푸시 시 린트·테스트·compile
-# CD: main 푸시 또는 수동 실행 시에만 EC2 배포 (PR 은 CI 만)
+# CI·CD: main 푸시 시 경로 무관 — 린트·테스트·compile + EC2 배포 (시크릿·조건 충족 시)
+# PR: backend 등 아래 paths 가 바뀔 때만 CI (배포 없음)
 #
 # Secrets: EC2_HOST, EC2_USER, EC2_SSH_KEY
 # 선택: EC2_DEPLOY_PATH, EC2_SSH_PORT, EC2_SERVICE_NAME
@@ -22,10 +22,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "backend/**"
-      - "pyproject.toml"
-      - ".github/workflows/deploy.yml"
   pull_request:
     paths:
       - "backend/**"
