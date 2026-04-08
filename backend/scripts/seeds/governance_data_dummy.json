@@ -23,7 +23,7 @@
     "security_fines": null,
     "status": "approved",
     "approved_by": "esg-demo-approver",
-    "approved_at": "2023-06-30T15:00:00+09:00",
+    "approved_at": "2023-06-30T15:0a0:00+09:00",
     "final_approved_at": null
   },
   {
