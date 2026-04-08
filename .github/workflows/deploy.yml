@@ -262,32 +262,30 @@ jobs:
             pip uninstall -y torch torchvision torchaudio 2>/dev/null || true
             pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cu124
             pip install --no-cache-dir --upgrade-strategy only-if-needed -r backend/requirement.txt
-            # Nginx는 최초 1회만 설치하고, 이후 배포에서는 상태만 보장
+            # Nginx: 프록시 실패 시에도 백엔드 재시작은 진행(set -e 로 전체 배포가 죽는 것 방지)
             if ! command -v nginx >/dev/null 2>&1; then
               sudo apt-get update -qq
               sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nginx
             fi
-            # 배포마다 `systemctl enable nginx` 는 호출하지 않음 — SysV 연동 시 enable 이 1 을 반환해 CI 가 실패하는 사례가 있음.
-            # 최초 설치 시 패키지가 유닛을 등록하고, 이미 켜진 상태면 start 는 성공(0)으로 끝남.
             sudo systemctl unmask nginx 2>/dev/null || true
             sudo systemctl reset-failed nginx 2>/dev/null || true
             sudo systemctl daemon-reload 2>/dev/null || true
-            if ! sudo systemctl start nginx; then
-              echo "::error::nginx start 실패 — 아래 journal / nginx -t 를 확인하세요."
+            if ! sudo systemctl start nginx 2>/dev/null; then
+              echo "::warning::nginx start 실패 — journal / nginx -t 를 EC2에서 확인하세요. API 재시작은 계속합니다."
               sudo nginx -t 2>&1 || true
-              sudo journalctl -u nginx -n 40 --no-pager 2>&1 || true
-              exit 1
+              sudo journalctl -u nginx -n 30 --no-pager 2>&1 || true
             fi
-            # 선택: 공개 도메인 → 80에서 백엔드(9001)로 프록시 + Let's Encrypt (시크릿 있을 때만)
-            # TLS가 이미 있으면 ifrs-api.conf 를 덮어쓰지 않음(certbot 이 넣은 443·ssl 설정 유지)
             API_DOMAIN=$(echo -n "${{ secrets.EC2_API_DOMAIN }}" | tr -d '\r' | xargs)
             SSL_EMAIL=$(echo -n "${{ secrets.EC2_SSL_EMAIL }}" | tr -d '\r' | xargs)
             if [ -n "$API_DOMAIN" ]; then
               LE_CHAIN="/etc/letsencrypt/live/${API_DOMAIN}/fullchain.pem"
               if [ -f "$LE_CHAIN" ]; then
                 echo "::notice::Let's Encrypt 인증서가 있어 Nginx 사이트(ifrs-api.conf) 덮어쓰기를 건너뜁니다."
-                sudo nginx -t
-                sudo systemctl reload nginx
+                if sudo nginx -t 2>&1; then
+                  sudo systemctl reload nginx || echo "::warning::nginx reload 실패"
+                else
+                  echo "::warning::nginx -t 실패 — 설정 수동 확인"
+                fi
                 if command -v certbot >/dev/null 2>&1; then
                   sudo certbot renew --quiet || true
                 fi
@@ -313,8 +311,11 @@ jobs:
                 if [ -f /etc/nginx/sites-enabled/default ]; then
                   sudo rm -f /etc/nginx/sites-enabled/default
                 fi
-                sudo nginx -t
-                sudo systemctl reload nginx
+                if sudo nginx -t 2>&1; then
+                  sudo systemctl reload nginx || echo "::warning::nginx reload 실패"
+                else
+                  echo "::warning::nginx -t 실패 — ifrs-api.conf 수동 확인"
+                fi
                 if [ -n "$SSL_EMAIL" ]; then
                   if ! command -v certbot >/dev/null 2>&1; then
                     sudo apt-get update -qq
