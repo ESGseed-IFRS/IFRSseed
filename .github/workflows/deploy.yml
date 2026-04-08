@@ -35,9 +35,6 @@ on:
 permissions:
   contents: read
 
-env:
-  DEFAULT_EC2_SERVICE_NAME: ifrs-backend
-
 concurrency:
   group: ci-deploy-ec2-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: false
@@ -193,7 +190,11 @@ jobs:
             pip install --no-cache-dir --upgrade-strategy only-if-needed -r backend/requirement.txt
             SERVICE_NAME=$(echo -n "${{ secrets.EC2_SERVICE_NAME }}" | tr -d '\r' | xargs)
             if [ -z "$SERVICE_NAME" ]; then
-              SERVICE_NAME="${{ env.DEFAULT_EC2_SERVICE_NAME }}"
-              echo "::notice::EC2_SERVICE_NAME 시크릿이 없어 기본 서비스명을 사용합니다: $SERVICE_NAME"
+              echo "::warning::EC2_SERVICE_NAME 시크릿이 없어 서비스 재시작을 건너뜁니다."
+              exit 0
+            fi
+            if ! systemctl list-unit-files --type=service --no-pager | grep -Fq "${SERVICE_NAME}.service"; then
+              echo "::warning::${SERVICE_NAME}.service 유닛을 찾지 못해 서비스 재시작을 건너뜁니다."
+              exit 0
             fi
             sudo systemctl restart "$SERVICE_NAME"
