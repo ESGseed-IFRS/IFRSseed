@@ -47,6 +47,8 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    # Chrome PNA: localhost↔localhost 등 사전 요청에 Access-Control-Request-Private-Network 가 오면 허용
+    allow_private_network=True,
 )
 
 # Shared/Auth
