@@ -1,22 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Check, ChevronDown, GripVertical, Loader2, Pencil, Plus, Trash2, X } from 'lucide-react';
-import {
-  DndContext,
-  PointerSensor,
-  closestCenter,
-  useSensor,
-  useSensors,
-  type DragEndEvent,
-} from '@dnd-kit/core';
-import {
-  SortableContext,
-  arrayMove,
-  useSortable,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import { Check, ChevronDown, Loader2 } from 'lucide-react';
 import {
   fetchWithAuthJson,
   mergeAuthIntoRequestBody,
@@ -63,11 +48,46 @@ type LayoutBlock =
       rationale_ko?: string;
     };
 
+/** validator_node 확장 응답 (schema_version, accuracy, feedback_items, rationale) */
+export type ValidatorFeedbackItem = {
+  severity?: string;
+  dimension_id?: string;
+  issue_ko?: string;
+  suggestion_ko?: string;
+  quote?: string | null;
+  source?: string;
+};
+
+export type ValidatorAccuracyDimension = {
+  id?: string;
+  score?: number;
+  weight?: number;
+  source?: string;
+  notes_ko?: string;
+};
+
+export type HoldingAgentValidation = {
+  is_valid?: boolean;
+  errors?: string[];
+  warnings?: string[];
+  schema_version?: string;
+  accuracy?: {
+    overall?: { score?: number; band?: string; label_ko?: string };
+    by_dimension?: ValidatorAccuracyDimension[];
+  };
+  feedback_items?: ValidatorFeedbackItem[];
+  rationale?: {
+    summary_ko?: string;
+    rule_summary_ko?: string;
+    llm_summary_ko?: string;
+  };
+};
+
 type CreateReportResponse = {
   workflow_id?: string;
   status?: string;
   generated_text?: string;
-  validation?: { is_valid?: boolean; errors?: string[]; warnings?: string[] };
+  validation?: HoldingAgentValidation;
   layout?: { version?: number; blocks?: LayoutBlock[] };
   image_recommendations?: Array<{
     image_ref?: string;
@@ -78,87 +98,234 @@ type CreateReportResponse = {
   error?: string | null;
 };
 
-type SortableSectionHeaderProps = {
-  section: string;
-  onAddPage: (section: string) => void;
+const DIMENSION_LABEL_KO: Record<string, string> = {
+  format_completeness: '형식·완성도',
+  numeric_presence: '수치 반영',
+  fact_consistency: '사실 일관성',
+  greenwashing_risk: '과장·그린워싱',
+  dp_availability: 'DP 데이터',
 };
 
-function SortableSectionHeader({ section, onAddPage }: SortableSectionHeaderProps) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-    id: `sec:${section}`,
-  });
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.7 : 1,
-  };
+function dimensionLabelKo(id: string | undefined): string {
+  if (!id) return '—';
+  return DIMENSION_LABEL_KO[id] ?? id;
+}
+
+function bandAccentClass(band: string | undefined): string {
+  switch (band) {
+    case 'excellent':
+      return 'text-[#1b4332] bg-[#d8f3dc] border-[#95d5b2]';
+    case 'good':
+      return 'text-[#2d6a4f] bg-[#e8f5e9] border-[#a8d5ba]';
+    case 'fair':
+      return 'text-[#8a6d3b] bg-[#fff8e6] border-[#f0d78c]';
+    case 'poor':
+      return 'text-[#7f1d1d] bg-[#fee2e2] border-[#fca5a5]';
+    default:
+      return 'text-[#444] bg-[#f0f0f0] border-[#ddd]';
+  }
+}
+
+function severityStyles(sev: string | undefined): string {
+  switch (sev) {
+    case 'error':
+      return 'border-l-[#dc2626] bg-[#fef2f2]';
+    case 'warning':
+      return 'border-l-[#d97706] bg-[#fffbeb]';
+    default:
+      return 'border-l-[#457b9d] bg-[#f0f7fb]';
+  }
+}
+
+type HoldingValidationPanelProps = {
+  v: HoldingAgentValidation | undefined;
+};
+
+function HoldingValidationPanel({ v }: HoldingValidationPanelProps) {
+  if (!v || (v.schema_version == null && v.accuracy == null && !v.feedback_items?.length)) {
+    const hasLegacy =
+      v &&
+      (v.is_valid != null ||
+        (v.errors && v.errors.length > 0) ||
+        (v.warnings && v.warnings.length > 0));
+    if (!hasLegacy) {
+      return (
+        <div className="rounded-[10px] border border-dashed border-[#dde1e7] bg-[#fafafa] px-4 py-8 text-center text-[12px] text-[#888] leading-relaxed">
+          아직 검증 결과가 없습니다.
+          <br />
+          <span className="text-[11px] text-[#aaa]">「본문 편집」에서 AI 문단 생성 후 확인할 수 있습니다.</span>
+        </div>
+      );
+    }
+  }
+
+  const overall = v.accuracy?.overall;
+  const byDim = v.accuracy?.by_dimension ?? [];
+
   return (
-    <div ref={setNodeRef} style={style} className="flex items-center justify-between gap-2 px-3.5 pt-2.5 pb-1">
-      <div className="text-[10px] font-bold text-[#aaa] tracking-widest uppercase flex items-center gap-1.5">
+    <div className="flex flex-col gap-4 min-w-0">
+      <div className="flex flex-wrap items-center gap-2">
         <span
-          className="inline-flex items-center cursor-grab active:cursor-grabbing text-[#bbb]"
-          title="섹션 드래그"
-          {...attributes}
-          {...listeners}
+          className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] font-bold ${
+            v.is_valid === true
+              ? 'border-[#95d5b2] bg-[#e8f5e9] text-[#1b4332]'
+              : v.is_valid === false
+                ? 'border-[#fca5a5] bg-[#fee2e2] text-[#7f1d1d]'
+                : 'border-[#ddd] bg-[#f5f5f5] text-[#666]'
+          }`}
         >
-          <GripVertical className="w-3.5 h-3.5" />
+          {v.is_valid === true ? '검증 통과' : v.is_valid === false ? '검증 미통과' : '검증 상태 미상'}
         </span>
-        {section}
+        {overall && (
+          <span
+            className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-[11px] font-bold ${bandAccentClass(overall.band)}`}
+          >
+            <span>종합 {overall.score ?? '—'}점</span>
+            {overall.label_ko && <span className="font-semibold opacity-90">({overall.label_ko})</span>}
+          </span>
+        )}
+        {v.schema_version && (
+          <span className="text-[10px] text-[#aaa] font-mono">schema: {v.schema_version}</span>
+        )}
       </div>
-      <button
-        type="button"
-        onClick={() => onAddPage(section)}
-        className="text-[10px] font-bold text-[#bbb] hover:text-[#2d6a4f] inline-flex items-center gap-1"
-        title="이 섹션에 페이지 추가"
-      >
-        <Plus className="w-3.5 h-3.5" />
-      </button>
+
+      {v.warnings && v.warnings.length > 0 && (
+        <div className="rounded-lg border border-[#f0d78c] bg-[#fffbeb] px-3 py-2">
+          <div className="text-[10px] font-bold text-[#92400e] mb-1">경고</div>
+          <ul className="list-disc pl-4 text-[11px] text-[#78350f] space-y-0.5">
+            {v.warnings.map((w, i) => (
+              <li key={i}>{w}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {v.errors && v.errors.length > 0 && (
+        <div className="rounded-lg border border-[#fca5a5] bg-[#fef2f2] px-3 py-2">
+          <div className="text-[10px] font-bold text-[#991b1b] mb-1">오류(재생성 피드백)</div>
+          <ul className="list-disc pl-4 text-[11px] text-[#7f1d1d] space-y-0.5">
+            {v.errors.map((e, i) => (
+              <li key={i}>{e}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {byDim.length > 0 && (
+        <div className="rounded-[10px] border border-[#dbe9df] bg-[#f7fbf8] p-3.5">
+          <div className="text-[11px] font-bold text-[#2d6a4f] mb-3">차원별 점수</div>
+          <div className="flex flex-col gap-3">
+            {byDim.map((row, i) => {
+              const score = typeof row.score === 'number' ? row.score : 0;
+              return (
+                <div key={row.id ?? i} className="min-w-0">
+                  <div className="flex justify-between gap-2 text-[10px] mb-1">
+                    <span className="font-semibold text-[#333] truncate">
+                      {dimensionLabelKo(row.id)}
+                      <span className="ml-1 font-normal text-[#888]">
+                        ({row.source === 'llm' ? 'LLM' : '규칙'})
+                      </span>
+                    </span>
+                    <span className="shrink-0 text-[#2d6a4f] font-bold">{score}점</span>
+                  </div>
+                  <div className="h-1.5 w-full rounded-full bg-[#e4e6ea] overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-[#74c69d] to-[#2d6a4f] transition-[width]"
+                      style={{ width: `${Math.min(100, Math.max(0, score))}%` }}
+                    />
+                  </div>
+                  {row.notes_ko && (
+                    <p className="mt-1 text-[10px] leading-relaxed text-[#555]">{row.notes_ko}</p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {v.rationale && (v.rationale.summary_ko || v.rationale.llm_summary_ko || v.rationale.rule_summary_ko) && (
+        <div className="rounded-[10px] border border-[#dde1e7] bg-white p-3.5">
+          <div className="text-[11px] font-bold text-[#444] mb-2">판단 요약</div>
+          {v.rationale.summary_ko && (
+            <p className="text-[12px] leading-relaxed text-[#333] mb-2">{v.rationale.summary_ko}</p>
+          )}
+          <div className="text-[10px] text-[#666] space-y-1 border-t border-[#eee] pt-2">
+            {v.rationale.rule_summary_ko && (
+              <p>
+                <span className="font-semibold text-[#888]">규칙: </span>
+                {v.rationale.rule_summary_ko}
+              </p>
+            )}
+            {v.rationale.llm_summary_ko && (
+              <p>
+                <span className="font-semibold text-[#888]">LLM: </span>
+                {v.rationale.llm_summary_ko}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {v.feedback_items && v.feedback_items.length > 0 && (
+        <div>
+          <div className="text-[11px] font-bold text-[#2d6a4f] mb-2">구체적 피드백</div>
+          <div className="flex flex-col gap-2.5">
+            {v.feedback_items.map((item, i) => (
+              <div
+                key={i}
+                className={`rounded-lg border border-[#e4e6ea] border-l-4 pl-3 pr-3 py-2.5 ${severityStyles(item.severity)}`}
+              >
+                <div className="flex flex-wrap items-center gap-1.5 mb-1">
+                  <span className="text-[9px] font-bold uppercase tracking-wide text-[#666]">
+                    {item.severity || 'suggestion'}
+                  </span>
+                  <span className="text-[9px] text-[#888]">· {dimensionLabelKo(item.dimension_id)}</span>
+                  {item.source && (
+                    <span className="text-[9px] text-[#aaa]">({item.source})</span>
+                  )}
+                </div>
+                {item.issue_ko && <p className="text-[11px] font-semibold text-[#333] mb-1">{item.issue_ko}</p>}
+                {item.suggestion_ko && (
+                  <p className="text-[11px] leading-relaxed text-[#555]">{item.suggestion_ko}</p>
+                )}
+                {item.quote && (
+                  <blockquote className="mt-2 rounded bg-white/70 border border-[#e8e8e8] px-2 py-1.5 text-[10px] text-[#444] font-mono whitespace-pre-wrap break-words">
+                    {item.quote}
+                  </blockquote>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-type SortablePageItemProps = {
-  page: HoldingSrPageRow;
-  active: boolean;
-  editing: boolean;
-  hasText: boolean;
-  blockCount: number;
-  editingTitleValue: string;
-  onSelect: () => void;
-  onStartEdit: () => void;
-  onRemove: () => void;
-  onTitleChange: (v: string) => void;
-  onSaveEdit: () => void;
-  onCancelEdit: () => void;
+type SectionHeaderProps = {
+  section: string;
 };
 
-function SortablePageItem({
-  page,
-  active,
-  editing,
-  hasText,
-  blockCount,
-  editingTitleValue,
-  onSelect,
-  onStartEdit,
-  onRemove,
-  onTitleChange,
-  onSaveEdit,
-  onCancelEdit,
-}: SortablePageItemProps) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-    id: `page:${page.page}`,
-  });
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.7 : 1,
-  };
+function SectionHeader({ section }: SectionHeaderProps) {
+  return (
+    <div className="px-3.5 pt-2.5 pb-1">
+      <div className="text-[10px] font-bold text-[#aaa] tracking-widest uppercase">{section}</div>
+    </div>
+  );
+}
 
+type PageListItemProps = {
+  page: HoldingSrPageRow;
+  active: boolean;
+  hasText: boolean;
+  blockCount: number;
+  onSelect: () => void;
+};
+
+function PageListItem({ page, active, hasText, blockCount, onSelect }: PageListItemProps) {
   return (
     <div
-      ref={setNodeRef}
-      style={style}
       role="button"
       tabIndex={0}
       onClick={onSelect}
@@ -177,18 +344,6 @@ function SortablePageItem({
           P.{page.page}
         </span>
         <div className="flex gap-0.5 items-center">
-          <span
-            className="inline-flex items-center p-1 text-[#aaa] cursor-grab active:cursor-grabbing"
-            title="페이지 드래그"
-            {...attributes}
-            {...listeners}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          >
-            <GripVertical className="w-3.5 h-3.5" />
-          </span>
           {hasText && (
             <span className="text-[9px] bg-[#edf5ef] text-[#2d6a4f] rounded-md px-1 py-px">
               문단
@@ -199,83 +354,15 @@ function SortablePageItem({
               +{blockCount}
             </span>
           )}
-          <span className="w-1" />
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onStartEdit();
-            }}
-            className="p-1 rounded hover:bg-white/60"
-            title="제목 수정"
-          >
-            <Pencil className="w-3.5 h-3.5 text-[#aaa]" />
-          </button>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onRemove();
-            }}
-            className="p-1 rounded hover:bg-white/60"
-            title="페이지 삭제"
-          >
-            <Trash2 className="w-3.5 h-3.5 text-[#aaa]" />
-          </button>
         </div>
       </div>
-      {editing ? (
-        <div className="mt-1 flex items-center gap-1.5">
-          <input
-            value={editingTitleValue}
-            onChange={(e) => onTitleChange(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') onSaveEdit();
-              if (e.key === 'Escape') onCancelEdit();
-            }}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-            className="flex-1 bg-white border border-[#e4e6ea] rounded-md px-2 py-1 text-xs outline-none"
-            autoFocus
-          />
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onSaveEdit();
-            }}
-            className="p-1 rounded hover:bg-white/60"
-            title="저장"
-          >
-            <Check className="w-4 h-4 text-[#2d6a4f]" />
-          </button>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onCancelEdit();
-            }}
-            className="p-1 rounded hover:bg-white/60"
-            title="취소"
-          >
-            <X className="w-4 h-4 text-[#aaa]" />
-          </button>
-        </div>
-      ) : (
-        <div
-          className={`text-xs mt-0.5 leading-snug ${
-            active ? 'text-[#2d6a4f] font-bold' : 'text-[#444] font-normal'
-          }`}
-        >
-          {page.title}
-        </div>
-      )}
+      <div
+        className={`text-xs mt-0.5 leading-snug ${
+          active ? 'text-[#2d6a4f] font-bold' : 'text-[#444] font-normal'
+        }`}
+      >
+        {page.title}
+      </div>
     </div>
   );
 }
@@ -291,13 +378,16 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
   const [agentReplies, setAgentReplies] = useState<Record<string, string>>({});
   const [agentLayouts, setAgentLayouts] = useState<Record<string, LayoutBlock[]>>({});
   const [blocks, setBlocks] = useState<Record<string, PageContentBlock[]>>({});
-  const [activeTab, setActiveTab] = useState<'content' | 'chart' | 'table' | 'infographic'>('content');
+  const [pageValidations, setPageValidations] = useState<Record<string, HoldingAgentValidation | undefined>>(
+    {},
+  );
+  const [activeTab, setActiveTab] = useState<
+    'content' | 'chart' | 'table' | 'infographic' | 'accuracy'
+  >('content');
   const [generating, setGenerating] = useState(false);
   /** 페이지별 에이전트 진행 단계(SSE 이벤트 메시지 누적) */
   const [generationSteps, setGenerationSteps] = useState<Record<string, string[]>>({});
   const [requestError, setRequestError] = useState<string | null>(null);
-  const [editingTitlePage, setEditingTitlePage] = useState<number | null>(null);
-  const [editingTitleValue, setEditingTitleValue] = useState('');
   const [newStandard, setNewStandard] = useState('');
   const [editingStandardIndex, setEditingStandardIndex] = useState<number | null>(null);
   const [editingStandardValue, setEditingStandardValue] = useState('');
@@ -338,34 +428,11 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
   const currentLayoutBlocks = pageKey ? agentLayouts[pageKey] || [] : [];
   const currentGenerationSteps = pageKey ? generationSteps[pageKey] || [] : [];
   const currentBlocks = pageKey ? blocks[pageKey] || [] : [];
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }));
+  const currentValidation = pageKey ? pageValidations[pageKey] : undefined;
   const visibleSections = useMemo(
     () => sections.filter((sec) => filtered.some((p) => p.section === sec)),
     [sections, filtered],
   );
-
-  function startEditTitle(p: HoldingSrPageRow) {
-    setEditingTitlePage(p.page);
-    setEditingTitleValue(p.title);
-  }
-
-  function cancelEditTitle() {
-    setEditingTitlePage(null);
-    setEditingTitleValue('');
-  }
-
-  function saveEditTitle() {
-    if (editingTitlePage == null) return;
-    const nextTitle = editingTitleValue.trim();
-    if (!nextTitle) return;
-    setPagesData((prev) =>
-      prev.map((p) => (p.page === editingTitlePage ? { ...p, title: nextTitle } : p)),
-    );
-    setSelectedPage((prev) =>
-      prev && prev.page === editingTitlePage ? { ...prev, title: nextTitle } : prev,
-    );
-    cancelEditTitle();
-  }
 
   function updateSelectedPageStandards(updater: (prev: string[]) => string[]) {
     if (!selectedPage) return;
@@ -411,132 +478,6 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
       prev.map((s, idx) => (idx === editingStandardIndex ? v : s)),
     );
     cancelEditStandard();
-  }
-
-  function addPage(section?: string) {
-    const nextPage = Math.max(0, ...pagesData.map((p) => p.page)) + 1;
-    const nextSection = section || selectedPage?.section || sections[0] || 'NEW';
-    const newPage: HoldingSrPageRow = {
-      page: nextPage,
-      section: nextSection,
-      title: `새 페이지 ${nextPage}`,
-      standards: [],
-    };
-    setPagesData((prev) => [...prev, newPage]);
-    setSelectedPage(newPage);
-    setActiveTab('content');
-    // 새 페이지는 텍스트/블록이 없도록 초기화
-    setPageTexts((prev) => ({ ...prev, [String(nextPage)]: '' }));
-    setBlocks((prev) => ({ ...prev, [String(nextPage)]: [] }));
-  }
-
-  function removePage(p: HoldingSrPageRow) {
-    const pKey = String(p.page);
-    setPagesData((prev) => prev.filter((x) => x.page !== p.page));
-    setPageTexts((prev) => {
-      const { [pKey]: _, ...rest } = prev;
-      return rest;
-    });
-    setBlocks((prev) => {
-      const { [pKey]: _, ...rest } = prev;
-      return rest;
-    });
-    setPagePrompts((prev) => {
-      const { [pKey]: _, ...rest } = prev;
-      return rest;
-    });
-    setAgentReplies((prev) => {
-      const { [pKey]: _, ...rest } = prev;
-      return rest;
-    });
-    setAgentLayouts((prev) => {
-      const { [pKey]: _, ...rest } = prev;
-      return rest;
-    });
-    setSelectedPage((prev) => {
-      if (!prev || prev.page !== p.page) return prev;
-      // 삭제한 페이지가 선택 중이면 같은 섹션의 다른 페이지로 이동 (없으면 null)
-      const fallback =
-        pagesData.find((x) => x.section === p.section && x.page !== p.page) ||
-        pagesData.find((x) => x.page !== p.page) ||
-        null;
-      return fallback;
-    });
-    cancelEditTitle();
-  }
-
-  function reorderBySectionOrder(prev: HoldingSrPageRow[], orderedSections: string[]): HoldingSrPageRow[] {
-    const bySec = new Map<string, HoldingSrPageRow[]>();
-    for (const p of prev) {
-      const arr = bySec.get(p.section) || [];
-      arr.push(p);
-      bySec.set(p.section, arr);
-    }
-    const rebuilt: HoldingSrPageRow[] = [];
-    for (const sec of orderedSections) {
-      const arr = bySec.get(sec);
-      if (arr?.length) rebuilt.push(...arr);
-    }
-    return rebuilt.length ? rebuilt : prev;
-  }
-
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-    if (!over || active.id === over.id) return;
-
-    const activeId = String(active.id);
-    const overId = String(over.id);
-
-    if (activeId.startsWith('sec:') && overId.startsWith('sec:')) {
-      const activeSec = activeId.slice(4);
-      const overSec = overId.slice(4);
-      setPagesData((prev) => {
-        const currentOrder = prev.reduce<string[]>(
-          (acc, p) => (acc.includes(p.section) ? acc : [...acc, p.section]),
-          [],
-        );
-        const oldIndex = currentOrder.indexOf(activeSec);
-        const newIndex = currentOrder.indexOf(overSec);
-        if (oldIndex < 0 || newIndex < 0) return prev;
-        const nextOrder = arrayMove(currentOrder, oldIndex, newIndex);
-        return reorderBySectionOrder(prev, nextOrder);
-      });
-      return;
-    }
-
-    if (activeId.startsWith('page:')) {
-      const activePage = Number(activeId.slice(5));
-      setPagesData((prev) => {
-        const fromIndex = prev.findIndex((p) => p.page === activePage);
-        if (fromIndex < 0) return prev;
-
-        if (overId.startsWith('page:')) {
-          const overPage = Number(overId.slice(5));
-          const toIndex = prev.findIndex((p) => p.page === overPage);
-          if (toIndex < 0) return prev;
-          const targetSection = prev[toIndex]?.section;
-          const base = prev.map((p, idx) =>
-            idx === fromIndex && targetSection ? { ...p, section: targetSection } : p,
-          );
-          return arrayMove(base, fromIndex, toIndex);
-        }
-
-        if (overId.startsWith('sec:')) {
-          const targetSection = overId.slice(4);
-          const moved = { ...prev[fromIndex], section: targetSection };
-          const rest = prev.filter((_, idx) => idx !== fromIndex);
-          let insertAt = rest.length;
-          for (let i = 0; i < rest.length; i += 1) {
-            if (rest[i]?.section === targetSection) insertAt = i + 1;
-          }
-          const out = [...rest];
-          out.splice(insertAt, 0, moved);
-          return out;
-        }
-
-        return prev;
-      });
-    }
   }
 
   async function generateText() {
@@ -604,6 +545,12 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
             }))
           : [];
       setAgentLayouts((prev) => ({ ...prev, [pk]: layoutBlocks }));
+      
+      // 검증 결과 저장 (확장된 accuracy/feedback 포함)
+      if (body.validation) {
+        setPageValidations((prev) => ({ ...prev, [pk]: body.validation }));
+      }
+      
       const replyLines = [
         `workflow_id: ${body.workflow_id ?? '-'}`,
         `status: ${body.status ?? '-'}`,
@@ -687,6 +634,7 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
       const msg = e instanceof Error ? e.message : '요청에 실패했습니다.';
       setRequestError(msg);
       setAgentReplies((prev) => ({ ...prev, [pk]: `요청 실패\n${msg}` }));
+      setPageValidations((prev) => ({ ...prev, [pk]: undefined }));
     } finally {
       setGenerating(false);
     }
@@ -761,17 +709,8 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
       <div className="flex flex-1 min-h-0 overflow-hidden">
         <aside className="w-64 shrink-0 bg-white border-r border-[#e4e6ea] flex flex-col">
           <div className="px-3.5 pt-3.5 pb-2.5 border-b border-[#f0f0f0]">
-            <div className="flex items-center justify-between gap-2 mb-2">
+            <div className="mb-2">
               <div className="text-[11px] font-bold text-[#2d6a4f] tracking-wide">페이지 목록</div>
-              <button
-                type="button"
-                onClick={() => addPage()}
-                className="inline-flex items-center gap-1 text-[10px] font-bold text-[#2d6a4f] hover:opacity-80"
-                title="페이지 추가"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                추가
-              </button>
             </div>
             <input
               value={search}
@@ -781,54 +720,34 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
             />
           </div>
           <div className="flex-1 overflow-y-auto">
-            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-              <SortableContext
-                items={visibleSections.map((sec) => `sec:${sec}`)}
-                strategy={verticalListSortingStrategy}
-              >
             {visibleSections.map((sec) => {
               const pages = filtered.filter((p) => p.section === sec);
               if (!pages.length) return null;
               return (
                 <div key={sec}>
-                  <SortableSectionHeader section={sec} onAddPage={addPage} />
-                  <SortableContext
-                    items={pages.map((p) => `page:${p.page}`)}
-                    strategy={verticalListSortingStrategy}
-                  >
+                  <SectionHeader section={sec} />
                   {pages.map((p) => {
                     const pKey = String(p.page);
                     const blkCount = (blocks[pKey] || []).length;
                     const hasText = !!pageTexts[pKey];
                     const active = selectedPage?.page === p.page;
-                    const editing = editingTitlePage === p.page;
                     return (
-                      <SortablePageItem
+                      <PageListItem
                         key={p.page}
                         page={p}
                         active={active}
-                        editing={editing}
                         hasText={hasText}
                         blockCount={blkCount}
-                        editingTitleValue={editingTitleValue}
                         onSelect={() => {
                           setSelectedPage(p);
                           setActiveTab('content');
                         }}
-                        onStartEdit={() => startEditTitle(p)}
-                        onRemove={() => removePage(p)}
-                        onTitleChange={setEditingTitleValue}
-                        onSaveEdit={saveEditTitle}
-                        onCancelEdit={cancelEditTitle}
                       />
                     );
                   })}
-                  </SortableContext>
                 </div>
               );
             })}
-              </SortableContext>
-            </DndContext>
           </div>
         </aside>
 
@@ -934,10 +853,11 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
                     </button>
                   )}
                 </div>
-                <div className="flex gap-0 mt-3">
+                <div className="flex gap-0 mt-3 flex-wrap">
                   {(
                     [
                       ['content', '📝 본문 편집'],
+                      ['accuracy', '🎯 정확도·피드백'],
                       ['chart', '📊 차트(자유)'],
                       ['table', '📋 표'],
                       ['infographic', '🎨 인포그래픽'],
@@ -1147,6 +1067,7 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
                       )}
                     </>
                   )}
+                  {activeTab === 'accuracy' && <HoldingValidationPanel v={currentValidation} />}
                   {activeTab === 'chart' && <HoldingChartEditor onAdd={addBlock} />}
                   {activeTab === 'table' && <HoldingTableEditor onAdd={addBlock} />}
                   {activeTab === 'infographic' && selectedPage && (

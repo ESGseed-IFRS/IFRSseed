@@ -17,6 +17,31 @@ class RuleResult:
     warnings: List[str] = field(default_factory=list)
 
 
+@dataclass
+class RuleSignals:
+    """규칙 단계에서 결정 가능한 차원 점수(0–100) 및 메모."""
+
+    dimension_scores: Dict[str, int] = field(default_factory=dict)
+    dimension_notes_ko: Dict[str, str] = field(default_factory=dict)
+    rule_summary_ko: str = ""
+
+    @classmethod
+    def baseline(cls) -> RuleSignals:
+        """LLM 차원은 병합 단계에서 채움."""
+        return cls(
+            dimension_scores={
+                "format_completeness": 100,
+                "numeric_presence": 100,
+                "dp_availability": 100,
+            },
+            dimension_notes_ko={
+                "format_completeness": "검사 전",
+                "numeric_presence": "검사 전",
+                "dp_availability": "검사 전",
+            },
+        )
+
+
 def rule_non_empty_text(text: str) -> List[str]:
     if not text or not text.strip():
         return [
@@ -155,31 +180,65 @@ def run_rules(
     fact_data: Dict[str, Any],
     fact_data_by_dp: Dict[str, Any],
     mode: ValidationMode,
-) -> RuleResult:
+) -> Tuple[RuleResult, RuleSignals]:
     out = RuleResult()
+    sig = RuleSignals.baseline()
     min_chars = 80 if mode == ValidationMode.CREATE else 40
 
     out.errors.extend(rule_non_empty_text(text))
     if out.errors:
-        return out
+        sig.dimension_scores["format_completeness"] = 0
+        sig.dimension_notes_ko["format_completeness"] = "본문이 비어 있음"
+        sig.rule_summary_ko = "형식: 비어 있음"
+        return out, sig
 
     out.errors.extend(rule_min_length(text, min_chars=min_chars))
     if out.errors:
-        return out
+        sig.dimension_scores["format_completeness"] = 0
+        sig.dimension_notes_ko["format_completeness"] = f"최소 길이({min_chars}자) 미달"
+        sig.rule_summary_ko = "형식: 길이 부족"
+        return out, sig
 
-    out.warnings.extend(rule_fact_dp_warnings(fact_data_by_dp or {}))
+    sig.dimension_notes_ko["format_completeness"] = "비어 있지 않고 최소 길이 충족"
+    sig.rule_summary_ko = "형식 요건 충족"
+
+    dp_warns = rule_fact_dp_warnings(fact_data_by_dp or {})
+    out.warnings.extend(dp_warns)
+    if dp_warns:
+        sig.dimension_scores["dp_availability"] = 85
+        sig.dimension_notes_ko["dp_availability"] = (
+            "일부 DP 데이터 조회 실패 — 해당 수치 인용 주의"
+        )
+    else:
+        sig.dimension_scores["dp_availability"] = 100
+        sig.dimension_notes_ko["dp_availability"] = "DP 조회 경고 없음"
 
     # Refine은 짧은 수정이 많아 수치 전체 미반영 검사는 생략
     if mode == ValidationMode.CREATE:
-        out.errors.extend(
-            rule_numeric_consistency_light(
-                text,
-                fact_data if isinstance(fact_data, dict) else {},
-                fact_data_by_dp if isinstance(fact_data_by_dp, dict) else {},
+        num_errs = rule_numeric_consistency_light(
+            text,
+            fact_data if isinstance(fact_data, dict) else {},
+            fact_data_by_dp if isinstance(fact_data_by_dp, dict) else {},
+        )
+        out.errors.extend(num_errs)
+        if num_errs:
+            sig.dimension_scores["numeric_presence"] = 0
+            sig.dimension_notes_ko["numeric_presence"] = (
+                "제공된 수치가 본문에 반영되지 않음"
             )
+            sig.rule_summary_ko = (
+                sig.rule_summary_ko + "; 수치 최소 반영 미충족"
+            ).strip("; ")
+        else:
+            sig.dimension_notes_ko["numeric_presence"] = (
+                "제공 수치가 본문에 최소 1회 이상 반영됨(create)"
+            )
+    else:
+        sig.dimension_notes_ko["numeric_presence"] = (
+            "refine 모드: 수치 전체 반영 검사 생략"
         )
 
-    return out
+    return out, sig
 
 
 def summarize_facts_for_llm(

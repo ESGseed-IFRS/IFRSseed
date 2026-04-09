@@ -74,6 +74,19 @@ infra.agent_registry.register("validator_node", make_validator_node_handler(infr
 - **`is_valid` 키는 항상 포함.** 생략 시 오케스트레이터가 실패로 처리할 수 있음.
 - **`errors`는 항상 리스트** (빈 리스트 허용).
 
+### 3.1 UI 확장 응답 (`validator_ui_extended`)
+
+`runtime_config.validator_ui_extended == true`(기본) 또는 환경변수 `VALIDATOR_UI_EXTENDED`가 꺼지지 않은 경우, 위 필드에 더해 다음이 **추가**된다. 자세한 설계는 [ACCURACY_FEEDBACK_DESIGN.md](./ACCURACY_FEEDBACK_DESIGN.md) 참고.
+
+| 키 | 설명 |
+|----|------|
+| `schema_version` | 예: `"validator_ui_v1"` |
+| `accuracy` | `overall`(score, band, label_ko), `by_dimension`(차원별 score·weight·source·notes_ko) |
+| `feedback_items` | 구조화된 수정 권고(`severity`, `dimension_id`, `issue_ko`, `suggestion_ko`, `quote`, `source`) |
+| `rationale` | `summary_ko`, `rule_summary_ko`, `llm_summary_ko` |
+
+확장을 끄려면 `runtime_config: { "validator_ui_extended": false }` 또는 `VALIDATOR_UI_EXTENDED=0`.
+
 ---
 
 ## 4. 모드 판별 (`payload.py`)

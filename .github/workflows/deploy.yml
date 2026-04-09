@@ -24,6 +24,14 @@
 # (2) EC2_USER는 ubuntu / ec2-user 등 실제 로그인 사용자 (3) 포트·보안그룹
 # (4) 암호가 걸린 PEM은 비대화식이라 실패 → 암호 없는 키 사용
 #
+# 선택(ALB idle timeout — SSE 등 장시간 연결):
+#   배포 후 Application Load Balancer 의 Connection idle timeout 을 올리려면 아래 시크릿을 설정합니다.
+#   - ALB_LOAD_BALANCER_ARN: ALB ARN (필수, 이 시크릿이 비어 있으면 단계 스킵)
+#   - ALB_IDLE_TIMEOUT_SECONDS: 초 (선택, 기본 3600, 범위 1~4000)
+#   자격 증명(택1):
+#   A) OIDC(권장): AWS_ROLE_ARN + IAM 역할 신뢰 정책에 repo 허용, permissions 에 id-token: write 필요(이미 포함)
+#   B) 액세스 키: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION (예: ap-northeast-2)
+#
 name: CI & Deploy to EC2
 
 on:
@@ -39,6 +47,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write # optional: AWS OIDC (configure-aws-credentials role-to-assume)
 
 concurrency:
   group: ci-deploy-ec2-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -363,3 +372,37 @@ jobs:
               exit 1
             fi
             echo "=== 배포 스크립트 정상 종료 (${SERVICE_NAME} active) ==="
+
+      # ALB Connection idle timeout — ALB_LOAD_BALANCER_ARN + (OIDC 또는 액세스 키) 가 있을 때만 실행
+      - name: Configure AWS credentials (OIDC)
+        if: ${{ secrets.ALB_LOAD_BALANCER_ARN != '' && secrets.AWS_ROLE_ARN != '' }}
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Configure AWS credentials (access keys)
+        if: ${{ secrets.ALB_LOAD_BALANCER_ARN != '' && secrets.AWS_ACCESS_KEY_ID != '' && secrets.AWS_SECRET_ACCESS_KEY != '' && secrets.AWS_ROLE_ARN == '' }}
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: ALB idle timeout (SSE / long streams)
+        if: ${{ secrets.ALB_LOAD_BALANCER_ARN != '' && (secrets.AWS_ROLE_ARN != '' || (secrets.AWS_ACCESS_KEY_ID != '' && secrets.AWS_SECRET_ACCESS_KEY != '')) }}
+        env:
+          ALB_ARN: ${{ secrets.ALB_LOAD_BALANCER_ARN }}
+          IDLE_SEC: ${{ secrets.ALB_IDLE_TIMEOUT_SECONDS }}
+        run: |
+          set -euo pipefail
+          SEC="${IDLE_SEC:-3600}"
+          case "$SEC" in ''|*[!0-9]*) echo "::error::ALB_IDLE_TIMEOUT_SECONDS must be 1-4000"; exit 1;; esac
+          if [ "$SEC" -lt 1 ] || [ "$SEC" -gt 4000 ]; then
+            echo "::error::ALB idle timeout must be 1-4000 (got $SEC)"
+            exit 1
+          fi
+          aws elbv2 modify-load-balancer-attributes \
+            --load-balancer-arn "$ALB_ARN" \
+            --attributes "Key=idle_timeout.timeout_seconds,Value=${SEC}"
+          echo "::notice::ALB idle_timeout set to ${SEC}s"
