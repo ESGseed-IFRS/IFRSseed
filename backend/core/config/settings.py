@@ -25,6 +25,22 @@ def _env_flag_false_by_default(key: str) -> bool:
     return raw in ("1", "true", "yes", "on")
 
 
+def _env_int(key: str, *, default: int, ge: int | None = None, le: int | None = None) -> int:
+    """환경변수 정수 파싱. 비어 있거나 잘못된 값이면 default."""
+    raw = os.getenv(key, "").strip()
+    if not raw:
+        return default
+    try:
+        v = int(raw)
+    except ValueError:
+        return default
+    if ge is not None and v < ge:
+        return ge
+    if le is not None and v > le:
+        return le
+    return v
+
+
 @dataclass(frozen=True)
 class Settings:
     # Common
@@ -34,6 +50,11 @@ class Settings:
     asyncpg_ssl_disable: bool = False
     # True면 DATABASE_URL의 ssl* 쿼리를 제거하고 시스템 기본 CA로만 연결(errno 42 1회 실패·경고 방지, Neon 등). 기본 True.
     asyncpg_force_default_ssl: bool = True
+    # asyncpg 풀: .env DB_POOL_MIN_SIZE, DB_POOL_MAX_SIZE, DB_TIMEOUT(획득 대기), DB_COMMAND_TIMEOUT(쿼리)
+    db_pool_min_size: int = 5
+    db_pool_max_size: int = 20
+    db_pool_acquire_timeout_sec: int = 120
+    asyncpg_command_timeout_sec: int = 150
     # ifrs_agent InfraLayer call_agent/call_tool 기본 타임아웃(초). 임베딩·원격 DB 시 30은 부족할 수 있음.
     ifrs_infra_timeout_sec: int = 210
     # c_rag·dp_rag 등 연도 루프·LLM 포함 작업용(오케스트레이터에서만 사용)
@@ -150,6 +171,14 @@ def get_settings() -> Settings:
         asyncpg_ssl_disable=_env_flag_false_by_default("ASYNCPG_SSL_DISABLE"),
         asyncpg_force_default_ssl=_env_flag_default_true(
             "ASYNCPG_FORCE_DEFAULT_SSL", default=True
+        ),
+        db_pool_min_size=_env_int("DB_POOL_MIN_SIZE", default=5, ge=0, le=64),
+        db_pool_max_size=_env_int("DB_POOL_MAX_SIZE", default=20, ge=1, le=200),
+        db_pool_acquire_timeout_sec=_env_int(
+            "DB_TIMEOUT", default=120, ge=1, le=600
+        ),
+        asyncpg_command_timeout_sec=_env_int(
+            "DB_COMMAND_TIMEOUT", default=150, ge=5, le=7200
         ),
         ifrs_infra_timeout_sec=max(30, int(os.getenv("IFRS_INFRA_TIMEOUT_SEC", "210"))),
         ifrs_infra_heavy_timeout_sec=max(
