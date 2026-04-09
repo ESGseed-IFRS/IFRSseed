@@ -1,12 +1,12 @@
-"""Scope 1·2 산정 API."""
+"""Scope 1·2 산정 API (V2 - 개선)."""
 from __future__ import annotations
 
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query
 
-from backend.domain.v1.ghg_calculation.hub.orchestrator.scope_calculation_orchestrator import (
-    ScopeCalculationOrchestrator,
+from backend.domain.v1.ghg_calculation.hub.orchestrator.scope_calculation_orchestrator_v2 import (
+    ScopeCalculationOrchestratorV2,
 )
 from backend.domain.v1.ghg_calculation.models.states import (
     ScopeRecalculateRequestDto,
@@ -15,7 +15,8 @@ from backend.domain.v1.ghg_calculation.models.states import (
 
 scope_calculation_router = APIRouter(prefix="/scope", tags=["GHG Scope Calculation"])
 
-_orch = ScopeCalculationOrchestrator()
+# V2 Orchestrator 사용: 열량계수, GHG 가스별 계산, 단위 자동 변환 지원
+_orch = ScopeCalculationOrchestratorV2()
 
 
 @scope_calculation_router.post(

@@ -58,6 +58,8 @@ class GhgAnomalyScanRequestDto(BaseModel):
     mom_ratio: float = Field(default=2.0, gt=0, description="전월 대비 배수 초과 시 이상")
     ma12_ratio: float = Field(default=2.5, gt=0, description="직전 12개월 평균 대비 배수")
     zscore_threshold: float = Field(default=3.0, gt=0, description="최근 12개월 기준 |Z| 초과")
+    iqr_multiplier: float = Field(default=1.5, gt=0, description="IQR 배수 (기본 1.5, 극단값은 3.0)")
+    enable_iqr: bool = Field(default=True, description="IQR 이상치 검증 활성화")
 
 
 class GhgAnomalyScanResponseDto(BaseModel):

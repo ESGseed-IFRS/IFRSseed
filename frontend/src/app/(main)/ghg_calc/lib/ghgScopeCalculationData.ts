@@ -384,6 +384,14 @@ export type ScopeRecalculateApiLineItem = {
   ef_source: string;
   yoy: number | null;
   status: string;
+  // 배출계수 매핑 상세 정보
+  source_unit?: string;
+  ef_unit?: string;
+  ef_version?: string;
+  factor_code?: string;
+  calculation_formula?: string;
+  heat_content?: number | null;
+  annual_activity?: number;
 };
 
 export type ScopeRecalculateApiCategory = {

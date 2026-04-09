@@ -302,6 +302,50 @@ class GhgRawTimeseriesAnomalyService:
                                     )
                                 )
 
+                    # IQR 기반 이상치 검증 (비정규분포 대응)
+                    if req.enable_iqr and len(hist) >= 4:
+                        sorted_hist = sorted(hist)
+                        n = len(sorted_hist)
+                        q1_idx = n // 4
+                        q3_idx = (3 * n) // 4
+                        q1 = sorted_hist[q1_idx]
+                        q3 = sorted_hist[q3_idx]
+                        iqr = q3 - q1
+
+                        if iqr > 1e-9:
+                            lower_bound = q1 - req.iqr_multiplier * iqr
+                            upper_bound = q3 + req.iqr_multiplier * iqr
+
+                            if v < lower_bound or v > upper_bound:
+                                is_extreme = v < (q1 - 3.0 * iqr) or v > (q3 + 3.0 * iqr)
+                                findings.append(
+                                    GhgAnomalyFindingVo(
+                                        rule_code="IQR_OUTLIER" if not is_extreme else "IQR_EXTREME",
+                                        severity="high" if is_extreme else "medium",
+                                        phase="timeseries",
+                                        message=(
+                                            f"IQR {req.iqr_multiplier}배 범위 이탈 "
+                                            f"[{lower_bound:.1f}, {upper_bound:.1f}]. "
+                                            f"{cat} / {facility} / {metric} / {ym}"
+                                        ),
+                                        context={
+                                            "category": cat,
+                                            "system": sys_key,
+                                            "facility": facility,
+                                            "metric": metric,
+                                            "unit": unit,
+                                            "year_month": ym,
+                                            "current": v,
+                                            "q1": round(q1, 2),
+                                            "q3": round(q3, 2),
+                                            "iqr": round(iqr, 2),
+                                            "lower_bound": round(lower_bound, 2),
+                                            "upper_bound": round(upper_bound, 2),
+                                            "is_extreme": is_extreme,
+                                        },
+                                    )
+                                )
+
         return GhgAnomalyScanResponseDto(
             company_id=str(req.company_id),
             categories=categories,

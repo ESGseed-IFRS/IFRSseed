@@ -184,7 +184,11 @@ function CategoryTable({ categories }: { categories: ScopeCalcCategory[] }) {
   );
 }
 
-export function ScopeCalculation() {
+interface ScopeCalculationProps {
+  onApiResponseUpdate?: (data: ScopeRecalculateApiResponse | null) => void;
+}
+
+export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps) {
   const { session } = useGhgSession();
   const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:9001';
   const companyId = useAuthSessionStore((s) => s.user?.company_id?.trim() ?? '');
@@ -211,6 +215,7 @@ export function ScopeCalculation() {
   useEffect(() => {
     if (!companyId) {
       setLiveApi(null);
+      onApiResponseUpdate?.(null);
       return undefined;
     }
     let cancelled = false;
@@ -220,16 +225,25 @@ export function ScopeCalculation() {
           `${apiBase.replace(/\/$/, '')}/ghg-calculation/scope/results?company_id=${encodeURIComponent(companyId)}&year=${encodeURIComponent(selectedYear)}&basis=location`,
         );
         if (cancelled) return;
-        if (res.ok) setLiveApi((await res.json()) as ScopeRecalculateApiResponse);
-        else setLiveApi(null);
+        if (res.ok) {
+          const body = (await res.json()) as ScopeRecalculateApiResponse;
+          setLiveApi(body);
+          onApiResponseUpdate?.(body);
+        } else {
+          setLiveApi(null);
+          onApiResponseUpdate?.(null);
+        }
       } catch {
-        if (!cancelled) setLiveApi(null);
+        if (!cancelled) {
+          setLiveApi(null);
+          onApiResponseUpdate?.(null);
+        }
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [apiBase, companyId, selectedYear]);
+  }, [apiBase, companyId, selectedYear, onApiResponseUpdate]);
 
   const handleRecalculate = async () => {
     if (!companyId) {
@@ -250,6 +264,7 @@ export function ScopeCalculation() {
       }
       const body = (await res.json()) as ScopeRecalculateApiResponse;
       setLiveApi(body);
+      onApiResponseUpdate?.(body);
       setRecalcDone(true);
       setTimeout(() => setRecalcDone(false), 3000);
     } catch (e) {

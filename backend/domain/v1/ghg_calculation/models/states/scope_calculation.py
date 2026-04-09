@@ -32,6 +32,15 @@ class ScopeCalcLineItemDto(BaseModel):
         description="직전 ghg_emission_results(동일 basis) 라인 total 대비 %; 전년 없거나 매칭 실패 시 None.",
     )
     status: Literal["confirmed", "draft", "warning", "error"] = "confirmed"
+    
+    # 배출계수 상세 정보 (EmissionFactorMapping 탭용)
+    source_unit: str = Field(default="", description="활동자료 단위 (Nm³, kWh 등)")
+    ef_unit: str = Field(default="", description="배출계수 단위 (tCO₂eq/TJ, kgCO₂eq/kWh 등)")
+    ef_version: str = Field(default="", description="배출계수 버전 (v2.0, 2024년 등)")
+    factor_code: str = Field(default="", description="배출계수 코드 (KR_2024_천연가스_LNG 등)")
+    calculation_formula: str = Field(default="", description="계산 공식 (활동량 × 열량계수 × 배출계수)")
+    heat_content: float | None = Field(default=None, description="열량계수 (TJ/천Nm³ 등)")
+    annual_activity: float = Field(default=0.0, description="연간 활동량 (원단위)")
 
 
 class ScopeCalcCategoryDto(BaseModel):
