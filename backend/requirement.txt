@@ -30,6 +30,7 @@ openai>=1.0.0
 transformers>=4.36.0
 langchain-google-genai>=0.0.5
 google-genai>=0.1.0
+google-generativeai>=0.3.0
 
 # Embedding
 sentence-transformers>=2.2.0
