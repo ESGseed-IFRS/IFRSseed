@@ -394,14 +394,14 @@ jobs:
 
       # ALB Connection idle timeout — ALB_LOAD_BALANCER_ARN + (OIDC 또는 액세스 키) 가 있을 때만 실행
       - name: Configure AWS credentials (OIDC)
-        if: ${{ secrets.ALB_LOAD_BALANCER_ARN != '' && secrets.AWS_ROLE_ARN != '' }}
+        if: secrets.ALB_LOAD_BALANCER_ARN != '' && secrets.AWS_ROLE_ARN != ''
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Configure AWS credentials (access keys)
-        if: ${{ secrets.ALB_LOAD_BALANCER_ARN != '' && secrets.AWS_ACCESS_KEY_ID != '' && secrets.AWS_SECRET_ACCESS_KEY != '' && secrets.AWS_ROLE_ARN == '' }}
+        if: secrets.ALB_LOAD_BALANCER_ARN != '' && secrets.AWS_ACCESS_KEY_ID != '' && secrets.AWS_SECRET_ACCESS_KEY != '' && secrets.AWS_ROLE_ARN == ''
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -409,7 +409,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: ALB idle timeout (SSE / long streams)
-        if: ${{ secrets.ALB_LOAD_BALANCER_ARN != '' && (secrets.AWS_ROLE_ARN != '' || (secrets.AWS_ACCESS_KEY_ID != '' && secrets.AWS_SECRET_ACCESS_KEY != '')) }}
+        if: secrets.ALB_LOAD_BALANCER_ARN != '' && (secrets.AWS_ROLE_ARN != '' || (secrets.AWS_ACCESS_KEY_ID != '' && secrets.AWS_SECRET_ACCESS_KEY != ''))
         env:
           ALB_ARN: ${{ secrets.ALB_LOAD_BALANCER_ARN }}
           IDLE_SEC: ${{ secrets.ALB_IDLE_TIMEOUT_SECONDS }}
