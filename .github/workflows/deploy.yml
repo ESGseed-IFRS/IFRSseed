@@ -158,7 +158,7 @@ jobs:
             "${EC2_USER_TR}@${EC2_HOST_TR}" \
             "mkdir -p '${EC2_DEPLOY_PATH_TR}/backend'"
 
-      - name: Rsync to EC2 (→ .../backend/)
+      - name: Rsync to EC2 (→ .../backend/ + infra/)
         run: |
           rsync -avz --delete \
             --exclude '.git/' \
@@ -170,6 +170,11 @@ jobs:
             --exclude '**/llamaparse_md/' \
             -e "ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -p ${SSH_PORT}" \
             ./backend/ "${EC2_USER_TR}@${EC2_HOST_TR}:${EC2_DEPLOY_PATH_TR}/backend/"
+          
+          # Nginx 설정 파일 전송
+          rsync -avz \
+            -e "ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -p ${SSH_PORT}" \
+            ./infra/ "${EC2_USER_TR}@${EC2_HOST_TR}:${EC2_DEPLOY_PATH_TR}/infra/"
 
       # backend/api/v1/main.py 의 load_dotenv 는 배포 루트(…/app/.env)를 읽고, systemd ifrs-backend 의 EnvironmentFile 은 …/backend/.env 를 쓰는 경우가 있어 동일 내용을 둘 다 둡니다.
       # rsync 는 .env 를 제외하므로 여기서 시크릿을 기록합니다.
@@ -307,23 +312,37 @@ jobs:
                   sudo certbot renew --quiet || true
                 fi
               else
-                {
-                  printf '%s\n' 'server {'
-                  printf '%s\n' '    listen 80;'
-                  printf '    server_name %s;\n' "$API_DOMAIN"
-                  printf '%s\n' '    client_max_body_size 50m;'
-                  printf '%s\n' '    location / {'
-                  printf '%s\n' '        proxy_pass http://127.0.0.1:9001;'
-                  printf '%s\n' '        proxy_http_version 1.1;'
-                  printf '%s\n' '        proxy_set_header Host $host;'
-                  printf '%s\n' '        proxy_set_header X-Real-IP $remote_addr;'
-                  printf '%s\n' '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;'
-                  printf '%s\n' '        proxy_set_header X-Forwarded-Proto $scheme;'
-                  printf '%s\n' '        proxy_set_header Upgrade $http_upgrade;'
-                  printf '%s\n' '        proxy_set_header Connection "upgrade";'
-                  printf '%s\n' '    }'
-                  printf '%s\n' '}'
-                } | sudo tee /etc/nginx/sites-available/ifrs-api.conf > /dev/null
+                # envsubst 패키지 확인 및 설치
+                if ! command -v envsubst >/dev/null 2>&1; then
+                  sudo apt-get update -qq
+                  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gettext-base || echo "::warning::envsubst 설치 실패"
+                fi
+                # 템플릿 파일이 있으면 사용, 없으면 인라인 생성 (하위 호환)
+                if [ -f "${{ env.EC2_DEPLOY_PATH_TR }}/infra/nginx/ifrs-api.conf" ]; then
+                  echo "::notice::infra/nginx/ifrs-api.conf 템플릿 사용 (변수 치환 API_DOMAIN=${API_DOMAIN})"
+                  export API_DOMAIN
+                  envsubst '${API_DOMAIN}' < "${{ env.EC2_DEPLOY_PATH_TR }}/infra/nginx/ifrs-api.conf" \
+                    | sudo tee /etc/nginx/sites-available/ifrs-api.conf > /dev/null
+                else
+                  echo "::warning::infra/nginx/ifrs-api.conf 없음 — 기본 설정 사용 (타임아웃 미포함)"
+                  {
+                    printf '%s\n' 'server {'
+                    printf '%s\n' '    listen 80;'
+                    printf '    server_name %s;\n' "$API_DOMAIN"
+                    printf '%s\n' '    client_max_body_size 50m;'
+                    printf '%s\n' '    location / {'
+                    printf '%s\n' '        proxy_pass http://127.0.0.1:9001;'
+                    printf '%s\n' '        proxy_http_version 1.1;'
+                    printf '%s\n' '        proxy_set_header Host $host;'
+                    printf '%s\n' '        proxy_set_header X-Real-IP $remote_addr;'
+                    printf '%s\n' '        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;'
+                    printf '%s\n' '        proxy_set_header X-Forwarded-Proto $scheme;'
+                    printf '%s\n' '        proxy_set_header Upgrade $http_upgrade;'
+                    printf '%s\n' '        proxy_set_header Connection "upgrade";'
+                    printf '%s\n' '    }'
+                    printf '%s\n' '}'
+                  } | sudo tee /etc/nginx/sites-available/ifrs-api.conf > /dev/null
+                fi
                 sudo ln -sf /etc/nginx/sites-available/ifrs-api.conf /etc/nginx/sites-enabled/ifrs-api.conf
                 if [ -f /etc/nginx/sites-enabled/default ]; then
                   sudo rm -f /etc/nginx/sites-enabled/default
