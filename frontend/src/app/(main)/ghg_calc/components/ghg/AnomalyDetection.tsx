@@ -29,6 +29,13 @@ interface Anomaly {
   status: AnomalyStatus;
   reason?: string;
   correctedValue?: number;
+  context?: Record<string, unknown>;
+}
+
+interface CorrectionValidation {
+  isValid: boolean;
+  message: string;
+  calculatedDeviation?: number;
 }
 
 type ScanFinding = {
@@ -267,6 +274,7 @@ function mapScanFindingToAnomaly(f: ScanFinding, idx: number): Anomaly {
     alertStrong,
     unit,
     status: "unresolved",
+    context: ctx,
   };
 }
 
@@ -275,6 +283,10 @@ export function AnomalyDetection() {
   const [selectedScope, setSelectedScope] = useState<string>("전체");
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [reasonInputs, setReasonInputs] = useState<Record<number, string>>({});
+  const [correctionInputs, setCorrectionInputs] = useState<Record<number, string>>({});
+  const [correctionValidation, setCorrectionValidation] = useState<Record<number, CorrectionValidation>>({});
+  const [showCorrectionInput, setShowCorrectionInput] = useState<Record<number, boolean>>({});
+  const [applyingCorrection, setApplyingCorrection] = useState<Record<number, boolean>>({});
   const [searchKeyword, setSearchKeyword] = useState("");
   const [anomalies, setAnomalies] = useState<Anomaly[]>([]);
   const [loading, setLoading] = useState(false);
@@ -337,12 +349,122 @@ export function AnomalyDetection() {
     );
   };
 
+  const handleShowCorrectionInput = (id: number) => {
+    setShowCorrectionInput(prev => ({ ...prev, [id]: true }));
+  };
+
+  const handleCorrectionValueChange = async (anomalyId: number, value: string) => {
+    setCorrectionInputs(prev => ({ ...prev, [anomalyId]: value }));
+    
+    const numValue = parseFloat(value);
+    if (isNaN(numValue) || numValue < 0) {
+      setCorrectionValidation(prev => ({
+        ...prev,
+        [anomalyId]: { isValid: false, message: "유효한 양수를 입력하세요" }
+      }));
+      return;
+    }
+    
+    const anomaly = anomalies.find(a => a.id === anomalyId);
+    if (!anomaly || !anomaly.context) return;
+    
+    try {
+      const res = await fetchWithAuthJson(
+        `${apiBase}/ghg-calculation/raw-data/validate-correction`,
+        {
+          method: 'POST',
+          jsonBody: {
+            rule_code: anomaly.ruleCode,
+            current_value: anomaly.currentValue,
+            corrected_value: numValue,
+            context: anomaly.context,
+            unit: anomaly.unit,
+          }
+        }
+      );
+      
+      if (!res.ok) {
+        throw new Error('검증 실패');
+      }
+      
+      const validation = await res.json() as CorrectionValidation;
+      setCorrectionValidation(prev => ({
+        ...prev,
+        [anomalyId]: validation
+      }));
+    } catch (err) {
+      setCorrectionValidation(prev => ({
+        ...prev,
+        [anomalyId]: { isValid: false, message: '검증 중 오류 발생' }
+      }));
+    }
+  };
+
+  const handleApplyCorrection = async (anomalyId: number) => {
+    const correctedValue = parseFloat(correctionInputs[anomalyId] || '0');
+    const validation = correctionValidation[anomalyId];
+    
+    if (!validation?.isValid) {
+      alert('보정값이 적합하지 않습니다.');
+      return;
+    }
+    
+    const anomaly = anomalies.find(a => a.id === anomalyId);
+    if (!anomaly || !anomaly.context) return;
+    
+    const reason = reasonInputs[anomalyId]?.trim();
+    if (!reason) {
+      alert('보정 사유를 먼저 입력해주세요.');
+      return;
+    }
+    
+    setApplyingCorrection(prev => ({ ...prev, [anomalyId]: true }));
+    
+    try {
+      const res = await fetchWithAuthJson(
+        `${apiBase}/ghg-calculation/raw-data/apply-correction`,
+        {
+          method: 'POST',
+          jsonBody: {
+            company_id: companyId,
+            anomaly_context: anomaly.context,
+            corrected_value: correctedValue,
+            original_value: anomaly.currentValue,
+            reason: reason,
+            rule_code: anomaly.ruleCode,
+          }
+        }
+      );
+      
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(errorText || '보정 적용 실패');
+      }
+      
+      const result = await res.json();
+      
+      setAnomalies((prev) =>
+        prev.map((a) =>
+          a.id === anomalyId 
+            ? { ...a, status: "corrected", correctedValue, reason } 
+            : a
+        )
+      );
+      
+      setShowCorrectionInput(prev => ({ ...prev, [anomalyId]: false }));
+      
+      alert(`보정 완료: ${result.updated_records}개 레코드가 업데이트되었습니다.\n\n원본 데이터는 _original_value 필드에 보존되었으며, 보정 이력이 기록되었습니다.`);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : '보정 적용 중 오류 발생';
+      alert(msg);
+    } finally {
+      setApplyingCorrection(prev => ({ ...prev, [anomalyId]: false }));
+    }
+  };
+
   const handleMarkCorrected = (id: number) => {
-    setAnomalies((prev) =>
-      prev.map((a) =>
-        a.id === id ? { ...a, status: "corrected", correctedValue: a.currentValue } : a
-      )
-    );
+    // 기존 함수는 제거하고 handleShowCorrectionInput으로 대체
+    handleShowCorrectionInput(id);
   };
 
   const handleIgnore = (id: number) => {
@@ -503,15 +625,85 @@ export function AnomalyDetection() {
                         </div>
                       )}
                       {anomaly.status === "unresolved" && (
-                        <div className="space-y-2">
-                          <label className="text-xs text-gray-600" style={{ fontWeight: 600 }}>이상치 사유 입력 <span className="text-red-500">*</span></label>
-                          <textarea
-                            rows={2}
-                            placeholder="이상치 발생 사유를 입력하세요"
-                            value={reasonInputs[anomaly.id] ?? ""}
-                            onChange={e => setReasonInputs(p => ({ ...p, [anomaly.id]: e.target.value }))}
-                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-400 resize-none"
-                          />
+                        <div className="space-y-3">
+                          <div>
+                            <label className="text-xs text-gray-600" style={{ fontWeight: 600 }}>
+                              이상치 사유 입력 <span className="text-red-500">*</span>
+                            </label>
+                            <textarea
+                              rows={2}
+                              placeholder="이상치 발생 사유를 입력하세요"
+                              value={reasonInputs[anomaly.id] ?? ""}
+                              onChange={e => setReasonInputs(p => ({ ...p, [anomaly.id]: e.target.value }))}
+                              className="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-400 resize-none"
+                            />
+                          </div>
+                          
+                          {showCorrectionInput[anomaly.id] && (
+                            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 space-y-2">
+                              <label className="text-xs text-gray-700 font-semibold flex items-center gap-2">
+                                보정값 입력
+                                <span className="text-xs text-gray-500 font-normal">
+                                  (현재: {anomaly.currentValue.toLocaleString()} {anomaly.unit})
+                                </span>
+                              </label>
+                              
+                              <div className="flex items-center gap-2">
+                                <input
+                                  type="number"
+                                  step="0.01"
+                                  placeholder="보정할 값을 입력하세요"
+                                  value={correctionInputs[anomaly.id] ?? ""}
+                                  onChange={e => handleCorrectionValueChange(anomaly.id, e.target.value)}
+                                  className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-emerald-400"
+                                />
+                                <span className="text-xs text-gray-500 w-12">{anomaly.unit}</span>
+                              </div>
+                              
+                              {correctionValidation[anomaly.id] && (
+                                <div className={`text-xs p-2 rounded-lg ${
+                                  correctionValidation[anomaly.id].isValid 
+                                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
+                                    : 'bg-red-50 text-red-700 border border-red-200'
+                                }`}>
+                                  <div className="flex items-center gap-1">
+                                    {correctionValidation[anomaly.id].isValid ? '✓' : '✗'}
+                                    <span>{correctionValidation[anomaly.id].message}</span>
+                                  </div>
+                                  
+                                  {correctionValidation[anomaly.id].calculatedDeviation !== undefined && (
+                                    <div className="mt-1 text-xs opacity-75">
+                                      비교 기준 대비: {correctionValidation[anomaly.id].calculatedDeviation}
+                                      {anomaly.ruleCode === 'YOY_PCT' || anomaly.ruleCode === 'INTENSITY_PRODUCTION_CHANGE' ? '%' : ''}
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                              
+                              <div className="flex items-center gap-2 pt-1">
+                                <button
+                                  onClick={() => handleApplyCorrection(anomaly.id)}
+                                  disabled={!correctionValidation[anomaly.id]?.isValid || applyingCorrection[anomaly.id]}
+                                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg transition-colors ${
+                                    correctionValidation[anomaly.id]?.isValid && !applyingCorrection[anomaly.id]
+                                      ? 'text-white bg-emerald-600 hover:bg-emerald-700'
+                                      : 'text-gray-400 bg-gray-100 cursor-not-allowed'
+                                  }`}
+                                >
+                                  <CheckCircle2 size={11} />
+                                  {applyingCorrection[anomaly.id] ? '적용 중...' : 'DB에 보정 적용'}
+                                </button>
+                                
+                                <button
+                                  onClick={() => setShowCorrectionInput(prev => ({ ...prev, [anomaly.id]: false }))}
+                                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                >
+                                  취소
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                          
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => handleSaveReason(anomaly.id)}
@@ -519,12 +711,16 @@ export function AnomalyDetection() {
                             >
                               <Save size={11} /> 사유 저장
                             </button>
-                            <button
-                              onClick={() => handleMarkCorrected(anomaly.id)}
-                              className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-emerald-700 bg-emerald-50 border border-emerald-300 rounded-lg hover:bg-emerald-100 transition-colors"
-                            >
-                              보정값 입력
-                            </button>
+                            
+                            {!showCorrectionInput[anomaly.id] && (
+                              <button
+                                onClick={() => handleMarkCorrected(anomaly.id)}
+                                className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-emerald-700 bg-emerald-50 border border-emerald-300 rounded-lg hover:bg-emerald-100 transition-colors"
+                              >
+                                보정값 입력
+                              </button>
+                            )}
+                            
                             <button
                               onClick={() => handleIgnore(anomaly.id)}
                               className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-500 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
