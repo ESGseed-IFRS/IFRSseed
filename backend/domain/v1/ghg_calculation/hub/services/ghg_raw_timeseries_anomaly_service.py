@@ -296,6 +296,8 @@ class GhgRawTimeseriesAnomalyService:
                                             "unit": unit,
                                             "year_month": ym,
                                             "current": v,
+                                            "mean": round(mu, 2),
+                                            "std_dev": round(sigma, 2),
                                             "zscore": round(z, 3),
                                             "window_n": len(hist),
                                         },
