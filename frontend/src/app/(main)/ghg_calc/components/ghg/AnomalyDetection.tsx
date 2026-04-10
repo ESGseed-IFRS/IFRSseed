@@ -114,11 +114,138 @@ function mapScanFindingToAnomaly(f: ScanFinding, idx: number): Anomaly {
   } else if (rule === "ZSCORE_12M") {
     const z = Number(ctx.zscore ?? 0);
     const n = Number(ctx.window_n ?? 0);
-    baselineKind = "Z-Score";
-    baselineAmount = `직전 구간 n=${Number.isFinite(n) ? n : "—"}`;
+    const mean = Number(ctx.mean ?? 0);
+    const stdDev = Number(ctx.std_dev ?? 0);
+    baselineKind = "Z-Score (통계적 이상치)";
+    baselineAmount = `평균 ${mean.toLocaleString()} ${unit} (σ=${stdDev.toFixed(1)}, n=${Number.isFinite(n) ? n : "—"})`;
     changeDisplay = `|Z|=${Number.isFinite(z) ? z.toFixed(2) : "—"}`;
     alertStrong = z >= 3;
-  } else {
+  } else if (rule === "IQR_OUTLIER") {
+    const q1 = Number(ctx.q1 ?? 0);
+    const q3 = Number(ctx.q3 ?? 0);
+    const iqr = Number(ctx.iqr ?? 0);
+    const lowerBound = Number(ctx.lower_bound ?? 0);
+    const upperBound = Number(ctx.upper_bound ?? 0);
+    baselineKind = "IQR 1.5배 이상치";
+    baselineAmount = `Q1=${q1.toLocaleString()}, Q3=${q3.toLocaleString()} (IQR=${iqr.toFixed(1)})`;
+    changeDisplay = `범위 [${lowerBound.toFixed(1)}, ${upperBound.toFixed(1)}] 벗어남`;
+    alertStrong = false;
+  } else if (rule === "IQR_EXTREME") {
+    const q1 = Number(ctx.q1 ?? 0);
+    const q3 = Number(ctx.q3 ?? 0);
+    const iqr = Number(ctx.iqr ?? 0);
+    const lowerBound = Number(ctx.extreme_lower_bound ?? 0);
+    const upperBound = Number(ctx.extreme_upper_bound ?? 0);
+    baselineKind = "IQR 3배 극단값";
+    baselineAmount = `Q1=${q1.toLocaleString()}, Q3=${q3.toLocaleString()} (IQR=${iqr.toFixed(1)})`;
+    changeDisplay = `극단 범위 [${lowerBound.toFixed(1)}, ${upperBound.toFixed(1)}] 벗어남`;
+    alertStrong = true;
+  } 
+  // 🟢 데이터 품질 검증 (4가지)
+  else if (rule === "REQUIRED_FIELD_ZERO") {
+    const energyType = String(ctx.energy_type ?? ctx.waste_type ?? "항목");
+    baselineKind = "필수 항목 0값";
+    baselineAmount = `${energyType} 명시됨`;
+    changeDisplay = "사용량 = 0 (데이터 누락 의심)";
+    alertStrong = true;
+  } else if (rule === "NEGATIVE_VALUE") {
+    const field = String(ctx.field ?? "값");
+    const value = Number(ctx.value ?? 0);
+    baselineKind = "음수값 불가";
+    baselineAmount = `${field} 필드`;
+    changeDisplay = `${value.toLocaleString()} (물리적 불가능)`;
+    alertStrong = true;
+  } else if (rule === "DUPLICATE_ENTRY") {
+    const duplicateRows = (ctx.duplicate_rows as number[]) ?? [];
+    baselineKind = "중복 데이터";
+    baselineAmount = `동일 키 ${duplicateRows.length}건`;
+    changeDisplay = `Row: ${duplicateRows.join(", ")}`;
+    alertStrong = true;
+  } else if (rule === "UNIT_MISMATCH_SUSPECTED") {
+    const ratio = Number(ctx.ratio ?? 0);
+    const minVal = Number(ctx.min_value ?? 0);
+    const maxVal = Number(ctx.max_value ?? 0);
+    baselineKind = "단위 불일치 의심";
+    baselineAmount = `최소 ${minVal.toLocaleString()} vs 최대 ${maxVal.toLocaleString()} ${unit}`;
+    changeDisplay = `${ratio.toFixed(0)}배 차이 (kWh↔MWh 혼용?)`;
+    alertStrong = true;
+  }
+  // 🟡 배출계수 이탈 (1가지)
+  else if (rule === "EMISSION_FACTOR_DEVIATION") {
+    const inputFactor = Number(ctx.input_factor ?? 0);
+    const standardFactor = Number(ctx.standard_factor ?? 0);
+    const deviationPct = Number(ctx.deviation_pct ?? 0);
+    baselineKind = "배출계수 이탈";
+    baselineAmount = `기준: ${standardFactor.toFixed(4)} (환경부 고시)`;
+    changeDisplay = `입력: ${inputFactor.toFixed(4)} (${deviationPct >= 0 ? "+" : ""}${deviationPct.toFixed(1)}%)`;
+    alertStrong = deviationPct > 30;
+  }
+  // 🟣 원단위 이상 (4가지)
+  else if (rule === "INTENSITY_AREA_HIGH") {
+    const intensity = Number(ctx.intensity_per_sqm ?? 0);
+    const benchmark = Number(ctx.benchmark_per_sqm ?? 0);
+    const ratio = Number(ctx.ratio ?? 0);
+    baselineKind = "면적당 배출량 초과";
+    baselineAmount = `벤치마크: ${benchmark.toFixed(4)} tCO₂/m²`;
+    changeDisplay = `${intensity.toFixed(4)} tCO₂/m² (${ratio.toFixed(1)}배)`;
+    alertStrong = ratio >= 2;
+  } else if (rule === "INTENSITY_EMPLOYEE_HIGH") {
+    const intensity = Number(ctx.intensity_per_employee ?? 0);
+    const benchmark = Number(ctx.benchmark_per_employee ?? 0);
+    const ratio = Number(ctx.ratio ?? 0);
+    baselineKind = "인원당 배출량 초과";
+    baselineAmount = `벤치마크: ${benchmark.toFixed(2)} tCO₂/인`;
+    changeDisplay = `${intensity.toFixed(2)} tCO₂/인 (${ratio.toFixed(1)}배)`;
+    alertStrong = ratio >= 2;
+  } else if (rule === "INTENSITY_PRODUCTION_CHANGE") {
+    const currentIntensity = Number(ctx.current_intensity ?? 0);
+    const prevIntensity = Number(ctx.prev_intensity ?? 0);
+    const changePct = Number(ctx.change_pct ?? 0);
+    const productionUnit = String(ctx.production_unit ?? "단위");
+    baselineKind = "생산량당 집약도 변동";
+    baselineAmount = `전년: ${prevIntensity.toFixed(4)} tCO₂/${productionUnit}`;
+    changeDisplay = `현재: ${currentIntensity.toFixed(4)} (${changePct >= 0 ? "+" : ""}${changePct.toFixed(1)}%)`;
+    alertStrong = Math.abs(changePct) >= 50;
+  } else if (rule === "INTENSITY_PRODUCTION_HIGH") {
+    const intensity = Number(ctx.intensity_per_production ?? 0);
+    const benchmark = Number(ctx.benchmark ?? 0);
+    const ratio = Number(ctx.ratio ?? 0);
+    const productionUnit = String(ctx.production_unit ?? "단위");
+    baselineKind = "생산량당 집약도 초과";
+    baselineAmount = `벤치마크: ${benchmark.toFixed(4)} tCO₂/${productionUnit}`;
+    changeDisplay = `${intensity.toFixed(4)} tCO₂/${productionUnit} (${ratio.toFixed(1)}배)`;
+    alertStrong = ratio >= 2;
+  }
+  // 🔴 경계·일관성 검증 (4가지)
+  else if (rule === "BOUNDARY_CHANGE_NO_RECALC") {
+    const totalImpact = Number(ctx.total_impact_tco2e ?? 0);
+    const changes = (ctx.changes as any[]) ?? [];
+    baselineKind = "조직 경계 변경";
+    baselineAmount = `${changes.length}건 변경 발생`;
+    changeDisplay = `총 영향: ${totalImpact.toLocaleString()} tCO₂ (재산정 필요)`;
+    alertStrong = true;
+  } else if (rule === "EMISSION_FACTOR_CHANGED") {
+    const totalChanges = Number(ctx.total_changes ?? 0);
+    const baseYear = String(ctx.base_year ?? "");
+    baselineKind = "배출계수 변경 발생";
+    baselineAmount = `${totalChanges}건 배출계수 개정`;
+    changeDisplay = `기준연도(${baseYear}) 재산정 필요`;
+    alertStrong = true;
+  } else if (rule === "BASE_YEAR_SCOPE1_ZERO") {
+    const baseYear = String(ctx.base_year ?? "");
+    baselineKind = "기준연도 Scope 1 = 0";
+    baselineAmount = `${baseYear}년 직접 배출량 없음`;
+    changeDisplay = "데이터 누락 가능성 (난방, 차량 등)";
+    alertStrong = true;
+  } else if (rule === "BASE_YEAR_SCOPE2_ZERO") {
+    const baseYear = String(ctx.base_year ?? "");
+    baselineKind = "기준연도 Scope 2 = 0";
+    baselineAmount = `${baseYear}년 간접 배출량 없음`;
+    changeDisplay = "데이터 누락 가능성 (전력 등)";
+    alertStrong = false;
+  } 
+  // 기타 (미분류)
+  else {
     baselineKind = rule;
     baselineAmount = "-";
     changeDisplay = f.message?.slice(0, 48) ?? rule;
@@ -229,7 +356,9 @@ export function AnomalyDetection() {
       <div className="flex items-start justify-between">
         <div>
           <h1 className="text-gray-900">이상치 검증</h1>
-          <p className="text-gray-500 text-xs mt-0.5">전년비/전월비/이동평균/Z-Score 자동 감지 결과에 대해 사유 입력 또는 보정 처리</p>
+          <p className="text-gray-500 text-xs mt-0.5">
+            전년비/전월비/이동평균/Z-Score/IQR + 품질(0값·음수·중복·단위)/배출계수/원단위/경계 자동 감지
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <button className="flex items-center gap-1.5 px-3 py-2 text-xs text-white bg-[#0d1b36] rounded-lg hover:bg-[#1a3060] transition-colors">
@@ -307,7 +436,7 @@ export function AnomalyDetection() {
         <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
           <span className="text-xs text-gray-700">총 <strong>{filtered.length}</strong>건의 이상치 항목</span>
           <div className="flex items-center gap-2 text-xs text-gray-500">
-            탐지 기준: YoY / MoM / MA12 / Z-Score
+            탐지 기준: YoY / MoM / MA12 / Z-Score / IQR
           </div>
         </div>
         {loading && <div className="px-4 py-3 text-xs text-gray-500">이상치 데이터를 불러오는 중...</div>}

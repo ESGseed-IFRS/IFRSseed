@@ -317,17 +317,20 @@ class GhgRawTimeseriesAnomalyService:
                         if iqr > 1e-9:
                             lower_bound = q1 - req.iqr_multiplier * iqr
                             upper_bound = q3 + req.iqr_multiplier * iqr
+                            extreme_lower_bound = q1 - 3.0 * iqr
+                            extreme_upper_bound = q3 + 3.0 * iqr
 
                             if v < lower_bound or v > upper_bound:
-                                is_extreme = v < (q1 - 3.0 * iqr) or v > (q3 + 3.0 * iqr)
+                                is_extreme = v < extreme_lower_bound or v > extreme_upper_bound
                                 findings.append(
                                     GhgAnomalyFindingVo(
-                                        rule_code="IQR_OUTLIER" if not is_extreme else "IQR_EXTREME",
+                                        rule_code="IQR_EXTREME" if is_extreme else "IQR_OUTLIER",
                                         severity="high" if is_extreme else "medium",
                                         phase="timeseries",
                                         message=(
-                                            f"IQR {req.iqr_multiplier}배 범위 이탈 "
-                                            f"[{lower_bound:.1f}, {upper_bound:.1f}]. "
+                                            f"IQR {'3.0' if is_extreme else str(req.iqr_multiplier)}배 범위 이탈 "
+                                            f"[{extreme_lower_bound if is_extreme else lower_bound:.1f}, "
+                                            f"{extreme_upper_bound if is_extreme else upper_bound:.1f}]. "
                                             f"{cat} / {facility} / {metric} / {ym}"
                                         ),
                                         context={
@@ -343,6 +346,8 @@ class GhgRawTimeseriesAnomalyService:
                                             "iqr": round(iqr, 2),
                                             "lower_bound": round(lower_bound, 2),
                                             "upper_bound": round(upper_bound, 2),
+                                            "extreme_lower_bound": round(extreme_lower_bound, 2),
+                                            "extreme_upper_bound": round(extreme_upper_bound, 2),
                                             "is_extreme": is_extreme,
                                         },
                                     )

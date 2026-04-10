@@ -263,6 +263,46 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
         throw new Error(t || res.statusText);
       }
       const body = (await res.json()) as ScopeRecalculateApiResponse;
+      
+      // 🔍 디버그: API 응답 확인
+      console.log('=== Scope Calculation API Response ===');
+      console.log('Scope 1 Total:', body.scope1_total);
+      console.log('Scope 2 Total:', body.scope2_total);
+      console.log('Grand Total:', body.grand_total);
+      
+      // 첫 번째 Scope 1 아이템 확인
+      if (body.scope1_categories && body.scope1_categories.length > 0) {
+        const firstCat = body.scope1_categories[0];
+        if (firstCat.items && firstCat.items.length > 0) {
+          const firstItem = firstCat.items[0];
+          console.log('\n=== First Scope 1 Item ===');
+          console.log('Name:', firstItem.name);
+          console.log('Facility:', firstItem.facility);
+          console.log('Source Unit:', `[${firstItem.source_unit}]`);
+          console.log('Annual Activity:', firstItem.annual_activity);
+          console.log('EF:', firstItem.ef);
+          console.log('EF Unit:', firstItem.ef_unit);
+          console.log('Total Emission:', firstItem.total);
+        } else {
+          console.log('⚠️ Scope 1 카테고리에 items가 없습니다');
+        }
+      } else {
+        console.log('⚠️ Scope 1 카테고리가 비어있습니다');
+      }
+      
+      // 첫 번째 Scope 2 아이템 확인
+      if (body.scope2_categories && body.scope2_categories.length > 0) {
+        const firstCat = body.scope2_categories[0];
+        if (firstCat.items && firstCat.items.length > 0) {
+          const firstItem = firstCat.items[0];
+          console.log('\n=== First Scope 2 Item ===');
+          console.log('Name:', firstItem.name);
+          console.log('Source Unit:', `[${firstItem.source_unit}]`);
+          console.log('Annual Activity:', firstItem.annual_activity);
+        }
+      }
+      console.log('=====================================\n');
+      
       setLiveApi(body);
       onApiResponseUpdate?.(body);
       setRecalcDone(true);

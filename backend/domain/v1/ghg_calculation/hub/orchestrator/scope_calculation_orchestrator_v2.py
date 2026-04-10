@@ -258,7 +258,10 @@ class ScopeCalculationOrchestratorV2:
             company_id,
             ("ems", "erp", "ehs", "plm", "srm", "hr", "mdg"),
         )
+        logger.info(f"🔍 스테이징 데이터: {len(snaps)}개 스냅샷")
+        
         bucket, imp_st = aggregate_energy_activity_by_month_for_year(snaps, year)
+        logger.info(f"🔍 집계 후 Bucket: {len(bucket)}개 에너지 타입×시설 조합")
         
         s1_m = {i: 0.0 for i in range(1, 13)}
         s2_m = {i: 0.0 for i in range(1, 13)}
@@ -268,6 +271,7 @@ class ScopeCalculationOrchestratorV2:
         acc_s2_steam: list[ScopeCalcLineItemDto] = []
 
         # 2. 각 에너지 타입별 배출량 계산
+        logger.info(f"🔍 Bucket 크기: {len(bucket)}개 항목")
         for (facility, et, ukey), qty in bucket.items():
             cls = _classify_fuel_type_and_unit(et, ukey)
             if cls is None:
@@ -331,6 +335,16 @@ class ScopeCalculationOrchestratorV2:
             # 연간 활동량 및 계산식 생성
             annual_activity = sum(qty.get(m, 0.0) for m in range(1, 13))
             
+            # 🔍 디버그: 연간 활동량 확인
+            if annual_activity == 0:
+                logger.warning(
+                    f"⚠️ 연간 활동량이 0입니다: facility={facility}, et={et}, unit={source_unit}"
+                )
+            else:
+                logger.debug(
+                    f"✅ 활동량 계산 완료: {et} ({facility}), {annual_activity:,.0f} {source_unit}"
+                )
+            
             # 계산식 생성
             if applicable_scope == "Scope2" and fuel_type == "electricity":
                 calc_formula = f"{annual_activity:,.0f} {source_unit} × {ef_detail.composite_factor} kgCO₂eq/{source_unit} ÷ 1000"
@@ -360,6 +374,12 @@ class ScopeCalculationOrchestratorV2:
                 calculation_formula=calc_formula,
                 heat_content=ef_detail.heat_content_coefficient,
                 annual_activity=annual_activity,
+            )
+            
+            # 🔍 디버그: 생성된 라인 아이템 확인
+            logger.debug(
+                f"  → 라인 아이템 생성: {li.name}, source_unit=[{li.source_unit}], "
+                f"annual_activity={li.annual_activity:,.0f}, total={li.total:,.2f} tCO₂eq"
             )
             
             # 카테고리별 분류
@@ -398,16 +418,25 @@ class ScopeCalculationOrchestratorV2:
         # 5. 카테고리별 그룹화
         scope1_categories: list[ScopeCalcCategoryDto] = []
         if acc_s1_fixed:
+            logger.info(f"✅ Scope 1 고정연소: {len(acc_s1_fixed)}개 항목")
             scope1_categories.append(ScopeCalcCategoryDto(id="s1-fixed", category="고정연소", items=acc_s1_fixed))
         if acc_s1_mobile:
+            logger.info(f"✅ Scope 1 이동연소: {len(acc_s1_mobile)}개 항목")
             scope1_categories.append(ScopeCalcCategoryDto(id="s1-mobile", category="이동연소", items=acc_s1_mobile))
         
         scope2_categories: list[ScopeCalcCategoryDto] = []
         if acc_s2_grid:
             s2_label = "전력 (시장기반)" if basis_norm == "market" else "전력 (위치기반)"
+            logger.info(f"✅ Scope 2 전력: {len(acc_s2_grid)}개 항목")
             scope2_categories.append(ScopeCalcCategoryDto(id="s2-grid", category=s2_label, items=acc_s2_grid))
         if acc_s2_steam:
+            logger.info(f"✅ Scope 2 스팀·열: {len(acc_s2_steam)}개 항목")
             scope2_categories.append(ScopeCalcCategoryDto(id="s2-steam", category="스팀·열", items=acc_s2_steam))
+        
+        logger.info(
+            f"🎯 최종 산정 결과: Scope 1 = {scope1_total:,.2f}, "
+            f"Scope 2 = {scope2_total:,.2f}, Total = {grand_total:,.2f} tCO₂eq"
+        )
 
         # 6. YoY 비교
         period_year = year_int

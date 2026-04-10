@@ -44,6 +44,16 @@ function extractMappingsFromApi(api: ScopeRecalculateApiResponse | null): Mappin
   const processCategories = (categories: ScopeRecalculateApiCategory[], scopeLabel: string) => {
     for (const cat of categories) {
       for (const item of cat.items) {
+        // 🔍 디버그: 빈 값 확인
+        if (!item.source_unit || item.annual_activity === 0) {
+          console.warn(`⚠️ [${scopeLabel}] ${item.name} - 빈 값 발견:`, {
+            source_unit: item.source_unit,
+            annual_activity: item.annual_activity,
+            ef: item.ef,
+            total: item.total
+          });
+        }
+        
         rows.push({
           id: `${scopeLabel}-${cat.id}-${idx++}`,
           activityType: item.name.replace(/\s*\([^)]*\)\s*$/, '').trim(),
