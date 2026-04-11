@@ -350,11 +350,11 @@ export const HOLDING_SR_SDS_2024_PAGES: Array<{
     "page": 39,
     "title": "기후변화 대응 / 온실가스 배출량 관리",
     "standards": [
-      "UCM_001",
-      "UCM_002",
-      "UCM_003",
-      "UCM_004",
-      "UCM_005",
+      "UCM_scope1_001",
+      "UCM_scope2_002",
+      "UCM_scope3_001",
+      "UCM_scope3_002",
+      "UCM_scope3_003",
       "ESRS2-MDR-A-68-a"
     ],
     "section": "환경·기후",
