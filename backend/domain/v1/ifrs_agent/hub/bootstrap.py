@@ -73,9 +73,13 @@ def register_tools(infra: InfraLayer) -> None:
     """
     from backend.domain.shared.tool.ifrs_agent.database.sr_body_query import (
         query_sr_body_exact,
-        query_sr_body_vector
+        query_sr_body_vector,
+        query_sr_body_by_id,
     )
-    from backend.domain.shared.tool.ifrs_agent.database.sr_images_query import query_sr_images
+    from backend.domain.shared.tool.ifrs_agent.database.sr_images_query import (
+        query_sr_images,
+        query_sr_images_by_ids,
+    )
     from backend.domain.shared.tool.ifrs_agent.database.embedding_tool import embed_text
     from backend.domain.shared.tool.ifrs_agent.database.dp_query import (
         query_dp_data,
@@ -107,9 +111,11 @@ def register_tools(infra: InfraLayer) -> None:
     infra.tool_registry.register("query_sr_body_vector", query_sr_body_vector)
     infra.tool_registry.register("query_sr_body_by_context", query_sr_body_by_context)
     infra.tool_registry.register("query_sr_body_by_page", query_sr_body_by_page)
+    infra.tool_registry.register("query_sr_body_by_id", query_sr_body_by_id)  # ✨ 신규
     
     # SR 이미지 검색 툴
     infra.tool_registry.register("query_sr_images", query_sr_images)
+    infra.tool_registry.register("query_sr_images_by_ids", query_sr_images_by_ids)  # ✨ 신규
     
     # 임베딩 툴
     infra.tool_registry.register("embed_text", embed_text)
@@ -126,6 +132,14 @@ def register_tools(infra: InfraLayer) -> None:
     infra.tool_registry.register("query_unmapped_dp", query_unmapped_dp)
     infra.tool_registry.register("query_dp_real_data", query_dp_real_data)
     infra.tool_registry.register("query_company_info", query_company_info)
+    
+    # DP 배치 조회 툴 (최적화)
+    from backend.domain.shared.tool.ifrs_agent.database.dp_query import (
+        batch_query_dp_metadata,
+        batch_query_ucm_by_dps,
+    )
+    infra.tool_registry.register("batch_query_dp_metadata", batch_query_dp_metadata)
+    infra.tool_registry.register("batch_query_ucm_by_dps", batch_query_ucm_by_dps)
 
     # 계열사·외부 기업 툴 (레거시)
     infra.tool_registry.register("query_subsidiary_data", query_subsidiary_data)

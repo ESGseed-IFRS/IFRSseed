@@ -149,3 +149,53 @@ async def query_sr_body_vector(params: Dict[str, Any]) -> List[Dict[str, Any]]:
     except Exception as e:
         logger.error("query_sr_body_vector failed: %s", e, exc_info=True)
         raise
+
+
+async def query_sr_body_by_id(params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """
+    ✨ 신규: SR 본문을 ID로 직접 조회 (검색 없음)
+    
+    Args:
+        params: body_id (str) - sr_report_body.id (UUID)
+    
+    Returns:
+        {
+            "content_text": str,
+            "page_number": int,
+            "report_id": str (UUID),
+            "subtitle": str,
+            "toc_path": str
+        }
+        또는 None (ID가 없는 경우)
+    """
+    body_id = params["body_id"]
+    
+    logger.info(f"query_sr_body_by_id: body_id={body_id}")
+    
+    try:
+        conn = await connect_ifrs_asyncpg()
+        
+        query = """
+            SELECT
+                b.content_text,
+                b.page_number,
+                b.report_id,
+                b.subtitle,
+                b.toc_path
+            FROM sr_report_body b
+            WHERE b.id = $1::uuid
+        """
+        
+        row = await conn.fetchrow(query, body_id)
+        await conn.close()
+        
+        if row:
+            logger.info(f"query_sr_body_by_id: found — page_number={row['page_number']}")
+            return dict(row)
+        
+        logger.warning(f"query_sr_body_by_id: not found — body_id={body_id}")
+        return None
+        
+    except Exception as e:
+        logger.error(f"query_sr_body_by_id failed: {e}", exc_info=True)
+        raise

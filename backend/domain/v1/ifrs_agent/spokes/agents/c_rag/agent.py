@@ -83,6 +83,8 @@ class CRagAgent:
     async def collect(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """
         카테고리 기반 SR 참조 데이터 수집
+        
+        ✨ 신규: sr_body_ids가 있으면 직접 ID로 조회 (검색 생략)
 
         Args:
             payload: {
@@ -92,6 +94,9 @@ class CRagAgent:
                 "search_intent": str (optional, Phase 0),
                 "content_focus": str (optional, Phase 0),
                 "ref_pages": {"2024": int|None, "2023": int|None} (optional, 다이렉트 페이지),
+                "sr_body_ids": List[str] (optional, 직접 참조 ID),
+                "sr_image_ids": List[str] (optional, 직접 참조 이미지 ID),
+                "use_direct_reference": bool (optional, 직접 참조 모드 활성화),
                 "runtime_config": AgentRuntimeConfig  # 오케스트레이터가 주입 (선택)
             }
 
@@ -112,12 +117,26 @@ class CRagAgent:
         raw_rc = payload.get("runtime_config")
         self.runtime_config = raw_rc if isinstance(raw_rc, dict) else None
 
+        # ✨ 신규: 직접 참조 모드 확인
+        use_direct_reference = payload.get("use_direct_reference", False)
+        sr_body_ids = payload.get("sr_body_ids", [])
+        sr_image_ids = payload.get("sr_image_ids", [])
+
         if self.runtime_config:
             logger.info(
                 "c_rag.collect: runtime_config keys=%s (값은 로그에 미포함)",
                 sorted(self.runtime_config.keys()),
             )
 
+        if use_direct_reference:
+            logger.info(
+                "c_rag.collect: Direct Reference Mode — sr_body_ids=%s, sr_image_ids=%s",
+                sr_body_ids,
+                sr_image_ids,
+            )
+            return await self._collect_by_direct_ids(sr_body_ids, sr_image_ids, years)
+
+        # 기존 검색 모드 (폴백)
         search_intent = (payload.get("search_intent") or "").strip()
         content_focus = (payload.get("content_focus") or "").strip()
         ref_pages_raw = payload.get("ref_pages")
@@ -176,6 +195,107 @@ class CRagAgent:
                     "error": str(e),
                 }
 
+        return result
+
+    async def _collect_by_direct_ids(
+        self,
+        sr_body_ids: List[str],
+        sr_image_ids: List[str],
+        years: List[int],
+    ) -> Dict[str, Any]:
+        """
+        ✨ 신규: 직접 ID로 SR 본문·이미지 조회 (검색/LLM 없음)
+        
+        sr_body_ids[0] → 2024년 (전년도)
+        sr_body_ids[1] → 2023년 (전전년도, 있으면)
+        sr_image_ids → 직접 이미지 ID 배열 (우선, 없으면 page_number 기반 폴백)
+        
+        Args:
+            sr_body_ids: sr_report_body 테이블 ID 목록
+            sr_image_ids: sr_report_images 테이블 ID 목록 (선택적)
+            years: [2024, 2023]
+        
+        Returns:
+            연도별 sr_body, sr_images, page_number, report_id
+        """
+        result = {}
+        
+        for i, year in enumerate(years):
+            try:
+                # sr_body_ids[i]가 있으면 해당 ID로 조회
+                if i < len(sr_body_ids) and sr_body_ids[i]:
+                    body_id = sr_body_ids[i]
+                    logger.info(
+                        f"c_rag: Direct reference year={year} — querying sr_body_id={body_id}"
+                    )
+                    
+                    # sr_report_body 직접 조회 (ID 기반)
+                    body_row = await self.infra.call_tool(
+                        "query_sr_body_by_id",
+                        {"body_id": body_id}
+                    )
+                    
+                    if not body_row:
+                        raise ValueError(f"SR body not found for id={body_id}")
+                    
+                    body_text = body_row.get("content_text") or ""
+                    page_num = body_row.get("page_number")
+                    report_id = body_row.get("report_id")
+                    if report_id and hasattr(report_id, "hex"):
+                        report_id = str(report_id)
+                    
+                    # 이미지 조회: sr_image_ids 우선, 없으면 page_number 기반 폴백
+                    images = []
+                    if sr_image_ids:
+                        logger.info(
+                            f"c_rag: Direct image reference — querying {len(sr_image_ids)} image IDs"
+                        )
+                        images = await self.infra.call_tool(
+                            "query_sr_images_by_ids",
+                            {"image_ids": sr_image_ids}
+                        )
+                    else:
+                        logger.info(
+                            f"c_rag: No direct image IDs — fallback to page_number={page_num}"
+                        )
+                        images = await self._query_sr_images(
+                            report_id=report_id,
+                            page_number=page_num,
+                        )
+                    
+                    result[str(year)] = {
+                        "sr_body": body_text,
+                        "sr_images": images,
+                        "page_number": page_num,
+                        "report_id": report_id,
+                    }
+                    
+                    logger.info(
+                        f"c_rag: Direct reference year={year} success — page={page_num}, images={len(images)}"
+                    )
+                else:
+                    # ID가 없으면 빈 결과
+                    logger.warning(f"c_rag: No sr_body_id for year={year} — skipping")
+                    result[str(year)] = {
+                        "sr_body": "",
+                        "sr_images": [],
+                        "page_number": None,
+                        "report_id": None,
+                    }
+                    
+            except Exception as e:
+                logger.error(
+                    f"c_rag: Direct reference year={year} failed: {e}",
+                    exc_info=True
+                )
+                result[str(year)] = {
+                    "sr_body": "",
+                    "sr_images": [],
+                    "page_number": None,
+                    "report_id": None,
+                    "error": str(e),
+                }
+        
         return result
 
     async def _query_sr_body_by_page(

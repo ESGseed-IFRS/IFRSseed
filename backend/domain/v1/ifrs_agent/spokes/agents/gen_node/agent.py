@@ -2,7 +2,7 @@
 Gen Node Agent - SR 보고서 문단 생성
 
 Phase 2에서 필터링된 데이터(gen_input)를 받아 IFRS/GRI/ESRS 스타일의 SR 문단 생성.
-LLM은 Google Gemini만 사용한다. 기본 모델은 **gemini-2.5-pro**이며
+LLM은 Google Gemini만 사용한다. 기본 모델은 **gemini-3-flash-preview**이며
 `runtime_config.gen_node_model` / 환경변수 `GEN_NODE_MODEL`로 변경 가능하다.
 """
 from __future__ import annotations
@@ -24,7 +24,7 @@ from .utils import (
 logger = logging.getLogger("ifrs_agent.gen_node")
 
 # gen_node 기본 모델 (payload.runtime_config.gen_node_model이 있으면 그쪽이 우선)
-GEMINI_MODEL_ID = "gemini-2.5-pro"
+GEMINI_MODEL_ID = "gemini-3-flash-preview"
 
 
 def _extract_gemini_text(response: Any) -> str:
@@ -121,6 +121,93 @@ def _normalize_validator_feedback(raw: Any) -> Optional[List[str]]:
     return out if out else None
 
 
+def _parse_gen_node_json_response(raw_text: str) -> Tuple[str, List[Dict[str, Any]]]:
+    """
+    gen_node JSON 응답 파싱.
+    
+    Returns:
+        (generated_text, dp_sentence_mappings)
+    """
+    import json
+    import re
+    
+    text = (raw_text or "").strip()
+    if not text:
+        logger.warning("gen_node: 응답 텍스트가 비어있음")
+        return "", []
+    
+    logger.warning("=" * 80)
+    logger.warning("gen_node: Gemini 원본 응답 (첫 1500자)")
+    logger.warning(text[:1500])
+    logger.warning("=" * 80)
+    
+    # 마크다운 코드펜스 제거
+    if text.startswith("```"):
+        lines = text.split("\n")
+        if lines and lines[0].startswith("```"):
+            lines = lines[1:]
+        if lines and lines[-1].strip().startswith("```"):
+            lines = lines[:-1]
+        text = "\n".join(lines).strip()
+        logger.debug("gen_node: 코드펜스 제거 후 길이=%d", len(text))
+    
+    # JSON 파싱 시도
+    try:
+        # 첫 번째 { 부터 마지막 } 까지 추출
+        start_idx = text.find("{")
+        end_idx = text.rfind("}")
+        if start_idx >= 0 and end_idx > start_idx:
+            json_str = text[start_idx:end_idx + 1]
+            logger.debug("gen_node: JSON 추출 시도, 길이=%d", len(json_str))
+            data = json.loads(json_str)
+            
+            generated_text = str(data.get("generated_text", "") or "").strip()
+            dp_mappings_raw = data.get("dp_sentence_mappings", [])
+            
+            logger.warning("=" * 80)
+            logger.warning("gen_node: JSON 파싱 성공!")
+            logger.warning(f"  - generated_text 길이: {len(generated_text)}")
+            logger.warning(f"  - dp_sentence_mappings 존재: {'dp_sentence_mappings' in data}")
+            logger.warning(f"  - dp_sentence_mappings 타입: {type(dp_mappings_raw).__name__}")
+            logger.warning(f"  - dp_sentence_mappings 길이: {len(dp_mappings_raw) if isinstance(dp_mappings_raw, list) else 'N/A'}")
+            if isinstance(dp_mappings_raw, list) and len(dp_mappings_raw) > 0:
+                logger.warning(f"  - 첫 번째 매핑: {dp_mappings_raw[0]}")
+            logger.warning("=" * 80)
+            
+            # dp_sentence_mappings 정규화
+            dp_mappings: List[Dict[str, Any]] = []
+            if isinstance(dp_mappings_raw, list):
+                for item in dp_mappings_raw:
+                    if not isinstance(item, dict):
+                        continue
+                    dp_mappings.append({
+                        "dp_id": str(item.get("dp_id", "") or ""),
+                        "dp_name_ko": str(item.get("dp_name_ko", "") or ""),
+                        "sentences": [str(s) for s in (item.get("sentences") or []) if s],
+                        "rationale": str(item.get("rationale", "") or ""),
+                    })
+            
+            if generated_text:
+                logger.info(
+                    "gen_node JSON parsed: text_len=%d, dp_mappings=%d",
+                    len(generated_text), len(dp_mappings)
+                )
+                return generated_text, dp_mappings
+            else:
+                logger.warning("gen_node: JSON에 generated_text가 비어있음")
+        else:
+            logger.warning("gen_node: JSON 객체 {}를 찾을 수 없음, start=%d, end=%d", start_idx, end_idx)
+    
+    except json.JSONDecodeError as e:
+        logger.warning("gen_node JSON parse failed: %s, 첫 200자=%s", e, text[:200])
+    except Exception as e:
+        logger.error("gen_node JSON extraction error: %s", e, exc_info=True)
+    
+    # 폴백: 원본 텍스트 그대로 반환 (JSON이 아닌 경우)
+    logger.warning("gen_node: JSON 파싱 실패, 원본 텍스트 사용 (len=%d), dp_mappings=[]", len(raw_text))
+    return raw_text, []
+
+
 async def generate_text_gemini(
     gen_input: Dict[str, Any],
     gemini_api_key: str,
@@ -152,6 +239,35 @@ async def generate_text_gemini(
     combined_prompt = f"{system_prompt}\n\n{user_prompt}"
 
     try:
+        # JSON 스키마 정의
+        response_schema = {
+            "type": "object",
+            "properties": {
+                "generated_text": {
+                    "type": "string",
+                    "description": "작성된 SR 문단 (마크다운 형식)"
+                },
+                "dp_sentence_mappings": {
+                    "type": "array",
+                    "description": "DP별 문장 매핑 목록",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "dp_id": {"type": "string"},
+                            "dp_name_ko": {"type": "string"},
+                            "sentences": {
+                                "type": "array",
+                                "items": {"type": "string"}
+                            },
+                            "rationale": {"type": "string"}
+                        },
+                        "required": ["dp_id", "dp_name_ko", "sentences", "rationale"]
+                    }
+                }
+            },
+            "required": ["generated_text", "dp_sentence_mappings"]
+        }
+        
         # max_output_tokens를 낮게 두면 2.5 Pro 등 thinking 모델이 추론 토큰만 소비하고
         # visible 텍스트가 비어 finish_reason=MAX_TOKENS로 끝날 수 있음 (google-genai #811).
         response = await asyncio.wait_for(
@@ -162,6 +278,8 @@ async def generate_text_gemini(
                 config={
                     "temperature": 0.3,
                     "max_output_tokens": 32768,
+                    "response_mime_type": "application/json",
+                    "response_schema": response_schema,
                 },
             ),
             timeout=timeout,
@@ -170,17 +288,33 @@ async def generate_text_gemini(
         elapsed_ms = int((time.time() - start_time) * 1000)
 
         _log_gemini_blocks(response)
-        text = _extract_gemini_text(response)
-        if not text:
+        raw_text = _extract_gemini_text(response)
+        
+        logger.info("gen_node: Gemini 응답 수신 (model=%s, len=%d)", model, len(raw_text or ""))
+        
+        if not raw_text:
             _log_gemini_empty_response(response)
             logger.warning(
                 "Gemini returned empty text (model=%s). If finish_reason=MAX_TOKENS and "
-                "thoughts_token_count is high, raise max_output_tokens or use GEN_NODE_MODEL=gemini-2.5-flash.",
+                "thoughts_token_count is high, raise max_output_tokens or try another GEN_NODE_MODEL.",
                 model,
             )
+            return {
+                "text": "",
+                "dp_sentence_mappings": [],
+                "model": model,
+                "tokens": 0,
+                "finish_reason": "stop",
+                "generation_time_ms": elapsed_ms,
+                "prompt_length": prompt_length,
+            }
+
+        # JSON 응답 파싱
+        generated_text, dp_sentence_mappings = _parse_gen_node_json_response(raw_text)
 
         return {
-            "text": text,
+            "text": generated_text,
+            "dp_sentence_mappings": dp_sentence_mappings,
             "model": model,
             "tokens": 0,
             "finish_reason": "stop",
@@ -203,6 +337,9 @@ class GenNodeAgent:
         self.infra = infra
 
     async def generate(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        logger.warning("=" * 80)
+        logger.warning("gen_node.generate() CALLED - payload keys: %s", list(payload.keys()))
+        logger.warning("=" * 80)
         try:
             gen_input = resolve_gen_input_from_payload(payload)
             is_valid, error_msg = validate_gen_input(gen_input)
@@ -271,6 +408,7 @@ class GenNodeAgent:
 
                     return {
                         "text": result["text"],
+                        "dp_sentence_mappings": result.get("dp_sentence_mappings", []),
                         "metadata": metadata,
                         "warnings": warnings,
                     }

@@ -27,6 +27,7 @@ class WorkflowState(TypedDict, total=False):
     
     # Phase 3: 생성·검증
     generated_text: str  # gen_node 출력 (생성된 SR 본문)
+    dp_sentence_mappings: List[Dict[str, Any]]  # gen_node: DP별 문장 매핑
     validation: Dict[str, Any]  # validator_node 출력 (검증 결과)
     feedback: Optional[List[str]]  # validator 피드백 (재시도용)
     
@@ -104,6 +105,7 @@ def create_initial_state(
         gen_input={},
         data_selection={},
         generated_text="",
+        dp_sentence_mappings=[],
         validation={},
         feedback=None,
         status="pending",

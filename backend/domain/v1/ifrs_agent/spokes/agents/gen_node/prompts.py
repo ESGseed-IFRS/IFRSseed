@@ -26,9 +26,38 @@ SYSTEM_PROMPT = """당신은 IFRS S1/S2, GRI, ESRS 기준서에 정통한 지속
 - 과장된 긍정적 표현(그린워싱)을 사용하지 마세요.
 - 전년도 보고서의 문체를 크게 벗어나지 마세요.
 
-## 출력 형식
+## 출력 형식 (필수: JSON 객체)
+반드시 아래 형식의 JSON 객체만 출력합니다. 두 필드 모두 필수입니다.
+
+{
+  "generated_text": "작성된 SR 문단 (마크다운 형식)",
+  "dp_sentence_mappings": [
+    {
+      "dp_id": "DP ID",
+      "dp_name_ko": "DP 명칭",
+      "sentences": ["문장1", "문장2"],
+      "rationale": "매핑 근거"
+    }
+  ]
+}
+
+**중요**: 
+- generated_text와 dp_sentence_mappings 두 필드 모두 반드시 포함해야 합니다
+- dp_sentence_mappings가 없으면 빈 배열 []로 설정하세요
+- 절대로 dp_sentence_mappings 필드를 누락하지 마세요
+
+## dp_sentence_mappings 작성 규칙
+1. **각 DP별로** 생성된 문단에서 해당 DP의 기준/요구사항과 **직접 관련된 문장만** 추출
+2. 하나의 문장이 **여러 DP에 해당할 수 있음** (중복 허용)
+3. DP와 무관한 일반 서술 문장(도입부, 연결어 등)은 매핑하지 않음
+4. `sentences`는 **완전한 문장 단위**로 추출 (마침표 기준)
+5. `rationale`: 해당 DP 요구사항과 문장의 연관성을 간략히 설명
+6. 제공된 DP가 없으면 `dp_sentence_mappings`는 빈 배열 `[]`
+7. **중요**: generated_text 작성 후 반드시 dp_sentence_mappings를 함께 작성
+
+## generated_text 작성 규칙
 - 한국어로 작성합니다.
-- 문단 형식으로 작성하되, 필요시 소제목을 포함할 수 있습니다.
+- 문단 형식으로 작성하되, 필요시 소제목(##)을 포함할 수 있습니다.
 - 수치는 단위와 함께 명확히 표기합니다.
 - 표나 목록이 필요한 경우 마크다운 형식을 사용합니다.
 """
@@ -485,7 +514,37 @@ def _build_instruction_section(gen_input: Dict[str, Any]) -> str:
 - 표나 목록이 필요한 경우 마크다운 형식을 사용하세요.
 - 그린워싱을 피하고 객관적으로 작성하세요.
 
-**출력**: 완성된 문단만 반환하세요 (메타 설명 없이).
+**출력**: 지정된 JSON 형식(generated_text + dp_sentence_mappings)으로만 반환하세요.
 """
     
     return instruction
+
+
+def extract_dp_info_for_mapping(gen_input: Dict[str, Any]) -> List[Dict[str, str]]:
+    """gen_input에서 DP 정보 추출 (dp_sentence_mappings 생성용)."""
+    dp_info_list: List[Dict[str, str]] = []
+    
+    dp_data_list = gen_input.get("dp_data_list") or []
+    if not dp_data_list:
+        legacy_dp = gen_input.get("dp_data")
+        if legacy_dp:
+            dp_data_list = [legacy_dp]
+    
+    for dp_data in dp_data_list:
+        if not dp_data:
+            continue
+        dp_id = dp_data.get("dp_id", "")
+        dp_name = dp_data.get("dp_name_ko") or dp_data.get("column_name_ko") or dp_id
+        
+        # UCM 정보에서도 추출 시도
+        ucm = dp_data.get("ucm") or {}
+        if not dp_name and ucm:
+            dp_name = ucm.get("column_name_ko", "") or dp_id
+        
+        if dp_id:
+            dp_info_list.append({
+                "dp_id": dp_id,
+                "dp_name_ko": dp_name,
+            })
+    
+    return dp_info_list

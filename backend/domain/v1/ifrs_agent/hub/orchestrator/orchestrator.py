@@ -205,7 +205,8 @@ class Orchestrator:
             "fact_data": self._representative_fact_data(user_input, fdb),
             "agg_data": data["agg_data"],
             "user_input": user_input,
-            "feedback": None
+            "feedback": None,
+            "dp_sentence_mappings": [],
         }
         
         # Phase 1.5: DP 계층 검증 (dp_id 또는 dp_ids가 있으면 실행)
@@ -326,6 +327,7 @@ class Orchestrator:
         # Phase 4: 최종 결과 반환
         return {
             "generated_text": state.get("generated_text", ""),
+            "dp_sentence_mappings": state.get("dp_sentence_mappings", []),
             "validation": state.get("validation", {}),
             "error": state.get("error"),
             "agg_data": state.get("agg_data", {}),
@@ -436,6 +438,8 @@ class Orchestrator:
         """
         Phase 1: c_rag, dp_rag, aggregation_node 병렬 호출
         
+        ✨ 신규: sr_body_ids가 있으면 직접 ID 조회, 없으면 기존 검색 방식 폴백
+        
         Returns:
             {
                 "ref_data": c_rag 결과,
@@ -448,7 +452,17 @@ class Orchestrator:
         years = [2024, 2023]
         heavy_timeout = get_settings().ifrs_infra_heavy_timeout_sec
 
-        # 병렬 호출 (infra 경유) — c_rag는 연도·임베딩·LLM 병행이라 긴 타임아웃
+        # ✨ 신규: 직접 참조 ID가 있는지 확인
+        sr_body_ids = user_input.get("sr_body_ids", [])
+        sr_image_ids = user_input.get("sr_image_ids", [])
+        use_direct_reference = bool(sr_body_ids)
+        
+        if use_direct_reference:
+            logger.info(
+                f"orchestrator: Direct SR reference detected — sr_body_ids={sr_body_ids}, sr_image_ids={sr_image_ids}"
+            )
+        
+        # c_rag 호출 (직접 참조 모드 or 검색 모드)
         c_rag_payload: Dict[str, Any] = {
             "company_id": company_id,
             "category": category,
@@ -456,6 +470,10 @@ class Orchestrator:
             "search_intent": (user_input.get("search_intent") or "").strip(),
             "content_focus": (user_input.get("content_focus") or "").strip(),
             "ref_pages": user_input.get("ref_pages"),
+            # ✨ 신규: 직접 참조 ID 전달
+            "sr_body_ids": sr_body_ids,
+            "sr_image_ids": sr_image_ids,
+            "use_direct_reference": use_direct_reference,
         }
         c_rag_task = self.infra.call_agent(
             "c_rag",
@@ -496,10 +514,12 @@ class Orchestrator:
         aggregation_task = None
         registered_agents = self.infra.agent_registry.list_agents()
         if "aggregation_node" in registered_agents:
+            # ✨ 신규: aggregation_node가 자체적으로 DP 메타 조회 (dp_rag 독립)
             aggregation_payload = {
                 "company_id": company_id,
                 "category": category,
-                "years": years
+                "years": years,
+                "dp_ids": dp_ids,  # ← dp_ids만 전달 (fact_data_by_dp 불필요)
             }
             # DP가 있으면 aggregation_node에도 전달 (related_dp_ids 필터용)
             if user_input.get("dp_id"):
@@ -511,6 +531,7 @@ class Orchestrator:
             aggregation_payload["external_query"] = prompt_interpretation.get("external_search_query", "")
             aggregation_payload["external_keywords"] = prompt_interpretation.get("external_keywords", [])
             
+            # ✨ 신규: aggregation_node 즉시 시작 (dp_rag 대기 없음)
             aggregation_task = self.infra.call_agent(
                 "aggregation_node",
                 "collect",
@@ -518,17 +539,32 @@ class Orchestrator:
                 timeout=heavy_timeout,
             )
         
-        # 대기 (예외 처리 포함)
+        # ✨ 완전 병렬 실행: c_rag + dp_rag + aggregation_node 동시 시작
         try:
             all_tasks = [c_rag_task]
-            all_tasks.extend([task for _, task in dp_rag_tasks])
+            
+            # dp_rag 태스크 추가
+            for dp_id, task in dp_rag_tasks:
+                all_tasks.append(task)
+            
+            # aggregation_node 태스크 추가
             if aggregation_task:
                 all_tasks.append(aggregation_task)
             
+            logger.info(
+                "orchestrator: 완전 병렬 실행 시작 (c_rag=1, dp_rag=%d, aggregation=%d)",
+                len(dp_rag_tasks),
+                1 if aggregation_task else 0
+            )
+            
+            # 모든 태스크 병렬 실행
             results = await asyncio.gather(*all_tasks, return_exceptions=True)
             
+            # 결과 분리
             c_rag_result = results[0]
-            dp_rag_results = results[1:1+len(dp_rag_tasks)]
+            
+            dp_results = results[1:1+len(dp_rag_tasks)]
+            
             agg_result = results[-1] if aggregation_task else {}
             
             # 예외 체크
@@ -536,9 +572,9 @@ class Orchestrator:
                 logger.error("c_rag failed: %s", c_rag_result)
                 c_rag_result = {}
             
-            # dp_rag 결과를 fact_data_by_dp로 병합
+            # dp_rag 결과 처리
             fact_data_by_dp: Dict[str, Dict] = {}
-            for i, result in enumerate(dp_rag_results):
+            for i, result in enumerate(dp_results):
                 dp_id = dp_rag_tasks[i][0]
                 if isinstance(result, Exception):
                     logger.error("dp_rag failed for %s: %s", dp_id, result)
@@ -1101,6 +1137,7 @@ class Orchestrator:
                     ),
                 )
                 state["generated_text"] = gen_result.get("text", "")
+                state["dp_sentence_mappings"] = gen_result.get("dp_sentence_mappings", [])
                 if gen_result.get("error") and not (state.get("generated_text") or "").strip():
                     err = gen_result.get("error")
                     logger.warning("gen_node returned error (no text): %s", err)
@@ -1130,6 +1167,7 @@ class Orchestrator:
             except Exception as e:
                 logger.error(f"gen_node failed: {e}", exc_info=True)
                 state["generated_text"] = ""
+                state["dp_sentence_mappings"] = []
                 state["validation"] = {"is_valid": False, "errors": [str(e)]}
                 state["status"] = "failed"
                 state["error"] = str(e)

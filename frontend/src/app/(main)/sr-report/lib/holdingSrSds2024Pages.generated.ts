@@ -8,6 +8,8 @@ export const HOLDING_SR_SDS_2024_PAGES: Array<{
   title: string;
   standards: string[];
   section: string;
+  srBodyIds?: string[];      // sr_report_body 참조 ID (전년도, 전전년도)
+  srImageIds?: string[];     // sr_report_images 참조 ID
 }> = [
   {
     "page": 1,
@@ -348,24 +350,16 @@ export const HOLDING_SR_SDS_2024_PAGES: Array<{
     "page": 39,
     "title": "기후변화 대응 / 온실가스 배출량 관리",
     "standards": [
-      "ESRSE1-E1-6-44-a",
-      "ESRSE1-E1-6-44-b",
-      "ESRSE1-E1-6-44-c",
-      "ESRSE1-E1-6-51",
-      "ESRSE1-E1-6-45-c",
-      "ESRS2-MDR-A-68-a",
-      "ESRS2-BP-2-10-b",
-      "GRI305-1-a",
-      "IFRS2-29-a-i-1",
-      "GRI305-2-a",
-      "IFRS2-29-a-i-2",
-      "GRI305-3-a",
-      "IFRS2-29-a-i-3",
-      "GRI305-3-d",
-      "IFRS2-29-a-vi-1",
-      "IFRS2-29-a-iii-1"
+      "UCM_001",
+      "UCM_002",
+      "UCM_003",
+      "UCM_004",
+      "UCM_005",
+      "ESRS2-MDR-A-68-a"
     ],
-    "section": "환경·기후"
+    "section": "환경·기후",
+    "srBodyIds": ["1906c30e-171f-4e81-b8ac-4a53618e536a", "662a48e0-e3b0-48cb-b3ae-c9ad193c928a"],
+    "srImageIds": []
   },
   {
     "page": 40,

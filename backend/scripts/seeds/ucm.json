@@ -1,0 +1,271 @@
+[
+    {
+    "unified_column_id": "UCM_001",
+    "column_name_ko": "Scope 1 총 온실가스 배출량 통합 공시",
+    "column_name_en": "Integrated Disclosure of Total Gross Scope 1 GHG Emissions",
+    "column_description": "기업이 소유하거나 통제하는 배출원에서 발생하는 총 직접(Scope 1) 온실가스 배출량을 산출함. IFRS S2의 공시 원칙, GRI 305-1-a의 총량(Gross) 보고 기준, ESRS E1-6-44-a의 이산화탄소 환산 메트릭 톤($tCO_2eq$) 단위 측정 요건을 모두 통합하여 공시하도록 구성됨.",
+    "column_category": "E",
+    "column_topic": "온실가스 배출",
+    "column_subtopic": "Scope 1 총량",
+    "mapped_dp_ids": [
+      "ESRSE1-E1-6-44-a",
+      "GRI305-1-a",
+      "IFRS2-29-a-i-1"
+    ],
+    "column_type": "quantitative",
+    "unit": "tCO2eq",
+    "validation_rules": {
+      "IFRS2_CHECK": "IFRS2-29-a-i-1 공시가 식별 가능한 형태로 존재하는지 확인",
+      "GRI_NUMERIC_CHECK": "총량 수치와 단위(tCO2e)가 명확히 제시되었는지 확인",
+      "ESRS_TRACEABILITY": "원문 문단 및 항목에 대응하는 서술 및 교차참조 여부 확인",
+      "GROSS_ONLY": "GHG 거래(상쇄 매입 등)를 제외한 Gross 배출량 산정 여부 확인"
+    },
+    "extraction_keywords": [
+      "Scope 1",
+      "직접 배출",
+      "총 온실가스 배출량",
+      "$tCO_2eq$",
+      "Gross GHG emissions",
+      "이산화탄소 환산 톤",
+      "측정 방법론"
+    ],
+    "disclosure_requirement": "필수",
+    "reporting_frequency": "연간",
+    "primary_standard": "ESRS",
+    "applicable_standards": ["ESRS", "GRI", "IFRS"],
+    "mapping_confidence": 0.95,
+    "standard_metadata": {
+      "GRI": {
+        "dp_id": "GRI305-1-a",
+        "description": "계산된 총 gross 직접(Scope 1) 온실가스 배출량을 이산화탄소 환산 톤(t CO₂e)으로 보고해야 합니다."
+      },
+      "ESRS": {
+        "dp_id": "ESRSE1-E1-6-44-a",
+        "description": "총 범위 1 온실가스 배출량을 이산화탄소 환산 메트릭 톤($tCO_2eq$)으로 공개합니다."
+      },
+      "IFRS": {
+        "dp_id": "IFRS2-29-a-i-1",
+        "description": "범위 1 온실가스 배출량을 공시합니다."
+      }
+    }
+  },
+  {
+    "unified_column_id": "UCM_002",
+    "column_name_ko": "온실가스 및 가치사슬 산정 방법론 통합 공시",
+    "column_name_en": "Integrated GHG and Value Chain Calculation Methodology",
+    "column_description": "온실가스 배출량 측정 및 간접 출처를 활용한 가치사슬 데이터 추정에 적용된 산정 기준, 측정 방법론, 입력값, 주요 가정 및 도구에 대한 포괄적 설명",
+    "column_category": "E",
+    "column_topic": "온실가스 배출",
+    "column_subtopic": "산정 방법론",
+    "mapped_dp_ids": [
+      "ESRS2-BP-2-10-b",
+      "IFRS2-29-a-iii-1",
+      "GRI305-3-g"
+    ],
+    "column_type": "narrative",
+    "unit": null,
+    "validation_rules": {
+      "METHODOLOGY_CHECK": "사용된 측정 방법론(지침)이 명시되었는지 확인",
+      "INPUT_DATA_VERIFY": "산정에 사용된 데이터의 입력값(활동자료 등) 출처 명시 확인",
+      "ASSUMPTION_LOGIC": "추정 시 사용된 가정과 그 논리적 근거가 포함되었는지 확인",
+      "TOOL_IDENTIFICATION": "산정에 사용된 특정 소프트웨어나 계산 도구 명시 여부 확인"
+    },
+    "extraction_keywords": [
+      "측정 방법",
+      "입력값",
+      "가정",
+      "산출 근거",
+      "추정",
+      "방법론",
+      "도구",
+      "간접 출처"
+    ],
+    "disclosure_requirement": "필수",
+    "reporting_frequency": "연간",
+    "primary_standard": "IFRS",
+    "applicable_standards": ["ESRS", "GRI", "IFRS"],
+    "mapping_confidence": 0.92,
+    "mapping_notes": "IFRS S2-29-a-iii-1의 측정 요소(방법/입력/가정)를 핵심 구조로 채택하고, ESRS의 가치사슬 추정 요건과 GRI의 도구/기준 요건을 상위 개념으로 통합함",
+    "standard_metadata": {
+      "GRI": {
+        "dp_id": "GRI305-3-g",
+        "column_name_ko": "공개 305-3-g: 기준·방법론·가정·도구",
+        "description": "배출량을 산정하는 데 사용된 기준, 방법론, 가정 및 계산 도구에 대한 정보를 공시합니다."
+      },
+      "ESRS": {
+        "dp_id": "ESRS2-BP-2-10-b",
+        "column_name_ko": "ESRS2-BP-2-10-b: 가치 사슬 데이터 추정 근거",
+        "description": "간접 출처로 가치 사슬 데이터를 추정한 지표에 대해 작성·산출 근거를 설명해야 합니다."
+      },
+      "IFRS": {
+        "dp_id": "IFRS2-29-a-iii-1",
+        "column_name_ko": "IFRS2-29-a-iii-1: 측정 방법 및 가정",
+        "description": "온실가스 배출량 측정에 사용한 측정 방법, 입력값 및 가정을 공시합니다."
+      }
+    }
+  },
+  {
+    "unified_column_id": "UCM_003",
+    "column_name_ko": "Scope 3 배출 범주 및 활동 내역 통합 공시",
+    "column_name_en": "Integrated Disclosure of Scope 3 Categories and Activities",
+    "column_description": "GHG Protocol 15개 범주 체계를 기준으로 산정에 포함된 Scope 3 범주 및 관련 활동을 정의하고, 우선순위가 부여된 각 범주별 온실가스 배출량(tCO₂eq)을 매핑하여 설명함",
+    "column_category": "E",
+    "column_topic": "온실가스 배출",
+    "column_subtopic": "Scope 3 범주",
+    "mapped_dp_ids": [
+      "ESRSE1-E1-6-51",
+      "GRI305-3-d",
+      "IFRS2-29-a-vi-1"
+    ],
+    "column_type": "narrative",
+    "unit": "tCO2eq",
+    "validation_rules": {
+      "GHG_PROTOCOL_ALIGNMENT": "GHG Protocol의 15개 범주와 공시된 범주 간의 대응 관계 확인",
+      "ACTIVITY_DESCRIPTION": "각 범주 내에 포함된 구체적인 기업 활동이 설명되었는지 확인",
+      "QUANTITATIVE_LINK": "각 범주별 배출량(tCO2eq) 수치가 설명과 매핑되어 제시되었는지 확인",
+      "CATEGORY_PRIORITY": "중요도에 따라 우선순위가 부여된 범주가 명시되었는지 확인"
+    },
+    "extraction_keywords": [
+      "Scope 3",
+      "GHG Protocol",
+      "15개 범주",
+      "활동 설명",
+      "우선순위 범주",
+      "tCO₂eq",
+      "측정 범위"
+    ],
+    "disclosure_requirement": "필수",
+    "reporting_frequency": "연간",
+    "primary_standard": "GRI",
+    "applicable_standards": ["ESRS", "GRI", "IFRS"],
+    "mapping_confidence": 0.94,
+    "mapping_notes": "GRI 305-3-d의 15개 범주 대응 분류 체계를 주축으로 하여, IFRS의 범주 정의 요건과 ESRS의 정량적 배출량 매핑 요건을 결합함",
+    "standard_metadata": {
+      "GRI": {
+        "dp_id": "GRI305-3-d",
+        "column_name_ko": "GRI 305-3-d: Scope 3 범주 대응",
+        "description": "산정에 포함된 Scope 3 배출 범주 및 활동을 설명하며, GHG Protocol 15개 범주와의 대응을 드러내야 합니다."
+      },
+      "ESRS": {
+        "dp_id": "ESRSE1-E1-6-51",
+        "column_name_ko": "ESRS E1-6-51: 범주별 배출량",
+        "description": "우선순위가 부여된 각 범위 3 범주별 tCO₂eq 배출량을 포함합니다."
+      },
+      "IFRS": {
+        "dp_id": "IFRS2-29-a-vi-1",
+        "column_name_ko": "IFRS2-29-a-vi-1: 측정 범위 및 정의",
+        "description": "범위 3 측정 범위에 포함된 범주와 적용 정의를 공시합니다."
+      }
+    }
+  },
+  {
+    "unified_column_id": "UCM_004",
+    "column_name_ko": "Scope 2 온실가스 배출량 통합 공시",
+    "column_name_en": "Integrated Disclosure of Scope 2 GHG Emissions",
+    "column_description": "에너지 사용으로 인해 발생하는 간접 온실가스 배출량(Scope 2)을 공개하며, 위치 기반(location-based) 산정 방식 적용 여부와 총 배출량(tCO₂eq) 정보를 포함함",
+    "column_category": "E",
+    "column_topic": "온실가스 배출",
+    "column_subtopic": "Scope 2 배출량",
+    "mapped_dp_ids": [
+      "ESRSE1-E1-6-44-b",
+      "GRI305-2-a",
+      "IFRS2-29-a-i-2"
+    ],
+    "column_type": "quantitative",
+    "unit": "tCO2eq",
+    "validation_rules": {
+      "UNIT_CHECK": "배출량 단위가 tCO2eq 또는 tCO2e로 작성되었는지 확인",
+      "LOCATION_BASED_LOGIC": "그리드 평균 등 위치 기반(location-based) 계수 사용 근거가 포함되었는지 확인",
+      "TRACEABILITY": "원문 문단이나 항목에 대응하는 서술 및 교차 참조가 존재하는지 확인",
+      "DISCLOSURE_IDENTIFIABILITY": "범위 2 온실가스 배출량이 식별 가능한 형태로 공시되었는지 확인"
+    },
+    "extraction_keywords": [
+      "Scope 2",
+      "범위 2",
+      "간접 배출",
+      "에너지 간접",
+      "위치 기반",
+      "location-based",
+      "tCO2eq",
+      "tCO2e"
+    ],
+    "disclosure_requirement": "필수",
+    "reporting_frequency": "연간",
+    "primary_standard": "ESRS",
+    "applicable_standards": ["ESRS", "GRI", "IFRS"],
+    "mapping_confidence": 0.95,
+    "mapping_notes": "세 표준 모두 Scope 2 총 배출량 공시를 필수로 요구함. GRI의 '위치 기반' 산정 상세 요건과 ESRS/IFRS의 총량 공시 요건을 통합하여 정량적 데이터 추출에 최적화함",
+    "standard_metadata": {
+      "GRI": {
+        "dp_id": "GRI305-2-a",
+        "column_name_ko": "공개 305-2-a: 위치 기반 총 Scope 2 배출",
+        "description": "위치 기반(location-based) 총 에너지 간접(Scope 2) 온실가스 배출량을 t CO2e로 보고합니다."
+      },
+      "ESRS": {
+        "dp_id": "ESRSE1-E1-6-44-b",
+        "column_name_ko": "문단 44-(b): 총 범위 2 온실가스 배출량(tCO₂eq)",
+        "description": "총 범위 2 온실가스 배출량을 tCO₂eq으로 공개합니다."
+      },
+      "IFRS": {
+        "dp_id": "IFRS2-29-a-i-2",
+        "column_name_ko": "문단 29(a)(i)(2): 범위 2 배출량",
+        "description": "범위 2 온실가스 배출량을 공시합니다."
+      }
+    }
+  },
+  {
+    "unified_column_id": "UCM_005",
+    "column_name_ko": "Scope 3 온실가스 총 배출량 통합 공시",
+    "column_name_en": "Integrated Disclosure of Total Scope 3 GHG Emissions",
+    "column_description": "기업의 가치사슬 내에서 발생하는 기타 간접 온실가스 배출량(Scope 3)의 전체 합계를 tCO₂eq 단위로 공시함",
+    "column_category": "E",
+    "column_topic": "온실가스 배출",
+    "column_subtopic": "Scope 3 총량",
+    "mapped_dp_ids": [
+      "ESRSE1-E1-6-44-c",
+      "GRI305-3-a",
+      "IFRS2-29-a-i-3"
+    ],
+    "column_type": "quantitative",
+    "unit": "tCO2eq",
+    "validation_rules": {
+      "TOTAL_SUM_CHECK": "15개 범주 또는 해당되는 범주의 합계 수치가 제시되었는지 확인",
+      "MANDATORY_ACTION": "범위 3 배출량의 공시 여부 및 식별 가능성 확인",
+      "UNIT_CONSISTENCY": "단위가 tCO2eq으로 일관되게 적용되었는지 확인",
+      "METHODOLOGY_TRACE": "산정 방식에 대한 참조 정보가 포함되었는지 확인"
+    },
+    "extraction_keywords": [
+      "Scope 3",
+      "범위 3",
+      "기타 간접 배출",
+      "총계",
+      "tCO2eq",
+      "tCO2e",
+      "가치사슬 배출"
+    ],
+    "disclosure_requirement": "필수",
+    "reporting_frequency": "연간",
+    "primary_standard": "GRI",
+    "applicable_standards": ["ESRS", "GRI", "IFRS"],
+    "mapping_confidence": 0.93,
+    "mapping_notes": "Scope 3 총계는 범주별 공시(Narrative)와 연결되는 핵심 정량 지표임. 각 표준의 총량 공시 요건을 통합하여 데이터 포인트 간의 일관성을 확보함",
+    "standard_metadata": {
+      "GRI": {
+        "dp_id": "GRI305-3-a",
+        "column_name_ko": "공개 305-3-a: Scope 3 총계",
+        "description": "기타 간접(Scope 3) 온실가스 배출량 총계를 t CO2e로 보고합니다."
+      },
+      "ESRS": {
+        "dp_id": "ESRSE1-E1-6-44-c",
+        "column_name_ko": "문단 44-(c): 총 범위 3 온실가스 배출량(tCO₂eq)",
+        "description": "총 범위 3 온실가스 배출량을 tCO₂eq으로 공개합니다."
+      },
+      "IFRS": {
+        "dp_id": "IFRS2-29-a-i-3",
+        "column_name_ko": "문단 29(a)(i)(3): 범위 3 배출량",
+        "description": "범위 3 온실가스 배출량을 공시합니다."
+      }
+    }
+  }
+  
+]

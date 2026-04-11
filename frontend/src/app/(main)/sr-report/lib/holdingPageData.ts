@@ -1,8 +1,15 @@
-/** 지주사 SR 페이지별 작성 — 삼성SDS SR 2024 지표표 기준 목차·공시기준 */
+/** 지주사 SR 페이지별 작성 — 삼성SDS SR 2024 지표표 기준 목차·공시기준
+ *
+ * `srBodyIds` / `srImageIds` 기본값은 생성 파일에 있음.
+ * 런타임 오버레이(어드민 저장)는 `holdingPageMappingsStorage.ts` → localStorage.
+ */
 
 import { HOLDING_SR_SDS_2024_PAGES } from './holdingSrSds2024Pages.generated';
 
-export type HoldingSrPageRow = (typeof HOLDING_SR_SDS_2024_PAGES)[number];
+export type HoldingSrPageRow = (typeof HOLDING_SR_SDS_2024_PAGES)[number] & {
+  srBodyIds?: string[];
+  srImageIds?: string[];
+};
 
 export const HOLDING_SR_PAGE_DATA: HoldingSrPageRow[] = HOLDING_SR_SDS_2024_PAGES;
 

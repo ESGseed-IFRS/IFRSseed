@@ -13,6 +13,14 @@ import {
   findPageByKeyword,
   type HoldingSrPageRow,
 } from '../../lib/holdingPageData';
+import {
+  HOLDING_SR_MAPPINGS_CHANGED_EVENT,
+  HOLDING_SR_MAPPINGS_STORAGE_KEY,
+} from '../../lib/holdingPageMappingsStorage';
+import {
+  HOLDING_SR_MAPPINGS_COMPANY_ID,
+  resolveMergedHoldingSrPages,
+} from '../../lib/holdingPageMappingsApi';
 import { getRecommendedInfographicTemplates } from '../../lib/holdingInfographicCatalog';
 import type { InfographicBlockPayload } from '../../lib/holdingInfographicTypes';
 import {
@@ -83,10 +91,19 @@ export type HoldingAgentValidation = {
   };
 };
 
+/** DP별 문장 매핑 */
+export type DpSentenceMapping = {
+  dp_id: string;
+  dp_name_ko: string;
+  sentences: string[];
+  rationale?: string;
+};
+
 type CreateReportResponse = {
   workflow_id?: string;
   status?: string;
   generated_text?: string;
+  dp_sentence_mappings?: DpSentenceMapping[];
   validation?: HoldingAgentValidation;
   layout?: { version?: number; blocks?: LayoutBlock[] };
   image_recommendations?: Array<{
@@ -315,6 +332,95 @@ function SectionHeader({ section }: SectionHeaderProps) {
   );
 }
 
+/** DP-문장 매핑 패널 컴포넌트 */
+function DpMappingPanel({
+  mappings,
+  pageStandards,
+}: {
+  mappings: DpSentenceMapping[];
+  pageStandards: string[];
+}) {
+  if (!mappings || mappings.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-12 text-center">
+        <div className="text-4xl mb-3 opacity-60">🔗</div>
+        <div className="text-sm font-semibold text-[#666] mb-1">DP 매핑 정보 없음</div>
+        <p className="text-xs text-[#999] max-w-xs">
+          AI 문단 생성 후 각 문장이 어떤 Data Point(DP) 기준으로 작성되었는지 확인할 수 있습니다.
+        </p>
+        {pageStandards.length > 0 && (
+          <div className="mt-4 px-3 py-2 bg-[#f5f8f6] rounded-lg">
+            <div className="text-[10px] text-[#888] mb-1">이 페이지에 매핑된 DP:</div>
+            <div className="flex flex-wrap gap-1">
+              {pageStandards.slice(0, 8).map((s) => (
+                <span key={s} className="text-[9px] bg-[#edf5ef] text-[#2d6a4f] px-1.5 py-0.5 rounded">
+                  {s}
+                </span>
+              ))}
+              {pageStandards.length > 8 && (
+                <span className="text-[9px] text-[#999]">+{pageStandards.length - 8}</span>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center gap-2 mb-1">
+        <span className="text-base">🔗</span>
+        <span className="text-sm font-bold text-[#333]">DP별 문장 매핑</span>
+        <span className="text-[10px] bg-[#e8f5e9] text-[#2d6a4f] px-2 py-0.5 rounded-full font-semibold">
+          {mappings.length}개 DP
+        </span>
+      </div>
+      <p className="text-[11px] text-[#666] -mt-2 mb-2">
+        생성된 문단에서 각 Data Point(DP)에 해당하는 문장들을 보여줍니다.
+      </p>
+      {mappings.map((m, idx) => (
+        <div
+          key={m.dp_id || idx}
+          className="rounded-xl border border-[#dbe9df] bg-white p-4 shadow-sm"
+        >
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <span className="inline-flex items-center gap-1 bg-[#2d6a4f] text-white text-[11px] font-bold px-2.5 py-1 rounded-lg">
+              <span className="opacity-75">DP</span>
+              {m.dp_id}
+            </span>
+            {m.dp_name_ko && (
+              <span className="text-xs text-[#555] font-medium">{m.dp_name_ko}</span>
+            )}
+          </div>
+          <div className="flex flex-col gap-2">
+            {m.sentences.map((sentence, sIdx) => (
+              <div
+                key={sIdx}
+                className="flex gap-2 items-start text-[12px] leading-relaxed text-[#333] bg-[#f8fdf9] rounded-lg p-3 border-l-[3px] border-[#74c69d]"
+              >
+                <span className="shrink-0 text-[10px] text-[#74c69d] font-bold mt-0.5">
+                  {sIdx + 1}.
+                </span>
+                <span>{sentence}</span>
+              </div>
+            ))}
+          </div>
+          {m.rationale && (
+            <div className="mt-3 pt-3 border-t border-[#eee]">
+              <div className="flex items-center gap-1 text-[10px] text-[#888] mb-1">
+                <span>💡</span>
+                <span className="font-semibold">매핑 근거</span>
+              </div>
+              <p className="text-[11px] text-[#666] leading-relaxed">{m.rationale}</p>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 type PageListItemProps = {
   page: HoldingSrPageRow;
   active: boolean;
@@ -374,15 +480,15 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
   const [search, setSearch] = useState('');
   const [pagesData, setPagesData] = useState<HoldingSrPageRow[]>(() => [...HOLDING_SR_PAGE_DATA]);
   const [pageTexts, setPageTexts] = useState<Record<string, string>>({});
-  const [pagePrompts, setPagePrompts] = useState<Record<string, string>>({});
   const [agentReplies, setAgentReplies] = useState<Record<string, string>>({});
   const [agentLayouts, setAgentLayouts] = useState<Record<string, LayoutBlock[]>>({});
   const [blocks, setBlocks] = useState<Record<string, PageContentBlock[]>>({});
   const [pageValidations, setPageValidations] = useState<Record<string, HoldingAgentValidation | undefined>>(
     {},
   );
+  const [pageDpMappings, setPageDpMappings] = useState<Record<string, DpSentenceMapping[]>>({});
   const [activeTab, setActiveTab] = useState<
-    'content' | 'chart' | 'table' | 'infographic' | 'accuracy'
+    'content' | 'chart' | 'table' | 'infographic' | 'accuracy' | 'dp-mapping'
   >('content');
   const [generating, setGenerating] = useState(false);
   /** 페이지별 에이전트 진행 단계(SSE 이벤트 메시지 누적) */
@@ -395,6 +501,36 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
     id: string;
     payload: InfographicBlockPayload;
   } | null>(null);
+
+  /** DB(API) → localStorage → 생성 파일 병합 동기화 (로그인 시 서버 우선, 어드민·다른 탭 반영) */
+  useEffect(() => {
+    let cancelled = false;
+    const refreshPages = async () => {
+      const merged = await resolveMergedHoldingSrPages(
+        HOLDING_SR_PAGE_DATA,
+        HOLDING_SR_MAPPINGS_COMPANY_ID,
+        apiBase,
+      );
+      if (cancelled) return;
+      setPagesData(merged);
+      setSelectedPage((prev) => {
+        if (!prev) return null;
+        return merged.find((p) => p.page === prev.page) ?? prev;
+      });
+    };
+    void refreshPages();
+    const onChanged = () => void refreshPages();
+    window.addEventListener(HOLDING_SR_MAPPINGS_CHANGED_EVENT, onChanged);
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === HOLDING_SR_MAPPINGS_STORAGE_KEY) void refreshPages();
+    };
+    window.addEventListener('storage', onStorage);
+    return () => {
+      cancelled = true;
+      window.removeEventListener(HOLDING_SR_MAPPINGS_CHANGED_EVENT, onChanged);
+      window.removeEventListener('storage', onStorage);
+    };
+  }, [apiBase]);
 
   useEffect(() => {
     if (!initialKeyword?.trim()) return;
@@ -423,7 +559,6 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
 
   const pageKey = selectedPage ? String(selectedPage.page) : null;
   const currentText = pageKey ? pageTexts[pageKey] || '' : '';
-  const currentPrompt = pageKey ? pagePrompts[pageKey] || '' : '';
   const currentReply = pageKey ? agentReplies[pageKey] || '' : '';
   const currentLayoutBlocks = pageKey ? agentLayouts[pageKey] || [] : [];
   const currentGenerationSteps = pageKey ? generationSteps[pageKey] || [] : [];
@@ -488,7 +623,6 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
       return;
     }
     const resolvedCategory = (selectedPage.title || selectedPage.section || '').trim();
-    const resolvedPrompt = (currentPrompt || '').trim();
     const dpIds = Array.from(
       new Set(
         (selectedPage.standards || [])
@@ -500,10 +634,6 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
       setRequestError('카테고리가 비어 있습니다.');
       return;
     }
-    if (!resolvedPrompt) {
-      setRequestError('프롬프트를 입력해 주세요.');
-      return;
-    }
 
     setGenerating(true);
     setRequestError(null);
@@ -512,10 +642,12 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
     const jsonBody = {
       company_id: companyId,
       category: resolvedCategory,
-      prompt: resolvedPrompt,
       dp_ids: dpIds,
       ref_pages: {},
       max_retries: 3,
+      // 직접 참조 ID 전달 (39페이지에 매핑된 sr_report_body, sr_report_images ID)
+      sr_body_ids: selectedPage.srBodyIds || [],
+      sr_image_ids: selectedPage.srImageIds || [],
     };
 
     const baseUrl = `${apiBase.replace(/\/$/, '')}/ifrs-agent/reports`;
@@ -549,6 +681,11 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
       // 검증 결과 저장 (확장된 accuracy/feedback 포함)
       if (body.validation) {
         setPageValidations((prev) => ({ ...prev, [pk]: body.validation }));
+      }
+      
+      // DP-문장 매핑 저장
+      if (body.dp_sentence_mappings && body.dp_sentence_mappings.length > 0) {
+        setPageDpMappings((prev) => ({ ...prev, [pk]: body.dp_sentence_mappings! }));
       }
       
       const replyLines = [
@@ -858,6 +995,7 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
                     [
                       ['content', '📝 본문 편집'],
                       ['accuracy', '🎯 정확도·피드백'],
+                      ['dp-mapping', '🔗 DP매핑'],
                       ['chart', '📊 차트(자유)'],
                       ['table', '📋 표'],
                       ['infographic', '🎨 인포그래픽'],
@@ -883,15 +1021,6 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
                 <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-4 overflow-y-auto px-6 py-5">
                   {activeTab === 'content' && (
                     <>
-                      <textarea
-                        value={currentPrompt}
-                        onChange={(e) =>
-                          pageKey &&
-                          setPagePrompts((prev) => ({ ...prev, [pageKey]: e.target.value }))
-                        }
-                        placeholder="생성 프롬프트를 입력하세요. (예: 위 카테고리를 기준으로 인재상/채용절차/대학생 알고리즘 특강 중심으로 작성)"
-                        className="w-full min-h-[120px] border border-[#dde1e7] rounded-[10px] py-3 px-4 text-[12px] leading-[1.8] resize-y outline-none text-[#333] bg-[#fffdf9] box-border"
-                      />
                       <div className="min-w-0 bg-[#f7fbf8] border border-[#dbe9df] rounded-[10px] p-3.5">
                         <div className="text-[11px] font-bold text-[#2d6a4f] tracking-wide mb-2">
                           문단생성 에이전트 응답
@@ -1068,6 +1197,12 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
                     </>
                   )}
                   {activeTab === 'accuracy' && <HoldingValidationPanel v={currentValidation} />}
+                  {activeTab === 'dp-mapping' && selectedPage && (
+                    <DpMappingPanel
+                      mappings={pageDpMappings[selectedPage.page] ?? []}
+                      pageStandards={selectedPage.standards}
+                    />
+                  )}
                   {activeTab === 'chart' && <HoldingChartEditor onAdd={addBlock} />}
                   {activeTab === 'table' && <HoldingTableEditor onAdd={addBlock} />}
                   {activeTab === 'infographic' && selectedPage && (

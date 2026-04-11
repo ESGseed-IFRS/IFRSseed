@@ -63,7 +63,7 @@ class Settings:
     mcp_sr_index_tools_url: str = ""
     groq_temperature: float = 0.2
     groq_max_tokens: int = 4096
-    max_retries: int = 3
+    max_retries: int = 2
 
     # Domain defaults (ifrs_agent 등)
     rag_model: str = "llama-3.3-70b-versatile"
@@ -75,7 +75,7 @@ class Settings:
     # narrative DP일 때 rulebook·DP 설명 기준으로 보조 실데이터(social/env/gov) 조회. .env: DP_RAG_NARRATIVE_ENRICHMENT
     dp_rag_narrative_enrichment: bool = True
     # orchestrator: Phase 2 데이터 선택용 Gemini 모델 ID. .env: ORCHESTRATOR_GEMINI_MODEL
-    orchestrator_gemini_model: str = "gemini-2.5-pro"
+    orchestrator_gemini_model: str = "gemini-2.5-flash"
     # orchestrator: Phase 1.5 DP 적합성 판단용 Gemini 모델 (미설정 시 orchestrator_gemini_model 사용). .env: ORCHESTRATOR_PHASE15_MODEL
     orchestrator_phase15_model: str = ""
     # Phase 1.5에서 Gemini로 DP 적합성 판단 활성화 (기본 true). .env: ORCHESTRATOR_PHASE15_USE_LLM
@@ -83,7 +83,7 @@ class Settings:
     # True면 child_dps 있을 때 LLM이 proceed라도 재선택 강제 (기본 true). .env: ORCHESTRATOR_PHASE15_STRICT_CHILDDPS
     orchestrator_phase15_strict_child_dps: bool = True
     # gen_node: SR 문단 생성용 모델 (Gemini 우선, OpenAI 대안). .env: GEN_NODE_MODEL
-    gen_node_model: str = "gemini-2.5-pro"
+    gen_node_model: str = "gemini-3-flash-preview"
     dart_api_key: str = ""
     tavily_api_key: str = ""
 
@@ -188,7 +188,7 @@ def get_settings() -> Settings:
         mcp_sr_index_tools_url=os.getenv("MCP_SR_INDEX_TOOLS_URL", ""),
         groq_temperature=float(os.getenv("GROQ_TEMPERATURE", "0.2")),
         groq_max_tokens=int(os.getenv("GROQ_MAX_TOKENS", "4096")),
-        max_retries=int(os.getenv("MAX_RETRIES", "3")),
+        max_retries=int(os.getenv("MAX_RETRIES", "2")),
         rag_model=os.getenv("RAG_MODEL", "llama-3.3-70b-versatile"),
         supervisor_model=os.getenv("SUPERVISOR_MODEL", "llama-3.3-70b-versatile"),
         c_rag_llm_model=(
@@ -203,9 +203,9 @@ def get_settings() -> Settings:
             "DP_RAG_NARRATIVE_ENRICHMENT", default=True
         ),
         orchestrator_gemini_model=(
-            os.getenv("ORCHESTRATOR_GEMINI_MODEL") or "gemini-2.5-pro"
+            os.getenv("ORCHESTRATOR_GEMINI_MODEL") or "gemini-2.5-flash"
         ).strip()
-        or "gemini-2.5-pro",
+        or "gemini-2.5-flash",
         orchestrator_phase15_model=(
             os.getenv("ORCHESTRATOR_PHASE15_MODEL") or ""
         ).strip(),
@@ -216,9 +216,9 @@ def get_settings() -> Settings:
             "ORCHESTRATOR_PHASE15_STRICT_CHILDDPS", default=True
         ),
         gen_node_model=(
-            os.getenv("GEN_NODE_MODEL") or "gemini-2.5-pro"
+            os.getenv("GEN_NODE_MODEL") or "gemini-3-flash-preview"
         ).strip()
-        or "gemini-2.5-pro",
+        or "gemini-3-flash-preview",
         dart_api_key=os.getenv("DART_API_KEY", ""),
         tavily_api_key=os.getenv("TAVILY_API_KEY", ""),
         mcp_internal_transport=os.getenv("MCP_INTERNAL_TRANSPORT", "inprocess").strip() or "inprocess",

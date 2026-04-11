@@ -9,7 +9,7 @@ import logging
 from typing import Dict, Any, Optional, List, AsyncIterator
 from uuid import uuid4
 
-from fastapi import APIRouter, HTTPException, Body
+from fastapi import APIRouter, HTTPException, Body, Query
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
@@ -48,10 +48,12 @@ def _workflow_response_from_final_state(
     _ds = final_state.get("data_selection")
     _pi = final_state.get("prompt_interpretation")
     _dp_sel = final_state.get("dp_selection_required")
+    _dp_mappings = final_state.get("dp_sentence_mappings", [])
     return WorkflowResponse(
         workflow_id=workflow_id,
         status=final_state.get("status", "failed"),
         generated_text=final_state.get("generated_text", ""),
+        dp_sentence_mappings=_dp_mappings if _dp_mappings else [],
         validation=final_state.get("validation", {}),
         references=_build_create_references(final_state),
         metadata={
@@ -89,6 +91,14 @@ class CreateReportRequest(BaseModel):
         None,
         description='직접 참조할 SR 페이지 (예: {"2024": 89, "2023": 75})',
     )
+    sr_body_ids: Optional[List[str]] = Field(
+        None,
+        description="직접 참조할 sr_report_body ID 목록 (첫 번째=2024년, 두 번째=2023년)",
+    )
+    sr_image_ids: Optional[List[str]] = Field(
+        None,
+        description="직접 참조할 sr_report_images ID 목록 (선택적, 없으면 page_number 기반)",
+    )
     max_retries: int = Field(3, ge=1, le=5, description="최대 재시도 횟수")
 
 
@@ -99,11 +109,23 @@ class RefineReportRequest(BaseModel):
     user_instruction: str = Field(..., description="사용자 수정 지시사항")
 
 
+class DpSentenceMapping(BaseModel):
+    """DP별 문장 매핑"""
+    dp_id: str = Field(..., description="Data Point ID")
+    dp_name_ko: str = Field("", description="DP 한국어 명칭")
+    sentences: List[str] = Field(default_factory=list, description="해당 DP와 관련된 문장 목록")
+    rationale: str = Field("", description="매핑 근거")
+
+
 class WorkflowResponse(BaseModel):
     """워크플로우 실행 결과"""
     workflow_id: str = Field(..., description="워크플로우 실행 ID")
     status: str = Field(..., description="상태 (success, failed, max_retries_exceeded)")
     generated_text: str = Field("", description="생성된 SR 본문")
+    dp_sentence_mappings: Optional[List[Dict[str, Any]]] = Field(
+        None,
+        description="DP별 문장 매핑 (각 DP와 관련된 문장 추출)",
+    )
     validation: Dict[str, Any] = Field(default_factory=dict, description="검증 결과")
     references: Dict[str, Any] = Field(default_factory=dict, description="참조 데이터 (노드 원본)")
     metadata: Dict[str, Any] = Field(default_factory=dict, description="메타데이터")
@@ -236,6 +258,8 @@ def _create_user_input_from_request(request: CreateReportRequest) -> Dict[str, A
         "dp_ids": dp_ids,
         "prompt": request.prompt,
         "ref_pages": request.ref_pages,
+        "sr_body_ids": list(request.sr_body_ids) if request.sr_body_ids else [],
+        "sr_image_ids": list(request.sr_image_ids) if request.sr_image_ids else [],
         "max_retries": request.max_retries,
     }
 
@@ -450,4 +474,323 @@ async def list_tools():
         return {"tools": infra.tool_registry.list_tools()}
     except Exception as e:
         logger.error(f"List tools failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ===== DB: 지주 SR 페이지 ↔ sr_body / sr_image ID (프론트 JSON 스키마와 동일) =====
+
+
+class HoldingSrMappingsPagesPayload(BaseModel):
+    """pages 객체: 키는 페이지 번호 문자열, 값은 srBodyIds / srImageIds 배열"""
+
+    model_config = {"extra": "allow"}
+
+    @staticmethod
+    def normalize_pages(raw: Dict[str, Any]) -> Dict[str, Dict[str, List[str]]]:
+        out: Dict[str, Dict[str, List[str]]] = {}
+        for k, v in (raw or {}).items():
+            if not isinstance(v, dict):
+                continue
+            key = str(k)
+            b = v.get("srBodyIds")
+            i = v.get("srImageIds")
+            out[key] = {
+                "srBodyIds": list(b) if isinstance(b, list) else [],
+                "srImageIds": list(i) if isinstance(i, list) else [],
+            }
+        return out
+
+
+class HoldingSrMappingsPutPayload(BaseModel):
+    version: int = Field(1, ge=1, le=32767)
+    pages: Dict[str, Any] = Field(default_factory=dict)
+
+
+class PutHoldingSrMappingsRequest(BaseModel):
+    company_id: str = Field(..., description="companies.id (UUID)")
+    catalog_key: str = Field("sds_2024", description="목차 카탈로그 키 (생성 파일과 일치)")
+    payload: HoldingSrMappingsPutPayload
+
+
+@router.get("/holding-sr-mappings", summary="지주 SR 페이지 매핑 조회 (DB)")
+async def get_holding_sr_mappings(
+    company_id: str = Query(..., description="companies.id"),
+    catalog_key: str = Query("sds_2024"),
+):
+    """
+    저장된 매핑이 없으면 `pages: {}` 와 `updatedAt: null` 을 반환합니다.
+    """
+    try:
+        from backend.domain.shared.tool.ifrs_agent.database.holding_sr_mappings_repo import (
+            fetch_holding_sr_mapping_set,
+        )
+
+        row = await fetch_holding_sr_mapping_set(company_id.strip(), catalog_key.strip())
+        if not row:
+            return {"version": 1, "updatedAt": None, "pages": {}}
+        return row
+    except Exception as e:
+        logger.error(f"get_holding_sr_mappings failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.put("/holding-sr-mappings", summary="지주 SR 페이지 매핑 저장 (DB, 전체 pages 교체)")
+async def put_holding_sr_mappings(request: PutHoldingSrMappingsRequest = Body(...)):
+    try:
+        from backend.domain.shared.tool.ifrs_agent.database.holding_sr_mappings_repo import (
+            upsert_holding_sr_mapping_set,
+        )
+
+        pages = HoldingSrMappingsPagesPayload.normalize_pages(request.payload.pages)
+        out = await upsert_holding_sr_mapping_set(
+            request.company_id.strip(),
+            request.catalog_key.strip(),
+            pages,
+            schema_version=request.payload.version,
+        )
+        return out
+    except Exception as e:
+        logger.error(f"put_holding_sr_mappings failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.delete("/holding-sr-mappings", summary="지주 SR 페이지 매핑 삭제 (DB 행 전체)")
+async def delete_holding_sr_mappings(
+    company_id: str = Query(...),
+    catalog_key: str = Query("sds_2024"),
+):
+    try:
+        from backend.domain.shared.tool.ifrs_agent.database.holding_sr_mappings_repo import (
+            delete_holding_sr_mapping_set,
+        )
+
+        n = await delete_holding_sr_mapping_set(company_id.strip(), catalog_key.strip())
+        return {"deleted": n}
+    except Exception as e:
+        logger.error(f"delete_holding_sr_mappings failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ===== 관리자 API: 페이지 매핑 관리 =====
+
+class AutoMappingRequest(BaseModel):
+    """자동 매핑 생성 요청"""
+    company_id: str = Field(..., description="기업 ID")
+    pages: List[Dict[str, Any]] = Field(..., description="페이지 목록 (page, title, section)")
+    year: int = Field(2024, description="대상 연도")
+
+
+class AutoMappingResponse(BaseModel):
+    """자동 매핑 생성 결과"""
+    mappings: List[Dict[str, Any]] = Field(..., description="페이지별 매핑 결과")
+    total: int = Field(..., description="총 페이지 수")
+    success: int = Field(..., description="성공한 매핑 수")
+    failed: int = Field(..., description="실패한 매핑 수")
+
+
+class ValidateMappingRequest(BaseModel):
+    """매핑 검증 요청"""
+    body_ids: List[str] = Field(..., description="sr_report_body ID 목록")
+    image_ids: List[str] = Field(default_factory=list, description="sr_report_images ID 목록")
+
+
+class ValidateMappingResponse(BaseModel):
+    """매핑 검증 결과"""
+    valid: bool = Field(..., description="전체 유효성")
+    body_results: List[Dict[str, Any]] = Field(..., description="Body ID별 검증 결과")
+    image_results: List[Dict[str, Any]] = Field(..., description="Image ID별 검증 결과")
+
+
+@router.post("/admin/mapping/auto-generate", response_model=AutoMappingResponse, summary="자동 매핑 생성")
+async def auto_generate_mapping(request: AutoMappingRequest = Body(...)):
+    """
+    페이지 목록에 대해 c_rag 검색으로 자동 매핑 생성
+    
+    **Process**:
+    1. 각 페이지의 title을 category로 사용
+    2. c_rag로 최적 sr_body 검색
+    3. 검색 결과에서 sr_body_id 추출
+    4. 신뢰도(similarity) 함께 반환
+    
+    **Args**:
+    - `company_id`: 기업 ID
+    - `pages`: 페이지 목록 (page, title, section)
+    - `year`: 대상 연도
+    
+    **Returns**:
+    - `mappings`: 페이지별 매핑 (page, sr_body_id, confidence)
+    - `total`: 총 페이지 수
+    - `success`: 성공한 매핑 수
+    - `failed`: 실패한 매핑 수
+    """
+    try:
+        infra = get_infra()
+        mappings = []
+        success_count = 0
+        failed_count = 0
+        
+        for page_info in request.pages:
+            page_num = page_info.get("page")
+            category = page_info.get("title", "")
+            
+            if not category:
+                mappings.append({
+                    "page": page_num,
+                    "sr_body_id": None,
+                    "confidence": 0.0,
+                    "error": "Empty category"
+                })
+                failed_count += 1
+                continue
+            
+            try:
+                # c_rag로 검색 (비직접 참조 모드)
+                result = await infra.call_agent(
+                    "c_rag",
+                    "collect",
+                    {
+                        "company_id": request.company_id,
+                        "category": category,
+                        "years": [request.year],
+                        "use_direct_reference": False,  # 검색 모드 강제
+                    }
+                )
+                
+                year_str = str(request.year)
+                year_data = result.get(year_str, {})
+                report_id = year_data.get("report_id")
+                page_number = year_data.get("page_number")
+                
+                if report_id and page_number:
+                    # report_id + page_number로 sr_body_id 조회
+                    body_row = await infra.call_tool(
+                        "query_sr_body_by_page",
+                        {
+                            "company_id": request.company_id,
+                            "year": request.year,
+                            "page_number": page_number,
+                        }
+                    )
+                    
+                    sr_body_id = body_row.get("id") if body_row else None
+                    
+                    mappings.append({
+                        "page": page_num,
+                        "sr_body_id": str(sr_body_id) if sr_body_id else None,
+                        "page_number": page_number,
+                        "confidence": 0.85,  # c_rag 검색 기본 신뢰도
+                        "error": None
+                    })
+                    success_count += 1
+                else:
+                    mappings.append({
+                        "page": page_num,
+                        "sr_body_id": None,
+                        "confidence": 0.0,
+                        "error": "No SR body found"
+                    })
+                    failed_count += 1
+                    
+            except Exception as e:
+                logger.error(f"Auto mapping failed for page {page_num}: {e}")
+                mappings.append({
+                    "page": page_num,
+                    "sr_body_id": None,
+                    "confidence": 0.0,
+                    "error": str(e)
+                })
+                failed_count += 1
+        
+        return AutoMappingResponse(
+            mappings=mappings,
+            total=len(request.pages),
+            success=success_count,
+            failed=failed_count
+        )
+        
+    except Exception as e:
+        logger.error(f"Auto generate mapping failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/admin/mapping/validate", response_model=ValidateMappingResponse, summary="매핑 검증")
+async def validate_mapping(request: ValidateMappingRequest = Body(...)):
+    """
+    sr_body_ids, sr_image_ids가 DB에 실제로 존재하는지 검증
+    
+    **Args**:
+    - `body_ids`: sr_report_body ID 목록
+    - `image_ids`: sr_report_images ID 목록
+    
+    **Returns**:
+    - `valid`: 전체 유효성 (모두 존재하면 true)
+    - `body_results`: Body ID별 검증 결과 (id, exists, error)
+    - `image_results`: Image ID별 검증 결과 (id, exists, error)
+    """
+    try:
+        infra = get_infra()
+        body_results = []
+        image_results = []
+        all_valid = True
+        
+        # Body ID 검증
+        for body_id in request.body_ids:
+            try:
+                result = await infra.call_tool(
+                    "query_sr_body_by_id",
+                    {"body_id": body_id}
+                )
+                exists = result is not None
+                body_results.append({
+                    "id": body_id,
+                    "exists": exists,
+                    "page_number": result.get("page_number") if exists else None,
+                    "error": None if exists else "Not found"
+                })
+                if not exists:
+                    all_valid = False
+            except Exception as e:
+                body_results.append({
+                    "id": body_id,
+                    "exists": False,
+                    "page_number": None,
+                    "error": str(e)
+                })
+                all_valid = False
+        
+        # Image ID 검증
+        if request.image_ids:
+            try:
+                results = await infra.call_tool(
+                    "query_sr_images_by_ids",
+                    {"image_ids": request.image_ids}
+                )
+                found_ids = {r["id"] for r in results}
+                
+                for img_id in request.image_ids:
+                    exists = img_id in found_ids
+                    image_results.append({
+                        "id": img_id,
+                        "exists": exists,
+                        "error": None if exists else "Not found"
+                    })
+                    if not exists:
+                        all_valid = False
+            except Exception as e:
+                for img_id in request.image_ids:
+                    image_results.append({
+                        "id": img_id,
+                        "exists": False,
+                        "error": str(e)
+                    })
+                all_valid = False
+        
+        return ValidateMappingResponse(
+            valid=all_valid,
+            body_results=body_results,
+            image_results=image_results
+        )
+        
+    except Exception as e:
+        logger.error(f"Validate mapping failed: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))

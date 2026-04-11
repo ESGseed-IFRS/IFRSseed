@@ -600,3 +600,159 @@ async def query_dp_data(params: Dict[str, Any]) -> Dict[str, Any]:
         "error": "Deprecated API — use new tools",
     }
 
+
+async def batch_query_dp_metadata(params: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+    """
+    data_points 테이블에서 여러 DP의 메타데이터를 한 번에 조회 (배치).
+    
+    Args:
+        params: {"dp_ids": List[str]}
+    
+    Returns:
+        {
+            "DP_ID_1": {
+                "dp_id": str,
+                "name_ko": str,
+                "name_en": str,
+                "description": str,
+                "topic": str,
+                "subtopic": str,
+                "category": str,
+                "dp_type": str,
+                "unit": str,
+                "validation_rules": dict,
+                "child_dps": list,
+                "parent_indicator": str,
+            },
+            "DP_ID_2": { ... },
+            ...
+        }
+    """
+    dp_ids = params.get("dp_ids", [])
+    
+    if not dp_ids:
+        return {}
+    
+    logger.info("batch_query_dp_metadata: %d DPs", len(dp_ids))
+    
+    try:
+        pool = await get_or_create_pool()
+        async with pool.acquire() as conn:
+            query = """
+                SELECT 
+                    dp_id,
+                    name_ko,
+                    name_en,
+                    description,
+                    topic,
+                    subtopic,
+                    category,
+                    dp_type,
+                    unit::text as unit,
+                    validation_rules,
+                    child_dps,
+                    parent_indicator
+                FROM data_points
+                WHERE dp_id = ANY($1::text[])
+            """
+            
+            rows = await conn.fetch(query, dp_ids)
+            
+            result = {}
+            for row in rows:
+                dp_data = dict(row)
+                result[dp_data["dp_id"]] = dp_data
+            
+            logger.info("batch_query_dp_metadata: fetched %d/%d DPs", len(result), len(dp_ids))
+            return result
+    
+    except Exception as e:
+        logger.error("batch_query_dp_metadata failed: %s", e, exc_info=True)
+        raise
+
+
+async def batch_query_ucm_by_dps(params: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+    """
+    unified_column_mappings에서 여러 DP에 대한 UCM을 한 번에 조회 (배치).
+    
+    Args:
+        params: {"dp_ids": List[str]}
+    
+    Returns:
+        {
+            "DP_ID_1": {
+                "unified_column_id": str,
+                "column_name_ko": str,
+                "column_name_en": str,
+                "column_category": str,
+                "column_topic": str,
+                "column_subtopic": str,
+                "column_description": str,
+                "unit": str,
+                "validation_rules": dict,
+                "disclosure_requirement": str,
+                "financial_linkages": list,
+                "primary_rulebook_id": str,
+                "mapped_dp_ids": list,
+            },
+            "DP_ID_2": { ... },
+            ...
+        }
+    """
+    dp_ids = params.get("dp_ids", [])
+    
+    if not dp_ids:
+        return {}
+    
+    logger.info("batch_query_ucm_by_dps: %d DPs", len(dp_ids))
+    
+    try:
+        pool = await get_or_create_pool()
+        async with pool.acquire() as conn:
+            # 각 DP에 대해 매칭되는 UCM 조회 (한 DP가 여러 UCM에 매핑될 수 있음)
+            # && 연산자 대신 ANY를 사용하여 타입 캐스팅 문제 해결
+            query = """
+                SELECT 
+                    mapped_dp_ids,
+                    unified_column_id,
+                    column_name_ko,
+                    column_name_en,
+                    column_category,
+                    column_topic,
+                    column_subtopic,
+                    column_description,
+                    unit,
+                    validation_rules,
+                    disclosure_requirement,
+                    financial_linkages,
+                    primary_rulebook_id,
+                    rulebook_conflicts,
+                    standard_metadata
+                FROM unified_column_mappings
+                WHERE EXISTS (
+                    SELECT 1 FROM unnest(mapped_dp_ids) AS mapped_id
+                    WHERE mapped_id = ANY($1::text[])
+                )
+            """
+            
+            rows = await conn.fetch(query, dp_ids)
+            
+            # DP ID별로 첫 번째 매칭 UCM만 사용 (LIMIT 1 대신)
+            result = {}
+            for row in rows:
+                ucm_data = dict(row)
+                mapped_ids = ucm_data.get("mapped_dp_ids", [])
+                
+                # 이 UCM에 매핑된 DP 중 요청된 DP들에 대해 할당
+                for dp_id in dp_ids:
+                    if dp_id in mapped_ids and dp_id not in result:
+                        result[dp_id] = ucm_data
+            
+            logger.info("batch_query_ucm_by_dps: fetched UCM for %d/%d DPs", len(result), len(dp_ids))
+            return result
+    
+    except Exception as e:
+        logger.error("batch_query_ucm_by_dps failed: %s", e, exc_info=True)
+        raise
+
+

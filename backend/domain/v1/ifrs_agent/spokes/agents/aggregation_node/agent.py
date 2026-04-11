@@ -3,10 +3,12 @@ aggregation_node 에이전트
 
 계열사/자회사·외부 기업 데이터 집계·조회
 관련성 기반 검색 지원
+External 검색 쿼리 자체 생성 (LLM)
 """
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 import os
 from typing import Any, Dict, List, Optional
@@ -39,6 +41,7 @@ class AggregationNodeAgent:
         if not isinstance(infra, InfraLayer):
             raise TypeError(f"infra must be InfraLayer, got {type(infra)}")
         self.infra = infra
+        self.runtime_config: Optional[Dict[str, Any]] = None
 
     async def collect(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -49,17 +52,13 @@ class AggregationNodeAgent:
                 "company_id": str (UUID),
                 "category": str (레거시 호환용),
                 "dp_id": str (선택),
+                "dp_ids": List[str] (선택, external 쿼리 생성용),
                 "years": List[int] (기본 [2024, 2023]),
                 # 신규 필드 (프롬프트 기반 검색용)
                 "include_external": bool (기본 True, External 실행 여부),
-                "external_query": str (프롬프트 기반 검색 쿼리),
+                "external_query": str (프롬프트 기반 검색 쿼리, 없으면 자체 생성),
                 "external_keywords": List[str] (키워드 부스팅용),
-                # 기존 필드 (관련성 기반 검색용 - 사용 안 함)
-                "dp_metadata": Dict (UCM 메타데이터),
-                "sr_context": {
-                    "toc_path": List[str],
-                    "subtitle": str
-                }
+                "runtime_config": Dict (Gemini API 키 등)
             }
         
         Returns:
@@ -83,6 +82,15 @@ class AggregationNodeAgent:
         include_external = payload.get("include_external", True)
         external_query = payload.get("external_query", "")
         external_keywords = payload.get("external_keywords", [])
+        
+        # ✨ 신규: dp_ids (external 쿼리 생성용)
+        dp_ids = payload.get("dp_ids", [])
+        if dp_id and not dp_ids:
+            dp_ids = [dp_id]
+        
+        # runtime_config 저장 (LLM 쿼리 생성용)
+        raw_rc = payload.get("runtime_config")
+        self.runtime_config = raw_rc if isinstance(raw_rc, dict) else None
 
         if not company_id:
             logger.error("aggregation_node: company_id 필수")
@@ -93,16 +101,16 @@ class AggregationNodeAgent:
             return {}
 
         logger.info(
-            "aggregation_node.collect: company_id=%s, category=%s, dp_id=%s, years=%s, "
+            "aggregation_node.collect: company_id=%s, category=%s, dp_id=%s, dp_ids=%d, years=%s, "
             "include_external=%s, external_query=%s",
-            company_id, category, dp_id, years, include_external, 
+            company_id, category, dp_id, len(dp_ids), years, include_external, 
             external_query[:50] if external_query else "(없음)"
         )
 
         # 프롬프트 기반 검색 (신규 기본 모드)
         return await self._collect_with_prompt(
             company_id, category, dp_id, years, 
-            include_external, external_query, external_keywords
+            include_external, external_query, external_keywords, dp_ids  # ← dp_ids 전달
         )
 
     async def _collect_with_prompt(
@@ -113,15 +121,27 @@ class AggregationNodeAgent:
         years: List[int],
         include_external: bool,
         external_query: str,
-        external_keywords: List[str]
+        external_keywords: List[str],
+        dp_ids: List[str]  # ← 신규: DP ID 목록
     ) -> Dict[str, Any]:
         """
         프롬프트 기반 검색 방식 (신규 기본 모드).
         
         - Subsidiary: 항상 실행 (category_embedding 기반)
         - External: 조건부 실행 (include_external=True일 때만)
+        - external_query가 없으면 자체 LLM으로 생성 (dp_ids 사용)
         """
         result = {}
+        
+        # ✨ external_query 자체 생성 (없을 때만, dp_ids 사용)
+        if include_external and not external_query:
+            external_query = await self._generate_external_search_query(
+                category, dp_ids  # ← fact_data_by_dp 대신 dp_ids 전달
+            )
+            logger.info(
+                "aggregation_node: 자체 생성 external_query=%s",
+                external_query[:120] if external_query else "(생성 실패)"
+            )
         
         # 연도별 병렬 조회
         tasks = []
@@ -422,6 +442,171 @@ class AggregationNodeAgent:
                 "subsidiary_data": [],
                 "external_company_data": []
             }
+
+    async def _generate_external_search_query(
+        self,
+        category: str,
+        dp_ids: List[str]
+    ) -> str:
+        """
+        카테고리와 DP ID를 LLM으로 분석해 external_company_data 검색 쿼리 생성.
+        
+        DP 메타데이터는 자체적으로 가볍게 조회 (dp_rag 독립)
+        
+        Args:
+            category: 페이지 카테고리 (예: "기후변화대응 온실가스배출량관리")
+            dp_ids: DP ID 목록 (예: ["GRI305-1-a", "GRI305-2-a"])
+        
+        Returns:
+            자연스러운 한국어 검색 쿼리 (2~3문장)
+        """
+        rc = self.runtime_config or {}
+        api_key = (rc.get("gemini_api_key") or "").strip()
+        
+        if not api_key:
+            logger.info(
+                "aggregation_node._generate_external_search_query: gemini_api_key 없음 → category만 반환"
+            )
+            return category
+        
+        # DP 메타데이터 가볍게 조회 (배치)
+        dp_summaries = []
+        if dp_ids:
+            try:
+                # 배치 조회: data_points + unified_column_mappings
+                dp_metas = await self.infra.call_tool("batch_query_dp_metadata", {"dp_ids": dp_ids})
+                ucm_infos = await self.infra.call_tool("batch_query_ucm_by_dps", {"dp_ids": dp_ids})
+                
+                # 상위 5개 DP 메타 요약
+                for dp_id in dp_ids[:5]:
+                    dp_meta = dp_metas.get(dp_id, {})
+                    ucm = ucm_infos.get(dp_id, {})
+                    
+                    # UCM 우선, 없으면 DP 메타
+                    name = ucm.get("column_name_ko") or dp_meta.get("name_ko", "")
+                    desc = ucm.get("column_description") or dp_meta.get("description", "")
+                    topic = ucm.get("column_topic") or dp_meta.get("topic", "")
+                    
+                    if name:
+                        summary_parts = [f"- {name}"]
+                        if topic:
+                            summary_parts.append(f"({topic})")
+                        if desc:
+                            summary_parts.append(f": {desc[:80]}")
+                        dp_summaries.append(" ".join(summary_parts))
+                
+                logger.info(
+                    "aggregation_node._generate_external_search_query: 배치 조회 완료 (DPs=%d, 요약=%d)",
+                    len(dp_ids), len(dp_summaries)
+                )
+            
+            except Exception as e:
+                logger.warning(
+                    "aggregation_node._generate_external_search_query: DP 메타 조회 실패, category만 사용: %s",
+                    e
+                )
+        
+        dp_summary_text = "\n".join(dp_summaries) if dp_summaries else "(DP 메타 없음)"
+        
+        system_prompt = """당신은 지속가능보고서(SR) 외부 보도자료 검색 쿼리 생성 전문가입니다.
+
+**역할**: 주어진 카테고리와 DP(Data Point) 메타데이터를 분석하여, 
+external_company_data 테이블(언론 보도자료/뉴스 기사)에서 관련 내용을 찾기 위한 
+**자연스럽고 구체적인 한국어 검색 쿼리**를 생성합니다.
+
+**external_company_data 테이블 특징**:
+- 기업의 보도자료, 언론 기사, 외부 뉴스
+- 대회 참가, 수상, 인증 획득, MOU/협약, 제휴, 평가 등
+- ESG 활동, 사회공헌, 혁신 프로그램, 채용 이벤트 등
+
+**검색 쿼리 생성 가이드**:
+1. 카테고리와 DP 내용을 종합해 **핵심 주제·지표**를 파악
+2. 보도자료/뉴스에서 다룰 법한 **구체적 이벤트·성과·활동** 키워드 포함
+3. 예시: "온실가스 배출량 감축 목표 달성", "Scope 1,2,3 검증 인증", 
+   "탄소중립 선언", "RE100 가입", "친환경 제품 수상"
+4. 2~3문장, 자연스러운 한국어
+
+**출력 형식**: JSON
+{
+  "query": "검색 쿼리 (2~3문장, 핵심 키워드 포함)"
+}"""
+        
+        user_msg = f"""**카테고리**: {category}
+
+**DP 메타데이터** (지표 상세):
+{dp_summary_text}
+
+위 카테고리와 DP 내용을 기반으로, external_company_data(보도자료/뉴스)에서 
+관련 있는 기사를 찾기 위한 검색 쿼리를 생성하세요."""
+        
+        try:
+            from google import genai
+            
+            client = genai.Client(api_key=api_key)
+            model_id = (rc.get("aggregation_external_query_model") or "").strip() or "gemini-2.5-flash"
+            
+            logger.info(
+                "aggregation_node._generate_external_search_query: Gemini %s 호출 (category=%s, DPs=%d)",
+                model_id, category[:60], len(dp_summaries)
+            )
+            
+            response = client.models.generate_content(
+                model=model_id,
+                contents=system_prompt + "\n\n" + user_msg,
+                config={
+                    "temperature": 0.3,
+                    "response_mime_type": "application/json",
+                    "max_output_tokens": 512,
+                }
+            )
+            
+            raw_text = getattr(response, "text", None) or ""
+            if not raw_text.strip():
+                logger.warning("aggregation_node: Gemini 응답 비어 있음 → category 반환")
+                return category
+            
+            # JSON 파싱 (마크다운 코드펜스 제거)
+            text = raw_text.strip()
+            if text.startswith("```"):
+                lines = text.split("\n")
+                if lines and lines[0].startswith("```"):
+                    lines = lines[1:]
+                if lines and lines[-1].strip().startswith("```"):
+                    lines = lines[:-1]
+                text = "\n".join(lines).strip()
+            
+            # 첫 { 부터 마지막 } 까지 추출
+            start_idx = text.find("{")
+            end_idx = text.rfind("}")
+            if start_idx >= 0 and end_idx > start_idx:
+                text = text[start_idx:end_idx + 1]
+            
+            result = json.loads(text)
+            query = str(result.get("query", "") or "").strip()
+            
+            if not query:
+                logger.warning("aggregation_node: Gemini JSON에 query 없음 → category 반환")
+                return category
+            
+            logger.info(
+                "aggregation_node._generate_external_search_query: 생성 완료 → %s",
+                query[:100]
+            )
+            return query
+            
+        except json.JSONDecodeError as e:
+            logger.warning(
+                "aggregation_node._generate_external_search_query: JSON 파싱 실패 → category 반환: %s",
+                str(e)
+            )
+            return category
+        except Exception as e:
+            logger.error(
+                "aggregation_node._generate_external_search_query: LLM 실패 → category 반환: %s",
+                e,
+                exc_info=False
+            )
+            return category
 
     async def _collect_year_relevant(
         self,

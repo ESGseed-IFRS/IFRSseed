@@ -5,6 +5,7 @@ Data Point 기반 실데이터 값 조회 노드
 """
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 import re
@@ -17,8 +18,32 @@ from backend.domain.v1.ifrs_agent.spokes.agents.dp_rag.allowlist import (
     validate_selection,
 )
 from backend.domain.v1.ifrs_agent.spokes.agents.dp_rag.cache import get_cache
+from backend.domain.v1.ifrs_agent.spokes.agents.dp_rag.deterministic_mappings import (
+    get_deterministic_mapping,
+    has_deterministic_mapping,
+)
 
 logger = logging.getLogger("ifrs_agent.dp_rag")
+
+
+def _extract_gemini_text(response: Any) -> str:
+    """google.genai GenerateContentResponse에서 본문 추출."""
+    raw = getattr(response, "text", None)
+    if raw is not None and str(raw).strip():
+        return str(raw).strip()
+    try:
+        for cand in getattr(response, "candidates", None) or []:
+            content = getattr(cand, "content", None)
+            if not content:
+                continue
+            for part in getattr(content, "parts", None) or []:
+                t = getattr(part, "text", None)
+                if t and str(t).strip():
+                    return str(t).strip()
+    except Exception as e:
+        logger.debug("dp_rag: Gemini candidate text extraction failed: %s", e)
+    return ""
+
 
 # Google AI generateContent 모델 ID (설정: DP_RAG_GEMINI_MODEL / runtime_config.dp_rag_gemini_model)
 _DEFAULT_DP_RAG_GEMINI_MODEL = "gemini-2.5-flash"
@@ -648,7 +673,7 @@ class DpRagAgent:
         ucm_info: Optional[Dict[str, Any]],
     ) -> Optional[Dict[str, Any]]:
         """
-        물리 저장 위치 결정 (캐시 → LLM).
+        물리 저장 위치 결정 (결정적 매핑 → 캐시 → LLM).
         
         Args:
             dp_id: DP ID 또는 UCM ID
@@ -658,6 +683,13 @@ class DpRagAgent:
         Returns:
             {"table", "column", "data_type"?, "confidence"}
         """
+        # 0. 결정적 매핑 확인 (LLM 불필요)
+        deterministic = get_deterministic_mapping(dp_id)
+        if deterministic:
+            logger.info("dp_rag: Deterministic mapping hit for dp_id=%s (table=%s, column=%s)", 
+                       dp_id, deterministic["table"], deterministic["column"])
+            return deterministic
+        
         # 1. 캐시 확인
         cached = self.cache.get(dp_id)
         if cached:
@@ -701,8 +733,8 @@ class DpRagAgent:
             )
             return None
 
-        # 5. 캐시 저장 (confidence >= 0.8만 자동 캐싱)
-        if mapping.get("confidence", 0.0) >= 0.8:
+        # 5. 캐시 저장 (confidence >= 0.6만 자동 캐싱)
+        if mapping.get("confidence", 0.0) >= 0.6:
             self.cache.set(
                 dp_id,
                 mapping["table"],
@@ -794,9 +826,9 @@ Allowed columns (category={category}):
 Select the best match."""
 
         try:
-            import google.generativeai as genai
+            from google import genai
         except ImportError as e:
-            logger.warning("dp_rag: google-generativeai 패키지 없음: %s", e)
+            logger.warning("dp_rag: google-genai 패키지 없음: %s", e)
             if allowlist:
                 first = allowlist[0]
                 return {
@@ -808,17 +840,16 @@ Select the best match."""
             return None
 
         try:
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(model_id)
-            
-            response = model.generate_content(
-                [system_msg, user_msg],
-                generation_config=genai.GenerationConfig(
-                    temperature=0.1,
-                ),
+            client = genai.Client(api_key=api_key)
+            combined = f"{system_msg}\n\n---\n\n{user_msg}"
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=model_id,
+                contents=combined,
+                config={"temperature": 0.1},
             )
-            
-            text = response.text.strip()
+
+            text = _extract_gemini_text(response).strip()
             parsed = _parse_llm_response(text)
             
             if not parsed:
@@ -972,19 +1003,21 @@ Allowed columns (category={category}):
 Select up to {_MAX_NARRATIVE_SUPPLEMENTS} supplementary fields. Follow the domain policy in the system message: prefer directly relevant columns (including governance name fields when the disclosure is about roles or identity); do not use weak proxies (e.g. corruption counts for chair/independence disclosures unless the rulebook explicitly asks). If nothing fits well, return an empty supplements array."""
 
         try:
-            import google.generativeai as genai
+            from google import genai
         except ImportError as e:
-            logger.warning("dp_rag: google-generativeai missing for narrative enrichment: %s", e)
+            logger.warning("dp_rag: google-genai missing for narrative enrichment: %s", e)
             return []
 
         try:
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(model_id)
-            response = model.generate_content(
-                [system_msg, user_msg],
-                generation_config=genai.GenerationConfig(temperature=0.15),
+            client = genai.Client(api_key=api_key)
+            combined = f"{system_msg}\n\n---\n\n{user_msg}"
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=model_id,
+                contents=combined,
+                config={"temperature": 0.15},
             )
-            text = response.text.strip()
+            text = _extract_gemini_text(response).strip()
             parsed = _parse_supplements_response(text)
             logger.info(
                 "dp_rag: narrative supplements LLM returned %d candidate(s)",
