@@ -169,3 +169,121 @@ class GhgEmissionResultRepository:
             }
         finally:
             session.close()
+
+    def list_group_annual_by_holding(
+        self,
+        holding_company_id: str | uuid.UUID,
+        period_year: int,
+        calculation_basis: str = "location",
+    ) -> list[dict[str, Any]]:
+        """지주사 본사 + parent가 지주인 자회사·계열사의 연간(location 등) 산정 행."""
+        if isinstance(holding_company_id, str):
+            holding_company_id = uuid.UUID(holding_company_id)
+        hid = str(holding_company_id)
+        basis = (calculation_basis or "location").strip() or "location"
+        y = int(period_year)
+        prev_y = y - 1
+        session = get_session()
+        try:
+            rows = session.execute(
+                text(
+                    """
+                    SELECT
+                        c.id AS company_id,
+                        c.name AS company_name,
+                        CASE WHEN c.id = :hid THEN 'holding' ELSE 'subsidiary' END AS role,
+                        COALESCE(e.scope1_total_tco2e, 0)::float AS s1,
+                        (COALESCE(e.scope2_location_tco2e, 0) + COALESCE(e.scope2_market_tco2e, 0))::float AS s2,
+                        COALESCE(e.scope3_total_tco2e, 0)::float AS s3,
+                        COALESCE(e.total_tco2e, 0)::float AS grand,
+                        COALESCE(pe.total_tco2e, 0)::float AS prev_grand,
+                        e.verification_status AS vstat
+                    FROM companies c
+                    LEFT JOIN ghg_emission_results e
+                      ON e.company_id = c.id
+                     AND e.period_year = :y
+                     AND e.period_month IS NULL
+                     AND e.calculation_basis = :basis
+                    LEFT JOIN ghg_emission_results pe
+                      ON pe.company_id = c.id
+                     AND pe.period_year = :prev_y
+                     AND pe.period_month IS NULL
+                     AND pe.calculation_basis = :basis
+                    WHERE c.id = :hid OR c.parent_company_id = :hid_uuid
+                    ORDER BY role DESC, c.name
+                    """
+                ),
+                {"hid": hid, "hid_uuid": holding_company_id, "y": y, "prev_y": prev_y, "basis": basis},
+            ).mappings().all()
+
+            out: list[dict[str, Any]] = []
+            for r in rows:
+                pg = float(r["prev_grand"] or 0)
+                out.append(
+                    {
+                        "company_id": str(r["company_id"]),
+                        "name": r["company_name"] or "",
+                        "role": r["role"],
+                        "scope1_total": float(r["s1"] or 0),
+                        "scope2_total": float(r["s2"] or 0),
+                        "scope3_total": float(r["s3"] or 0),
+                        "grand_total": float(r["grand"] or 0),
+                        "prev_grand_total": pg if pg > 0 else None,
+                        "frozen": str(r["vstat"] or "").lower() == "verified",
+                    }
+                )
+            return out
+        finally:
+            session.close()
+
+    def aggregate_group_totals_by_year_range(
+        self,
+        holding_company_id: str | uuid.UUID,
+        year_from: int,
+        year_to: int,
+        calculation_basis: str = "location",
+    ) -> list[dict[str, Any]]:
+        """지주+자회사 합산 연도별 총배출 (추세 차트용)."""
+        if isinstance(holding_company_id, str):
+            holding_company_id = uuid.UUID(holding_company_id)
+        hid = str(holding_company_id)
+        basis = (calculation_basis or "location").strip() or "location"
+        y0 = min(int(year_from), int(year_to))
+        y1 = max(int(year_from), int(year_to))
+        session = get_session()
+        try:
+            agg = session.execute(
+                text(
+                    """
+                    SELECT
+                        e.period_year AS yr,
+                        SUM(COALESCE(e.scope1_total_tco2e, 0))::float AS s1,
+                        SUM(COALESCE(e.scope2_location_tco2e, 0) + COALESCE(e.scope2_market_tco2e, 0))::float AS s2,
+                        SUM(COALESCE(e.scope3_total_tco2e, 0))::float AS s3,
+                        SUM(COALESCE(e.total_tco2e, 0))::float AS grand
+                    FROM companies c
+                    INNER JOIN ghg_emission_results e
+                      ON e.company_id = c.id
+                     AND e.period_month IS NULL
+                     AND e.calculation_basis = :basis
+                     AND e.period_year >= :y0
+                     AND e.period_year <= :y1
+                    WHERE c.id = :hid OR c.parent_company_id = :hid_uuid
+                    GROUP BY e.period_year
+                    ORDER BY e.period_year
+                    """
+                ),
+                {"hid": hid, "hid_uuid": holding_company_id, "y0": y0, "y1": y1, "basis": basis},
+            ).mappings().all()
+            return [
+                {
+                    "year": int(r["yr"]),
+                    "scope1_total": float(r["s1"] or 0),
+                    "scope2_total": float(r["s2"] or 0),
+                    "scope3_total": float(r["s3"] or 0),
+                    "grand_total": float(r["grand"] or 0),
+                }
+                for r in agg
+            ]
+        finally:
+            session.close()

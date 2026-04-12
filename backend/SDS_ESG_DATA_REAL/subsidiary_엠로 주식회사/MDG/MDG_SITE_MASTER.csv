@@ -1,0 +1,2 @@
+site_code,site_name,site_type,address,city,country,floor_area_m2,employees,operational_status,open_date,data_quality,source_system,synced_at,created_at,updated_at,updated_by
+SITE-ML01,엠로 본사,오피스,서울시 강남구 테헤란로,서울,대한민국,2200,250,ACTIVE,2018-03-15,M1,MDG,2024-01-05 08:00:00,2024-01-05 09:00:00,2024-01-10 10:00:00,user_001

@@ -1,0 +1,5 @@
+record_id,year,quarter,basis,revenue_m,operating_profit_m,net_profit_m,total_assets_m,total_liabilities_m,total_equity_m,rd_cost_m,rd_revenue_ratio_pct,esg_investment_m,env_investment_m,safety_investment_m,tax_paid_m,local_procurement_ratio_pct,donation_m,mutualgrowth_fund_m,employee_compensation_m,supplier_purchase_m,source_system,synced_at,created_at,updated_at,updated_by
+FIN-OH-2024-Q1,2024,1,별도,7600,608,456,15000,8000,7000,380,5.0,76,22,15,1140,85.0,10,0,2660,1900,ERP,2024-03-10 07:00:00,2024-03-10 09:00:00,2024-03-15 10:00:00,user_fin
+FIN-OH-2024-Q2,2024,2,별도,7700,616,462,15000,8000,7000,385,5.0,77,23,15,1155,85.0,10,0,2695,1925,ERP,2024-06-10 07:00:00,2024-06-10 09:00:00,2024-06-15 10:00:00,user_fin
+FIN-OH-2024-Q3,2024,3,별도,7800,624,468,15000,8000,7000,390,5.0,78,23,15,1170,85.0,10,0,2730,1950,ERP,2024-09-10 07:00:00,2024-09-10 09:00:00,2024-09-15 10:00:00,user_fin
+FIN-OH-2024-Q4,2024,4,별도,7900,632,474,15000,8000,7000,395,5.0,79,23,15,1185,85.0,10,0,2765,1975,ERP,2024-12-10 07:00:00,2024-12-10 09:00:00,2024-12-15 10:00:00,user_fin

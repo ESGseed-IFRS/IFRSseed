@@ -245,6 +245,23 @@ def _build_latest_data_section(gen_input: Dict[str, Any]) -> str:
             year = dp_data.get("year", "N/A")
             parts.append(f"- **{year}년 값**: {latest_value} {unit}")
             
+            # 데이터 출처 추가
+            data_sources = dp_data.get("data_sources", [])
+            if data_sources:
+                parts.append("\n**데이터 출처:**")
+                for src in data_sources:
+                    source_type_label = {
+                        "holding_own": "지주사 자체",
+                        "subsidiary_reported": "계열사 보고",
+                        "calculated": "계산값"
+                    }.get(src.get("source_type", ""), src.get("source_type", ""))
+                    
+                    company_name = src.get("company_name", "")
+                    value = src.get("value", 0)
+                    unit_src = src.get("unit", unit)
+                    
+                    parts.append(f"  - {source_type_label}: {company_name} ({value:,} {unit_src})")
+            
             # 적합성 경고
             warning = dp_data.get("suitability_warning")
             if warning:

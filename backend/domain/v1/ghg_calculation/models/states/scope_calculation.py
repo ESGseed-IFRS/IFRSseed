@@ -53,6 +53,7 @@ class ScopeMonthlyPointDto(BaseModel):
     month: str
     scope1: float = 0.0
     scope2: float = 0.0
+    scope3: float = 0.0
 
 
 class ScopeRecalculateRequestDto(BaseModel):
@@ -81,9 +82,14 @@ class ScopeRecalculateResponseDto(BaseModel):
     monthly_chart: list[ScopeMonthlyPointDto]
     scope1_categories: list[ScopeCalcCategoryDto]
     scope2_categories: list[ScopeCalcCategoryDto]
+    scope3_categories: list[ScopeCalcCategoryDto] = Field(default_factory=list, description="Scope 3 카테고리별 배출량")
     emission_factor_version: str = "v1.0"
     calculated_at: datetime
     row_import_status: Literal["confirmed", "draft", "warning", "error"] = "confirmed"
+    verification_status: str | None = Field(
+        default=None,
+        description="ghg_emission_results.verification_status (예: draft, verified).",
+    )
     comparison_year: str | None = Field(
         default=None,
         description="전년 대비 기준 연도(직전 period_year). 저장 행이 없으면 None.",
@@ -98,3 +104,38 @@ class ScopeResultsGetParams(BaseModel):
     company_id: UUID
     year: str
     basis: str = "location"
+
+
+class GroupScopeResultRowDto(BaseModel):
+    """지주 + 자회사(계열사) 연간 산정 한 행."""
+
+    company_id: str
+    name: str
+    role: Literal["holding", "subsidiary"]
+    scope1_total: float = 0.0
+    scope2_total: float = 0.0
+    scope3_total: float = 0.0
+    grand_total: float = 0.0
+    prev_grand_total: float | None = None
+    frozen: bool = False
+
+
+class GroupScopeTrendPointDto(BaseModel):
+    year: int
+    scope1_total: float = 0.0
+    scope2_total: float = 0.0
+    scope3_total: float = 0.0
+    grand_total: float = 0.0
+
+
+class GroupScopeResultsResponseDto(BaseModel):
+    holding_company_id: str
+    year: int
+    basis: str
+    rows: list[GroupScopeResultRowDto]
+
+
+class GroupScopeTrendResponseDto(BaseModel):
+    holding_company_id: str
+    basis: str
+    points: list[GroupScopeTrendPointDto]

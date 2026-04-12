@@ -1,0 +1,8 @@
+id,company_name,group_entity_type,parent_company_id,equity_ratio,employees,business_type,company_login_id
+550e8400-e29b-41d4-a716-446655440000,삼성에스디에스 주식회사,holding,,100.0,26401,IT 서비스,co_sds
+SUB-001,오픈핸즈 주식회사,subsidiary,550e8400-e29b-41d4-a716-446655440000,100.0,85,모바일 솔루션,co_오픈핸즈
+SUB-002,엠로 주식회사,subsidiary,550e8400-e29b-41d4-a716-446655440000,100.0,120,물류 IT 솔루션,co_엠로 주
+SUB-003,멀티캠퍼스 주식회사,subsidiary,550e8400-e29b-41d4-a716-446655440000,100.0,320,IT 교육,co_멀티캠퍼
+SUB-004,에스코어 주식회사,subsidiary,550e8400-e29b-41d4-a716-446655440000,100.0,450,클라우드 MSP,co_에스코어
+SUB-005,시큐아이 주식회사,subsidiary,550e8400-e29b-41d4-a716-446655440000,100.0,180,정보보안,co_시큐아이
+SUB-006,미라콤아이앤씨 주식회사,affiliate,550e8400-e29b-41d4-a716-446655440000,51.0,280,네트워크 통합,co_미라콤아

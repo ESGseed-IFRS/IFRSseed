@@ -415,12 +415,15 @@ export type ScopeRecalculateApiResponse = {
   scope2_total: number;
   scope3_total: number;
   grand_total: number;
-  monthly_chart: { month: string; scope1: number; scope2: number }[];
+  monthly_chart: { month: string; scope1: number; scope2: number; scope3?: number }[];
   scope1_categories: ScopeRecalculateApiCategory[];
   scope2_categories: ScopeRecalculateApiCategory[];
+  scope3_categories?: ScopeRecalculateApiCategory[];
   emission_factor_version: string;
   calculated_at: string;
   row_import_status: string;
+  /** ghg_emission_results.verification_status (예: draft, verified) */
+  verification_status?: string | null;
   /** 직전 `period_year` (ghg_emission_results). 없으면 전년 비교 불가. */
   comparison_year?: string | null;
   prev_year_totals?: ScopePrevYearTotalsApi | null;
@@ -452,8 +455,8 @@ function mapApiLineToScopeItem(it: ScopeRecalculateApiLineItem): ScopeCalcLineIt
 }
 
 /**
- * Scope 1·2·합계·Scope3는 API(= DB `ghg_emission_results`와 동일) 기준으로 맞춥니다.
- * 월별 Scope3는 API에 없으면 0으로 둡니다.
+ * Scope 1·2·3 합계·카테고리·월별 추이를 API(= DB `ghg_emission_results`와 동일) 기준으로 맞춥니다.
+ * `scope3_categories`·`monthly_chart[].scope3`는 백엔드가 제공할 때 반영합니다.
  * `prev_year_totals`가 오면 상단 카드 YoY는 DB 직전년 행 기준, 없으면 `hideYoy`.
  */
 export function mergeScopeCalculationWithApi12(
@@ -470,6 +473,11 @@ export function mergeScopeCalculationWithApi12(
     category: c.category,
     items: c.items.map(mapApiLineToScopeItem),
   }));
+  const scope3Categories: ScopeCalcCategory[] = (api.scope3_categories ?? []).map((c) => ({
+    id: c.id,
+    category: c.category,
+    items: c.items.map(mapApiLineToScopeItem),
+  }));
   const s3 = api.scope3_total;
   const monthlyChart = demo.monthlyChart.map((m, i) => {
     const row = api.monthly_chart[i];
@@ -477,7 +485,7 @@ export function mergeScopeCalculationWithApi12(
       month: m.month,
       scope1: row?.scope1 ?? m.scope1,
       scope2: row?.scope2 ?? m.scope2,
-      scope3: 0,
+      scope3: row?.scope3 ?? m.scope3 ?? 0,
     };
   });
   const totals = {
@@ -486,7 +494,6 @@ export function mergeScopeCalculationWithApi12(
     scope3: s3,
   };
   const grandTotal = api.grand_total;
-  const scope3Categories: ScopeCalcCategory[] = [];
   const pyt = api.prev_year_totals;
   const hasDbPrev =
     pyt != null &&

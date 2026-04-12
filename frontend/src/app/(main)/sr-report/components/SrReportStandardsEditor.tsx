@@ -19,6 +19,8 @@ const STD_C: Record<string, { bg: string; text: string; border: string }> = {
   GRI: C.blue,
   SASB: C.amber,
   TCFD: C.purple,
+  ESRS: C.purple,
+  IFRS: C.blue,
 };
 
 const CATEGORY_C: Record<SrDpCard['category'], { bg: string; text: string; border: string }> = {
@@ -38,6 +40,41 @@ const getStatusBadge = (st: SrDpStatus) => {
 const getGuideText = (stdCode: string) => {
   if (stdCode.startsWith('GRI 302')) return '재생에너지, 화석연료, 전력 등 에너지원별 소비량을 기재하세요. 단위는 TJ 또는 MWh로 통일합니다.';
   if (stdCode.startsWith('GRI 303')) return '취수원(지표수/지하수/빗물/해수)별 취수량을 구분하여 기재하세요. 물 스트레스 지역 여부도 명시합니다.';
+  // ESRS E1 세부 데이터포인트(통합 DP) — 긴 접두사·접미사부터 매칭
+  if (stdCode.includes('E1-6-44-a'))
+    return 'ESRS E1-6-44-a: 보고기간 Scope 1 총 배출(tCO₂eq), 조직·시설 경계, 산정 방법(GHG Protocol 등), 전년 대비 변동 요인을 통합 서술하세요.';
+  if (stdCode.includes('E1-6-44-b'))
+    return 'ESRS E1-6-44-b: Scope 2 위치기반·시장기반(해당 시) 총 배출(tCO₂eq), 전력/열/스팀 등 에너지원별 요약, 계약·REC 등 시장기반 적용 시 근거를 통합 서술하세요.';
+  if (stdCode.includes('E1-6-44-c'))
+    return 'ESRS E1-6-44-c: Scope 3 총 배출(tCO₂eq), 주요 카테고리 기여도, 전년 대비 변동 및 재무·전략과의 연계를 통합 서술하세요.';
+  if (stdCode.includes('E1-6-51'))
+    return 'ESRS E1-6-51: Scope 3 각 배출 범주(카테고리)별 활동·산정 범위, 사용 데이터·배출계수 출처, 유의적 누락 여부를 표 또는 서술로 통합 공시하세요.';
+  if (stdCode.includes('BP-2-10') || stdCode.includes('ESRS2-BP'))
+    return 'ESRS 기반점(BP): 온실가스·가치사슬(Scope 3) 산정에 적용한 방법론, 가정, 한계, 검증·품질 관리, 기준년·재계산 정책을 통합 서술하세요.';
+  if (stdCode.includes('MDR-A-68') || stdCode.includes('ESRS2-MDR-A-68'))
+    return 'ESRS2-MDR-A-68-a: 기후·지속가능성과 연계된 주요 조치(액션)를 목록화하고, 조치별 예상 성과·지표·시간축을 제시하며, 해당 조치가 채택한 정책·목표·전략에 어떻게 기여하는지 논리적으로 연결해 서술하세요.';
+  if (stdCode.includes('305-2-a'))
+    return 'GRI 305-2-a: Scope 2 총 간접 배출(위치기반·시장기반 구분)을 tCO₂eq로 제시하고, 적용 배출계수·전력 믹스 출처를 명시하세요.';
+  if (stdCode.includes('305-3-g'))
+    return 'GRI 305-3-g: Scope 3 산정 방법론(활동자료·계수·품질 등급), 카테고리별 접근, 이중계상 방지 및 불확실성 관리 방식을 서술하세요.';
+  if (stdCode.includes('305-3-d'))
+    return 'GRI 305-3-d: Scope 3 범주별 활동 데이터(구매·물류·출장 등)와 산정 범위, 제외·추정 항목 및 근거를 구체적으로 기재하세요.';
+  if (stdCode.includes('305-3-a'))
+    return 'GRI 305-3-a: Scope 3 총 기타 간접 배출(tCO₂eq), 포함 카테고리 범위, 전년 대비 변동 요인을 제시하세요.';
+  if (stdCode.includes('305-1-a'))
+    return 'GRI 305-1-a: Scope 1 총 직접 배출량(가스·연료·공정 등)을 tCO₂eq로 제시하고, 생물권 제외 여부·GWP 기준(IPCC AR5/AR6)을 명시하세요.';
+  if (stdCode.includes('IFRS2-29-a-i-1'))
+    return 'IFRS S2 §29(a)(i)(1): Scope 1 총 배출이 기후 관련 위험·기회·목표·전략과 어떻게 연결되는지 서술하세요.';
+  if (stdCode.includes('IFRS2-29-a-i-2'))
+    return 'IFRS S2 §29(a)(i)(2): Scope 2 총 배출(위치·시장기반 구분)과 전략·목표·실적의 연계를 서술하세요.';
+  if (stdCode.includes('IFRS2-29-a-i-3'))
+    return 'IFRS S2 §29(a)(i)(3): Scope 3 총 배출과 가치사슬 기후 이슈·목표·실적의 연계를 서술하세요.';
+  if (stdCode.includes('IFRS2-29-a-iii-1'))
+    return 'IFRS S2 §29(a)(iii)(1): 온실가스·가치사슬 배출 산정에 사용한 방법·가정·한계를 투자자가 이해할 수 있게 설명하세요.';
+  if (stdCode.includes('IFRS2-29-a-vi-1'))
+    return 'IFRS S2 §29(a)(vi)(1): Scope 3 범주·활동별 정보가 의사결정에 어떻게 쓰이는지, 중요 범주 선정 근거를 서술하세요.';
+  if (stdCode.includes('IFRS2-29') || stdCode.includes('S2-29'))
+    return 'IFRS S2(기후 공시) 관련 항목에 맞춰, 배출량·방법론·전략 연계를 일관되게 기술하세요.';
   if (stdCode.startsWith('GRI 305')) return 'Scope 1(직접), Scope 2(간접), Scope 3(기타 간접) 배출량을 구분하여 tCO₂eq 단위로 기재합니다.';
   if (stdCode.startsWith('GRI 401')) return '성별, 연령대(30세 미만/30~50세/50세 이상)별 신규 채용 수 및 이직자 수를 기재합니다.';
   if (stdCode.startsWith('GRI 405')) return '이사회 구성원의 성별, 연령, 국적 다양성 지표를 기재합니다. 소수집단 구성원 수도 포함합니다.';
@@ -70,7 +107,7 @@ type Props = {
   card: SrDpCard;
   approvals: SrApprovalDoc[];
   onSaveText: (dpId: string, text: string) => void;
-  onSubmitText: (dpId: string, text: string) => void;
+  onSubmitText: (dpId: string, text: string) => void | Promise<void>;
   onBack: () => void;
 };
 
@@ -79,10 +116,13 @@ export function SrReportStandardsEditor({ card, approvals, onSaveText, onSubmitT
   const { perspective } = useWorkspacePerspective();
   const [text, setText] = useState(card.savedText || '');
   const [activeStd, setActiveStd] = useState<string>(card.standards[0]?.code ?? '');
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     setText(card.savedText || '');
     setActiveStd(card.standards[0]?.code ?? '');
+    setSubmitError(null);
   }, [card.id, card.savedText, card.standards]);
 
   const statusBadge = getStatusBadge(card.status);
@@ -140,7 +180,8 @@ export function SrReportStandardsEditor({ card, approvals, onSaveText, onSubmitT
           <div style={{ fontSize: 18, fontWeight: 900, color: '#0c447c', lineHeight: 1.2 }}>{card.title}</div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span
             style={{
               background: statusBadge.bg,
@@ -181,20 +222,31 @@ export function SrReportStandardsEditor({ card, approvals, onSaveText, onSubmitT
               {showWipSubmit && (
                 <button
                   type="button"
-                  onClick={() => onSubmitText(card.id, text)}
+                  disabled={submitting}
+                  onClick={async () => {
+                    setSubmitError(null);
+                    setSubmitting(true);
+                    try {
+                      await Promise.resolve(onSubmitText(card.id, text));
+                    } catch (e) {
+                      setSubmitError(e instanceof Error ? e.message : '제출에 실패했습니다.');
+                    } finally {
+                      setSubmitting(false);
+                    }
+                  }}
                   style={{
                     fontSize: 12,
                     padding: '7px 14px',
                     borderRadius: 10,
                     border: 'none',
-                    background: '#185fa5',
-                    cursor: 'pointer',
+                    background: submitting ? '#94a3b8' : '#185fa5',
+                    cursor: submitting ? 'not-allowed' : 'pointer',
                     fontWeight: 900,
                     color: '#fff',
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  제출
+                  {submitting ? '저장 중…' : '제출'}
                 </button>
               )}
               {showSubmitToApproval && (
@@ -242,6 +294,12 @@ export function SrReportStandardsEditor({ card, approvals, onSaveText, onSubmitT
               승인 완료 · 수정 불가
             </div>
           )}
+          </div>
+          {submitError ? (
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#b91c1c', maxWidth: 360, textAlign: 'right', lineHeight: 1.4 }}>
+              {submitError}
+            </div>
+          ) : null}
         </div>
       </div>
 

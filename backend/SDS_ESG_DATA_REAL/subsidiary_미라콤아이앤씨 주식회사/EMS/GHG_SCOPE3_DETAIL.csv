@@ -1,0 +1,21 @@
+company_id,company_name,year,quarter,scope3_category,subcategory,ghg_emission_tco2e,calculation_method,data_quality,notes
+SUB-006,미라콤아이앤씨 주식회사,2024,1,Cat.1 구매상품·서비스,,1023.75,spend_based,low,미라콤아이앤씨 주식회사 Cat.1 구매상품·서비스
+SUB-006,미라콤아이앤씨 주식회사,2024,1,Cat.4 업스트림 운송,,568.75,spend_based,low,미라콤아이앤씨 주식회사 Cat.4 업스트림 운송
+SUB-006,미라콤아이앤씨 주식회사,2024,1,Cat.6 출장,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.6 출장
+SUB-006,미라콤아이앤씨 주식회사,2024,1,Cat.7 통근,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.7 통근
+SUB-006,미라콤아이앤씨 주식회사,2024,1,Cat.15 투자,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.15 투자
+SUB-006,미라콤아이앤씨 주식회사,2024,2,Cat.1 구매상품·서비스,,1023.75,spend_based,low,미라콤아이앤씨 주식회사 Cat.1 구매상품·서비스
+SUB-006,미라콤아이앤씨 주식회사,2024,2,Cat.4 업스트림 운송,,568.75,spend_based,low,미라콤아이앤씨 주식회사 Cat.4 업스트림 운송
+SUB-006,미라콤아이앤씨 주식회사,2024,2,Cat.6 출장,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.6 출장
+SUB-006,미라콤아이앤씨 주식회사,2024,2,Cat.7 통근,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.7 통근
+SUB-006,미라콤아이앤씨 주식회사,2024,2,Cat.15 투자,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.15 투자
+SUB-006,미라콤아이앤씨 주식회사,2024,3,Cat.1 구매상품·서비스,,1023.75,spend_based,low,미라콤아이앤씨 주식회사 Cat.1 구매상품·서비스
+SUB-006,미라콤아이앤씨 주식회사,2024,3,Cat.4 업스트림 운송,,568.75,spend_based,low,미라콤아이앤씨 주식회사 Cat.4 업스트림 운송
+SUB-006,미라콤아이앤씨 주식회사,2024,3,Cat.6 출장,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.6 출장
+SUB-006,미라콤아이앤씨 주식회사,2024,3,Cat.7 통근,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.7 통근
+SUB-006,미라콤아이앤씨 주식회사,2024,3,Cat.15 투자,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.15 투자
+SUB-006,미라콤아이앤씨 주식회사,2024,4,Cat.1 구매상품·서비스,,1023.75,spend_based,low,미라콤아이앤씨 주식회사 Cat.1 구매상품·서비스
+SUB-006,미라콤아이앤씨 주식회사,2024,4,Cat.4 업스트림 운송,,568.75,spend_based,low,미라콤아이앤씨 주식회사 Cat.4 업스트림 운송
+SUB-006,미라콤아이앤씨 주식회사,2024,4,Cat.6 출장,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.6 출장
+SUB-006,미라콤아이앤씨 주식회사,2024,4,Cat.7 통근,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.7 통근
+SUB-006,미라콤아이앤씨 주식회사,2024,4,Cat.15 투자,,227.5,spend_based,low,미라콤아이앤씨 주식회사 Cat.15 투자

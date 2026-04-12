@@ -1,7 +1,7 @@
 'use client';
 
 import { C } from '@/app/(main)/dashboard/lib/constants';
-import type { HoldingSrTabId, SrDpCard, SrDpStatus } from '../lib/types';
+import type { HoldingSrTabId, SrDpCard, SrDpStatus, SrStandardRef } from '../lib/types';
 import type { SrReportWorkspace } from './SrReportModeSwitch';
 
 const SIDEBAR_WIDTH = 236;
@@ -36,8 +36,8 @@ function statusChip(st: SrDpStatus) {
   return { label: '반려', bg: 'rgba(239,68,68,0.18)', color: '#FCA5A5', border: 'rgba(239,68,68,0.25)' };
 }
 
-function calcFrameworkProgress(cards: SrDpCard[], framework: 'GRI' | 'SASB' | 'TCFD') {
-  const related = cards.filter((c) => c.standards.some((s) => s.type === framework));
+function calcFrameworkProgress(cards: SrDpCard[], filter: (s: SrStandardRef) => boolean) {
+  const related = cards.filter((c) => c.standards.some(filter));
   const total = related.length || 1;
   const done = related.filter((c) => c.status === 'submitted' || c.status === 'approved').length;
   const wip = related.filter((c) => c.status === 'wip' || c.status === 'rejected').length;
@@ -153,13 +153,29 @@ export function SrReportSidebar({
 
             {(
               [
-                { label: 'GRI Standards 2021', framework: 'GRI' as const, color: '#3b6d11' },
-                { label: 'ISSB / IFRS S2', framework: 'TCFD' as const, color: '#185fa5' },
-                { label: 'SASB TCI-SI', framework: 'SASB' as const, color: '#EF9F27' },
-                { label: 'ESRS (EU)', framework: 'GRI' as const, color: '#534ab7', fakeZero: true },
+                {
+                  label: 'GRI Standards 2021',
+                  color: '#3b6d11',
+                  filter: (s: SrStandardRef) => s.type === 'GRI',
+                },
+                {
+                  label: 'ISSB / IFRS S2',
+                  color: '#185fa5',
+                  filter: (s: SrStandardRef) => s.type === 'TCFD' || s.type === 'IFRS',
+                },
+                {
+                  label: 'SASB TCI-SI',
+                  color: '#EF9F27',
+                  filter: (s: SrStandardRef) => s.type === 'SASB',
+                },
+                {
+                  label: 'ESRS (EU)',
+                  color: '#534ab7',
+                  filter: (s: SrStandardRef) => s.type === 'ESRS',
+                },
               ] as const
             ).map((row) => {
-              const pct = 'fakeZero' in row && row.fakeZero ? 0 : calcFrameworkProgress(cards, row.framework);
+              const pct = calcFrameworkProgress(cards, row.filter);
               return (
                 <div key={row.label} style={{ marginBottom: 7 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 4 }}>
@@ -183,7 +199,7 @@ export function SrReportSidebar({
               <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {([...cards].sort((a, b) => STATUS_ORDER[b.status] - STATUS_ORDER[a.status])).map((c) => {
                   const isActive = c.id === activeDpId;
-                  const standardsPreview = c.standards.slice(0, 2).map((s) => s.code).join(' · ');
+                  const standardsPreview = c.standards.slice(0, 3).map((s) => s.code).join(' · ');
                   const chip = statusChip(c.status);
                   return (
                     <button
@@ -227,7 +243,7 @@ export function SrReportSidebar({
                         </span>
                       </div>
                       <div style={{ fontSize: 12, fontWeight: 600, color: 'rgba(234,242,255,0.94)', lineHeight: 1.25, marginBottom: 3 }}>
-                        {c.title.length > 18 ? `${c.title.slice(0, 18)}…` : c.title}
+                        {c.title.length > 26 ? `${c.title.slice(0, 26)}…` : c.title}
                       </div>
                       <div
                         style={{

@@ -1,0 +1,3 @@
+company_id,company_name,year,scope,basis,co2_tco2e,ch4_tco2e,n2o_tco2e,total_tco2e,intensity_tco2e_per_bil_krw,verification_status
+SUB-006,미라콤아이앤씨 주식회사,2024,scope1,location_based,220,0,0,220,0,자가 검증
+SUB-006,미라콤아이앤씨 주식회사,2024,scope2,market_based,2850,0,0,2850,0,자가 검증

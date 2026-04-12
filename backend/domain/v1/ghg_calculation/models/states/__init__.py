@@ -1,4 +1,8 @@
 from .scope_calculation import (
+    GroupScopeResultRowDto,
+    GroupScopeResultsResponseDto,
+    GroupScopeTrendPointDto,
+    GroupScopeTrendResponseDto,
     ScopeCalcCategoryDto,
     ScopeCalcLineItemDto,
     ScopeMonthlyPointDto,
@@ -25,6 +29,10 @@ from .raw_data_inquiry import (
 )
 
 __all__ = [
+    "GroupScopeResultRowDto",
+    "GroupScopeResultsResponseDto",
+    "GroupScopeTrendPointDto",
+    "GroupScopeTrendResponseDto",
     "ScopeCalcCategoryDto",
     "ScopeCalcLineItemDto",
     "ScopeMonthlyPointDto",

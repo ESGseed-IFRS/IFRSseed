@@ -20,8 +20,11 @@ _MAX_CSV_BYTES = 10 * 1024 * 1024
 
 
 class StagingIngestRequest(BaseModel):
-    """SDS_ESG_DATA 경로와 회사 ID"""
-    base_path: str = Field(..., description="SDS_ESG_DATA 루트 폴더 경로 (예: C:/data/SDS_ESG_DATA)")
+    """회사별 데모/수집 루트 경로와 회사 ID (해당 폴더 바로 아래 EMS, ERP … 시스템 폴더가 있어야 함)."""
+    base_path: str = Field(
+        ...,
+        description="회사 폴더 절대 경로 (예: …/SDS_ESG_DATA_REAL/subsidiary_○○주식회사). 그 안의 EMS/*.csv 등이 staging_* 테이블로 적재됩니다.",
+    )
     company_id: str = Field(..., description="companies.id (UUID)")
     systems: Optional[List[str]] = Field(
         default=None,
@@ -102,8 +105,8 @@ async def staging_upload_csv(
 @staging_router.post("/ingest", response_model=StagingIngestResponse)
 async def staging_ingest(req: StagingIngestRequest) -> StagingIngestResponse:
     """
-    SDS_ESG_DATA 폴더 내 EMS/ERP/EHS/PLM/SRM/HR/MDG CSV를 파싱해
-    각 staging_*_data 테이블에 적재합니다.
+    `base_path` 아래 EMS/ERP/EHS/PLM/SRM/HR/MDG 폴더의 CSV를 파싱해
+    각 staging_*_data 테이블에 적재합니다. (재계산은 이 DB만 읽습니다.)
     """
     base_path = Path(req.base_path)
     if not base_path.is_dir():

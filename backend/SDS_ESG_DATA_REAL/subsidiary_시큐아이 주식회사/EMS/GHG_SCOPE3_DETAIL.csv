@@ -1,0 +1,21 @@
+company_id,company_name,year,quarter,scope3_category,subcategory,ghg_emission_tco2e,calculation_method,data_quality,notes
+SUB-005,시큐아이 주식회사,2024,1,Cat.1 구매상품·서비스,,585.0,spend_based,low,시큐아이 주식회사 Cat.1 구매상품·서비스
+SUB-005,시큐아이 주식회사,2024,1,Cat.4 업스트림 운송,,325.0,spend_based,low,시큐아이 주식회사 Cat.4 업스트림 운송
+SUB-005,시큐아이 주식회사,2024,1,Cat.6 출장,,130.0,spend_based,low,시큐아이 주식회사 Cat.6 출장
+SUB-005,시큐아이 주식회사,2024,1,Cat.7 통근,,130.0,spend_based,low,시큐아이 주식회사 Cat.7 통근
+SUB-005,시큐아이 주식회사,2024,1,Cat.15 투자,,130.0,spend_based,low,시큐아이 주식회사 Cat.15 투자
+SUB-005,시큐아이 주식회사,2024,2,Cat.1 구매상품·서비스,,585.0,spend_based,low,시큐아이 주식회사 Cat.1 구매상품·서비스
+SUB-005,시큐아이 주식회사,2024,2,Cat.4 업스트림 운송,,325.0,spend_based,low,시큐아이 주식회사 Cat.4 업스트림 운송
+SUB-005,시큐아이 주식회사,2024,2,Cat.6 출장,,130.0,spend_based,low,시큐아이 주식회사 Cat.6 출장
+SUB-005,시큐아이 주식회사,2024,2,Cat.7 통근,,130.0,spend_based,low,시큐아이 주식회사 Cat.7 통근
+SUB-005,시큐아이 주식회사,2024,2,Cat.15 투자,,130.0,spend_based,low,시큐아이 주식회사 Cat.15 투자
+SUB-005,시큐아이 주식회사,2024,3,Cat.1 구매상품·서비스,,585.0,spend_based,low,시큐아이 주식회사 Cat.1 구매상품·서비스
+SUB-005,시큐아이 주식회사,2024,3,Cat.4 업스트림 운송,,325.0,spend_based,low,시큐아이 주식회사 Cat.4 업스트림 운송
+SUB-005,시큐아이 주식회사,2024,3,Cat.6 출장,,130.0,spend_based,low,시큐아이 주식회사 Cat.6 출장
+SUB-005,시큐아이 주식회사,2024,3,Cat.7 통근,,130.0,spend_based,low,시큐아이 주식회사 Cat.7 통근
+SUB-005,시큐아이 주식회사,2024,3,Cat.15 투자,,130.0,spend_based,low,시큐아이 주식회사 Cat.15 투자
+SUB-005,시큐아이 주식회사,2024,4,Cat.1 구매상품·서비스,,585.0,spend_based,low,시큐아이 주식회사 Cat.1 구매상품·서비스
+SUB-005,시큐아이 주식회사,2024,4,Cat.4 업스트림 운송,,325.0,spend_based,low,시큐아이 주식회사 Cat.4 업스트림 운송
+SUB-005,시큐아이 주식회사,2024,4,Cat.6 출장,,130.0,spend_based,low,시큐아이 주식회사 Cat.6 출장
+SUB-005,시큐아이 주식회사,2024,4,Cat.7 통근,,130.0,spend_based,low,시큐아이 주식회사 Cat.7 통근
+SUB-005,시큐아이 주식회사,2024,4,Cat.15 투자,,130.0,spend_based,low,시큐아이 주식회사 Cat.15 투자

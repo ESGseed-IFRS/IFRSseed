@@ -16,6 +16,9 @@ from pydantic import BaseModel, Field
 from backend.domain.v1.ifrs_agent.hub.bootstrap import get_infra
 from backend.domain.v1.ifrs_agent.hub.orchestrator.workflow_events import QueueWorkflowEventSink
 from backend.domain.v1.ifrs_agent.models.langgraph import run_workflow
+from backend.domain.v1.data_integration.hub.services.group_aggregation_service import (
+    GroupAggregationService,
+)
 
 logger = logging.getLogger("ifrs_agent.api")
 
@@ -793,4 +796,54 @@ async def validate_mapping(request: ValidateMappingRequest = Body(...)):
         
     except Exception as e:
         logger.error(f"Validate mapping failed: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/dp/{dp_id}/sources")
+async def get_dp_data_sources(
+    dp_id: str,
+    company_id: str = Query(..., description="지주사 회사 ID"),
+    year: int = Query(..., ge=2020, le=2100, description="연도"),
+) -> Dict[str, Any]:
+    """
+    특정 DP의 데이터 출처 목록을 반환합니다.
+    
+    - 지주사 자체 데이터
+    - 승인된 계열사 데이터
+    
+    Returns:
+        {
+            "dp_id": str,
+            "sources": [
+                {
+                    "source_type": "holding_own" | "subsidiary_reported",
+                    "company_id": str,
+                    "company_name": str,
+                    "value": float,
+                    "unit": str,
+                    "submission_date": str | None,
+                    "verification_status": str
+                }
+            ],
+            "total_value": float
+        }
+    """
+    try:
+        service = GroupAggregationService()
+        sources = await asyncio.to_thread(
+            service.get_subsidiary_data_sources,
+            company_id,
+            year,
+            dp_id,
+        )
+        
+        total_value = sum(s['value'] for s in sources)
+        
+        return {
+            "dp_id": dp_id,
+            "sources": sources,
+            "total_value": total_value,
+        }
+    except Exception as e:
+        logger.error(f"Get DP sources failed: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))

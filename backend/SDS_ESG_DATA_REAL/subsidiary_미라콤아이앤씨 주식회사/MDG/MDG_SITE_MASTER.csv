@@ -1,0 +1,2 @@
+site_code,site_name,site_type,address,city,country,floor_area_m2,employees,operational_status,open_date,data_quality,source_system,synced_at,created_at,updated_at,updated_by
+SITE-MI01,미라콤 서울,오피스,서울시 강남구 역삼동,서울,대한민국,5200,580,ACTIVE,2016-04-15,M1,MDG,2024-01-05 08:00:00,2024-01-05 09:00:00,2024-01-10 10:00:00,user_001

@@ -1,0 +1,2 @@
+site_code,site_name,site_type,address,country,region,floor_area_m2,ownership_type,operational_control,equity_ratio,boundary_scope,dc_it_capacity_kw,pue_target,start_date,active_yn,last_synced_at,created_at,updated_at,updated_by
+SITE-OH01,오픈핸즈 본사,오피스,서울시 강남구 테헤란로,KR,국내,850,임차,Y,100.0,포함,,,2015-03-01,Y,2024-01-01 06:00:00,2024-01-01 09:00:00,2024-01-15 09:00:00,admin_001

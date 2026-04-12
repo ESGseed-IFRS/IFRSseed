@@ -1,0 +1,2 @@
+site_code,site_name,site_type,address,city,country,floor_area_m2,employees,operational_status,open_date,data_quality,source_system,synced_at,created_at,updated_at,updated_by
+SITE-SC01,에스코어 판교,오피스,경기도 성남시 분당구 판교로,성남,대한민국,8500,850,ACTIVE,2015-06-01,M1,MDG,2024-01-05 08:00:00,2024-01-05 09:00:00,2024-01-10 10:00:00,user_001

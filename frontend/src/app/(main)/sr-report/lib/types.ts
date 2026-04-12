@@ -1,4 +1,4 @@
-export type SrStdType = 'GRI' | 'SASB' | 'TCFD';
+export type SrStdType = 'GRI' | 'SASB' | 'TCFD' | 'ESRS' | 'IFRS';
 
 export type SrCategory = '환경' | '사회' | '지배구조';
 

@@ -1,0 +1,5 @@
+record_id,site_code,site_name,year,quarter,worker_type,total_workers,total_work_hours,fatality_count,ltir_count,rwr_count,first_aid_count,near_miss_count,trir,ltir,severity_rate,lost_days,recordable_rate,data_quality,source_system,synced_at,created_at,updated_at,updated_by
+SAFETY-OH-2024-Q1,SITE-OH01,오픈핸즈 본사,2024,1,정규직,85,44200,0,0,0,1,2,0,0,0,0,0,M1,EHS,2024-03-05 07:30:00,2024-03-05 09:00:00,2024-03-10 10:00:00,user_ehs
+SAFETY-OH-2024-Q2,SITE-OH01,오픈핸즈 본사,2024,2,정규직,85,44200,0,0,0,1,2,0,0,0,0,0,M1,EHS,2024-06-05 07:30:00,2024-06-05 09:00:00,2024-06-10 10:00:00,user_ehs
+SAFETY-OH-2024-Q3,SITE-OH01,오픈핸즈 본사,2024,3,정규직,85,44200,0,0,0,1,2,0,0,0,0,0,M1,EHS,2024-09-05 07:30:00,2024-09-05 09:00:00,2024-09-10 10:00:00,user_ehs
+SAFETY-OH-2024-Q4,SITE-OH01,오픈핸즈 본사,2024,4,정규직,85,44200,0,0,0,1,2,0,0,0,0,0,M1,EHS,2024-12-05 07:30:00,2024-12-05 09:00:00,2024-12-10 10:00:00,user_ehs

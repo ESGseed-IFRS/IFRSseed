@@ -1,0 +1,2 @@
+site_code,site_name,site_type,address,city,country,floor_area_m2,employees,operational_status,open_date,data_quality,source_system,synced_at,created_at,updated_at,updated_by
+SITE-SI01,시큐아이 서울,오피스,서울시 금천구 가산디지털단지,서울,대한민국,3200,340,ACTIVE,2017-09-01,M1,MDG,2024-01-05 08:00:00,2024-01-05 09:00:00,2024-01-10 10:00:00,user_001

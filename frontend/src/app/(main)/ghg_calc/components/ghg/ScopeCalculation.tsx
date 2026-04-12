@@ -347,7 +347,9 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
   const s2yoy = prev.s2 > 0 ? ((totals.scope2 - prev.s2) / prev.s2) * 100 : 0;
   const s3yoy = prev.s3 > 0 ? ((totals.scope3 - prev.s3) / prev.s3) * 100 : 0;
 
-  const formatInt = (n: number) => Math.round(n).toLocaleString('ko-KR');
+  const formatTco2 = (n: number) => n.toLocaleString('ko-KR', { minimumFractionDigits: 0, maximumFractionDigits: 3 });
+  /** Scope 2·전체 합계 등 카드용: 반올림 정수 표시 */
+  const formatRoundedInt = (n: number) => Math.round(n).toLocaleString('ko-KR');
 
   return (
     <div className="p-5 space-y-4">
@@ -367,8 +369,9 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
             ) : null}
             {liveApi && liveApi.year === selectedYear ? (
               <span className="block mt-0.5 text-emerald-800/90">
-                Scope 1·2·합계·Scope 3 연간값은 DB 산정 결과와 동일합니다. 월별 차트의 Scope 3는 월별 API가 없어 0으로
-                표시됩니다.
+                Scope 1·2·3 연간 합계·월별 추이·카테고리 라인은 DB 산정 API(ghg_emission_results)와 동일합니다. Scope 3
+                카테고리는 스테이징 EMS(<code className="text-[10px] bg-emerald-50 px-1 rounded">staging_ems_data</code>)에
+                적재된 Scope3 상세 행이 있을 때만 재계산으로 집계됩니다.
                 {liveApi.prev_year_totals && liveApi.comparison_year
                   ? ` 표·상단 카드의 전년 대비는 동일 basis로 저장된 ${liveApi.comparison_year}년 행(ghg_emission_results)과 비교합니다. 행 단위는 시설·항목명이 일치할 때만 %가 채워집니다.`
                   : ' 직전 연도 저장 산정이 없으면 상단 전년 대비와 행 단위 전년대비는 표시하지 않습니다.'}
@@ -428,7 +431,7 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
             className="text-white tabular-nums tracking-tight break-all"
             style={{ fontSize: grandTotal >= 1_000_000 ? '20px' : '24px', fontWeight: 800, lineHeight: 1.1 }}
           >
-            {formatInt(grandTotal)}
+            {formatRoundedInt(grandTotal)}
           </div>
           <div className="text-white/50 text-xs mt-0.5">
             tCO₂eq ({selectedYear}년 1~12월, Scope 1+2+3)
@@ -454,7 +457,7 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
             </span>
           </div>
           <div className="text-gray-900 tabular-nums break-all" style={{ fontSize: '20px', fontWeight: 800 }}>
-            {formatInt(totals.scope1)}
+            {formatTco2(totals.scope1)}
           </div>
           <div className="text-gray-400 text-xs mt-0.5">tCO₂eq</div>
           {hideYoy ? (
@@ -476,7 +479,7 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
             </span>
           </div>
           <div className="text-gray-900 tabular-nums break-all" style={{ fontSize: '20px', fontWeight: 800 }}>
-            {formatInt(totals.scope2)}
+            {formatRoundedInt(totals.scope2)}
           </div>
           <div className="text-gray-400 text-xs mt-0.5">tCO₂eq (위치기반 합)</div>
           {hideYoy ? (
@@ -498,7 +501,7 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
             </span>
           </div>
           <div className="text-gray-900 tabular-nums break-all" style={{ fontSize: '20px', fontWeight: 800 }}>
-            {formatInt(totals.scope3)}
+            {formatTco2(totals.scope3)}
           </div>
           <div className="text-gray-400 text-xs mt-0.5">tCO₂eq</div>
           {hideYoy ? (
@@ -552,7 +555,10 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
                         <div key={String(p.dataKey)} className="flex justify-between gap-4 py-0.5">
                           <span className="text-gray-500">{labelMap[String(p.dataKey)] ?? String(p.dataKey)}</span>
                           <span className="tabular-nums text-gray-800" style={{ fontWeight: 600 }}>
-                            {Number(p.value).toLocaleString(undefined, { maximumFractionDigits: 1 })} tCO₂eq
+                            {String(p.dataKey) === 'scope2'
+                              ? Math.round(Number(p.value)).toLocaleString('ko-KR')
+                              : Number(p.value).toLocaleString(undefined, { maximumFractionDigits: 1 })}{' '}
+                            tCO₂eq
                           </span>
                         </div>
                       ))}
@@ -584,7 +590,7 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
                     <span className="text-xs text-gray-600">{s.label}</span>
                     <div className="text-right">
                       <span className="text-xs text-gray-800" style={{ fontWeight: 700 }}>
-                        {formatInt(s.value)}
+                        {s.label === 'Scope 2' ? formatRoundedInt(s.value) : formatTco2(s.value)}
                       </span>
                       <span className="text-xs text-gray-400 ml-1">t ({pct}%)</span>
                     </div>
@@ -599,7 +605,7 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
               <div className="flex items-center justify-between text-xs">
                 <span className="text-gray-500">전체 합계</span>
                 <span className="text-gray-900 tabular-nums" style={{ fontWeight: 700 }}>
-                  {formatInt(grandTotal)} tCO₂eq
+                  {formatRoundedInt(grandTotal)} tCO₂eq
                 </span>
               </div>
             </div>
@@ -632,7 +638,13 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
                   activeScope === tab.key ? tab.colorClass : 'bg-gray-100 text-gray-500 border-gray-200'
                 }`}
               >
-                {`${formatInt(totals[tab.key === 'scope1' ? 'scope1' : tab.key === 'scope2' ? 'scope2' : 'scope3'])} t`}
+                {`${
+                  tab.key === 'scope2'
+                    ? formatRoundedInt(totals.scope2)
+                    : formatTco2(
+                        tab.key === 'scope1' ? totals.scope1 : totals.scope3,
+                      )
+                } t`}
               </span>
             </button>
           ))}
@@ -682,11 +694,9 @@ export function ScopeCalculation({ onApiResponseUpdate }: ScopeCalculationProps)
               <CategoryTable categories={scope3Categories} />
             ) : (
               <p className="text-sm text-gray-500 py-8 text-center px-4">
-                {hideYoy
-                  ? totals.scope3 > 0
-                    ? 'Scope 3 연간 합계만 산정 API에 포함되어 있으며, 카테고리별 라인은 아직 연동되지 않았습니다.'
-                    : 'Scope 3 연간 산정값이 없습니다.'
-                  : '표시할 Scope 3 항목이 없습니다.'}
+                {totals.scope3 > 0
+                  ? 'Scope 3 연간 합계는 있으나 카테고리 라인이 비어 있습니다. 재계산 후에도 동일하면 백엔드 응답의 scope3_categories를 확인하세요.'
+                  : '표시할 Scope 3 항목이 없습니다. 원시 데이터 I/F·업로드로 EMS Scope3 상세가 staging_ems_data에 적재된 뒤 재계산을 실행하면 카테고리별 라인이 채워집니다.'}
               </p>
             ))}
         </div>

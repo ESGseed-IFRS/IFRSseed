@@ -8,6 +8,7 @@ from fastapi import APIRouter
 from .external_company_router import external_company_router
 from .sr_agent_router import sr_agent_router
 from .staging_router import staging_router
+from .subsidiary_router import subsidiary_router
 
 
 router = APIRouter(prefix="/data-integration", tags=["Data Integration"])
@@ -18,3 +19,5 @@ router.include_router(sr_agent_router)
 router.include_router(staging_router)
 # 외부 기업 스냅샷: /data-integration/external-company/sds-news/ingest
 router.include_router(external_company_router)
+# 계열사 데이터 제출: /data-integration/subsidiary/submit
+router.include_router(subsidiary_router)

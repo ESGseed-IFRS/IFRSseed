@@ -1,0 +1,5 @@
+record_id,year,quarter,country,country_code,region,pretax_profit_m,tax_base_m,effective_tax_rate_pct,tax_paid_m,tax_payable_m,deferred_tax_asset_m,deferred_tax_liability_m,income_tax_expense_m,notes,source_system,synced_at,created_at,updated_at,updated_by
+TAX-MC-2024-Q1,2024,1,대한민국,KR,국내,10225,10225,22.0,2249,2249,0,0,2249,멀티캠퍼스 법인세,ERP,2024-03-10 07:00:00,2024-03-10 09:00:00,2024-03-15 10:00:00,user_fin
+TAX-MC-2024-Q2,2024,2,대한민국,KR,국내,10325,10325,22.0,2271,2271,0,0,2271,멀티캠퍼스 법인세,ERP,2024-06-10 07:00:00,2024-06-10 09:00:00,2024-06-15 10:00:00,user_fin
+TAX-MC-2024-Q3,2024,3,대한민국,KR,국내,10425,10425,22.0,2293,2293,0,0,2293,멀티캠퍼스 법인세,ERP,2024-09-10 07:00:00,2024-09-10 09:00:00,2024-09-15 10:00:00,user_fin
+TAX-MC-2024-Q4,2024,4,대한민국,KR,국내,10525,10525,22.0,2315,2315,0,0,2315,멀티캠퍼스 법인세,ERP,2024-12-10 07:00:00,2024-12-10 09:00:00,2024-12-15 10:00:00,user_fin

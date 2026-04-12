@@ -14,6 +14,10 @@ import {
   dpMasterIdFromMatrixDpCode,
   keywordFromDashboardSectionId,
 } from './lib/holdingDashboardLink';
+import { fetchWithAuthJson, useAuthSessionStore } from '@/store/authSessionStore';
+
+/** 사이드바 보고 연도와 동일 */
+const SR_SUBMISSION_YEAR = 2024;
 
 const DRAFT_STATE_ALLOWED: SrDpStatus[] = ['todo', 'wip', 'submitted', 'approved', 'rejected'];
 const STORAGE_KEY = 'sr-report:dpStatusByDpId';
@@ -197,7 +201,33 @@ export function SrReportPageClient() {
     );
   };
 
-  const onSubmitText = (dpId: string, nextText: string) => {
+  const onSubmitText = async (dpId: string, nextText: string) => {
+    const companyId = useAuthSessionStore.getState().user?.company_id?.trim();
+    if (!companyId) {
+      throw new Error('로그인된 회사 ID가 없습니다. 제출하려면 로그인해 주세요.');
+    }
+    const target = cards.find((c) => c.id === dpId);
+    const apiBase = (process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:9001').replace(/\/$/, '');
+    const authUser = useAuthSessionStore.getState().user;
+    const relatedDpIds = (target?.standards ?? []).map((s) => s.code).filter(Boolean);
+    const res = await fetchWithAuthJson(`${apiBase}/data-integration/subsidiary/sr-dp-submit`, {
+      method: 'POST',
+      jsonBody: {
+        subsidiary_company_id: companyId,
+        submission_year: SR_SUBMISSION_YEAR,
+        dp_id: dpId,
+        dp_title: target?.title ?? dpId,
+        narrative_text: nextText,
+        ...(relatedDpIds.length > 0 ? { related_dp_ids: relatedDpIds } : {}),
+        ...(authUser?.email || authUser?.name
+          ? { submitted_by: (authUser.email || authUser.name || '').slice(0, 200) }
+          : {}),
+      },
+    });
+    if (!res.ok) {
+      const t = await res.text().catch(() => res.statusText);
+      throw new Error(t || `제출 실패 (HTTP ${res.status})`);
+    }
     setCards((prev) =>
       prev.map((c) => {
         if (c.id !== dpId) return c;
@@ -241,7 +271,16 @@ export function SrReportPageClient() {
           onSelectHoldingTab={handleSelectHoldingTab}
         />
 
-        <main style={{ flex: 1, minWidth: 0, height: '100%', display: 'flex' }}>
+        <main
+          style={{
+            flex: 1,
+            minWidth: 0,
+            minHeight: 0,
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
           {workspace === 'holding' ? (
             <HoldingSrWorkspace
               activeTab={holdingTab}

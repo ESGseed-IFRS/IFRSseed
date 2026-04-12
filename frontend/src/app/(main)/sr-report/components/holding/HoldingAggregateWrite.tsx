@@ -1,8 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { DP_MASTER_LIST, DP_AGGREGATIONS } from '../../lib/platformData';
-import type { DpAggregationStatus } from '../../lib/platformTypes';
+import type { DpAggregation, DpAggregationStatus } from '../../lib/platformTypes';
+import {
+  buildGhgQualitativeTexts,
+  buildGhgQuantSubmissions,
+  fetchGroupScopeResults,
+  fetchSrContributions,
+  subsidiaryOrderForDisplay,
+  sumScope12AutoValue,
+  type SrContributionApiRow,
+} from '../../lib/holdingAggregateApi';
+import type { GroupScopeResultRowApi } from '@/app/(main)/ghg_calc/lib/ghgGroupScopeApi';
+import { isHoldingCompany, useAuthSessionStore } from '@/store/authSessionStore';
 
 interface HoldingAggregateWriteProps {
   onInsertToReport?: () => void;
@@ -47,11 +58,26 @@ function StdTag({ std, active }: { std: 'GRI' | 'ISSB' | 'ESRS'; active: boolean
   );
 }
 
+const GHG_DP_ID = 'DP-ENV-001';
+const DEFAULT_REPORT_YEAR = 2024;
+/** DB 시드(삼성SDS 데모)에서 계열사 parent_company_id 로 쓰이는 지주 UUID가 많음 */
+const DEFAULT_AGGREGATE_HOLDING_ID = '550e8400-e29b-41d4-a716-446655440000';
+
 export function HoldingAggregateWrite({
   onInsertToReport,
   initialDpId,
   focusEntityId,
 }: HoldingAggregateWriteProps) {
+  const user = useAuthSessionStore((s) => s.user);
+  const holdingCompanyId = useMemo(() => {
+    if (isHoldingCompany(user) && user?.company_id?.trim()) return user.company_id.trim();
+    return (
+      process.env.NEXT_PUBLIC_SR_AGGREGATE_HOLDING_ID ??
+      process.env.NEXT_PUBLIC_SR_HOLDING_COMPANY_ID ??
+      DEFAULT_AGGREGATE_HOLDING_ID
+    ).trim();
+  }, [user]);
+
   const [selectedDpId, setSelectedDpId] = useState<string>(() => {
     if (initialDpId && DP_MASTER_LIST.some((d) => d.dp_id === initialDpId)) return initialDpId;
     return DP_MASTER_LIST[0]?.dp_id ?? '';
@@ -61,8 +87,13 @@ export function HoldingAggregateWrite({
   const [adjustmentReason, setAdjustmentReason] = useState('');
   const [integratedText, setIntegratedText] = useState('');
 
+  const [liveLoading, setLiveLoading] = useState(false);
+  const [liveError, setLiveError] = useState<string | null>(null);
+  const [ghgRows, setGhgRows] = useState<GroupScopeResultRowApi[] | null>(null);
+  const [contribRows, setContribRows] = useState<SrContributionApiRow[] | null>(null);
+
   const dp = DP_MASTER_LIST.find((d) => d.dp_id === selectedDpId);
-  const agg = dp ? DP_AGGREGATIONS[dp.dp_id] : null;
+  const baseAgg = dp ? DP_AGGREGATIONS[dp.dp_id] : null;
 
   // 현재 기준 탭에 해당하는 필드만 (coverage 확인)
   const hasGri = !!dp?.coverage.gri;
@@ -81,6 +112,64 @@ export function HoldingAggregateWrite({
   const qualFields = fields.filter((f) => f.is_qualitative);
 
   const isQuantitative = dp && ['SUM', 'WEIGHTED_AVG'].includes(dp.aggregation_method);
+
+  const agg: DpAggregation | null = useMemo(() => {
+    if (!baseAgg || !dp) return null;
+    if (dp.dp_id !== GHG_DP_ID || ghgRows === null) return baseAgg;
+    const subs = buildGhgQuantSubmissions(ghgRows);
+    const order = subsidiaryOrderForDisplay(ghgRows, contribRows ?? [], holdingCompanyId);
+    const qualTexts =
+      contribRows && order.length
+        ? buildGhgQualitativeTexts(holdingCompanyId, contribRows, order, currentTabId)
+        : baseAgg.qualitative.subsidiary_texts;
+    return {
+      ...baseAgg,
+      report_year: DEFAULT_REPORT_YEAR,
+      subsidiary_submissions: subs.length ? subs : baseAgg.subsidiary_submissions,
+      quantitative: {
+        ...baseAgg.quantitative,
+        auto_value: subs.length ? sumScope12AutoValue(ghgRows) : baseAgg.quantitative.auto_value,
+        unit: 'tCO₂e',
+      },
+      qualitative: {
+        ...baseAgg.qualitative,
+        subsidiary_texts: qualTexts.length ? qualTexts : baseAgg.qualitative.subsidiary_texts,
+      },
+    };
+  }, [baseAgg, dp, ghgRows, contribRows, holdingCompanyId, currentTabId]);
+
+  useEffect(() => {
+    if (!holdingCompanyId) return;
+    let cancelled = false;
+    setLiveLoading(true);
+    setLiveError(null);
+    if (selectedDpId === GHG_DP_ID) setGhgRows(null);
+    (async () => {
+      try {
+        const cr = await fetchSrContributions(holdingCompanyId, DEFAULT_REPORT_YEAR);
+        if (cancelled) return;
+        setContribRows(cr.contributions);
+        if (selectedDpId === GHG_DP_ID) {
+          const gr = await fetchGroupScopeResults(holdingCompanyId, DEFAULT_REPORT_YEAR, 'location');
+          if (cancelled) return;
+          setGhgRows(gr.rows);
+        } else {
+          setGhgRows(null);
+        }
+      } catch (e) {
+        if (!cancelled) {
+          setLiveError(e instanceof Error ? e.message : '데이터 조회 실패');
+          setContribRows(null);
+          setGhgRows(null);
+        }
+      } finally {
+        if (!cancelled) setLiveLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [holdingCompanyId, selectedDpId]);
 
   useEffect(() => {
     if (!initialDpId || !DP_MASTER_LIST.some((d) => d.dp_id === initialDpId)) return;
@@ -118,7 +207,7 @@ export function HoldingAggregateWrite({
           대시보드 연동 · 조직: <span className="font-semibold">{focusEntityId}</span>
         </div>
       ) : null}
-      <div className="flex-1 flex overflow-hidden min-w-0">
+      <div className="flex-1 flex min-h-0 min-w-0 overflow-hidden">
       {/* DP 목록 사이드바 */}
       <div className="w-56 min-w-[224px] bg-white border-r border-[#e8e8e4] flex flex-col overflow-hidden shrink-0">
         <div className="px-3 py-2.5 border-b border-[#e8e8e4] text-[10px] font-medium text-[#888] uppercase tracking-wider">
@@ -159,11 +248,21 @@ export function HoldingAggregateWrite({
       </div>
 
       {/* 취합 패널 */}
-      <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+      <div className="flex-1 flex min-h-0 min-w-0 flex-col overflow-hidden">
         {dp && agg ? (
           <>
             {/* 헤더 */}
-            <div className="px-4 py-3 bg-white border-b border-[#e8e8e4] shrink-0">
+            <div className="px-4 py-2 bg-white border-b border-[#e8e8e4] shrink-0 space-y-1.5">
+              {liveLoading && selectedDpId === GHG_DP_ID ? (
+                <div className="text-[11px] text-[#185FA5] bg-[#EFF5FC] border border-[#d4e4f4] rounded px-2 py-1.5">
+                  ghg_emission_results · subsidiary_data_contributions 데이터를 불러오는 중…
+                </div>
+              ) : null}
+              {liveError ? (
+                <div className="text-[11px] text-amber-900 bg-amber-50 border border-amber-200 rounded px-2 py-1.5">
+                  {liveError} — 연결 실패 시 목 데이터를 표시합니다.
+                </div>
+              ) : null}
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-sm font-semibold text-[#333]">{dp.dp_name_ko}</span>
                 <StdTag std="GRI" active={!!dp.coverage.gri} />
@@ -182,7 +281,7 @@ export function HoldingAggregateWrite({
             </div>
 
             {/* 기준 탭 */}
-            <div className="px-4 py-2 bg-[#fafaf8] border-b border-[#e8e8e4] flex gap-1 shrink-0">
+            <div className="px-4 py-1.5 bg-[#fafaf8] border-b border-[#e8e8e4] flex gap-1 shrink-0">
               {activeTabs.map((t) => (
                 <button
                   key={t.id}
@@ -199,11 +298,11 @@ export function HoldingAggregateWrite({
               ))}
             </div>
 
-            {/* 메인 스크롤 영역 */}
-            <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-6">
+            {/* 메인 스크롤 영역: 정량+정성 전체가 이 박스 안에서만 스크롤 (flex-1 자식에 min-h-0 필수) */}
+            <div className="min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-auto overscroll-y-contain px-4 py-2 flex flex-col gap-4 [scrollbar-gutter:stable]">
               {/* 정량 섹션 */}
               {isQuantitative && quantFields.length > 0 && (
-                <div className="bg-white border border-[#e8e8e4] rounded-lg overflow-hidden">
+                <div className="shrink-0 bg-white border border-[#e8e8e4] rounded-lg overflow-hidden">
                   <div className="px-4 py-3 border-b border-[#e8e8e4] text-sm font-semibold text-[#333]">
                     정량 섹션
                   </div>
@@ -315,34 +414,34 @@ export function HoldingAggregateWrite({
 
               {/* 정성 섹션 */}
               {qualFields.length > 0 && (
-                <div className="bg-white border border-[#e8e8e4] rounded-lg overflow-hidden">
-                  <div className="px-4 py-3 border-b border-[#e8e8e4] text-sm font-semibold text-[#333]">
+                <div className="shrink-0 flex flex-col overflow-visible rounded-lg border border-[#e8e8e4] bg-white">
+                  <div className="shrink-0 border-b border-[#e8e8e4] px-4 py-2.5 text-sm font-semibold text-[#333]">
                     정성 섹션 — 계열사 서술 원문 (읽기 전용)
                   </div>
-                  <div className="p-4 space-y-3">
+                  <div className="space-y-3 p-4">
                     {agg.qualitative.subsidiary_texts.map((t) => (
                       <div
                         key={t.subsidiary_id}
-                        className="p-3 bg-[#f8f8f6] border border-[#e8e8e4] rounded text-xs text-[#555]"
+                        className="rounded border border-[#e8e8e4] bg-[#f8f8f6] p-3 text-xs text-[#555]"
                       >
-                        <div className="font-medium text-[#333] mb-1.5">{t.subsidiary_name}</div>
-                        <div className="whitespace-pre-wrap leading-relaxed">{t.text}</div>
+                        <div className="mb-1.5 shrink-0 font-medium text-[#333]">{t.subsidiary_name}</div>
+                        <div className="whitespace-pre-wrap break-words leading-relaxed pr-1">{t.text}</div>
                       </div>
                     ))}
                   </div>
 
-                  <div className="px-4 py-3 border-t border-[#e8e8e4] bg-[#fafaf8]">
-                    <div className="text-sm font-semibold text-[#333] mb-2">
+                  <div className="shrink-0 border-t border-[#e8e8e4] bg-[#fafaf8] px-4 py-2.5">
+                    <div className="mb-1.5 text-sm font-semibold text-[#333]">
                       그룹 통합 서술 (지주사 직접 작성)
                     </div>
-                    <p className="text-[11px] text-[#888] mb-2">
+                    <p className="mb-2 text-[11px] text-[#888]">
                       위 계열사 원문을 참고하여 그룹 전체의 통합 서술을 작성하세요.
                     </p>
                     <textarea
                       value={integratedText}
                       onChange={(e) => setIntegratedText(e.target.value)}
                       placeholder="계열사 원문을 참고하여 통합 서술을 입력하세요."
-                      rows={6}
+                      rows={8}
                       className="w-full px-3 py-2 border border-[#e8e8e4] rounded text-xs resize-none bg-[#F0F4FF]"
                     />
                     <div className="flex items-center gap-2 mt-2">
@@ -368,7 +467,7 @@ export function HoldingAggregateWrite({
             </div>
 
             {/* 하단 액션 바 */}
-            <div className="px-4 py-3 bg-white border-t border-[#e8e8e4] flex items-center justify-between shrink-0">
+            <div className="flex shrink-0 items-center justify-between border-t border-[#e8e8e4] bg-white px-4 py-2">
               <div className="flex gap-2">
                 <button
                   type="button"

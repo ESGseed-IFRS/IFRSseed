@@ -1,0 +1,5 @@
+record_id,site_code,site_name,year,quarter,total_incidents,lost_time_injuries,near_misses,safety_training_hours,safety_investment_krw,data_quality,source_system,synced_at,created_at,updated_at,updated_by
+SAFETY-SC-2024-Q1,SITE-SC01,에스코어 판교,2024,1,0,0,5,3400,28000000,M1,EHS,2024-03-25 08:00:00,2024-03-25 09:00:00,2024-03-28 10:00:00,user_001
+SAFETY-SC-2024-Q2,SITE-SC01,에스코어 판교,2024,2,0,0,3,3400,28000000,M1,EHS,2024-06-25 08:00:00,2024-06-25 09:00:00,2024-06-28 10:00:00,user_001
+SAFETY-SC-2024-Q3,SITE-SC01,에스코어 판교,2024,3,2,0,3,3400,28000000,M1,EHS,2024-09-25 08:00:00,2024-09-25 09:00:00,2024-09-28 10:00:00,user_001
+SAFETY-SC-2024-Q4,SITE-SC01,에스코어 판교,2024,4,0,0,5,3400,28000000,M1,EHS,2024-12-25 08:00:00,2024-12-25 09:00:00,2024-12-28 10:00:00,user_001

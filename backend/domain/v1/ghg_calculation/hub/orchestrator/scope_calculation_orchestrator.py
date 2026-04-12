@@ -1,14 +1,19 @@
-"""스테이징 에너지 + 배출계수 기반 Scope 1·2 산정."""
+"""스테이징 에너지 + 배출계수 기반 Scope 1·2·3 산정."""
 from __future__ import annotations
 
 from datetime import datetime, timezone
 from typing import Literal
 from uuid import UUID
 
+from loguru import logger
+
 from backend.domain.v1.ghg_calculation.hub.repositories.ghg_emission_result_repository import (
     GhgEmissionResultRepository,
 )
-from backend.domain.v1.ghg_calculation.hub.repositories.staging_raw_repository import StagingRawRepository
+from backend.domain.v1.ghg_calculation.hub.repositories.staging_raw_repository import (
+    StagingRawRepository,
+    StagingRawRowSnapshot,
+)
 from backend.domain.v1.ghg_calculation.hub.services.emission_factor_service import EmissionFactorService
 from backend.domain.v1.ghg_calculation.hub.services.raw_data_inquiry_service import (
     aggregate_energy_activity_by_month_for_year,
@@ -134,6 +139,73 @@ def _apply_line_yoy(
                 item.yoy = round(((item.total - prev_t) / prev_t) * 100, 2)
 
 
+def _aggregate_scope3_from_staging(snaps: list[StagingRawRowSnapshot], year: str) -> dict[str, float]:
+    y = str(year).strip()
+    category_totals: dict[str, float] = {}
+    for snap in snaps:
+        if snap.staging_system != "ems":
+            continue
+        rd = snap.raw_data if isinstance(snap.raw_data, dict) else {}
+        items = rd.get("items")
+        if not isinstance(items, list) or not items:
+            continue
+        fn = (snap.source_file_name or "").lower()
+        first = items[0] if isinstance(items[0], dict) else {}
+        keys = {str(k).lower() for k in first.keys()}
+        is_scope3 = ("scope3" in fn and "detail" in fn) or (
+            "scope3_category" in keys and "ghg_emission_tco2e" in keys
+        )
+        if not is_scope3:
+            continue
+        for row in items:
+            if not isinstance(row, dict):
+                continue
+            if str(row.get("year", "")).strip() != y:
+                continue
+            cat = str(row.get("scope3_category") or "").strip()
+            if not cat:
+                continue
+            try:
+                val = float(row.get("ghg_emission_tco2e") or 0)
+            except (TypeError, ValueError):
+                continue
+            category_totals[cat] = category_totals.get(cat, 0.0) + val
+    return category_totals
+
+
+def _scope3_categories_from_staging(
+    snaps: list[StagingRawRowSnapshot],
+    year: str,
+) -> tuple[list[ScopeCalcCategoryDto], float]:
+    category_data = _aggregate_scope3_from_staging(snaps, year)
+    if not category_data:
+        return [], 0.0
+    categories: list[ScopeCalcCategoryDto] = []
+    total_scope3 = 0.0
+    for category_name, emission_total in sorted(category_data.items()):
+        monthly_emission = emission_total / 12.0
+        em_dict = {i: monthly_emission for i in range(1, 13)}
+        line_item = _line_item(
+            energy_type=category_name,
+            facility="전사",
+            em=em_dict,
+            factor=0.0,
+            ef_source="staging_ems_data",
+            row_status="confirmed",
+        )
+        cat_id = category_name.split()[0].lower().replace(".", "")
+        cat_id = f"s3-{cat_id}"
+        categories.append(
+            ScopeCalcCategoryDto(
+                id=cat_id,
+                category=category_name,
+                items=[line_item],
+            )
+        )
+        total_scope3 += emission_total
+    return categories, round(total_scope3, 6)
+
+
 def _yoy_from_prev_row(
     company_id: UUID,
     period_year: int,
@@ -218,7 +290,11 @@ class ScopeCalculationOrchestrator:
 
         scope1_total = round(sum(s1_m.values()), 6)
         scope2_total = round(sum(s2_m.values()), 6)
-        scope3_total = 0.0
+        
+        # Scope 3: 스테이징 EMS(JSONB)만 사용
+        scope3_categories, scope3_total = _scope3_categories_from_staging(snaps, year)
+        s3_m = {i: scope3_total / 12.0 for i in range(1, 13)}  # 월별 균등 분할
+        
         grand_total = round(scope1_total + scope2_total + scope3_total, 6)
 
         monthly_chart = [
@@ -226,6 +302,7 @@ class ScopeCalculationOrchestrator:
                 month=_MONTH_LABELS[i - 1],
                 scope1=round(s1_m[i], 6),
                 scope2=round(s2_m[i], 6),
+                scope3=round(s3_m[i], 6),
             )
             for i in range(1, 13)
         ]
@@ -253,11 +330,12 @@ class ScopeCalculationOrchestrator:
         )
 
         monthly_breakdown = {
-            f"{i:02d}": {"scope1": s1_m[i], "scope2": s2_m[i]} for i in range(1, 13)
+            f"{i:02d}": {"scope1": s1_m[i], "scope2": s2_m[i], "scope3": s3_m[i]} for i in range(1, 13)
         }
         line_payload = {
             "scope1_categories": [c.model_dump(mode="json") for c in scope1_categories],
             "scope2_categories": [c.model_dump(mode="json") for c in scope2_categories],
+            "scope3_categories": [c.model_dump(mode="json") for c in scope3_categories],
         }
         s1_fixed = round(sum(i.total for i in acc_s1_fixed), 4)
         s1_mobile = round(sum(i.total for i in acc_s1_mobile), 4)
@@ -292,9 +370,11 @@ class ScopeCalculationOrchestrator:
             monthly_chart=monthly_chart,
             scope1_categories=scope1_categories,
             scope2_categories=scope2_categories,
+            scope3_categories=scope3_categories,
             emission_factor_version=ef_bundle,
             calculated_at=calc_at,
             row_import_status=_import_to_line_status(imp_st),
+            verification_status="draft",
             comparison_year=comparison_year,
             prev_year_totals=prev_year_totals,
         )
@@ -313,6 +393,7 @@ class ScopeCalculationOrchestrator:
         li = raw["line_items_payload"]
         s1_cats = [ScopeCalcCategoryDto.model_validate(x) for x in li.get("scope1_categories", [])]
         s2_cats = [ScopeCalcCategoryDto.model_validate(x) for x in li.get("scope2_categories", [])]
+        s3_cats = [ScopeCalcCategoryDto.model_validate(x) for x in li.get("scope3_categories", [])]
         comparison_year, prev_year_totals = _yoy_from_prev_row(
             company_id,
             period_y,
@@ -324,13 +405,15 @@ class ScopeCalculationOrchestrator:
         mb = raw["monthly_breakdown"]
         s1_m: dict[int, float] = {}
         s2_m: dict[int, float] = {}
+        s3_m: dict[int, float] = {}
         for i in range(1, 13):
             key = f"{i:02d}"
             cell = mb.get(key) or {}
             s1_m[i] = float(cell.get("scope1", 0.0))
             s2_m[i] = float(cell.get("scope2", 0.0))
+            s3_m[i] = float(cell.get("scope3", 0.0))
         monthly_chart = [
-            ScopeMonthlyPointDto(month=_MONTH_LABELS[i - 1], scope1=s1_m[i], scope2=s2_m[i])
+            ScopeMonthlyPointDto(month=_MONTH_LABELS[i - 1], scope1=s1_m[i], scope2=s2_m[i], scope3=s3_m[i])
             for i in range(1, 13)
         ]
         ts = raw["calculated_at"]
@@ -338,6 +421,8 @@ class ScopeCalculationOrchestrator:
             calc_at = ts if ts.tzinfo else ts.replace(tzinfo=timezone.utc)
         else:
             calc_at = datetime.now(timezone.utc)
+        vstat = raw.get("verification_status")
+        vstat_s = str(vstat).strip() if vstat is not None else None
         return ScopeRecalculateResponseDto(
             company_id=str(company_id),
             year=year,
@@ -349,9 +434,11 @@ class ScopeCalculationOrchestrator:
             monthly_chart=monthly_chart,
             scope1_categories=s1_cats,
             scope2_categories=s2_cats,
+            scope3_categories=s3_cats,
             emission_factor_version=raw["emission_factor_version"] or "v1.0",
             calculated_at=calc_at,
             row_import_status="confirmed",
+            verification_status=vstat_s,
             comparison_year=comparison_year,
             prev_year_totals=prev_year_totals,
         )

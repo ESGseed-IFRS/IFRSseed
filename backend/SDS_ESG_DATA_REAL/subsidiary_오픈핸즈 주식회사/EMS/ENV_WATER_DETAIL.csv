@@ -1,0 +1,5 @@
+record_id,site_code,site_name,year,quarter,water_intake_source,water_intake_ton,water_discharge_destination,water_discharge_ton,water_reuse_ton,water_consumption_ton,wue_l_kwh,cooling_tower_makeup_ton,cooling_tower_blowdown_ton,water_stress_area_yn,cost_krw,data_quality,source_system,synced_at,created_at,updated_at,updated_by
+WATER-OH-2024-Q1,SITE-OH01,오픈핸즈 본사,2024,1,상수도,210,하수도,189.0,0,21.0,,,,N,168000,M2,EMS,2024-03-05 07:30:00,2024-03-05 09:00:00,2024-03-10 10:00:00,user_001
+WATER-OH-2024-Q2,SITE-OH01,오픈핸즈 본사,2024,2,상수도,220,하수도,198.0,0,22.0,,,,N,176000,M2,EMS,2024-06-05 07:30:00,2024-06-05 09:00:00,2024-06-10 10:00:00,user_001
+WATER-OH-2024-Q3,SITE-OH01,오픈핸즈 본사,2024,3,상수도,230,하수도,207.0,0,23.0,,,,N,184000,M2,EMS,2024-09-05 07:30:00,2024-09-05 09:00:00,2024-09-10 10:00:00,user_001
+WATER-OH-2024-Q4,SITE-OH01,오픈핸즈 본사,2024,4,상수도,240,하수도,216.0,0,24.0,,,,N,192000,M2,EMS,2024-12-05 07:30:00,2024-12-05 09:00:00,2024-12-10 10:00:00,user_001
