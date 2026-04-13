@@ -576,6 +576,11 @@ export const DP_MASTER_LIST: DpMaster[] = [
     coverage: { gri: 'GRI 305-1', issb: 'ISSB S2-16', esrs: 'ESRS E1-6' },
     dp_type: 'ALL_THREE',
     aggregation_method: 'SUM',
+    sidebar_pills: [
+      { code: 'ESRSE1-E1-6-44-a', tone: 'esrs' },
+      { code: 'GRI305-1-a', tone: 'gri' },
+      { code: 'IFRS2-29-a-i-1', tone: 'issb' },
+    ],
     fields: {
       common: [],
       gri: [
@@ -602,6 +607,11 @@ export const DP_MASTER_LIST: DpMaster[] = [
     coverage: { gri: 'GRI 302-1', issb: 'ISSB S2-17', esrs: 'ESRS E1-5' },
     dp_type: 'ALL_THREE',
     aggregation_method: 'SUM',
+    sidebar_pills: [
+      { code: 'ESRSE1-E1-6-44-b', tone: 'esrs' },
+      { code: 'GRI305-2-a', tone: 'gri' },
+      { code: 'IFRS2-29-a-i-2', tone: 'issb' },
+    ],
     fields: {
       common: [],
       gri: [
@@ -620,6 +630,11 @@ export const DP_MASTER_LIST: DpMaster[] = [
     coverage: { gri: 'GRI 403-9', issb: null, esrs: 'ESRS S1-1' },
     dp_type: 'GRI_ESRS',
     aggregation_method: 'WEIGHTED_AVG',
+    sidebar_pills: [
+      { code: 'ESRSE1-E1-6-44-c', tone: 'esrs' },
+      { code: 'GRI305-3-a', tone: 'gri' },
+      { code: 'IFRS2-29-a-i-3', tone: 'issb' },
+    ],
     fields: {
       common: [],
       gri: [
@@ -640,6 +655,11 @@ export const DP_MASTER_LIST: DpMaster[] = [
     coverage: { gri: 'GRI 414', issb: null, esrs: 'ESRS S2-4' },
     dp_type: 'GRI_ESRS',
     aggregation_method: 'QUALITATIVE',
+    sidebar_pills: [
+      { code: 'ESRSE1-E1-6-51', tone: 'esrs' },
+      { code: 'GRI305-3-d', tone: 'gri' },
+      { code: 'IFRS2-29-a-vi-1', tone: 'issb' },
+    ],
     fields: {
       common: [],
       gri: [
@@ -648,6 +668,74 @@ export const DP_MASTER_LIST: DpMaster[] = [
       issb: [],
       esrs: [
         { field_id: 'narrative', label_ko: '가치사슬 인권 실사 서술', field_type: 'TEXTAREA', is_required: true, is_qualitative: true },
+      ],
+    },
+  },
+  {
+    dp_id: 'DP-ENV-003',
+    dp_name_ko: '기후 정책 목표 및 전환 계획',
+    category: 'E',
+    coverage: { gri: 'GRI 305-3', issb: 'IFRS S2-29', esrs: 'ESRS 2 BP-2' },
+    dp_type: 'ALL_THREE',
+    aggregation_method: 'QUALITATIVE',
+    contribution_filter_codes: ['ESRS2-BP-2-10-b'],
+    sidebar_pills: [
+      { code: 'ESRS2-BP-2-10-b', tone: 'esrs' },
+      { code: 'IFRS2-29-a-iii-1', tone: 'issb' },
+      { code: 'GRI305-3-g', tone: 'gri' },
+    ],
+    fields: {
+      common: [],
+      gri: [
+        {
+          field_id: 'narrative',
+          label_ko: 'GRI 기준 서술',
+          field_type: 'TEXTAREA',
+          is_required: false,
+          is_qualitative: true,
+        },
+      ],
+      issb: [
+        {
+          field_id: 'narrative',
+          label_ko: 'IFRS S2 관련 서술',
+          field_type: 'TEXTAREA',
+          is_required: false,
+          is_qualitative: true,
+        },
+      ],
+      esrs: [
+        {
+          field_id: 'narrative',
+          label_ko: 'ESRS 기준 서술',
+          field_type: 'TEXTAREA',
+          is_required: false,
+          is_qualitative: true,
+        },
+      ],
+    },
+  },
+  {
+    dp_id: 'DP-ESRS-MDR-001',
+    dp_name_ko: '지속가능성 공시 일반 (MDR)',
+    category: 'G',
+    coverage: { gri: null, issb: null, esrs: 'ESRS 2 MDR-A' },
+    dp_type: 'ESRS_ONLY',
+    aggregation_method: 'QUALITATIVE',
+    contribution_filter_codes: ['ESRS2-MDR-A-68-a'],
+    sidebar_pills: [{ code: 'ESRS2-MDR-A-68-a', tone: 'esrs' }],
+    fields: {
+      common: [],
+      gri: [],
+      issb: [],
+      esrs: [
+        {
+          field_id: 'narrative',
+          label_ko: 'MDR 일반 공시 서술',
+          field_type: 'TEXTAREA',
+          is_required: false,
+          is_qualitative: true,
+        },
       ],
     },
   },
@@ -729,6 +817,53 @@ export const DP_AGGREGATIONS: Record<string, DpAggregation> = {
     qualitative: {
       subsidiary_texts: [
         { subsidiary_id: 'B', subsidiary_name: 'B법인', text: '실사 대상 76개사. 고위험 11개사 식별, 현장 실사 2개사 완료, 시정조치 6건 이행.' },
+      ],
+      integrated_text: '',
+    },
+  },
+  'DP-ENV-003': {
+    dp_id: 'DP-ENV-003',
+    report_year: 2024,
+    status: 'REVIEWING',
+    subsidiary_submissions: [
+      { subsidiary_id: 'A', subsidiary_name: 'A법인', status: 'SUBMITTED', methodology: undefined, yoy_change: undefined, values: {} },
+      { subsidiary_id: 'B', subsidiary_name: 'B법인', status: 'ACCEPTED', methodology: undefined, yoy_change: undefined, values: {} },
+      { subsidiary_id: 'C', subsidiary_name: 'C법인', status: 'DRAFT', methodology: undefined, yoy_change: undefined, values: {} },
+    ],
+    quantitative: { auto_value: null, final_value: null, unit: null, adjustment_reason: undefined },
+    qualitative: {
+      subsidiary_texts: [
+        {
+          subsidiary_id: 'A',
+          subsidiary_name: 'A법인',
+          text: '그룹 기후 목표(2030·2050) 및 Net Zero 로드맵, 전환 계획의 이행 현황을 요약합니다.',
+        },
+        {
+          subsidiary_id: 'B',
+          subsidiary_name: 'B법인',
+          text: '시나리오 분석·재무 영향 연계 등 BP-2 요구에 맞춘 정책·목표 공시 초안입니다.',
+        },
+      ],
+      integrated_text: '',
+    },
+  },
+  'DP-ESRS-MDR-001': {
+    dp_id: 'DP-ESRS-MDR-001',
+    report_year: 2024,
+    status: 'AGGREGATING',
+    subsidiary_submissions: [
+      { subsidiary_id: 'A', subsidiary_name: 'A법인', status: 'DRAFT', methodology: undefined, yoy_change: undefined, values: {} },
+      { subsidiary_id: 'B', subsidiary_name: 'B법인', status: 'SUBMITTED', methodology: undefined, yoy_change: undefined, values: {} },
+      { subsidiary_id: 'C', subsidiary_name: 'C법인', status: 'DRAFT', methodology: undefined, yoy_change: undefined, values: {} },
+    ],
+    quantitative: { auto_value: null, final_value: null, unit: null, adjustment_reason: undefined },
+    qualitative: {
+      subsidiary_texts: [
+        {
+          subsidiary_id: 'B',
+          subsidiary_name: 'B법인',
+          text: 'MDR-A에 따른 일반 공시 범위·가정·판단 및 추정의 불확실성 요약(데모).',
+        },
       ],
       integrated_text: '',
     },

@@ -328,6 +328,7 @@ class Orchestrator:
         return {
             "generated_text": state.get("generated_text", ""),
             "dp_sentence_mappings": state.get("dp_sentence_mappings", []),
+            "data_provenance": state.get("data_provenance"),
             "validation": state.get("validation", {}),
             "error": state.get("error"),
             "agg_data": state.get("agg_data", {}),
@@ -487,6 +488,13 @@ class Orchestrator:
         dp_ids = user_input.get("dp_ids") or []
         if user_input.get("dp_id") and not dp_ids:
             dp_ids = [user_input["dp_id"]]
+        
+        logger.info("=" * 80)
+        logger.info("🔍 [ORCHESTRATOR_DEBUG] Phase 1 시작 - 병렬 데이터 수집")
+        logger.info(f"🔍 [ORCHESTRATOR_DEBUG] - 입력 DP 개수: {len(dp_ids)}")
+        logger.info(f"🔍 [ORCHESTRATOR_DEBUG] - 입력 DP 목록: {dp_ids}")
+        logger.info(f"🔍 [ORCHESTRATOR_DEBUG] - category: {category}")
+        logger.info("=" * 80)
         
         dp_rag_tasks: List[Tuple[str, Any]] = []
         if dp_ids:
@@ -1138,6 +1146,7 @@ class Orchestrator:
                 )
                 state["generated_text"] = gen_result.get("text", "")
                 state["dp_sentence_mappings"] = gen_result.get("dp_sentence_mappings", [])
+                state["data_provenance"] = gen_result.get("data_provenance")
                 if gen_result.get("error") and not (state.get("generated_text") or "").strip():
                     err = gen_result.get("error")
                     logger.warning("gen_node returned error (no text): %s", err)
@@ -1168,6 +1177,7 @@ class Orchestrator:
                 logger.error(f"gen_node failed: {e}", exc_info=True)
                 state["generated_text"] = ""
                 state["dp_sentence_mappings"] = []
+                state["data_provenance"] = None
                 state["validation"] = {"is_valid": False, "errors": [str(e)]}
                 state["status"] = "failed"
                 state["error"] = str(e)
@@ -1199,6 +1209,8 @@ class Orchestrator:
                             "fact_data": state.get("fact_data", {}),
                             "fact_data_by_dp": state.get("fact_data_by_dp", {}),
                             "category": state["user_input"]["category"],
+                            "data_provenance": state.get("data_provenance"),
+                            "gen_input": state.get("gen_input") or {},
                         }
                     ),
                 )

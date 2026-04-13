@@ -73,6 +73,7 @@ def build_workflow(infra: InfraLayer, event_sink: Optional[WorkflowEventSink] = 
                 state,
                 generated_text=result.get("generated_text", ""),
                 dp_sentence_mappings=_dp_map,
+                data_provenance=result.get("data_provenance"),
                 validation=result.get("validation", {}),
                 status=resolved_status,
                 attempt=_meta.get("attempts", 0) - 1,  # 0부터 시작하도록 조정

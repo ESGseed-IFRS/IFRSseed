@@ -75,16 +75,34 @@ def rule_fact_dp_warnings(fact_data_by_dp: Dict[str, Any]) -> List[str]:
 
 
 def _label_for_fact(dp_id: str, fact: Dict[str, Any]) -> str:
+    """fact에서 표시용 레이블 추출 (dp_metadata 우선, 없으면 ucm)."""
     meta = fact.get("dp_metadata") or {}
     if isinstance(meta, dict):
         name = meta.get("name_ko") or meta.get("name")
         if name:
             return str(name)
+    
+    # UCM 정보 확인
+    ucm = fact.get("ucm") or {}
+    if isinstance(ucm, dict):
+        ucm_name = ucm.get("column_name_ko")
+        if ucm_name:
+            return str(ucm_name)
+    
     return str(dp_id)
 
 
 def _numeric_value(fact: Dict[str, Any]) -> Tuple[bool, float]:
+    """fact에서 수치 추출 (latest_value 우선, 없으면 supplementary_real_data 첫 값)."""
     v = fact.get("value")
+    if v is None:
+        # supplementary_real_data에서 첫 번째 값 시도
+        supp = fact.get("supplementary_real_data")
+        if isinstance(supp, list) and len(supp) > 0:
+            first = supp[0]
+            if isinstance(first, dict):
+                v = first.get("value")
+    
     if v is None:
         return False, 0.0
     if isinstance(v, (int, float)) and not isinstance(v, bool):
@@ -254,12 +272,29 @@ def summarize_facts_for_llm(
                 continue
             meta = fact.get("dp_metadata") or {}
             name_ko = meta.get("name_ko", "") if isinstance(meta, dict) else ""
+            
+            # latest_value 우선, 없으면 supplementary_real_data 첫 값 사용
             val = fact.get("value")
+            if val is None:
+                supp = fact.get("supplementary_real_data")
+                if isinstance(supp, list) and len(supp) > 0:
+                    first = supp[0]
+                    if isinstance(first, dict):
+                        val = first.get("value")
+            
             unit = fact.get("unit") or ""
             err = fact.get("error")
             err_s = f" error={err}" if err else ""
+            
+            # supplementary_real_data 정보 추가
+            supp_info = ""
+            supp = fact.get("supplementary_real_data")
+            if isinstance(supp, list) and len(supp) > 0:
+                supp_count = len(supp)
+                supp_info = f" (supplementary: {supp_count}건)"
+            
             lines.append(
-                f"- dp_id={dp_id} name_ko={name_ko!r} value={val!r} unit={unit!r}{err_s}"
+                f"- dp_id={dp_id} name_ko={name_ko!r} value={val!r} unit={unit!r}{supp_info}{err_s}"
             )
     facts_summary = "\n".join(lines) if lines else "(없음)"
     try:

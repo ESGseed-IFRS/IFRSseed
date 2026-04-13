@@ -28,6 +28,7 @@ class WorkflowState(TypedDict, total=False):
     # Phase 3: 생성·검증
     generated_text: str  # gen_node 출력 (생성된 SR 본문)
     dp_sentence_mappings: List[Dict[str, Any]]  # gen_node: DP별 문장 매핑
+    data_provenance: Optional[Dict[str, Any]]  # gen_node: 데이터 출처 추적 (quantitative_sources, qualitative_sources, reference_pages)
     validation: Dict[str, Any]  # validator_node 출력 (검증 결과)
     feedback: Optional[List[str]]  # validator 피드백 (재시도용)
     
@@ -106,6 +107,7 @@ def create_initial_state(
         data_selection={},
         generated_text="",
         dp_sentence_mappings=[],
+        data_provenance=None,
         validation={},
         feedback=None,
         status="pending",

@@ -108,6 +108,14 @@ export interface DpField {
   note?: string;
 }
 
+/** 사이드바 공시 코드 배지 색상 톤 (IFRS 코드는 기존 ISSB(청색) 톤 사용) */
+export type DpSidebarPillTone = 'gri' | 'issb' | 'esrs';
+
+export interface DpSidebarPill {
+  code: string;
+  tone: DpSidebarPillTone;
+}
+
 export interface DpMaster {
   dp_id: string;
   dp_name_ko: string;
@@ -115,6 +123,13 @@ export interface DpMaster {
   coverage: { gri: string | null; issb: string | null; esrs: string | null };
   dp_type: DpType;
   aggregation_method: AggregationMethod;
+  /** DP 목록 사이드바에 표시할 공시 식별 코드 (GRI/IFRS/ESRS 색 구분) */
+  sidebar_pills: DpSidebarPill[];
+  /**
+   * 설정 시 related_dp_ids 가 이 코드 중 하나를 포함한 행만 정량·정성 병합에 사용.
+   * 미설정 시 dp_id 및 sidebar_pills 코드 전부로 매칭(교차 매칭으로 컬럼이 과도하게 늘어날 때 사용).
+   */
+  contribution_filter_codes?: string[];
   fields: {
     common: DpField[];
     gri: DpField[];

@@ -191,6 +191,7 @@ async def run_llm_validate(
     gemini_api_key: str,
     model: str,
     timeout: int = LLM_TIMEOUT_SEC,
+    gen_input: Optional[Dict[str, Any]] = None,
 ) -> LlmValidateOutcome:
     if not (gemini_api_key or "").strip():
         logger.info("validator_node: gemini_api_key 없음 — LLM 검증 생략")
@@ -215,6 +216,7 @@ async def run_llm_validate(
         fact_data,
         fact_data_by_dp,
         mode,
+        gen_input,
     )
 
     client = genai.Client(api_key=gemini_api_key.strip())

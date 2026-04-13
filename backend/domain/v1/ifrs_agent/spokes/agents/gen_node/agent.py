@@ -13,6 +13,10 @@ import time
 from typing import Any, Dict, List, Optional, Tuple
 
 from .prompts import SYSTEM_PROMPT, build_user_prompt
+from backend.domain.v1.ifrs_agent.spokes.agents.validator_node.llm_validate import (
+    extract_first_balanced_json_object,
+)
+
 from .utils import (
     DEFAULT_MAX_PROMPT_TOKENS,
     postprocess_generated_text,
@@ -121,20 +125,33 @@ def _normalize_validator_feedback(raw: Any) -> Optional[List[str]]:
     return out if out else None
 
 
-def _parse_gen_node_json_response(raw_text: str) -> Tuple[str, List[Dict[str, Any]]]:
+def _try_parse_json_loose(blob: str) -> Any:
+    """json.loads 후 실패 시 후행 쉼표만 완화해 재시도 (validator_node와 동일 패턴)."""
+    import json
+    import re
+
+    try:
+        return json.loads(blob)
+    except json.JSONDecodeError:
+        relaxed = re.sub(r",(\s*[\]}])", r"\1", blob)
+        if relaxed != blob:
+            return json.loads(relaxed)
+        raise
+
+
+def _parse_gen_node_json_response(raw_text: str) -> Tuple[str, List[Dict[str, Any]], Dict[str, Any]]:
     """
     gen_node JSON 응답 파싱.
     
     Returns:
-        (generated_text, dp_sentence_mappings)
+        (generated_text, dp_sentence_mappings, data_provenance)
     """
     import json
-    import re
-    
+
     text = (raw_text or "").strip()
     if not text:
         logger.warning("gen_node: 응답 텍스트가 비어있음")
-        return "", []
+        return "", [], {}
     
     logger.warning("=" * 80)
     logger.warning("gen_node: Gemini 원본 응답 (첫 1500자)")
@@ -151,18 +168,23 @@ def _parse_gen_node_json_response(raw_text: str) -> Tuple[str, List[Dict[str, An
         text = "\n".join(lines).strip()
         logger.debug("gen_node: 코드펜스 제거 후 길이=%d", len(text))
     
-    # JSON 파싱 시도
+    # JSON 파싱 시도 (generated_text 안의 `}` 때문에 rfind가 깨지는 경우 방지)
     try:
-        # 첫 번째 { 부터 마지막 } 까지 추출
-        start_idx = text.find("{")
-        end_idx = text.rfind("}")
-        if start_idx >= 0 and end_idx > start_idx:
-            json_str = text[start_idx:end_idx + 1]
+        json_str = extract_first_balanced_json_object(text)
+        if not json_str:
+            start_idx = text.find("{")
+            end_idx = text.rfind("}")
+            if start_idx >= 0 and end_idx > start_idx:
+                json_str = text[start_idx : end_idx + 1]
+        if json_str:
             logger.debug("gen_node: JSON 추출 시도, 길이=%d", len(json_str))
-            data = json.loads(json_str)
-            
+            data = _try_parse_json_loose(json_str)
+        else:
+            data = None
+        if isinstance(data, dict):
             generated_text = str(data.get("generated_text", "") or "").strip()
             dp_mappings_raw = data.get("dp_sentence_mappings", [])
+            data_provenance_raw = data.get("data_provenance", {})
             
             logger.warning("=" * 80)
             logger.warning("gen_node: JSON 파싱 성공!")
@@ -170,8 +192,37 @@ def _parse_gen_node_json_response(raw_text: str) -> Tuple[str, List[Dict[str, An
             logger.warning(f"  - dp_sentence_mappings 존재: {'dp_sentence_mappings' in data}")
             logger.warning(f"  - dp_sentence_mappings 타입: {type(dp_mappings_raw).__name__}")
             logger.warning(f"  - dp_sentence_mappings 길이: {len(dp_mappings_raw) if isinstance(dp_mappings_raw, list) else 'N/A'}")
-            if isinstance(dp_mappings_raw, list) and len(dp_mappings_raw) > 0:
-                logger.warning(f"  - 첫 번째 매핑: {dp_mappings_raw[0]}")
+            if isinstance(dp_mappings_raw, list):
+                for idx, mapping in enumerate(dp_mappings_raw):
+                    if isinstance(mapping, dict):
+                        logger.warning(f"  - [{idx+1}] dp_id={mapping.get('dp_id')}, sentences={len(mapping.get('sentences', []))}")
+            logger.warning(f"  - data_provenance 존재: {'data_provenance' in data}")
+            logger.warning(f"  - data_provenance 타입: {type(data_provenance_raw).__name__}")
+            if isinstance(data_provenance_raw, dict):
+                quant_count = len(data_provenance_raw.get("quantitative_sources", []))
+                qual_count = len(data_provenance_raw.get("qualitative_sources", []))
+                ref_pages = data_provenance_raw.get("reference_pages", {})
+                logger.warning(f"  - quantitative_sources: {quant_count}건")
+                logger.warning(f"  - qualitative_sources: {qual_count}건")
+                logger.warning(f"  - reference_pages: {ref_pages}")
+                
+                # 정량 데이터 상세 (최대 5건)
+                if quant_count > 0:
+                    for idx, q in enumerate(data_provenance_raw.get("quantitative_sources", [])[:5]):
+                        if isinstance(q, dict):
+                            logger.warning(
+                                f"  - [정량{idx+1}] dp_id={q.get('dp_id')}, value={q.get('value')}, "
+                                f"source_type={q.get('source_type')}, sentences={len(q.get('used_in_sentences', []))}"
+                            )
+                
+                # 정성 데이터 상세 (최대 5건)
+                if qual_count > 0:
+                    for idx, q in enumerate(data_provenance_raw.get("qualitative_sources", [])[:5]):
+                        if isinstance(q, dict):
+                            logger.warning(
+                                f"  - [정성{idx+1}] dp_id={q.get('dp_id')}, "
+                                f"source_type={q.get('source_type')}, sentences={len(q.get('used_in_sentences', []))}"
+                            )
             logger.warning("=" * 80)
             
             # dp_sentence_mappings 정규화
@@ -187,16 +238,25 @@ def _parse_gen_node_json_response(raw_text: str) -> Tuple[str, List[Dict[str, An
                         "rationale": str(item.get("rationale", "") or ""),
                     })
             
+            # data_provenance 정규화
+            data_provenance: Dict[str, Any] = {
+                "quantitative_sources": [],
+                "qualitative_sources": [],
+                "reference_pages": {}
+            }
+            if isinstance(data_provenance_raw, dict):
+                data_provenance = data_provenance_raw
+            
             if generated_text:
                 logger.info(
-                    "gen_node JSON parsed: text_len=%d, dp_mappings=%d",
-                    len(generated_text), len(dp_mappings)
+                    "gen_node JSON parsed: text_len=%d, dp_mappings=%d, provenance_keys=%s",
+                    len(generated_text), len(dp_mappings), list(data_provenance.keys())
                 )
-                return generated_text, dp_mappings
+                return generated_text, dp_mappings, data_provenance
             else:
                 logger.warning("gen_node: JSON에 generated_text가 비어있음")
         else:
-            logger.warning("gen_node: JSON 객체 {}를 찾을 수 없음, start=%d, end=%d", start_idx, end_idx)
+            logger.warning("gen_node: JSON 객체를 찾을 수 없음 (균형 추출·후행 fallback 모두 실패)")
     
     except json.JSONDecodeError as e:
         logger.warning("gen_node JSON parse failed: %s, 첫 200자=%s", e, text[:200])
@@ -204,8 +264,8 @@ def _parse_gen_node_json_response(raw_text: str) -> Tuple[str, List[Dict[str, An
         logger.error("gen_node JSON extraction error: %s", e, exc_info=True)
     
     # 폴백: 원본 텍스트 그대로 반환 (JSON이 아닌 경우)
-    logger.warning("gen_node: JSON 파싱 실패, 원본 텍스트 사용 (len=%d), dp_mappings=[]", len(raw_text))
-    return raw_text, []
+    logger.warning("gen_node: JSON 파싱 실패, 원본 텍스트 사용 (len=%d), dp_mappings=[], provenance={}", len(raw_text))
+    return raw_text, [], {}
 
 
 async def generate_text_gemini(
@@ -263,9 +323,95 @@ async def generate_text_gemini(
                         },
                         "required": ["dp_id", "dp_name_ko", "sentences", "rationale"]
                     }
+                },
+                "data_provenance": {
+                    "type": "object",
+                    "description": "데이터 출처 추적",
+                    "properties": {
+                        "quantitative_sources": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    # Gemini 스키마는 type 배열(유니온) 미지원 — 수치도 문자열로 표기
+                                    "value": {
+                                        "type": "string",
+                                        "description": "정량값(숫자는 문자열로, 예: 1234.5)",
+                                    },
+                                    "unit": {"type": "string"},
+                                    "dp_id": {"type": "string"},
+                                    "source_type": {"type": "string"},
+                                    "source_details": {
+                                        "type": "object",
+                                        "description": "출처 세부정보 (핵심 필드만 간결하게)",
+                                        "properties": {
+                                            "table": {"type": "string"},
+                                            "column": {"type": "string"},
+                                            "year": {"type": "integer"},
+                                            "subsidiary_name": {"type": "string"},
+                                            "facility_name": {"type": "string"},
+                                            "page_number": {"type": "integer"},
+                                            "matched_via": {"type": "string"},
+                                            "title": {"type": "string"},
+                                            "url": {"type": "string"},
+                                        },
+                                    },
+                                    "mapped_dp_ids": {
+                                        "type": "array",
+                                        "items": {"type": "string"}
+                                    },
+                                    "used_in_sentences": {
+                                        "type": "array",
+                                        "items": {"type": "string"}
+                                    }
+                                }
+                            }
+                        },
+                        "qualitative_sources": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "dp_id": {"type": "string"},
+                                    "source_type": {"type": "string"},
+                                    "source_details": {
+                                        "type": "object",
+                                        "description": "출처 세부정보 (핵심 필드만 간결하게)",
+                                        "properties": {
+                                            "year": {"type": "integer"},
+                                            "page_number": {"type": "integer"},
+                                            "body_excerpt": {"type": "string"},
+                                            "title": {"type": "string"},
+                                            "url": {"type": "string"},
+                                            "subsidiary_name": {"type": "string"},
+                                        },
+                                    },
+                                    "used_in_sentences": {
+                                        "type": "array",
+                                        "items": {"type": "string"}
+                                    }
+                                }
+                            }
+                        },
+                        "reference_pages": {
+                            "type": "object",
+                            "description": "SR 참조 페이지; 해당 연도 없으면 키 생략",
+                            "properties": {
+                                "2024": {
+                                    "type": "integer",
+                                    "description": "2024년 참조 본문 페이지 번호",
+                                },
+                                "2023": {
+                                    "type": "integer",
+                                    "description": "2023년 참조 본문 페이지 번호",
+                                },
+                            },
+                        }
+                    },
+                    "required": ["quantitative_sources", "qualitative_sources", "reference_pages"]
                 }
             },
-            "required": ["generated_text", "dp_sentence_mappings"]
+            "required": ["generated_text", "dp_sentence_mappings", "data_provenance"]
         }
         
         # max_output_tokens를 낮게 두면 2.5 Pro 등 thinking 모델이 추론 토큰만 소비하고
@@ -302,6 +448,11 @@ async def generate_text_gemini(
             return {
                 "text": "",
                 "dp_sentence_mappings": [],
+                "data_provenance": {
+                    "quantitative_sources": [],
+                    "qualitative_sources": [],
+                    "reference_pages": {}
+                },
                 "model": model,
                 "tokens": 0,
                 "finish_reason": "stop",
@@ -310,11 +461,12 @@ async def generate_text_gemini(
             }
 
         # JSON 응답 파싱
-        generated_text, dp_sentence_mappings = _parse_gen_node_json_response(raw_text)
+        generated_text, dp_sentence_mappings, data_provenance = _parse_gen_node_json_response(raw_text)
 
         return {
             "text": generated_text,
             "dp_sentence_mappings": dp_sentence_mappings,
+            "data_provenance": data_provenance,
             "model": model,
             "tokens": 0,
             "finish_reason": "stop",
@@ -406,9 +558,29 @@ class GenNodeAgent:
                         "prompt_length": result.get("prompt_length", 0),
                     }
 
+                    _default_prov = {
+                        "quantitative_sources": [],
+                        "qualitative_sources": [],
+                        "reference_pages": {},
+                    }
+                    _prov = result.get("data_provenance")
+                    if not isinstance(_prov, dict):
+                        _prov = dict(_default_prov)
+                    else:
+                        _prov = {
+                            "quantitative_sources": list(
+                                _prov.get("quantitative_sources") or []
+                            ),
+                            "qualitative_sources": list(
+                                _prov.get("qualitative_sources") or []
+                            ),
+                            "reference_pages": dict(_prov.get("reference_pages") or {}),
+                        }
+
                     return {
                         "text": result["text"],
                         "dp_sentence_mappings": result.get("dp_sentence_mappings", []),
+                        "data_provenance": _prov,
                         "metadata": metadata,
                         "warnings": warnings,
                     }

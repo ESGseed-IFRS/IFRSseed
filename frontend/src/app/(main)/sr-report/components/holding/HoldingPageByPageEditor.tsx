@@ -99,11 +99,69 @@ export type DpSentenceMapping = {
   rationale?: string;
 };
 
+/** gen_node data_provenance (백엔드 WorkflowResponse와 동일 구조) */
+export type DataProvenanceSourceDetails = Record<string, unknown>;
+
+export type QuantitativeProvenanceItem = {
+  value?: unknown;
+  unit?: string;
+  dp_id?: string;
+  source_type?: string;
+  source_details?: DataProvenanceSourceDetails;
+  mapped_dp_ids?: string[];
+  used_in_sentences?: string[];
+};
+
+export type QualitativeProvenanceItem = {
+  dp_id?: string;
+  source_type?: string;
+  source_details?: DataProvenanceSourceDetails;
+  used_in_sentences?: string[];
+};
+
+export type DataProvenance = {
+  quantitative_sources?: QuantitativeProvenanceItem[];
+  qualitative_sources?: QualitativeProvenanceItem[];
+  reference_pages?: Record<string, number | string | null | undefined>;
+};
+
+const SOURCE_TYPE_LABEL_KO: Record<string, string> = {
+  environmental_data: '환경 DB',
+  social_data: '사회 DB',
+  governance_data: '지배구조 DB',
+  subsidiary_data: '계열사 기여 데이터',
+  external_news: '외부 보도',
+  sr_reference: 'SR 참조 본문',
+  rulebook: '기준서(rulebook)',
+};
+
+function sourceTypeLabelKo(t: string | undefined): string {
+  if (!t) return '—';
+  return SOURCE_TYPE_LABEL_KO[t] ?? t;
+}
+
+function formatDetailValue(v: unknown): string {
+  if (v === null || v === undefined) return '';
+  if (typeof v === 'object') {
+    try {
+      return JSON.stringify(v);
+    } catch {
+      return String(v);
+    }
+  }
+  return String(v);
+}
+
+function shouldShowProvenanceBlock(p: DataProvenance | undefined | null): boolean {
+  return p !== undefined && p !== null && typeof p === 'object';
+}
+
 type CreateReportResponse = {
   workflow_id?: string;
   status?: string;
   generated_text?: string;
   dp_sentence_mappings?: DpSentenceMapping[];
+  data_provenance?: DataProvenance | null;
   validation?: HoldingAgentValidation;
   layout?: { version?: number; blocks?: LayoutBlock[] };
   image_recommendations?: Array<{
@@ -332,21 +390,183 @@ function SectionHeader({ section }: SectionHeaderProps) {
   );
 }
 
-/** DP-문장 매핑 패널 컴포넌트 */
+function DataProvenanceSection({ provenance }: { provenance: DataProvenance }) {
+  const quant = Array.isArray(provenance.quantitative_sources) ? provenance.quantitative_sources : [];
+  const qual = Array.isArray(provenance.qualitative_sources) ? provenance.qualitative_sources : [];
+  const refPages = provenance.reference_pages && typeof provenance.reference_pages === 'object'
+    ? provenance.reference_pages
+    : {};
+
+  if (quant.length === 0 && qual.length === 0 && Object.keys(refPages).length === 0) {
+    return (
+      <div className="rounded-xl border border-dashed border-[#dbe9df] bg-[#fafcfa] px-4 py-6 text-center">
+        <div className="text-sm font-semibold text-[#666] mb-1">데이터 출처 없음</div>
+        <p className="text-[11px] text-[#999] max-w-md mx-auto leading-relaxed">
+          최신 에이전트는 정량·정성 출처를 JSON으로 반환합니다. 생성 후에도 이 영역이 비어 있으면 API·모델 응답에{' '}
+          <code className="text-[10px] bg-[#eee] px-1 rounded">data_provenance</code>가 포함되는지 확인하세요.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-5">
+      {Object.keys(refPages).length > 0 && (
+        <div className="rounded-xl border border-[#e4e6ea] bg-[#f8faf9] p-4">
+          <div className="text-[11px] font-bold text-[#2d6a4f] mb-2">SR 참조 페이지</div>
+          <div className="flex flex-wrap gap-2">
+            {Object.entries(refPages).map(([yr, pg]) => (
+              <span
+                key={yr}
+                className="text-[11px] bg-white border border-[#dbe9df] rounded-lg px-2.5 py-1 text-[#333]"
+              >
+                {yr}년: {pg != null && pg !== '' ? String(pg) : '—'}페이지
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {quant.length > 0 && (
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-sm font-bold text-[#333]">정량 데이터 출처</span>
+            <span className="text-[10px] bg-[#e3f2fd] text-[#1565c0] px-2 py-0.5 rounded-full font-semibold">
+              {quant.length}건
+            </span>
+          </div>
+          <div className="flex flex-col gap-3">
+            {quant.map((row, idx) => (
+              <div
+                key={idx}
+                className="rounded-xl border border-[#cfe8fc] bg-white p-3.5 shadow-sm"
+              >
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="text-[11px] font-bold text-[#0d47a1]">
+                    {row.value != null ? formatDetailValue(row.value) : '—'}
+                    {row.unit ? ` ${row.unit}` : ''}
+                  </span>
+                  {row.dp_id && (
+                    <span className="text-[10px] font-mono bg-[#f5f5f5] px-1.5 py-0.5 rounded text-[#555]">
+                      {row.dp_id}
+                    </span>
+                  )}
+                  <span className="text-[10px] text-[#666]">
+                    {sourceTypeLabelKo(row.source_type)}
+                  </span>
+                </div>
+                {row.mapped_dp_ids && row.mapped_dp_ids.length > 0 && (
+                  <div className="mb-2">
+                    <div className="text-[10px] text-[#888] mb-1">UCM 매핑 DP</div>
+                    <div className="flex flex-wrap gap-1">
+                      {row.mapped_dp_ids.map((id) => (
+                        <span
+                          key={id}
+                          className="text-[9px] font-mono bg-[#fff8e1] text-[#795548] px-1.5 py-0.5 rounded"
+                        >
+                          {id}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {row.source_details && Object.keys(row.source_details).length > 0 && (
+                  <ul className="text-[10px] text-[#555] space-y-0.5 mb-2 pl-3 list-disc">
+                    {Object.entries(row.source_details).map(([k, v]) => (
+                      <li key={k}>
+                        <span className="font-semibold text-[#444]">{k}</span>: {formatDetailValue(v)}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {row.used_in_sentences && row.used_in_sentences.length > 0 && (
+                  <div className="mt-2 pt-2 border-t border-[#eee]">
+                    <div className="text-[10px] text-[#888] mb-1">인용 문장</div>
+                    {row.used_in_sentences.map((s, i) => (
+                      <p key={i} className="text-[11px] text-[#333] leading-relaxed bg-[#f5f9ff] rounded p-2 mb-1">
+                        {s}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {qual.length > 0 && (
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-sm font-bold text-[#333]">정성 데이터 출처</span>
+            <span className="text-[10px] bg-[#f3e5f5] text-[#6a1b9a] px-2 py-0.5 rounded-full font-semibold">
+              {qual.length}건
+            </span>
+          </div>
+          <div className="flex flex-col gap-3">
+            {qual.map((row, idx) => (
+              <div
+                key={idx}
+                className="rounded-xl border border-[#e1bee7] bg-white p-3.5 shadow-sm"
+              >
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  {row.dp_id && (
+                    <span className="text-[10px] font-mono bg-[#f5f5f5] px-1.5 py-0.5 rounded text-[#555]">
+                      {row.dp_id}
+                    </span>
+                  )}
+                  <span className="text-[10px] text-[#666]">
+                    {sourceTypeLabelKo(row.source_type)}
+                  </span>
+                </div>
+                {row.source_details && Object.keys(row.source_details).length > 0 && (
+                  <ul className="text-[10px] text-[#555] space-y-0.5 mb-2 pl-3 list-disc">
+                    {Object.entries(row.source_details).map(([k, v]) => (
+                      <li key={k}>
+                        <span className="font-semibold text-[#444]">{k}</span>: {formatDetailValue(v)}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {row.used_in_sentences && row.used_in_sentences.length > 0 && (
+                  <div className="mt-2 pt-2 border-t border-[#eee]">
+                    <div className="text-[10px] text-[#888] mb-1">인용 문장</div>
+                    {row.used_in_sentences.map((s, i) => (
+                      <p key={i} className="text-[11px] text-[#333] leading-relaxed bg-[#faf5fc] rounded p-2 mb-1">
+                        {s}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** DP-문장 매핑 + 데이터 출처 패널 */
 function DpMappingPanel({
   mappings,
   pageStandards,
+  provenance,
 }: {
   mappings: DpSentenceMapping[];
   pageStandards: string[];
+  provenance?: DataProvenance | null;
 }) {
-  if (!mappings || mappings.length === 0) {
+  const hasMappings = mappings && mappings.length > 0;
+  const showProvBlock = shouldShowProvenanceBlock(provenance);
+
+  if (!hasMappings && !showProvBlock) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center">
         <div className="text-4xl mb-3 opacity-60">🔗</div>
-        <div className="text-sm font-semibold text-[#666] mb-1">DP 매핑 정보 없음</div>
+        <div className="text-sm font-semibold text-[#666] mb-1">DP 매핑·출처 정보 없음</div>
         <p className="text-xs text-[#999] max-w-xs">
-          AI 문단 생성 후 각 문장이 어떤 Data Point(DP) 기준으로 작성되었는지 확인할 수 있습니다.
+          AI 문단 생성 후 DP별 문장 매핑과 정량·정성 데이터 출처를 확인할 수 있습니다.
         </p>
         {pageStandards.length > 0 && (
           <div className="mt-4 px-3 py-2 bg-[#f5f8f6] rounded-lg">
@@ -368,55 +588,72 @@ function DpMappingPanel({
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-2 mb-1">
-        <span className="text-base">🔗</span>
-        <span className="text-sm font-bold text-[#333]">DP별 문장 매핑</span>
-        <span className="text-[10px] bg-[#e8f5e9] text-[#2d6a4f] px-2 py-0.5 rounded-full font-semibold">
-          {mappings.length}개 DP
-        </span>
-      </div>
-      <p className="text-[11px] text-[#666] -mt-2 mb-2">
-        생성된 문단에서 각 Data Point(DP)에 해당하는 문장들을 보여줍니다.
-      </p>
-      {mappings.map((m, idx) => (
-        <div
-          key={m.dp_id || idx}
-          className="rounded-xl border border-[#dbe9df] bg-white p-4 shadow-sm"
-        >
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span className="inline-flex items-center gap-1 bg-[#2d6a4f] text-white text-[11px] font-bold px-2.5 py-1 rounded-lg">
-              <span className="opacity-75">DP</span>
-              {m.dp_id}
+    <div className="flex flex-col gap-6">
+      {hasMappings && (
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-base">🔗</span>
+            <span className="text-sm font-bold text-[#333]">DP별 문장 매핑</span>
+            <span className="text-[10px] bg-[#e8f5e9] text-[#2d6a4f] px-2 py-0.5 rounded-full font-semibold">
+              {mappings.length}개 DP
             </span>
-            {m.dp_name_ko && (
-              <span className="text-xs text-[#555] font-medium">{m.dp_name_ko}</span>
-            )}
           </div>
-          <div className="flex flex-col gap-2">
-            {m.sentences.map((sentence, sIdx) => (
-              <div
-                key={sIdx}
-                className="flex gap-2 items-start text-[12px] leading-relaxed text-[#333] bg-[#f8fdf9] rounded-lg p-3 border-l-[3px] border-[#74c69d]"
-              >
-                <span className="shrink-0 text-[10px] text-[#74c69d] font-bold mt-0.5">
-                  {sIdx + 1}.
+          <p className="text-[11px] text-[#666] -mt-2 mb-2">
+            생성된 문단에서 각 Data Point(DP)에 해당하는 문장들을 보여줍니다.
+          </p>
+          {mappings.map((m, idx) => (
+            <div
+              key={m.dp_id || idx}
+              className="rounded-xl border border-[#dbe9df] bg-white p-4 shadow-sm"
+            >
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="inline-flex items-center gap-1 bg-[#2d6a4f] text-white text-[11px] font-bold px-2.5 py-1 rounded-lg">
+                  <span className="opacity-75">DP</span>
+                  {m.dp_id}
                 </span>
-                <span>{sentence}</span>
+                {m.dp_name_ko && (
+                  <span className="text-xs text-[#555] font-medium">{m.dp_name_ko}</span>
+                )}
               </div>
-            ))}
-          </div>
-          {m.rationale && (
-            <div className="mt-3 pt-3 border-t border-[#eee]">
-              <div className="flex items-center gap-1 text-[10px] text-[#888] mb-1">
-                <span>💡</span>
-                <span className="font-semibold">매핑 근거</span>
+              <div className="flex flex-col gap-2">
+                {m.sentences.map((sentence, sIdx) => (
+                  <div
+                    key={sIdx}
+                    className="flex gap-2 items-start text-[12px] leading-relaxed text-[#333] bg-[#f8fdf9] rounded-lg p-3 border-l-[3px] border-[#74c69d]"
+                  >
+                    <span className="shrink-0 text-[10px] text-[#74c69d] font-bold mt-0.5">
+                      {sIdx + 1}.
+                    </span>
+                    <span>{sentence}</span>
+                  </div>
+                ))}
               </div>
-              <p className="text-[11px] text-[#666] leading-relaxed">{m.rationale}</p>
+              {m.rationale && (
+                <div className="mt-3 pt-3 border-t border-[#eee]">
+                  <div className="flex items-center gap-1 text-[10px] text-[#888] mb-1">
+                    <span>💡</span>
+                    <span className="font-semibold">매핑 근거</span>
+                  </div>
+                  <p className="text-[11px] text-[#666] leading-relaxed">{m.rationale}</p>
+                </div>
+              )}
             </div>
-          )}
+          ))}
         </div>
-      ))}
+      )}
+
+      {showProvBlock && provenance && (
+        <div className="flex flex-col gap-3 pt-2 border-t border-[#e8ebe8]">
+          <div className="flex items-center gap-2">
+            <span className="text-base">📎</span>
+            <span className="text-sm font-bold text-[#333]">데이터 출처 (정량·정성)</span>
+          </div>
+          <p className="text-[11px] text-[#666] -mt-1 mb-1">
+            문단에 사용된 수치·서술이 어떤 소스(SR, DB, 계열사, 외부 뉴스 등)에서 왔는지 표시합니다.
+          </p>
+          <DataProvenanceSection provenance={provenance} />
+        </div>
+      )}
     </div>
   );
 }
@@ -487,6 +724,7 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
     {},
   );
   const [pageDpMappings, setPageDpMappings] = useState<Record<string, DpSentenceMapping[]>>({});
+  const [pageDataProvenance, setPageDataProvenance] = useState<Record<string, DataProvenance | undefined>>({});
   const [activeTab, setActiveTab] = useState<
     'content' | 'chart' | 'table' | 'infographic' | 'accuracy' | 'dp-mapping'
   >('content');
@@ -686,7 +924,15 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
       // DP-문장 매핑 저장
       if (body.dp_sentence_mappings && body.dp_sentence_mappings.length > 0) {
         setPageDpMappings((prev) => ({ ...prev, [pk]: body.dp_sentence_mappings! }));
+      } else {
+        setPageDpMappings((prev) => ({ ...prev, [pk]: [] }));
       }
+
+      // 데이터 출처 (gen_node data_provenance)
+      setPageDataProvenance((prev) => ({
+        ...prev,
+        [pk]: body.data_provenance ?? undefined,
+      }));
       
       const replyLines = [
         `workflow_id: ${body.workflow_id ?? '-'}`,
@@ -772,6 +1018,7 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
       setRequestError(msg);
       setAgentReplies((prev) => ({ ...prev, [pk]: `요청 실패\n${msg}` }));
       setPageValidations((prev) => ({ ...prev, [pk]: undefined }));
+      setPageDataProvenance((prev) => ({ ...prev, [pk]: undefined }));
     } finally {
       setGenerating(false);
     }
@@ -1201,6 +1448,7 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
                     <DpMappingPanel
                       mappings={pageDpMappings[selectedPage.page] ?? []}
                       pageStandards={selectedPage.standards}
+                      provenance={pageDataProvenance[selectedPage.page]}
                     />
                   )}
                   {activeTab === 'chart' && <HoldingChartEditor onAdd={addBlock} />}

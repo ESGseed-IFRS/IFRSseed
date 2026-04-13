@@ -5,6 +5,8 @@ import type { GhgLegalEntityId } from '../types/ghg';
 
 export type GroupEmissionEntityRow = {
   name: string;
+  /** 그룹 API(`group-results`) 행과 매칭 시 DB `companies.id` */
+  company_id?: string;
   scope1: number;
   scope2: number;
   scope3: number;

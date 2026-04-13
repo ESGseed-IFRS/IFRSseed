@@ -8,6 +8,8 @@ import {
   ChevronDown,
   Snowflake,
   ExternalLink,
+  Save,
+  Loader2,
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useGhgSession } from '../../lib/ghgSession';
@@ -29,6 +31,7 @@ function mapApiRowToEntity(r: GroupScopeResultRowApi): GroupEmissionEntityRow {
   const prev = r.prev_grand_total ?? 0;
   return {
     name: r.name,
+    company_id: r.company_id,
     scope1: r.scope1_total,
     scope2: r.scope2_total,
     scope3: r.scope3_total,
@@ -38,6 +41,24 @@ function mapApiRowToEntity(r: GroupScopeResultRowApi): GroupEmissionEntityRow {
     segment: r.role === 'holding' ? 'domestic' : 'subsidiary',
     segmentLabel: r.role === 'holding' ? '지주 본사' : undefined,
   };
+}
+
+/** 그룹 통합 화면 표시에서 제외할 시설명(API `name`과 공백 무시로 매칭) */
+const GROUP_RESULTS_EXCLUDED_SITE_NAME_KEYS = new Set([
+  '구미데이터센터',
+  '동탄데이터센터',
+  '상암데이터센터',
+  '서울r&b캠퍼스',
+  '서울r&d캠퍼스',
+  '수원데이터센터',
+  '춘천데이터센터',
+  '판교it캠퍼스',
+  '판교물류캠퍼스',
+]);
+
+function isGroupResultsExcludedSiteName(name: string): boolean {
+  const key = name.replace(/\s+/g, '').toLowerCase();
+  return GROUP_RESULTS_EXCLUDED_SITE_NAME_KEYS.has(key);
 }
 
 function SubsidiaryEmissionResults() {
@@ -282,6 +303,8 @@ function HoldingGroupResults() {
   const [error, setError] = useState<string | null>(null);
   const [groupPayload, setGroupPayload] = useState<GroupScopeResultsApi | null>(null);
   const [trendPayload, setTrendPayload] = useState<GroupScopeTrendApi | null>(null);
+  const [envSaveLoading, setEnvSaveLoading] = useState(false);
+  const [envSaveMessage, setEnvSaveMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null);
 
   const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:9001';
 
@@ -336,12 +359,71 @@ function HoldingGroupResults() {
     void load();
   }, [load]);
 
+  useEffect(() => {
+    setEnvSaveMessage(null);
+  }, [yearRange, showFrozenOnly]);
+
   const entities = useMemo(() => {
     if (!groupPayload?.rows?.length) return [];
-    return groupPayload.rows.map(mapApiRowToEntity);
+    return groupPayload.rows.map(mapApiRowToEntity).filter((e) => !isGroupResultsExcludedSiteName(e.name));
   }, [groupPayload]);
 
   const displayed = showFrozenOnly ? entities.filter((c) => c.frozen) : entities;
+
+  const saveEnvironmentalFromGhg = useCallback(async () => {
+    if (!holdingId) {
+      setEnvSaveMessage({ type: 'err', text: '지주사 정보가 없습니다.' });
+      return;
+    }
+    if (displayed.length === 0) {
+      setEnvSaveMessage({
+        type: 'err',
+        text: '표시된 조직이 없습니다. 연도·필터를 확인해 주세요.',
+      });
+      return;
+    }
+    setEnvSaveLoading(true);
+    setEnvSaveMessage(null);
+    const base = apiBase.replace(/\/$/, '');
+    const url = `${base}/esg-data/environmental/build-group-aggregate`;
+    try {
+      const res = await fetchWithAuthJson(url, {
+        method: 'POST',
+        jsonBody: {
+          holding_company_id: holdingId,
+          period_year: y,
+          calculation_basis: 'location',
+          frozen_only: showFrozenOnly,
+          dry_run: false,
+          status: 'draft',
+        },
+      });
+      const raw = await res.text().catch(() => '');
+      if (res.ok) {
+        setEnvSaveMessage({
+          type: 'ok',
+          text: `environmental_data 그룹 집계 1행 갱신 완료 (${y}년, location, 동결만: ${showFrozenOnly ? '예' : '아니오'}).`,
+        });
+      } else {
+        let detail = raw || res.statusText;
+        try {
+          const j = JSON.parse(raw) as { detail?: string; message?: string };
+          detail = j.detail ?? j.message ?? detail;
+        } catch {
+          /* keep text */
+        }
+        setEnvSaveMessage({ type: 'err', text: detail });
+      }
+    } catch (e) {
+      setEnvSaveMessage({
+        type: 'err',
+        text: e instanceof Error ? e.message : '저장 요청 중 오류가 발생했습니다.',
+      });
+    } finally {
+      setEnvSaveLoading(false);
+    }
+  }, [apiBase, displayed.length, holdingId, showFrozenOnly, y]);
+
   const groupTotal = displayed.reduce((s, c) => s + c.total, 0);
   const sumPrev = displayed.reduce((s, c) => s + (c.prev > 0 ? c.prev : 0), 0);
   const changeRate =
@@ -402,6 +484,16 @@ function HoldingGroupResults() {
           </div>
           <button
             type="button"
+            disabled={envSaveLoading || loading || displayed.length === 0}
+            onClick={() => void saveEnvironmentalFromGhg()}
+            title="표시 조건과 동일하게 그룹 scope1/2/3을 서버에서 합산해 지정 company_id의 environmental_data 연간 1행만 갱신합니다."
+            className="flex items-center gap-1.5 px-3 py-2 text-xs text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:pointer-events-none"
+          >
+            {envSaveLoading ? <Loader2 size={13} className="animate-spin" /> : <Save size={13} />}
+            environmental_data 저장
+          </button>
+          <button
+            type="button"
             className="flex items-center gap-1.5 px-3 py-2 text-xs text-gray-600 border border-gray-300 bg-white rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Download size={13} /> Excel/CSV
@@ -419,6 +511,18 @@ function HoldingGroupResults() {
         <p className="text-sm text-gray-500 py-6">불러오는 중…</p>
       ) : error ? (
         <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">{error}</div>
+      ) : null}
+
+      {envSaveMessage ? (
+        <div
+          className={`rounded-lg border px-4 py-2.5 text-xs ${
+            envSaveMessage.type === 'ok'
+              ? 'border-emerald-200 bg-emerald-50 text-emerald-900'
+              : 'border-amber-200 bg-amber-50 text-amber-900'
+          }`}
+        >
+          {envSaveMessage.text}
+        </div>
       ) : null}
 
       {!loading && !error && (

@@ -52,11 +52,14 @@ def _workflow_response_from_final_state(
     _pi = final_state.get("prompt_interpretation")
     _dp_sel = final_state.get("dp_selection_required")
     _dp_mappings = final_state.get("dp_sentence_mappings", [])
+    _data_provenance = final_state.get("data_provenance")
+    # 빈 dict {} 는 falsy라 `if _data_provenance` 로 두면 API에서 null 로 나가므로 dict 여부만 본다.
     return WorkflowResponse(
         workflow_id=workflow_id,
         status=final_state.get("status", "failed"),
         generated_text=final_state.get("generated_text", ""),
         dp_sentence_mappings=_dp_mappings if _dp_mappings else [],
+        data_provenance=_data_provenance if isinstance(_data_provenance, dict) else None,
         validation=final_state.get("validation", {}),
         references=_build_create_references(final_state),
         metadata={
@@ -128,6 +131,10 @@ class WorkflowResponse(BaseModel):
     dp_sentence_mappings: Optional[List[Dict[str, Any]]] = Field(
         None,
         description="DP별 문장 매핑 (각 DP와 관련된 문장 추출)",
+    )
+    data_provenance: Optional[Dict[str, Any]] = Field(
+        None,
+        description="데이터 출처 추적 (quantitative_sources, qualitative_sources, reference_pages)",
     )
     validation: Dict[str, Any] = Field(default_factory=dict, description="검증 결과")
     references: Dict[str, Any] = Field(default_factory=dict, description="참조 데이터 (노드 원본)")

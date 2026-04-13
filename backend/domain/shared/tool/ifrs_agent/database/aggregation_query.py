@@ -20,17 +20,18 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     subsidiary_data_contributions 테이블에서 계열사/자회사 데이터 조회.
     
-    검색 전략 (category_embedding 기반):
-    1. 정확 매칭: category 문자열 일치
-    2. 벡터 유사도: category_embedding (정확 매칭 실패 시)
-    
-    더미 데이터 기준으로 related_dp_ids는 검색에 사용하지 않음.
+    검색 전략 (DP 우선 → 카테고리 폴백):
+    1. DP 직접 매칭: dp_ids가 related_dp_ids와 교차하면 최우선
+    2. UCM 경유 매칭: dp_ids 중 UCM이면 mapped_dp_ids 조회 후 교차
+    3. 카테고리 정확 매칭
+    4. 카테고리 벡터 유사도
     
     Args:
         params: {
             "company_id": str (UUID),
             "year": int,
             "category": str,
+            "dp_ids": List[str] (선택, 우선 검색용),
             "limit": int (기본 5)
         }
     
@@ -49,17 +50,127 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
     company_id = params["company_id"]
     year = params["year"]
     category = params["category"]
+    dp_ids = params.get("dp_ids", [])
     limit = params.get("limit", 5)
     
     logger.info(
-        "query_subsidiary_data: company_id=%s, year=%s, category=%s",
-        company_id, year, category,
+        "query_subsidiary_data: company_id=%s, year=%s, category=%s, dp_ids=%s",
+        company_id, year, category, dp_ids,
     )
     
     try:
         conn = await connect_ifrs_asyncpg()
         
-        # 1단계: 정확 매칭 시도
+        # Step 1: DP 기반 우선 검색 (dp_ids가 있을 때만)
+        if dp_ids:
+            # UCM과 일반 DP 분류
+            ucm_ids = [dp for dp in dp_ids if dp.startswith("UCM_")]
+            direct_dp_ids = [dp for dp in dp_ids if not dp.startswith("UCM_")]
+            
+            logger.info(
+                "🔍 [AGG_DEBUG] query_subsidiary_data DP 우선 검색 시작"
+            )
+            logger.info(
+                "🔍 [AGG_DEBUG] - 입력 dp_ids: %s", dp_ids
+            )
+            logger.info(
+                "🔍 [AGG_DEBUG] - UCM: %d개 (%s)", 
+                len(ucm_ids), ucm_ids
+            )
+            logger.info(
+                "🔍 [AGG_DEBUG] - 일반 DP: %d개 (%s)", 
+                len(direct_dp_ids), direct_dp_ids
+            )
+            
+            # UCM의 mapped_dp_ids 배치 조회
+            expanded_dp_ids = list(direct_dp_ids)
+            if ucm_ids:
+                try:
+                    ucm_query = """
+                        SELECT unified_column_id, mapped_dp_ids
+                        FROM unified_column_mappings
+                        WHERE unified_column_id = ANY($1::text[])
+                    """
+                    ucm_rows = await conn.fetch(ucm_query, ucm_ids)
+                    
+                    logger.info(
+                        "🔍 [AGG_DEBUG] UCM 조회 결과: %d건", len(ucm_rows)
+                    )
+                    
+                    for ucm_row in ucm_rows:
+                        ucm_id = ucm_row.get("unified_column_id")
+                        mapped = ucm_row.get("mapped_dp_ids") or []
+                        logger.info(
+                            "🔍 [AGG_DEBUG] - %s → mapped_dp_ids: %s", 
+                            ucm_id, mapped
+                        )
+                        expanded_dp_ids.extend(mapped)
+                    
+                    logger.info(
+                        "🔍 [AGG_DEBUG] UCM 전개 후 총 DP: %d개 (%s)",
+                        len(expanded_dp_ids), expanded_dp_ids
+                    )
+                except Exception as e:
+                    logger.warning("query_subsidiary_data: UCM 조회 실패, 일반 DP만 사용: %s", e)
+            
+            # related_dp_ids 교차 검색 (PostgreSQL 배열 연산)
+            if expanded_dp_ids:
+                logger.info(
+                    "🔍 [AGG_DEBUG] subsidiary_data_contributions 조회 시작 (교차 검색)"
+                )
+                logger.info(
+                    "🔍 [AGG_DEBUG] - 검색할 DP 목록: %s", expanded_dp_ids
+                )
+                
+                dp_match_query = """
+                    SELECT 
+                        subsidiary_name,
+                        facility_name,
+                        description,
+                        quantitative_data,
+                        category,
+                        report_year,
+                        related_dp_ids,
+                        data_source,
+                        (SELECT COUNT(*)::int FROM unnest(related_dp_ids) AS dp 
+                         WHERE dp = ANY($3::text[])) AS match_count
+                    FROM subsidiary_data_contributions
+                    WHERE company_id = $1::uuid
+                      AND report_year = $2
+                      AND related_dp_ids && $3::text[]
+                """
+                dp_match_query += f" ORDER BY match_count DESC, report_year DESC LIMIT {limit}"
+                
+                rows = await conn.fetch(dp_match_query, company_id, year, expanded_dp_ids)
+                
+                logger.info(
+                    "🔍 [AGG_DEBUG] DP 매칭 결과: %d건", len(rows)
+                )
+                
+                for idx, row in enumerate(rows):
+                    logger.info(
+                        "🔍 [AGG_DEBUG] - [%d] subsidiary=%s, facility=%s, category=%s, "
+                        "related_dp_ids=%s, match_count=%s",
+                        idx + 1,
+                        row.get("subsidiary_name"),
+                        row.get("facility_name"),
+                        row.get("category"),
+                        row.get("related_dp_ids"),
+                        row.get("match_count")
+                    )
+                
+                if rows:
+                    await conn.close()
+                    result = [dict(row) for row in rows]
+                    for item in result:
+                        item.pop("match_count", None)
+                    logger.info("query_subsidiary_data: DP 매칭 %d건", len(result))
+                    return result
+                
+                logger.info("🔍 [AGG_DEBUG] DP 매칭 결과 없음, 카테고리 폴백으로 진행")
+                logger.info("query_subsidiary_data: DP 매칭 결과 없음, 카테고리 폴백")
+        
+        # Step 2: 카테고리 정확 매칭
         exact_query = """
             SELECT 
                 subsidiary_name,
@@ -81,11 +192,10 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
         if rows:
             await conn.close()
             result = [dict(row) for row in rows]
-            logger.info("query_subsidiary_data: 정확 매칭 %d건", len(result))
+            logger.info("query_subsidiary_data: 카테고리 정확 매칭 %d건", len(result))
             return result
         
-        # 2단계: 벡터 유사도 검색 (정확 매칭 실패 시)
-        # category_embedding이 NULL이 아닌 행만 대상
+        # Step 3: 카테고리 벡터 유사도 검색
         emb_list = await embed_text({"text": category})
         category_embedding = _embedding_to_pgvector_literal(emb_list)
         
@@ -118,10 +228,10 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
             result = [dict(row) for row in rows]
             for item in result:
                 item.pop("similarity", None)
-            logger.info("query_subsidiary_data: 벡터 검색 %d건", len(result))
+            logger.info("query_subsidiary_data: 카테고리 벡터 검색 %d건", len(result))
             return result
         
-        # 3단계: 폴백 — category 필터 없이 company_id + year만으로 조회
+        # Step 4: 폴백 — category 필터 없이 company_id + year만으로 조회
         fallback_query = """
             SELECT 
                 subsidiary_name,

@@ -122,21 +122,21 @@ class AggregationNodeAgent:
         include_external: bool,
         external_query: str,
         external_keywords: List[str],
-        dp_ids: List[str]  # ← 신규: DP ID 목록
+        dp_ids: List[str]
     ) -> Dict[str, Any]:
         """
         프롬프트 기반 검색 방식 (신규 기본 모드).
         
-        - Subsidiary: 항상 실행 (category_embedding 기반)
+        - Subsidiary: 항상 실행 (DP 우선 → category 폴백)
         - External: 조건부 실행 (include_external=True일 때만)
         - external_query가 없으면 자체 LLM으로 생성 (dp_ids 사용)
         """
         result = {}
         
-        # ✨ external_query 자체 생성 (없을 때만, dp_ids 사용)
+        # external_query 자체 생성 (없을 때만, dp_ids 사용)
         if include_external and not external_query:
             external_query = await self._generate_external_search_query(
-                category, dp_ids  # ← fact_data_by_dp 대신 dp_ids 전달
+                category, dp_ids
             )
             logger.info(
                 "aggregation_node: 자체 생성 external_query=%s",
@@ -148,7 +148,7 @@ class AggregationNodeAgent:
         for year in years:
             task = self._collect_year_with_prompt(
                 company_id, category, dp_id, year,
-                include_external, external_query, external_keywords
+                include_external, external_query, external_keywords, dp_ids
             )
             tasks.append((year, task))
         
@@ -298,12 +298,13 @@ class AggregationNodeAgent:
         year: int,
         include_external: bool,
         external_query: str,
-        external_keywords: List[str]
+        external_keywords: List[str],
+        dp_ids: List[str]
     ) -> Dict[str, Any]:
         """
         특정 연도의 계열사·외부 데이터 수집 (프롬프트 기반).
         
-        - Subsidiary: 항상 실행
+        - Subsidiary: 항상 실행 (DP 우선 → category 폴백)
         - External: include_external=True일 때만
         
         Returns:
@@ -312,14 +313,14 @@ class AggregationNodeAgent:
                 "external_company_data": [...]
             }
         """
-        # Subsidiary: 항상 조회 (category_embedding 기반)
+        # Subsidiary: 항상 조회 (dp_ids 우선 → category 폴백)
         sub_task = self.infra.call_tool(
             "query_subsidiary_data",
             {
                 "company_id": company_id,
                 "year": year,
                 "category": category,
-                "dp_id": dp_id,
+                "dp_ids": dp_ids,
                 "limit": 5
             }
         )

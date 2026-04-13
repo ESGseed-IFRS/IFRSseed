@@ -2,17 +2,15 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { DP_MASTER_LIST, DP_AGGREGATIONS } from '../../lib/platformData';
-import type { DpAggregation, DpAggregationStatus } from '../../lib/platformTypes';
+import type { DpAggregation, DpAggregationStatus, DpSidebarPillTone } from '../../lib/platformTypes';
 import {
-  buildGhgQualitativeTexts,
-  buildGhgQuantSubmissions,
-  fetchGroupScopeResults,
+  buildQualitativeTextsFromContributionsForDp,
+  buildQuantSubmissionsFromContributionsForDp,
   fetchSrContributions,
-  subsidiaryOrderForDisplay,
-  sumScope12AutoValue,
+  rankQuantColumnKeysFromSubmissions,
+  subsidiaryOrderFromContributionsForDp,
   type SrContributionApiRow,
 } from '../../lib/holdingAggregateApi';
-import type { GroupScopeResultRowApi } from '@/app/(main)/ghg_calc/lib/ghgGroupScopeApi';
 import { isHoldingCompany, useAuthSessionStore } from '@/store/authSessionStore';
 
 interface HoldingAggregateWriteProps {
@@ -42,26 +40,34 @@ const SUBS_STATUS: Record<string, { label: string; color: string }> = {
   ACCEPTED: { label: '승인', color: '#085041' },
 };
 
-function StdTag({ std, active }: { std: 'GRI' | 'ISSB' | 'ESRS'; active: boolean }) {
-  const s = STD_TAG[std];
+const PILL_TONE_TO_STD: Record<DpSidebarPillTone, keyof typeof STD_TAG> = {
+  gri: 'GRI',
+  issb: 'ISSB',
+  esrs: 'ESRS',
+};
+
+function DisclosurePill({ code, tone }: { code: string; tone: DpSidebarPillTone }) {
+  const s = STD_TAG[PILL_TONE_TO_STD[tone]];
   return (
     <span
-      className="inline-block px-1.5 py-0.5 rounded text-[10px] font-medium mr-1"
+      className="inline-block max-w-full break-all px-1 py-0.5 rounded text-[9px] font-medium leading-snug"
       style={{
-        background: active ? s.bg : '#f5f5f5',
-        color: active ? s.color : '#bbb',
-        textDecoration: active ? 'none' : 'line-through',
+        background: s.bg,
+        color: s.color,
       }}
     >
-      {std}
+      {code}
     </span>
   );
 }
 
-const GHG_DP_ID = 'DP-ENV-001';
 const DEFAULT_REPORT_YEAR = 2024;
 /** DB 시드(삼성SDS 데모)에서 계열사 parent_company_id 로 쓰이는 지주 UUID가 많음 */
 const DEFAULT_AGGREGATE_HOLDING_ID = '550e8400-e29b-41d4-a716-446655440000';
+
+function humanizeQuantKey(k: string): string {
+  return k.replace(/_/g, ' ');
+}
 
 export function HoldingAggregateWrite({
   onInsertToReport,
@@ -89,7 +95,7 @@ export function HoldingAggregateWrite({
 
   const [liveLoading, setLiveLoading] = useState(false);
   const [liveError, setLiveError] = useState<string | null>(null);
-  const [ghgRows, setGhgRows] = useState<GroupScopeResultRowApi[] | null>(null);
+  /** null: 아직 로드 전·API 실패, 배열: subsidiary_data_contributions 조회 완료 */
   const [contribRows, setContribRows] = useState<SrContributionApiRow[] | null>(null);
 
   const dp = DP_MASTER_LIST.find((d) => d.dp_id === selectedDpId);
@@ -113,54 +119,66 @@ export function HoldingAggregateWrite({
 
   const isQuantitative = dp && ['SUM', 'WEIGHTED_AVG'].includes(dp.aggregation_method);
 
+  const orderForDp = useMemo(() => {
+    if (contribRows === null || !dp) return [];
+    return subsidiaryOrderFromContributionsForDp(holdingCompanyId, contribRows, dp);
+  }, [contribRows, dp, holdingCompanyId]);
+
   const agg: DpAggregation | null = useMemo(() => {
     if (!baseAgg || !dp) return null;
-    if (dp.dp_id !== GHG_DP_ID || ghgRows === null) return baseAgg;
-    const subs = buildGhgQuantSubmissions(ghgRows);
-    const order = subsidiaryOrderForDisplay(ghgRows, contribRows ?? [], holdingCompanyId);
-    const qualTexts =
-      contribRows && order.length
-        ? buildGhgQualitativeTexts(holdingCompanyId, contribRows, order, currentTabId)
-        : baseAgg.qualitative.subsidiary_texts;
+    if (contribRows === null) return baseAgg;
+
+    const subs = buildQuantSubmissionsFromContributionsForDp(holdingCompanyId, contribRows, dp);
+    const qualTexts = buildQualitativeTextsFromContributionsForDp(
+      holdingCompanyId,
+      contribRows,
+      dp,
+      orderForDp,
+    );
+
     return {
       ...baseAgg,
       report_year: DEFAULT_REPORT_YEAR,
-      subsidiary_submissions: subs.length ? subs : baseAgg.subsidiary_submissions,
-      quantitative: {
-        ...baseAgg.quantitative,
-        auto_value: subs.length ? sumScope12AutoValue(ghgRows) : baseAgg.quantitative.auto_value,
-        unit: 'tCO₂e',
-      },
+      subsidiary_submissions: subs,
       qualitative: {
         ...baseAgg.qualitative,
-        subsidiary_texts: qualTexts.length ? qualTexts : baseAgg.qualitative.subsidiary_texts,
+        subsidiary_texts: qualTexts,
       },
     };
-  }, [baseAgg, dp, ghgRows, contribRows, holdingCompanyId, currentTabId]);
+  }, [baseAgg, dp, contribRows, holdingCompanyId, orderForDp]);
+
+  const contribQuantKeys = useMemo(() => {
+    if (contribRows === null || !agg) return [];
+    return rankQuantColumnKeysFromSubmissions(agg.subsidiary_submissions, 14);
+  }, [contribRows, agg]);
+
+  const tableQuantColumns = useMemo((): { field_id: string; label_ko: string; unit?: string }[] => {
+    if (contribRows !== null) {
+      return contribQuantKeys.length > 0
+        ? contribQuantKeys.map((k) => ({ field_id: k, label_ko: humanizeQuantKey(k) }))
+        : [];
+    }
+    return quantFields;
+  }, [contribRows, contribQuantKeys, quantFields]);
+
+  /** QUALITATIVE DP라도 DB quantitative_data 컬럼이 있으면 표 표시 (집계 푸터는 isQuantitative일 때만) */
+  const showQuantSection = tableQuantColumns.length > 0;
+  const showQualSection = qualFields.length > 0 || (contribRows !== null && orderForDp.length > 0);
 
   useEffect(() => {
     if (!holdingCompanyId) return;
     let cancelled = false;
     setLiveLoading(true);
     setLiveError(null);
-    if (selectedDpId === GHG_DP_ID) setGhgRows(null);
     (async () => {
       try {
         const cr = await fetchSrContributions(holdingCompanyId, DEFAULT_REPORT_YEAR);
         if (cancelled) return;
         setContribRows(cr.contributions);
-        if (selectedDpId === GHG_DP_ID) {
-          const gr = await fetchGroupScopeResults(holdingCompanyId, DEFAULT_REPORT_YEAR, 'location');
-          if (cancelled) return;
-          setGhgRows(gr.rows);
-        } else {
-          setGhgRows(null);
-        }
       } catch (e) {
         if (!cancelled) {
           setLiveError(e instanceof Error ? e.message : '데이터 조회 실패');
           setContribRows(null);
-          setGhgRows(null);
         }
       } finally {
         if (!cancelled) setLiveLoading(false);
@@ -169,12 +187,26 @@ export function HoldingAggregateWrite({
     return () => {
       cancelled = true;
     };
-  }, [holdingCompanyId, selectedDpId]);
+  }, [holdingCompanyId]);
 
   useEffect(() => {
     if (!initialDpId || !DP_MASTER_LIST.some((d) => d.dp_id === initialDpId)) return;
     setSelectedDpId(initialDpId);
   }, [initialDpId]);
+
+  /** ESRS_ONLY 등 단일 기준 DP는 해당 탭으로 초기 포커스 */
+  useEffect(() => {
+    const d = DP_MASTER_LIST.find((x) => x.dp_id === selectedDpId);
+    if (!d) return;
+    const g = !!d.coverage.gri;
+    const i = !!d.coverage.issb;
+    const e = !!d.coverage.esrs;
+    const n = [g, i, e].filter(Boolean).length;
+    if (n !== 1) return;
+    if (e) setStandardTab('esrs');
+    else if (i) setStandardTab('issb');
+    else setStandardTab('gri');
+  }, [selectedDpId]);
 
   // DP 선택 시 기존 확정값 로드
   useEffect(() => {
@@ -209,7 +241,7 @@ export function HoldingAggregateWrite({
       ) : null}
       <div className="flex-1 flex min-h-0 min-w-0 overflow-hidden">
       {/* DP 목록 사이드바 */}
-      <div className="w-56 min-w-[224px] bg-white border-r border-[#e8e8e4] flex flex-col overflow-hidden shrink-0">
+      <div className="w-[248px] min-w-[248px] max-w-[280px] bg-white border-r border-[#e8e8e4] flex flex-col overflow-hidden shrink-0">
         <div className="px-3 py-2.5 border-b border-[#e8e8e4] text-[10px] font-medium text-[#888] uppercase tracking-wider">
           DP 목록
         </div>
@@ -231,9 +263,9 @@ export function HoldingAggregateWrite({
               >
                 <div className="font-medium text-[#333] mb-1">{d.dp_name_ko}</div>
                 <div className="flex flex-wrap gap-0.5 mb-1">
-                  <StdTag std="GRI" active={!!d.coverage.gri} />
-                  <StdTag std="ISSB" active={!!d.coverage.issb} />
-                  <StdTag std="ESRS" active={!!d.coverage.esrs} />
+                  {d.sidebar_pills.map((p) => (
+                    <DisclosurePill key={`${d.dp_id}-${p.code}`} code={p.code} tone={p.tone} />
+                  ))}
                 </div>
                 <span
                   className="inline-block px-1.5 py-0.5 rounded text-[10px] font-medium"
@@ -253,9 +285,9 @@ export function HoldingAggregateWrite({
           <>
             {/* 헤더 */}
             <div className="px-4 py-2 bg-white border-b border-[#e8e8e4] shrink-0 space-y-1.5">
-              {liveLoading && selectedDpId === GHG_DP_ID ? (
+              {liveLoading ? (
                 <div className="text-[11px] text-[#185FA5] bg-[#EFF5FC] border border-[#d4e4f4] rounded px-2 py-1.5">
-                  ghg_emission_results · subsidiary_data_contributions 데이터를 불러오는 중…
+                  subsidiary_data_contributions 데이터를 불러오는 중…
                 </div>
               ) : null}
               {liveError ? (
@@ -265,9 +297,11 @@ export function HoldingAggregateWrite({
               ) : null}
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-sm font-semibold text-[#333]">{dp.dp_name_ko}</span>
-                <StdTag std="GRI" active={!!dp.coverage.gri} />
-                <StdTag std="ISSB" active={!!dp.coverage.issb} />
-                <StdTag std="ESRS" active={!!dp.coverage.esrs} />
+                <div className="flex flex-wrap gap-0.5 items-center max-w-full">
+                  {dp.sidebar_pills.map((p) => (
+                    <DisclosurePill key={`hdr-${dp.dp_id}-${p.code}`} code={p.code} tone={p.tone} />
+                  ))}
+                </div>
                 <span
                   className="inline-block px-2 py-0.5 rounded text-[10px] font-semibold"
                   style={{
@@ -301,10 +335,15 @@ export function HoldingAggregateWrite({
             {/* 메인 스크롤 영역: 정량+정성 전체가 이 박스 안에서만 스크롤 (flex-1 자식에 min-h-0 필수) */}
             <div className="min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-auto overscroll-y-contain px-4 py-2 flex flex-col gap-4 [scrollbar-gutter:stable]">
               {/* 정량 섹션 */}
-              {isQuantitative && quantFields.length > 0 && (
+              {showQuantSection && (
                 <div className="shrink-0 bg-white border border-[#e8e8e4] rounded-lg overflow-hidden">
                   <div className="px-4 py-3 border-b border-[#e8e8e4] text-sm font-semibold text-[#333]">
                     정량 섹션
+                    {contribRows !== null && contribQuantKeys.length > 0 ? (
+                      <span className="ml-2 text-[11px] font-normal text-[#888]">
+                        (quantitative_data · related_dp_ids 매칭)
+                      </span>
+                    ) : null}
                   </div>
                   <div className="p-4">
                     <table className="w-full border-collapse text-xs">
@@ -313,7 +352,7 @@ export function HoldingAggregateWrite({
                           <th className="px-3 py-2 text-left font-medium text-[#888] border-b border-[#e8e8e4]">
                             계열사
                           </th>
-                          {quantFields.map((f) => (
+                          {tableQuantColumns.map((f) => (
                             <th key={f.field_id} className="px-3 py-2 text-left font-medium text-[#888] border-b border-[#e8e8e4]">
                               {f.label_ko}
                               {f.unit && ` (${f.unit})`}
@@ -338,7 +377,7 @@ export function HoldingAggregateWrite({
                               <td className="px-3 py-2.5 border-b border-[#e8e8e4] font-medium text-[#333]">
                                 {sub.subsidiary_name}
                               </td>
-                              {quantFields.map((f) => {
+                              {tableQuantColumns.map((f) => {
                                 const v = sub.values[f.field_id];
                                 const disp = v != null ? (typeof v === 'number' ? v.toLocaleString() : String(v)) : '—';
                                 return (
@@ -371,52 +410,57 @@ export function HoldingAggregateWrite({
                       </tbody>
                     </table>
 
-                    <div className="mt-4 flex flex-wrap gap-4 items-end">
-                      <div>
-                        <div className="text-[11px] text-[#888] mb-1">자동 집계</div>
-                        <div className="text-lg font-bold font-mono text-[#185FA5]">
-                          {agg.quantitative.auto_value != null
-                            ? agg.quantitative.auto_value.toLocaleString()
-                            : '—'}{' '}
-                          {agg.quantitative.unit ?? ''}
+                    {isQuantitative ? (
+                      <div className="mt-4 flex flex-wrap gap-4 items-end">
+                        <div>
+                          <div className="text-[11px] text-[#888] mb-1">자동 집계</div>
+                          <div className="text-lg font-bold font-mono text-[#185FA5]">
+                            {agg.quantitative.auto_value != null
+                              ? agg.quantitative.auto_value.toLocaleString()
+                              : '—'}{' '}
+                            {agg.quantitative.unit ?? ''}
+                          </div>
+                          <div className="text-[10px] text-[#888] mt-0.5">
+                            (방식: {dp.aggregation_method})
+                          </div>
                         </div>
-                        <div className="text-[10px] text-[#888] mt-0.5">
-                          (방식: {dp.aggregation_method})
+                        <div>
+                          <div className="text-[11px] text-[#888] mb-1">최종 확정값</div>
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="text"
+                              value={finalValue}
+                              onChange={(e) => setFinalValue(e.target.value)}
+                              placeholder="—"
+                              className="w-32 px-2 py-1.5 border border-[#e8e8e4] rounded text-sm font-mono"
+                            />
+                            <span className="text-xs text-[#888]">{agg.quantitative.unit ?? ''}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] text-[#888] mb-1">최종 확정값</div>
-                        <div className="flex items-center gap-2">
-                          <input
-                            type="text"
-                            value={finalValue}
-                            onChange={(e) => setFinalValue(e.target.value)}
-                            placeholder="—"
-                            className="w-32 px-2 py-1.5 border border-[#e8e8e4] rounded text-sm font-mono"
+                        <div className="flex-1 min-w-[200px]">
+                          <div className="text-[11px] text-[#888] mb-1">조정 사유 (자동값과 다를 때 필수)</div>
+                          <textarea
+                            value={adjustmentReason}
+                            onChange={(e) => setAdjustmentReason(e.target.value)}
+                            placeholder="자동 집계값과 최종 확정값이 다를 경우 사유를 입력하세요."
+                            rows={2}
+                            className="w-full px-2 py-1.5 border border-[#e8e8e4] rounded text-xs resize-none"
                           />
-                          <span className="text-xs text-[#888]">{agg.quantitative.unit ?? ''}</span>
                         </div>
                       </div>
-                      <div className="flex-1 min-w-[200px]">
-                        <div className="text-[11px] text-[#888] mb-1">조정 사유 (자동값과 다를 때 필수)</div>
-                        <textarea
-                          value={adjustmentReason}
-                          onChange={(e) => setAdjustmentReason(e.target.value)}
-                          placeholder="자동 집계값과 최종 확정값이 다를 경우 사유를 입력하세요."
-                          rows={2}
-                          className="w-full px-2 py-1.5 border border-[#e8e8e4] rounded text-xs resize-none"
-                        />
-                      </div>
-                    </div>
+                    ) : null}
                   </div>
                 </div>
               )}
 
               {/* 정성 섹션 */}
-              {qualFields.length > 0 && (
+              {showQualSection && (
                 <div className="shrink-0 flex flex-col overflow-visible rounded-lg border border-[#e8e8e4] bg-white">
                   <div className="shrink-0 border-b border-[#e8e8e4] px-4 py-2.5 text-sm font-semibold text-[#333]">
                     정성 섹션 — 계열사 서술 원문 (읽기 전용)
+                    {contribRows !== null && orderForDp.length > 0 ? (
+                      <span className="ml-2 text-[11px] font-normal text-[#888]">(description · related_dp_ids 매칭)</span>
+                    ) : null}
                   </div>
                   <div className="space-y-3 p-4">
                     {agg.qualitative.subsidiary_texts.map((t) => (
@@ -459,9 +503,9 @@ export function HoldingAggregateWrite({
                 </div>
               )}
 
-              {!isQuantitative && qualFields.length === 0 && (
+              {!showQuantSection && !showQualSection && (
                 <div className="text-center py-8 text-[#888] text-sm">
-                  이 DP에는 정량·정성 필드가 없습니다.
+                  이 DP에는 표시할 정량·정성 데이터가 없습니다. (subsidiary_data_contributions · related_dp_ids)
                 </div>
               )}
             </div>

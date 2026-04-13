@@ -142,27 +142,47 @@ def _dp_metadata_for_response(
     dp_meta: Optional[Dict[str, Any]],
     *,
     dp_type: Optional[str] = None,
+    ucm_info: Optional[Dict[str, Any]] = None,
 ) -> Optional[Dict[str, Any]]:
     """
     query_dp_metadata 전체 행을 그대로 노출하지 않고, API·gen_node에 필요한 필드만 전달.
     child_dps / parent_indicator / unit / validation_rules 포함 (Phase 1.5·검증용).
+    
+    UCM 전용(dp_meta=None)일 때는 ucm_info에서 필드를 채움.
     """
-    if not dp_meta:
-        return None
-    resolved_type = dp_type if dp_type is not None else dp_meta.get("dp_type")
-    return {
-        "name_ko": dp_meta.get("name_ko"),
-        "name_en": dp_meta.get("name_en"),
-        "description": dp_meta.get("description"),
-        "topic": dp_meta.get("topic"),
-        "subtopic": dp_meta.get("subtopic"),
-        "category": dp_meta.get("category"),
-        "dp_type": resolved_type,
-        "unit": dp_meta.get("unit"),
-        "validation_rules": dp_meta.get("validation_rules"),
-        "child_dps": dp_meta.get("child_dps"),
-        "parent_indicator": dp_meta.get("parent_indicator"),
-    }
+    if dp_meta:
+        resolved_type = dp_type if dp_type is not None else dp_meta.get("dp_type")
+        return {
+            "name_ko": dp_meta.get("name_ko"),
+            "name_en": dp_meta.get("name_en"),
+            "description": dp_meta.get("description"),
+            "topic": dp_meta.get("topic"),
+            "subtopic": dp_meta.get("subtopic"),
+            "category": dp_meta.get("category"),
+            "dp_type": resolved_type,
+            "unit": dp_meta.get("unit"),
+            "validation_rules": dp_meta.get("validation_rules"),
+            "child_dps": dp_meta.get("child_dps"),
+            "parent_indicator": dp_meta.get("parent_indicator"),
+        }
+    
+    # UCM 전용 경로: ucm_info에서 유사 필드 채우기
+    if ucm_info:
+        return {
+            "name_ko": ucm_info.get("column_name_ko"),
+            "name_en": ucm_info.get("column_name_en"),
+            "description": ucm_info.get("column_description"),
+            "topic": ucm_info.get("column_topic"),
+            "subtopic": ucm_info.get("column_subtopic"),
+            "category": ucm_info.get("column_category"),
+            "dp_type": dp_type,
+            "unit": ucm_info.get("unit"),
+            "validation_rules": ucm_info.get("validation_rules"),
+            "child_dps": None,
+            "parent_indicator": None,
+        }
+    
+    return None
 
 
 def _resolve_validation_rules(
@@ -200,7 +220,7 @@ def _ucm_qualitative_keyword_hits(ucm_info: Optional[Dict[str, Any]]) -> int:
 
 
 def _ucm_for_response(ucm_info: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
-    """fact_data / API용 UCM 요약 (primary_rulebook·충돌·standard_metadata 포함)."""
+    """fact_data / API용 UCM 요약 (mapped_dp_ids 포함)."""
     if not ucm_info:
         return None
     return {
@@ -372,7 +392,7 @@ class DpRagAgent:
                     "unit": _resolve_unit(dp_meta, ucm_info),
                     "year": year,
                     "company_profile": company_profile,
-                    "dp_metadata": _dp_metadata_for_response(dp_meta, dp_type=dp_type),
+                    "dp_metadata": _dp_metadata_for_response(dp_meta, dp_type=dp_type, ucm_info=ucm_info),
                     "ucm": _ucm_for_response(ucm_info),
                     "rulebook": rulebook_payload,
                     "source": None,
@@ -407,7 +427,7 @@ class DpRagAgent:
                     "unit": _resolve_unit(dp_meta, ucm_info),
                     "year": year,
                     "company_profile": company_profile,
-                    "dp_metadata": _dp_metadata_for_response(dp_meta),
+                    "dp_metadata": _dp_metadata_for_response(dp_meta, ucm_info=ucm_info),
                     "ucm": _ucm_for_response(ucm_info),
                     "rulebook": rulebook_payload,
                     "source": None,
@@ -466,8 +486,8 @@ class DpRagAgent:
                 "column": mapping["column"],
                 "data_type": mapping.get("data_type"),
                 
-                # DP 메타데이터 (UCM ID만 넘긴 경우 None)
-                "dp_metadata": _dp_metadata_for_response(dp_meta),
+                # DP 메타데이터 (UCM일 경우 ucm_info에서 채움)
+                "dp_metadata": _dp_metadata_for_response(dp_meta, ucm_info=ucm_info),
                 
                 # UCM 정보
                 "ucm": _ucm_for_response(ucm_info),

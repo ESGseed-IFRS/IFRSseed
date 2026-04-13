@@ -65,29 +65,125 @@ class ValidatorNodeAgent:
     def __init__(self, infra: Any):
         self.infra = infra
 
+    def _validate_provenance(
+        self, data_provenance: Dict[str, Any], generated_text: str
+    ) -> List[str]:
+        """
+        data_provenance 검증 로직
+        
+        - quantitative_sources: 수치 데이터 출처 검증
+        - qualitative_sources: 정성 데이터 출처 검증
+        - used_in_sentences: 문장이 generated_text에 실제로 존재하는지 확인
+        
+        Returns:
+            에러 메시지 리스트
+        """
+        errors: List[str] = []
+        
+        if not data_provenance:
+            logger.info("validator_node: data_provenance 없음 (생략)")
+            return errors
+        
+        # quantitative_sources 검증
+        quant_sources = data_provenance.get("quantitative_sources", [])
+        if not isinstance(quant_sources, list):
+            errors.append("data_provenance.quantitative_sources는 배열이어야 합니다")
+        else:
+            for idx, src in enumerate(quant_sources):
+                if not isinstance(src, dict):
+                    errors.append(f"quantitative_sources[{idx}]는 객체여야 합니다")
+                    continue
+                
+                # 필수 필드 체크
+                if "value" not in src:
+                    errors.append(f"quantitative_sources[{idx}]: value 필드 누락")
+                if "source_type" not in src:
+                    errors.append(f"quantitative_sources[{idx}]: source_type 필드 누락")
+                
+                # used_in_sentences 존재 검증
+                used_sentences = src.get("used_in_sentences", [])
+                if isinstance(used_sentences, list):
+                    for sentence in used_sentences:
+                        if sentence and sentence not in generated_text:
+                            logger.warning(
+                                "validator_node: quantitative_sources[%d] 문장이 본문에 없음: %s...",
+                                idx, sentence[:50]
+                            )
+        
+        # qualitative_sources 검증
+        qual_sources = data_provenance.get("qualitative_sources", [])
+        if not isinstance(qual_sources, list):
+            errors.append("data_provenance.qualitative_sources는 배열이어야 합니다")
+        else:
+            for idx, src in enumerate(qual_sources):
+                if not isinstance(src, dict):
+                    errors.append(f"qualitative_sources[{idx}]는 객체여야 합니다")
+                    continue
+                
+                # 필수 필드 체크
+                if "source_type" not in src:
+                    errors.append(f"qualitative_sources[{idx}]: source_type 필드 누락")
+                
+                # used_in_sentences 존재 검증
+                used_sentences = src.get("used_in_sentences", [])
+                if isinstance(used_sentences, list):
+                    for sentence in used_sentences:
+                        if sentence and sentence not in generated_text:
+                            logger.warning(
+                                "validator_node: qualitative_sources[%d] 문장이 본문에 없음: %s...",
+                                idx, sentence[:50]
+                            )
+        
+        # reference_pages 검증
+        ref_pages = data_provenance.get("reference_pages", {})
+        if not isinstance(ref_pages, dict):
+            errors.append("data_provenance.reference_pages는 객체여야 합니다")
+        
+        logger.info(
+            "validator_node: provenance 검증 완료 (quant=%d, qual=%d, errors=%d)",
+            len(quant_sources), len(qual_sources), len(errors)
+        )
+        
+        return errors
+
     async def validate(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         text = normalize_generated_text(payload.get("generated_text"))
         category = str(payload.get("category") or "")
 
         fact_data = payload.get("fact_data")
         fact_data_by_dp = payload.get("fact_data_by_dp")
+        gen_input = payload.get("gen_input")
         if not isinstance(fact_data, dict):
             fact_data = {}
         if not isinstance(fact_data_by_dp, dict):
             fact_data_by_dp = {}
+        if not isinstance(gen_input, dict):
+            gen_input = None
+
+        # data_provenance 추출
+        data_provenance = payload.get("data_provenance")
+        if not isinstance(data_provenance, dict):
+            data_provenance = {}
 
         mode = resolve_validation_mode(payload)
         ui_ext = is_validator_ui_extended(payload)
 
         logger.info(
-            "validator_node: mode=%s ui_extended=%s category_preview=%s text_len=%s",
+            "validator_node: mode=%s ui_extended=%s category_preview=%s text_len=%s provenance_keys=%s",
             mode.value,
             ui_ext,
             (category[:40] + "…") if len(category) > 40 else category,
             len(text),
+            list(data_provenance.keys()) if data_provenance else [],
         )
 
         rule_res, rule_sig = run_rules(text, fact_data, fact_data_by_dp, mode)
+
+        # data_provenance 검증
+        provenance_errors = self._validate_provenance(data_provenance, text)
+        if provenance_errors:
+            logger.warning("validator_node: data_provenance 검증 실패: %d 건", len(provenance_errors))
+            rule_res.errors.extend(provenance_errors)
 
         llm_out: Optional[LlmValidateOutcome] = None
         if not rule_res.errors:
@@ -105,6 +201,7 @@ class ValidatorNodeAgent:
                 mode=mode,
                 gemini_api_key=api_key,
                 model=model,
+                gen_input=gen_input,
             )
 
             logger.info(
