@@ -314,6 +314,13 @@ class AggregationNodeAgent:
             }
         """
         # Subsidiary: 항상 조회 (dp_ids 우선 → category 폴백)
+        logger.info(
+            "[SUBSIDIARY_QUERY_TRACE] aggregation_node._collect_year_with_prompt → "
+            "query_subsidiary_data 호출 year=%s dp_ids=%s category=%s",
+            year,
+            dp_ids,
+            category[:80] if category else "",
+        )
         sub_task = self.infra.call_tool(
             "query_subsidiary_data",
             {
@@ -370,8 +377,18 @@ class AggregationNodeAgent:
                 logger.error("aggregation_node: external query failed for year %s: %s", year, ext_data)
                 ext_data = []
             
+            sub_list = sub_data if isinstance(sub_data, list) else []
+            logger.info(
+                "[SUBSIDIARY_QUERY_TRACE] aggregation_node._collect_year_with_prompt ← "
+                "query_subsidiary_data 결과 year=%s rows=%s related_dp_ids_요약=%s",
+                year,
+                len(sub_list),
+                [row.get("related_dp_ids") for row in sub_list[:5]]
+                if sub_list
+                else [],
+            )
             return {
-                "subsidiary_data": sub_data if isinstance(sub_data, list) else [],
+                "subsidiary_data": sub_list,
                 "external_company_data": ext_data if isinstance(ext_data, list) else []
             }
         

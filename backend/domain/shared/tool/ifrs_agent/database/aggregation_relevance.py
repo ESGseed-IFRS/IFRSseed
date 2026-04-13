@@ -28,7 +28,7 @@ async def query_subsidiary_data_relevant(
     
     Args:
         params: {
-            "company_id": str (UUID),
+            "company_id": str (UUID, optional) — 로깅용; subsidiary WHERE에는 미사용
             "year": int,
             "relevance_embedding": List[float],  # 1024차원
             "similarity_threshold": float (기본 0.5),
@@ -48,14 +48,14 @@ async def query_subsidiary_data_relevant(
             "similarity": float
         }
     """
-    company_id = params["company_id"]
+    company_id = params.get("company_id")
     year = params["year"]
     relevance_embedding = params["relevance_embedding"]
     similarity_threshold = params.get("similarity_threshold", DEFAULT_SIMILARITY_THRESHOLD)
     limit = params.get("limit", 5)
     
     logger.info(
-        "query_subsidiary_data_relevant: company_id=%s, year=%s, threshold=%.2f",
+        "query_subsidiary_data_relevant: company_id=%s (로깅), year=%s, threshold=%.2f",
         company_id, year, similarity_threshold
     )
     
@@ -76,23 +76,21 @@ async def query_subsidiary_data_relevant(
                 report_year,
                 related_dp_ids,
                 data_source,
-                (description_embedding <-> $3::vector) as similarity
+                (description_embedding <-> $2::vector) as similarity
             FROM subsidiary_data_contributions
-            WHERE company_id = $1::uuid
-              AND report_year = $2
+            WHERE report_year = $1
               AND description_embedding IS NOT NULL
-              AND (description_embedding <-> $3::vector) < $4
+              AND (description_embedding <-> $2::vector) < $3
             ORDER BY similarity
-            LIMIT $5
+            LIMIT $4
         """
         
         rows = await conn.fetch(
             query,
-            company_id,
             year,
             embedding_literal,
             similarity_threshold,
-            limit
+            limit,
         )
         
         await conn.close()

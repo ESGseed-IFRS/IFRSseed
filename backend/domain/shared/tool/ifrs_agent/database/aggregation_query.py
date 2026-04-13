@@ -15,10 +15,24 @@ from backend.domain.shared.tool.ifrs_agent.database.sr_body_query import (
 
 logger = logging.getLogger("ifrs_agent.tools.aggregation_query")
 
+# grep: SUBSIDIARY_QUERY_TRACE — related_dp_ids ∩ dp_ids 분기 확인용
+_SUBSIDIARY_TRACE = "[SUBSIDIARY_QUERY_TRACE]"
+
+
+def _subsidiary_trace(msg: str, **fields: Any) -> None:
+    if not fields:
+        logger.info("%s %s", _SUBSIDIARY_TRACE, msg)
+        return
+    tail = " ".join(f"{k}={v!r}" for k, v in fields.items())
+    logger.info("%s %s | %s", _SUBSIDIARY_TRACE, msg, tail)
+
 
 async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     subsidiary_data_contributions 테이블에서 계열사/자회사 데이터 조회.
+
+    회사 구분: subsidiary 조회는 **report_year(및 DP/카테고리)** 만 필터에 사용한다.
+    company_id는 호환·로깅용으로 받을 수 있으나 SQL WHERE에는 넣지 않는다.
     
     검색 전략 (DP 우선 → 카테고리 폴백):
     1. DP 직접 매칭: dp_ids가 related_dp_ids와 교차하면 최우선
@@ -28,7 +42,7 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
     
     Args:
         params: {
-            "company_id": str (UUID),
+            "company_id": str (UUID, 선택·로깅용),
             "year": int,
             "category": str,
             "dp_ids": List[str] (선택, 우선 검색용),
@@ -47,15 +61,33 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
             "data_source": str
         }
     """
-    company_id = params["company_id"]
+    company_id = params.get("company_id")  # 로깅용; subsidiary WHERE에는 미사용
     year = params["year"]
     category = params["category"]
     dp_ids = params.get("dp_ids", [])
+    legacy_dp_id = params.get("dp_id")
     limit = params.get("limit", 5)
+
+    if legacy_dp_id and not dp_ids:
+        logger.warning(
+            "%s params에 dp_id=%r만 있고 dp_ids가 비어 있음 — "
+            "related_dp_ids 교차 검색(Step1)은 실행되지 않습니다. "
+            "aggregation_node 레거시 경로면 dp_ids로 넘기도록 수정하세요.",
+            _SUBSIDIARY_TRACE,
+            legacy_dp_id,
+        )
     
     logger.info(
         "query_subsidiary_data: company_id=%s, year=%s, category=%s, dp_ids=%s",
         company_id, year, category, dp_ids,
+    )
+    _subsidiary_trace(
+        "시작",
+        company_id=company_id,
+        year=year,
+        category=category,
+        dp_ids=list(dp_ids) if dp_ids else [],
+        limit=limit,
     )
     
     try:
@@ -115,6 +147,11 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
             
             # related_dp_ids 교차 검색 (PostgreSQL 배열 연산)
             if expanded_dp_ids:
+                _subsidiary_trace(
+                    "Step1 SQL 실행: related_dp_ids && expanded_dp_ids",
+                    expanded_dp_ids=expanded_dp_ids,
+                    sql_op="&&",
+                )
                 logger.info(
                     "🔍 [AGG_DEBUG] subsidiary_data_contributions 조회 시작 (교차 검색)"
                 )
@@ -133,15 +170,14 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
                         related_dp_ids,
                         data_source,
                         (SELECT COUNT(*)::int FROM unnest(related_dp_ids) AS dp 
-                         WHERE dp = ANY($3::text[])) AS match_count
+                         WHERE dp = ANY($2::text[])) AS match_count
                     FROM subsidiary_data_contributions
-                    WHERE company_id = $1::uuid
-                      AND report_year = $2
-                      AND related_dp_ids && $3::text[]
+                    WHERE report_year = $1
+                      AND related_dp_ids && $2::text[]
                 """
                 dp_match_query += f" ORDER BY match_count DESC, report_year DESC LIMIT {limit}"
                 
-                rows = await conn.fetch(dp_match_query, company_id, year, expanded_dp_ids)
+                rows = await conn.fetch(dp_match_query, year, expanded_dp_ids)
                 
                 logger.info(
                     "🔍 [AGG_DEBUG] DP 매칭 결과: %d건", len(rows)
@@ -165,12 +201,41 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
                     for item in result:
                         item.pop("match_count", None)
                     logger.info("query_subsidiary_data: DP 매칭 %d건", len(result))
+                    _subsidiary_trace(
+                        "종료 branch=dp_related_intersection (related_dp_ids ∩ expanded_dp_ids)",
+                        rows=len(result),
+                        year=year,
+                        facilities=[r.get("facility_name") for r in result[:3]],
+                        related_dp_ids_per_row=[r.get("related_dp_ids") for r in result[:3]],
+                    )
                     return result
                 
                 logger.info("🔍 [AGG_DEBUG] DP 매칭 결과 없음, 카테고리 폴백으로 진행")
                 logger.info("query_subsidiary_data: DP 매칭 결과 없음, 카테고리 폴백")
+                _subsidiary_trace(
+                    "Step1 결과 0건 → Step2 카테고리 정확 매칭으로 폴백",
+                    expanded_dp_ids=expanded_dp_ids,
+                    reason="related_dp_ids와 교집합 없음 또는 테이블에 해당 연도 데이터 없음",
+                )
+            else:
+                _subsidiary_trace(
+                    "Step1 건너뜀: expanded_dp_ids 비어 있음 (UCM 매핑 없음·직접 DP 없음)",
+                    input_dp_ids=dp_ids,
+                    ucm_only=not direct_dp_ids and bool(ucm_ids),
+                )
         
         # Step 2: 카테고리 정확 매칭
+        if not dp_ids:
+            _subsidiary_trace(
+                "Step2 진입: dp_ids 없음 — 처음부터 카테고리 정확 매칭",
+                category=category,
+            )
+        else:
+            _subsidiary_trace(
+                "Step2 진입: Step1 이후 폴백 — 카테고리 정확 매칭 (DP 교차 미충족)",
+                category=category,
+                dp_ids=list(dp_ids),
+            )
         exact_query = """
             SELECT 
                 subsidiary_name,
@@ -182,20 +247,29 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
                 related_dp_ids,
                 data_source
             FROM subsidiary_data_contributions
-            WHERE company_id = $1::uuid
-              AND report_year = $2
-              AND category = $3
+            WHERE report_year = $1
+              AND category = $2
         """
         exact_query += f" ORDER BY report_year DESC LIMIT {limit}"
-        rows = await conn.fetch(exact_query, company_id, year, category)
+        rows = await conn.fetch(exact_query, year, category)
         
         if rows:
             await conn.close()
             result = [dict(row) for row in rows]
             logger.info("query_subsidiary_data: 카테고리 정확 매칭 %d건", len(result))
+            _subsidiary_trace(
+                "종료 branch=category_exact (DP 필터 미적용)",
+                rows=len(result),
+                year=year,
+                category=category,
+            )
             return result
         
         # Step 3: 카테고리 벡터 유사도 검색
+        _subsidiary_trace(
+            "Step3 진입: 카테고리 벡터 유사도 (DP 필터 미적용)",
+            category=category,
+        )
         emb_list = await embed_text({"text": category})
         category_embedding = _embedding_to_pgvector_literal(emb_list)
         
@@ -209,10 +283,9 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
                 report_year,
                 related_dp_ids,
                 data_source,
-                (category_embedding <-> $3::vector) as similarity
+                (category_embedding <-> $2::vector) as similarity
             FROM subsidiary_data_contributions
-            WHERE company_id = $1::uuid
-              AND report_year = $2
+            WHERE report_year = $1
               AND category_embedding IS NOT NULL
         """
         
@@ -221,7 +294,7 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
             LIMIT {limit}
         """
 
-        rows = await conn.fetch(vector_query, company_id, year, category_embedding)
+        rows = await conn.fetch(vector_query, year, category_embedding)
         
         if rows:
             await conn.close()
@@ -229,9 +302,19 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
             for item in result:
                 item.pop("similarity", None)
             logger.info("query_subsidiary_data: 카테고리 벡터 검색 %d건", len(result))
+            _subsidiary_trace(
+                "종료 branch=category_vector (DP 필터 미적용)",
+                rows=len(result),
+                year=year,
+                category=category,
+            )
             return result
         
-        # Step 4: 폴백 — category 필터 없이 company_id + year만으로 조회
+        # Step 4: 폴백 — category·company 없이 report_year 만으로 조회
+        _subsidiary_trace(
+            "Step4 진입: report_year 만 (company·category·DP 필터 미적용)",
+            year=year,
+        )
         fallback_query = """
             SELECT 
                 subsidiary_name,
@@ -243,20 +326,25 @@ async def query_subsidiary_data(params: Dict[str, Any]) -> List[Dict[str, Any]]:
                 related_dp_ids,
                 data_source
             FROM subsidiary_data_contributions
-            WHERE company_id = $1::uuid
-              AND report_year = $2
+            WHERE report_year = $1
         """
         fallback_query += f" ORDER BY report_year DESC LIMIT {limit}"
-        rows = await conn.fetch(fallback_query, company_id, year)
+        rows = await conn.fetch(fallback_query, year)
         
         await conn.close()
         
         result = [dict(row) for row in rows]
         logger.info("query_subsidiary_data: 폴백 (category 무시) %d건", len(result))
+        _subsidiary_trace(
+            "종료 branch=year_only (company·DP·category 필터 미적용)",
+            rows=len(result),
+            year=year,
+        )
         return result
     
     except Exception as e:
         logger.error("query_subsidiary_data failed: %s", e, exc_info=True)
+        _subsidiary_trace("오류로 빈 목록 반환", error=str(e))
         return []
 
 

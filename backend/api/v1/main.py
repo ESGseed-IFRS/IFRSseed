@@ -1,8 +1,10 @@
 """Backend API 진입점 — backend/api 라우터를 한 포트에서 실행합니다."""
 from __future__ import annotations
 
+import logging
 import os
 import sys
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 # 프로젝트 루트를 path에 추가 (.env 및 backend 패키지 사용)
@@ -34,10 +36,28 @@ from backend.api.v1.ghg_calculation.routes import router as ghg_calculation_rout
 # --- IFRS Agent
 from backend.api.v1.ifrs_agent.router import router as ifrs_agent_router
 
+
+def _configure_ifrs_agent_logging() -> None:
+    """
+    Uvicorn 기본 루트가 WARNING이면 ifrs_agent.* 의 INFO(예: SUBSIDIARY_QUERY_TRACE)가 콘솔에 안 보인다.
+    환경변수 IFRS_AGENT_LOG_LEVEL=INFO|DEBUG|WARNING 으로 조절 (기본 INFO).
+    """
+    raw = (os.getenv("IFRS_AGENT_LOG_LEVEL") or "INFO").upper()
+    level = getattr(logging, raw, logging.INFO)
+    logging.getLogger("ifrs_agent").setLevel(level)
+
+
+@asynccontextmanager
+async def _app_lifespan(app: FastAPI):
+    _configure_ifrs_agent_logging()
+    yield
+
+
 app = FastAPI(
     title="Backend API",
     description="통합 Backend API (Data Integration 등)",
     version="0.1.0",
+    lifespan=_app_lifespan,
 )
 
 _cors = os.getenv("FRONT_URL", "http://localhost:3000,http://127.0.0.1:3000")
