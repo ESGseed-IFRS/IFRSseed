@@ -22,6 +22,9 @@ from backend.domain.v1.ifrs_agent.hub.orchestrator.prompt_interpretation import 
 from backend.domain.v1.ifrs_agent.hub.orchestrator.workflow_events import (
     WorkflowEventSink,
 )
+from backend.domain.v1.ifrs_agent.hub.orchestrator.provenance_ref_align import (
+    enrich_data_provenance_with_sr_spans,
+)
 
 logger = logging.getLogger("ifrs_agent.orchestrator")
 
@@ -1146,7 +1149,10 @@ class Orchestrator:
                 )
                 state["generated_text"] = gen_result.get("text", "")
                 state["dp_sentence_mappings"] = gen_result.get("dp_sentence_mappings", [])
-                state["data_provenance"] = gen_result.get("data_provenance")
+                state["data_provenance"] = enrich_data_provenance_with_sr_spans(
+                    gen_result.get("data_provenance"),
+                    state.get("gen_input") or {},
+                )
                 if gen_result.get("error") and not (state.get("generated_text") or "").strip():
                     err = gen_result.get("error")
                     logger.warning("gen_node returned error (no text): %s", err)

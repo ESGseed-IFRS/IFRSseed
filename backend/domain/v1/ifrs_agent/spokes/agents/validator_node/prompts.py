@@ -9,7 +9,7 @@ import json
 from typing import Any, Dict, List, Optional
 
 from .payload import ValidationMode
-from .rules import summarize_facts_for_llm
+from .rules import format_supplementary_rows_compact, summarize_facts_for_llm
 
 MAX_GENERATED_TEXT_CHARS = 12_000
 
@@ -65,7 +65,8 @@ SYSTEM_PROMPT = (
 - supplementary_real_data는 정량 데이터의 보조 출처로, latest_value가 없어도 실제 값이 존재합니다.
 - **각 DP는 고유한 지표**입니다. UCM_scope1_001은 Scope 1, UCM_scope2_002는 Scope 2를 나타냅니다.
 - DP별로 제공된 값을 혼동하지 마세요. 예: Scope 1의 946.38과 Scope 2의 176,873.74는 서로 다른 지표입니다.
-- 사용자 메시지에 **「생성 단계 참조·집계 요약」**이 있으면, 그 안의 SR 참조 본문(ref_2024/ref_2023)·agg_data(계열사·외부 스냅샷)에 나온 수치·시설명·감축 실적도 **제공된 데이터**입니다. "DP별 요약" 줄에만 없다고 해서 미제공으로 단정하지 마세요.
+- **「DP별 요약」**에서 각 DP 헤더 줄 아래에 `· table.column: 값` 형태로 이어지는 줄은 **보조 실데이터(supplementary_real_data)** 입니다. gen_node 생성 시와 **동일한 DB 출처**이므로, 여기에 있는 수치·문구는 **제공된 facts**로 간주합니다.
+- 사용자 메시지에 **「생성 단계 참조·집계 요약」**이 있으면, 그 안의 **dp_data_list**·SR 참조 본문(ref_2024/ref_2023)·agg_data(계열사·외부 스냅샷)에 나온 수치·시설명·감축 실적도 **제공된 데이터**입니다. "DP별 요약" 첫 줄에만 없다고 해서 미제공으로 단정하지 마세요.
 
 ## 출력 문법 (필수)
 - `is_valid`는 JSON boolean `true` 또는 `false`만 사용합니다.
@@ -97,16 +98,65 @@ SYSTEM_PROMPT = (
 )
 
 
+def _format_dp_data_list_for_validator(
+    gen_input: Dict[str, Any],
+    *,
+    max_section_chars: int = 7_000,
+    supp_max_rows_per_dp: int = 20,
+) -> str:
+    """
+    gen_node에 전달된 dp_data_list를 검증 LLM에 동일하게 노출.
+    (latest_value·unit·보조 실데이터 table.column=값)
+    """
+    dp_list = gen_input.get("dp_data_list")
+    if not dp_list:
+        legacy = gen_input.get("dp_data")
+        if isinstance(legacy, dict) and legacy:
+            dp_list = [legacy]
+        else:
+            return ""
+
+    chunks: List[str] = []
+    for idx, dp_data in enumerate(dp_list, 1):
+        if not isinstance(dp_data, dict):
+            continue
+        dp_id = dp_data.get("dp_id") or f"idx_{idx}"
+        name = dp_data.get("dp_name_ko") or dp_id
+        lv = dp_data.get("latest_value")
+        unit = dp_data.get("unit") or ""
+        year = dp_data.get("year", "N/A")
+        block_lines = [
+            f"#### DP {idx}: {name} (`{dp_id}`)",
+            f"- {year}년 값(latest_value): {lv!r} {unit}".strip(),
+        ]
+        supp = dp_data.get("supplementary_real_data")
+        if isinstance(supp, list) and supp:
+            block_lines.append("- 보조 실데이터 (DB, gen_node와 동일):")
+            block_lines.extend(
+                format_supplementary_rows_compact(
+                    supp, max_rows=supp_max_rows_per_dp, value_max_chars=96
+                )
+            )
+        chunks.append("\n".join(block_lines))
+
+    section = "### dp_data_list (생성 단계 gen_input — 보조 실데이터 포함)\n\n" + "\n\n".join(
+        chunks
+    )
+    if len(section) > max_section_chars:
+        section = section[:max_section_chars] + "\n…(truncated)"
+    return section
+
+
 def format_generation_context_for_validator(
     gen_input: Optional[Dict[str, Any]],
     *,
-    max_total_chars: int = 18_000,
+    max_total_chars: int = 22_000,
     ref_body_cap: int = 6_000,
     agg_cap: int = 8_000,
 ) -> str:
     """
-    gen_node에 넘어갔던 ref SR 본문·agg_data를 검증 LLM이 동일하게 볼 수 있게 짧게 직렬화.
-    (DP 팩트만으로는 SR 표/계열사 수치가 누락되어 오탐이 난다.)
+    gen_node에 넘어갔던 ref SR 본문·dp_data_list·agg_data를 검증 LLM이 동일하게 볼 수 있게 직렬화.
+    (DP 팩트만으로는 SR 표/계열사 수치·보조 environmental/social 컬럼이 누락되어 오탐이 난다.)
     """
     if not gen_input or not isinstance(gen_input, dict):
         return "(전달 없음 — DP 팩트·대표 fact만 검증 기준으로 사용)"
@@ -122,6 +172,10 @@ def format_generation_context_for_validator(
             if len(body) > ref_body_cap:
                 body = body[:ref_body_cap] + "\n…(truncated)"
             parts.append(f"### {year_key} (page_number={page})\n{body}")
+
+    dp_section = _format_dp_data_list_for_validator(gen_input)
+    if dp_section.strip():
+        parts.append(dp_section)
 
     agg = gen_input.get("agg_data")
     if agg is not None and agg != {}:
@@ -163,7 +217,7 @@ def build_user_prompt(
         f"## 카테고리(주제)\n{category or '(없음)'}\n\n"
         f"## DP별 요약\n{facts_summary}\n\n"
         f"## 대표 fact_data (JSON)\n{representative_fact}\n\n"
-        f"## 생성 단계 참조·집계 요약 (gen_node와 동일 출처 — 여기 수치도 허용)\n{gen_ctx}\n\n"
+        f"## 생성 단계 참조·DP·집계 요약 (gen_node와 동일 출처 — 여기 수치도 허용)\n{gen_ctx}\n\n"
         f"## 생성 문단\n{body}\n\n"
         "위 생성 문단을 검증하고, 지시한 형식의 유효한 JSON만 출력하세요."
     )

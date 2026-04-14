@@ -259,10 +259,60 @@ def run_rules(
     return out, sig
 
 
+def format_supplementary_rows_compact(
+    supplementary_real_data: Any,
+    *,
+    max_rows: int = 15,
+    value_max_chars: int = 96,
+) -> List[str]:
+    """
+    gen_node 프롬프트의 보조 실데이터와 동일한 출처를 검증 LLM에 넘기기 위한 한 줄 요약.
+    각 줄: `  · table.column: 값 [단위]`
+    """
+    lines: List[str] = []
+    if not isinstance(supplementary_real_data, list) or not supplementary_real_data:
+        return lines
+    shown = 0
+    for row in supplementary_real_data:
+        if shown >= max_rows:
+            break
+        if not isinstance(row, dict):
+            continue
+        tbl = str(row.get("table") or "").strip()
+        col = str(row.get("column") or "").strip()
+        loc = f"{tbl}.{col}".strip(".") or f"row_{shown + 1}"
+        if row.get("error"):
+            lines.append(f"  · {loc}: (조회 실패 — {row.get('error')})")
+            shown += 1
+            continue
+        val = row.get("value")
+        if isinstance(val, (dict, list)):
+            try:
+                vs = json.dumps(val, ensure_ascii=False, default=str)
+            except TypeError:
+                vs = str(val)
+        elif val is None:
+            vs = "null"
+        else:
+            vs = str(val)
+        if len(vs) > value_max_chars:
+            vs = vs[:value_max_chars] + "…"
+        u = row.get("unit")
+        if isinstance(u, str) and u.strip():
+            vs = f"{vs} {u.strip()}"
+        lines.append(f"  · {loc}: {vs}")
+        shown += 1
+    remainder = len(supplementary_real_data) - shown
+    if remainder > 0:
+        lines.append(f"  · … 외 {remainder}건")
+    return lines
+
+
 def summarize_facts_for_llm(
     fact_data: Dict[str, Any],
     fact_data_by_dp: Dict[str, Any],
     max_repr_chars: int = 2000,
+    max_facts_summary_chars: int = 14_000,
 ) -> Tuple[str, str]:
     """(facts_summary lines, representative_fact string)"""
     lines: List[str] = []
@@ -296,7 +346,12 @@ def summarize_facts_for_llm(
             lines.append(
                 f"- dp_id={dp_id} name_ko={name_ko!r} value={val!r} unit={unit!r}{supp_info}{err_s}"
             )
+            # 보조 실데이터 행별 수치 (gen_node와 동일 출처 — 검증 오탐 방지)
+            if isinstance(supp, list) and len(supp) > 0:
+                lines.extend(format_supplementary_rows_compact(supp))
     facts_summary = "\n".join(lines) if lines else "(없음)"
+    if len(facts_summary) > max_facts_summary_chars:
+        facts_summary = facts_summary[:max_facts_summary_chars] + "\n…(truncated)"
     try:
         repr_s = json.dumps(fact_data, ensure_ascii=False, default=str)
     except TypeError:

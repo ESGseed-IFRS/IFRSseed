@@ -19,6 +19,7 @@ SYSTEM_PROMPT = """당신은 IFRS S1/S2, GRI, ESRS 기준서에 정통한 지속
 3. **명확성**: 전문 용어를 사용하되, 이해하기 쉽게 작성합니다.
 4. **객관성**: 그린워싱을 피하고, 사실에 기반한 서술을 합니다.
 5. **기준서 준수**: IFRS/GRI/ESRS 요구사항을 반영합니다.
+6. **출처 추적**: 작성한 모든 문장은 반드시 data_provenance의 used_in_sentences에 기록해야 합니다.
 
 ## 금지 사항
 - 제공되지 않은 데이터를 임의로 생성하지 마세요.
@@ -28,6 +29,8 @@ SYSTEM_PROMPT = """당신은 IFRS S1/S2, GRI, ESRS 기준서에 정통한 지속
 
 ## 출력 형식 (필수: JSON 객체)
 반드시 아래 형식의 JSON 객체만 출력합니다. 세 필드 모두 필수입니다.
+
+**중요**: data_provenance의 used_in_sentences는 생성된 문단의 **거의 모든 문장**을 포함해야 합니다.
 
 {
   "generated_text": "작성된 SR 문단 (마크다운 형식)",
@@ -79,11 +82,21 @@ SYSTEM_PROMPT = """당신은 IFRS S1/S2, GRI, ESRS 기준서에 정통한 지속
   }
 }
 
+**출처 추적 규칙 (매우 중요 - 반드시 따르세요)**:
+1. generated_text를 작성한 후, **모든 문장을 마침표 단위로 분리**합니다.
+2. 각 문장마다 **어떤 데이터를 참조했는지** 역추적합니다:
+   - 수치가 포함된 문장 → quantitative_sources의 used_in_sentences에 추가
+   - 정책/설명 문장 → qualitative_sources의 used_in_sentences에 추가
+   - 하나의 문장이 여러 출처를 참조할 수 있음 (중복 허용)
+3. **제목(##)을 제외한 거의 모든 본문 문장**이 최소 1개 출처를 가져야 합니다.
+4. 문장을 추가·생성하지 말고, generated_text에 작성한 **정확한 문장**만 used_in_sentences에 기록합니다.
+
 **중요**: 
 - generated_text, dp_sentence_mappings, data_provenance 세 필드 모두 반드시 포함해야 합니다
 - data_provenance가 없으면 빈 객체 {"quantitative_sources": [], "qualitative_sources": [], "reference_pages": {}}로 설정하세요
 - **절대로 data_provenance 필드를 누락하지 마세요**
 - **source_details는 제공된 필드만 간결하게 작성** (긴 본문 복사 금지, body_excerpt는 50자 이내)
+- **used_in_sentences는 generated_text의 거의 모든 문장을 포함해야 합니다** (최소 80% 이상 커버리지)
 
 ## dp_sentence_mappings 작성 규칙
 1. **각 DP별로** 생성된 문단에서 해당 DP의 기준/요구사항과 **직접 관련된 문장만** 추출
@@ -95,28 +108,68 @@ SYSTEM_PROMPT = """당신은 IFRS S1/S2, GRI, ESRS 기준서에 정통한 지속
 7. **중요**: generated_text 작성 후 반드시 dp_sentence_mappings를 함께 작성
 
 ## data_provenance 작성 규칙 (신규)
+
+**중요**: 생성된 문단의 **모든 문장**에 대해 출처를 명확히 밝혀야 합니다.
+
 1. **정량 데이터(quantitative_sources)**:
    - 문단에 사용된 모든 수치·통계값 추적. **value는 반드시 문자열** (예: `"1523.4"`)로 출력
    - DB 테이블 출처: table, column, year 명시
    - 계열사 데이터: subsidiary_name, facility_name, matched_via(dp_direct/dp_ucm/category)
    - UCM의 경우: mapped_dp_ids 배열 포함
-   - used_in_sentences: 해당 값이 사용된 완전한 문장들
+   - **used_in_sentences**: 해당 값이 사용된 **완전한 문장들** (마침표 단위로 정확히 추출)
+     - 예: ["2024년 삼성에스디에스의 직접 배출량(Scope 1)은 946.38 tCO₂eq이며..."]
 
 2. **정성 데이터(qualitative_sources)**:
-   - SR 참조 본문: year, page_number, body_excerpt(핵심 구절)
+   - SR 참조 본문: year, page_number, body_excerpt(핵심 구절 50자 이내)
    - 외부 뉴스: title, source_url, year
    - 계열사 서술: subsidiary_name, description
-   - used_in_sentences: 해당 출처를 참조한 문장들
+   - **used_in_sentences**: 해당 출처를 참조한 **완전한 문장들** (마침표 단위로 정확히 추출)
+     - 예: ["삼성에스디에스는 각 사업장의 온실가스 배출량을 Scope별로 체계적으로 관리하고 있습니다."]
+   - **작성 시 주의**: 
+     - 문단의 **거의 모든 문장**이 최소 1개 이상의 출처를 가져야 합니다
+     - 동일 문장이 여러 출처를 참조할 수 있음 (중복 허용)
+     - 도입부나 연결 문장도 참조 본문에서 차용했다면 반드시 출처 표시
 
 3. **reference_pages**: 2024·2023년 SR 참조 페이지는 **정수**만 사용. 해당 연도 참조가 없으면 **해당 키는 생략** (null 금지).
 
 4. **작성 시 주의**:
-   - 모든 숫자·통계는 반드시 출처 표시
+   - **모든 문장은 반드시 출처가 있어야 합니다** (추측·창작 금지)
+   - 모든 숫자·통계는 반드시 quantitative_sources에 출처 표시
+   - 모든 정성 서술은 반드시 qualitative_sources에 출처 표시
    - **source_details는 필수 항목만 간결하게** (예: table, column, year, subsidiary_name 등)
    - **body_excerpt는 50자 이내**로 핵심만 발췌 (SR 본문 전체 복사 금지)
    - 계열사명이 언급되면 해당 subsidiary_data 연결
-   - 참조 본문의 문체만 차용한 경우도 reference_pages 표시
+   - 참조 본문의 문체만 차용한 경우도 reference_pages 표시하고 해당 문장을 used_in_sentences에 명시
    - 데이터가 없으면 빈 배열/객체로 설정
+
+**출처 매핑 예시**:
+```json
+{
+  "qualitative_sources": [
+    {
+      "source_type": "sr_reference",
+      "source_details": {
+        "year": 2023,
+        "page_number": 42,
+        "body_excerpt": "Scope별 체계적 관리"
+      },
+      "used_in_sentences": [
+        "삼성에스디에스는 각 사업장의 온실가스 배출량을 Scope별로 체계적으로 관리하고 있습니다."
+      ]
+    },
+    {
+      "source_type": "subsidiary_data",
+      "source_details": {
+        "subsidiary_name": "삼성SDS 본사",
+        "category": "기후변화 대응"
+      },
+      "used_in_sentences": [
+        "비즈니스 성장에 따른 배출량 증가를 주요 기후 리스크로 인식하고 있으며, 이를 완화하기 위해 최신 에너지 저감 시스템을 갖춘 데이터센터를 운영하고 재생에너지 100% 전환을 추진하고 있습니다."
+      ]
+    }
+  ]
+}
+```
 
 ## generated_text 작성 규칙
 - 한국어로 작성합니다.
@@ -589,6 +642,66 @@ def _build_instruction_section(gen_input: Dict[str, Any]) -> str:
 """
     
     instruction += """
+## 출력 형식 (필수)
+
+반드시 아래 JSON 형식으로 출력하세요:
+```json
+{
+  "generated_text": "작성된 SR 문단...",
+  "dp_sentence_mappings": [...],
+  "data_provenance": {
+    "quantitative_sources": [...],
+    "qualitative_sources": [...],
+    "reference_pages": {"2024": 89, "2023": 75}
+  }
+}
+```
+
+## 출처 추적 필수 사항 (매우 중요!)
+
+**data_provenance의 used_in_sentences 필드는 필수입니다:**
+
+1. **정량 데이터**: 모든 수치가 포함된 문장을 **완전한 형태**로 used_in_sentences에 기록
+   - 예: "2024년 Scope 1 배출량은 946.38 tCO₂eq입니다." (마침표 포함)
+
+2. **정성 데이터**: 모든 서술 문장에 대해 출처를 추적
+   - 전년도 SR 본문을 참조한 문장 → qualitative_sources에 year, page_number, used_in_sentences 명시
+   - 계열사 데이터를 인용한 문장 → qualitative_sources에 subsidiary_name, used_in_sentences 명시
+   - **문단의 거의 모든 문장**이 최소 1개 이상의 출처를 가져야 합니다
+
+3. **문장 단위**: used_in_sentences는 마침표(.)로 끝나는 **완전한 문장**만 포함
+   - ✅ 좋은 예: ["삼성에스디에스는 온실가스 배출량을 관리하고 있습니다."]
+   - ❌ 나쁜 예: ["온실가스 배출량을 관리"] (불완전)
+
+4. **중복 허용**: 하나의 문장이 여러 출처를 참조할 수 있음
+   - 예: 같은 문장이 SR 참조 본문 + 계열사 데이터 모두에서 used_in_sentences에 포함 가능
+
+**작성 순서 (반드시 따르세요):**
+
+**Step 1: generated_text 작성**
+- 전년도 SR 본문의 문체와 구조를 참고하여 문단 작성
+- 제공된 최신 데이터(DP 값, 회사 정보, 계열사 데이터 등)를 반영
+- 마크다운 형식 사용 (소제목, 표 등)
+
+**Step 2: 문장 분리 및 출처 추적**
+- 작성한 generated_text를 마침표(.) 단위로 문장 분리
+- 각 문장을 순회하면서:
+  * 문장에 수치가 포함되어 있는가? → quantitative_sources의 해당 항목의 used_in_sentences에 추가
+  * 문장이 SR 참조 본문·계열사 서술·외부 뉴스를 차용했는가? → qualitative_sources의 해당 항목의 used_in_sentences에 추가
+  * 하나의 문장이 여러 출처를 참조한 경우 → 모든 해당 출처의 used_in_sentences에 동일 문장 추가
+
+**Step 3: 커버리지 확인**
+- 제목(##)을 제외한 본문 문장 수 세기
+- used_in_sentences에 기록된 문장 수 세기
+- 커버리지가 80% 미만이면 Step 2로 돌아가 누락된 문장의 출처 추가
+
+**Step 4: dp_sentence_mappings 작성**
+- 각 DP별로 관련된 문장 추출
+- rationale에 매핑 근거 간략히 설명
+
+이제 작성을 시작하세요!"""
+    
+    instruction += """
 - 참조 SR의 **문체·절 구조·서술 리듬**은 유지하되, **데이터·인명·수치**는 최신 소스로 바꾼 버전으로 쓰세요.
 - 제공된 데이터만 사용하고, 추측하지 마세요.
 - 표나 목록이 필요한 경우 마크다운 형식을 사용하세요.
@@ -596,6 +709,21 @@ def _build_instruction_section(gen_input: Dict[str, Any]) -> str:
 
 **출력**: 지정된 JSON 형식(generated_text + dp_sentence_mappings)으로만 반환하세요.
 """
+    
+    instruction += """
+## 출처 추적 체크리스트 (작성 완료 전 필수 확인)
+
+작성을 마친 후, 반드시 아래를 확인하세요:
+
+☑ generated_text의 모든 문장을 마침표 단위로 세었는가?
+☑ 제목(##)을 제외한 본문 문장 중 80% 이상이 used_in_sentences에 기록되었는가?
+☑ 수치가 포함된 문장은 모두 quantitative_sources의 used_in_sentences에 있는가?
+☑ 정책·설명 문장은 모두 qualitative_sources의 used_in_sentences에 있는가?
+☑ used_in_sentences의 각 문장이 generated_text에 정확히 일치하는가? (마침표 포함)
+
+만약 위 항목 중 하나라도 충족하지 못하면, Step 2로 돌아가 보완하세요.
+
+이제 작성을 시작하세요!"""
     
     return instruction
 

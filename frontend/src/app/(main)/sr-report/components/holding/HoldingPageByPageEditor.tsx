@@ -36,6 +36,17 @@ import {
 } from './HoldingPageEditorBlocks';
 import { HoldingInfographicEditor } from './HoldingInfographicEditor';
 import { HoldingInfographicSvg } from './HoldingInfographicSvg';
+import {
+  sourceTypeKo,
+  sourceDetailFieldKo,
+  matchedViaKo,
+  formatSourceValue,
+} from '../../lib/sourceFieldLabels';
+import {
+  buildCitationMap,
+  insertCitations,
+  type CitationSource,
+} from '../../lib/citationUtils';
 
 const INFO_ICONS = ['📊', '📈', '🗂️', '🎯', '📉'];
 
@@ -129,27 +140,22 @@ const SOURCE_TYPE_LABEL_KO: Record<string, string> = {
   environmental_data: '환경 DB',
   social_data: '사회 DB',
   governance_data: '지배구조 DB',
-  subsidiary_data: '계열사 기여 데이터',
-  external_news: '외부 보도',
-  sr_reference: 'SR 참조 본문',
-  rulebook: '기준서(rulebook)',
+  subsidiary_data: '🏢 계열사 기여 데이터',
+  external_news: '🌐 외부 보도',
+  sr_reference: '📄 SR 참조 본문',
+  rulebook: '📚 기준서(rulebook)',
+  feedback_correction: '✅ 피드백 보정',
+  category: '🔍 카테고리 매칭',
+  external_data: '🌐 외부 데이터',
 };
 
 function sourceTypeLabelKo(t: string | undefined): string {
   if (!t) return '—';
-  return SOURCE_TYPE_LABEL_KO[t] ?? t;
+  return SOURCE_TYPE_LABEL_KO[t] ?? sourceTypeKo(t);
 }
 
 function formatDetailValue(v: unknown): string {
-  if (v === null || v === undefined) return '';
-  if (typeof v === 'object') {
-    try {
-      return JSON.stringify(v);
-    } catch {
-      return String(v);
-    }
-  }
-  return String(v);
+  return formatSourceValue(v);
 }
 
 function shouldShowProvenanceBlock(p: DataProvenance | undefined | null): boolean {
@@ -474,7 +480,7 @@ function DataProvenanceSection({ provenance }: { provenance: DataProvenance }) {
                   <ul className="text-[10px] text-[#555] space-y-0.5 mb-2 pl-3 list-disc">
                     {Object.entries(row.source_details).map(([k, v]) => (
                       <li key={k}>
-                        <span className="font-semibold text-[#444]">{k}</span>: {formatDetailValue(v)}
+                        <span className="font-semibold text-[#444]">{sourceDetailFieldKo(k)}</span>: {formatDetailValue(v)}
                       </li>
                     ))}
                   </ul>
@@ -519,11 +525,24 @@ function DataProvenanceSection({ provenance }: { provenance: DataProvenance }) {
                     {sourceTypeLabelKo(row.source_type)}
                   </span>
                 </div>
+                {row.source_details?.reference_location_ko &&
+                  typeof row.source_details.reference_location_ko === 'string' && (
+                    <div className="mb-2 rounded-lg border border-[#e1bee7] bg-[#faf5fc] px-2.5 py-2">
+                      <div className="text-[10px] font-bold text-[#6a1b9a] mb-1">
+                        {sourceDetailFieldKo('reference_location_ko')}
+                      </div>
+                      <p className="text-[10px] text-[#444] leading-relaxed whitespace-pre-wrap">
+                        {row.source_details.reference_location_ko}
+                      </p>
+                    </div>
+                  )}
                 {row.source_details && Object.keys(row.source_details).length > 0 && (
                   <ul className="text-[10px] text-[#555] space-y-0.5 mb-2 pl-3 list-disc">
-                    {Object.entries(row.source_details).map(([k, v]) => (
+                    {Object.entries(row.source_details)
+                      .filter(([k]) => k !== 'reference_location_ko' && k !== 'sr_reference_anchors')
+                      .map(([k, v]) => (
                       <li key={k}>
-                        <span className="font-semibold text-[#444]">{k}</span>: {formatDetailValue(v)}
+                        <span className="font-semibold text-[#444]">{sourceDetailFieldKo(k)}</span>: {formatDetailValue(v)}
                       </li>
                     ))}
                   </ul>
@@ -538,6 +557,76 @@ function DataProvenanceSection({ provenance }: { provenance: DataProvenance }) {
                     ))}
                   </div>
                 )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** 각주 포함 생성 텍스트 렌더링 */
+function GeneratedTextWithCitations({
+  text,
+  provenance,
+}: {
+  text: string;
+  provenance?: DataProvenance | null;
+}) {
+  const quant = Array.isArray(provenance?.quantitative_sources) ? provenance.quantitative_sources : [];
+  const qual = Array.isArray(provenance?.qualitative_sources) ? provenance.qualitative_sources : [];
+
+  // 출처 매핑 생성
+  const citationMap = buildCitationMap(quant, qual);
+  const [textWithCitations, citations] = insertCitations(text, citationMap);
+
+  // 각주 번호 클릭 핸들러
+  const handleCitationClick = (citationId: number) => {
+    const element = document.getElementById(`citation-${citationId}`);
+    element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  return (
+    <div className="w-full min-h-[120px] border border-[#dde1e7] rounded-[8px] py-2.5 px-3 text-[12px] leading-[1.7] text-[#444] bg-white">
+      {/* 본문 (각주 포함) */}
+      <div
+        className="whitespace-pre-wrap break-words"
+        dangerouslySetInnerHTML={{
+          __html: textWithCitations.replace(
+            /\[(\d+)\]/g,
+            (match, num) =>
+              `<sup class="text-[#185FA5] font-bold cursor-pointer hover:underline mx-0.5" onclick="document.getElementById('citation-${num}')?.scrollIntoView({behavior:'smooth',block:'center'})">[${num}]</sup>`
+          ),
+        }}
+      />
+
+      {/* 출처 목록 */}
+      {citations.length > 0 && (
+        <div className="mt-6 pt-4 border-t border-[#e8e8e4]">
+          <div className="text-[11px] font-bold text-[#333] mb-3">📚 참고 문헌</div>
+          <div className="flex flex-col gap-2">
+            {citations.map((citation) => (
+              <div
+                key={citation.id}
+                id={`citation-${citation.id}`}
+                className="flex gap-2 text-[10px] p-2 rounded bg-[#f9fafb] border border-[#e5e7eb]"
+              >
+                <span className="font-bold text-[#185FA5] shrink-0">[{citation.id}]</span>
+                <div className="flex-1">
+                  <div className="font-semibold text-[#444] mb-1">
+                    {sourceTypeKo(citation.sourceType)}
+                  </div>
+                  {Object.keys(citation.sourceDetails).length > 0 && (
+                    <ul className="text-[#666] space-y-0.5 pl-3 list-disc">
+                      {Object.entries(citation.sourceDetails).map(([k, v]) => (
+                        <li key={k}>
+                          <span className="font-semibold">{sourceDetailFieldKo(k)}</span>: {formatSourceValue(v)}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -798,6 +887,7 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
   const pageKey = selectedPage ? String(selectedPage.page) : null;
   const currentText = pageKey ? pageTexts[pageKey] || '' : '';
   const currentReply = pageKey ? agentReplies[pageKey] || '' : '';
+  const currentProvenance = pageKey ? pageDataProvenance[pageKey] : undefined;
   const currentLayoutBlocks = pageKey ? agentLayouts[pageKey] || [] : [];
   const currentGenerationSteps = pageKey ? generationSteps[pageKey] || [] : [];
   const currentBlocks = pageKey ? blocks[pageKey] || [] : [];
@@ -1323,12 +1413,16 @@ export function HoldingPageByPageEditor({ initialKeyword, onInitialKeywordConsum
                             </ol>
                           </details>
                         )}
-                        <textarea
-                          value={currentReply}
-                          readOnly
-                          placeholder="아직 생성된 에이전트 응답이 없습니다. 상단의 'AI 문단 생성' 버튼을 눌러주세요."
-                          className="w-full min-h-[120px] border border-[#dde1e7] rounded-[8px] py-2.5 px-3 text-[12px] leading-[1.7] resize-y outline-none text-[#444] bg-white box-border"
-                        />
+                        {currentReply ? (
+                          <GeneratedTextWithCitations
+                            text={currentReply}
+                            provenance={currentProvenance}
+                          />
+                        ) : (
+                          <div className="w-full min-h-[120px] border border-[#dde1e7] rounded-[8px] py-2.5 px-3 text-[12px] leading-[1.7] text-[#999] bg-white flex items-center justify-center">
+                            아직 생성된 에이전트 응답이 없습니다. 상단의 'AI 문단 생성' 버튼을 눌러주세요.
+                          </div>
+                        )}
                         {requestError && (
                           <div className="mt-2 text-[11px] text-[#c06020]">
                             {requestError}

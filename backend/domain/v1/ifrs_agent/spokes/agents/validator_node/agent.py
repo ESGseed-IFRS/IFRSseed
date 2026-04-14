@@ -74,6 +74,7 @@ class ValidatorNodeAgent:
         - quantitative_sources: 수치 데이터 출처 검증
         - qualitative_sources: 정성 데이터 출처 검증
         - used_in_sentences: 문장이 generated_text에 실제로 존재하는지 확인
+        - sentence_coverage: 본문의 모든 문장이 최소 1개 이상의 출처를 가지는지 확인
         
         Returns:
             에러 메시지 리스트
@@ -139,12 +140,94 @@ class ValidatorNodeAgent:
         if not isinstance(ref_pages, dict):
             errors.append("data_provenance.reference_pages는 객체여야 합니다")
         
+        # 문장 커버리지 검증 (신규)
+        coverage_warnings = self._check_sentence_coverage(
+            generated_text, quant_sources, qual_sources
+        )
+        if coverage_warnings:
+            logger.warning(
+                "validator_node: 출처 커버리지 경고 %d건 (본문 문장 중 출처 없는 문장 있음)",
+                len(coverage_warnings)
+            )
+            # 경고로만 처리 (에러는 아님)
+            for warning in coverage_warnings[:5]:  # 최대 5개만
+                logger.warning("  - %s", warning)
+        
         logger.info(
-            "validator_node: provenance 검증 완료 (quant=%d, qual=%d, errors=%d)",
-            len(quant_sources), len(qual_sources), len(errors)
+            "validator_node: provenance 검증 완료 (quant=%d, qual=%d, errors=%d, coverage_warnings=%d)",
+            len(quant_sources), len(qual_sources), len(errors), len(coverage_warnings)
         )
         
         return errors
+    
+    def _check_sentence_coverage(
+        self,
+        generated_text: str,
+        quant_sources: List[Dict[str, Any]],
+        qual_sources: List[Dict[str, Any]]
+    ) -> List[str]:
+        """
+        본문의 모든 문장이 최소 1개 이상의 출처를 가지는지 확인
+        
+        Returns:
+            경고 메시지 리스트 (출처 없는 문장들)
+        """
+        warnings = []
+        
+        # 본문을 문장 단위로 분리
+        import re
+        sentences = [s.strip() for s in re.split(r'[.!?]\s+', generated_text) if s.strip()]
+        
+        # 제목/소제목 제거 (## 로 시작하는 줄)
+        content_sentences = [
+            s for s in sentences 
+            if not s.startswith('#') and len(s) > 10  # 너무 짧은 문장도 제외
+        ]
+        
+        if not content_sentences:
+            return warnings
+        
+        # 모든 출처의 used_in_sentences 수집
+        covered_sentences = set()
+        
+        for src in quant_sources:
+            if isinstance(src, dict):
+                used = src.get("used_in_sentences", [])
+                if isinstance(used, list):
+                    for sentence in used:
+                        if sentence:
+                            covered_sentences.add(sentence.strip())
+        
+        for src in qual_sources:
+            if isinstance(src, dict):
+                used = src.get("used_in_sentences", [])
+                if isinstance(used, list):
+                    for sentence in used:
+                        if sentence:
+                            covered_sentences.add(sentence.strip())
+        
+        # 출처 없는 문장 찾기
+        for sentence in content_sentences:
+            if sentence not in covered_sentences:
+                # 부분 매칭도 시도 (공백/구두점 차이 허용)
+                normalized = re.sub(r'\s+', ' ', sentence)
+                found = False
+                for covered in covered_sentences:
+                    covered_normalized = re.sub(r'\s+', ' ', covered)
+                    if normalized in covered_normalized or covered_normalized in normalized:
+                        found = True
+                        break
+                
+                if not found:
+                    warnings.append(f"출처 없는 문장: {sentence[:80]}...")
+        
+        coverage_rate = (len(content_sentences) - len(warnings)) / len(content_sentences) * 100 if content_sentences else 100
+        logger.info(
+            "validator_node: 문장 커버리지 %.1f%% (%d/%d 문장)",
+            coverage_rate, len(content_sentences) - len(warnings), len(content_sentences)
+        )
+        
+        return warnings
 
     async def validate(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         text = normalize_generated_text(payload.get("generated_text"))
