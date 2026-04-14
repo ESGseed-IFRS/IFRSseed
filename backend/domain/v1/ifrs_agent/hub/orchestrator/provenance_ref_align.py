@@ -14,6 +14,8 @@ logger = logging.getLogger("ifrs_agent.provenance_ref_align")
 
 # fuzzy 매칭 최소 유사도 (한글 개행·띄어쓰기 차이 허용)
 _FUZZY_RATIO_MIN = 0.72
+# JSON·UI용 참조 발췌 최대 길이 (매칭 구간이 길 때)
+_REF_EXCERPT_MAX_CHARS = 500
 
 
 def _normalize_ws(s: str) -> str:
@@ -181,14 +183,24 @@ def enrich_qualitative_sr_reference_spans(
                         "ref_block": ref_key,
                     }
                 )
+                preview = used.strip()
+                if len(preview) > 160:
+                    preview = preview[:160] + "…"
                 summary_lines.append(
-                    "· 인용 문장: 참조 본문에서 동일 문장을 자동 매칭하지 못했습니다 (표현 차이 가능)."
+                    "· 인용 문장: 참조 본문에서 동일 문장을 자동 매칭하지 못했습니다 (표현 차이 가능).\n"
+                    f"  ↳ 생성 본문 인용: 「{preview}」"
                 )
                 continue
 
             idx0, c0, c1, quality = hit
             idx1 = idx0 + 1
             pg = page if page is not None else "—"
+            raw_excerpt = body[c0:c1].strip()
+            if len(raw_excerpt) > _REF_EXCERPT_MAX_CHARS:
+                excerpt_stored = raw_excerpt[:_REF_EXCERPT_MAX_CHARS] + "…"
+            else:
+                excerpt_stored = raw_excerpt
+
             anchors.append(
                 {
                     "used_sentence_preview": used[:200] + ("…" if len(used) > 200 else ""),
@@ -197,12 +209,13 @@ def enrich_qualitative_sr_reference_spans(
                     "ref_char_end": c1,
                     "match_quality": quality,
                     "ref_block": ref_key,
-                    "ref_sentence_excerpt": body[c0: min(c1, c0 + 200)],
+                    "ref_sentence_excerpt": excerpt_stored,
                 }
             )
             summary_lines.append(
                 f"· {pg}페이지 참조 본문({ref_key}) {idx1}번째 문장 "
-                f"(문자 위치 {c0}–{c1}, 매칭: {quality})"
+                f"(문자 위치 {c0}–{c1}, 매칭: {quality})\n"
+                f"  ↳ 참조 원문: 「{excerpt_stored}」"
             )
 
         if anchors:

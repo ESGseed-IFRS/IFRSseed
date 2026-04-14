@@ -39,6 +39,9 @@ def test_enrich_sr_reference_anchors():
     assert "reference_location_ko" in d
     assert "39페이지" in d["reference_location_ko"]
     assert "번째 문장" in d["reference_location_ko"]
+    assert "참조 원문" in d["reference_location_ko"]
+    assert "삼성에스디에스는 각 사업장" in d["reference_location_ko"]
     assert "sr_reference_anchors" in d
     assert d["sr_reference_anchors"][0]["ref_sentence_index_1based"] == 1
     assert d["sr_reference_anchors"][0]["ref_char_start"] is not None
+    assert "삼성에스디에스는 각 사업장" in d["sr_reference_anchors"][0]["ref_sentence_excerpt"]
