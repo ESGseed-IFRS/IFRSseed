@@ -525,8 +525,8 @@ function DataProvenanceSection({ provenance }: { provenance: DataProvenance }) {
                     {sourceTypeLabelKo(row.source_type)}
                   </span>
                 </div>
-                {row.source_details?.reference_location_ko &&
-                  typeof row.source_details.reference_location_ko === 'string' && (
+                {typeof row.source_details?.reference_location_ko === 'string' &&
+                  row.source_details.reference_location_ko && (
                     <div className="mb-2 rounded-lg border border-[#e1bee7] bg-[#faf5fc] px-2.5 py-2">
                       <div className="text-[10px] font-bold text-[#6a1b9a] mb-1">
                         {sourceDetailFieldKo('reference_location_ko')}
